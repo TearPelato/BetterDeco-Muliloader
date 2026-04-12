@@ -20,14 +20,22 @@
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json",
-    "${mod_id}.fabric.mixins.json"
+
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": "*",
     "minecraft": "${minecraft_version}",
-    "java": ">=${java_version}"
+    "java": ">=${java_version}",
+    "framewrok": ">=${framework_version}"
+  },
+
+  "custom": {
+    "framework": {
+      "containers": [
+        "net.tier1234.better_dece.init"
+      ]
+    }
   },
   "suggests": {
     "another-mod": "*"
