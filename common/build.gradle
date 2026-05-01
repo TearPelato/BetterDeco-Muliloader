@@ -21,6 +21,8 @@ dependencies {
     compileOnly "com.mrcrayfish:framework-common:${minecraft_version}-${framework_version}"
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
+    implementation("net.tearpelato:deco_lib-common-1.21.1:${deco_lib_version}")
+    jarJar("net.tearpelato:deco_lib-common-1.21.1:${deco_lib_version}")
 }
 
 configurations {

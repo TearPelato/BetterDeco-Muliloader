@@ -11,6 +11,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "com.mrcrayfish:framework-fabric:${minecraft_version}-${framework_version}"
+    modImplementation("net.tearpelato:deco_lib-fabric-1.21.1:${deco_lib_version}")
+
 }
 
 loom {

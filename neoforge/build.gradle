@@ -50,6 +50,8 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     implementation "com.mrcrayfish:framework-neoforge:${minecraft_version}-${framework_version}"
+    implementation("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
+    jarJar("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
 }
 
 sourceSets.main.resources {
