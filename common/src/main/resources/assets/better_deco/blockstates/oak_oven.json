@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "better_deco:block/oven",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "better_deco:block/oven",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "better_deco:block/oven",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "better_deco:block/oven",
+      "y": 270
+    }
+  }
+}

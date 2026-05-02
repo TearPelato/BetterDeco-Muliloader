@@ -1,0 +1,11 @@
+{
+  "parent": "better_deco:block/oven",
+  "textures": {
+    "0": "block/calcite",
+    "1": "block/dark_oak_planks",
+    "2": "block/anvil",
+    "3": "better_deco:block/front",
+    "4": "better_deco:block/grill",
+    "particle": "block/dark_oak_planks"
+ }
+}

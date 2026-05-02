@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "better_deco:block/chair"
+    },
+    "facing=south": {
+      "model": "better_deco:block/chair",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "better_deco:block/chair",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "better_deco:block/chair",
+      "y": 270
+    }
+  }
+}

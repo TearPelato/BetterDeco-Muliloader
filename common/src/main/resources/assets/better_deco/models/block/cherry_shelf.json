@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/shelf",
+  "textures": {
+    "all":"block/cherry_planks",
+    "particle": "block/cherry_planks"
+  }
+}

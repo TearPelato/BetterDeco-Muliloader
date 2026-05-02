@@ -23,6 +23,8 @@ dependencies {
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     implementation("net.tearpelato:deco_lib-common-1.21.1:${deco_lib_version}")
     jarJar("net.tearpelato:deco_lib-common-1.21.1:${deco_lib_version}")
+
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
 }
 
 configurations {

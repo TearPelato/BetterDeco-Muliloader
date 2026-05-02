@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_drawer_closed",
+  "textures": {
+    "top": "minecraft:block/green_concrete",
+    "base": "minecraft:block/quartz_block_side"
+  }
+}

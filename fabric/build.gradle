@@ -13,10 +13,15 @@ dependencies {
     modImplementation "com.mrcrayfish:framework-fabric:${minecraft_version}-${framework_version}"
     modImplementation("net.tearpelato:deco_lib-fabric-1.21.1:${deco_lib_version}")
 
+
+    modCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    modCompileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
+    modRuntimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
+
 }
 
 loom {
-    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
+    def aw = project(':fabric').file("src/main/resources/${mod_id}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)
     }

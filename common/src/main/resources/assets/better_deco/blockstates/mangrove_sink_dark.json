@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "better_deco:block/mangrove_sink_dark",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "better_deco:block/mangrove_sink_dark",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "better_deco:block/mangrove_sink_dark",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "better_deco:block/mangrove_sink_dark",
+      "y": 270
+    }
+  }
+}

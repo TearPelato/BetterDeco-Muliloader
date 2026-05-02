@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/table",
+  "textures": {
+    "top": "block/crimson_stem",
+    "legs": "block/stripped_crimson_stem"
+  }
+}

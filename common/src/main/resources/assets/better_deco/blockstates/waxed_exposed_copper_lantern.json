@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "better_deco:block/exposed_lantern"
+    },
+    "hanging=true": {
+      "model": "better_deco:block/exposed_lantern_hanging"
+    }
+  }
+}

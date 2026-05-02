@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_closed",
+  "textures": {
+    "door": "block/cherry_log",
+    "base": "block/cherry_planks"
+  }
+}

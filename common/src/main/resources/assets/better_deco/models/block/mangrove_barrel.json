@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "better_deco:block/planks/mangrove/mangroe_barrel_bottom",
+    "side": "better_deco:block/planks/mangrove/mangrove_barrel_side",
+    "top": "better_deco:block/planks/mangrove/mangrove_barrel_top"
+  }
+}

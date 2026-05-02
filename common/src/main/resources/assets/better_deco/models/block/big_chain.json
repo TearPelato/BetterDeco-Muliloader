@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/chain",
+  "textures": {
+    "particle": "better_deco:block/chain",
+    "texture": "better_deco:block/chain"
+  }
+}

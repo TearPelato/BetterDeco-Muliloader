@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_closed",
+  "textures": {
+    "door": "block/deepslate_bricks",
+    "base": "block/cobbled_deepslate"
+  }
+}

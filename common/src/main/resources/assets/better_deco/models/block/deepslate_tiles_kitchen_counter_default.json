@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_default",
+  "textures": {
+    "top": "minecraft:block/deepslate_tiles",
+    "base": "minecraft:block/cobbled_deepslate"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "better_deco:block/planks/jungle/jungle_planks_pillar_top",
+    "side": "better_deco:block/planks/jungle/jungle_planks_pillar"
+  }
+}

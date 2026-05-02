@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_right_corner",
+  "textures": {
+    "top": "minecraft:block/stone",
+    "base": "minecraft:block/cobblestone"
+  }
+}

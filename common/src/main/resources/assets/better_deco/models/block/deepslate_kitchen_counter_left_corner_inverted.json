@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_left_corner_inverted",
+  "textures": {
+    "top": "minecraft:block/deepslate_bricks",
+    "base": "minecraft:block/cobbled_deepslate"
+  }
+}

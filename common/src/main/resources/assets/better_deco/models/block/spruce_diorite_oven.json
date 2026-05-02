@@ -1,0 +1,11 @@
+{
+  "parent": "better_deco:block/oven",
+  "textures": {
+    "0": "block/polished_diorite",
+    "1": "block/spruce_planks",
+    "2": "block/anvil",
+    "3": "better_deco:block/front",
+    "4": "better_deco:block/grill",
+    "particle": "block/spruce_planks"
+ }
+}

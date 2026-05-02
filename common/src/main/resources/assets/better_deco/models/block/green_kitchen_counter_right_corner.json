@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_right_corner",
+  "textures": {
+    "top": "minecraft:block/green_concrete",
+    "base": "minecraft:block/quartz_block_side"
+  }
+}

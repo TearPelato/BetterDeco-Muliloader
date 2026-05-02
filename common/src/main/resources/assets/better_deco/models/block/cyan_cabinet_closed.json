@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_closed",
+  "textures": {
+    "door": "block/cyan_concrete",
+    "base": "block/quartz_block_side"
+  }
+}

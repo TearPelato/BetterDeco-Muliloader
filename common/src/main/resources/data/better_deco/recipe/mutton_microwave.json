@@ -1,0 +1,9 @@
+{
+  "type": "better_deco:microwave",
+  "ingredient": {
+    "item": "minecraft:mutton"
+  },
+  "result": {
+    "id": "minecraft:cooked_mutton"
+  }
+}

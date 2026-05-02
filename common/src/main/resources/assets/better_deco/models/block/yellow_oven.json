@@ -1,0 +1,11 @@
+{
+  "parent": "better_deco:block/oven",
+  "textures": {
+    "0": "block/yellow_concrete",
+    "1": "block/quartz_block_side",
+    "2": "block/anvil",
+    "3": "better_deco:block/front",
+    "4": "better_deco:block/grill",
+    "particle": "block/quartz_block_side"
+ }
+}

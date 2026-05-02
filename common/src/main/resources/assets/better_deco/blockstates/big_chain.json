@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "better_deco:block/big_chain",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "better_deco:block/big_chain"
+    },
+    "axis=z": {
+      "model": "better_deco:block/big_chain",
+      "x": 90
+    }
+  }
+}

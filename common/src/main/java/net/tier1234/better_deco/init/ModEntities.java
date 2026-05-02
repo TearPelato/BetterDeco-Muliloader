@@ -5,7 +5,7 @@ import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.entities.custom.SeatEntity;
+import net.tier1234.better_deco.entity.custom.SeatEntity;
 
 @RegistryContainer
 public class ModEntities {

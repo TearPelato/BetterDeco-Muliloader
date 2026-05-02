@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_drawer_closed",
+  "textures": {
+    "top": "minecraft:block/polished_diorite",
+    "base": "minecraft:block/spruce_planks"
+  }
+}

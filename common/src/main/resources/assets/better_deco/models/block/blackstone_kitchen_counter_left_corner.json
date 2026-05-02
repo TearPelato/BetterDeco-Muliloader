@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_left_corner",
+  "textures": {
+    "top": "minecraft:block/polished_blackstone_bricks",
+    "base": "minecraft:block/blackstone"
+  }
+}

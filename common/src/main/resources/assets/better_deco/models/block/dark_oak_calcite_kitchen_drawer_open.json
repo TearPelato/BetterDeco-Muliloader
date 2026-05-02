@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_drawer_open",
+  "textures": {
+    "top": "minecraft:block/calcite",
+    "base": "minecraft:block/dark_oak_planks"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "better_deco:block/oven",
+  "textures": {
+    "0": "block/warped_stem",
+    "1": "block/warped_planks",
+    "2": "block/anvil",
+    "3": "better_deco:block/front",
+    "4": "better_deco:block/grill",
+    "particle": "block/warped_planks"
+ }
+}

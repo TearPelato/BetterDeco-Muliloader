@@ -1,0 +1,10 @@
+{
+  "type": "better_deco:freezer",
+  "category": "misc",
+  "cookingtime": 4000,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "minecraft:packed_ice"
+  },
+  "result": "minecraft:blue_ice"
+}

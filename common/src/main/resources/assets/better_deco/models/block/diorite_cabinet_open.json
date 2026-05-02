@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_open",
+  "textures": {
+    "door": "block/polished_diorite",
+    "base": "block/diorite"
+  }
+}

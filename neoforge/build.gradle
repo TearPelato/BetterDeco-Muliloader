@@ -52,6 +52,10 @@ dependencies {
     implementation "com.mrcrayfish:framework-neoforge:${minecraft_version}-${framework_version}"
     implementation("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
     jarJar("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
+
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+
 }
 
 sourceSets.main.resources {

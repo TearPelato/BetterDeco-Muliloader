@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_default",
+  "textures": {
+    "top": "minecraft:block/polished_diorite",
+    "base": "minecraft:block/diorite"
+  }
+}

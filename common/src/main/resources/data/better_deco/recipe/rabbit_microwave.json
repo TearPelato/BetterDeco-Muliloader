@@ -1,0 +1,9 @@
+{
+  "type": "better_deco:microwave",
+  "ingredient": {
+    "item": "minecraft:rabbit"
+  },
+  "result": {
+    "id": "minecraft:cooked_rabbit"
+  }
+}

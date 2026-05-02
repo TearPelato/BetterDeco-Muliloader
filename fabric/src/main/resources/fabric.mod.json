@@ -14,8 +14,12 @@
   "license": "${license}",
   "icon": "${mod_id}.png",
   "environment": "*",
+  "accessWidener": "better_deco.accesswidener",
   "entrypoints": {
     "main": [
+      "net.tier1234.better_deco.BetterDeco"
+    ],
+    "fabric-datagen": [
       "net.tier1234.better_deco.BetterDeco"
     ]
   },
@@ -33,7 +37,7 @@
   "custom": {
     "framework": {
       "containers": [
-        "net.tier1234.better_dece.init"
+        "net.tier1234.better_deco.init"
       ]
     }
   },

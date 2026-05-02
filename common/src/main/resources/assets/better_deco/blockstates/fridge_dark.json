@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "model=fridge,facing=north": { "model": "better_deco:block/fridge_dark_bottom", "y": 180 },
+    "model=fridge,facing=south": { "model": "better_deco:block/fridge_dark_bottom" },
+    "model=fridge,facing=west":  { "model": "better_deco:block/fridge_dark_bottom", "y": 90 },
+    "model=fridge,facing=east":  { "model": "better_deco:block/fridge_dark_bottom", "y": 270 },
+
+    "model=freezer,facing=north": { "model": "better_deco:block/fridge_dark_top", "y": 180 },
+    "model=freezer,facing=south": { "model": "better_deco:block/fridge_dark_top" },
+    "model=freezer,facing=west":  { "model": "better_deco:block/fridge_dark_top", "y": 90 },
+    "model=freezer,facing=east":  { "model": "better_deco:block/fridge_dark_top", "y": 270 }
+  }
+}
