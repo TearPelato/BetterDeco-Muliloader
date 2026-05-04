@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.init.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.FurniWorkbenchMenu;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class FurniWorkbenchBlockEntity extends BlockEntity implements MenuProvider {
     private final SimpleContainer outputContainer = new SimpleContainer(1);

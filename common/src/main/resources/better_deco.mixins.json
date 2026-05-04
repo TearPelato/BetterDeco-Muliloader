@@ -6,7 +6,8 @@
   "compatibilityLevel": "JAVA_18",
   "mixins": [],
   "client": [
-
+    "access.CreativeModeInventoryScreenAccessor",
+    "access.ScreenAccessor"
   ],
   "server": [],
   "injectors": {

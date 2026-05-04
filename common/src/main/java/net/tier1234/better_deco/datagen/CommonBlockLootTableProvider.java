@@ -14,7 +14,7 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     @Override
-    protected void generate() {
+    public void generate() {
         //Blocks
         //Stones
 

@@ -53,6 +53,9 @@ dependencies {
     implementation("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
     jarJar("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
 
+    implementation "curse.maven:catalogue-459701:6926815"
+    implementation "curse.maven:configured-457570:7276577"
+
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 

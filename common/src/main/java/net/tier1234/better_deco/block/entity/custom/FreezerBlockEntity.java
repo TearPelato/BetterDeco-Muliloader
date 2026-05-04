@@ -29,7 +29,7 @@ import net.tier1234.better_deco.recipe.FreezerRecipeInput;
 import net.tier1234.better_deco.init.ModRecipes;
 import net.tier1234.better_deco.screen.custom.FreezerMenu;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Optional;
 

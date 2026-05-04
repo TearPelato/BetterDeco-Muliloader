@@ -10,10 +10,12 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.client.register_helper.ScreenRegister;
+import net.tier1234.better_deco.creative_tabs.BundledTabSelector;
 import org.apache.commons.lang3.function.TriFunction;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
@@ -24,6 +26,11 @@ public class BetterDecoClient {
     private static void onClientSetupEvent(FMLClientSetupEvent event) {
         event.enqueueWork(ClientBootstrap::init);
     }
+
+   /* @SubscribeEvent
+    public static void onPlayerJoinLevel(ClientPlayerNetworkEvent.LoggingIn event) {
+        BundledTabSelector.bootstrap();
+    }*/
 
     /**@author MrCrayfish */
     @SubscribeEvent

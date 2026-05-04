@@ -10,5 +10,6 @@ public class BetterDeco {
     public BetterDeco(IEventBus eventBus) {
         eventBus.addListener(NeoForgeNetworkHandler::registerPayloads);
 
+
     }
 }

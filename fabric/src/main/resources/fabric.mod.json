@@ -19,11 +19,15 @@
     "main": [
       "net.tier1234.better_deco.BetterDeco"
     ],
+    "client": [
+      "net.tier1234.better_deco.BetterDecoClient"
+    ],
     "fabric-datagen": [
-      "net.tier1234.better_deco.BetterDeco"
+      "net.tier1234.better_deco.BetterDecoDatagen"
     ]
   },
   "mixins": [
+    "better_deco.mixins.json"
 
   ],
   "depends": {
@@ -31,13 +35,17 @@
     "fabric-api": "*",
     "minecraft": "${minecraft_version}",
     "java": ">=${java_version}",
-    "framewrok": ">=${framework_version}"
+    "framework": ">=${framework_version}",
+    "deco_lib": ">=${deco_lib_version}"
   },
 
   "custom": {
     "framework": {
       "containers": [
         "net.tier1234.better_deco.init"
+      ],
+      "configs": [
+        "net.tier1234.better_deco.Config"
       ]
     }
   },

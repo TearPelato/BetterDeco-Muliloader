@@ -1,6 +1,10 @@
 package net.tier1234.better_deco.screen.custom;
 
+import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,6 +24,10 @@ public class TecqueMenu extends AbstractContainerMenu {
 
     public TecqueMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
+    }
+
+    public TecqueMenu(int containerId, Inventory inv, TecqueData data) {
+        this(containerId, inv, inv.player.level().getBlockEntity(data.pos()));
     }
 
     public TecqueMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
@@ -138,6 +146,26 @@ public class TecqueMenu extends AbstractContainerMenu {
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+        }
+    }
+
+    public record TecqueData(BlockPos pos) implements IMenuData<TecqueData> {
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, TecqueData> CODEC =
+                StreamCodec.composite(
+                        BlockPos.STREAM_CODEC,
+                        TecqueData::pos,
+                        TecqueData::new
+                );
+
+
+        public TecqueData self() {
+            return this;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, TecqueData> codec() {
+            return CODEC;
         }
     }
 }

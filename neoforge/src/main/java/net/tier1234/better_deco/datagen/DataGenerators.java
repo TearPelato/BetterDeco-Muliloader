@@ -22,7 +22,7 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
 
-        generator.addProvider(event.includeServer(), new CommonRecipeProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new NeoForgeRecipeProvider(output, lookupProvider));
         CommonBlockTagProvider blockTagProvider = generator.addProvider(event.includeServer(), new CommonBlockTagProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new NeoForgeBlockStateProvider(output, existingFileHelper));
 

@@ -10,8 +10,8 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
 
 import java.util.List;
-
 @RegistryContainer
+
 public class ModCreativeTabs {
    public static final RegistryEntry<CreativeModeTab> BETTER_DECO = RegistryEntry.creativeModeTab(
            Constants.id("better_deco"), builder -> {
