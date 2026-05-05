@@ -267,8 +267,11 @@ public class BundledTabSelector {
 
         @Override
         protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+            graphics.pose().pushPose();
+            graphics.pose().translate(0.0, 0.0, 20.0);
             this.renderSelected(graphics);
             graphics.renderItem(this.bundle.getIcon(), this.getX(), this.getY());
+            graphics.pose().popPose();
             this.renderHighlight(graphics);
         }
 
@@ -284,7 +287,7 @@ public class BundledTabSelector {
                 graphics.pose().translate(0.0, 0.0, 20.0);
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
-                graphics.blit(SELECTOR_BAR, this.getX(), this.getY(), 48, 48, 16, 16);
+                graphics.blit(SELECTOR_BAR, this.getX(), this.getY(),  48, 48, 16, 16);
                 RenderSystem.disableBlend();
                 graphics.pose().popPose();
             }

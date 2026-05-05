@@ -27,10 +27,7 @@ public class BetterDecoClient {
         event.enqueueWork(ClientBootstrap::init);
     }
 
-   /* @SubscribeEvent
-    public static void onPlayerJoinLevel(ClientPlayerNetworkEvent.LoggingIn event) {
-        BundledTabSelector.bootstrap();
-    }*/
+
 
     /**@author MrCrayfish */
     @SubscribeEvent
