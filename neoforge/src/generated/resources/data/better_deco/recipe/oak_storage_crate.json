@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:chest"
+      }
+    },
+    {
+      "count": 6,
+      "item": {
+        "item": "minecraft:oak_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:oak_storage_crate"
+  }
+}

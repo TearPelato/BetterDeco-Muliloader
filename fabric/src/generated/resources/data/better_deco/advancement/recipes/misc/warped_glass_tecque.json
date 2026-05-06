@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "better_deco:warped_glass_tecque"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "this.hasItem.apply_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:glass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "this.hasItem.apply_warped_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:warped_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "this.hasItem.apply_glass",
+      "this.hasItem.apply_warped_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "better_deco:warped_glass_tecque"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:stick"
+      }
+    },
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:acacia_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "better_deco:acacia_chair"
+  }
+}

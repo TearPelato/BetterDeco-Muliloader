@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 5,
+      "item": {
+        "item": "minecraft:jungle_planks"
+      }
+    },
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:jungle_log"
+      }
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "better_deco:jungle_park_bench"
+  }
+}

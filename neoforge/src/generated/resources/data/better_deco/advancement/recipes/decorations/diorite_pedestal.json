@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "better_deco:diorite_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "this.hasItem.apply_diorite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:diorite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "this.hasItem.apply_polished_diorite_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:polished_diorite_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "this.hasItem.apply_polished_diorite_slab",
+      "this.hasItem.apply_diorite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "better_deco:diorite_pedestal"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 5,
+      "item": {
+        "item": "minecraft:mangrove_planks"
+      }
+    },
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:mangrove_log"
+      }
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "better_deco:mangrove_park_bench"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "count": 3,
+      "item": {
+        "item": "minecraft:jungle_planks"
+      }
+    },
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:gray_concrete"
+      }
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "better_deco:jungle_sink_dark"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "better_deco:acacia_glass_tecque"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "this.hasItem.apply_acacia_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:acacia_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "this.hasItem.apply_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:glass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "this.hasItem.apply_glass",
+      "this.hasItem.apply_acacia_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "better_deco:acacia_glass_tecque"
+    ]
+  }
+}

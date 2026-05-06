@@ -1,0 +1,27 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:smoker"
+      }
+    },
+    {
+      "count": 5,
+      "item": {
+        "item": "minecraft:spruce_planks"
+      }
+    },
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:spruce_log"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:spruce_oven"
+  }
+}

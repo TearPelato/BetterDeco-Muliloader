@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:stone_slab"
+    },
+    "X": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "pattern": [
+    " B ",
+    " X ",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:pedestal"
+  }
+}

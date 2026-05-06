@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "better_deco:blackstone_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "this.hasItem.apply_blackstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blackstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "this.hasItem.apply_polished_blackstone_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:polished_blackstone_brick_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "this.hasItem.apply_polished_blackstone_slab",
+      "this.hasItem.apply_blackstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "better_deco:blackstone_pedestal"
+    ]
+  }
+}

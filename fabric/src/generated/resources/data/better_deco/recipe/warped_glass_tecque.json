@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "B": {
+      "item": "minecraft:warped_slab"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:warped_glass_tecque"
+  }
+}

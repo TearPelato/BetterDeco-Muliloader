@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:oak_log"
+      }
+    },
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:oak_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "better_deco:oak_coffee_table"
+  }
+}

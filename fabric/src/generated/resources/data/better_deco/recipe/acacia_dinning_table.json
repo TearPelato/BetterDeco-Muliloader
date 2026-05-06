@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:acacia_log"
+      }
+    },
+    {
+      "count": 3,
+      "item": {
+        "item": "minecraft:acacia_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "better_deco:acacia_dinning_table"
+  }
+}

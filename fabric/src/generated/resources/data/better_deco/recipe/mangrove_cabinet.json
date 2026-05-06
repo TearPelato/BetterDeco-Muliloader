@@ -1,0 +1,27 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:mangrove_log"
+      }
+    },
+    {
+      "count": 3,
+      "item": {
+        "item": "minecraft:mangrove_planks"
+      }
+    },
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:chest"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:mangrove_cabinet"
+  }
+}

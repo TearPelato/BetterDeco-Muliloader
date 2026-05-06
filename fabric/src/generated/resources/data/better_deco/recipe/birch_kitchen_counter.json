@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:birch_log"
+      }
+    },
+    {
+      "count": 6,
+      "item": {
+        "item": "minecraft:birch_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "better_deco:birch_kitchen_counter"
+  }
+}

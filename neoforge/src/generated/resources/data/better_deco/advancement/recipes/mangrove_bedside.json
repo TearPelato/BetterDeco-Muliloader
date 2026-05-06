@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "better_deco:mangrove_bedside"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "this.hasItem.apply_mangrove_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:mangrove_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "this.hasItem.apply_mangrove_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "better_deco:mangrove_bedside"
+    ]
+  }
+}

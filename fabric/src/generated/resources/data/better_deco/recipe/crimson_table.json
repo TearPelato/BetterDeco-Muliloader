@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:crimson_stem"
+      }
+    },
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:crimson_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "better_deco:crimson_table"
+  }
+}

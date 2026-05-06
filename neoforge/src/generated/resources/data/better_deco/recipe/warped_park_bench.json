@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 5,
+      "item": {
+        "item": "minecraft:warped_planks"
+      }
+    },
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:warped_stem"
+      }
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "better_deco:warped_park_bench"
+  }
+}
