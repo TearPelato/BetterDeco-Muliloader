@@ -17,6 +17,6 @@ public class NeoForgeRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput recipeOutput) {
         new CommonRecipeProvider(recipeOutput, (modId, recipeName, builder) -> {
             builder.save(recipeOutput.withConditions(new ModLoadedCondition(modId)), recipeName);
-        }, RecipeProvider::has, RecipeProvider::has).generate(recipeOutput);
+        }, RecipeProvider::has, RecipeProvider::has).generate();
     }
 }

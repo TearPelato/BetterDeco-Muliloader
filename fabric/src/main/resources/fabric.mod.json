@@ -24,6 +24,9 @@
     ],
     "fabric-datagen": [
       "net.tier1234.better_deco.BetterDecoDatagen"
+    ],
+    "jei_mod_plugin": [
+      "net.tier1234.better_deco.compat.jei.JEIBetterDecoPlugin"
     ]
   },
   "mixins": [

@@ -2,6 +2,7 @@ package net.tier1234.better_deco.block.custom;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -96,8 +97,7 @@ public class OvenBlock extends FurnitureHorizontalBlock implements EntityBlock
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof OvenBlockEntity ovenBlockEntity) {
-                ((ServerPlayer) player).openMenu(
-                        new SimpleMenuProvider(ovenBlockEntity, Component.translatable("gui.better_deco.oven")));
+                FrameworkAPI.openMenuWithData((ServerPlayer) player,ovenBlockEntity, ovenBlockEntity.getData());
             } else {
                 throw new IllegalStateException("Oven container provider is missing!");
             }

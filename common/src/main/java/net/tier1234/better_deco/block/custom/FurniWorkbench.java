@@ -3,6 +3,7 @@ package net.tier1234.better_deco.block.custom;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -103,12 +104,7 @@ public class FurniWorkbench extends FurnitureHorizontalBlock implements EntityBl
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof FurniWorkbenchBlockEntity workbench) {
-                serverPlayer.openMenu(
-                        new SimpleMenuProvider(
-                                (containerId, playerInventory, p) -> workbench.createMenu(containerId, playerInventory, p),
-                                Component.translatable("container.better_deco.workbench")
-                        )
-                );
+                FrameworkAPI.openMenuWithData(serverPlayer, workbench, workbench.createCustomData());
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);

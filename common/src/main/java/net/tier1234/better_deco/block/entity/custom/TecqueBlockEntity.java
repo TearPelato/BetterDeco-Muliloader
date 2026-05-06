@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.init.ModBlockEntities;
+import net.tier1234.better_deco.screen.custom.FurniWorkbenchMenu;
 import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -89,5 +90,9 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         return saveWithoutMetadata(pRegistries);
+    }
+
+    public TecqueMenu.TecqueData createCustomData() {
+        return new TecqueMenu.TecqueData(this.getBlockPos());
     }
 }

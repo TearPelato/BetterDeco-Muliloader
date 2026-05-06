@@ -1,7 +1,10 @@
 package net.tier1234.better_deco.screen.custom;
 
+import com.mrcrayfish.framework.api.menu.IMenuData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -37,6 +40,11 @@ public class FurniWorkbenchMenu extends AbstractContainerMenu {
 
     private static final int OUTPUT_SLOT_INDEX = 0;
 
+    public FurniWorkbenchMenu(int id, Inventory inventory, CustomData data) {
+        this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
+        this.setCraftableRecipes(data.canCraft());
+    }
+
     public FurniWorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos, SimpleContainer outputContainer) {
         super(ModMenuTypes.FURNI_WORKBENCH.get(), id);
         this.access = ContainerLevelAccess.create(level, pos);
@@ -69,6 +77,14 @@ public class FurniWorkbenchMenu extends AbstractContainerMenu {
     public void broadcastChanges() {
         super.broadcastChanges();
         updateCraftableRecipes();
+    }
+
+    public CustomData createCustomData() {
+        boolean[] craftable = new boolean[canCraftRecipes.size()];
+        for (int i = 0; i < canCraftRecipes.size(); i++) {
+            craftable[i] = canCraftRecipes.get(i);
+        }
+        return new CustomData(craftable);
     }
 
     public void updateCraftableRecipes() {
@@ -228,5 +244,32 @@ public class FurniWorkbenchMenu extends AbstractContainerMenu {
             }
         }
         return false; // Not enough items found.
+    }
+
+
+    public record CustomData(boolean[] canCraft) implements IMenuData<CustomData> {
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> STREAM_CODEC =
+                StreamCodec.of(
+                        (buf, data) -> {
+                            buf.writeVarInt(data.canCraft().length);
+                            for (boolean b : data.canCraft()) {
+                                buf.writeBoolean(b);
+                            }
+                        },
+                        buf -> {
+                            int size = buf.readVarInt();
+                            boolean[] canCraft = new boolean[size];
+                            for (int i = 0; i < size; i++) {
+                                canCraft[i] = buf.readBoolean();
+                            }
+                            return new CustomData(canCraft);
+                        }
+                );
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, CustomData> codec() {
+            return STREAM_CODEC;
+        }
     }
 }

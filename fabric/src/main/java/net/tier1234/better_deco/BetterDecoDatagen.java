@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.tier1234.better_deco.datagen.CommonBlockTagProvider;
 import net.tier1234.better_deco.datagen.FabricBlockStateProvider;
+import net.tier1234.better_deco.datagen.FabricRecipeProviders;
 
 public class BetterDecoDatagen implements DataGeneratorEntrypoint {
 
@@ -11,11 +12,11 @@ public class BetterDecoDatagen implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-        //  pack.addProvider(CommonRecipeProvider::new);
         pack.addProvider(CommonBlockTagProvider::new);
         FabricDataGenerator.Pack.Factory<FabricBlockStateProvider> factory =
                 FabricBlockStateProvider::new;
         pack.addProvider(factory);
+        pack.addProvider(FabricRecipeProviders::new);
 
     }
 

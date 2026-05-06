@@ -1,7 +1,12 @@
 package net.tier1234.better_deco.screen.custom;
 
 
+import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -16,6 +21,12 @@ public class OvenMenu extends AbstractContainerMenu {
     public final OvenBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
+
+    public OvenMenu(int pContainerId, Inventory inv, CustomData data) {
+        this(pContainerId, inv,
+                inv.player.level().getBlockEntity(data.pos()),
+                new SimpleContainerData(3));
+    }
 
     public OvenMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
@@ -175,6 +186,28 @@ public class OvenMenu extends AbstractContainerMenu {
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 160));
+        }
+    }
+
+
+    public record CustomData(BlockPos pos, int progress1, int progress2, int progress3) implements IMenuData<CustomData> {
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> CODEC =
+                StreamCodec.composite(
+                        BlockPos.STREAM_CODEC,
+                        CustomData::pos,
+                        ByteBufCodecs.VAR_INT,
+                        CustomData::progress1,
+                        ByteBufCodecs.VAR_INT,
+                        CustomData::progress2,
+                        ByteBufCodecs.VAR_INT,
+                        CustomData::progress3,
+                        CustomData::new
+                );
+
+        @Override
+        public StreamCodec codec() {
+            return CODEC;
         }
     }
 }

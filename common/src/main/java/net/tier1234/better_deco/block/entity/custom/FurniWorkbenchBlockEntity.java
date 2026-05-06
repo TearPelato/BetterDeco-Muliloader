@@ -63,4 +63,7 @@ public class FurniWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     public SimpleContainer getOutputContainer() {
         return outputContainer;
     }
+    public FurniWorkbenchMenu.CustomData createCustomData() {
+        return new FurniWorkbenchMenu.CustomData(new boolean[0]);
+    }
 }

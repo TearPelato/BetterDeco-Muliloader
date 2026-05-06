@@ -156,4 +156,8 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
+
+    public OvenMenu.CustomData getData() {
+        return new OvenMenu.CustomData(this.getBlockPos(), this.progress[0], this.progress[1], this.progress[2]);
+    }
 }

@@ -3,15 +3,16 @@ package net.tier1234.better_deco.compat.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.*;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.init.ModBlocks;
 import net.tier1234.better_deco.compat.jei.category.MicrowaveRecipeCategory;
@@ -23,6 +24,7 @@ import net.tier1234.better_deco.screen.custom.MicrowaveScreen;
 import net.tier1234.better_deco.screen.custom.OvenScreen;
 
 import java.util.List;
+import java.util.Objects;
 
 @JeiPlugin
 public class JEIBetterDecoPlugin implements IModPlugin {
@@ -33,25 +35,17 @@ public class JEIBetterDecoPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new OvenRecipeCategory(
-                registration.getJeiHelpers().getGuiHelper()));
+        IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
 
-        registration.addRecipeCategories(new MicrowaveRecipeCategory(
-                registration.getJeiHelpers().getGuiHelper()
-        ));
+        registration.addRecipeCategories(new OvenRecipeCategory(guiHelper));
+        registration.addRecipeCategories(new MicrowaveRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-
-        List<OvenRecipe> ovenRecipes = recipeManager
-                .getAllRecipesFor(ModRecipes.OVEN_TYPE.get()).stream().map(RecipeHolder::value).toList();
-        registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE, ovenRecipes);
-
-        List<MicrowaveRecipe> microwaveRecipes = recipeManager
-                .getAllRecipesFor(ModRecipes.MICROWAVE_TYPE.get()).stream().map(RecipeHolder::value).toList();
-        registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, microwaveRecipes);
+        RecipeManager manager = getRecipeManager();
+        registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.OVEN_TYPE.get()));
+        registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
 
     }
 
@@ -130,4 +124,22 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_MICROWAVE.get().asItem()),
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
     }
+
+    /**
+     * @author MrCrayfish
+     *
+     * Helpers
+     * */
+
+    private <C extends RecipeInput, T extends Recipe<C>> List<T> getRecipes(RecipeType<T> type)
+    {
+        return getRecipeManager().getAllRecipesFor(type).stream().map(RecipeHolder::value).toList();
+    }
+
+    public static RecipeManager getRecipeManager()
+    {
+        ClientPacketListener listener = Objects.requireNonNull(Minecraft.getInstance().getConnection());
+        return listener.getRecipeManager();
+    }
+
 }

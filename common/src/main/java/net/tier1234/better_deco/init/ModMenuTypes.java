@@ -28,8 +28,7 @@ public class ModMenuTypes {
                     (id,inv)-> new ShelfMenu(id, inv, (FriendlyByteBuf) null));
 
     public static final RegistryEntry<MenuType<OvenMenu>> OVEN_MENU =
-            RegistryEntry.menuType(Constants.id("oven_menu"),
-                    (id,inv)-> new OvenMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("oven_menu"), OvenMenu.CustomData.CODEC, OvenMenu::new);
 
     public static final RegistryEntry<MenuType<MicrowaveMenu>> MICROWAVE_MENU =
             RegistryEntry.menuType(Constants.id("microwave_menu"),
@@ -44,8 +43,7 @@ public class ModMenuTypes {
                     (id,inv)-> new FreezerMenu(id, inv, (FriendlyByteBuf) null));
 
     public static final RegistryEntry<MenuType<FurniWorkbenchMenu>> FURNI_WORKBENCH =
-            RegistryEntry.menuType(Constants.id("workbench"),
-                    (id,inv)-> new FurniWorkbenchMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("workbench"), FurniWorkbenchMenu.CustomData.STREAM_CODEC, FurniWorkbenchMenu::new);
 
     
 }

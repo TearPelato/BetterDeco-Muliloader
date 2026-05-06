@@ -15,7 +15,6 @@ import java.util.List;
 public class ModCreativeTabs {
    public static final RegistryEntry<CreativeModeTab> BETTER_DECO = RegistryEntry.creativeModeTab(
            Constants.id("better_deco"), builder -> {
-                       builder.alignedRight();
                        builder.title(Component.translatable("creativetab.better_deco.better_deco"));
                        builder.icon(() -> new ItemStack(ModBlocks.OAK_CHAIR.get()));
                        builder.displayItems((parameters, output) -> {
