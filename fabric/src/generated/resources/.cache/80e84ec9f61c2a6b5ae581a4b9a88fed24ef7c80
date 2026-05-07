@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-06T20:26:18.5356711	BetterDeco/Recipes
+// 1.21.1	2026-05-07T21:10:45.9850409	BetterDeco/Recipes
 b72d0115e39c6436a41c565ffde1de73a6900f29 data\better_deco\recipe\oak_chair.json
 fcc6afd803e2153349eab86690750878a46e964f data\better_deco\recipe\birch_table.json
 adbd87fd07586b5026b390bfbd76a9c06ad170e3 data\better_deco\advancement\recipes\birch_sink_dark.json
@@ -248,7 +248,7 @@ d14b79e8e5b0854d23caa3f737d97864f278e4b5 data\better_deco\advancement\recipes\wa
 27762965dea185911f31e19e26b726f1c6146952 data\better_deco\recipe\light_mangrove_sink.json
 5f34d90f09efc1651c7a704587af87739abe5d47 data\better_deco\recipe\crimson_kitchen_drawer.json
 916fff3d533bb1ff7b7a47ffa5f0bd090a54e0e2 data\better_deco\recipe\bamboo_oven.json
-49127f1024dae61d8f9d027c4484f2cf81e9312d data\better_deco\recipe\fridge_dark.json
+6fe327befa8f9de16db22ff308405f2951b2040b data\better_deco\recipe\fridge_dark.json
 9ef3a8ee418b0cb481063545b0392733566719b0 data\better_deco\recipe\spruce_kitchen_drawer.json
 bc0c74197b2f9a7ca18b9950e9b3267e47a74b5c data\better_deco\advancement\recipes\light_jungle_sink.json
 bcaa9a4f5de0b2bfdcafb69eafd1294a1651dd7e data\better_deco\recipe\crimson_kitchen_counter.json
@@ -299,7 +299,7 @@ ecbe7b0a50731b90c8136b3a32f373ac034a5da3 data\better_deco\advancement\recipes\sp
 7f6b8c349817e0eb3aca01bae1ca14269655aa7c data\better_deco\advancement\recipes\bamboo_sink_dark.json
 c7b11683b1b91aee760d71a4523ccd87593cfa2e data\better_deco\recipe\birch_oven.json
 6fe6821b0ab6273de3d2538b038ca5ea3c523d13 data\better_deco\recipe\jungle_table.json
-68454ac748e5ca796dc590407aa137019bd0a59c data\better_deco\recipe\fridge_light.json
+ada17ebfc37628e5e0b576e8f95064a56b937657 data\better_deco\recipe\fridge_light.json
 8f5cbee49d59208e4e4865070411c607cbb39c4b data\better_deco\recipe\birch_glass_tecque.json
 5b3160ec9ced376997d73467ca93c36fa5481cca data\better_deco\advancement\recipes\decorations\deepslate_pedestal.json
 d7921620a1b7d8ed5378dcf06163107953d70b8c data\better_deco\advancement\recipes\dark_oak_park_bench.json

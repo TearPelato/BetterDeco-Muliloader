@@ -559,5 +559,6 @@
   "text.better_deco.recipe.show_craftable": "Show Craftable Only",
 
   "container.better_deco.workbench": "Furniture Workbench",
-  "gui.better_deco.hold_shift_for_details": "Hold SHIFT for Details"
+  "gui.better_deco.hold_shift_for_details": "Hold SHIFT for Details",
+  "furni_crafting": "FurniCrafting"
 }

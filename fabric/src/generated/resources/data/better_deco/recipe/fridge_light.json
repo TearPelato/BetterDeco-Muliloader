@@ -14,9 +14,15 @@
       }
     },
     {
-      "count": 2,
+      "count": 3,
       "item": {
         "item": "minecraft:iron_ingot"
+      }
+    },
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:redstone"
       }
     }
   ],

@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-05T21:19:13.3464284	Recipes
+// 1.21.1	2026-05-07T21:02:49.553089	Recipes
 cecd9e9fe6d0824838b04ac1e5113096aff3cf47 data/better_deco/advancement/recipes/acacia_bedside.json
 ccbdf681a5c56011a3a6a7591eca8c3129084908 data/better_deco/advancement/recipes/acacia_cabinet.json
 4b2d36173cd6652407632b07b92c7452fe8e2f9f data/better_deco/advancement/recipes/acacia_chair.json
@@ -246,8 +246,8 @@ e1bdae24baee2b035a26391ac71670202e6b75e9 data/better_deco/recipe/dark_oak_sink_d
 30e0a215e159c0d09dbf25f62273cf88cb2a9498 data/better_deco/recipe/deepslate_pedestal.json
 afdd8837c167b4ac671ca10ab6d48293d1974431 data/better_deco/recipe/deepslate_tile_pedestal.json
 96b8f26a8d3b1eb4f1b530eb05ff68e4d55ba30d data/better_deco/recipe/diorite_pedestal.json
-49127f1024dae61d8f9d027c4484f2cf81e9312d data/better_deco/recipe/fridge_dark.json
-68454ac748e5ca796dc590407aa137019bd0a59c data/better_deco/recipe/fridge_light.json
+6fe327befa8f9de16db22ff308405f2951b2040b data/better_deco/recipe/fridge_dark.json
+ada17ebfc37628e5e0b576e8f95064a56b937657 data/better_deco/recipe/fridge_light.json
 2c88163ff06dd6d41cbe36edd9342cd088c73975 data/better_deco/recipe/furni_workbench.json
 511bf059ec2216bf324439987b1ab4c0573956e4 data/better_deco/recipe/granite_pedestal.json
 401b15fc3409636ea81dddc54d1fb0628b8db052 data/better_deco/recipe/jungle_bedside.json

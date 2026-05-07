@@ -10,10 +10,12 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.compat.jei.category.FurniWorkbenchCategory;
 import net.tier1234.better_deco.init.ModBlocks;
 import net.tier1234.better_deco.compat.jei.category.MicrowaveRecipeCategory;
 import net.tier1234.better_deco.compat.jei.category.OvenRecipeCategory;
@@ -39,6 +41,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
 
         registration.addRecipeCategories(new OvenRecipeCategory(guiHelper));
         registration.addRecipeCategories(new MicrowaveRecipeCategory(guiHelper));
+        registration.addRecipeCategories(new FurniWorkbenchCategory(guiHelper));
     }
 
     @Override
@@ -46,7 +49,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         RecipeManager manager = getRecipeManager();
         registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.OVEN_TYPE.get()));
         registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
-
+        registration.addRecipes(FurniWorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
     }
 
     @Override
@@ -123,6 +126,8 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_MICROWAVE.get().asItem()),
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FURNI_WORKBENCH.get().asItem()),
+                FurniWorkbenchCategory.TYPE);
     }
 
     /**
@@ -140,6 +145,17 @@ public class JEIBetterDecoPlugin implements IModPlugin {
     {
         ClientPacketListener listener = Objects.requireNonNull(Minecraft.getInstance().getConnection());
         return listener.getRecipeManager();
+    }
+
+    private static RegistryAccess getRegistryAccess()
+    {
+        ClientPacketListener listener = Objects.requireNonNull(Minecraft.getInstance().getConnection());
+        return listener.registryAccess();
+    }
+
+    public static ItemStack getResult(Recipe<?> recipe)
+    {
+        return recipe.getResultItem(getRegistryAccess());
     }
 
 }

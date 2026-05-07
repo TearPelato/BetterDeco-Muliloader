@@ -1228,14 +1228,16 @@ public class CommonRecipeProvider {
         FurniCraftingRecipeBuilder.crafting(ModBlocks.FRIDGE_LIGHT.get(), 1)
                 .requires(Items.CHEST,1)
                 .requires(Items.WHITE_CONCRETE, 5)
-                .requires(Items.IRON_INGOT, 2)
+                .requires(Items.IRON_INGOT, 3)
+                .requires(Items.REDSTONE, 2)
                 .unlockedBy("this.hasItem.apply_iron_ingot", this.hasItem.apply(Items.IRON_INGOT))
                 .save(this.output);
 
         FurniCraftingRecipeBuilder.crafting(ModBlocks.FRIDGE_DARK.get(), 1)
                 .requires(Items.CHEST,1)
                 .requires(Items.GRAY_CONCRETE, 5)
-                .requires(Items.IRON_INGOT, 2)
+                .requires(Items.IRON_INGOT, 3)
+                .requires(Items.REDSTONE, 2)
                 .unlockedBy("this.hasItem.apply_iron_ingot", this.hasItem.apply(Items.IRON_INGOT))
                 .save(this.output);
 
