@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.init.ModBlockEntities;
 import net.tier1234.better_deco.init.ModInventory;
 import net.tier1234.better_deco.screen.custom.ShelfMenu;
+import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
 
 public class ShelfBlockEntity extends RandomizableContainerBlockEntity implements MenuProvider {
@@ -118,5 +119,8 @@ public class ShelfBlockEntity extends RandomizableContainerBlockEntity implement
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory) {
         return new ShelfMenu(containerId, playerInventory, this);
+    }
+    public ShelfMenu.CustomData createCustomData() {
+        return new ShelfMenu.CustomData(this.getBlockPos());
     }
 }

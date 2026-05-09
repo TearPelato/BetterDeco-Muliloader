@@ -67,7 +67,6 @@ public class FurniCraftingRecipeBuilder implements RecipeBuilder {
 
     @Override
     public FurniCraftingRecipeBuilder group(@Nullable String groupName) {
-        // Opzionale: puoi implementarlo se necessario
         return this;
     }
 

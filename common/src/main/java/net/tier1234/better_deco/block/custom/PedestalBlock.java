@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -72,7 +73,7 @@ public class PedestalBlock extends BaseEntityBlock {
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(level.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
             if(player.isCrouching() && !level.isClientSide()) {
-                ((ServerPlayer) player).openMenu(new SimpleMenuProvider(pedestalBlockEntity, Component.literal("Pedestal")));
+                FrameworkAPI.openMenuWithData((ServerPlayer) player, pedestalBlockEntity, pedestalBlockEntity.getCustomData());
                 return ItemInteractionResult.SUCCESS;
             }
 

@@ -1,6 +1,10 @@
 package net.tier1234.better_deco.screen.custom;
 
+import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,6 +24,10 @@ public class CrateMenu extends AbstractContainerMenu {
 
    public CrateMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId,inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
+    }
+
+    public CrateMenu(int containerId, Inventory inv, CrateMenu.CustomData data) {
+        this(containerId, inv, inv.player.level().getBlockEntity(data.pos()));
     }
 
     public CrateMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
@@ -195,6 +203,21 @@ public class CrateMenu extends AbstractContainerMenu {
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 26 + i * 18, 210));
+        }
+    }
+
+    public record CustomData(BlockPos pos) implements IMenuData {
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, CrateMenu.CustomData> CODEC =
+                StreamCodec.composite(
+                        BlockPos.STREAM_CODEC,
+                        CrateMenu.CustomData::pos,
+                        CrateMenu.CustomData::new
+                );
+
+        @Override
+        public StreamCodec codec() {
+            return CODEC;
         }
     }
 }

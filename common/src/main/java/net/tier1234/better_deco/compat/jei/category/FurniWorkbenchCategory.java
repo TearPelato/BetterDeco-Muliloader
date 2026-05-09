@@ -75,7 +75,7 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
         NonNullList<CountedIngredient> ingredients =recipe.getMaterials();
         int leftPos = 10;
         int topPos = 10;
-        int slotSize = 16;
+        int slotSize = 18;
         int boxSize = 54;
         int width = slotSize * Mth.clamp(ingredients.size(), 1, 3);
         int height = slotSize * Mth.clamp(Mth.ceil(ingredients.size() / (float) 3), 1, 3);
@@ -99,9 +99,6 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
 
     @Override
     public void draw(FurniCraftingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        this.slots.forEach(pair -> {
-            Vector2i pos = pair.first;
-            pair.second.draw(guiGraphics, pos.x(), pos.y());
-        });
+
     }
 }

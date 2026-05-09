@@ -2,6 +2,7 @@ package net.tier1234.better_deco.block.custom;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -102,7 +103,7 @@ public class CrateBlock extends FurnitureHorizontalBlock implements EntityBlock
         } else {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof CrateBlockEntity crateBlockEntity) {
-                ((ServerPlayer)player).openMenu(new SimpleMenuProvider(crateBlockEntity, Component.literal("Crate")));
+                FrameworkAPI.openMenuWithData((ServerPlayer) player, crateBlockEntity, crateBlockEntity.createCustomData());
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;

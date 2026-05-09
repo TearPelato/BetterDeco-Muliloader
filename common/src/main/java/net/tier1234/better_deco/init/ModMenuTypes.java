@@ -16,23 +16,19 @@ public class ModMenuTypes {
                     TecqueMenu.TecqueData.CODEC, TecqueMenu::new);
 
     public static final RegistryEntry<MenuType<PedestalMenu>> PEDESTAL_MENU =
-            RegistryEntry.menuType(Constants.id("pedestal_menu"),
-                    (id,inv)-> new PedestalMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("pedestal_menu"), PedestalMenu.CustomData.CODEC, PedestalMenu::new);
 
     public static final RegistryEntry<MenuType<CrateMenu>> CRATE_MENU =
-            RegistryEntry.menuType(Constants.id("crate_menu"),
-                    (id,inv)-> new CrateMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("crate_menu"), CrateMenu.CustomData.CODEC, CrateMenu::new);
 
     public static final RegistryEntry<MenuType<ShelfMenu>> SHELF_MENU =
-            RegistryEntry.menuType(Constants.id("shelf_menu"),
-                    (id,inv)-> new ShelfMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("shelf_menu"), ShelfMenu.CustomData.CODEC, ShelfMenu::new);
 
     public static final RegistryEntry<MenuType<OvenMenu>> OVEN_MENU =
             RegistryEntry.menuTypeWithData(Constants.id("oven_menu"), OvenMenu.CustomData.CODEC, OvenMenu::new);
 
     public static final RegistryEntry<MenuType<MicrowaveMenu>> MICROWAVE_MENU =
-            RegistryEntry.menuType(Constants.id("microwave_menu"),
-                    (id,inv)-> new MicrowaveMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("microwave_menu"), MicrowaveMenu.CustomData.CODEC, MicrowaveMenu::new);
 
     public static final RegistryEntry<MenuType<SinkMenu>> SINK_MENU =
             RegistryEntry.menuType(Constants.id("sink_menu"),

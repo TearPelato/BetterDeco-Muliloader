@@ -1,5 +1,6 @@
 package net.tier1234.better_deco.block.custom;
 
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -64,7 +65,7 @@ public class CustomShelfBlock extends Block implements EntityBlock {
         } else {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
-                ((ServerPlayer)player).openMenu(new SimpleMenuProvider(shelfBlockEntity, Component.literal("Shelf")));
+                FrameworkAPI.openMenuWithData((ServerPlayer) player, shelfBlockEntity, shelfBlockEntity.createCustomData());
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;

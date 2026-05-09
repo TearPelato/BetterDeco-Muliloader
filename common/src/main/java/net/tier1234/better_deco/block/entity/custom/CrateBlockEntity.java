@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.init.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.CrateMenu;
+import net.tier1234.better_deco.screen.custom.ShelfMenu;
+import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
 
 public class CrateBlockEntity extends BlockEntity implements MenuProvider {
@@ -60,6 +62,9 @@ public class CrateBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         return new CrateMenu(i, inventory, this);
+    }
+    public CrateMenu.CustomData createCustomData() {
+        return new CrateMenu.CustomData(this.getBlockPos());
     }
 
 }

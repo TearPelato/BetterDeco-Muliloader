@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -107,7 +108,7 @@ public class MicrowaveBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof MicrowaveBlockEntity microwaveBlockEntity) {
-                ((ServerPlayer) pPlayer).openMenu(new SimpleMenuProvider(microwaveBlockEntity, Component.translatable("gui.better_deco.microwave")));
+                FrameworkAPI.openMenuWithData((ServerPlayer) pPlayer, microwaveBlockEntity, microwaveBlockEntity.getData());
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

@@ -1,12 +1,18 @@
 package net.tier1234.better_deco.screen.custom;
 
 
+import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.KelpBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tier1234.better_deco.block.entity.custom.MicrowaveBlockEntity;
 import net.tier1234.better_deco.init.ModBlocks;
@@ -20,6 +26,13 @@ public class MicrowaveMenu extends AbstractContainerMenu {
     public MicrowaveMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
+
+    public MicrowaveMenu(int pContainerId, Inventory inv, MicrowaveMenu.CustomData data) {
+        this(pContainerId, inv,
+                inv.player.level().getBlockEntity(data.pos()),
+                new SimpleContainerData(3));
+    }
+
 
     public MicrowaveMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.MICROWAVE_MENU.get(), pContainerId);
@@ -120,4 +133,23 @@ public class MicrowaveMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
+
+    public record CustomData(BlockPos pos, int progress1) implements IMenuData<MicrowaveMenu.CustomData> {
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, MicrowaveMenu.CustomData> CODEC =
+                StreamCodec.composite(
+                        BlockPos.STREAM_CODEC,
+                        MicrowaveMenu.CustomData::pos,
+                        ByteBufCodecs.VAR_INT,
+                        MicrowaveMenu.CustomData::progress1,
+                        MicrowaveMenu.CustomData::new
+                );
+
+        @Override
+        public StreamCodec codec() {
+            return CODEC;
+        }
+    }
+
+
 }

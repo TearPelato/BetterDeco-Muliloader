@@ -190,4 +190,8 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
         return new MicrowaveMenu(id, inv, this, this.data);
     }
+
+    public MicrowaveMenu.CustomData getData() {
+        return new MicrowaveMenu.CustomData(this.getBlockPos(), this.progress);
+    }
 }

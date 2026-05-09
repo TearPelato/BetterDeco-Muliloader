@@ -91,4 +91,7 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
         return saveWithoutMetadata(pRegistries);
     }
 
+    public PedestalMenu.CustomData getCustomData() {
+        return new PedestalMenu.CustomData(this.getBlockPos());
+    }
 }
