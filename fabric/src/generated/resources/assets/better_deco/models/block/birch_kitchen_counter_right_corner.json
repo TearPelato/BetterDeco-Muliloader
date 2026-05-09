@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_right_corner",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/birch/birch_kitchen_counter",
+    "particle": "better_deco:block/furniture/kitchen_counter/birch/birch_kitchen_counter"
+  }
+}

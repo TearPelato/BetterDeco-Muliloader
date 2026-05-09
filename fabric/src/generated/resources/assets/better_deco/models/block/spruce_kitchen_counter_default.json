@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_default",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/spruce/spruce_kitchen_counter",
+    "particle": "better_deco:block/furniture/kitchen_counter/spruce/spruce_kitchen_counter"
+  }
+}

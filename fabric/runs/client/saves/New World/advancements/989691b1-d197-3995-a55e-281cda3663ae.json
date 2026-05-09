@@ -1,0 +1,183 @@
+{
+  "better_deco:recipes/oak_storage_crate": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/oak_sign": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/oak_trapdoor": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2026-05-09 10:24:26 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/stick": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/oak_stairs": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/oak_fence": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_kitchen_drawer": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_chair": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_oven": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_sink_dark": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_dinning_table": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_bedside": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_cabinet": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/oak_button": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_park_bench": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_coffee_table": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/oak_slab": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/light_oak_sink": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_kitchen_counter": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/oak_fence_gate": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/charcoal": {
+    "criteria": {
+      "has_log": "2026-05-09 10:25:27 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/oak_pressure_plate": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/redstone/oak_door": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "better_deco:recipes/oak_table": {
+    "criteria": {
+      "this.hasItem.apply_oak_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/brewing/cauldron": {
+    "criteria": {
+      "has_water_bucket": "2026-05-09 10:24:25 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/oak_planks": {
+    "criteria": {
+      "has_logs": "2026-05-09 10:25:27 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:meadow": "2026-05-09 10:24:26 +0200"
+    },
+    "done": false
+  },
+  "minecraft:recipes/decorations/barrel": {
+    "criteria": {
+      "has_planks": "2026-05-09 10:25:29 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/oak_wood": {
+    "criteria": {
+      "has_log": "2026-05-09 10:25:27 +0200"
+    },
+    "done": true
+  },
+  "DataVersion": 3955
+}
