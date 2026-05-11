@@ -50,6 +50,9 @@ repositories {
             }
         }
     }
+    maven {
+        url = "https://maven.liukrast.net/"
+    }
 }
 
 dependencies {
@@ -63,6 +66,18 @@ dependencies {
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    compileOnly ("net.mehvahdjukaar:everycomp-neoforge:${everycomp_version}:neoforge") { transitive = false }
+    compileOnly ("net.mehvahdjukaar:moonlight-neoforge:${moonlight_version}:neoforge") { transitive = false }
+
+    implementation "curse.maven:every-compat-628539:8017083"
+    implementation "curse.maven:selene-499980:8065893"
+    implementation "curse.maven:biomes-o-plenty-220318:7251965"
+    implementation "curse.maven:terrablender-neoforge-940057:6054947"
+    implementation "curse.maven:glitchcore-955399:5660740"
+
+
+    implementation("net.liukrast:compat_manager-1.21.1:${compat_manager_version}")
+    jarJar("net.liukrast:compat_manager-1.21.1:${compat_manager_version}")
 
 }
 

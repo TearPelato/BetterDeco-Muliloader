@@ -25,6 +25,8 @@ dependencies {
     jarJar("net.tearpelato:deco_lib-common-1.21.1:${deco_lib_version}")
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly("net.mehvahdjukaar:everycomp:${everycomp_version}") { transitive = false }
+    compileOnly("net.mehvahdjukaar:moonlight:${moonlight_version}") { transitive = false }
 }
 
 configurations {

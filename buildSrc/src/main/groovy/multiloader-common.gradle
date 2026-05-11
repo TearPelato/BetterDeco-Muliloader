@@ -65,6 +65,9 @@ repositories {
         }
         filter { includeGroup("com.mrcrayfish") }
     }
+    maven {
+        url "https://registry.somethingcatchy.net/repository/maven-releases/"
+    }
 }
 
 
