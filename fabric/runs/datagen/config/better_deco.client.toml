@@ -1,9 +1,0 @@
-# Sinks related settings
-[Sink]
-	# Define if the sink accept all liquids: by default it accepts only water, turning this config to true,
-	# allow the sink to accept lava or modded fluids
-	# Valid values: true, false
-	"Sink Allow All Liquids" = false
-	# Define the maximun capcacity of sinks in buckets
-	# Valid range: 1 to 10 (inclusive)
-	"Sink Capacity" = 3
