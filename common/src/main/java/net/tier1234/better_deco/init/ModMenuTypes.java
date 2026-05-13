@@ -35,8 +35,7 @@ public class ModMenuTypes {
                     (id,inv)-> new SinkMenu(id, inv, (FriendlyByteBuf) null));
 
     public static final RegistryEntry<MenuType<FreezerMenu>> FREEZER_MENU =
-            RegistryEntry.menuType(Constants.id("freezer_menu"),
-                    (id,inv)-> new FreezerMenu(id, inv, (FriendlyByteBuf) null));
+            RegistryEntry.menuTypeWithData(Constants.id("freezer_menu"), FreezerMenu.FreezerData.CODEC, FreezerMenu::new);
 
     public static final RegistryEntry<MenuType<FurniWorkbenchMenu>> FURNI_WORKBENCH =
             RegistryEntry.menuTypeWithData(Constants.id("workbench"), FurniWorkbenchMenu.CustomData.STREAM_CODEC, FurniWorkbenchMenu::new);

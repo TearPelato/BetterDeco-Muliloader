@@ -29,6 +29,7 @@ import net.tier1234.better_deco.recipe.FreezerRecipeInput;
 import net.tier1234.better_deco.init.ModRecipes;
 import net.tier1234.better_deco.screen.custom.FreezerMenu;
 
+import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Optional;
@@ -227,5 +228,9 @@ public class FreezerBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    public FreezerMenu.FreezerData createCustomData() {
+        return new FreezerMenu.FreezerData(this.getBlockPos());
     }
 }

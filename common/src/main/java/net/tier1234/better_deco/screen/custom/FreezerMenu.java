@@ -1,7 +1,11 @@
 package net.tier1234.better_deco.screen.custom;
 
 
+import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -17,9 +21,11 @@ import net.tier1234.better_deco.init.ModMenuTypes;
         private final Level level;
         private final ContainerData data;
 
-        public FreezerMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
-            this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+
+        public FreezerMenu(int containerId, Inventory inv, FreezerMenu.FreezerData data) {
+            this(containerId, inv, inv.player.level().getBlockEntity(data.pos()), new SimpleContainerData(2));
         }
+
 
         public FreezerMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
             super(ModMenuTypes.FREEZER_MENU.get(), containerId);
@@ -109,4 +115,26 @@ import net.tier1234.better_deco.init.ModMenuTypes;
                 this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
             }
         }
+
+
+        public record FreezerData(BlockPos pos) implements IMenuData<FreezerMenu.FreezerData> {
+
+            public static final StreamCodec<RegistryFriendlyByteBuf, FreezerMenu.FreezerData> CODEC =
+                    StreamCodec.composite(
+                            BlockPos.STREAM_CODEC,
+                            FreezerMenu.FreezerData::pos,
+                            FreezerMenu.FreezerData::new
+                    );
+
+
+            public FreezerMenu.FreezerData self() {
+                return this;
+            }
+
+            @Override
+            public StreamCodec<RegistryFriendlyByteBuf, FreezerMenu.FreezerData> codec() {
+                return CODEC;
+            }
+        }
+
     }

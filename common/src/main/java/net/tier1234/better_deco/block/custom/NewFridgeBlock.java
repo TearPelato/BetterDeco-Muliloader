@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -86,8 +87,7 @@ public class NewFridgeBlock extends BaseEntityBlock {
             }
         } else if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {
             if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity) {
-                ((ServerPlayer) player).openMenu(
-                        new SimpleMenuProvider(freezerBlockEntity, Component.translatable("gui.better_deco.freezer")));
+                FrameworkAPI.openMenuWithData((ServerPlayer) player, freezerBlockEntity, freezerBlockEntity.createCustomData());
             }
         }
 
