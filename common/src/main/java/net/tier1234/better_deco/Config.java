@@ -11,19 +11,23 @@ public class Config {
         @ConfigProperty(name = "Sink", comment = "Sinks related settings")
         public final Fluid sink = new Fluid();
 
+        @ConfigProperty(name = "BathTube", comment = "BathTube related settings")
+        public final Fluid bathTube = new Fluid();
 
-    }
 
-    public static class Fluid {
-        @ConfigProperty(name = "Sink Allow All Liquids", comment = """
+        public static class Fluid {
+            @ConfigProperty(name = "Allow All Liquids", comment = """
                 Define if the sink accept all liquids: by default it accepts only water, turning this config to true,
                 allow the sink to accept lava or modded fluids""")
-        public final BoolProperty sinkAllowAllLiquids = BoolProperty.create(false);
+            public final BoolProperty sinkAllowAllLiquids = BoolProperty.create(false);
 
-        @ConfigProperty(name = "Sink Capacity", comment = """
+            @ConfigProperty(name = "Capacity", comment = """
                 Define the maximun capcacity of sinks in buckets""")
-        public final IntProperty sinkCapacity = IntProperty.create(3,1,10);
+            public final IntProperty sinkCapacity = IntProperty.create(3,1,10);
 
+        }
 
     }
+
+
 }

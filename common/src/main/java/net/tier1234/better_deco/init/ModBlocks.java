@@ -401,27 +401,27 @@ public class ModBlocks {
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Sinks
-    public static final RegistryEntry<Block> OAK_SINK = RegistryEntry.blockWithItem(Constants.id("light_oak_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> OAK_SINK = RegistryEntry.blockWithItem(Constants.id("light_oak_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_SINK = RegistryEntry.blockWithItem(Constants.id("light_spruce_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> SPRUCE_SINK = RegistryEntry.blockWithItem(Constants.id("light_spruce_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_SINK = RegistryEntry.blockWithItem(Constants.id("light_birch_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> BIRCH_SINK = RegistryEntry.blockWithItem(Constants.id("light_birch_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_SINK = RegistryEntry.blockWithItem(Constants.id("light_jungle_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> JUNGLE_SINK = RegistryEntry.blockWithItem(Constants.id("light_jungle_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_SINK = RegistryEntry.blockWithItem(Constants.id("light_acacia_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> ACACIA_SINK = RegistryEntry.blockWithItem(Constants.id("light_acacia_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_SINK = RegistryEntry.blockWithItem(Constants.id("light_mangrove_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> MANGROVE_SINK = RegistryEntry.blockWithItem(Constants.id("light_mangrove_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_SINK = RegistryEntry.blockWithItem(Constants.id("light_dark_oak_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> DARK_OAK_SINK = RegistryEntry.blockWithItem(Constants.id("light_dark_oak_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_SINK = RegistryEntry.blockWithItem(Constants.id("light_cherry_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> CHERRY_SINK = RegistryEntry.blockWithItem(Constants.id("light_cherry_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_SINK = RegistryEntry.blockWithItem(Constants.id("light_bamboo_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> BAMBOO_SINK = RegistryEntry.blockWithItem(Constants.id("light_bamboo_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_SINK = RegistryEntry.blockWithItem(Constants.id("light_crimson_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> CRIMSON_SINK = RegistryEntry.blockWithItem(Constants.id("light_crimson_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_SINK = RegistryEntry.blockWithItem(Constants.id("light_warped_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> WARPED_SINK = RegistryEntry.blockWithItem(Constants.id("light_warped_sink"),
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     public static final RegistryEntry<Block> OAK_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("oak_sink_dark"),

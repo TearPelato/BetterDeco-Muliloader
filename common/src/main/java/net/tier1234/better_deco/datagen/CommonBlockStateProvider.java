@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.KitchenCounterBlock;
 import net.tier1234.better_deco.block.custom.KitchenDrawerBlock;
+import net.tier1234.better_deco.block.custom.KitchenSinkBlock;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -131,7 +132,40 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+
+
     }
+
+    protected void  kitchenSink(KitchenSinkBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation textureKey = modId(baseName);
+        ResourceLocation textureRef = modId("block/" + baseName );
+
+        registerModel(textureKey, Constants.id("block/kitchen_sink"), textureRef);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            variants.add("facing=" + Direction.NORTH, variantJson(textureRef, 0));
+            variants.add("facing=" + Direction.EAST, variantJson(textureRef, 90));
+            variants.add("facing=" + Direction.SOUTH, variantJson(textureRef, 180));
+            variants.add("facing=" + Direction.WEST , variantJson(textureRef, 270));
+        }
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     private void registerModel(ResourceLocation id, ResourceLocation parent, ResourceLocation texture) {
         JsonObject textures = new JsonObject();

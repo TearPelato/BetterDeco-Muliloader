@@ -48,5 +48,21 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         kitchenDrawer(ModBlocks.BIRCH_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_drawer"),
                 Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_drawer_open"));
+        kitchenDrawer(ModBlocks.SPRUCE_KITCHEN_DRAWER.get(),
+                Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_drawer"),
+                Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_drawer_open"));
+        kitchenDrawer(ModBlocks.MANGROVE_KITCHEN_DRAWER.get(),
+                Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_drawer"),
+                Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_drawer_open"));
+        kitchenDrawer(ModBlocks.DARK_OAK_KITCHEN_DRAWER.get(),
+                Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer"),
+                Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer_open"));
+        kitchenDrawer(ModBlocks.CRIMSON_KITCHEN_DRAWER.get(),
+                Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_drawer"),
+                Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_drawer_open"));
+        kitchenDrawer(ModBlocks.BAMBOO_KITCHEN_DRAWER.get(),
+                Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer"),
+                Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer_open"));
+
     }
 }
