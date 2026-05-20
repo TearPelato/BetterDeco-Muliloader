@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 /**
  * Author: MrCrayfish
  */
+@Deprecated(forRemoval = true)
 @FunctionalInterface
 public interface EntityRendererRegister
 {

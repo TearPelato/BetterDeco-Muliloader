@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 /**
  * Author: MrCrayfish
  */
+@Deprecated(forRemoval = true)
 @FunctionalInterface
 public interface BlockEntityRendererRegister
 {

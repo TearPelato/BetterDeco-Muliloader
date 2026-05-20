@@ -8,6 +8,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import org.apache.commons.lang3.function.TriFunction;
 
+/**
+ * Author: MrCrayfish
+ */
+
+@Deprecated(forRemoval = true)
 @FunctionalInterface
 public interface ScreenRegister
 {
