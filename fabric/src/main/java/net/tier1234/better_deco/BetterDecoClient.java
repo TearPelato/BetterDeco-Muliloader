@@ -12,8 +12,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.client.ClientBootstrap;
-import net.tier1234.better_deco.client.register_helper.ScreenRegister;
 import net.tier1234.better_deco.init.ModBlocks;
 import org.apache.commons.lang3.function.TriFunction;
 

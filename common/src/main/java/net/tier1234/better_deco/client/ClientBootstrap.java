@@ -1,12 +1,12 @@
 package net.tier1234.better_deco.client;
 
+import net.tearpelato.deco_lib.core.registries.helper.BlockEntityRendererRegister;
+import net.tearpelato.deco_lib.core.registries.helper.EntityRendererRegister;
+import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.block.entity.renderer.KitchenSinkBlockEntityRenderer;
 import net.tier1234.better_deco.block.entity.renderer.PedestalBlockEntityRenderer;
 import net.tier1234.better_deco.block.entity.renderer.ShelfBlockEntityRenderer;
 import net.tier1234.better_deco.block.entity.renderer.TecqueBlockEntityRenderer;
-import net.tier1234.better_deco.client.register_helper.BlockEntityRendererRegister;
-import net.tier1234.better_deco.client.register_helper.ScreenRegister;
-import net.tier1234.better_deco.core_registeries.EntityRendererRegister;
 import net.tier1234.better_deco.creative_tabs.BundledTabSelector;
 import net.tier1234.better_deco.entity.client.SeatRender;
 import net.tier1234.better_deco.init.ModBlockEntities;
