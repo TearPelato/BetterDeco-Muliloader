@@ -141,7 +141,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         ResourceLocation textureKey = modId(baseName);
         ResourceLocation textureRef = modId("block/" + baseName );
 
-        registerModel(textureKey, Constants.id("block/kitchen_sink"), textureRef);
+        registerModel(textureKey, Constants.id("block/kitchen_sink"), texture);
 
         JsonObject variants = new JsonObject();
         for (Direction dir : HORIZONTALS) {

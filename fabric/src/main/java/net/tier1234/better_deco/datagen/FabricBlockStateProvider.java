@@ -63,5 +63,10 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         kitchenDrawer(ModBlocks.BAMBOO_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer"),
                 Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer_open"));
+
+        kitchenSink(ModBlocks.OAK_SINK.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_sink"));
+        kitchenSink(ModBlocks.CHERRY_SINK.get(),Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_sink"));
+
+
     }
 }

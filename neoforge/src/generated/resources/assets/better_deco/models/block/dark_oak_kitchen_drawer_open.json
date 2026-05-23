@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_drawer_open",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer_open",
+    "particle": "better_deco:block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer_open"
+  }
+}
