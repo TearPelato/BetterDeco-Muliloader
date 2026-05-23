@@ -60,17 +60,17 @@ public class FurniWorkbench extends FurnitureHorizontalBlock implements EntityBl
 
     private static VoxelShape getBaseShape() {
         return VoxelShapeHelper.combineAll(List.of(
-                Block.box(1, 0, 1, 3, 14, 3),        // Leg front-left
-                Block.box(1, 0, 13, 3, 14, 15),      // Leg back-left
-                Block.box(13, 0, 1, 15, 14, 3),      // Leg front-right
-                Block.box(13, 0, 13, 15, 14, 15),    // Leg back-right
-                Block.box(2, 3, 2, 14, 5, 14),       // Lower shelf
-                Block.box(2, 11, 2, 14, 14, 14),     // Upper shelf
-                Block.box(0, 14, 0, 16, 15, 16),     // Main top surface
-                Block.box(0, 15, 15, 16, 16, 16),    // Back raised edge (fixed height)
-                Block.box(6, 5, 8, 13, 8, 11),       // Tool/item 1
-                Block.box(4, 5, 5.5, 11, 8, 8.5),    // Tool/item 2
-                Block.box(3, 11, 2, 3, 16, 14)       // Saw blade (fixed height)
+                Block.box(1, 0, 1, 3, 14, 3),
+                Block.box(1, 0, 13, 3, 14, 15),
+                Block.box(13, 0, 1, 15, 14, 3),
+                Block.box(13, 0, 13, 15, 14, 15),
+                Block.box(2, 3, 2, 14, 5, 14),
+                Block.box(2, 11, 2, 14, 14, 14),
+                Block.box(0, 14, 0, 16, 15, 16),
+                Block.box(0, 15, 15, 16, 16, 16),
+                Block.box(6, 5, 8, 13, 8, 11),
+                Block.box(4, 5, 5.5, 11, 8, 8.5),
+                Block.box(3, 11, 2, 3, 16, 14)
         ));
     }
 
