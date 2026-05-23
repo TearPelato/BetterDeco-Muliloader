@@ -22,13 +22,20 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     private final PackOutput.PathProvider blockStatePaths;
     private final PackOutput.PathProvider modelPaths;
+    private final PackOutput.PathProvider itemModelPaths;
+
+
+    private final Map<ResourceLocation, JsonObject> itemModels = new LinkedHashMap<>();
 
     private final Map<ResourceLocation, JsonObject> blockStates = new LinkedHashMap<>();
     private final Map<ResourceLocation, JsonObject> models      = new LinkedHashMap<>();
 
+
     protected CommonBlockStateProvider(PackOutput output) {
         this.blockStatePaths = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "blockstates");
         this.modelPaths      = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "models/block");
+        this.itemModelPaths =  output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "models/item");
+
     }
 
     protected abstract void registerStatesAndModels();
@@ -48,6 +55,10 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         models.forEach((id, json) ->
                 futures.add(DataProvider.saveStable(cache, json,
                         modelPaths.json(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath())))));
+        itemModels.forEach((id, json)-> {
+            futures.add(DataProvider.saveStable(cache, json,
+                    itemModelPaths.json(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath()))));
+        });
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
@@ -99,6 +110,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemModel(baseName,defaultRef);
     }
 
     protected void kitchenDrawer(KitchenDrawerBlock block,
@@ -132,7 +144,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-
+        registerItemModel(baseName, closedRef);
 
     }
 
@@ -154,6 +166,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemModel(baseName,textureRef);
 
     }
 
@@ -177,6 +190,12 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         model.add("textures", textures);
 
         models.put(id, model);
+    }
+
+    protected void registerItemModel(String blockName, ResourceLocation blockModelRef) {
+        JsonObject model = new JsonObject();
+        model.addProperty("parent", blockModelRef.toString());
+        itemModels.put(modId(blockName), model);
     }
 
     private static JsonObject variantJson(ResourceLocation model, int rotY) {

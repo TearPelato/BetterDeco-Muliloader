@@ -1,6 +1,0 @@
-{
-  "parent": "better_deco:block/kitchen_counter_left_corner_inverted",
-  "textures": {
-    "0": "better_deco:block/furniture/kitchen_counter/oak_kitchen_counter"
-  }
-}
