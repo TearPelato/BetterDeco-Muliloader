@@ -125,29 +125,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PINK_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.BROWN_KITCHEN_COUNTER.get());
 
-                       /* output.accept(ModBlocks.STRIPPED_OAK_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_SPRUCE_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_BIRCH_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_JUNGLE_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_ACACIA_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_DARK_OAK_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_MANGROVE_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_CHERRY_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_BAMBOO_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_CRIMSON_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.STRIPPED_WARPED_KITCHEN_COUNTER.get());
-
-                        output.accept(ModBlocks.STRIPPED_OAK_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_SPRUCE_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_BIRCH_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_JUNGLE_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_ACACIA_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_DARK_OAK_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_MANGROVE_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_CHERRY_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_BAMBOO_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_CRIMSON_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.STRIPPED_WARPED_KITCHEN_DRAWER.get());*/
 
                         output.accept(ModBlocks.WHITE_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.LIGHT_GRAY_KITCHEN_DRAWER.get());
