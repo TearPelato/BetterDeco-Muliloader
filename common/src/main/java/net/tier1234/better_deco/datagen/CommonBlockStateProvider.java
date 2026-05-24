@@ -11,6 +11,7 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.KitchenCounterBlock;
 import net.tier1234.better_deco.block.custom.KitchenDrawerBlock;
 import net.tier1234.better_deco.block.custom.KitchenSinkBlock;
+import net.tier1234.better_deco.block.custom.OvenBlock;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -170,6 +171,24 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     }
 
+    protected void oven(OvenBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation textureKey = modId(baseName);
+        ResourceLocation textureRef = modId("block/" + baseName );
+
+        registerModel(textureKey, Constants.id("block/oven"), texture);
+
+        JsonObject variants = new JsonObject();
+        variants.add("facing=" + Direction.NORTH, variantJson(textureRef, 0));
+        variants.add("facing=" + Direction.EAST, variantJson(textureRef, 90));
+        variants.add("facing=" + Direction.SOUTH, variantJson(textureRef, 180));
+        variants.add("facing=" + Direction.WEST , variantJson(textureRef, 270));
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemModel(baseName, textureRef);
+    }
 
 
 

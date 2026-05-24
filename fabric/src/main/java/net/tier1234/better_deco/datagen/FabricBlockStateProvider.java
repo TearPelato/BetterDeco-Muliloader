@@ -87,6 +87,17 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         kitchenSink(ModBlocks.CRIMSON_SINK.get(),Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_sink"));
         kitchenSink(ModBlocks.WARPED_SINK.get(),Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_sink"));
 
+        oven(ModBlocks.OAK_OVEN.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_oven"));
+        oven(ModBlocks.SPRUCE_OVEN.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_oven"));
+        oven(ModBlocks.BIRCH_OVEN.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_oven"));
+        oven(ModBlocks.JUNGLE_OVEN.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_oven"));
+        oven(ModBlocks.ACACIA_OVEN.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_oven"));
+        oven(ModBlocks.DARK_OAK_OVEN.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_oven"));
+        oven(ModBlocks.MANGROVE_OVEN.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_oven"));
+        oven(ModBlocks.CHERRY_OVEN.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_oven"));
+        oven(ModBlocks.BAMBOO_OVEN.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_oven"));
+        oven(ModBlocks.CRIMSON_OVEN.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_oven"));
+        oven(ModBlocks.WARPED_OVEN.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_oven"));
 
 
 

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/oven",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/jungle/jungle_kitchen_oven",
+    "particle": "better_deco:block/furniture/kitchen_counter/jungle/jungle_kitchen_oven"
+  }
+}
