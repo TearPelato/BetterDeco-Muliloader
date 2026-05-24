@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.network.ModPackets;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -33,6 +34,7 @@ public class BetterDecoClient implements ClientModInitializer {
             }
         });
         ModPackets.init(payload -> ClientPlayNetworking.send(payload));
+        FabricNetworkHandler.registerClient();
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STONE_GLASS_TECQUE.get(), RenderType.cutout());
     }
