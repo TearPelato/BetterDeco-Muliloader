@@ -84,11 +84,11 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         ResourceLocation leftInvRef     = modId("block/" + baseName + "_left_corner_inverted");
         ResourceLocation rightInvRef    = modId("block/" + baseName + "_right_corner_inverted");
 
-        registerModel(defaultKey,     Constants.id("block/kitchen_counter_default"),               texture);
-        registerModel(leftCornerKey,  Constants.id("block/kitchen_counter_left_corner"),           texture);
-        registerModel(rightCornerKey, Constants.id("block/kitchen_counter_right_corner"),          texture);
-        registerModel(leftInvKey,     Constants.id("block/kitchen_counter_left_corner_inverted"),  texture);
-        registerModel(rightInvKey,    Constants.id("block/kitchen_counter_right_corner_inverted"), texture);
+        registerModels(defaultKey,     Constants.id("block/kitchen_counter_default"),               texture);
+        registerModels(leftCornerKey,  Constants.id("block/kitchen_counter_left_corner"),           texture);
+        registerModels(rightCornerKey, Constants.id("block/kitchen_counter_right_corner"),          texture);
+        registerModels(leftInvKey,     Constants.id("block/kitchen_counter_left_corner_inverted"),  texture);
+        registerModels(rightInvKey,    Constants.id("block/kitchen_counter_right_corner_inverted"), texture);
 
         JsonObject variants = new JsonObject();
         for (Direction dir : HORIZONTALS) {
@@ -159,10 +159,10 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject variants = new JsonObject();
         for (Direction dir : HORIZONTALS) {
             int rot = defaultRotation(dir);
-            variants.add("facing=" + Direction.NORTH, variantJson(textureRef, 0));
-            variants.add("facing=" + Direction.EAST, variantJson(textureRef, 90));
-            variants.add("facing=" + Direction.SOUTH, variantJson(textureRef, 180));
-            variants.add("facing=" + Direction.WEST , variantJson(textureRef, 270));
+            variants.add("facing=" + Direction.NORTH, variantJson(textureRef, 180));
+            variants.add("facing=" + Direction.EAST, variantJson(textureRef, 270));
+            variants.add("facing=" + Direction.SOUTH, variantJson(textureRef, 0));
+            variants.add("facing=" + Direction.WEST , variantJson(textureRef, 90));
         }
         JsonObject root = new JsonObject();
         root.add("variants", variants);
@@ -197,7 +197,17 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
 
 
+    private void registerModels(ResourceLocation id, ResourceLocation parent, ResourceLocation texture) {
+        JsonObject textures = new JsonObject();
+        textures.addProperty("1",        texture.toString());
+        textures.addProperty("particle", texture.toString());
 
+        JsonObject model = new JsonObject();
+        model.addProperty("parent", parent.toString());
+        model.add("textures", textures);
+
+        models.put(id, model);
+    }
 
     private void registerModel(ResourceLocation id, ResourceLocation parent, ResourceLocation texture) {
         JsonObject textures = new JsonObject();

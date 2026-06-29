@@ -26,7 +26,7 @@ public class KitchenSinkBlockEntityRenderer implements BlockEntityRenderer<Kitch
         BlockState state = be.getBlockState();
         if (!state.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) return;
         Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-        AABB box = FluidContainerRenderer.createRotatedBox(dir, 2, 13, 2, 14, 15.9, 14);
+        AABB box = FluidContainerRenderer.createRotatedBox(dir, 1, 13, 1, 15, 15.9, 15);
         FluidContainerRenderer.drawContainer(be.getLevel(), be.getBlockPos(), be, box, ms, buf, light);
     }
 }

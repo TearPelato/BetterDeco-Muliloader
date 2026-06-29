@@ -86,7 +86,6 @@ public class BundledTabSelector {
                     this.onSwitchCreativeTab(tab,creativeScreen);
                     this.lastTab = tab;
                 }
-               // this.renderBackground(screen,graphics,mouseX,mouseY);
 
             }
         });
@@ -107,16 +106,6 @@ public class BundledTabSelector {
 
 
 
-    }
-
-    private void init(Minecraft minecraft, Screen screen, ScreenAccess access) {
-        if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
-            if (this.bundles == null) this.bundles = new ArrayList<>(ModBundledTabs.getFilters());
-            this.guiLeft = Services.CLIENT.getGuiLeft(creativeScreen);
-            this.guiTop = Services.CLIENT.getGuiTop(creativeScreen);
-            this.injectWidgets(creativeScreen, widget-> ((ScreenAccessor) screen).callAddRenderableWidget(widget));
-            this.itemCount = ModCreativeTabs.BETTER_DECO.get().getDisplayItems().size();
-        }
     }
 
 
@@ -140,18 +129,6 @@ public class BundledTabSelector {
             }
 
             graphics.pose().popPose();
-        }
-    }
-
-    private void onClose(Minecraft minecraft, Screen screen) {
-        if (screen instanceof CreativeModeInventoryScreen) {
-            this.scrollUpButton = null;
-            this.scrollDownButton = null;
-
-            this.bundles.forEach(bundle -> {
-                bundle.setContentTab(null);
-                bundle.deselect();
-            });
         }
     }
 

@@ -1,0 +1,9 @@
+{
+  "type": "better_deco:freezer",
+  "ingredient": "minecraft:packed_ice",
+  "result": {
+    "id": "minecraft:blue_ice",
+    "count": 1
+  },
+  "cooking_time": 350
+}

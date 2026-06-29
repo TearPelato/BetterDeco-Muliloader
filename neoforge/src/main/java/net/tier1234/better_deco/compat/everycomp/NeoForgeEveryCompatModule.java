@@ -6,6 +6,8 @@ import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
 import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.wood.VanillaWoodTypes;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -43,7 +45,7 @@ public class NeoForgeEveryCompatModule extends SimpleModule {
                         w -> new KitchenCounterBlock(Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/furniture/kitchen_counter/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
+                .addTexture(modRes("block/furniture/kitchen_counter/oak/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
                 .noTab()
                 .build();
 
@@ -53,7 +55,7 @@ public class NeoForgeEveryCompatModule extends SimpleModule {
                         w -> new KitchenDrawerBlock(Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/furniture/kitchen_counter/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)
+                .addTexture(modRes("block/furniture/kitchen_counter/oak/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)
                 .addTile(getModTile("kitchen_drawer"))
                 .noTab()
                 .build();

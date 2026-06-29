@@ -1,0 +1,9 @@
+{
+  "type": "better_deco:freezer",
+  "ingredient": "minecraft:powder_snow_bucket",
+  "result": {
+    "id": "minecraft:ice",
+    "count": 1
+  },
+  "cooking_time": 600
+}
