@@ -18,6 +18,7 @@ import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.init.ModBlocks;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.network.ModPackets;
+import net.tier1234.better_deco.util.CutoutRenderLayerBlocks;
 import org.apache.commons.lang3.function.TriFunction;
 
 public class BetterDecoClient implements ClientModInitializer {

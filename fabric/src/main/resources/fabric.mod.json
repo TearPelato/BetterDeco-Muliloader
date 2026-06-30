@@ -50,6 +50,10 @@
       "configs": [
         "net.tier1234.better_deco.Config"
       ]
+    },
+    "catalogue": {
+      "banner": "${mod_id}.png",
+      "background": "background.png"
     }
   },
   "suggests": {

@@ -8,7 +8,8 @@ import net.tier1234.better_deco.Constants;
 
 public class ModTags {
     public static class Blocks {
-        public static final TagKey<Block> OVEN = createTag("OVEN");
+        public static final TagKey<Block> OVEN = createTag("oven");
+        public static final TagKey<Block> TECQUE = createTag("tecque");
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.create(Registries.BLOCK, Constants.id(name));

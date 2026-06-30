@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/ladder",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "particle": "better_deco:block/planks/spruce/spruce_ladder",
-    "texture": "better_deco:block/planks/spruce/spruce_ladder"
-  }
-}

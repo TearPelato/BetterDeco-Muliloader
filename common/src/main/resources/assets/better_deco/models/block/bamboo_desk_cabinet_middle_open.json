@@ -1,9 +1,0 @@
-{
-  "parent": "better_deco:block/desk_cabinet_middle_open",
-  "textures": {
-    "top": "block/bamboo_block",
-    "base": "block/bamboo_planks",
-    "draw": "block/stripped_bamboo_block",
-    "draw_front": "block/bamboo_block"
-  }
-}

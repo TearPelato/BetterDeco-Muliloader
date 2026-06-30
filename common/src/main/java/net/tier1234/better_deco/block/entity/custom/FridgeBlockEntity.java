@@ -52,14 +52,12 @@ public class FridgeBlockEntity extends BasicLootBlockEntity
     public void onOpen(Level level, BlockPos pos, BlockState state)
     {
         this.playDoorSound(state,SoundEvents.UI_LOOM_SELECT_PATTERN);
-        this.setDoorState(state, true);
     }
 
     @Override
     public void onClose(Level level, BlockPos pos, BlockState state)
     {
         this.playDoorSound(state, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT);
-        this.setDoorState(state, false);
     }
 
     private void playDoorSound(BlockState state, SoundEvent event)
@@ -75,12 +73,4 @@ public class FridgeBlockEntity extends BasicLootBlockEntity
         }
     }
 
-    private void setDoorState(BlockState state, boolean open)
-    {
-        Level level = this.getLevel();
-        if(level != null)
-        {
-            level.setBlock(this.getBlockPos(), state.setValue(FridgeBlock.OPEN, open), 3);
-        }
-    }
 }

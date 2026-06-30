@@ -1,8 +1,0 @@
-{
-  "parent": "better_deco:block/desk_left",
-  "textures": {
-    "base": "minecraft:block/warped_planks",
-    "top": "minecraft:block/warped_stem",
-    "legs": "minecraft:block/warped_planks"
-  }
-}

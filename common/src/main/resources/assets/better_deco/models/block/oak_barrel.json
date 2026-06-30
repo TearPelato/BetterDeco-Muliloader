@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "better_deco:block/planks/oak/oak_barrel_bottom",
-    "side": "better_deco:block/planks/oak/oak_barrel_side",
-    "top": "better_deco:block/planks/oak/oak_barrel_top"
-  }
-}

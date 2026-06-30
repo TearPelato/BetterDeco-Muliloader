@@ -41,37 +41,37 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         //Kitchen Drawers
         kitchenDrawer(ModBlocks.OAK_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_drawer"));
         kitchenDrawer(ModBlocks.SPRUCE_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_drawer"));
         kitchenDrawer(ModBlocks.BIRCH_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_drawer"));
         kitchenDrawer(ModBlocks.JUNGLE_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_drawer"));
         kitchenDrawer(ModBlocks.ACACIA_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_drawer"));
         kitchenDrawer(ModBlocks.DARK_OAK_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_drawer"));
         kitchenDrawer(ModBlocks.MANGROVE_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_drawer"));
         kitchenDrawer(ModBlocks.CHERRY_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_drawer"));
         kitchenDrawer(ModBlocks.BAMBOO_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_drawer"));
         kitchenDrawer(ModBlocks.CRIMSON_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_drawer"));
         kitchenDrawer(ModBlocks.WARPED_KITCHEN_DRAWER.get(),
                 Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_drawer"),
-                Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_drawer_open"));
+                Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_drawer"));
 
 
         //Sinks
@@ -99,7 +99,7 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         oven(ModBlocks.CRIMSON_OVEN.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_oven"));
         oven(ModBlocks.WARPED_OVEN.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_oven"));
 
-
+        workbench(ModBlocks.FURNI_WORKBENCH.get());
 
 
 

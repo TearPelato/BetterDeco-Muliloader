@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "better_deco:block/planks/mangrove/mangrove_planks_pillar_top",
-    "side": "better_deco:block/planks/mangrove/mangrove_planks_pilalr"
-  }
-}

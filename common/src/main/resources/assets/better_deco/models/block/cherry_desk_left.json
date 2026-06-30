@@ -1,8 +1,0 @@
-{
-  "parent": "better_deco:block/desk_left",
-  "textures": {
-    "base": "minecraft:block/cherry_planks",
-    "top": "minecraft:block/cherry_log",
-    "legs": "minecraft:block/cherry_planks"
-  }
-}

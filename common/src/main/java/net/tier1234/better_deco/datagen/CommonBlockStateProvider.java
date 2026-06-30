@@ -8,10 +8,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.block.custom.KitchenCounterBlock;
-import net.tier1234.better_deco.block.custom.KitchenDrawerBlock;
-import net.tier1234.better_deco.block.custom.KitchenSinkBlock;
-import net.tier1234.better_deco.block.custom.OvenBlock;
+import net.tier1234.better_deco.block.custom.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -84,11 +81,11 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         ResourceLocation leftInvRef     = modId("block/" + baseName + "_left_corner_inverted");
         ResourceLocation rightInvRef    = modId("block/" + baseName + "_right_corner_inverted");
 
-        registerModels(defaultKey,     Constants.id("block/kitchen_counter_default"),               texture);
-        registerModels(leftCornerKey,  Constants.id("block/kitchen_counter_left_corner"),           texture);
-        registerModels(rightCornerKey, Constants.id("block/kitchen_counter_right_corner"),          texture);
-        registerModels(leftInvKey,     Constants.id("block/kitchen_counter_left_corner_inverted"),  texture);
-        registerModels(rightInvKey,    Constants.id("block/kitchen_counter_right_corner_inverted"), texture);
+        registerModel(defaultKey,     Constants.id("block/kitchen_counter_default"),               texture);
+        registerModel(leftCornerKey,  Constants.id("block/kitchen_counter_left_corner"),           texture);
+        registerModel(rightCornerKey, Constants.id("block/kitchen_counter_right_corner"),          texture);
+        registerModel(leftInvKey,     Constants.id("block/kitchen_counter_left_corner_inverted"),  texture);
+        registerModel(rightInvKey,    Constants.id("block/kitchen_counter_right_corner_inverted"), texture);
 
         JsonObject variants = new JsonObject();
         for (Direction dir : HORIZONTALS) {
@@ -190,24 +187,159 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         registerItemModel(baseName, textureRef);
     }
 
+    /*protected void workbench(FurniWorkbench block){
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation textureKey = modId(baseName);
+        ResourceLocation textureRef = modId("block/" + baseName );
 
+        registerModel(textureKey, Constants.id("block/oven"), Constants.id("block/furni_workbench"));
+        JsonObject variants = new JsonObject();
+        variants.add("facing=" + Direction.NORTH, variantJson(textureRef, 0));
+        variants.add("facing=" + Direction.EAST, variantJson(textureRef, 90));
+        variants.add("facing=" + Direction.SOUTH, variantJson(textureRef, 180));
+        variants.add("facing=" + Direction.WEST , variantJson(textureRef, 270));
 
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemModel(baseName, textureRef);
 
-
-
-
-
-    private void registerModels(ResourceLocation id, ResourceLocation parent, ResourceLocation texture) {
-        JsonObject textures = new JsonObject();
-        textures.addProperty("1",        texture.toString());
-        textures.addProperty("particle", texture.toString());
-
-        JsonObject model = new JsonObject();
-        model.addProperty("parent", parent.toString());
-        model.add("textures", textures);
-
-        models.put(id, model);
     }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void registerModel(ResourceLocation id, ResourceLocation parent, ResourceLocation texture) {
         JsonObject textures = new JsonObject();

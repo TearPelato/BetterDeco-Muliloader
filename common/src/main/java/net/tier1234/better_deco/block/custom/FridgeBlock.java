@@ -1,138 +1,222 @@
 package net.tier1234.better_deco.block.custom;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.framework.api.registry.RegistryEntry;
+import com.mojang.serialization.MapCodec;
+import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
-import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
+import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
 import net.tier1234.better_deco.block.entity.custom.FridgeBlockEntity;
-
 import org.jetbrains.annotations.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
 
-public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
-{
-    public static final BooleanProperty OPEN = BooleanProperty.create("open");
+import java.util.Locale;
+import java.util.stream.Stream;
 
-    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
-    private final Supplier<RegistryEntry<Block>> freezer;
+public class FridgeBlock extends BaseEntityBlock {
+    public static final MapCodec<FridgeBlock> CODEC = simpleCodec(FridgeBlock::new);
+    public static final DirectionProperty DIRECTION = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<FridgeModelType> MODEL_TYPE = EnumProperty.create("model", FridgeModelType.class);
 
-    public FridgeBlock(Properties properties, Supplier<RegistryEntry<Block>> freezer)
-    {
+
+    public FridgeBlock(Properties properties) {
         super(properties);
-        this.freezer = freezer;
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, false));
-        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(DIRECTION, Direction.NORTH)
+                .setValue(MODEL_TYPE, FridgeModelType.FRIDGE));
+
     }
 
-    public ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
-    {
-        final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 16, 13), Direction.SOUTH));
-        final VoxelShape[] DOOR = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(13, 0, 13, 16, 16, 29), Direction.SOUTH));
-        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
-        for(BlockState state : states)
-        {
-            Direction direction = state.getValue(DIRECTION);
-            boolean open = state.getValue(OPEN);
-            List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(Block.box(0, -16, 0, 16, 0, 16));
-            if(open)
-            {
-                shapes.add(BASE[direction.get2DDataValue()]);
-                shapes.add(DOOR[direction.get2DDataValue()]);
-            }
-            else
-            {
-                shapes.add(Block.box(0, 0, 0, 16, 16, 16));
-            }
-            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(DIRECTION, MODEL_TYPE);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos blockPos = context.getClickedPos();
+        Level level = context.getLevel();
+        if (level.getBlockState(blockPos.above()).canBeReplaced(context)) {
+            return this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection().getOpposite());
         }
-        return builder.build();
+        return null;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
-        return context == CollisionContext.empty() ? Shapes.block() : SHAPES.get(state);
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (state.getValue(MODEL_TYPE) == FridgeModelType.FRIDGE) {
+            if (blockEntity instanceof FridgeBlockEntity fridgeBlockEntity) {
+                player.openMenu(fridgeBlockEntity);
+                return InteractionResult.CONSUME;
+            }
+        } else if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {
+            if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity) {
+                FrameworkAPI.openMenuWithData((ServerPlayer) player, freezerBlockEntity, freezerBlockEntity.createCustomData());
+            }
+        }
+
+        return InteractionResult.CONSUME;
+    }
+
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.is(newState.getBlock())) return;
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof Container) {
+            Containers.dropContents(level, pos, (Container)blockEntity);
+            level.updateNeighbourForOutputSignal(pos, this);
+        }
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
+
+    private static Direction getNeighbourDirection(FridgeModelType modelType) {
+        return modelType == FridgeModelType.FRIDGE ? Direction.UP : Direction.DOWN;
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
-        return SHAPES.get(state);
-    }
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide) {
+            FridgeModelType modelType = state.getValue(MODEL_TYPE);
+            BlockPos otherPos = pos.relative(getNeighbourDirection(modelType));
+            BlockState otherState = level.getBlockState(otherPos);
 
-    @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player playerEntity, BlockHitResult result)
-    {
-        if(state.getValue(DIRECTION).getOpposite() == result.getDirection())
-        {
-            if(!level.isClientSide())
-            {
-                if(level.getBlockEntity(pos) instanceof FridgeBlockEntity blockEntity)
-                {
-                    playerEntity.openMenu(blockEntity);
+            if (otherState.getBlock() == this && otherState.getValue(MODEL_TYPE) != modelType) {
+                BlockPos bottomPos = modelType == FridgeModelType.FRIDGE ? pos : otherPos;
+                BlockPos topPos = modelType == FridgeModelType.FREEZER ? pos : otherPos;
+
+                level.setBlock(bottomPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                level.levelEvent(player, 2001, bottomPos, Block.getId(state));
+
+                level.setBlock(topPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                level.levelEvent(player, 2001, topPos, Block.getId(otherState));
+
+                if (!player.isCreative()) {
+                    dropResources(state, level, pos, null, player, player.getMainHandItem());
+                    dropResources(otherState, level, otherPos, null, player, player.getMainHandItem());
                 }
             }
         }
-        return InteractionResult.SUCCESS;
+
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
+
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random)
-    {
-        if(level.getBlockEntity(pos) instanceof BasicLootBlockEntity blockEntity)
-        {
-            blockEntity.updateOpenerCount();
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (!level.isClientSide) {
+            BlockPos above = pos.above();
+            if (level.getBlockState(above).canBeReplaced()) {
+                level.setBlock(above, state.setValue(MODEL_TYPE, FridgeModelType.FREEZER), Block.UPDATE_ALL);
+            }
         }
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
-    {
-        super.createBlockStateDefinition(builder);
-        builder.add(OPEN);
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
-
-    @Override
-    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
-    {
-        BlockState belowState = level.getBlockState(pos.below());
-        if(belowState.getBlock() instanceof FreezerBlock)
-        {
-            level.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), 35);
-            level.levelEvent(player, 2001, pos.below(), Block.getId(belowState));
-        }
-        super.playerWillDestroy(level, pos, state, player);
-        return belowState;
-    }
-
 
     @Nullable
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {
+            return new FreezerBlockEntity(pos, state);
+        } return new FridgeBlockEntity(pos, state);
+    }
+
+
+    public enum FridgeModelType implements StringRepresentable {
+        FRIDGE, FREEZER;
+
+        @Override
+        public String getSerializedName() {
+            return name().toLowerCase(Locale.ROOT);
+        }
+
+        @Override
+        public String toString() {
+            return getSerializedName();
+        }
+    }
+
+
+    private static final VoxelShape FRIDGE = Stream.of(
+            // Fridge (Corpo principale. Corretto Y=32 -> Y=16 per il blocco inferiore)
+            Block.box(0, 0, 4, 16, 23, 12),  // Corpo: Z da 4 a 12 (Base Y 0-16, Z 4-12)
+            Block.box(0, 0, 0, 16, 23, 4),   // Corpo: Z da 0 a 4
+            Block.box(0, 0, 12, 16, 23, 16), // Corpo: Z da 12 a 16
+            // Base
+            Block.box(0, 0, 2, 16, 2, 16)
+
+    ).reduce((v1, v2) -> Shapes.or(v1, v2)).get();
+
+    private static final VoxelShape FREEZER = Stream.of(
+            // Freezer (Corpo principale. Y va da 7 a 16)
+            Block.box(0, 7, 4, 16, 16, 12),
+            Block.box(0, 7, 0, 16, 16, 4),
+            Block.box(0, 7, 12, 16, 16, 16)
+
+
+    ).reduce((v1, v2) -> Shapes.or(v1, v2)).get();
+
+
+    private static final VoxelShape[] SHAPES = new VoxelShape[8];
+
+    static {
+        SHAPES[0] = VoxelShapeHelper.rotateShape(FREEZER, Direction.SOUTH); //South
+        SHAPES[1] = VoxelShapeHelper.rotateShape(FREEZER, Direction.WEST); //West
+        SHAPES[2] = VoxelShapeHelper.rotateShape(FREEZER, Direction.NORTH); //North
+        SHAPES[3] = VoxelShapeHelper.rotateShape(FREEZER, Direction.EAST); //East
+        SHAPES[4] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.SOUTH); //South Lower
+        SHAPES[5] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.WEST); //West Lower
+        SHAPES[6] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.NORTH); //North Lower
+        SHAPES[7] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.EAST); //East Lower
+    }
+
+
     @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
-    {
-        return new FridgeBlockEntity(pos, state);
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        Direction direction = state.getValue(DIRECTION);
+        int d2d = direction.get2DDataValue();
+
+        if (state.getValue(MODEL_TYPE) == FridgeModelType.FRIDGE) {
+            return SHAPES[4 + d2d];
+        } else {
+            return SHAPES[d2d];
+        }
     }
 }

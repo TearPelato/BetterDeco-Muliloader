@@ -3,12 +3,10 @@ package net.tier1234.better_deco.creative_tabs;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.framework.api.event.ClientConnectionEvents;
 import com.mrcrayfish.framework.api.event.ScreenEvents;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
@@ -16,15 +14,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.tearpelato.deco_lib.client.core.core_tabs.ScreenAccess;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.init.ModBundledTabs;
 import net.tier1234.better_deco.init.ModCreativeTabs;
 import net.tier1234.better_deco.mixin.access.CreativeModeInventoryScreenAccessor;
-import net.tier1234.better_deco.mixin.access.ScreenAccessor;
 import net.tier1234.better_deco.platform.Services;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 
 /**

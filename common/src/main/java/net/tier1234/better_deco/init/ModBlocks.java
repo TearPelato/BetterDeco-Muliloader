@@ -13,7 +13,7 @@ import net.tier1234.better_deco.block.custom.*;
 public class ModBlocks {
 
     //Test
-    public static final RegistryEntry<Block> FURNI_WORKBENCH = RegistryEntry.blockWithItem(Constants.id("furni_workbench"),
+    public static final RegistryEntry<FurniWorkbench> FURNI_WORKBENCH = RegistryEntry.blockWithItem(Constants.id("furni_workbench"),
             ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.7f)));
 
     public static final RegistryEntry<Block> CHOPPING_BOARD = RegistryEntry.blockWithItem(Constants.id("chopping_board"),
@@ -100,10 +100,10 @@ public class ModBlocks {
             ()->  new ToasterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //FRIDGE & FREEZERS
-    public static final RegistryEntry<NewFridgeBlock> FRIDGE_LIGHT = RegistryEntry.blockWithItem(Constants.id("fridge_light"),
-            () -> new NewFridgeBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<NewFridgeBlock> FRIDGE_DARK = RegistryEntry.blockWithItem(Constants.id("fridge_dark"),
-            () -> new NewFridgeBlock(BlockBehaviour.Properties.of()));
+    public static final RegistryEntry<FridgeBlock> FRIDGE_LIGHT = RegistryEntry.blockWithItem(Constants.id("fridge_light"),
+            () -> new FridgeBlock(BlockBehaviour.Properties.of()));
+    public static final RegistryEntry<FridgeBlock> FRIDGE_DARK = RegistryEntry.blockWithItem(Constants.id("fridge_dark"),
+            () -> new FridgeBlock(BlockBehaviour.Properties.of()));
 
     public static final RegistryEntry<Block> LIGHT_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_light"),
             ()-> new MicrowaveBlock(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.METAL)
