@@ -17,7 +17,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.init.ModBlockEntities;
@@ -30,40 +34,53 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class OvenBlockEntity extends BlockEntity implements MenuProvider {
-    public final SimpleContainer itemHandler = new SimpleContainer(6) {
+    public final SimpleContainer itemHandler = new SimpleContainer(7) {
 
     };
 
     private static final int[] INPUT_SLOTS = {0, 1, 2};
     private static final int[] OUTPUT_SLOTS = {3, 4, 5};
+    private static final int FUEL_SLOT = 6;
 
     protected final ContainerData data;
     private final int[] progress = new int[3];
     private final int maxProgress = 72;
+    private int fuelTime = 0;
+    private int fuelDuration = 0;
+
 
     public OvenBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.OVEN.get(), pos, state);
         data = new ContainerData() {
             @Override
             public int get(int i) {
-                return i < 3 ? progress[i] : 0;
+                return switch (i) {
+                    case 0, 1, 2 -> progress[i];
+                    case 3 -> fuelTime;
+                    case 4 -> fuelDuration;
+                    default -> 0;
+                };
             }
 
             @Override
             public void set(int i, int value) {
-                if(i < 3) progress[i] = value;
+                switch (i) {
+                    case 0, 1, 2 -> progress[i] = value;
+                    case 3 -> fuelTime = value;
+                    case 4 -> fuelDuration = value;
+                }
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return 5;
             }
         };
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.better_deco.oven");
+        return Component.translatable("gui.better_deco.oven");
     }
 
     @Nullable
@@ -71,6 +88,28 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
         return new OvenMenu(id, inv, this, this.data);
     }
+
+    private boolean hasFuel() {
+        return fuelTime > 0;
+    }
+
+    private void consumeFuelItem() {
+        ItemStack fuel = itemHandler.getItem(FUEL_SLOT);
+        if (fuel.isEmpty()) return;
+
+
+        int burnTime = AbstractFurnaceBlockEntity.getFuel().getOrDefault(fuel.getItem(), 0);
+        if (burnTime <= 0) return;
+
+        fuelDuration = burnTime;
+        fuelTime     = burnTime;
+
+        ItemStack copy = itemHandler.getItem(FUEL_SLOT).copy();
+        copy.shrink(1);
+        itemHandler.setItem(FUEL_SLOT, copy.isEmpty() ? ItemStack.EMPTY : copy);
+
+    }
+
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getContainerSize());
@@ -83,20 +122,36 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
     public void tick(Level level, BlockPos pos, BlockState state) {
         boolean changed = false;
 
+        boolean anyActive = false;
         for (int i = 0; i < 3; i++) {
-            if (hasRecipe(INPUT_SLOTS[i], OUTPUT_SLOTS[i])) {
+            if (hasRecipe(INPUT_SLOTS[i], OUTPUT_SLOTS[i])) { anyActive = true; break; }
+        }
+
+        if (anyActive && !hasFuel()) {
+            consumeFuelItem();
+            changed = true;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (hasFuel() && hasRecipe(INPUT_SLOTS[i], OUTPUT_SLOTS[i])) {
                 progress[i]++;
                 changed = true;
+
                 if (progress[i] >= maxProgress) {
                     craftItem(INPUT_SLOTS[i], OUTPUT_SLOTS[i]);
                     progress[i] = 0;
                 }
             } else {
-                progress[i] = 0;
+                if (progress[i] > 0) { progress[i] = 0; changed = true; }
             }
         }
 
-        if(changed) setChanged(level, pos, state);
+        if (hasFuel() && anyActive) {
+            fuelTime--;
+            changed = true;
+        }
+
+        if (changed) setChanged(level, pos, state);
     }
 
     private boolean hasRecipe(int inputSlot, int outputSlot) {
@@ -106,12 +161,12 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         Optional<RecipeHolder<OvenRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return false;
 
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().output;
         return canInsert(output, outputSlot);
     }
 
     private Optional<RecipeHolder<OvenRecipe>> getRecipeFor(ItemStack input) {
-        return level.getRecipeManager().getRecipeFor(ModRecipes.OVEN_TYPE.get(), new OvenRecipeInput(input), level);
+        return level.getRecipeManager().getRecipeFor(ModRecipes.OVEN_TYPE.get(), new SingleRecipeInput(input), level);
     }
 
     private void craftItem(int inputSlot, int outputSlot) {
@@ -119,7 +174,7 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         Optional<RecipeHolder<OvenRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return;
 
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().output;
         ItemStack copy = itemHandler.getItem(inputSlot).copy();
         copy.shrink(1);
         itemHandler.setItem(inputSlot, copy.isEmpty() ? ItemStack.EMPTY : copy);
@@ -138,6 +193,8 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         tag.put("inventory", itemHandler.createTag(registries));
         for(int i=0;i<3;i++) tag.putInt("progress" + i, progress[i]);
+        tag.putInt("fuelTime", fuelTime);
+        tag.putInt("fuelDuration", fuelDuration);
         super.saveAdditional(tag, registries);
     }
 
@@ -146,6 +203,8 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         super.loadAdditional(tag, registries);
         itemHandler.fromTag(tag.getList("inventory", Tag.TAG_COMPOUND), registries);
         for(int i=0;i<3;i++) progress[i] = tag.getInt("progress" + i);
+        fuelTime     = tag.getInt("fuelTime");
+        fuelDuration = tag.getInt("fuelDuration");
     }
 
     @Override

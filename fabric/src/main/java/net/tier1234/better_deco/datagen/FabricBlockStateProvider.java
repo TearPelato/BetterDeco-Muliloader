@@ -99,7 +99,7 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         oven(ModBlocks.CRIMSON_OVEN.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_oven"));
         oven(ModBlocks.WARPED_OVEN.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_oven"));
 
-        workbench(ModBlocks.FURNI_WORKBENCH.get());
+       // workbench(ModBlocks.FURNI_WORKBENCH.get());
 
 
 

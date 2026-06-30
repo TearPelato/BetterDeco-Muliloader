@@ -1,4 +1,4 @@
-package net.tier1234.better_deco.screen.custom;
+package net.tier1234.better_deco.screen.slot;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;

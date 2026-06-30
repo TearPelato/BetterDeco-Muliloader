@@ -37,6 +37,6 @@ public class BetterDecoClient implements ClientModInitializer {
         ModPackets.init(payload -> ClientPlayNetworking.send(payload));
         FabricNetworkHandler.registerClient();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STONE_GLASS_TECQUE.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), ModBlocks.OAK_SINK.get());
     }
 }
