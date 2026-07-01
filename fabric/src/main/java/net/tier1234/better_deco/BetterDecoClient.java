@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.block.Block;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.init.ModBlocks;
@@ -37,6 +38,6 @@ public class BetterDecoClient implements ClientModInitializer {
         ModPackets.init(payload -> ClientPlayNetworking.send(payload));
         FabricNetworkHandler.registerClient();
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), ModBlocks.OAK_SINK.get());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), CutoutRenderLayerBlocks.getBlocks());
     }
 }

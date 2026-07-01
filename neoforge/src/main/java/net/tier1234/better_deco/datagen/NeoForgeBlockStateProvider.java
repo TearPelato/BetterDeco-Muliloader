@@ -99,7 +99,8 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         oven(ModBlocks.CRIMSON_OVEN.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_oven"));
         oven(ModBlocks.WARPED_OVEN.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_oven"));
 
-        //workbench(ModBlocks.FURNI_WORKBENCH.get());
+       fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/fridge_light"));
+       fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/fridge_dark"));
 
 
 

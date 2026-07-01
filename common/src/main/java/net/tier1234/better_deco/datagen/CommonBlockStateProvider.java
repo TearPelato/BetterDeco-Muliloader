@@ -187,25 +187,34 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         registerItemModel(baseName, textureRef);
     }
 
-    /*protected void workbench(FurniWorkbench block){
+    protected void fridge(FridgeBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation textureKey = modId(baseName);
-        ResourceLocation textureRef = modId("block/" + baseName );
 
-        registerModel(textureKey, Constants.id("block/oven"), Constants.id("block/furni_workbench"));
+        ResourceLocation bottomKey = modId(baseName + "_bottom");
+        ResourceLocation topKey    = modId(baseName + "_top");
+        ResourceLocation fullKey    = modId(baseName);
+
+        ResourceLocation bottomRef = modId("block/" + baseName + "_bottom");
+        ResourceLocation topRef    = modId("block/" + baseName + "_top");
+
+        registerModel(bottomKey, Constants.id("block/fridge_bottom"), texture);
+        registerModel(topKey,    Constants.id("block/fridge_top"),    texture);
+        registerModel(fullKey,      Constants.id("block/fridge"), texture);
+
         JsonObject variants = new JsonObject();
-        variants.add("facing=" + Direction.NORTH, variantJson(textureRef, 0));
-        variants.add("facing=" + Direction.EAST, variantJson(textureRef, 90));
-        variants.add("facing=" + Direction.SOUTH, variantJson(textureRef, 180));
-        variants.add("facing=" + Direction.WEST , variantJson(textureRef, 270));
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            String facing = "facing=" + dir.getSerializedName();
+            variants.add("model=fridge,"  + facing, variantJson(bottomRef, rot));
+            variants.add("model=freezer," + facing, variantJson(topRef, rot));
+        }
 
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName, textureRef);
 
+        registerItemModel(baseName, modId("block/" + baseName));
     }
-*/
 
 
 

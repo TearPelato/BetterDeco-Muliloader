@@ -2,8 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "better_deco:block/fridge_dark",
-		"particle": "better_deco:block/fridge_dark"
+		"particle": "0"
 	},
 	"elements": [
 		{
@@ -16,7 +15,7 @@
 				"south": {"uv": [5.03125, 6.625, 7, 7.71875], "texture": "#0"},
 				"west": {"uv": [4.5, 2.625, 5, 3.75], "texture": "#0"},
 				"up": {"uv": [7.5, 3.625, 9.5, 3.125], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 4], "rotation": 180, "texture": "#missing"}
+				"down": {"uv": [7.5, 3.125, 9.5, 3.625], "texture": "#0"}
 			}
 		},
 		{
