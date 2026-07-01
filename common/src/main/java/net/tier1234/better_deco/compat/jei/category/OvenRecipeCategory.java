@@ -3,19 +3,27 @@ package net.tier1234.better_deco.compat.jei.category;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
 import net.tier1234.better_deco.init.ModBlocks;
 import net.tier1234.better_deco.recipe.OvenRecipe;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
 
@@ -55,13 +63,35 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
         return background;
     }
 
+
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, OvenRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 78, 17).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 78, 17).addIngredients(recipe.inputItem);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 78, 53).addItemStack(recipe.output);
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 42, 35).addItemStacks(OvenFuels.get());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 78, 53).addItemStack(recipe.getResultItem(null));
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 42, 35).addItemStack(new ItemStack(Items.COAL));
+    }
 
+    public enum OvenFuels {
+        COAL(300, Items.COAL),
+        CHARCOAL(350, Items.CHARCOAL);
+
+        public final int cookTime;
+        public final Item item;
+
+        OvenFuels(int cookTime, Item item){
+            this.cookTime = cookTime;
+            this.item = item;
+
+        }
+
+        public static List<ItemStack> get() {
+            List<ItemStack> stacks = new ArrayList<>();
+            for (OvenFuels fuel : values()) {
+                stacks.add(new ItemStack(fuel.item));
+            }
+            return stacks;
+        }
     }
 
 }

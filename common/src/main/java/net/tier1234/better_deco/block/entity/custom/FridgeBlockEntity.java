@@ -20,10 +20,6 @@ import net.tier1234.better_deco.init.ModBlockEntities;
 
 public class FridgeBlockEntity extends BasicLootBlockEntity
 {
-    protected FridgeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
-    {
-        super(type, pos, state);
-    }
 
     public FridgeBlockEntity(BlockPos pos, BlockState state)
     {

@@ -1,9 +1,0 @@
-{
-  "type": "better_deco:freezer",
-  "ingredient": "minecraft:water_bucket",
-  "result": {
-    "id": "minecraft:ice",
-    "count": 1
-  },
-  "cooking_time": 450
-}

@@ -6,27 +6,34 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.tier1234.better_deco.init.ModBlocks;
 import net.tier1234.better_deco.init.ModRecipes;
 
-public record FreezerRecipe(ResourceLocation id, Ingredient input, ItemStack output, int freezeTime, float experience)
-        implements Recipe<FreezerRecipeInput> {
+public class FreezerRecipe implements Recipe<SingleRecipeInput> {
+
+    public final Ingredient ingredient;
+    public final ItemStack output;
+    public final int fuelCost;
+
+    public FreezerRecipe(Ingredient ingredient, ItemStack output, int fuelCost) {
+        this.ingredient = ingredient;
+        this.output = output;
+        this.fuelCost = fuelCost;
+    }
+
 
     @Override
-    public boolean matches(FreezerRecipeInput container, Level level) {
-        return input.test(container.getInput());
+    public boolean matches(SingleRecipeInput container, Level level) {
+        return ingredient.test(container.item());
     }
 
     @Override
-    public ItemStack assemble(FreezerRecipeInput container, HolderLookup.Provider registries) {
+    public ItemStack assemble(SingleRecipeInput container, HolderLookup.Provider registries) {
         return output.copy();
     }
 
@@ -40,17 +47,6 @@ public record FreezerRecipe(ResourceLocation id, Ingredient input, ItemStack out
         return output;
     }
 
-    public ResourceLocation getId() {
-        return id;
-    }
-
-    public int getFreezeTime() {
-        return freezeTime;
-    }
-
-    public float getExperience() {
-        return experience;
-    }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
@@ -69,42 +65,17 @@ public record FreezerRecipe(ResourceLocation id, Ingredient input, ItemStack out
 
     public static class Serializer implements RecipeSerializer<FreezerRecipe> {
         public static final MapCodec<FreezerRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                ResourceLocation.CODEC.fieldOf("id").forGetter(FreezerRecipe::getId),
-                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(FreezerRecipe::input),
-                ItemStack.CODEC.fieldOf("result").forGetter(FreezerRecipe::output),
-                Codec.INT.fieldOf("cookingtime").forGetter(FreezerRecipe::getFreezeTime),
-                Codec.FLOAT.fieldOf("experience").forGetter(FreezerRecipe::getExperience)
+                Ingredient.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
+                ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
+                Codec.INT.optionalFieldOf("fuelCost", 0).forGetter(recipe -> recipe.fuelCost)
         ).apply(inst, FreezerRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, FreezerRecipe> STREAM_CODEC =
                 StreamCodec.composite(
-                        ResourceLocation.STREAM_CODEC, FreezerRecipe::getId,
-                        Ingredient.CONTENTS_STREAM_CODEC, FreezerRecipe::input,
-                        ItemStack.STREAM_CODEC, FreezerRecipe::output,
-                        new StreamCodec<RegistryFriendlyByteBuf, Integer>() { // int codec
-                            @Override
-                            public void encode(RegistryFriendlyByteBuf buf, Integer value) {
-                                buf.writeInt(value);
-                            }
-
-                            @Override
-                            public Integer decode(RegistryFriendlyByteBuf buf) {
-                                return buf.readInt();
-                            }
-                        }, FreezerRecipe::getFreezeTime,
-                        new StreamCodec<RegistryFriendlyByteBuf, Float>() { // float codec
-                            @Override
-                            public void encode(RegistryFriendlyByteBuf buf, Float value) {
-                                buf.writeFloat(value);
-                            }
-
-                            @Override
-                            public Float decode(RegistryFriendlyByteBuf buf) {
-                                return buf.readFloat();
-                            }
-                        }, FreezerRecipe::getExperience,
-                        FreezerRecipe::new
-                );
+                        Ingredient.CONTENTS_STREAM_CODEC, r -> r.ingredient,
+                        ItemStack.STREAM_CODEC, r-> r.output,
+                        ByteBufCodecs.VAR_INT, r-> r.fuelCost,
+                        FreezerRecipe::new);
 
         @Override
         public MapCodec<FreezerRecipe> codec() {

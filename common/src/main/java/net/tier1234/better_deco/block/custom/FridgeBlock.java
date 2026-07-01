@@ -20,6 +20,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -32,6 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
 import net.tier1234.better_deco.block.entity.custom.FridgeBlockEntity;
+import net.tier1234.better_deco.init.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
@@ -218,5 +221,18 @@ public class FridgeBlock extends BaseEntityBlock {
         } else {
             return SHAPES[d2d];
         }
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if(level.isClientSide()) {
+            return null;
+        }
+        if(state.getValue(MODEL_TYPE) == FridgeModelType.FRIDGE) {
+            return null;
+        }
+        return createTickerHelper(blockEntityType, ModBlockEntities.FREEZER.get(),
+                (level1, blockPos, blockState, blockEntity) -> blockEntity.tick(level1, blockPos, blockState));
     }
 }

@@ -1,6 +1,8 @@
 {
   "type": "better_deco:freezer",
-  "ingredient": "minecraft:packed_ice",
+  "ingredient":{
+    "item":"minecraft:packed_ice"
+  },
   "result": {
     "id": "minecraft:blue_ice",
     "count": 1
