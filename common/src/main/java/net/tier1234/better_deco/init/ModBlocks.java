@@ -306,27 +306,27 @@ public class ModBlocks {
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Cabinet
-    public static final RegistryEntry<Block> OAK_CABINET = RegistryEntry.blockWithItem(Constants.id("oak_cabinet"),
+    public static final RegistryEntry<CabinetBlock> OAK_CABINET = RegistryEntry.blockWithItem(Constants.id("oak_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_CABINET = RegistryEntry.blockWithItem(Constants.id("spruce_cabinet"),
+    public static final RegistryEntry<CabinetBlock> SPRUCE_CABINET = RegistryEntry.blockWithItem(Constants.id("spruce_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_CABINET = RegistryEntry.blockWithItem(Constants.id("birch_cabinet"),
+    public static final RegistryEntry<CabinetBlock> BIRCH_CABINET = RegistryEntry.blockWithItem(Constants.id("birch_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_CABINET = RegistryEntry.blockWithItem(Constants.id("jungle_cabinet"),
+    public static final RegistryEntry<CabinetBlock> JUNGLE_CABINET = RegistryEntry.blockWithItem(Constants.id("jungle_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_CABINET = RegistryEntry.blockWithItem(Constants.id("acacia_cabinet"),
+    public static final RegistryEntry<CabinetBlock> ACACIA_CABINET = RegistryEntry.blockWithItem(Constants.id("acacia_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_CABINET = RegistryEntry.blockWithItem(Constants.id("dark_oak_cabinet"),
+    public static final RegistryEntry<CabinetBlock> DARK_OAK_CABINET = RegistryEntry.blockWithItem(Constants.id("dark_oak_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_CABINET = RegistryEntry.blockWithItem(Constants.id("mangrove_cabinet"),
+    public static final RegistryEntry<CabinetBlock> MANGROVE_CABINET = RegistryEntry.blockWithItem(Constants.id("mangrove_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_CABINET = RegistryEntry.blockWithItem(Constants.id("cherry_cabinet"),
+    public static final RegistryEntry<CabinetBlock> CHERRY_CABINET = RegistryEntry.blockWithItem(Constants.id("cherry_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_CABINET = RegistryEntry.blockWithItem(Constants.id("bamboo_cabinet"),
+    public static final RegistryEntry<CabinetBlock> BAMBOO_CABINET = RegistryEntry.blockWithItem(Constants.id("bamboo_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_CABINET = RegistryEntry.blockWithItem(Constants.id("crimson_cabinet"),
+    public static final RegistryEntry<CabinetBlock> CRIMSON_CABINET = RegistryEntry.blockWithItem(Constants.id("crimson_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_CABINET = RegistryEntry.blockWithItem(Constants.id("warped_cabinet"),
+    public static final RegistryEntry<CabinetBlock> WARPED_CABINET = RegistryEntry.blockWithItem(Constants.id("warped_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     public static final RegistryEntry<Block> SPRUCE_DIORITE_CABINET = RegistryEntry.blockWithItem(Constants.id("spruce_diorite_cabinet"),

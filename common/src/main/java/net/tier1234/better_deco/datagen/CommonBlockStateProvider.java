@@ -187,6 +187,40 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         registerItemModel(baseName, textureRef);
     }
 
+    protected void kitchenCabinet(CabinetBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        ResourceLocation closedKey = modId(baseName + "_closed");
+        ResourceLocation openKey   = modId(baseName + "_open");
+
+        ResourceLocation closedRef = modId("block/" + baseName + "_closed");
+        ResourceLocation openRef   = modId("block/" + baseName + "_open");
+
+        registerModel(closedKey, Constants.id("block/cabinet_closed"), texture);
+        registerModel(openKey,   Constants.id("block/cabinet_open"),   texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            variants.add("facing=" + Direction.NORTH + ",open=false", variantJson(closedRef, 0));
+            variants.add("facing=" + Direction.EAST + ",open=false", variantJson(closedRef, 90));
+            variants.add("facing=" + Direction.SOUTH + ",open=false", variantJson(closedRef, 180));
+            variants.add("facing=" + Direction.WEST + ",open=false", variantJson(closedRef, 270));
+
+            variants.add("facing=" + Direction.NORTH + ",open=true",  variantJson(openRef,   0));
+            variants.add("facing=" + Direction.EAST + ",open=true",  variantJson(openRef,   90));
+            variants.add("facing=" + Direction.SOUTH + ",open=true",  variantJson(openRef,   180));
+            variants.add("facing=" + Direction.WEST + ",open=true",  variantJson(openRef,   270));
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemModel(baseName, closedRef);
+
+    }
+
+
     protected void fridge(FridgeBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 

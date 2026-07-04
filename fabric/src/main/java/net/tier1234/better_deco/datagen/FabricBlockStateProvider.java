@@ -102,7 +102,17 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/fridge_light"));
         fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/fridge_dark"));
 
-
+        kitchenCabinet(ModBlocks.OAK_CABINET.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.SPRUCE_CABINET.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.BIRCH_CABINET.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.JUNGLE_CABINET.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.ACACIA_CABINET.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.DARK_OAK_CABINET.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.MANGROVE_CABINET.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.CHERRY_CABINET.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.BAMBOO_CABINET.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.CRIMSON_CABINET.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_cabinet"));
+        kitchenCabinet(ModBlocks.WARPED_CABINET.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_cabinet"));
 
 
 
