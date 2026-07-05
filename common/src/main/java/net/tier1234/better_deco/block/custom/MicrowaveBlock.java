@@ -1,5 +1,6 @@
 package net.tier1234.better_deco.block.custom;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.MapCodec;
 import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
@@ -23,27 +24,30 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
+import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.entity.custom.MicrowaveBlockEntity;
 import net.tier1234.better_deco.init.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
-public class MicrowaveBlock extends BaseEntityBlock {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
     public static final MapCodec<MicrowaveBlock> CODEC = simpleCodec(MicrowaveBlock::new);
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-
-    private static final VoxelShape SHAPE_NORTH = Block.box(1.0, 0.0, 3.0, 15.0, 8.0, 13.0);
-    private static final VoxelShape SHAPE_EAST = Block.box(3.0, 0.0, 1.0, 13.0, 8.0, 15.0);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(1.0, 0.0, 3.0, 15.0, 8.0, 13.0);
-    private static final VoxelShape SHAPE_WEST = Block.box(3.0, 0.0, 1.0, 13.0, 8.0, 15.0);
-
+    public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public MicrowaveBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(DIRECTION, Direction.NORTH)
+                .setValue(OPEN, false));
     }
 
     @Override
@@ -53,41 +57,44 @@ public class MicrowaveBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        super.createBlockStateDefinition(builder);
+        builder.add(OPEN);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return getVoxelShape(state.getValue(FACING));
-    }
+    protected Map<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
+     final VoxelShape[] CLOSED = VoxelShapeHelper.getRotatedShapes(
+                VoxelShapeHelper.rotate(Block.box(1.0, 0.0, 3.0, 15.0, 8.0, 13.0), Direction.SOUTH));
 
-    private VoxelShape getVoxelShape(Direction direction) {
-        return switch (direction) {
-            case EAST -> SHAPE_EAST;
-            case SOUTH -> SHAPE_SOUTH;
-            case WEST -> SHAPE_WEST;
-            default -> SHAPE_NORTH;
-        };
+      final VoxelShape[] BASE_OPEN = VoxelShapeHelper.getRotatedShapes(
+                VoxelShapeHelper.rotate(Block.box(1.0, 0.0, 3.0, 15.0, 8.0, 13.0), Direction.SOUTH));
+
+       final VoxelShape[] DOOR_OPEN = VoxelShapeHelper.getRotatedShapes(
+                VoxelShapeHelper.rotate(Block.box(1.0, 0.0, 13.0, 15.0, 8.0, 16.0), Direction.SOUTH));
+
+        Map<BlockState, VoxelShape> map = new HashMap<>();
+        for (BlockState state : states) {
+            Direction direction = state.getValue(DIRECTION);
+            int idx = direction.get2DDataValue();
+
+            if (state.getValue(OPEN)) {
+                map.put(state, VoxelShapeHelper.combineAll(List.of(BASE_OPEN[idx], DOOR_OPEN[idx])));
+            } else {
+                map.put(state, CLOSED[idx]);
+            }
+        }
+        return map;
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return getVoxelShape(state.getValue(FACING));
+        return this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection().getOpposite());
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new MicrowaveBlockEntity(blockPos, blockState);
-    }
-
-    @Override
-    protected RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
     }
 
     @Override
@@ -98,7 +105,6 @@ public class MicrowaveBlock extends BaseEntityBlock {
                 microwaveBlockEntity.drops();
             }
         }
-
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
@@ -107,24 +113,22 @@ public class MicrowaveBlock extends BaseEntityBlock {
                                               Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof MicrowaveBlockEntity microwaveBlockEntity) {
+            if (entity instanceof MicrowaveBlockEntity microwaveBlockEntity) {
                 FrameworkAPI.openMenuWithData((ServerPlayer) pPlayer, microwaveBlockEntity, microwaveBlockEntity.getData());
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
         }
-
         return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if(level.isClientSide()) {
+        if (level.isClientSide()) {
             return null;
         }
-
-        return createTickerHelper(blockEntityType, ModBlockEntities.MICROWAVE.get(),
+        return createTicker(blockEntityType, ModBlockEntities.MICROWAVE.get(),
                 (level1, blockPos, blockState, blockEntity) -> blockEntity.tick(level1, blockPos, blockState));
     }
 }

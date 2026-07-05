@@ -26,12 +26,8 @@ public record MicrowaveRecipe(Ingredient inputItem, ItemStack output) implements
     }
 
     @Override
-    public boolean matches(MicrowaveRecipeInput MicrowaveRecipeInput, Level level) {
-        if (level.isClientSide()) {
-            return false;
-        }
-
-        return inputItem.test(MicrowaveRecipeInput.getItem(0));
+    public boolean matches(MicrowaveRecipeInput input, Level level) {
+        return inputItem.test(input.getItem(0));
     }
 
     @Override

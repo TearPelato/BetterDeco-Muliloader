@@ -2,6 +2,7 @@ package net.tier1234.better_deco.block.entity.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
@@ -9,6 +10,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -21,6 +25,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
+import net.tier1234.better_deco.block.custom.MicrowaveBlock;
+import net.tier1234.better_deco.block.custom.MicrowaveBlock;
 import net.tier1234.better_deco.init.ModBlockEntities;
 import net.tier1234.better_deco.init.ModRecipes;
 import net.tier1234.better_deco.recipe.*;
@@ -31,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
+public class MicrowaveBlockEntity extends BasicLootBlockEntity {
     public final SimpleContainer itemHandler = new SimpleContainer(2) {
 
     };
@@ -87,7 +94,7 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    private void craftItem() {
+    public void craftItem() {
         Optional<RecipeHolder<MicrowaveRecipe>> recipe = getCurrentRecipe();
         ItemStack output = recipe.get().value().output();
 
@@ -98,20 +105,20 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
                 itemHandler.getItem(OUTPUT_SLOT).getCount() + output.getCount()));
     }
 
-    private void resetProgress() {
+    public void resetProgress() {
         progress = 0;
         maxProgress = 72;
     }
 
-    private boolean hasCraftingFinished() {
+    public boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
     }
 
-    private void increaseCraftingProgress() {
+    public void increaseCraftingProgress() {
         progress++;
     }
 
-    private boolean hasRecipe() {
+    public boolean hasRecipe() {
         Optional<RecipeHolder<MicrowaveRecipe>> recipe = getCurrentRecipe();
         if(recipe.isEmpty()) {
             return false;
@@ -121,17 +128,17 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
         return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
     }
 
-    private Optional<RecipeHolder<MicrowaveRecipe>> getCurrentRecipe() {
+    public Optional<RecipeHolder<MicrowaveRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
                 .getRecipeFor(ModRecipes.MICROWAVE_TYPE.get(), new MicrowaveRecipeInput(itemHandler.getItem(INPUT_SLOT)), level);
     }
 
-    private boolean canInsertItemIntoOutputSlot(ItemStack output) {
+    public boolean canInsertItemIntoOutputSlot(ItemStack output) {
         return itemHandler.getItem(OUTPUT_SLOT).isEmpty() ||
                 itemHandler.getItem(OUTPUT_SLOT).getItem() == output.getItem();
     }
 
-    private boolean canInsertAmountIntoOutputSlot(int count) {
+    public boolean canInsertAmountIntoOutputSlot(int count) {
         int maxCount = itemHandler.getItem(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getItem(OUTPUT_SLOT).getMaxStackSize();
         int currentCount = itemHandler.getItem(OUTPUT_SLOT).getCount();
 
@@ -148,6 +155,20 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
+    public int getContainerSize() {
+        return 2;
+    }
+
+    @Override
+    protected Component getDefaultName() {
+        return Component.translatable("gui.better_deco.microwave");
+    }
+    @Override
+    protected AbstractContainerMenu createMenu(int windowId, Inventory playerInventory) {
+        return new MicrowaveMenu(windowId, playerInventory, this, this.data);
+    }
+
+    @Override
     protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         pTag.put("inventory", itemHandler.createTag(pRegistries));
         pTag.putInt("growth_chamber.progress", progress);
@@ -157,7 +178,7 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+    public void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
 
         itemHandler.fromTag(pTag.getList("inventory", Tag.TAG_COMPOUND), pRegistries);
@@ -178,18 +199,49 @@ public class MicrowaveBlockEntity extends BlockEntity implements MenuProvider {
     }
 
 
-
-
     @Override
     public Component getDisplayName() {
         return Component.translatable("gui.better_deco.microwave");
     }
 
-    @Nullable
+
     @Override
-    public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        return new MicrowaveMenu(id, inv, this, this.data);
+    public void onOpen(Level level, BlockPos pos, BlockState state)
+    {
+        this.playDoorSound(state, SoundEvents.UI_TOAST_IN);
+        this.setDoorState(state, true);
     }
+
+    @Override
+    public void onClose(Level level, BlockPos pos, BlockState state)
+    {
+        this.playDoorSound(state, SoundEvents.UI_LOOM_TAKE_RESULT);
+        this.setDoorState(state, false);
+    }
+
+    private void playDoorSound(BlockState state, SoundEvent event)
+    {
+        Vec3i directionVec = state.getValue(MicrowaveBlock.DIRECTION).getNormal();
+        double x = this.worldPosition.getX() + 0.5D + directionVec.getX() / 2.0D;
+        double y = this.worldPosition.getY() + 0.5D + directionVec.getY() / 2.0D;
+        double z = this.worldPosition.getZ() + 0.5D + directionVec.getZ() / 2.0D;
+        Level level = this.getLevel();
+        if(level != null)
+        {
+            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+        }
+    }
+
+    private void setDoorState(BlockState state, boolean open)
+    {
+        Level level = this.getLevel();
+        if(level != null)
+        {
+            level.setBlock(this.getBlockPos(), state.setValue(MicrowaveBlock.OPEN, open), 3);
+        }
+    }
+    
+    
 
     public MicrowaveMenu.CustomData getData() {
         return new MicrowaveMenu.CustomData(this.getBlockPos(), this.progress);

@@ -108,6 +108,18 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_SINK.get());
                         output.accept(ModBlocks.WARPED_SINK.get());
 
+                        output.accept(ModBlocks.OAK_CABINET.get());
+                        output.accept(ModBlocks.SPRUCE_CABINET.get());
+                        output.accept(ModBlocks.BIRCH_CABINET.get());
+                        output.accept(ModBlocks.JUNGLE_CABINET.get());
+                        output.accept(ModBlocks.ACACIA_CABINET.get());
+                        output.accept(ModBlocks.DARK_OAK_CABINET.get());
+                        output.accept(ModBlocks.MANGROVE_CABINET.get());
+                        output.accept(ModBlocks.CHERRY_CABINET.get());
+                        output.accept(ModBlocks.BAMBOO_CABINET.get());
+                        output.accept(ModBlocks.CRIMSON_CABINET.get());
+                        output.accept(ModBlocks.WARPED_CABINET.get());
+
                         output.accept(ModBlocks.WHITE_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.LIGHT_GRAY_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.GRAY_KITCHEN_COUNTER.get());
@@ -161,17 +173,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PINK_SINK.get());
                         output.accept(ModBlocks.BROWN_SINK.get());
 
-                        output.accept(ModBlocks.OAK_CABINET.get());
-                        output.accept(ModBlocks.SPRUCE_CABINET.get());
-                        output.accept(ModBlocks.BIRCH_CABINET.get());
-                        output.accept(ModBlocks.JUNGLE_CABINET.get());
-                        output.accept(ModBlocks.ACACIA_CABINET.get());
-                        output.accept(ModBlocks.DARK_OAK_CABINET.get());
-                        output.accept(ModBlocks.MANGROVE_CABINET.get());
-                        output.accept(ModBlocks.CHERRY_CABINET.get());
-                        output.accept(ModBlocks.BAMBOO_CABINET.get());
-                        output.accept(ModBlocks.CRIMSON_CABINET.get());
-                        output.accept(ModBlocks.WARPED_CABINET.get());
 
                         output.accept(ModBlocks.WHITE_CABINET.get());
                         output.accept(ModBlocks.LIGHT_GRAY_CABINET.get());

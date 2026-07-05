@@ -88,10 +88,8 @@ public class CabinetBlock extends FurnitureHorizontalBlock implements EntityBloc
             return InteractionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof CabinetBlockEntity) {
-                player.openMenu((CabinetBlockEntity) blockEntity);
-                player.awardStat(Stats.OPEN_BARREL);
-                PiglinAi.angerNearbyPiglins(player, false);
+            if (blockEntity instanceof CabinetBlockEntity cabinetBlockEntity) {
+                player.openMenu(cabinetBlockEntity);
                 return InteractionResult.CONSUME;
             }
             return InteractionResult.PASS;

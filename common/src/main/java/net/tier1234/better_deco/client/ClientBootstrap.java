@@ -3,10 +3,7 @@ package net.tier1234.better_deco.client;
 import net.tearpelato.deco_lib.core.registries.helper.BlockEntityRendererRegister;
 import net.tearpelato.deco_lib.core.registries.helper.EntityRendererRegister;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
-import net.tier1234.better_deco.block.entity.renderer.KitchenSinkBlockEntityRenderer;
-import net.tier1234.better_deco.block.entity.renderer.PedestalBlockEntityRenderer;
-import net.tier1234.better_deco.block.entity.renderer.ShelfBlockEntityRenderer;
-import net.tier1234.better_deco.block.entity.renderer.TecqueBlockEntityRenderer;
+import net.tier1234.better_deco.block.entity.renderer.*;
 import net.tier1234.better_deco.creative_tabs.BundledTabSelector;
 import net.tier1234.better_deco.entity.client.SeatRender;
 import net.tier1234.better_deco.init.ModBlockEntities;
@@ -48,6 +45,8 @@ public class ClientBootstrap {
         register.apply(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
         register.apply(ModBlockEntities.KITCHEN_SINK.get(), KitchenSinkBlockEntityRenderer::new);
         register.apply(ModBlockEntities.SHELF_BE.get(), ShelfBlockEntityRenderer::new);
+        register.apply(ModBlockEntities.DIGITAL_CLOCK.get(), DigitalClockBlockEntityRenderer::new);
+        register.apply(ModBlockEntities.MICROWAVE.get(), MicrowaveBlockEntityRenderer::new);
 
     }
 }

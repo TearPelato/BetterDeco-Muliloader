@@ -43,8 +43,18 @@ public class MicrowaveMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new Slot(blockEntity.itemHandler, 0, 54, 34));
-        this.addSlot(new Slot(blockEntity.itemHandler, 1, 104, 34));
+        this.addSlot(new Slot(blockEntity.itemHandler, 0, 54, 34){
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+        });
+        this.addSlot(new Slot(blockEntity.itemHandler, 1, 104, 34){
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return false;
+            }
+        });
 
         addDataSlots(data);
     }
