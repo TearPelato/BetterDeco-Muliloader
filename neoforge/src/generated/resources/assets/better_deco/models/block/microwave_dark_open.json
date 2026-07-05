@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/microwave_open",
+  "textures": {
+    "0": "better_deco:block/furniture/microwave/microwave_dark",
+    "particle": "better_deco:block/furniture/microwave/microwave_dark"
+  }
+}

@@ -115,6 +115,8 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         kitchenCabinet(ModBlocks.CRIMSON_CABINET.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_cabinet"));
         kitchenCabinet(ModBlocks.WARPED_CABINET.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_cabinet"));
 
+        microwave(ModBlocks.LIGHT_MICROWAVE.get(), Constants.id("block/microwave_light"));
+        microwave(ModBlocks.DARK_MICROWAVE.get(), Constants.id("block/furniture/microwave/microwave_dark"));
 
 
     }

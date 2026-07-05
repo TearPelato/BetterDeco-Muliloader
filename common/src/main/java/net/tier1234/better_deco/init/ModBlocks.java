@@ -105,10 +105,10 @@ public class ModBlocks {
     public static final RegistryEntry<FridgeBlock> FRIDGE_DARK = RegistryEntry.blockWithItem(Constants.id("fridge_dark"),
             () -> new FridgeBlock(BlockBehaviour.Properties.of()));
 
-    public static final RegistryEntry<Block> LIGHT_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_light"),
+    public static final RegistryEntry<MicrowaveBlock> LIGHT_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_light"),
             ()-> new MicrowaveBlock(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()));
-    public static final RegistryEntry<Block> DARK_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_dark"),
+    public static final RegistryEntry<MicrowaveBlock> DARK_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_dark"),
             ()-> new MicrowaveBlock(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()));
 
