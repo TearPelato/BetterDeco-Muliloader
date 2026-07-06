@@ -100,9 +100,6 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         oven(ModBlocks.CRIMSON_OVEN.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_oven"));
         oven(ModBlocks.WARPED_OVEN.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_oven"));
 
-       fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/fridge_light"));
-       fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/fridge_dark"));
-
         kitchenCabinet(ModBlocks.OAK_CABINET.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_cabinet"));
         kitchenCabinet(ModBlocks.SPRUCE_CABINET.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_cabinet"));
         kitchenCabinet(ModBlocks.BIRCH_CABINET.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_cabinet"));
@@ -116,7 +113,10 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         kitchenCabinet(ModBlocks.WARPED_CABINET.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_cabinet"));
 
         microwave(ModBlocks.LIGHT_MICROWAVE.get(), Constants.id("block/microwave_light"));
-        microwave(ModBlocks.DARK_MICROWAVE.get(), Constants.id("block/furniture/microwave/microwave_dark"));
+        microwave(ModBlocks.DARK_MICROWAVE.get(), Constants.id("block/microwave_dark"));
+        testmicrowave(ModBlocks.TEST_MICROWAVE.get(), Constants.id("block/microwave_light"));
+        fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/fridge_light"));
+        fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/fridge_dark"));
 
 
     }

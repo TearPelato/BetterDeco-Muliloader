@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-04T22:00:49.3049079	BetterDeco/Recipes
+// 1.21.1	2026-07-06T19:44:36.5249596	BetterDeco/Recipes
 b72d0115e39c6436a41c565ffde1de73a6900f29 data\better_deco\recipe\oak_chair.json
 fcc6afd803e2153349eab86690750878a46e964f data\better_deco\recipe\birch_table.json
 adbd87fd07586b5026b390bfbd76a9c06ad170e3 data\better_deco\advancement\recipes\birch_sink_dark.json
@@ -316,8 +316,8 @@ a8b4022078476f6ba142aec11f74d5aeb4b150c3 data\better_deco\recipe\bamboo_bedside.
 40a5caa36b5a86f73369c120cd80f192cd65b8bf data\better_deco\advancement\recipes\cherry_dinning_table.json
 ba8bd651156c7edf3afa95d7c286d311b0f5e1a8 data\better_deco\advancement\recipes\cherry_kitchen_counter.json
 68dbc6fba9795e457100b0d93ed5dc6477edae54 data\better_deco\advancement\recipes\dark_oak_sink.json
-0a1bf52eefa3dd4bed18ca4a6e98b9c4c1400e82 data\better_deco\recipe\crimson_coffee_table.json
 48c785023127cd541e90e1f4b5e1ab97f458aa7e data\better_deco\advancement\recipes\crimson_kitchen_cabinet.json
+0a1bf52eefa3dd4bed18ca4a6e98b9c4c1400e82 data\better_deco\recipe\crimson_coffee_table.json
 92900b26ba3772405bca10f88960e72057d27a02 data\better_deco\recipe\jungle_coffee_table.json
 75a94550081553eb4c007c4873db3411818c9304 data\better_deco\recipe\acacia_bedside.json
 22a0bbb39bce442bc07406096681fd5f0e4a350b data\better_deco\recipe\crimson_dinning_table.json
