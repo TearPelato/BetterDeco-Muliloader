@@ -3,7 +3,7 @@ package net.tier1234.better_deco.init;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
-import net.tier1234.better_deco.creative_tabs.core.FeatureFlag;
+import net.tier1234.better_deco.util.tab_util.FeatureFlag;
 
 import java.util.LinkedHashMap;
 import java.util.List;
