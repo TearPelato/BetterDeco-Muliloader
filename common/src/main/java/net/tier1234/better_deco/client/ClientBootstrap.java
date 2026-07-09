@@ -6,9 +6,9 @@ import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.block.entity.renderer.*;
 import net.tier1234.better_deco.creative_tabs.BundledTabSelector;
 import net.tier1234.better_deco.entity.client.SeatRender;
-import net.tier1234.better_deco.init.ModBlockEntities;
-import net.tier1234.better_deco.init.ModEntities;
-import net.tier1234.better_deco.init.ModMenuTypes;
+import net.tier1234.better_deco.registries.ModBlockEntities;
+import net.tier1234.better_deco.registries.ModEntities;
+import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.screen.custom.*;
 
 /**
@@ -47,6 +47,6 @@ public class ClientBootstrap {
         register.apply(ModBlockEntities.SHELF_BE.get(), ShelfBlockEntityRenderer::new);
         register.apply(ModBlockEntities.DIGITAL_CLOCK.get(), DigitalClockBlockEntityRenderer::new);
         register.apply(ModBlockEntities.MICROWAVE.get(), MicrowaveBlockEntityRenderer::new);
-
+        register.apply(ModBlockEntities.CUTTING_BOARD.get(), CuttingBoardBlockEntityRenderer::new);
     }
 }

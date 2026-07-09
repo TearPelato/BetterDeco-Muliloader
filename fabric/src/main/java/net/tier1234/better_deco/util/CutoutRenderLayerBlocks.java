@@ -1,7 +1,7 @@
 package net.tier1234.better_deco.util;
 
 import net.minecraft.world.level.block.Block;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 
 public class CutoutRenderLayerBlocks {
 

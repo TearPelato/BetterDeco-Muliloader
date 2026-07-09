@@ -3,10 +3,9 @@ package net.tier1234.better_deco.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 public class CommonBlockLootTableProvider extends BlockLootSubProvider {
     protected CommonBlockLootTableProvider(HolderLookup.Provider registries) {
@@ -188,31 +187,6 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WARPED_SINK_DARK.get());
 
 
-        //Stones Variants
-        //Counter
-        dropSelf(ModBlocks.STONE_COUNTER.get());
-        dropSelf(ModBlocks.SPRUCE_DIORITE_COUNTER.get());
-        dropSelf(ModBlocks.GRANITE_COUNTER.get());
-        dropSelf(ModBlocks.DIORITE_COUNTER.get());
-        dropSelf(ModBlocks.BLACKSTONE_COUNTER.get());
-        dropSelf(ModBlocks.DEEPSLATE_COUNTER.get());
-        dropSelf(ModBlocks.DEEPSLATE_TILE_COUNTER.get());
-
-
-
-
-        dropSelf(ModBlocks.STONE_DRAWER.get());
-        dropSelf(ModBlocks.GRANITE_DRAWER.get());
-        dropSelf(ModBlocks.DIORITE_DRAWER.get());
-        dropSelf(ModBlocks.DEEPSLATE_DRAWER.get());
-        dropSelf(ModBlocks.DEEPSLATE_TILES_DRAWER.get());
-        dropSelf(ModBlocks.BLACKSTONE_DRAWER.get());
-
-
-
-
-
-        dropSelf(ModBlocks.STONE_CABINET.get());
 
         dropSelf(ModBlocks.STONE_GLASS_TECQUE.get());
         dropSelf(ModBlocks.OAK_GLASS_TECQUE.get());
@@ -227,11 +201,7 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CRIMSON_GLASS_TECQUE.get());
         dropSelf(ModBlocks.WARPED_GLASS_TECQUE.get());
 
-        dropSelf(ModBlocks.GRANITE_CABINET.get());
-        dropSelf(ModBlocks.DIORITE_CABINET.get());
-        dropSelf(ModBlocks.DEEPSLATE_CABINET.get());
-        dropSelf(ModBlocks.DEEPSLATE_TILES_CABINET.get());
-        dropSelf(ModBlocks.BLACKSTONE_CABINET.get());
+
 
 
         dropSelf(ModBlocks.RED_STOOL.get());
@@ -327,18 +297,7 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.LIGHT_MICROWAVE.get());
         dropSelf(ModBlocks.DARK_MICROWAVE.get());
 
-        dropSelf(ModBlocks.DARK_OAK_CALCITE_DRAWER.get());
-        dropSelf(ModBlocks.DARK_OAK_CALCITE_CABINET.get());
 
-        dropSelf(ModBlocks.OAK_ANDESITE_DRAWER.get());
-        dropSelf(ModBlocks.OAK_ANDESITE_CABINET.get());
-
-        dropSelf(ModBlocks.SPRUCE_DIORITE_KITCHEN_DRAWER.get());
-        dropSelf(ModBlocks.SPRUCE_DIORITE_CABINET.get());
-
-        dropSelf(ModBlocks.OAK_ANDESITE_OVEN.get());
-        dropSelf(ModBlocks.SPRUCE_DIORITE_OVEN.get());
-        dropSelf(ModBlocks.DARK_OAK_CALCITE_OVEN.get());
 
         dropSelf(ModBlocks.OAK_PARK_BENCH.get());
         dropSelf(ModBlocks.SPRUCE_PARK_BENCH.get());
@@ -468,7 +427,7 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.TOASTER_DARK.get());
 
         dropSelf(ModBlocks.STONE_PATH.get());
-        dropSelf(ModBlocks.CHOPPING_BOARD.get());
+        dropSelf(ModBlocks.OAK_CUTTING_BOARD.get());
 
         dropSelf(ModBlocks.FURNI_WORKBENCH.get());
 

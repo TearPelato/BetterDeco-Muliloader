@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.tier1234.better_deco.datagen.custom.FurniCraftingRecipeBuilder;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 
 import java.util.List;
 import java.util.function.Function;

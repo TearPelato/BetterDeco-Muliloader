@@ -6,7 +6,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -251,27 +251,7 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                   .add(ModBlocks.DEEPSLATE_TILE_PEDESTAL.get())
                   .add(ModBlocks.BLACKSTONE_PEDESTAL.get())
 
-                 //Stone Furniture
-                  .add(ModBlocks.STONE_COUNTER.get())
-                  .add(ModBlocks.DIORITE_COUNTER.get())
-                  .add(ModBlocks.GRANITE_COUNTER.get())
-                  .add(ModBlocks.DEEPSLATE_COUNTER.get())
-                  .add(ModBlocks.DEEPSLATE_TILE_COUNTER.get())
-                  .add(ModBlocks.BLACKSTONE_COUNTER.get())
 
-                  .add(ModBlocks.STONE_CABINET.get())
-                  .add(ModBlocks.DIORITE_CABINET.get())
-                  .add(ModBlocks.GRANITE_CABINET.get())
-                  .add(ModBlocks.DEEPSLATE_CABINET.get())
-                  .add(ModBlocks.DEEPSLATE_TILES_CABINET.get())
-                  .add(ModBlocks.BLACKSTONE_CABINET.get())
-
-                  .add(ModBlocks.STONE_DRAWER.get())
-                  .add(ModBlocks.DIORITE_DRAWER.get())
-                  .add(ModBlocks.GRANITE_DRAWER.get())
-                  .add(ModBlocks.DEEPSLATE_DRAWER.get())
-                  .add(ModBlocks.DEEPSLATE_TILES_DRAWER.get())
-                  .add(ModBlocks.BLACKSTONE_DRAWER.get())
 
           //Clock
 

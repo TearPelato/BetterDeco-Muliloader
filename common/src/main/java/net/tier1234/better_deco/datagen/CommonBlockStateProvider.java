@@ -283,6 +283,30 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     }
 
+    protected void cuttingBoard(CuttingBoardBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        ResourceLocation cuttingBoardKey = modId(baseName);
+
+        ResourceLocation cuttingBoardRef = modId("block/" + baseName);
+
+        registerModel(cuttingBoardKey, Constants.id("block/cutting_board"), texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            variants.add("facing=" + Direction.NORTH, variantJson(cuttingBoardRef, 0));
+            variants.add("facing=" + Direction.EAST , variantJson(cuttingBoardRef, 90));
+            variants.add("facing=" + Direction.SOUTH , variantJson(cuttingBoardRef, 180));
+            variants.add("facing=" + Direction.WEST , variantJson(cuttingBoardRef, 270));
+        }
+
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemModel(baseName, modId("block/" + baseName));
+    }
 
 
 

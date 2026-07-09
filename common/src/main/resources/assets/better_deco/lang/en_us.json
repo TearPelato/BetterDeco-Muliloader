@@ -1,8 +1,22 @@
 {
 
-"creativetab.better_deco.better_deco": "BetterDeco",
+  "creativetab.better_deco.better_deco": "BetterDeco",
 
-  "block.better_deco.chopping_board": "Chopping Board",
+  "block.better_deco.oak_cutting_board": "Oak Cutting Board",
+  "block.better_deco.spruce_cutting_board": "Spruce Cutting Board",
+  "block.better_deco.birch_cutting_board": "Birch Cutting Board",
+  "block.better_deco.jungle_cutting_board": "Jungle Cutting Board",
+  "block.better_deco.acacia_cutting_board": "Acacia Cutting Board",
+  "block.better_deco.dark_oak_cutting_board": "Dark Oak Cutting Board",
+  "block.better_deco.mangrove_cutting_board": "Mangrove Cutting Board",
+  "block.better_deco.cherry_cutting_board": "Cherry Cutting Board",
+  "block.better_deco.bamboo_cutting_board": "Bamboo Cutting Board",
+  "block.better_deco.crimson_cutting_board": "Crimson Cutting Board",
+  "block.better_deco.warped_cutting_board": "Warped Cutting Board",
+
+
+
+
   "block.better_deco.stone_path": "Stone Path",
 
   "bundled_tab.general": "General Furniture",
@@ -10,7 +24,8 @@
   "bundled_tab.living_room": "Living Room Furnitures",
   "bundled_tab.buildings_extras": "Buildings Extras",
   "bundled_tab.utilities.title": "Utilities",
-  "bundled_tab.electronics.title": "Electronic Furnitures",
+  "bundled_tabs.item": "Items",
+  "bundled_tab.bedroom_furniture.title": "Bedroom Furniture",
   "bundled_tab.external_deco": "External Decorations",
   "bundled_tab.everycompat": "EveryCompat",
 
@@ -548,5 +563,7 @@
 
   "container.better_deco.workbench": "Furniture Workbench",
   "gui.better_deco.hold_shift_for_details": "Hold SHIFT for Details",
-  "furni_crafting": "FurniCrafting"
+  "furni_crafting": "FurniCrafting",
+  "container.better_deco.cutting_board": "Cutting Board"
+
 }
