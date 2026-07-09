@@ -10,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.tier1234.better_deco.block.custom.CustomShelfBlock;
 import net.tier1234.better_deco.block.entity.custom.ShelfBlockEntity;
-import net.tier1234.better_deco.init.ModInventory;
+import net.tier1234.better_deco.registries.ModInventory;
 
 public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
     private static final float U1 = 1f / 16f;

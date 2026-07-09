@@ -1,4 +1,4 @@
-package net.tier1234.better_deco.init;
+package net.tier1234.better_deco.registries;
 
 import net.minecraft.world.SimpleContainer;
 

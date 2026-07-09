@@ -15,13 +15,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.compat.jei.category.FreezerCategory;
 import net.tier1234.better_deco.compat.jei.category.FurniWorkbenchCategory;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.compat.jei.category.MicrowaveRecipeCategory;
 import net.tier1234.better_deco.compat.jei.category.OvenRecipeCategory;
-import net.tier1234.better_deco.recipe.MicrowaveRecipe;
-import net.tier1234.better_deco.init.ModRecipes;
-import net.tier1234.better_deco.recipe.OvenRecipe;
+import net.tier1234.better_deco.registries.ModRecipes;
+import net.tier1234.better_deco.screen.custom.FreezerScreen;
 import net.tier1234.better_deco.screen.custom.MicrowaveScreen;
 import net.tier1234.better_deco.screen.custom.OvenScreen;
 
@@ -42,6 +42,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipeCategories(new OvenRecipeCategory(guiHelper));
         registration.addRecipeCategories(new MicrowaveRecipeCategory(guiHelper));
         registration.addRecipeCategories(new FurniWorkbenchCategory(guiHelper));
+        registration.addRecipeCategories(new FreezerCategory(guiHelper));
     }
 
     @Override
@@ -50,6 +51,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.OVEN_TYPE.get()));
         registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
         registration.addRecipes(FurniWorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
+        registration.addRecipes(FreezerCategory.FREEZER_RECIPE_TYPE, this.getRecipes(ModRecipes.FREEZER_TYPE.get()));
     }
 
     @Override
@@ -58,6 +60,8 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(MicrowaveScreen.class, 74, 30, 22, 20,
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
+        registration.addRecipeClickArea(FreezerScreen.class, 74, 30, 22, 20,
+                FreezerCategory.FREEZER_RECIPE_TYPE);
 
 
     }
@@ -128,6 +132,8 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FURNI_WORKBENCH.get().asItem()),
                 FurniWorkbenchCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_LIGHT.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_DARK.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
     }
 
     /**

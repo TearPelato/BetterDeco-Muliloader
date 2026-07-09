@@ -6,8 +6,6 @@ import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
 import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.wood.VanillaWoodTypes;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -21,8 +19,8 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.KitchenCounterBlock;
 import net.tier1234.better_deco.block.custom.KitchenDrawerBlock;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
-import net.tier1234.better_deco.init.ModBlocks;
-import net.tier1234.better_deco.init.ModBundledTabs;
+import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModBundledTabs;
 
 /**@author Tier1234. Using the compat api made by LiukRast, really helpfull for registrating a new custom
  * compatibility with simple and small mods

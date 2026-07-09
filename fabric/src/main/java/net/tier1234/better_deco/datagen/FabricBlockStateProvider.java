@@ -2,7 +2,7 @@ package net.tier1234.better_deco.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 
 public class FabricBlockStateProvider extends CommonBlockStateProvider {
 

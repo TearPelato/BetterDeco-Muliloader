@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.tearpelato.deco_lib.api.fluid.block_entity.FluidContainerBlockEntity;
 import net.tier1234.better_deco.Config;
-import net.tier1234.better_deco.init.ModBlockEntities;
+import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.SinkMenu;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.system.NonnullDefault;

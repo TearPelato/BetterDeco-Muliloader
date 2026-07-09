@@ -11,13 +11,10 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tier1234.better_deco.init.ModBlockEntities;
+import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.CrateMenu;
-import net.tier1234.better_deco.screen.custom.ShelfMenu;
-import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
 
 public class CrateBlockEntity extends BlockEntity implements MenuProvider {

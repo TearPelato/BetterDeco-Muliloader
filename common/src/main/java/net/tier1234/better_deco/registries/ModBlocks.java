@@ -1,4 +1,4 @@
-package net.tier1234.better_deco.init;
+package net.tier1234.better_deco.registries;
 
 import com.mrcrayfish.framework.api.registry.RegistryContainer;
 import com.mrcrayfish.framework.api.registry.RegistryEntry;
@@ -14,10 +14,34 @@ public class ModBlocks {
 
     //Test
     public static final RegistryEntry<FurniWorkbench> FURNI_WORKBENCH = RegistryEntry.blockWithItem(Constants.id("furni_workbench"),
-            ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.7f)));
+            ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
 
-    public static final RegistryEntry<Block> CHOPPING_BOARD = RegistryEntry.blockWithItem(Constants.id("chopping_board"),
-            ()-> new ChoppingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> OAK_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("oak_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> SPRUCE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("spruce_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> BIRCH_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("birch_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> JUNGLE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("jungle_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> ACACIA_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("acacia_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> DARK_OAK_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("dark_oak_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> MANGROVE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("mangrove_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> CHERRY_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("cherry_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> BAMBOO_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("bamboo_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> CRIMSON_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("crimson_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<CuttingBoardBlock> WARPED_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("warped_cutting_board"),
+            ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+
+
+
+
 
     //Desk
     public static final RegistryEntry<Block> OAK_DESK = RegistryEntry.blockWithItem(Constants.id("oak_desk"),
@@ -136,12 +160,6 @@ public class ModBlocks {
     public static final RegistryEntry<OvenBlock> WARPED_OVEN = RegistryEntry.blockWithItem(Constants.id("warped_oven"),
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
 
-    public static final RegistryEntry<Block> SPRUCE_DIORITE_OVEN = RegistryEntry.blockWithItem(Constants.id("spruce_diorite_oven"),
-            ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(3f)));
-    public static final RegistryEntry<Block> DARK_OAK_CALCITE_OVEN = RegistryEntry.blockWithItem(Constants.id("dark_oak_calcite_oven"),
-            ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(3f)));
-    public static final RegistryEntry<Block> OAK_ANDESITE_OVEN = RegistryEntry.blockWithItem(Constants.id("oak_andesite_oven"),
-            ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(3f)));
 
     //SHELFS
     public static final RegistryEntry<Block> OAK_SHELF = RegistryEntry.blockWithItem(Constants.id("oak_shelf"),
@@ -240,12 +258,7 @@ public class ModBlocks {
     public static final RegistryEntry<KitchenDrawerBlock> WARPED_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("warped_kitchen_drawer"),
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
-    public static final RegistryEntry<Block> SPRUCE_DIORITE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("spruce_diorite_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(3f)));
-    public static final RegistryEntry<Block> DARK_OAK_CALCITE_DRAWER = RegistryEntry.blockWithItem(Constants.id("dark_oak_calcite_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(3f)));
-    public static final RegistryEntry<Block> OAK_ANDESITE_DRAWER = RegistryEntry.blockWithItem(Constants.id("oak_andesite_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(3f)));
+
 
     //Tables
     public static final RegistryEntry<Block> OAK_TABLE = RegistryEntry.blockWithItem(Constants.id("oak_table"),
@@ -329,12 +342,6 @@ public class ModBlocks {
     public static final RegistryEntry<CabinetBlock> WARPED_CABINET = RegistryEntry.blockWithItem(Constants.id("warped_kitchen_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
-    public static final RegistryEntry<Block> SPRUCE_DIORITE_CABINET = RegistryEntry.blockWithItem(Constants.id("spruce_diorite_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(3f)));
-    public static final RegistryEntry<Block> DARK_OAK_CALCITE_CABINET = RegistryEntry.blockWithItem(Constants.id("dark_oak_calcite_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(3f)));
-    public static final RegistryEntry<Block> OAK_ANDESITE_CABINET = RegistryEntry.blockWithItem(Constants.id("oak_andesite_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(3f)));
 
     //Pedestals
     public static final RegistryEntry<Block> PEDESTAL = RegistryEntry.blockWithItem(Constants.id("pedestal"),
@@ -614,51 +621,6 @@ public class ModBlocks {
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
     public static final RegistryEntry<Block> WHITE_CABINET = RegistryEntry.blockWithItem(Constants.id("white_cabinet"),
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-
-    //Stone Variants
-    //Counter
-    public static final RegistryEntry<Block> STONE_COUNTER = RegistryEntry.blockWithItem(Constants.id("stone_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DIORITE_COUNTER = RegistryEntry.blockWithItem(Constants.id("diorite_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> GRANITE_COUNTER = RegistryEntry.blockWithItem(Constants.id("granite_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACKSTONE_COUNTER = RegistryEntry.blockWithItem(Constants.id("blackstone_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_COUNTER = RegistryEntry.blockWithItem(Constants.id("deepslate_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_TILE_COUNTER = RegistryEntry.blockWithItem(Constants.id("deepslate_tiles_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_DIORITE_COUNTER = RegistryEntry.blockWithItem(Constants.id("spruce_diorite_kitchen_counter"),
-            ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-
-    //Drawers
-    public static final RegistryEntry<Block> STONE_DRAWER = RegistryEntry.blockWithItem(Constants.id("stone_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> GRANITE_DRAWER = RegistryEntry.blockWithItem(Constants.id("granite_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DIORITE_DRAWER = RegistryEntry.blockWithItem(Constants.id("diorite_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_DRAWER = RegistryEntry.blockWithItem(Constants.id("deepslate_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_TILES_DRAWER = RegistryEntry.blockWithItem(Constants.id("deepslate_tiles_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACKSTONE_DRAWER = RegistryEntry.blockWithItem(Constants.id("blackstone_kitchen_drawer"),
-            ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-
-    //Cabinets
-    public static final RegistryEntry<Block> STONE_CABINET = RegistryEntry.blockWithItem(Constants.id("stone_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> GRANITE_CABINET = RegistryEntry.blockWithItem(Constants.id("granite_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DIORITE_CABINET = RegistryEntry.blockWithItem(Constants.id("diorite_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_CABINET = RegistryEntry.blockWithItem(Constants.id("deepslate_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_TILES_CABINET = RegistryEntry.blockWithItem(Constants.id("deepslate_tiles_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACKSTONE_CABINET = RegistryEntry.blockWithItem(Constants.id("blackstone_cabinet"),
-            ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
 
     //STOOL
     public static final RegistryEntry<Block> RED_STOOL = RegistryEntry.blockWithItem(Constants.id("red_stool"),

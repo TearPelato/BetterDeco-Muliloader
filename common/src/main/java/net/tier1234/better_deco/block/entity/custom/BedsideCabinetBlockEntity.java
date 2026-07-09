@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.block.custom.BedsideCabinetBlock;
-import net.tier1234.better_deco.init.ModBlockEntities;
+import net.tier1234.better_deco.registries.ModBlockEntities;
 
 
 public class BedsideCabinetBlockEntity extends BasicLootBlockEntity

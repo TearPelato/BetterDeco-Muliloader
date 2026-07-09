@@ -17,7 +17,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.compat.jei.JEIBetterDecoPlugin;
-import net.tier1234.better_deco.init.ModBlocks;
+import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
 import org.jetbrains.annotations.Nullable;

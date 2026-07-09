@@ -1,9 +1,7 @@
-package net.tier1234.better_deco.init;
+package net.tier1234.better_deco.registries;
 
 import com.mrcrayfish.framework.api.registry.RegistryContainer;
 import com.mrcrayfish.framework.api.registry.RegistryEntry;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.recipe.FreezerRecipe;

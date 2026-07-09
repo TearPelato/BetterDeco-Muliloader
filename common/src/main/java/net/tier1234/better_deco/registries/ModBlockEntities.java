@@ -1,4 +1,4 @@
-package net.tier1234.better_deco.init;
+package net.tier1234.better_deco.registries;
 
 import com.mrcrayfish.framework.api.registry.RegistryContainer;
 import com.mrcrayfish.framework.api.registry.RegistryEntry;
@@ -23,16 +23,7 @@ public class ModBlockEntities {
                     ModBlocks.BAMBOO_KITCHEN_DRAWER.get(),
                     ModBlocks.CRIMSON_KITCHEN_DRAWER.get(),
                     ModBlocks.WARPED_KITCHEN_DRAWER.get(),
-                    ModBlocks.STONE_DRAWER.get(),
-                    ModBlocks.GRANITE_DRAWER.get(),
-                    ModBlocks.DIORITE_DRAWER.get(),
-                    ModBlocks.DEEPSLATE_DRAWER.get(),
-                    ModBlocks.DEEPSLATE_TILES_DRAWER.get(),
-                    ModBlocks.BLACKSTONE_DRAWER.get(),
 
-                    ModBlocks.SPRUCE_DIORITE_KITCHEN_DRAWER.get(),
-                    ModBlocks.DARK_OAK_CALCITE_DRAWER.get(),
-                    ModBlocks.OAK_ANDESITE_DRAWER.get(),
 
                     ModBlocks.WHITE_KITCHEN_DRAWER.get(),
                     ModBlocks.LIGHT_GRAY_KITCHEN_DRAWER.get(),
@@ -70,15 +61,7 @@ public class ModBlockEntities {
                                                     ModBlocks.BAMBOO_CABINET.get(),
                                                     ModBlocks.CRIMSON_CABINET.get(),
                                                     ModBlocks.WARPED_CABINET.get(),
-                                                    ModBlocks.STONE_CABINET.get(),
-                                                    ModBlocks.GRANITE_CABINET.get(),
-                                                    ModBlocks.DIORITE_CABINET.get(),
-                                                    ModBlocks.DEEPSLATE_CABINET.get(),
-                                                    ModBlocks.DEEPSLATE_TILES_CABINET.get(),
-                                                    ModBlocks.BLACKSTONE_CABINET.get(),
-                                                    ModBlocks.SPRUCE_DIORITE_CABINET.get(),
-                                                    ModBlocks.DARK_OAK_CALCITE_CABINET.get(),
-                                                    ModBlocks.OAK_ANDESITE_CABINET.get(),
+
 
                                                     ModBlocks.RED_CABINET.get(),
                                                     ModBlocks.ORANGE_CABINET.get(),
@@ -274,9 +257,6 @@ public class ModBlockEntities {
                             ModBlocks.BAMBOO_OVEN.get(),
                             ModBlocks.CRIMSON_OVEN.get(),
                             ModBlocks.WARPED_OVEN.get(),
-                            ModBlocks.SPRUCE_DIORITE_OVEN.get(),
-                            ModBlocks.DARK_OAK_CALCITE_OVEN.get(),
-                            ModBlocks.OAK_ANDESITE_OVEN.get(),
 
                             ModBlocks.WHITE_OVEN.get(),
                             ModBlocks.LIGHT_GRAY_OVEN.get(),
@@ -345,6 +325,21 @@ public class ModBlockEntities {
             RegistryEntry.blockEntity(Constants.id("workbench"), FurniWorkbenchBlockEntity::new, ()-> new Block[]{
                    ModBlocks.FURNI_WORKBENCH.get()
                     });
+
+    public static final RegistryEntry<BlockEntityType<CuttingBoardBlockEntity>> CUTTING_BOARD =
+            RegistryEntry.blockEntity(Constants.id("cutting_board"), CuttingBoardBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.OAK_CUTTING_BOARD.get(),
+                    ModBlocks.SPRUCE_CUTTING_BOARD.get(),
+                    ModBlocks.BIRCH_CUTTING_BOARD.get(),
+                    ModBlocks.JUNGLE_CUTTING_BOARD.get(),
+                    ModBlocks.ACACIA_CUTTING_BOARD.get(),
+                    ModBlocks.DARK_OAK_CUTTING_BOARD.get(),
+                    ModBlocks.MANGROVE_CUTTING_BOARD.get(),
+                    ModBlocks.CHERRY_CUTTING_BOARD.get(),
+                    ModBlocks.BAMBOO_CUTTING_BOARD.get(),
+                    ModBlocks.CRIMSON_CUTTING_BOARD.get(),
+                    ModBlocks.WARPED_CUTTING_BOARD.get()
+            });
 
 
 

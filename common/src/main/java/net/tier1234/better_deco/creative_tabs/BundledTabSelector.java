@@ -15,8 +15,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.init.ModBundledTabs;
-import net.tier1234.better_deco.init.ModCreativeTabs;
+import net.tier1234.better_deco.registries.ModBundledTabs;
+import net.tier1234.better_deco.registries.ModCreativeTabs;
 import net.tier1234.better_deco.mixin.access.CreativeModeInventoryScreenAccessor;
 import net.tier1234.better_deco.platform.Services;
 

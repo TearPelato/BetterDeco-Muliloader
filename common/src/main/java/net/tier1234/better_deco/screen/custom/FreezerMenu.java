@@ -13,8 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
-import net.tier1234.better_deco.init.ModBlocks;
-import net.tier1234.better_deco.init.ModMenuTypes;
+import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.screen.slot.FreezerFuelSlot;
 import net.tier1234.better_deco.screen.slot.FreezerOutputSlot;
 

@@ -9,15 +9,14 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.set.wood.VanillaWoodTypes;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.KitchenCounterBlock;
 import net.tier1234.better_deco.block.custom.KitchenDrawerBlock;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
-import net.tier1234.better_deco.init.ModBlocks;
-import net.tier1234.better_deco.init.ModBundledTabs;
+import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModBundledTabs;
 
 public class FabricEveryCompatModule extends SimpleModule {
     public final SimpleEntrySet<WoodType, KitchenCounterBlock> kitchenCounter;

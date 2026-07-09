@@ -3,7 +3,6 @@ package net.tier1234.better_deco.screen.custom;
 
 import com.mrcrayfish.framework.api.menu.IMenuData;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -12,13 +11,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tier1234.better_deco.block.entity.custom.OvenBlockEntity;
-import net.tier1234.better_deco.init.ModBlocks;
-import net.tier1234.better_deco.init.ModMenuTypes;
+import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.screen.slot.OvenFuelSlot;
 
 public class OvenMenu extends AbstractContainerMenu {
@@ -148,13 +146,6 @@ public class OvenMenu extends AbstractContainerMenu {
                 pPlayer, ModBlocks.CRIMSON_OVEN.get())
                 || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlocks.WARPED_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.SPRUCE_DIORITE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.DARK_OAK_CALCITE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.OAK_ANDESITE_OVEN.get())
-
                 || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, ModBlocks.RED_OVEN.get())
                 || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),

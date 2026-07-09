@@ -12,11 +12,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.KelpBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tier1234.better_deco.block.entity.custom.MicrowaveBlockEntity;
-import net.tier1234.better_deco.init.ModBlocks;
-import net.tier1234.better_deco.init.ModMenuTypes;
+import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModMenuTypes;
 
 public class MicrowaveMenu extends AbstractContainerMenu {
     public final MicrowaveBlockEntity blockEntity;

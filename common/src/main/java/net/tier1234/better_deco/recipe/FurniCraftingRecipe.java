@@ -11,7 +11,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.tier1234.better_deco.init.ModRecipes;
+import net.tier1234.better_deco.registries.ModRecipes;
 import org.jetbrains.annotations.NotNull;
 
 

@@ -17,10 +17,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.tier1234.better_deco.init.ModBlockEntities;
-import net.tier1234.better_deco.init.ModInventory;
+import net.tier1234.better_deco.registries.ModBlockEntities;
+import net.tier1234.better_deco.registries.ModInventory;
 import net.tier1234.better_deco.screen.custom.ShelfMenu;
-import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
 
 public class ShelfBlockEntity extends RandomizableContainerBlockEntity implements MenuProvider {

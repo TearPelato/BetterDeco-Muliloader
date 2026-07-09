@@ -34,7 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
 import net.tier1234.better_deco.block.entity.custom.FridgeBlockEntity;
-import net.tier1234.better_deco.init.ModBlockEntities;
+import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
