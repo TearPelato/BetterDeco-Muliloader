@@ -1,4 +1,4 @@
-package net.tier1234.better_deco.init;
+package net.tier1234.better_deco.registries;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -19,21 +19,9 @@ public class ModBundledTabs {
     public static final BundledTabs GENERALS = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.general"))
-                    .icon(new ItemStack(ModBlocks.FURNI_WORKBENCH.get()))
+                    .icon(new ItemStack(ModBlocks.OAK_CHAIR.get()))
                     .displayItems(((provider, output) -> {
                         output.accept(ModBlocks.FURNI_WORKBENCH.get());
-
-                        output.accept(ModBlocks.OAK_TABLE.get());
-                        output.accept(ModBlocks.SPRUCE_TABLE.get());
-                        output.accept(ModBlocks.BIRCH_TABLE.get());
-                        output.accept(ModBlocks.JUNGLE_TABLE.get());
-                        output.accept(ModBlocks.ACACIA_TABLE.get());
-                        output.accept(ModBlocks.DARK_OAK_TABLE.get());
-                        output.accept(ModBlocks.MANGROVE_TABLE.get());
-                        output.accept(ModBlocks.CHERRY_TABLE.get());
-                        output.accept(ModBlocks.BAMBOO_TABLE.get());
-                        output.accept(ModBlocks.CRIMSON_TABLE.get());
-                        output.accept(ModBlocks.WARPED_TABLE.get());
 
                         output.accept(ModBlocks.OAK_CHAIR.get());
                         output.accept(ModBlocks.SPRUCE_CHAIR.get());
@@ -63,14 +51,50 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.MAGENTA_STOOL.get());
                         output.accept(ModBlocks.PINK_STOOL.get());
                         output.accept(ModBlocks.BROWN_STOOL.get());
+
+
+                        output.accept(ModBlocks.OAK_TABLE.get());
+                        output.accept(ModBlocks.SPRUCE_TABLE.get());
+                        output.accept(ModBlocks.BIRCH_TABLE.get());
+                        output.accept(ModBlocks.JUNGLE_TABLE.get());
+                        output.accept(ModBlocks.ACACIA_TABLE.get());
+                        output.accept(ModBlocks.DARK_OAK_TABLE.get());
+                        output.accept(ModBlocks.MANGROVE_TABLE.get());
+                        output.accept(ModBlocks.CHERRY_TABLE.get());
+                        output.accept(ModBlocks.BAMBOO_TABLE.get());
+                        output.accept(ModBlocks.CRIMSON_TABLE.get());
+                        output.accept(ModBlocks.WARPED_TABLE.get());
+
+                        output.accept(ModBlocks.OAK_DINNING_TABLE.get());
+                        output.accept(ModBlocks.SPRUCE_DINNING_TABLE.get());
+                        output.accept(ModBlocks.BIRCH_DINNING_TABLE.get());
+                        output.accept(ModBlocks.JUNGLE_DINNING_TABLE.get());
+                        output.accept(ModBlocks.ACACIA_DINNING_TABLE.get());
+                        output.accept(ModBlocks.DARK_OAK_DINNING_TABLE.get());
+                        output.accept(ModBlocks.MANGROVE_DINNING_TABLE.get());
+                        output.accept(ModBlocks.CHERRY_DINNING_TABLE.get());
+                        output.accept(ModBlocks.BAMBOO_DINNING_TABLE.get());
+                        output.accept(ModBlocks.CRIMSON_DINNING_TABLE.get());
+                        output.accept(ModBlocks.WARPED_DINNING_TABLE.get());
+
+
+
+
                     }))
                     .build());
 
+    public static final BundledTabs ITEMS = register(BundledTabs.builder()
+            .title(Component.translatable("bundled_tabs.item"))
+            .icon(new ItemStack(ModItems.KITCHEN_KNIFE.get()))
+            .displayItems(((provider, output) -> {
+                output.accept(ModItems.KITCHEN_KNIFE.get());
+            }))
+            .build());
 
     public static final BundledTabs KITCHEN = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.kitchen"))
-                    .icon(new ItemStack(ModBlocks.OAK_CHAIR.get()))
+                    .icon(new ItemStack(ModBlocks.OAK_KITCHEN_COUNTER.get()))
                     .displayItems((provider, output) -> {
                         output.accept(ModBlocks.OAK_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.SPRUCE_KITCHEN_COUNTER.get());
@@ -95,6 +119,18 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.BAMBOO_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.CRIMSON_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.WARPED_KITCHEN_DRAWER.get());
+
+                        output.accept(ModBlocks.OAK_OVEN.get());
+                        output.accept(ModBlocks.SPRUCE_OVEN.get());
+                        output.accept(ModBlocks.BIRCH_OVEN.get());
+                        output.accept(ModBlocks.JUNGLE_OVEN.get());
+                        output.accept(ModBlocks.ACACIA_OVEN.get());
+                        output.accept(ModBlocks.DARK_OAK_OVEN.get());
+                        output.accept(ModBlocks.MANGROVE_OVEN.get());
+                        output.accept(ModBlocks.CHERRY_OVEN.get());
+                        output.accept(ModBlocks.BAMBOO_OVEN.get());
+                        output.accept(ModBlocks.CRIMSON_OVEN.get());
+                        output.accept(ModBlocks.WARPED_OVEN.get());
 
                         output.accept(ModBlocks.OAK_SINK.get());
                         output.accept(ModBlocks.SPRUCE_SINK.get());
@@ -154,7 +190,24 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.MAGENTA_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.PINK_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.BROWN_KITCHEN_DRAWER.get());
-                        
+
+                        output.accept(ModBlocks.WHITE_OVEN.get());
+                        output.accept(ModBlocks.LIGHT_GRAY_OVEN.get());
+                        output.accept(ModBlocks.GRAY_OVEN.get());
+                        output.accept(ModBlocks.BLACK_OVEN.get());
+                        output.accept(ModBlocks.RED_OVEN.get());
+                        output.accept(ModBlocks.ORANGE_OVEN.get());
+                        output.accept(ModBlocks.YELLOW_OVEN.get());
+                        output.accept(ModBlocks.LIME_OVEN.get());
+                        output.accept(ModBlocks.GREEN_OVEN.get());
+                        output.accept(ModBlocks.CYAN_OVEN.get());
+                        output.accept(ModBlocks.LIGHT_BLUE_OVEN.get());
+                        output.accept(ModBlocks.BLUE_OVEN.get());
+                        output.accept(ModBlocks.PURPLE_OVEN.get());
+                        output.accept(ModBlocks.MAGENTA_OVEN.get());
+                        output.accept(ModBlocks.PINK_OVEN.get());
+                        output.accept(ModBlocks.BROWN_OVEN.get());
+
 
                         output.accept(ModBlocks.WHITE_SINK.get());
                         output.accept(ModBlocks.LIGHT_GRAY_SINK.get());
@@ -191,66 +244,28 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PINK_CABINET.get());
                         output.accept(ModBlocks.BROWN_CABINET.get());
 
+
+                        output.accept(ModBlocks.LIGHT_MICROWAVE.get());
+                        output.accept(ModBlocks.DARK_MICROWAVE.get());
+
                         output.accept(ModBlocks.FRIDGE_DARK.get());
                         output.accept(ModBlocks.FRIDGE_LIGHT.get());
 
                         output.accept(ModBlocks.TOASTER_DARK.get());
                         output.accept(ModBlocks.TOASTER_LIGHT.get());
 
-                        output.accept(ModBlocks.CHOPPING_BOARD.get());
+                        output.accept(ModBlocks.OAK_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.SPRUCE_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.BIRCH_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.JUNGLE_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.ACACIA_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.DARK_OAK_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.MANGROVE_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.CHERRY_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.BAMBOO_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.CRIMSON_CUTTING_BOARD.get());
+                        output.accept(ModBlocks.WARPED_CUTTING_BOARD.get());
 
-                        output.accept(ModBlocks.OAK_BEDSIDE.get());
-                        output.accept(ModBlocks.SPRUCE_BEDSIDE.get());
-                        output.accept(ModBlocks.BIRCH_BEDSIDE.get());
-                        output.accept(ModBlocks.JUNGLE_BEDSIDE.get());
-                        output.accept(ModBlocks.ACACIA_BEDSIDE.get());
-                        output.accept(ModBlocks.MANGROVE_BEDSIDE.get());
-                        output.accept(ModBlocks.DARK_OAK_BEDSIDE.get());
-                        output.accept(ModBlocks.CHERRY_BEDSIDE.get());
-                        output.accept(ModBlocks.BAMBOO_BEDSIDE.get());
-                        output.accept(ModBlocks.CRIMSON_BEDSIDE.get());
-                        output.accept(ModBlocks.WARPED_BEDSIDE.get());
-
-
-
-                        output.accept(ModBlocks.OAK_DINNING_TABLE.get());
-                        output.accept(ModBlocks.SPRUCE_DINNING_TABLE.get());
-                        output.accept(ModBlocks.BIRCH_DINNING_TABLE.get());
-                        output.accept(ModBlocks.JUNGLE_DINNING_TABLE.get());
-                        output.accept(ModBlocks.ACACIA_DINNING_TABLE.get());
-                        output.accept(ModBlocks.DARK_OAK_DINNING_TABLE.get());
-                        output.accept(ModBlocks.MANGROVE_DINNING_TABLE.get());
-                        output.accept(ModBlocks.CHERRY_DINNING_TABLE.get());
-                        output.accept(ModBlocks.BAMBOO_DINNING_TABLE.get());
-                        output.accept(ModBlocks.CRIMSON_DINNING_TABLE.get());
-                        output.accept(ModBlocks.WARPED_DINNING_TABLE.get());
-
-
-                        output.accept(ModBlocks.OAK_DESK.get());
-                        output.accept(ModBlocks.SPRUCE_DESK.get());
-                        output.accept(ModBlocks.BIRCH_DESK.get());
-                        output.accept(ModBlocks.JUNGLE_DESK.get());
-                        output.accept(ModBlocks.ACACIA_DESK.get());
-                        output.accept(ModBlocks.DARK_OAK_DESK.get());
-                        output.accept(ModBlocks.MANGROVE_DESK.get());
-                        output.accept(ModBlocks.CHERRY_DESK.get());
-                        output.accept(ModBlocks.BAMBOO_DESK.get());
-                        output.accept(ModBlocks.CRIMSON_DESK.get());
-                        output.accept(ModBlocks.WARPED_DESK.get());
-
-                        output.accept(ModBlocks.OAK_DESK_CABINET.get());
-                        output.accept(ModBlocks.SPRUCE_DESK_CABINET.get());
-                        output.accept(ModBlocks.BIRCH_DESK_CABINET.get());
-                        output.accept(ModBlocks.JUNGLE_DESK_CABINET.get());
-                        output.accept(ModBlocks.ACACIA_DESK_CABINET.get());
-                        output.accept(ModBlocks.DARK_OAK_DESK_CABINET.get());
-                        output.accept(ModBlocks.MANGROVE_DESK_CABINET.get());
-                        output.accept(ModBlocks.CHERRY_DESK_CABINET.get());
-                        output.accept(ModBlocks.BAMBOO_DESK_CABINET.get());
-                        output.accept(ModBlocks.CRIMSON_DESK_CABINET.get());
-                        output.accept(ModBlocks.WARPED_DESK_CABINET.get());
-
-                        
 
                     })
                     .build()
@@ -259,7 +274,7 @@ public class ModBundledTabs {
     public static final BundledTabs LIVING_ROOM = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.living_room"))
-                    .icon(new ItemStack(ModBlocks.BLUE_SOFA.get()))
+                    .icon(new ItemStack(ModBlocks.WITHE_SOFA.get()))
                     .displayItems(((provider, output) -> {
 
                         output.accept(ModBlocks.WITHE_SOFA.get());
@@ -299,7 +314,6 @@ public class ModBundledTabs {
                     .title(Component.translatable("bundled_tab.utilities.title"))
                     .icon(new ItemStack(ModBlocks.OAK_CRATE.get()))
                     .displayItems((provider, output) -> {
-
 
 
                         output.accept(ModBlocks.OAK_SHELF.get());
@@ -378,46 +392,47 @@ public class ModBundledTabs {
     );
 
 
-    public static final BundledTabs ELECTRONICS = register(
+    public static final BundledTabs BEDROOM = register(
             BundledTabs.builder()
-                    .title(Component.translatable("bundled_tab.electronics.title"))
-                    .icon(new ItemStack(ModBlocks.OAK_OVEN.get()))
+                    .title(Component.translatable("bundled_tab.bedroom_furniture.title"))
+                    .icon(new ItemStack(ModBlocks.OAK_BEDSIDE.get()))
                     .displayItems((provider, output) -> {
-                        output.accept(ModBlocks.OAK_OVEN.get());
-                        output.accept(ModBlocks.SPRUCE_OVEN.get());
-                        output.accept(ModBlocks.BIRCH_OVEN.get());
-                        output.accept(ModBlocks.JUNGLE_OVEN.get());
-                        output.accept(ModBlocks.ACACIA_OVEN.get());
-                        output.accept(ModBlocks.DARK_OAK_OVEN.get());
-                        output.accept(ModBlocks.MANGROVE_OVEN.get());
-                        output.accept(ModBlocks.CHERRY_OVEN.get());
-                        output.accept(ModBlocks.BAMBOO_OVEN.get());
-                        output.accept(ModBlocks.CRIMSON_OVEN.get());
-                        output.accept(ModBlocks.WARPED_OVEN.get());
 
-                        output.accept(ModBlocks.SPRUCE_DIORITE_OVEN.get());
-                        output.accept(ModBlocks.DARK_OAK_CALCITE_OVEN.get());
-                        output.accept(ModBlocks.OAK_ANDESITE_OVEN.get());
+                        output.accept(ModBlocks.OAK_DESK.get());
+                        output.accept(ModBlocks.SPRUCE_DESK.get());
+                        output.accept(ModBlocks.BIRCH_DESK.get());
+                        output.accept(ModBlocks.JUNGLE_DESK.get());
+                        output.accept(ModBlocks.ACACIA_DESK.get());
+                        output.accept(ModBlocks.DARK_OAK_DESK.get());
+                        output.accept(ModBlocks.MANGROVE_DESK.get());
+                        output.accept(ModBlocks.CHERRY_DESK.get());
+                        output.accept(ModBlocks.BAMBOO_DESK.get());
+                        output.accept(ModBlocks.CRIMSON_DESK.get());
+                        output.accept(ModBlocks.WARPED_DESK.get());
 
-                        output.accept(ModBlocks.WHITE_OVEN.get());
-                        output.accept(ModBlocks.LIGHT_GRAY_OVEN.get());
-                        output.accept(ModBlocks.GRAY_OVEN.get());
-                        output.accept(ModBlocks.BLACK_OVEN.get());
-                        output.accept(ModBlocks.RED_OVEN.get());
-                        output.accept(ModBlocks.ORANGE_OVEN.get());
-                        output.accept(ModBlocks.YELLOW_OVEN.get());
-                        output.accept(ModBlocks.LIME_OVEN.get());
-                        output.accept(ModBlocks.GREEN_OVEN.get());
-                        output.accept(ModBlocks.CYAN_OVEN.get());
-                        output.accept(ModBlocks.LIGHT_BLUE_OVEN.get());
-                        output.accept(ModBlocks.BLUE_OVEN.get());
-                        output.accept(ModBlocks.PURPLE_OVEN.get());
-                        output.accept(ModBlocks.MAGENTA_OVEN.get());
-                        output.accept(ModBlocks.PINK_OVEN.get());
-                        output.accept(ModBlocks.BROWN_OVEN.get());
+                        output.accept(ModBlocks.OAK_DESK_CABINET.get());
+                        output.accept(ModBlocks.SPRUCE_DESK_CABINET.get());
+                        output.accept(ModBlocks.BIRCH_DESK_CABINET.get());
+                        output.accept(ModBlocks.JUNGLE_DESK_CABINET.get());
+                        output.accept(ModBlocks.ACACIA_DESK_CABINET.get());
+                        output.accept(ModBlocks.DARK_OAK_DESK_CABINET.get());
+                        output.accept(ModBlocks.MANGROVE_DESK_CABINET.get());
+                        output.accept(ModBlocks.CHERRY_DESK_CABINET.get());
+                        output.accept(ModBlocks.BAMBOO_DESK_CABINET.get());
+                        output.accept(ModBlocks.CRIMSON_DESK_CABINET.get());
+                        output.accept(ModBlocks.WARPED_DESK_CABINET.get());
 
-                        output.accept(ModBlocks.LIGHT_MICROWAVE.get());
-                        output.accept(ModBlocks.DARK_MICROWAVE.get());
+                        output.accept(ModBlocks.OAK_BEDSIDE.get());
+                        output.accept(ModBlocks.SPRUCE_BEDSIDE.get());
+                        output.accept(ModBlocks.BIRCH_BEDSIDE.get());
+                        output.accept(ModBlocks.JUNGLE_BEDSIDE.get());
+                        output.accept(ModBlocks.ACACIA_BEDSIDE.get());
+                        output.accept(ModBlocks.MANGROVE_BEDSIDE.get());
+                        output.accept(ModBlocks.DARK_OAK_BEDSIDE.get());
+                        output.accept(ModBlocks.CHERRY_BEDSIDE.get());
+                        output.accept(ModBlocks.BAMBOO_BEDSIDE.get());
+                        output.accept(ModBlocks.CRIMSON_BEDSIDE.get());
+                        output.accept(ModBlocks.WARPED_BEDSIDE.get());
 
                         output.accept(ModBlocks.WHITE_DIGITAL_CLOCK.get());
                         output.accept(ModBlocks.LIGHT_GRAY_DIGITAL_CLOCK.get());
@@ -436,10 +451,10 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PINK_DIGITAL_CLOCK.get());
                         output.accept(ModBlocks.BROWN_DIGITAL_CLOCK.get());
 
-                    })
-                    .build()
 
- );
+
+                    })
+                    .build());
 
 
 
