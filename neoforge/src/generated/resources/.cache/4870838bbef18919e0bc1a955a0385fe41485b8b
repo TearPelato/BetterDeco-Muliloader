@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-10T00:15:30.795758	BetterDeco BlockStates & Models
+// 1.21.1	2026-07-11T13:22:40.8789614	BetterDeco BlockStates & Models
 2203a9f60d92ffcdd27c47cdc8cdaa6feb881827 assets/better_deco/blockstates/acacia_cutting_board.json
 d545f68a659bbd636a173bb7c8f36c68cc722e97 assets/better_deco/blockstates/acacia_kitchen_cabinet.json
 a987bccf471a3d6c770d6f5ec2e6a58a11da590a assets/better_deco/blockstates/acacia_kitchen_counter.json
@@ -255,6 +255,7 @@ b5503056dd9ee624f906b662b3f6766390fd01c0 assets/better_deco/models/item/dark_oak
 99b1dca311997a641e32b23f9c79b67152f78726 assets/better_deco/models/item/jungle_kitchen_drawer.json
 9a6bb135db6446fd5296516ee8c39808d7c78b9b assets/better_deco/models/item/jungle_oven.json
 7aa11c1394d86fcd299f4b931c038c6bbbaea859 assets/better_deco/models/item/jungle_sink.json
+da5f3309bf1be17dab4c7b00c267fb32fbb3aa8d assets/better_deco/models/item/kitchen_knife.json
 6425336bc4fccd94a413d6c32f3564fc11af6d43 assets/better_deco/models/item/mangrove_cutting_board.json
 1c654792dbe51e86d4569c7b338bc8517599d89a assets/better_deco/models/item/mangrove_kitchen_cabinet.json
 53be0bd34df3489990e57653ef4f95ef6248ab63 assets/better_deco/models/item/mangrove_kitchen_counter.json

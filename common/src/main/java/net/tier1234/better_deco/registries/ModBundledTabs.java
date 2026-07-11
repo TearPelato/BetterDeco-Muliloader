@@ -464,7 +464,8 @@ public class ModBundledTabs {
     }
 
     public static List<BundledTabs> getFilters() {
-        return FILTERS.entrySet().stream().filter(entry->entry.getValue().isEnabled())
+        return FILTERS.entrySet().stream()
+                .filter(entry -> entry.getValue().isEnabled())
                 .map(Map.Entry::getKey)
                 .toList();
     }

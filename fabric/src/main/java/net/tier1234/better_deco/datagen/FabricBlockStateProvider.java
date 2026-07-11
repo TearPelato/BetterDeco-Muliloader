@@ -3,6 +3,7 @@ package net.tier1234.better_deco.datagen;
 import net.minecraft.data.PackOutput;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModItems;
 
 public class FabricBlockStateProvider extends CommonBlockStateProvider {
 
@@ -118,7 +119,7 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/fridge_light"));
         fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/fridge_dark"));
 
-
+        registerItemModel(ModItems.KITCHEN_KNIFE.get(), Constants.id("item/knife"));
 
     }
 }

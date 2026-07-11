@@ -45,7 +45,7 @@
   "custom": {
     "framework": {
       "containers": [
-        "net.tier1234.better_deco.init"
+        "net.tier1234.better_deco.registries"
       ],
       "configs": [
         "net.tier1234.better_deco.Config"

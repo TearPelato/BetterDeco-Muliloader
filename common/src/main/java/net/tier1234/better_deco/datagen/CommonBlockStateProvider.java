@@ -7,6 +7,7 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.*;
 
@@ -108,7 +109,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName,defaultRef);
+        registerItemBlockModel(baseName,defaultRef);
     }
 
     protected void kitchenDrawer(KitchenDrawerBlock block,
@@ -142,7 +143,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName, closedRef);
+        registerItemBlockModel(baseName, closedRef);
 
     }
 
@@ -164,7 +165,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName,textureRef);
+        registerItemBlockModel(baseName,textureRef);
 
     }
 
@@ -184,7 +185,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName, textureRef);
+        registerItemBlockModel(baseName, textureRef);
     }
 
     protected void kitchenCabinet(CabinetBlock block, ResourceLocation texture) {
@@ -216,7 +217,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName, closedRef);
+        registerItemBlockModel(baseName, closedRef);
 
     }
 
@@ -247,7 +248,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
 
-        registerItemModel(baseName, modId("block/" + baseName));
+        registerItemBlockModel(baseName, modId("block/" + baseName));
     }
 
     protected void microwave(MicrowaveBlock block, ResourceLocation texture) {
@@ -279,7 +280,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName, closedRef);
+        registerItemBlockModel(baseName, closedRef);
 
     }
 
@@ -305,7 +306,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemModel(baseName, modId("block/" + baseName));
+        registerItemBlockModel(baseName, modId("block/" + baseName));
     }
 
 
@@ -450,8 +451,18 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
         models.put(id, model);
     }
+    public void registerItemModel(Item item, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.ITEM.getKey(item).getPath();
+        JsonObject textures = new JsonObject();
+        textures.addProperty("layer0", texture.toString());
+        JsonObject model = new JsonObject();
+        model.addProperty("parent", "minecraft:item/handheld");
+        model.add("textures", textures);
+        itemModels.put(modId(baseName), model);
 
-    protected void registerItemModel(String blockName, ResourceLocation blockModelRef) {
+    }
+
+    protected void registerItemBlockModel(String blockName, ResourceLocation blockModelRef) {
         JsonObject model = new JsonObject();
         model.addProperty("parent", blockModelRef.toString());
         itemModels.put(modId(blockName), model);

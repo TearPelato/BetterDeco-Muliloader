@@ -12,7 +12,7 @@ import net.tier1234.better_deco.Constants;
 public class ModItems {
 
     public static final RegistryEntry<Item> KITCHEN_KNIFE = RegistryEntry.item(Constants.id("kitchen_knife"),
-            ()-> new SwordItem(Tiers.WOOD,new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(365)));
+            () -> new SwordItem(Tiers.WOOD,new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(365)));
 
 
 

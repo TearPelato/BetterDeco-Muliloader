@@ -3,6 +3,7 @@ package net.tier1234.better_deco.datagen;
 import net.minecraft.data.PackOutput;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModItems;
 
 public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
 
@@ -128,5 +129,6 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         cuttingBoard(ModBlocks.CRIMSON_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_counter"));
         cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_counter"));
 
+        registerItemModel(ModItems.KITCHEN_KNIFE.get(), Constants.id("item/knife"));
     }
 }
