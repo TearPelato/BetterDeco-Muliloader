@@ -61,6 +61,6 @@ public class FreezerCategory implements IRecipeCategory<FreezerRecipe> {
     public void setRecipe(IRecipeLayoutBuilder builder, FreezerRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 56, 17).addIngredients(recipe.ingredient);
         builder.addSlot(RecipeIngredientRole.OUTPUT, 116,35).addItemStack(recipe.output);
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 54, 53).addItemStacks(FreezerBlockEntity.FreezerFuelValues.get());
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 56, 53).addItemStacks(FreezerBlockEntity.FreezerFuelValues.get());
     }
 }
