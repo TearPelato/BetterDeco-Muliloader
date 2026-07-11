@@ -5,7 +5,7 @@
 	"texture_size": [128, 128],
 	"textures": {
 		"1": "better_deco:block/furniture/kitchen_counter/kitchen_counter_base",
-		"particle": "better_deco:block/furniture/kitchen_counter/oak/oak_kitchen_oven"
+		"particle": "0"
 	},
 	"elements": [
 		{
@@ -27,19 +27,7 @@
 				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
 				"east": {"uv": [0, 0, 1, 16], "texture": "#1"},
 				"south": {"uv": [2, 1.625, 4, 3.25], "texture": "#0"},
-				"west": {"uv": [1, 0, 0, 16], "texture": "#1"},
-				"up": {"uv": [9.25, 2.875, 7.25, 2.75], "texture": "#1"},
-				"down": {"uv": [16, 15, 0, 14], "texture": "#1"}
-			}
-		},
-		{
-			"from": [0, 0, 0],
-			"to": [16, 13, 1],
-			"faces": {
-				"north": {"uv": [2, 3.25, 4, 4.875], "texture": "#1"},
-				"east": {"uv": [2, 7.25, 2.125, 8.875], "texture": "#1"},
-				"south": {"uv": [0, 4, 2, 5.625], "texture": "#1"},
-				"west": {"uv": [2.125, 7.25, 2.25, 8.875], "texture": "#1"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#1"},
 				"up": {"uv": [9.25, 3.125, 7.25, 3], "texture": "#1"},
 				"down": {"uv": [9.25, 3.125, 7.25, 3.25], "texture": "#1"}
 			}
@@ -119,7 +107,7 @@
 				"south": {"uv": [7.25, 3.875, 9, 4], "texture": "#0"},
 				"west": {"uv": [7.5, 4.375, 8.75, 4.5], "texture": "#1"},
 				"up": {"uv": [7.5, 5.625, 5.75, 4.375], "texture": "#0"},
-				"down": {"uv": [6.75, 5.75, 5, 7], "texture": "#0"}
+				"down": {"uv": [6.75, 5.75, 5, 7], "texture": "#missing"}
 			}
 		},
 		{
@@ -140,7 +128,7 @@
 			"to": [14, 12, 15],
 			"rotation": {"angle": 0, "axis": "y", "origin": [2, 11, 14]},
 			"faces": {
-				"north": {"uv": [7.25, 4.25, 8.75, 4.375], "texture": "#1"},
+				"north": {"uv": [7.25, 4.25, 8.75, 4.375], "texture": "#0"},
 				"east": {"uv": [3.75, 4.875, 3.875, 5], "texture": "#0"},
 				"south": {"uv": [3.5, 7.375, 5, 7.5], "texture": "#0"},
 				"west": {"uv": [3.875, 4.875, 4, 5], "texture": "#0"},
