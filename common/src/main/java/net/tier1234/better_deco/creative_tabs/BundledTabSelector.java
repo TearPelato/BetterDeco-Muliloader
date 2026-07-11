@@ -12,13 +12,14 @@ import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.registries.ModBundledTabs;
-import net.tier1234.better_deco.registries.ModCreativeTabs;
 import net.tier1234.better_deco.mixin.access.CreativeModeInventoryScreenAccessor;
 import net.tier1234.better_deco.platform.Services;
+import net.tier1234.better_deco.registries.ModBundledTabs;
+import net.tier1234.better_deco.registries.ModCreativeTabs;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -105,6 +106,29 @@ public class BundledTabSelector {
 
 
 
+    }
+
+
+    public boolean onScroll(double mouseX, double mouseY, double scroll)
+    {
+        CreativeModeTab selectedTab = CreativeModeInventoryScreenAccessor.getSelectedTab();
+        if(selectedTab != ModCreativeTabs.BETTER_DECO.get())
+            return false;
+
+        double startX = this.guiLeft - 28;
+        double startY = this.guiTop + 29;
+        if(mouseX >= startX && mouseX < startX + 28 && mouseY >= startY && mouseY < startY + 113)
+        {
+            int oldScroll = this.scroll;
+            this.scroll += scroll > 0 ? -1 : 1;
+            this.scroll = Mth.clamp(this.scroll, 0, this.bundles.size() - 4);
+            if(this.scroll != oldScroll)
+            {
+                this.updateWidgets();
+            }
+            return true;
+        }
+        return false;
     }
 
 
