@@ -6,6 +6,7 @@ import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
 import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.set.wood.VanillaWoodTypes;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -26,18 +27,18 @@ import net.tier1234.better_deco.registries.ModBundledTabs;
  * compatibility with simple and small mods
  **/
 @Compat("everycomp")
-public class NeoForgeEveryCompatModule extends SimpleModule {
+public class NeoForgeEveryCompatModule extends EveryCompatModule {
     public final SimpleEntrySet<WoodType, KitchenCounterBlock> kitchenCounter;
     public final SimpleEntrySet<WoodType, KitchenDrawerBlock> kitchenDrawer;
     private static NeoForgeEveryCompatModule INSTANCE;
 
 
     public NeoForgeEveryCompatModule(IEventBus bus) {
-        super(Constants.MOD_ID, "bd", Constants.MOD_ID);
+        super(Constants.MOD_ID, Constants.MOD_ID);
         EveryCompatAPI.registerModule(this);
         bus.register(this);
         INSTANCE = this;
-        kitchenCounter = SimpleEntrySet.<WoodType, KitchenCounterBlock>builder(WoodType.class, "kitchen_counter",
+        kitchenCounter = SimpleEntrySet.builder(WoodType.class, "kitchen_counter",
                         () -> ModBlocks.OAK_KITCHEN_COUNTER.get(),
                         () -> VanillaWoodTypes.OAK,
                         w -> new KitchenCounterBlock(Utils.copyPropertySafe(w.planks)))
@@ -47,7 +48,7 @@ public class NeoForgeEveryCompatModule extends SimpleModule {
                 .noTab()
                 .build();
 
-        kitchenDrawer = SimpleEntrySet.<WoodType, KitchenDrawerBlock>builder(WoodType.class, "kitchen_drawer",
+        kitchenDrawer = SimpleEntrySet.builder(WoodType.class, "kitchen_drawer",
                         () -> ModBlocks.OAK_KITCHEN_DRAWER.get(),
                         () -> VanillaWoodTypes.OAK,
                         w -> new KitchenDrawerBlock(Utils.copyPropertySafe(w.planks)))

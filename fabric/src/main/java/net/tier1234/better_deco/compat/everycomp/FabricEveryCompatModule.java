@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.mehvahdjukaar.every_compat.ECRegistry;
 import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.set.wood.VanillaWoodTypes;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -18,7 +18,7 @@ import net.tier1234.better_deco.creative_tabs.BundledTabs;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModBundledTabs;
 
-public class FabricEveryCompatModule extends SimpleModule {
+public class FabricEveryCompatModule extends EveryCompatModule {
     public final SimpleEntrySet<WoodType, KitchenCounterBlock> kitchenCounter;
     public final SimpleEntrySet<WoodType, KitchenDrawerBlock> kitchenDrawer;
     private static  FabricEveryCompatModule INSTANCE;
@@ -26,25 +26,25 @@ public class FabricEveryCompatModule extends SimpleModule {
 
 
     public FabricEveryCompatModule() {
-        super(Constants.MOD_ID, "bd", Constants.MOD_ID);
+        super(Constants.MOD_ID, Constants.MOD_ID);
         INSTANCE = this;
-        kitchenCounter = SimpleEntrySet.<WoodType, KitchenCounterBlock>builder(WoodType.class, "kitchen_counter",
+        kitchenCounter = SimpleEntrySet.builder(WoodType.class, "kitchen_counter",
                         () -> ModBlocks.OAK_KITCHEN_COUNTER.get(),
                         () -> VanillaWoodTypes.OAK,
                         w -> new KitchenCounterBlock(Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/furniture/kitchen_counter/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
+                .addTexture(modRes("block/furniture/kitchen_counter/oak/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
                 .noTab()
                 .build();
 
-        kitchenDrawer = SimpleEntrySet.<WoodType, KitchenDrawerBlock>builder(WoodType.class, "kitchen_drawer",
+        kitchenDrawer = SimpleEntrySet.builder(WoodType.class, "kitchen_drawer",
                         () -> ModBlocks.OAK_KITCHEN_DRAWER.get(),
                         () -> VanillaWoodTypes.OAK,
                         w-> new KitchenDrawerBlock(Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/furniture/kitchen_counter/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)
+                .addTexture(modRes("block/furniture/kitchen_counter/oak/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)
                 .addTile(getModTile("kitchen_drawer"))
                 .noTab()
                 .build();
