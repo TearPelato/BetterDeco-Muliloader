@@ -235,8 +235,15 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
             level.setBlock(this.getBlockPos(), state.setValue(MicrowaveBlock.OPEN, open), 3);
         }
     }
-    
-    
+
+    public ItemStack getDisplayedItem() {
+        ItemStack output = itemHandler.getItem(1);
+        if (!output.isEmpty()) {
+            return output;
+        }
+
+        return itemHandler.getItem(0);
+    }
 
     public MicrowaveMenu.CustomData getData() {
         return new MicrowaveMenu.CustomData(this.getBlockPos(), this.progress);

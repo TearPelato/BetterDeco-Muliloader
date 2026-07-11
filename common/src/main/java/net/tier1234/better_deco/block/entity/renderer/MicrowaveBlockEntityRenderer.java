@@ -14,9 +14,7 @@ import net.tier1234.better_deco.block.custom.MicrowaveBlock;
 import net.tier1234.better_deco.block.entity.custom.MicrowaveBlockEntity;
 
 public class MicrowaveBlockEntityRenderer implements BlockEntityRenderer<MicrowaveBlockEntity> {
-
-    public ItemStack stack;
-    public final ItemRenderer itemRenderer;
+    private final ItemRenderer itemRenderer;
 
     public MicrowaveBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         this.itemRenderer = context.getItemRenderer();
@@ -24,34 +22,30 @@ public class MicrowaveBlockEntityRenderer implements BlockEntityRenderer<Microwa
 
     @Override
     public void render(MicrowaveBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        stack = blockEntity.itemHandler.getItem(0);
+        ItemStack stack = blockEntity.getDisplayedItem();
+
         if (stack.isEmpty()) {
             return;
         }
 
+        Direction facing = blockEntity.getBlockState().getValue(MicrowaveBlock.DIRECTION);
         poseStack.pushPose();
-        int lightAbove = LevelRenderer.getLightColor(blockEntity.getLevel(), blockEntity.getBlockPos().above());
-        Direction facing = blockEntity.getLevel().getBlockState(blockEntity.getBlockPos()).getValue(MicrowaveBlock.DIRECTION);
+        poseStack.translate(0.5D, 0.0D, 0.5D);
         poseStack.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
-
-        float x, y, z;
-        switch (facing) {
-            case NORTH -> { x = 0.625f; y = 0.15f; z = 0.57f; }
-            case SOUTH -> { x = 0.375f; y = 0.15f; z = 0.43f; }
-            case WEST  -> { x = 0.57f;  y = 0.15f; z = 0.375f; }
-            case EAST  -> { x = 0.43f;  y = 0.15f; z = 0.625f; }
-            default -> throw new IllegalStateException("Unexpected value: " + facing);
-        }
-        poseStack.translate(x, y, z);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+        poseStack.translate(-0.5D, 0.0D, -0.5D);
+        poseStack.translate(0.375D, 0.15D, 0.43D);
 
         if (blockEntity.hasRecipe() && !blockEntity.hasCraftingFinished()) {
-            poseStack.mulPose(Axis.YP.rotationDegrees((blockEntity.getLevel().getGameTime() + partialTick) * 4));
+            poseStack.translate(0.125D, 0.0D, 0.07D);
+            poseStack.mulPose(Axis.YP.rotationDegrees((blockEntity.getLevel().getGameTime() + partialTick) * 4F));
+            poseStack.translate(-0.125D, 0.0D, -0.07D);
         }
-        poseStack.mulPose(Axis.XP.rotationDegrees(90f));
 
-        poseStack.scale(0.5f, 0.5f, 0.5f);
-        this.itemRenderer.renderStatic(stack, ItemDisplayContext.GROUND, lightAbove, packedOverlay, poseStack, bufferSource, blockEntity.getLevel(), 0);
+        poseStack.mulPose(Axis.XP.rotationDegrees(90F));
+        poseStack.scale(0.5F, 0.5F, 0.5F);
+        int light = LevelRenderer.getLightColor(blockEntity.getLevel(), blockEntity.getBlockPos().above());
+        this.itemRenderer.renderStatic(stack, ItemDisplayContext.GROUND, light, packedOverlay, poseStack, bufferSource, blockEntity.getLevel(), 0);
+
         poseStack.popPose();
     }
 }
