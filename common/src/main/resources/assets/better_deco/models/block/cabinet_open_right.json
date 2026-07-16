@@ -1,0 +1,33 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+	"textures": {
+		"1": "better_deco:block/furniture/kitchen_counter/kitchen_counter_base"
+	},
+	"elements": [
+		{
+			"from": [14, 0, 11],
+			"to": [16, 16, 27],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 0, -2]},
+			"faces": {
+				"east": {"uv": [8.75, 0, 12.75, 4], "texture": "#0"},
+				"south": {"uv": [4, 0, 4.5, 4], "texture": "#0"},
+				"west": {"uv": [8.75, 4, 12.75, 8], "texture": "#0"},
+				"up": {"uv": [4.5, 0, 8.5, 0.5], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0.5, 4, 4.5, 4.5], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [2, 0, 13, 16], "texture": "#1"},
+				"south": {"uv": [4.75, 0.5, 8.75, 4.5], "texture": "#0"},
+				"west": {"uv": [0, 0, 11, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 11], "texture": "#1"},
+				"down": {"uv": [0, 2, 16, 13], "texture": "#1"}
+			}
+		}
+	]
+}

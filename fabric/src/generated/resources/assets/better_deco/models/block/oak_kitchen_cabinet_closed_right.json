@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_closed_right",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/oak/oak_kitchen_cabinet",
+    "particle": "better_deco:block/furniture/kitchen_counter/oak/oak_kitchen_cabinet"
+  }
+}

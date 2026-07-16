@@ -1,7 +1,0 @@
-{
-  "parent": "better_deco:block/cabinet_closed",
-  "textures": {
-    "0": "better_deco:block/furniture/kitchen_counter/warped/warped_kitchen_cabinet",
-    "particle": "better_deco:block/furniture/kitchen_counter/warped/warped_kitchen_cabinet"
-  }
-}

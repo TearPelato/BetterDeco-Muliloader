@@ -6,8 +6,10 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.*;
 
@@ -191,33 +193,53 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void kitchenCabinet(CabinetBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation closedKey = modId(baseName + "_closed");
-        ResourceLocation openKey   = modId(baseName + "_open");
+        ResourceLocation closedRightKey = modId(baseName + "_closed_right");
+        ResourceLocation closedLeftKey   = modId(baseName + "_closed_left");
+        ResourceLocation openRightKey    = modId(baseName + "_open_right");
+        ResourceLocation openLeftKey    = modId(baseName + "_open_left");
 
-        ResourceLocation closedRef = modId("block/" + baseName + "_closed");
-        ResourceLocation openRef   = modId("block/" + baseName + "_open");
+        ResourceLocation closedRightRef = modId("block/" + baseName + "_closed_right");
+        ResourceLocation closedLeftRef = modId("block/" + baseName + "_closed_left");
+        ResourceLocation openRightRef   = modId("block/" + baseName + "_open_right");
+        ResourceLocation openLeftRef   = modId("block/" + baseName + "_open_left");
 
-        registerModel(closedKey, Constants.id("block/cabinet_closed"), texture);
-        registerModel(openKey,   Constants.id("block/cabinet_open"),   texture);
+
+
+        registerModel(closedRightKey, Constants.id("block/cabinet_closed_right"), texture);
+        registerModel(closedLeftKey, Constants.id("block/cabinet_closed_left"), texture);
+        registerModel(openRightKey,   Constants.id("block/cabinet_open_right"),   texture);
+        registerModel(openLeftKey,   Constants.id("block/cabinet_open_left"),   texture);
 
         JsonObject variants = new JsonObject();
         for (Direction dir : HORIZONTALS) {
-            int rot = defaultRotation(dir);
-            variants.add("facing=" + Direction.NORTH + ",open=false", variantJson(closedRef, 0));
-            variants.add("facing=" + Direction.EAST + ",open=false", variantJson(closedRef, 90));
-            variants.add("facing=" + Direction.SOUTH + ",open=false", variantJson(closedRef, 180));
-            variants.add("facing=" + Direction.WEST + ",open=false", variantJson(closedRef, 270));
+            variants.add("facing=" + Direction.NORTH + ",open=false," + "hinge=" + DoorHingeSide.LEFT, variantJson(closedLeftRef, 0));
+            variants.add("facing=" + Direction.EAST + ",open=false," + "hinge=" + DoorHingeSide.LEFT, variantJson(closedLeftRef, 90));
+            variants.add("facing=" + Direction.SOUTH + ",open=false," + "hinge=" + DoorHingeSide.LEFT, variantJson(closedLeftRef, 180));
+            variants.add("facing=" + Direction.WEST + ",open=false," + "hinge=" + DoorHingeSide.LEFT, variantJson(closedLeftRef, 270));
 
-            variants.add("facing=" + Direction.NORTH + ",open=true",  variantJson(openRef,   0));
-            variants.add("facing=" + Direction.EAST + ",open=true",  variantJson(openRef,   90));
-            variants.add("facing=" + Direction.SOUTH + ",open=true",  variantJson(openRef,   180));
-            variants.add("facing=" + Direction.WEST + ",open=true",  variantJson(openRef,   270));
+            variants.add("facing=" + Direction.NORTH + ",open=true," + "hinge=" + DoorHingeSide.LEFT,  variantJson(openLeftRef,   0));
+            variants.add("facing=" + Direction.EAST + ",open=true," + "hinge=" + DoorHingeSide.LEFT,  variantJson(openLeftRef,   90));
+            variants.add("facing=" + Direction.SOUTH + ",open=true," + "hinge=" + DoorHingeSide.LEFT,  variantJson(openLeftRef,   180));
+            variants.add("facing=" + Direction.WEST + ",open=true," + "hinge=" + DoorHingeSide.LEFT,  variantJson(openLeftRef,   270));
+
+            variants.add("facing=" + Direction.NORTH + ",open=false," + "hinge=" + DoorHingeSide.RIGHT, variantJson(closedRightRef, 0));
+            variants.add("facing=" + Direction.EAST + ",open=false," + "hinge=" + DoorHingeSide.RIGHT, variantJson(closedRightRef, 90));
+            variants.add("facing=" + Direction.SOUTH + ",open=false," + "hinge=" + DoorHingeSide.RIGHT, variantJson(closedRightRef, 180));
+            variants.add("facing=" + Direction.WEST + ",open=false," + "hinge=" + DoorHingeSide.RIGHT, variantJson(closedRightRef, 270));
+
+            variants.add("facing=" + Direction.NORTH + ",open=true," + "hinge=" + DoorHingeSide.RIGHT,  variantJson(openRightRef,   0));
+            variants.add("facing=" + Direction.EAST + ",open=true," + "hinge=" + DoorHingeSide.RIGHT,  variantJson(openRightRef,   90));
+            variants.add("facing=" + Direction.SOUTH + ",open=true," + "hinge=" + DoorHingeSide.RIGHT,  variantJson(openRightRef,   180));
+            variants.add("facing=" + Direction.WEST + ",open=true," + "hinge=" + DoorHingeSide.RIGHT,  variantJson(openRightRef,   270));
+
+
+
         }
 
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemBlockModel(baseName, closedRef);
+        registerItemBlockModel(baseName, closedLeftRef);
 
     }
 

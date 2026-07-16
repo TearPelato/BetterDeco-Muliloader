@@ -25,12 +25,7 @@ public class BundledTabs {
     private @Nullable BundledTabSelector.Tab tab;
     private boolean selected;
 
-    private BundledTabs(
-            Component tooltip,
-            ItemStack icon,
-            List<ItemStack> staticItems,
-            @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic
-    ) {
+    private BundledTabs(Component tooltip, ItemStack icon, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic) {
         this.tooltip = tooltip;
         this.icon = icon;
         this.displayItems = staticItems;
