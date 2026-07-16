@@ -109,7 +109,7 @@ public class BundledTabSelector {
     }
 
 
-    public boolean onScroll(double mouseX, double mouseY, double scroll)
+    public boolean onScroll(double mouseX, double mouseY, double scrollY)
     {
         CreativeModeTab selectedTab = CreativeModeInventoryScreenAccessor.getSelectedTab();
         if(selectedTab != ModCreativeTabs.BETTER_DECO.get())
@@ -117,15 +117,14 @@ public class BundledTabSelector {
 
         double startX = this.guiLeft - 28;
         double startY = this.guiTop + 29;
-        if(mouseX >= startX && mouseX < startX + 28 && mouseY >= startY && mouseY < startY + 113)
-        {
-            int oldScroll = this.scroll;
-            this.scroll += scroll > 0 ? -1 : 1;
-            this.scroll = Mth.clamp(this.scroll, 0, this.bundles.size() - 4);
-            if(this.scroll != oldScroll)
-            {
-                this.updateWidgets();
+        if (mouseX >= this.guiLeft - 30 && mouseY >= this.guiTop + 2 && mouseX <= this.guiLeft && mouseY <= this.guiTop + 122) {
+            if (!(scrollY < 0)) {
+                if (this.scroll > 0) this.scroll--;
+            } else {
+                if (this.scroll < this.getMaxScroll()) this.scroll++;
             }
+
+        this.updateWidgets();
             return true;
         }
         return false;
