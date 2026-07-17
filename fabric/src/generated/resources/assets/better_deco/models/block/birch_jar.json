@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/jar",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/birch/birch_jar",
+    "particle": "better_deco:block/furniture/kitchen_counter/birch/birch_jar"
+  }
+}

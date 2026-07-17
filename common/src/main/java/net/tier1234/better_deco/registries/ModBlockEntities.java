@@ -341,6 +341,20 @@ public class ModBlockEntities {
                     ModBlocks.WARPED_CUTTING_BOARD.get()
             });
 
+    public static final RegistryEntry<BlockEntityType<JarBlockEntity>> JAR =
+            RegistryEntry.blockEntity(Constants.id("jar"), JarBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.OAK_JAR.get(),
+                    ModBlocks.SPRUCE_JAR.get(),
+                    ModBlocks.BIRCH_JAR.get(),
+                    ModBlocks.JUNGLE_JAR.get(),
+                    ModBlocks.ACACIA_JAR.get(),
+                    ModBlocks.DARK_OAK_JAR.get(),
+                    ModBlocks.MANGROVE_JAR.get(),
+                    ModBlocks.CHERRY_JAR.get(),
+                    ModBlocks.BAMBOO_JAR.get(),
+                    ModBlocks.CRIMSON_JAR.get(),
+                    ModBlocks.WARPED_JAR.get()
+            });
 
 
 

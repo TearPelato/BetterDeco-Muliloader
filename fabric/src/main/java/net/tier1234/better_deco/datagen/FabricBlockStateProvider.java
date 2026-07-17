@@ -133,5 +133,20 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
 
         registerItemModel(ModItems.KITCHEN_KNIFE.get(), Constants.id("item/knife"));
 
+
+
+        jar(ModBlocks.OAK_JAR.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_jar"));
+        jar(ModBlocks.SPRUCE_JAR.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_jar"));
+        jar(ModBlocks.BIRCH_JAR.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_jar"));
+        jar(ModBlocks.JUNGLE_JAR.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_jar"));
+        jar(ModBlocks.ACACIA_JAR.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_jar"));
+        jar(ModBlocks.DARK_OAK_JAR.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_jar"));
+        jar(ModBlocks.MANGROVE_JAR.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_jar"));
+        jar(ModBlocks.CHERRY_JAR.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_jar"));
+        jar(ModBlocks.BAMBOO_JAR.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_jar"));
+        jar(ModBlocks.CRIMSON_JAR.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_jar"));
+        jar(ModBlocks.WARPED_JAR.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_jar"));
+
+
     }
 }

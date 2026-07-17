@@ -331,7 +331,29 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         registerItemBlockModel(baseName, modId("block/" + baseName));
     }
 
+    protected void jar(JarBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
+        ResourceLocation jarKey = modId(baseName);
+        ResourceLocation jarRef = modId("block/" + baseName);
+
+        registerModel(jarKey, Constants.id("block/jar"), texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            variants.add("facing=" + Direction.NORTH, variantJson(jarRef, 0));
+            variants.add("facing=" + Direction.EAST , variantJson(jarRef, 90));
+            variants.add("facing=" + Direction.SOUTH , variantJson(jarRef, 180));
+            variants.add("facing=" + Direction.WEST , variantJson(jarRef, 270));
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName, modId("block/" + baseName));
+
+    }
 
 
 

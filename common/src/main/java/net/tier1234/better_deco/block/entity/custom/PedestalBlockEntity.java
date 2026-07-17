@@ -43,9 +43,6 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
         return rotation;
     }
 
-    public void clearContents() {
-        inventory.setItem(0, ItemStack.EMPTY);
-    }
 
     public void drops() {
         SimpleContainer inv = new SimpleContainer(inventory.getContainerSize());

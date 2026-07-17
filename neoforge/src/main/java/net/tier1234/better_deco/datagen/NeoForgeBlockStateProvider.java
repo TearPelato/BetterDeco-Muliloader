@@ -77,16 +77,16 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
 
         //Sinks
         kitchenSink(ModBlocks.OAK_SINK.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_sink"));
-        kitchenSink(ModBlocks.SPRUCE_SINK.get(),Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_sink"));
-        kitchenSink(ModBlocks.BIRCH_SINK.get(),Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_sink"));
-        kitchenSink(ModBlocks.JUNGLE_SINK.get(),Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_sink"));
-        kitchenSink(ModBlocks.ACACIA_SINK.get(),Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_sink"));
-        kitchenSink(ModBlocks.DARK_OAK_SINK.get(),Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_sink"));
-        kitchenSink(ModBlocks.MANGROVE_SINK.get(),Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_sink"));
-        kitchenSink(ModBlocks.CHERRY_SINK.get(),Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_sink"));
-        kitchenSink(ModBlocks.BAMBOO_SINK.get(),Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_sink"));
-        kitchenSink(ModBlocks.CRIMSON_SINK.get(),Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_sink"));
-        kitchenSink(ModBlocks.WARPED_SINK.get(),Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_sink"));
+        kitchenSink(ModBlocks.SPRUCE_SINK.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_sink"));
+        kitchenSink(ModBlocks.BIRCH_SINK.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_sink"));
+        kitchenSink(ModBlocks.JUNGLE_SINK.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_sink"));
+        kitchenSink(ModBlocks.ACACIA_SINK.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_sink"));
+        kitchenSink(ModBlocks.DARK_OAK_SINK.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_sink"));
+        kitchenSink(ModBlocks.MANGROVE_SINK.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_sink"));
+        kitchenSink(ModBlocks.CHERRY_SINK.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_sink"));
+        kitchenSink(ModBlocks.BAMBOO_SINK.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_sink"));
+        kitchenSink(ModBlocks.CRIMSON_SINK.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_sink"));
+        kitchenSink(ModBlocks.WARPED_SINK.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_sink"));
 
         oven(ModBlocks.OAK_OVEN.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_oven"));
         oven(ModBlocks.SPRUCE_OVEN.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_oven"));
@@ -130,5 +130,22 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_counter"));
 
         registerItemModel(ModItems.KITCHEN_KNIFE.get(), Constants.id("item/knife"));
+
+        jar(ModBlocks.OAK_JAR.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_jar"));
+        jar(ModBlocks.SPRUCE_JAR.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_jar"));
+        jar(ModBlocks.BIRCH_JAR.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_jar"));
+        jar(ModBlocks.JUNGLE_JAR.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_jar"));
+        jar(ModBlocks.ACACIA_JAR.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_jar"));
+        jar(ModBlocks.DARK_OAK_JAR.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_jar"));
+        jar(ModBlocks.MANGROVE_JAR.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_jar"));
+        jar(ModBlocks.CHERRY_JAR.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_jar"));
+        jar(ModBlocks.BAMBOO_JAR.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_jar"));
+        jar(ModBlocks.CRIMSON_JAR.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_jar"));
+        jar(ModBlocks.WARPED_JAR.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_jar"));
+
+
+
+
+
     }
 }

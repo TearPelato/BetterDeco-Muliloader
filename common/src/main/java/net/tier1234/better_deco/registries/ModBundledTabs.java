@@ -244,16 +244,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PINK_CABINET.get());
                         output.accept(ModBlocks.BROWN_CABINET.get());
 
-
-                        output.accept(ModBlocks.LIGHT_MICROWAVE.get());
-                        output.accept(ModBlocks.DARK_MICROWAVE.get());
-
-                        output.accept(ModBlocks.FRIDGE_DARK.get());
-                        output.accept(ModBlocks.FRIDGE_LIGHT.get());
-
-                        output.accept(ModBlocks.TOASTER_DARK.get());
-                        output.accept(ModBlocks.TOASTER_LIGHT.get());
-
                         output.accept(ModBlocks.OAK_CUTTING_BOARD.get());
                         output.accept(ModBlocks.SPRUCE_CUTTING_BOARD.get());
                         output.accept(ModBlocks.BIRCH_CUTTING_BOARD.get());
@@ -265,6 +255,29 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.BAMBOO_CUTTING_BOARD.get());
                         output.accept(ModBlocks.CRIMSON_CUTTING_BOARD.get());
                         output.accept(ModBlocks.WARPED_CUTTING_BOARD.get());
+
+                        output.accept(ModBlocks.OAK_JAR.get());
+                        output.accept(ModBlocks.SPRUCE_JAR.get());
+                        output.accept(ModBlocks.BIRCH_JAR.get());
+                        output.accept(ModBlocks.JUNGLE_JAR.get());
+                        output.accept(ModBlocks.ACACIA_JAR.get());
+                        output.accept(ModBlocks.DARK_OAK_JAR.get());
+                        output.accept(ModBlocks.MANGROVE_JAR.get());
+                        output.accept(ModBlocks.CHERRY_JAR.get());
+                        output.accept(ModBlocks.BAMBOO_JAR.get());
+                        output.accept(ModBlocks.CRIMSON_JAR.get());
+                        output.accept(ModBlocks.WARPED_JAR.get());
+
+                        output.accept(ModBlocks.FRIDGE_LIGHT.get());
+                        output.accept(ModBlocks.FRIDGE_DARK.get());
+
+                        output.accept(ModBlocks.LIGHT_MICROWAVE.get());
+                        output.accept(ModBlocks.DARK_MICROWAVE.get());
+
+                        output.accept(ModBlocks.TOASTER_DARK.get());
+                        output.accept(ModBlocks.TOASTER_LIGHT.get());
+
+
 
 
                     })

@@ -16,6 +16,35 @@ public class ModBlocks {
     public static final RegistryEntry<FurniWorkbench> FURNI_WORKBENCH = RegistryEntry.blockWithItem(Constants.id("furni_workbench"),
             ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
 
+
+    public static final RegistryEntry<JarBlock> OAK_JAR = RegistryEntry.blockWithItem(Constants.id("oak_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> SPRUCE_JAR = RegistryEntry.blockWithItem(Constants.id("spruce_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> BIRCH_JAR = RegistryEntry.blockWithItem(Constants.id("birch_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> JUNGLE_JAR = RegistryEntry.blockWithItem(Constants.id("jungle_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> ACACIA_JAR = RegistryEntry.blockWithItem(Constants.id("acacia_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> DARK_OAK_JAR = RegistryEntry.blockWithItem(Constants.id("dark_oak_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> MANGROVE_JAR = RegistryEntry.blockWithItem(Constants.id("mangrove_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> CHERRY_JAR = RegistryEntry.blockWithItem(Constants.id("cherry_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> BAMBOO_JAR = RegistryEntry.blockWithItem(Constants.id("bamboo_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> CRIMSON_JAR = RegistryEntry.blockWithItem(Constants.id("crimson_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+    public static final RegistryEntry<JarBlock> WARPED_JAR = RegistryEntry.blockWithItem(Constants.id("warped_jar"),
+            ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
+
+
+
+
+
+
     public static final RegistryEntry<CuttingBoardBlock> OAK_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("oak_cutting_board"),
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
     public static final RegistryEntry<CuttingBoardBlock> SPRUCE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("spruce_cutting_board"),

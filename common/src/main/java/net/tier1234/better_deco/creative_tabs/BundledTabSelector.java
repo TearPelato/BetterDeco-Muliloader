@@ -12,7 +12,6 @@ import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
@@ -114,9 +113,6 @@ public class BundledTabSelector {
         CreativeModeTab selectedTab = CreativeModeInventoryScreenAccessor.getSelectedTab();
         if(selectedTab != ModCreativeTabs.BETTER_DECO.get())
             return false;
-
-        double startX = this.guiLeft - 28;
-        double startY = this.guiTop + 29;
         if (mouseX >= this.guiLeft - 30 && mouseY >= this.guiTop + 2 && mouseX <= this.guiLeft && mouseY <= this.guiTop + 122) {
             if (!(scrollY < 0)) {
                 if (this.scroll > 0) this.scroll--;

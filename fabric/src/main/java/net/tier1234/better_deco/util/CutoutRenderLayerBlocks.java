@@ -43,7 +43,23 @@ public class CutoutRenderLayerBlocks {
                 ModBlocks.CHERRY_OVEN.get(),
                 ModBlocks.BAMBOO_OVEN.get(),
                 ModBlocks.CRIMSON_OVEN.get(),
-                ModBlocks.WARPED_OVEN.get()
+                ModBlocks.WARPED_OVEN.get(),
+
+
+                ModBlocks.OAK_JAR.get(),
+                ModBlocks.SPRUCE_JAR.get(),
+                ModBlocks.BIRCH_JAR.get(),
+                ModBlocks.JUNGLE_JAR.get(),
+                ModBlocks.ACACIA_JAR.get(),
+                ModBlocks.DARK_OAK_JAR.get(),
+                ModBlocks.MANGROVE_JAR.get(),
+                ModBlocks.CHERRY_JAR.get(),
+                ModBlocks.BAMBOO_JAR.get(),
+                ModBlocks.CRIMSON_JAR.get(),
+                ModBlocks.WARPED_JAR.get(),
+                ModBlocks.LIGHT_MICROWAVE.get(),
+                ModBlocks.DARK_MICROWAVE.get()
+
 
 
         };

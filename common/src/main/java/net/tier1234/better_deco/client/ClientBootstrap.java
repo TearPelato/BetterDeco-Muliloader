@@ -48,5 +48,6 @@ public class ClientBootstrap {
         register.apply(ModBlockEntities.DIGITAL_CLOCK.get(), DigitalClockBlockEntityRenderer::new);
         register.apply(ModBlockEntities.MICROWAVE.get(), MicrowaveBlockEntityRenderer::new);
         register.apply(ModBlockEntities.CUTTING_BOARD.get(), CuttingBoardBlockEntityRenderer::new);
+        register.apply(ModBlockEntities.JAR.get(), JarBlockEntityRenderer::new);
     }
 }
