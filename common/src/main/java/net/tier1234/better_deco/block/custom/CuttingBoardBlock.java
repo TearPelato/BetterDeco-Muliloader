@@ -5,6 +5,8 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
@@ -20,6 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.entity.custom.CuttingBoardBlockEntity;
+import net.tier1234.better_deco.block.entity.custom.PedestalBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -55,28 +58,46 @@ public class CuttingBoardBlock extends FurnitureHorizontalEntityBlock {
     }
 
     @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if(state.getBlock() != newState.getBlock()) {
+            if(level.getBlockEntity(pos) instanceof CuttingBoardBlockEntity cuttintBoardBlockEntity) {
+                cuttintBoardBlockEntity.drops();
+                level.updateNeighbourForOutputSignal(pos, this);
+            }
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
+    @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!(level.getBlockEntity(pos) instanceof CuttingBoardBlockEntity cuttingBoard)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        ItemStack current = cuttingBoard.getItem(0);
+        ItemStack stored = cuttingBoard.getItem(0);
 
-        if (current.isEmpty() && !stack.isEmpty()) {
-            if (!level.isClientSide) {
-                ItemStack toPlace = stack.copyWithCount(1);
-                cuttingBoard.setItem(0, toPlace);
-                if (!player.getAbilities().instabuild) {
-                    stack.shrink(1);
-                }
-            }
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        if (!stored.isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
+        if (stack.isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
 
+        if (!level.isClientSide) {
+            cuttingBoard.setItem(0, stack.copyWithCount(1));
+
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
+            }
+
+            level.playSound(null, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 0.6F, 1.2F);
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
+        }
+
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+    }
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
                                                Player player, BlockHitResult hitResult) {
@@ -84,22 +105,22 @@ public class CuttingBoardBlock extends FurnitureHorizontalEntityBlock {
             return InteractionResult.PASS;
         }
 
-        ItemStack current = cuttingBoard.getItem(0);
-        if (current.isEmpty()) {
+        ItemStack stored = cuttingBoard.getItem(0);
+
+        if (stored.isEmpty()) {
             return InteractionResult.PASS;
         }
 
         if (!level.isClientSide) {
-            ItemStack toGive = current.copy();
+            player.addItem(stored.copy());
             cuttingBoard.setItem(0, ItemStack.EMPTY);
-            if (!player.addItem(toGive)) {
-                player.drop(toGive, false);
-            }
+            cuttingBoard.setChanged();
+
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
         }
+
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
-
-
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
