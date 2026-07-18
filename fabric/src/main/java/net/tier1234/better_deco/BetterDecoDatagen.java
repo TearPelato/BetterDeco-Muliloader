@@ -2,9 +2,13 @@ package net.tier1234.better_deco;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.tier1234.better_deco.datagen.CommonBlockTagProvider;
-import net.tier1234.better_deco.datagen.FabricBlockStateProvider;
-import net.tier1234.better_deco.datagen.FabricRecipeProviders;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.tier1234.better_deco.datagen.*;
+
+import java.util.Collections;
+import java.util.List;
 
 public class BetterDecoDatagen implements DataGeneratorEntrypoint {
 
@@ -17,6 +21,7 @@ public class BetterDecoDatagen implements DataGeneratorEntrypoint {
                 FabricBlockStateProvider::new;
         pack.addProvider(factory);
         pack.addProvider(FabricRecipeProviders::new);
+        pack.addProvider(FabricLootTableProvider::new);
 
     }
 

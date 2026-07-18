@@ -1,22 +1,20 @@
 package net.tier1234.better_deco.datagen;
 
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlags;
 import net.tier1234.better_deco.registries.ModBlocks;
 
-import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
-public class CommonBlockLootTableProvider extends BlockLootSubProvider {
-    protected CommonBlockLootTableProvider(HolderLookup.Provider registries) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+public class FabricLootTableProvider extends FabricBlockLootTableProvider {
+    public FabricLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(dataOutput, registryLookup);
     }
 
     @Override
     public void generate() {
-        //Blocks
-        //Stones
-
+        dropSelf(ModBlocks.FURNI_WORKBENCH.get());
         //Tecque
         dropSelf(ModBlocks.STONE_GLASS_TECQUE.get());
         dropSelf(ModBlocks.OAK_GLASS_TECQUE.get());
@@ -57,7 +55,7 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_KITCHEN_COUNTER.get());
         dropSelf(ModBlocks.CRIMSON_KITCHEN_COUNTER.get());
         dropSelf(ModBlocks.WARPED_KITCHEN_COUNTER.get());
-            //Stripped Variants
+        //Stripped Variants
 
         //Kitchen Drawers
         dropSelf(ModBlocks.OAK_KITCHEN_DRAWER.get());
@@ -72,7 +70,7 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CRIMSON_KITCHEN_DRAWER.get());
         dropSelf(ModBlocks.WARPED_KITCHEN_DRAWER.get());
 
-            //Stripped Variants
+        //Stripped Variants
 
         //Kitchen Cabinet
         dropSelf(ModBlocks.OAK_CABINET.get());
@@ -431,7 +429,28 @@ public class CommonBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.FURNI_WORKBENCH.get());
 
+        dropSelf(ModBlocks.OAK_JAR.get());
+        dropSelf(ModBlocks.SPRUCE_JAR.get());
+        dropSelf(ModBlocks.BIRCH_JAR.get());
+        dropSelf(ModBlocks.JUNGLE_JAR.get());
+        dropSelf(ModBlocks.ACACIA_JAR.get());
+        dropSelf(ModBlocks.DARK_OAK_JAR.get());
+        dropSelf(ModBlocks.MANGROVE_JAR.get());
+        dropSelf(ModBlocks.CHERRY_JAR.get());
+        dropSelf(ModBlocks.BAMBOO_JAR.get());
+        dropSelf(ModBlocks.CRIMSON_JAR.get());
+        dropSelf(ModBlocks.WARPED_JAR.get());
 
+        dropSelf(ModBlocks.OAK_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.SPRUCE_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.BIRCH_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.JUNGLE_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.ACACIA_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.DARK_OAK_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.MANGROVE_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.CHERRY_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.BAMBOO_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.CRIMSON_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.WARPED_CUTTING_BOARD.get());
     }
-
 }

@@ -9,35 +9,41 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
+
 @RegistryContainer
 public class ModBlocks {
+    public static final List<RegistryEntry<? extends Block>> BLOCKS = new ArrayList<>();
+    
 
     //Test
-    public static final RegistryEntry<FurniWorkbench> FURNI_WORKBENCH = RegistryEntry.blockWithItem(Constants.id("furni_workbench"),
+    public static final RegistryEntry<FurniWorkbench> FURNI_WORKBENCH = register("furni_workbench",
             ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
 
 
-    public static final RegistryEntry<JarBlock> OAK_JAR = RegistryEntry.blockWithItem(Constants.id("oak_jar"),
+    public static final RegistryEntry<JarBlock> OAK_JAR = register("oak_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> SPRUCE_JAR = RegistryEntry.blockWithItem(Constants.id("spruce_jar"),
+    public static final RegistryEntry<JarBlock> SPRUCE_JAR = register("spruce_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> BIRCH_JAR = RegistryEntry.blockWithItem(Constants.id("birch_jar"),
+    public static final RegistryEntry<JarBlock> BIRCH_JAR = register("birch_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> JUNGLE_JAR = RegistryEntry.blockWithItem(Constants.id("jungle_jar"),
+    public static final RegistryEntry<JarBlock> JUNGLE_JAR = register("jungle_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> ACACIA_JAR = RegistryEntry.blockWithItem(Constants.id("acacia_jar"),
+    public static final RegistryEntry<JarBlock> ACACIA_JAR = register("acacia_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> DARK_OAK_JAR = RegistryEntry.blockWithItem(Constants.id("dark_oak_jar"),
+    public static final RegistryEntry<JarBlock> DARK_OAK_JAR = register("dark_oak_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> MANGROVE_JAR = RegistryEntry.blockWithItem(Constants.id("mangrove_jar"),
+    public static final RegistryEntry<JarBlock> MANGROVE_JAR = register("mangrove_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> CHERRY_JAR = RegistryEntry.blockWithItem(Constants.id("cherry_jar"),
+    public static final RegistryEntry<JarBlock> CHERRY_JAR = register("cherry_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> BAMBOO_JAR = RegistryEntry.blockWithItem(Constants.id("bamboo_jar"),
+    public static final RegistryEntry<JarBlock> BAMBOO_JAR = register("bamboo_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> CRIMSON_JAR = RegistryEntry.blockWithItem(Constants.id("crimson_jar"),
+    public static final RegistryEntry<JarBlock> CRIMSON_JAR = register("crimson_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
-    public static final RegistryEntry<JarBlock> WARPED_JAR = RegistryEntry.blockWithItem(Constants.id("warped_jar"),
+    public static final RegistryEntry<JarBlock> WARPED_JAR = register("warped_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
 
 
@@ -45,27 +51,27 @@ public class ModBlocks {
 
 
 
-    public static final RegistryEntry<CuttingBoardBlock> OAK_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("oak_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> OAK_CUTTING_BOARD = register("oak_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> SPRUCE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("spruce_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> SPRUCE_CUTTING_BOARD = register("spruce_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> BIRCH_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("birch_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> BIRCH_CUTTING_BOARD = register("birch_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> JUNGLE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("jungle_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> JUNGLE_CUTTING_BOARD = register("jungle_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> ACACIA_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("acacia_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> ACACIA_CUTTING_BOARD = register("acacia_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> DARK_OAK_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("dark_oak_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> DARK_OAK_CUTTING_BOARD = register("dark_oak_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> MANGROVE_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("mangrove_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> MANGROVE_CUTTING_BOARD = register("mangrove_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> CHERRY_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("cherry_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> CHERRY_CUTTING_BOARD = register("cherry_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> BAMBOO_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("bamboo_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> BAMBOO_CUTTING_BOARD = register("bamboo_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> CRIMSON_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("crimson_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> CRIMSON_CUTTING_BOARD = register("crimson_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<CuttingBoardBlock> WARPED_CUTTING_BOARD = RegistryEntry.blockWithItem(Constants.id("warped_cutting_board"),
+    public static final RegistryEntry<CuttingBoardBlock> WARPED_CUTTING_BOARD = register("warped_cutting_board",
             ()-> new CuttingBoardBlock(BlockBehaviour.Properties.of().strength(2.5f)));
 
 
@@ -73,723 +79,732 @@ public class ModBlocks {
 
 
     //Desk
-    public static final RegistryEntry<Block> OAK_DESK = RegistryEntry.blockWithItem(Constants.id("oak_desk"),
+    public static final RegistryEntry<Block> OAK_DESK = register("oak_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.OAK));
-    public static final RegistryEntry<Block> SPRUCE_DESK = RegistryEntry.blockWithItem(Constants.id("spruce_desk"),
+    public static final RegistryEntry<Block> SPRUCE_DESK = register("spruce_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.SPRUCE));
-    public static final RegistryEntry<Block> BIRCH_DESK = RegistryEntry.blockWithItem(Constants.id("birch_desk"),
+    public static final RegistryEntry<Block> BIRCH_DESK = register("birch_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BIRCH));
-    public static final RegistryEntry<Block> JUNGLE_DESK = RegistryEntry.blockWithItem(Constants.id("jungle_desk"),
+    public static final RegistryEntry<Block> JUNGLE_DESK = register("jungle_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.JUNGLE));
-    public static final RegistryEntry<Block> ACACIA_DESK = RegistryEntry.blockWithItem(Constants.id("acacia_desk"),
+    public static final RegistryEntry<Block> ACACIA_DESK = register("acacia_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.ACACIA));
-    public static final RegistryEntry<Block> MANGROVE_DESK = RegistryEntry.blockWithItem(Constants.id("mangrove_desk"),
+    public static final RegistryEntry<Block> MANGROVE_DESK = register("mangrove_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.MANGROVE));
-    public static final RegistryEntry<Block> DARK_OAK_DESK = RegistryEntry.blockWithItem(Constants.id("dark_oak_desk"),
+    public static final RegistryEntry<Block> DARK_OAK_DESK = register("dark_oak_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.DARK_OAK));
-    public static final RegistryEntry<Block> CHERRY_DESK = RegistryEntry.blockWithItem(Constants.id("cherry_desk"),
+    public static final RegistryEntry<Block> CHERRY_DESK = register("cherry_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CHERRY));
-    public static final RegistryEntry<Block> BAMBOO_DESK = RegistryEntry.blockWithItem(Constants.id("bamboo_desk"),
+    public static final RegistryEntry<Block> BAMBOO_DESK = register("bamboo_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BAMBOO));
-    public static final RegistryEntry<Block> CRIMSON_DESK = RegistryEntry.blockWithItem(Constants.id("crimson_desk"),
+    public static final RegistryEntry<Block> CRIMSON_DESK = register("crimson_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CRIMSON));
-    public static final RegistryEntry<Block> WARPED_DESK = RegistryEntry.blockWithItem(Constants.id("warped_desk"),
+    public static final RegistryEntry<Block> WARPED_DESK = register("warped_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.WARPED));
 
-    public static final RegistryEntry<Block> OAK_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("oak_desk_cabinet"),
+    public static final RegistryEntry<Block> OAK_DESK_CABINET = register("oak_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.OAK));
-    public static final RegistryEntry<Block> SPRUCE_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("spruce_desk_cabinet"),
+    public static final RegistryEntry<Block> SPRUCE_DESK_CABINET = register("spruce_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.SPRUCE));
-    public static final RegistryEntry<Block> BIRCH_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("birch_desk_cabinet"),
+    public static final RegistryEntry<Block> BIRCH_DESK_CABINET = register("birch_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BIRCH));
-    public static final RegistryEntry<Block> JUNGLE_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("jungle_desk_cabinet"),
+    public static final RegistryEntry<Block> JUNGLE_DESK_CABINET = register("jungle_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.JUNGLE));
-    public static final RegistryEntry<Block> ACACIA_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("acacia_desk_cabinet"),
+    public static final RegistryEntry<Block> ACACIA_DESK_CABINET = register("acacia_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.ACACIA));
-    public static final RegistryEntry<Block> MANGROVE_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("mangrove_desk_cabinet"),
+    public static final RegistryEntry<Block> MANGROVE_DESK_CABINET = register("mangrove_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.MANGROVE));
-    public static final RegistryEntry<Block> DARK_OAK_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("dark_oak_desk_cabinet"),
+    public static final RegistryEntry<Block> DARK_OAK_DESK_CABINET = register("dark_oak_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.DARK_OAK));
-    public static final RegistryEntry<Block> CHERRY_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("cherry_desk_cabinet"),
+    public static final RegistryEntry<Block> CHERRY_DESK_CABINET = register("cherry_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CHERRY));
-    public static final RegistryEntry<Block> BAMBOO_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("bamboo_desk_cabinet"),
+    public static final RegistryEntry<Block> BAMBOO_DESK_CABINET = register("bamboo_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BAMBOO));
-    public static final RegistryEntry<Block> CRIMSON_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("crimson_desk_cabinet"),
+    public static final RegistryEntry<Block> CRIMSON_DESK_CABINET = register("crimson_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CRIMSON));
-    public static final RegistryEntry<Block> WARPED_DESK_CABINET = RegistryEntry.blockWithItem(Constants.id("warped_desk_cabinet"),
+    public static final RegistryEntry<Block> WARPED_DESK_CABINET = register("warped_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.WARPED));
 
     //Path
-    public static final RegistryEntry<Block> STONE_PATH = RegistryEntry.blockWithItem(Constants.id("stone_path"),
+    public static final RegistryEntry<Block> STONE_PATH = register("stone_path",
             ()-> new RockPath(BlockBehaviour.Properties.of().strength(3.1f)));
 
     //PARK BENCH
-    public static final RegistryEntry<Block> OAK_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("oak_park_bench"),
+    public static final RegistryEntry<Block> OAK_PARK_BENCH = register("oak_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> SPRUCE_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("spruce_park_bench"),
+    public static final RegistryEntry<Block> SPRUCE_PARK_BENCH = register("spruce_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> BIRCH_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("birch_park_bench"),
+    public static final RegistryEntry<Block> BIRCH_PARK_BENCH = register("birch_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> JUNGLE_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("jungle_park_bench"),
+    public static final RegistryEntry<Block> JUNGLE_PARK_BENCH = register("jungle_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> ACACIA_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("acacia_park_bench"),
+    public static final RegistryEntry<Block> ACACIA_PARK_BENCH = register("acacia_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> DARK_OAK_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("dark_oak_park_bench"),
+    public static final RegistryEntry<Block> DARK_OAK_PARK_BENCH = register("dark_oak_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> MANGROVE_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("mangrove_park_bench"),
+    public static final RegistryEntry<Block> MANGROVE_PARK_BENCH = register("mangrove_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> CHERRY_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("cherry_park_bench"),
+    public static final RegistryEntry<Block> CHERRY_PARK_BENCH = register("cherry_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> BAMBOO_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("bamboo_park_bench"),
+    public static final RegistryEntry<Block> BAMBOO_PARK_BENCH = register("bamboo_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> CRIMSON_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("crimson_park_bench"),
+    public static final RegistryEntry<Block> CRIMSON_PARK_BENCH = register("crimson_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> WARPED_PARK_BENCH = RegistryEntry.blockWithItem(Constants.id("warped_park_bench"),
+    public static final RegistryEntry<Block> WARPED_PARK_BENCH = register("warped_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
 
-    public static final RegistryEntry<Block> TOASTER_LIGHT = RegistryEntry.blockWithItem(Constants.id("toaster_light"),
+    public static final RegistryEntry<Block> TOASTER_LIGHT = register("toaster_light",
             ()->  new ToasterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> TOASTER_DARK = RegistryEntry.blockWithItem(Constants.id("toaster_dark"),
+    public static final RegistryEntry<Block> TOASTER_DARK = register("toaster_dark",
             ()->  new ToasterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //FRIDGE & FREEZERS
-    public static final RegistryEntry<FridgeBlock> FRIDGE_LIGHT = RegistryEntry.blockWithItem(Constants.id("fridge_light"),
+    public static final RegistryEntry<FridgeBlock> FRIDGE_LIGHT = register("fridge_light",
             () -> new FridgeBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<FridgeBlock> FRIDGE_DARK = RegistryEntry.blockWithItem(Constants.id("fridge_dark"),
+    public static final RegistryEntry<FridgeBlock> FRIDGE_DARK = register("fridge_dark",
             () -> new FridgeBlock(BlockBehaviour.Properties.of()));
 
-    public static final RegistryEntry<MicrowaveBlock> LIGHT_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_light"),
+    public static final RegistryEntry<MicrowaveBlock> LIGHT_MICROWAVE = register("microwave_light",
             ()-> new MicrowaveBlock(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()));
-    public static final RegistryEntry<MicrowaveBlock> DARK_MICROWAVE = RegistryEntry.blockWithItem(Constants.id("microwave_dark"),
+    public static final RegistryEntry<MicrowaveBlock> DARK_MICROWAVE = register("microwave_dark",
             ()-> new MicrowaveBlock(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()));
 
     //Oven
-    public static final RegistryEntry<OvenBlock> OAK_OVEN = RegistryEntry.blockWithItem(Constants.id("oak_oven"),
+    public static final RegistryEntry<OvenBlock> OAK_OVEN = register("oak_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> SPRUCE_OVEN = RegistryEntry.blockWithItem(Constants.id("spruce_oven"),
+    public static final RegistryEntry<OvenBlock> SPRUCE_OVEN = register("spruce_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> BIRCH_OVEN = RegistryEntry.blockWithItem(Constants.id("birch_oven"),
+    public static final RegistryEntry<OvenBlock> BIRCH_OVEN = register("birch_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> JUNGLE_OVEN = RegistryEntry.blockWithItem(Constants.id("jungle_oven"),
+    public static final RegistryEntry<OvenBlock> JUNGLE_OVEN = register("jungle_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> ACACIA_OVEN = RegistryEntry.blockWithItem(Constants.id("acacia_oven"),
+    public static final RegistryEntry<OvenBlock> ACACIA_OVEN = register("acacia_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> DARK_OAK_OVEN = RegistryEntry.blockWithItem(Constants.id("dark_oak_oven"),
+    public static final RegistryEntry<OvenBlock> DARK_OAK_OVEN = register("dark_oak_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> MANGROVE_OVEN = RegistryEntry.blockWithItem(Constants.id("mangrove_oven"),
+    public static final RegistryEntry<OvenBlock> MANGROVE_OVEN = register("mangrove_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> CHERRY_OVEN = RegistryEntry.blockWithItem(Constants.id("cherry_oven"),
+    public static final RegistryEntry<OvenBlock> CHERRY_OVEN = register("cherry_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> BAMBOO_OVEN = RegistryEntry.blockWithItem(Constants.id("bamboo_oven"),
+    public static final RegistryEntry<OvenBlock> BAMBOO_OVEN = register("bamboo_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> CRIMSON_OVEN = RegistryEntry.blockWithItem(Constants.id("crimson_oven"),
+    public static final RegistryEntry<OvenBlock> CRIMSON_OVEN = register("crimson_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
-    public static final RegistryEntry<OvenBlock> WARPED_OVEN = RegistryEntry.blockWithItem(Constants.id("warped_oven"),
+    public static final RegistryEntry<OvenBlock> WARPED_OVEN = register("warped_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of()));
 
 
     //SHELFS
-    public static final RegistryEntry<Block> OAK_SHELF = RegistryEntry.blockWithItem(Constants.id("oak_shelf"),
+    public static final RegistryEntry<Block> OAK_SHELF = register("oak_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> SPRUCE_SHELF = RegistryEntry.blockWithItem(Constants.id("spruce_shelf"),
+    public static final RegistryEntry<Block> SPRUCE_SHELF = register("spruce_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> BIRCH_SHELF = RegistryEntry.blockWithItem(Constants.id("birch_shelf"),
+    public static final RegistryEntry<Block> BIRCH_SHELF = register("birch_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> JUNGLE_SHELF = RegistryEntry.blockWithItem(Constants.id("jungle_shelf"),
+    public static final RegistryEntry<Block> JUNGLE_SHELF = register("jungle_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> ACACIA_SHELF = RegistryEntry.blockWithItem(Constants.id("acacia_shelf"),
+    public static final RegistryEntry<Block> ACACIA_SHELF = register("acacia_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> DARK_OAK_SHELF = RegistryEntry.blockWithItem(Constants.id("dark_oak_shelf"),
+    public static final RegistryEntry<Block> DARK_OAK_SHELF = register("dark_oak_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> MANGROVE_SHELF = RegistryEntry.blockWithItem(Constants.id("mangrove_shelf"),
+    public static final RegistryEntry<Block> MANGROVE_SHELF = register("mangrove_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> CHERRY_SHELF = RegistryEntry.blockWithItem(Constants.id("cherry_shelf"),
+    public static final RegistryEntry<Block> CHERRY_SHELF = register("cherry_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> BAMBOO_SHELF = RegistryEntry.blockWithItem(Constants.id("bamboo_shelf"),
+    public static final RegistryEntry<Block> BAMBOO_SHELF = register("bamboo_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> CRIMSON_SHELF = RegistryEntry.blockWithItem(Constants.id("crimson_shelf"),
+    public static final RegistryEntry<Block> CRIMSON_SHELF = register("crimson_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
-    public static final RegistryEntry<Block> WARPED_SHELF = RegistryEntry.blockWithItem(Constants.id("warped_shelf"),
+    public static final RegistryEntry<Block> WARPED_SHELF = register("warped_shelf",
             ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
 
     //Furnitures
     //Chairs
-    public static final RegistryEntry<Block> BIRCH_CHAIR = RegistryEntry.blockWithItem(Constants.id("birch_chair"),
+    public static final RegistryEntry<Block> BIRCH_CHAIR = register("birch_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_CHAIR = RegistryEntry.blockWithItem(Constants.id("spruce_chair"),
+    public static final RegistryEntry<Block> SPRUCE_CHAIR = register("spruce_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> OAK_CHAIR = RegistryEntry.blockWithItem(Constants.id("oak_chair"),
+    public static final RegistryEntry<Block> OAK_CHAIR = register("oak_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_CHAIR = RegistryEntry.blockWithItem(Constants.id("dark_oak_chair"),
+    public static final RegistryEntry<Block> DARK_OAK_CHAIR = register("dark_oak_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_CHAIR = RegistryEntry.blockWithItem(Constants.id("mangrove_chair"),
+    public static final RegistryEntry<Block> MANGROVE_CHAIR = register("mangrove_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_CHAIR = RegistryEntry.blockWithItem(Constants.id("warped_chair"),
+    public static final RegistryEntry<Block> WARPED_CHAIR = register("warped_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_CHAIR = RegistryEntry.blockWithItem(Constants.id("crimson_chair"),
+    public static final RegistryEntry<Block> CRIMSON_CHAIR = register("crimson_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_CHAIR = RegistryEntry.blockWithItem(Constants.id("acacia_chair"),
+    public static final RegistryEntry<Block> ACACIA_CHAIR = register("acacia_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_CHAIR = RegistryEntry.blockWithItem(Constants.id("jungle_chair"),
+    public static final RegistryEntry<Block> JUNGLE_CHAIR = register("jungle_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_CHAIR = RegistryEntry.blockWithItem(Constants.id("cherry_chair"),
+    public static final RegistryEntry<Block> CHERRY_CHAIR = register("cherry_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_CHAIR = RegistryEntry.blockWithItem(Constants.id("bamboo_chair"),
+    public static final RegistryEntry<Block> BAMBOO_CHAIR = register("bamboo_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Counters
-    public static final RegistryEntry<KitchenCounterBlock> OAK_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("oak_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> OAK_KITCHEN_COUNTER = register("oak_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> SPRUCE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("spruce_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> SPRUCE_KITCHEN_COUNTER = register("spruce_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> BIRCH_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("birch_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> BIRCH_KITCHEN_COUNTER = register("birch_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> JUNGLE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("jungle_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> JUNGLE_KITCHEN_COUNTER = register("jungle_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> ACACIA_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("acacia_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> ACACIA_KITCHEN_COUNTER = register("acacia_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> DARK_OAK_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("dark_oak_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> DARK_OAK_KITCHEN_COUNTER = register("dark_oak_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> MANGROVE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("mangrove_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> MANGROVE_KITCHEN_COUNTER = register("mangrove_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> CHERRY_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("cherry_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> CHERRY_KITCHEN_COUNTER = register("cherry_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> BAMBOO_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("bamboo_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> BAMBOO_KITCHEN_COUNTER = register("bamboo_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> CRIMSON_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("crimson_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> CRIMSON_KITCHEN_COUNTER = register("crimson_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenCounterBlock> WARPED_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("warped_kitchen_counter"),
+    public static final RegistryEntry<KitchenCounterBlock> WARPED_KITCHEN_COUNTER = register("warped_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Drawers
-    public static final RegistryEntry<KitchenDrawerBlock> OAK_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("oak_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> OAK_KITCHEN_DRAWER = register("oak_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> SPRUCE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("spruce_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> SPRUCE_KITCHEN_DRAWER = register("spruce_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> BIRCH_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("birch_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> BIRCH_KITCHEN_DRAWER = register("birch_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> JUNGLE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("jungle_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> JUNGLE_KITCHEN_DRAWER = register("jungle_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> ACACIA_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("acacia_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> ACACIA_KITCHEN_DRAWER = register("acacia_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> DARK_OAK_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("dark_oak_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> DARK_OAK_KITCHEN_DRAWER = register("dark_oak_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> MANGROVE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("mangrove_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> MANGROVE_KITCHEN_DRAWER = register("mangrove_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> CHERRY_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("cherry_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> CHERRY_KITCHEN_DRAWER = register("cherry_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> BAMBOO_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("bamboo_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> BAMBOO_KITCHEN_DRAWER = register("bamboo_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> CRIMSON_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("crimson_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> CRIMSON_KITCHEN_DRAWER = register("crimson_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenDrawerBlock> WARPED_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("warped_kitchen_drawer"),
+    public static final RegistryEntry<KitchenDrawerBlock> WARPED_KITCHEN_DRAWER = register("warped_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
 
 
     //Tables
-    public static final RegistryEntry<Block> OAK_TABLE = RegistryEntry.blockWithItem(Constants.id("oak_table"),
+    public static final RegistryEntry<Block> OAK_TABLE = register("oak_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_TABLE = RegistryEntry.blockWithItem(Constants.id("spruce_table"),
+    public static final RegistryEntry<Block> SPRUCE_TABLE = register("spruce_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_TABLE = RegistryEntry.blockWithItem(Constants.id("birch_table"),
+    public static final RegistryEntry<Block> BIRCH_TABLE = register("birch_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_TABLE = RegistryEntry.blockWithItem(Constants.id("jungle_table"),
+    public static final RegistryEntry<Block> JUNGLE_TABLE = register("jungle_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_TABLE = RegistryEntry.blockWithItem(Constants.id("acacia_table"),
+    public static final RegistryEntry<Block> ACACIA_TABLE = register("acacia_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_TABLE = RegistryEntry.blockWithItem(Constants.id("dark_oak_table"),
+    public static final RegistryEntry<Block> DARK_OAK_TABLE = register("dark_oak_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_TABLE = RegistryEntry.blockWithItem(Constants.id("mangrove_table"),
+    public static final RegistryEntry<Block> MANGROVE_TABLE = register("mangrove_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_TABLE = RegistryEntry.blockWithItem(Constants.id("cherry_table"),
+    public static final RegistryEntry<Block> CHERRY_TABLE = register("cherry_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_TABLE = RegistryEntry.blockWithItem(Constants.id("bamboo_table"),
+    public static final RegistryEntry<Block> BAMBOO_TABLE = register("bamboo_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_TABLE = RegistryEntry.blockWithItem(Constants.id("crimson_table"),
+    public static final RegistryEntry<Block> CRIMSON_TABLE = register("crimson_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_TABLE = RegistryEntry.blockWithItem(Constants.id("warped_table"),
+    public static final RegistryEntry<Block> WARPED_TABLE = register("warped_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Sofas
-    public static final RegistryEntry<Block> RED_SOFA = RegistryEntry.blockWithItem(Constants.id("red_sofa"),
+    public static final RegistryEntry<Block> RED_SOFA = register("red_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_SOFA = RegistryEntry.blockWithItem(Constants.id("orange_sofa"),
+    public static final RegistryEntry<Block> ORANGE_SOFA = register("orange_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_SOFA = RegistryEntry.blockWithItem(Constants.id("blue_sofa"),
+    public static final RegistryEntry<Block> BLUE_SOFA = register("blue_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_SOFA = RegistryEntry.blockWithItem(Constants.id("cyan_sofa"),
+    public static final RegistryEntry<Block> CYAN_SOFA = register("cyan_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_SOFA = RegistryEntry.blockWithItem(Constants.id("light_blue_sofa"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_SOFA = register("light_blue_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_SOFA = RegistryEntry.blockWithItem(Constants.id("purple_sofa"),
+    public static final RegistryEntry<Block> PURPLE_SOFA = register("purple_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_SOFA = RegistryEntry.blockWithItem(Constants.id("magenta_sofa"),
+    public static final RegistryEntry<Block> MAGENTA_SOFA = register("magenta_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_SOFA = RegistryEntry.blockWithItem(Constants.id("yellow_sofa"),
+    public static final RegistryEntry<Block> YELLOW_SOFA = register("yellow_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREY_SOFA = RegistryEntry.blockWithItem(Constants.id("grey_sofa"),
+    public static final RegistryEntry<Block> GREY_SOFA = register("grey_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GREY_SOFA = RegistryEntry.blockWithItem(Constants.id("light_grey_sofa"),
+    public static final RegistryEntry<Block> LIGHT_GREY_SOFA = register("light_grey_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_SOFA = RegistryEntry.blockWithItem(Constants.id("black_sofa"),
+    public static final RegistryEntry<Block> BLACK_SOFA = register("black_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WITHE_SOFA = RegistryEntry.blockWithItem(Constants.id("white_sofa"),
+    public static final RegistryEntry<Block> WITHE_SOFA = register("white_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_SOFA = RegistryEntry.blockWithItem(Constants.id("green_sofa"),
+    public static final RegistryEntry<Block> GREEN_SOFA = register("green_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_SOFA = RegistryEntry.blockWithItem(Constants.id("lime_sofa"),
+    public static final RegistryEntry<Block> LIME_SOFA = register("lime_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_SOFA = RegistryEntry.blockWithItem(Constants.id("pink_sofa"),
+    public static final RegistryEntry<Block> PINK_SOFA = register("pink_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_SOFA = RegistryEntry.blockWithItem(Constants.id("brown_sofa"),
+    public static final RegistryEntry<Block> BROWN_SOFA = register("brown_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Cabinet
-    public static final RegistryEntry<CabinetBlock> OAK_CABINET = RegistryEntry.blockWithItem(Constants.id("oak_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> OAK_CABINET = register("oak_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> SPRUCE_CABINET = RegistryEntry.blockWithItem(Constants.id("spruce_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> SPRUCE_CABINET = register("spruce_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> BIRCH_CABINET = RegistryEntry.blockWithItem(Constants.id("birch_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> BIRCH_CABINET = register("birch_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> JUNGLE_CABINET = RegistryEntry.blockWithItem(Constants.id("jungle_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> JUNGLE_CABINET = register("jungle_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> ACACIA_CABINET = RegistryEntry.blockWithItem(Constants.id("acacia_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> ACACIA_CABINET = register("acacia_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> DARK_OAK_CABINET = RegistryEntry.blockWithItem(Constants.id("dark_oak_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> DARK_OAK_CABINET = register("dark_oak_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> MANGROVE_CABINET = RegistryEntry.blockWithItem(Constants.id("mangrove_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> MANGROVE_CABINET = register("mangrove_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> CHERRY_CABINET = RegistryEntry.blockWithItem(Constants.id("cherry_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> CHERRY_CABINET = register("cherry_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> BAMBOO_CABINET = RegistryEntry.blockWithItem(Constants.id("bamboo_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> BAMBOO_CABINET = register("bamboo_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> CRIMSON_CABINET = RegistryEntry.blockWithItem(Constants.id("crimson_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> CRIMSON_CABINET = register("crimson_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<CabinetBlock> WARPED_CABINET = RegistryEntry.blockWithItem(Constants.id("warped_kitchen_cabinet"),
+    public static final RegistryEntry<CabinetBlock> WARPED_CABINET = register("warped_kitchen_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
 
     //Pedestals
-    public static final RegistryEntry<Block> PEDESTAL = RegistryEntry.blockWithItem(Constants.id("pedestal"),
+    public static final RegistryEntry<Block> PEDESTAL = register("pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> STONE_PEDESTAL = RegistryEntry.blockWithItem(Constants.id("stone_pedestal"),
+    public static final RegistryEntry<Block> STONE_PEDESTAL = register("stone_pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DIORITE_PEDESTAL = RegistryEntry.blockWithItem(Constants.id("diorite_pedestal"),
+    public static final RegistryEntry<Block> DIORITE_PEDESTAL = register("diorite_pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> GRANITE_PEDESTAL = RegistryEntry.blockWithItem(Constants.id("granite_pedestal"),
+    public static final RegistryEntry<Block> GRANITE_PEDESTAL = register("granite_pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_PEDESTAL = RegistryEntry.blockWithItem(Constants.id("deepslate_pedestal"),
+    public static final RegistryEntry<Block> DEEPSLATE_PEDESTAL = register("deepslate_pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_TILE_PEDESTAL = RegistryEntry.blockWithItem(Constants.id("deepslate_tile_pedestal"),
+    public static final RegistryEntry<Block> DEEPSLATE_TILE_PEDESTAL = register("deepslate_tile_pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACKSTONE_PEDESTAL = RegistryEntry.blockWithItem(Constants.id("blackstone_pedestal"),
+    public static final RegistryEntry<Block> BLACKSTONE_PEDESTAL = register("blackstone_pedestal",
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
 
     //Bedside Cabinets
-    public static final RegistryEntry<Block> OAK_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("oak_bedside"),
+    public static final RegistryEntry<Block> OAK_BEDSIDE = register("oak_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("spruce_bedside"),
+    public static final RegistryEntry<Block> SPRUCE_BEDSIDE = register("spruce_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("birch_bedside"),
+    public static final RegistryEntry<Block> BIRCH_BEDSIDE = register("birch_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("jungle_bedside"),
+    public static final RegistryEntry<Block> JUNGLE_BEDSIDE = register("jungle_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("acacia_bedside"),
+    public static final RegistryEntry<Block> ACACIA_BEDSIDE = register("acacia_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("mangrove_bedside"),
+    public static final RegistryEntry<Block> MANGROVE_BEDSIDE = register("mangrove_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("dark_oak_bedside"),
+    public static final RegistryEntry<Block> DARK_OAK_BEDSIDE = register("dark_oak_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("cherry_bedside"),
+    public static final RegistryEntry<Block> CHERRY_BEDSIDE = register("cherry_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("bamboo_bedside"),
+    public static final RegistryEntry<Block> BAMBOO_BEDSIDE = register("bamboo_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("crimson_bedside"),
+    public static final RegistryEntry<Block> CRIMSON_BEDSIDE = register("crimson_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_BEDSIDE = RegistryEntry.blockWithItem(Constants.id("warped_bedside"),
+    public static final RegistryEntry<Block> WARPED_BEDSIDE = register("warped_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Crates
-    public static final RegistryEntry<Block> OAK_CRATE = RegistryEntry.blockWithItem(Constants.id("oak_storage_crate"),
+    public static final RegistryEntry<Block> OAK_CRATE = register("oak_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_CRATE = RegistryEntry.blockWithItem(Constants.id("spruce_storage_crate"),
+    public static final RegistryEntry<Block> SPRUCE_CRATE = register("spruce_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_CRATE = RegistryEntry.blockWithItem(Constants.id("birch_storage_crate"),
+    public static final RegistryEntry<Block> BIRCH_CRATE = register("birch_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_CRATE = RegistryEntry.blockWithItem(Constants.id("jungle_storage_crate"),
+    public static final RegistryEntry<Block> JUNGLE_CRATE = register("jungle_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_CRATE = RegistryEntry.blockWithItem(Constants.id("acacia_storage_crate"),
+    public static final RegistryEntry<Block> ACACIA_CRATE = register("acacia_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_CRATE = RegistryEntry.blockWithItem(Constants.id("mangrove_storage_crate"),
+    public static final RegistryEntry<Block> MANGROVE_CRATE = register("mangrove_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_CRATE = RegistryEntry.blockWithItem(Constants.id("dark_oak_storage_crate"),
+    public static final RegistryEntry<Block> DARK_OAK_CRATE = register("dark_oak_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_CRATE = RegistryEntry.blockWithItem(Constants.id("cherry_storage_crate"),
+    public static final RegistryEntry<Block> CHERRY_CRATE = register("cherry_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_CRATE = RegistryEntry.blockWithItem(Constants.id("bamboo_storage_crate"),
+    public static final RegistryEntry<Block> BAMBOO_CRATE = register("bamboo_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_CRATE = RegistryEntry.blockWithItem(Constants.id("crimson_storage_crate"),
+    public static final RegistryEntry<Block> CRIMSON_CRATE = register("crimson_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_CRATE = RegistryEntry.blockWithItem(Constants.id("warped_storage_crate"),
+    public static final RegistryEntry<Block> WARPED_CRATE = register("warped_storage_crate",
             ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Sinks
-    public static final RegistryEntry<KitchenSinkBlock> OAK_SINK = RegistryEntry.blockWithItem(Constants.id("oak_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> OAK_SINK = register("oak_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> SPRUCE_SINK = RegistryEntry.blockWithItem(Constants.id("spruce_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> SPRUCE_SINK = register("spruce_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> BIRCH_SINK = RegistryEntry.blockWithItem(Constants.id("birch_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> BIRCH_SINK = register("birch_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> JUNGLE_SINK = RegistryEntry.blockWithItem(Constants.id("jungle_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> JUNGLE_SINK = register("jungle_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> ACACIA_SINK = RegistryEntry.blockWithItem(Constants.id("acacia_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> ACACIA_SINK = register("acacia_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> MANGROVE_SINK = RegistryEntry.blockWithItem(Constants.id("mangrove_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> MANGROVE_SINK = register("mangrove_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> DARK_OAK_SINK = RegistryEntry.blockWithItem(Constants.id("dark_oak_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> DARK_OAK_SINK = register("dark_oak_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> CHERRY_SINK = RegistryEntry.blockWithItem(Constants.id("cherry_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> CHERRY_SINK = register("cherry_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> BAMBOO_SINK = RegistryEntry.blockWithItem(Constants.id("bamboo_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> BAMBOO_SINK = register("bamboo_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> CRIMSON_SINK = RegistryEntry.blockWithItem(Constants.id("crimson_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> CRIMSON_SINK = register("crimson_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<KitchenSinkBlock> WARPED_SINK = RegistryEntry.blockWithItem(Constants.id("warped_sink"),
+    public static final RegistryEntry<KitchenSinkBlock> WARPED_SINK = register("warped_sink",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
-    public static final RegistryEntry<Block> OAK_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("oak_sink_dark"),
+    public static final RegistryEntry<Block> OAK_SINK_DARK = register("oak_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("spruce_sink_dark"),
+    public static final RegistryEntry<Block> SPRUCE_SINK_DARK = register("spruce_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("birch_sink_dark"),
+    public static final RegistryEntry<Block> BIRCH_SINK_DARK = register("birch_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("jungle_sink_dark"),
+    public static final RegistryEntry<Block> JUNGLE_SINK_DARK = register("jungle_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("acacia_sink_dark"),
+    public static final RegistryEntry<Block> ACACIA_SINK_DARK = register("acacia_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("mangrove_sink_dark"),
+    public static final RegistryEntry<Block> MANGROVE_SINK_DARK = register("mangrove_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("dark_oak_sink_dark"),
+    public static final RegistryEntry<Block> DARK_OAK_SINK_DARK = register("dark_oak_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("cherry_sink_dark"),
+    public static final RegistryEntry<Block> CHERRY_SINK_DARK = register("cherry_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS)));
-    public static final RegistryEntry<Block> BAMBOO_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("bamboo_sink_dark"),
+    public static final RegistryEntry<Block> BAMBOO_SINK_DARK = register("bamboo_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("crimson_sink_dark"),
+    public static final RegistryEntry<Block> CRIMSON_SINK_DARK = register("crimson_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_SINK_DARK = RegistryEntry.blockWithItem(Constants.id("warped_sink_dark"),
+    public static final RegistryEntry<Block> WARPED_SINK_DARK = register("warped_sink_dark",
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Colored Variants
-    public static final RegistryEntry<Block> RED_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("red_kitchen_counter"),
+    public static final RegistryEntry<Block> RED_KITCHEN_COUNTER = register("red_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("yellow_kitchen_counter"),
+    public static final RegistryEntry<Block> YELLOW_KITCHEN_COUNTER = register("yellow_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("orange_kitchen_counter"),
+    public static final RegistryEntry<Block> ORANGE_KITCHEN_COUNTER = register("orange_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("magenta_kitchen_counter"),
+    public static final RegistryEntry<Block> MAGENTA_KITCHEN_COUNTER = register("magenta_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("purple_kitchen_counter"),
+    public static final RegistryEntry<Block> PURPLE_KITCHEN_COUNTER = register("purple_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("pink_kitchen_counter"),
+    public static final RegistryEntry<Block> PINK_KITCHEN_COUNTER = register("pink_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("blue_kitchen_counter"),
+    public static final RegistryEntry<Block> BLUE_KITCHEN_COUNTER = register("blue_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("light_blue_kitchen_counter"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_KITCHEN_COUNTER = register("light_blue_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("cyan_kitchen_counter"),
+    public static final RegistryEntry<Block> CYAN_KITCHEN_COUNTER = register("cyan_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("green_kitchen_counter"),
+    public static final RegistryEntry<Block> GREEN_KITCHEN_COUNTER = register("green_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("lime_kitchen_counter"),
+    public static final RegistryEntry<Block> LIME_KITCHEN_COUNTER = register("lime_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("gray_kitchen_counter"),
+    public static final RegistryEntry<Block> GRAY_KITCHEN_COUNTER = register("gray_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("light_gray_kitchen_counter"),
+    public static final RegistryEntry<Block> LIGHT_GRAY_KITCHEN_COUNTER = register("light_gray_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("black_kitchen_counter"),
+    public static final RegistryEntry<Block> BLACK_KITCHEN_COUNTER = register("black_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("brown_kitchen_counter"),
+    public static final RegistryEntry<Block> BROWN_KITCHEN_COUNTER = register("brown_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_KITCHEN_COUNTER = RegistryEntry.blockWithItem(Constants.id("white_kitchen_counter"),
+    public static final RegistryEntry<Block> WHITE_KITCHEN_COUNTER = register("white_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //Colored Drawers
-    public static final RegistryEntry<Block> RED_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("red_kitchen_drawer"),
+    public static final RegistryEntry<Block> RED_KITCHEN_DRAWER = register("red_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("yellow_kitchen_drawer"),
+    public static final RegistryEntry<Block> YELLOW_KITCHEN_DRAWER = register("yellow_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("orange_kitchen_drawer"),
+    public static final RegistryEntry<Block> ORANGE_KITCHEN_DRAWER = register("orange_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("magenta_kitchen_drawer"),
+    public static final RegistryEntry<Block> MAGENTA_KITCHEN_DRAWER = register("magenta_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("purple_kitchen_drawer"),
+    public static final RegistryEntry<Block> PURPLE_KITCHEN_DRAWER = register("purple_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("pink_kitchen_drawer"),
+    public static final RegistryEntry<Block> PINK_KITCHEN_DRAWER = register("pink_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("blue_kitchen_drawer"),
+    public static final RegistryEntry<Block> BLUE_KITCHEN_DRAWER = register("blue_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("light_blue_kitchen_drawer"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_KITCHEN_DRAWER = register("light_blue_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("cyan_kitchen_drawer"),
+    public static final RegistryEntry<Block> CYAN_KITCHEN_DRAWER = register("cyan_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("green_kitchen_drawer"),
+    public static final RegistryEntry<Block> GREEN_KITCHEN_DRAWER = register("green_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("lime_kitchen_drawer"),
+    public static final RegistryEntry<Block> LIME_KITCHEN_DRAWER = register("lime_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("gray_kitchen_drawer"),
+    public static final RegistryEntry<Block> GRAY_KITCHEN_DRAWER = register("gray_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("light_gray_kitchen_drawer"),
+    public static final RegistryEntry<Block> LIGHT_GRAY_KITCHEN_DRAWER = register("light_gray_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("black_kitchen_drawer"),
+    public static final RegistryEntry<Block> BLACK_KITCHEN_DRAWER = register("black_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("brown_kitchen_drawer"),
+    public static final RegistryEntry<Block> BROWN_KITCHEN_DRAWER = register("brown_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_KITCHEN_DRAWER = RegistryEntry.blockWithItem(Constants.id("white_kitchen_drawer"),
+    public static final RegistryEntry<Block> WHITE_KITCHEN_DRAWER = register("white_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //Oven colored
-    public static final RegistryEntry<Block> RED_OVEN = RegistryEntry.blockWithItem(Constants.id("red_oven"),
+    public static final RegistryEntry<Block> RED_OVEN = register("red_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_OVEN = RegistryEntry.blockWithItem(Constants.id("yellow_oven"),
+    public static final RegistryEntry<Block> YELLOW_OVEN = register("yellow_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_OVEN = RegistryEntry.blockWithItem(Constants.id("orange_oven"),
+    public static final RegistryEntry<Block> ORANGE_OVEN = register("orange_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_OVEN = RegistryEntry.blockWithItem(Constants.id("magenta_oven"),
+    public static final RegistryEntry<Block> MAGENTA_OVEN = register("magenta_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_OVEN = RegistryEntry.blockWithItem(Constants.id("purple_oven"),
+    public static final RegistryEntry<Block> PURPLE_OVEN = register("purple_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_OVEN = RegistryEntry.blockWithItem(Constants.id("pink_oven"),
+    public static final RegistryEntry<Block> PINK_OVEN = register("pink_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_OVEN = RegistryEntry.blockWithItem(Constants.id("blue_oven"),
+    public static final RegistryEntry<Block> BLUE_OVEN = register("blue_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_OVEN = RegistryEntry.blockWithItem(Constants.id("light_blue_oven"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_OVEN = register("light_blue_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_OVEN = RegistryEntry.blockWithItem(Constants.id("cyan_oven"),
+    public static final RegistryEntry<Block> CYAN_OVEN = register("cyan_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_OVEN = RegistryEntry.blockWithItem(Constants.id("green_oven"),
+    public static final RegistryEntry<Block> GREEN_OVEN = register("green_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_OVEN = RegistryEntry.blockWithItem(Constants.id("lime_oven"),
+    public static final RegistryEntry<Block> LIME_OVEN = register("lime_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_OVEN = RegistryEntry.blockWithItem(Constants.id("gray_oven"),
+    public static final RegistryEntry<Block> GRAY_OVEN = register("gray_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_OVEN = RegistryEntry.blockWithItem(Constants.id("light_gray_oven"),
+    public static final RegistryEntry<Block> LIGHT_GRAY_OVEN = register("light_gray_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_OVEN = RegistryEntry.blockWithItem(Constants.id("black_oven"),
+    public static final RegistryEntry<Block> BLACK_OVEN = register("black_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_OVEN = RegistryEntry.blockWithItem(Constants.id("brown_oven"),
+    public static final RegistryEntry<Block> BROWN_OVEN = register("brown_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_OVEN = RegistryEntry.blockWithItem(Constants.id("white_oven"),
+    public static final RegistryEntry<Block> WHITE_OVEN = register("white_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
-    public static final RegistryEntry<Block> RED_SINK = RegistryEntry.blockWithItem(Constants.id("red_sink"),
+    public static final RegistryEntry<Block> RED_SINK = register("red_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_SINK = RegistryEntry.blockWithItem(Constants.id("yellow_sink"),
+    public static final RegistryEntry<Block> YELLOW_SINK = register("yellow_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_SINK = RegistryEntry.blockWithItem(Constants.id("orange_sink"),
+    public static final RegistryEntry<Block> ORANGE_SINK = register("orange_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_SINK = RegistryEntry.blockWithItem(Constants.id("magenta_sink"),
+    public static final RegistryEntry<Block> MAGENTA_SINK = register("magenta_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_SINK = RegistryEntry.blockWithItem(Constants.id("purple_sink"),
+    public static final RegistryEntry<Block> PURPLE_SINK = register("purple_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_SINK = RegistryEntry.blockWithItem(Constants.id("pink_sink"),
+    public static final RegistryEntry<Block> PINK_SINK = register("pink_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_SINK = RegistryEntry.blockWithItem(Constants.id("blue_sink"),
+    public static final RegistryEntry<Block> BLUE_SINK = register("blue_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_SINK = RegistryEntry.blockWithItem(Constants.id("light_blue_sink"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_SINK = register("light_blue_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_SINK = RegistryEntry.blockWithItem(Constants.id("cyan_sink"),
+    public static final RegistryEntry<Block> CYAN_SINK = register("cyan_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_SINK = RegistryEntry.blockWithItem(Constants.id("green_sink"),
+    public static final RegistryEntry<Block> GREEN_SINK = register("green_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_SINK = RegistryEntry.blockWithItem(Constants.id("lime_sink"),
+    public static final RegistryEntry<Block> LIME_SINK = register("lime_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_SINK = RegistryEntry.blockWithItem(Constants.id("gray_sink"),
+    public static final RegistryEntry<Block> GRAY_SINK = register("gray_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_SINK = RegistryEntry.blockWithItem(Constants.id("light_gray_sink"),
+    public static final RegistryEntry<Block> LIGHT_GRAY_SINK = register("light_gray_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_SINK = RegistryEntry.blockWithItem(Constants.id("black_sink"),
+    public static final RegistryEntry<Block> BLACK_SINK = register("black_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_SINK = RegistryEntry.blockWithItem(Constants.id("brown_sink"),
+    public static final RegistryEntry<Block> BROWN_SINK = register("brown_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_SINK = RegistryEntry.blockWithItem(Constants.id("white_sink"),
+    public static final RegistryEntry<Block> WHITE_SINK = register("white_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
-    public static final RegistryEntry<Block> RED_CABINET = RegistryEntry.blockWithItem(Constants.id("red_cabinet"),
+    public static final RegistryEntry<Block> RED_CABINET = register("red_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_CABINET = RegistryEntry.blockWithItem(Constants.id("yellow_cabinet"),
+    public static final RegistryEntry<Block> YELLOW_CABINET = register("yellow_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_CABINET = RegistryEntry.blockWithItem(Constants.id("orange_cabinet"),
+    public static final RegistryEntry<Block> ORANGE_CABINET = register("orange_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_CABINET = RegistryEntry.blockWithItem(Constants.id("magenta_cabinet"),
+    public static final RegistryEntry<Block> MAGENTA_CABINET = register("magenta_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_CABINET = RegistryEntry.blockWithItem(Constants.id("purple_cabinet"),
+    public static final RegistryEntry<Block> PURPLE_CABINET = register("purple_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_CABINET = RegistryEntry.blockWithItem(Constants.id("pink_cabinet"),
+    public static final RegistryEntry<Block> PINK_CABINET = register("pink_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_CABINET = RegistryEntry.blockWithItem(Constants.id("blue_cabinet"),
+    public static final RegistryEntry<Block> BLUE_CABINET = register("blue_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_CABINET = RegistryEntry.blockWithItem(Constants.id("light_blue_cabinet"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_CABINET = register("light_blue_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_CABINET = RegistryEntry.blockWithItem(Constants.id("cyan_cabinet"),
+    public static final RegistryEntry<Block> CYAN_CABINET = register("cyan_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_CABINET = RegistryEntry.blockWithItem(Constants.id("green_cabinet"),
+    public static final RegistryEntry<Block> GREEN_CABINET = register("green_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_CABINET = RegistryEntry.blockWithItem(Constants.id("lime_cabinet"),
+    public static final RegistryEntry<Block> LIME_CABINET = register("lime_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_CABINET = RegistryEntry.blockWithItem(Constants.id("gray_cabinet"),
+    public static final RegistryEntry<Block> GRAY_CABINET = register("gray_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_CABINET = RegistryEntry.blockWithItem(Constants.id("light_gray_cabinet"),
+    public static final RegistryEntry<Block> LIGHT_GRAY_CABINET = register("light_gray_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_CABINET = RegistryEntry.blockWithItem(Constants.id("black_cabinet"),
+    public static final RegistryEntry<Block> BLACK_CABINET = register("black_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_CABINET = RegistryEntry.blockWithItem(Constants.id("brown_cabinet"),
+    public static final RegistryEntry<Block> BROWN_CABINET = register("brown_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_CABINET = RegistryEntry.blockWithItem(Constants.id("white_cabinet"),
+    public static final RegistryEntry<Block> WHITE_CABINET = register("white_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //STOOL
-    public static final RegistryEntry<Block> RED_STOOL = RegistryEntry.blockWithItem(Constants.id("red_stool"),
+    public static final RegistryEntry<Block> RED_STOOL = register("red_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_STOOL = RegistryEntry.blockWithItem(Constants.id("orange_stool"),
+    public static final RegistryEntry<Block> ORANGE_STOOL = register("orange_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_STOOL = RegistryEntry.blockWithItem(Constants.id("blue_stool"),
+    public static final RegistryEntry<Block> BLUE_STOOL = register("blue_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_STOOL = RegistryEntry.blockWithItem(Constants.id("cyan_stool"),
+    public static final RegistryEntry<Block> CYAN_STOOL = register("cyan_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_STOOL = RegistryEntry.blockWithItem(Constants.id("light_blue_stool"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_STOOL = register("light_blue_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_STOOL = RegistryEntry.blockWithItem(Constants.id("purple_stool"),
+    public static final RegistryEntry<Block> PURPLE_STOOL = register("purple_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_STOOL = RegistryEntry.blockWithItem(Constants.id("magenta_stool"),
+    public static final RegistryEntry<Block> MAGENTA_STOOL = register("magenta_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_STOOL = RegistryEntry.blockWithItem(Constants.id("yellow_stool"),
+    public static final RegistryEntry<Block> YELLOW_STOOL = register("yellow_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREY_STOOL = RegistryEntry.blockWithItem(Constants.id("grey_stool"),
+    public static final RegistryEntry<Block> GREY_STOOL = register("grey_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GREY_STOOL = RegistryEntry.blockWithItem(Constants.id("light_grey_stool"),
+    public static final RegistryEntry<Block> LIGHT_GREY_STOOL = register("light_grey_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_STOOL = RegistryEntry.blockWithItem(Constants.id("black_stool"),
+    public static final RegistryEntry<Block> BLACK_STOOL = register("black_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WITHE_STOOL = RegistryEntry.blockWithItem(Constants.id("white_stool"),
+    public static final RegistryEntry<Block> WITHE_STOOL = register("white_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_STOOL = RegistryEntry.blockWithItem(Constants.id("green_stool"),
+    public static final RegistryEntry<Block> GREEN_STOOL = register("green_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_STOOL = RegistryEntry.blockWithItem(Constants.id("lime_stool"),
+    public static final RegistryEntry<Block> LIME_STOOL = register("lime_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_STOOL = RegistryEntry.blockWithItem(Constants.id("pink_stool"),
+    public static final RegistryEntry<Block> PINK_STOOL = register("pink_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_STOOL = RegistryEntry.blockWithItem(Constants.id("brown_stool"),
+    public static final RegistryEntry<Block> BROWN_STOOL = register("brown_stool",
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //COFFEE TABLE
-    public static final RegistryEntry<Block> OAK_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("oak_coffee_table"),
+    public static final RegistryEntry<Block> OAK_COFFEE_TABLE = register("oak_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> SPRUCE_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("spruce_coffee_table"),
+    public static final RegistryEntry<Block> SPRUCE_COFFEE_TABLE = register("spruce_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BIRCH_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("birch_coffee_table"),
+    public static final RegistryEntry<Block> BIRCH_COFFEE_TABLE = register("birch_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> JUNGLE_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("jungle_coffee_table"),
+    public static final RegistryEntry<Block> JUNGLE_COFFEE_TABLE = register("jungle_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> ACACIA_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("acacia_coffee_table"),
+    public static final RegistryEntry<Block> ACACIA_COFFEE_TABLE = register("acacia_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> DARK_OAK_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("dark_oak_coffee_table"),
+    public static final RegistryEntry<Block> DARK_OAK_COFFEE_TABLE = register("dark_oak_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> MANGROVE_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("mangrove_coffee_table"),
+    public static final RegistryEntry<Block> MANGROVE_COFFEE_TABLE = register("mangrove_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CHERRY_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("cherry_coffee_table"),
+    public static final RegistryEntry<Block> CHERRY_COFFEE_TABLE = register("cherry_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BAMBOO_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("bamboo_coffee_table"),
+    public static final RegistryEntry<Block> BAMBOO_COFFEE_TABLE = register("bamboo_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CRIMSON_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("crimson_coffee_table"),
+    public static final RegistryEntry<Block> CRIMSON_COFFEE_TABLE = register("crimson_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> WARPED_COFFEE_TABLE = RegistryEntry.blockWithItem(Constants.id("warped_coffee_table"),
+    public static final RegistryEntry<Block> WARPED_COFFEE_TABLE = register("warped_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     //DINNING TABLE
-    public static final RegistryEntry<Block> OAK_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("oak_dinning_table"),
+    public static final RegistryEntry<Block> OAK_DINNING_TABLE = register("oak_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> SPRUCE_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("spruce_dinning_table"),
+    public static final RegistryEntry<Block> SPRUCE_DINNING_TABLE = register("spruce_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BIRCH_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("birch_dinning_table"),
+    public static final RegistryEntry<Block> BIRCH_DINNING_TABLE = register("birch_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> JUNGLE_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("jungle_dinning_table"),
+    public static final RegistryEntry<Block> JUNGLE_DINNING_TABLE = register("jungle_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> ACACIA_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("acacia_dinning_table"),
+    public static final RegistryEntry<Block> ACACIA_DINNING_TABLE = register("acacia_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> DARK_OAK_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("dark_oak_dinning_table"),
+    public static final RegistryEntry<Block> DARK_OAK_DINNING_TABLE = register("dark_oak_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> MANGROVE_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("mangrove_dinning_table"),
+    public static final RegistryEntry<Block> MANGROVE_DINNING_TABLE = register("mangrove_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CHERRY_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("cherry_dinning_table"),
+    public static final RegistryEntry<Block> CHERRY_DINNING_TABLE = register("cherry_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BAMBOO_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("bamboo_dinning_table"),
+    public static final RegistryEntry<Block> BAMBOO_DINNING_TABLE = register("bamboo_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CRIMSON_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("crimson_dinning_table"),
+    public static final RegistryEntry<Block> CRIMSON_DINNING_TABLE = register("crimson_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> WARPED_DINNING_TABLE = RegistryEntry.blockWithItem(Constants.id("warped_dinning_table"),
+    public static final RegistryEntry<Block> WARPED_DINNING_TABLE = register("warped_dinning_table",
             ()-> new DinningTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     //Digital Clock
-    public static final RegistryEntry<Block> RED_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("red_digital_clock"),
+    public static final RegistryEntry<Block> RED_DIGITAL_CLOCK = register("red_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> ORANGE_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("orange_digital_clock"),
+    public static final RegistryEntry<Block> ORANGE_DIGITAL_CLOCK = register("orange_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> YELLOW_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("yellow_digital_clock"),
+    public static final RegistryEntry<Block> YELLOW_DIGITAL_CLOCK = register("yellow_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> MAGENTA_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("magenta_digital_clock"),
+    public static final RegistryEntry<Block> MAGENTA_DIGITAL_CLOCK = register("magenta_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> PINK_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("pink_digital_clock"),
+    public static final RegistryEntry<Block> PINK_DIGITAL_CLOCK = register("pink_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> PURPLE_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("purple_digital_clock"),
+    public static final RegistryEntry<Block> PURPLE_DIGITAL_CLOCK = register("purple_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> BLUE_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("blue_digital_clock"),
+    public static final RegistryEntry<Block> BLUE_DIGITAL_CLOCK = register("blue_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> LIGHT_BLUE_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("light_blue_digital_clock"),
+    public static final RegistryEntry<Block> LIGHT_BLUE_DIGITAL_CLOCK = register("light_blue_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> CYAN_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("cyan_digital_clock"),
+    public static final RegistryEntry<Block> CYAN_DIGITAL_CLOCK = register("cyan_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> GREEN_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("green_digital_clock"),
+    public static final RegistryEntry<Block> GREEN_DIGITAL_CLOCK = register("green_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> LIME_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("lime_digital_clock"),
+    public static final RegistryEntry<Block> LIME_DIGITAL_CLOCK = register("lime_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> GRAY_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("gray_digital_clock"),
+    public static final RegistryEntry<Block> GRAY_DIGITAL_CLOCK = register("gray_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> LIGHT_GRAY_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("light_gray_digital_clock"),
+    public static final RegistryEntry<Block> LIGHT_GRAY_DIGITAL_CLOCK = register("light_gray_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> BROWN_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("brown_digital_clock"),
+    public static final RegistryEntry<Block> BROWN_DIGITAL_CLOCK = register("brown_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> BLACK_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("black_digital_clock"),
+    public static final RegistryEntry<Block> BLACK_DIGITAL_CLOCK = register("black_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> WHITE_DIGITAL_CLOCK = RegistryEntry.blockWithItem(Constants.id("white_digital_clock"),
+    public static final RegistryEntry<Block> WHITE_DIGITAL_CLOCK = register("white_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
 
     //Glass Tecque
-    public static final RegistryEntry<Block> STONE_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("stone_glass_tecque"),
+    public static final RegistryEntry<Block> STONE_GLASS_TECQUE = register("stone_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("acacia_glass_tecque"),
+    public static final RegistryEntry<Block> ACACIA_GLASS_TECQUE = register("acacia_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("spruce_glass_tecque"),
+    public static final RegistryEntry<Block> SPRUCE_GLASS_TECQUE = register("spruce_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> OAK_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("oak_glass_tecque"),
+    public static final RegistryEntry<Block> OAK_GLASS_TECQUE = register("oak_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("birch_glass_tecque"),
+    public static final RegistryEntry<Block> BIRCH_GLASS_TECQUE = register("birch_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("jungle_glass_tecque"),
+    public static final RegistryEntry<Block> JUNGLE_GLASS_TECQUE = register("jungle_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("mangrove_glass_tecque"),
+    public static final RegistryEntry<Block> MANGROVE_GLASS_TECQUE = register("mangrove_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("dark_oak_glass_tecque"),
+    public static final RegistryEntry<Block> DARK_OAK_GLASS_TECQUE = register("dark_oak_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("cherry_glass_tecque"),
+    public static final RegistryEntry<Block> CHERRY_GLASS_TECQUE = register("cherry_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("bamboo_glass_tecque"),
+    public static final RegistryEntry<Block> BAMBOO_GLASS_TECQUE = register("bamboo_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("crimson_glass_tecque"),
+    public static final RegistryEntry<Block> CRIMSON_GLASS_TECQUE = register("crimson_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_GLASS_TECQUE = RegistryEntry.blockWithItem(Constants.id("warped_glass_tecque"),
+    public static final RegistryEntry<Block> WARPED_GLASS_TECQUE = register("warped_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+
+    private static <T extends Block> RegistryEntry<T> register(String name, Supplier<T> supplier) {
+        RegistryEntry<T> entry = RegistryEntry.blockWithItem(Constants.id(name), supplier);
+        BLOCKS.add(entry);
+        return entry;
+    }
+
+
+
 }

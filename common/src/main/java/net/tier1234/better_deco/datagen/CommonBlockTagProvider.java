@@ -226,6 +226,30 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .add(ModBlocks.WARPED_OVEN.get())
                 .add(ModBlocks.FURNI_WORKBENCH.get())
 
+                .add(ModBlocks.OAK_CUTTING_BOARD.get())
+                .add(ModBlocks.SPRUCE_CUTTING_BOARD.get())
+                .add(ModBlocks.BIRCH_CUTTING_BOARD.get())
+                .add(ModBlocks.JUNGLE_CUTTING_BOARD.get())
+                .add(ModBlocks.ACACIA_CUTTING_BOARD.get())
+                .add(ModBlocks.MANGROVE_CUTTING_BOARD.get())
+                .add(ModBlocks.DARK_OAK_CUTTING_BOARD.get())
+                .add(ModBlocks.CHERRY_CUTTING_BOARD.get())
+                .add(ModBlocks.BAMBOO_CUTTING_BOARD.get())
+                .add(ModBlocks.CRIMSON_CUTTING_BOARD.get())
+                .add(ModBlocks.WARPED_CUTTING_BOARD.get())
+
+
+                .add(ModBlocks.OAK_JAR.get())
+                .add(ModBlocks.SPRUCE_JAR.get())
+                .add(ModBlocks.BIRCH_JAR.get())
+                .add(ModBlocks.JUNGLE_JAR.get())
+                .add(ModBlocks.ACACIA_JAR.get())
+                .add(ModBlocks.MANGROVE_JAR.get())
+                .add(ModBlocks.DARK_OAK_JAR.get())
+                .add(ModBlocks.CHERRY_JAR.get())
+                .add(ModBlocks.BAMBOO_JAR.get())
+                .add(ModBlocks.CRIMSON_JAR.get())
+                .add(ModBlocks.WARPED_JAR.get())
 
                  ;
 
