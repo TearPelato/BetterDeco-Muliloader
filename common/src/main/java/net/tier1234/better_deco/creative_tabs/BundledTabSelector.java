@@ -111,8 +111,7 @@ public class BundledTabSelector {
     public boolean onScroll(double mouseX, double mouseY, double scrollY)
     {
         CreativeModeTab selectedTab = CreativeModeInventoryScreenAccessor.getSelectedTab();
-        if(selectedTab != ModCreativeTabs.BETTER_DECO.get())
-            return false;
+        if(!this.isValidTab(selectedTab)) return false;
         if (mouseX >= this.guiLeft - 30 && mouseY >= this.guiTop + 2 && mouseX <= this.guiLeft && mouseY <= this.guiTop + 122) {
             if (!(scrollY < 0)) {
                 if (this.scroll > 0) this.scroll--;
