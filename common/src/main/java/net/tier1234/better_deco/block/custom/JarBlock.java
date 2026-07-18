@@ -38,7 +38,7 @@ public class JarBlock extends FurnitureHorizontalEntityBlock {
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!(level.getBlockEntity(pos) instanceof JarBlockEntity jar)) {
-            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         if (stack.isEmpty()) {
@@ -58,18 +58,15 @@ public class JarBlock extends FurnitureHorizontalEntityBlock {
         }
 
         if (!level.isClientSide) {
-            int space = maxCapacity - stored.getCount();
-            int amountToInsert = Math.min(space, stack.getCount());
-
             if (stored.isEmpty()) {
-                jar.setItem(0, stack.copyWithCount(amountToInsert));
+                jar.setItem(0, stack.copyWithCount(1));
             } else {
-                stored.grow(amountToInsert);
+                stored.grow(1);
                 jar.setChanged();
             }
 
             if (!player.getAbilities().instabuild) {
-                stack.shrink(amountToInsert);
+                stack.shrink(1);
             }
 
             level.playSound(null, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 0.6F, 1.2F);
