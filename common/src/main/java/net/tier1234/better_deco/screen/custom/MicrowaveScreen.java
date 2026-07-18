@@ -12,7 +12,7 @@ import net.tier1234.better_deco.Constants;
 
 public class MicrowaveScreen extends AbstractContainerScreen<MicrowaveMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            Constants.id("textures/gui/microwave/growth_chamber_gui.png");
+            Constants.id("textures/gui/microwave/microwave_gui.png");
     private static final ResourceLocation ARROW_TEXTURE =
             Constants.id("textures/gui/arrow_progress.png");
 
