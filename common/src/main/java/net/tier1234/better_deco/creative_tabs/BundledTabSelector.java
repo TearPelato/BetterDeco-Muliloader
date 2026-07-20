@@ -20,10 +20,7 @@ import net.tier1234.better_deco.platform.Services;
 import net.tier1234.better_deco.registries.ModBundledTabs;
 import net.tier1234.better_deco.registries.ModCreativeTabs;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -49,7 +46,7 @@ public class BundledTabSelector {
     private AbstractWidget scrollUpButton;
     private AbstractWidget scrollDownButton;
 
-    private List<BundledTabs> bundles = null;
+    private List<BundledTabs> bundles = new ArrayList<>();
     private CreativeModeTab lastTab;
     private int itemCount;
 
@@ -134,13 +131,14 @@ public class BundledTabSelector {
 
             if (this.isValidTab(tab)) {
                 graphics.blit(SELECTOR_BAR, this.guiLeft - 34, this.guiTop + 2, 2, 0, 32, 120);
-                if (this.hasSelectedBundle() && creativeScreen.getMenu().items.size() == this.itemCount) {
-                    this.bundles.forEach(BundledTabs::deselect);
-                }
 
             }
 
             if (this.lastTab != tab) {
+                if (this.hasSelectedBundle() && creativeScreen.getMenu().items.size() == this.itemCount) {
+                    this.bundles.forEach(BundledTabs::deselect);
+                }
+
                 this.onSwitchCreativeTab(tab, creativeScreen);
                 this.lastTab = tab;
             }
@@ -150,13 +148,13 @@ public class BundledTabSelector {
     }
 
     private void injectWidgets(CreativeModeInventoryScreen screen, Consumer<AbstractWidget> widgets) {
-        this.bundles.forEach(category -> {
-            Tab tab = new Tab(this.guiLeft - 26, this.guiTop + 7, category, button -> {
-                if (category.isSelected()) {
-                    category.deselect();
+        this.bundles.forEach(bundle -> {
+            Tab tab = new Tab(this.guiLeft - 26, this.guiTop + 7, bundle, button -> {
+                if (bundle.isSelected()) {
+                    bundle.deselect();
                 } else {
                     this.bundles.forEach(BundledTabs::deselect);
-                    category.select();
+                    bundle.select();
                 }
                 this.updateItems(screen);
             });
@@ -177,7 +175,6 @@ public class BundledTabSelector {
         widgets.accept(this.scrollUpButton);
         widgets.accept(this.scrollDownButton);
 
-        this.updateWidgets();
         this.onSwitchCreativeTab(CreativeModeInventoryScreenAccessor.getSelectedTab(), screen);
     }
 
@@ -246,13 +243,13 @@ public class BundledTabSelector {
     }
 
     private boolean hasSelectedBundle() {
-        return this.bundles != null && this.bundles.stream().anyMatch(BundledTabs::isSelected);
+        return this.bundles.stream().anyMatch(BundledTabs::isSelected);
     }
 
     public static class Tab extends Button {
         private final BundledTabs bundle;
 
-        protected Tab(int x, int y, BundledTabs bundle, OnPress onPress) {
+        private Tab(int x, int y, BundledTabs bundle, OnPress onPress) {
             super(x, y, 16, 16, Component.empty(), onPress, DEFAULT_NARRATION);
             this.bundle = bundle;
             bundle.setContentTab(this);
@@ -291,7 +288,7 @@ public class BundledTabSelector {
     public static class ScrollButton extends Button {
         private final int uOffset;
 
-        public ScrollButton(int x, int y, int uOffset, OnPress onPress) {
+        private ScrollButton(int x, int y, int uOffset, OnPress onPress) {
             super(x, y, 18, 11, Component.empty(), onPress, DEFAULT_NARRATION);
             this.uOffset = uOffset;
         }

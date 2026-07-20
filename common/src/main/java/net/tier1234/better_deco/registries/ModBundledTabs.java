@@ -3,18 +3,16 @@ package net.tier1234.better_deco.registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
-import net.tier1234.better_deco.util.tab_util.FeatureFlag;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * BundledTabs from VanillaBackport, used with BlackGear's permission.
  * @author BlackGear
  */
 public class ModBundledTabs {
-    private static final Map<BundledTabs, FeatureFlag> FILTERS = new LinkedHashMap();
+    private static final List<BundledTabs> FILTERS = new ArrayList<>();
 
     public static final BundledTabs GENERALS = register(
             BundledTabs.builder()
@@ -472,14 +470,11 @@ public class ModBundledTabs {
 
 
     public static BundledTabs register(BundledTabs builder) {
-        FILTERS.put(builder, FeatureFlag.DEFAULT);
+        FILTERS.add(builder);
         return builder;
     }
 
     public static List<BundledTabs> getFilters() {
-        return FILTERS.entrySet().stream()
-                .filter(entry -> entry.getValue().isEnabled())
-                .map(Map.Entry::getKey)
-                .toList();
+        return FILTERS;
     }
 }
