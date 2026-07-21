@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/fridge_bottom",
   "textures": {
-    "0": "better_deco:block/fridge_light",
-    "particle": "better_deco:block/fridge_light"
+    "0": "better_deco:block/furniture/kitchen_counter/fridge/fridge_light",
+    "particle": "better_deco:block/furniture/kitchen_counter/fridge/fridge_light"
   }
 }
