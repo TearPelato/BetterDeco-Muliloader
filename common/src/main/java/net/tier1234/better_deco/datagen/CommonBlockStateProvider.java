@@ -306,6 +306,31 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     }
 
+
+    protected void toaster(ToasterBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation toasterKey = modId(baseName);
+        ResourceLocation toasterRef = modId("block/" + baseName);
+
+        registerModel(toasterKey, Constants.id("block/toaster"), texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            variants.add("facing=" + Direction.NORTH, variantJson(toasterRef, 270));
+            variants.add("facing=" + Direction.EAST, variantJson(toasterRef, 0));
+            variants.add("facing=" + Direction.SOUTH, variantJson(toasterRef, 90));
+            variants.add("facing=" + Direction.WEST, variantJson(toasterRef, 1800));
+
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName, toasterRef);
+
+    }
+
     protected void cuttingBoard(CuttingBoardBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 

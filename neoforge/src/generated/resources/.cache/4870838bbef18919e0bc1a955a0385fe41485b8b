@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-21T19:24:01.7322334	BetterDeco BlockStates & Models
+// 1.21.1	2026-07-21T23:49:40.8078974	BetterDeco BlockStates & Models
 2203a9f60d92ffcdd27c47cdc8cdaa6feb881827 assets/better_deco/blockstates/acacia_cutting_board.json
 0e7af5227c3e746e7df0655e850eaacb695fcea6 assets/better_deco/blockstates/acacia_jar.json
 a7c39408667db477e4cb90c2858cb55a6adc4cab assets/better_deco/blockstates/acacia_kitchen_cabinet.json
@@ -73,6 +73,8 @@ b2acf7a7974c0df3f442de7216be0bda054fb2d3 assets/better_deco/blockstates/spruce_k
 c9b9d5cb2493fbf5876279dd43f7a799a4c9669c assets/better_deco/blockstates/spruce_kitchen_drawer.json
 dc8b7d2da222c28f51f1430174166826cb4c577b assets/better_deco/blockstates/spruce_oven.json
 4ed6600489c8d41517712d5627af9991a4278e74 assets/better_deco/blockstates/spruce_sink.json
+3c8c9837f9b9fff6dcdcddf90c9043249035582c assets/better_deco/blockstates/toaster_dark.json
+9218efd726311623cf9d8957429d8b1f05a60e51 assets/better_deco/blockstates/toaster_light.json
 e10e0c6ec4fd7bd7967d66068da099ba13b8ef98 assets/better_deco/blockstates/warped_cutting_board.json
 9178544c9b806df9b64f0e3e9d5a6d3aee594b9e assets/better_deco/blockstates/warped_jar.json
 201c2a69a179d87840fa53f18909bb47d5e0c946 assets/better_deco/blockstates/warped_kitchen_cabinet.json
@@ -240,6 +242,8 @@ c94ad7fba22f1e5143a43dd124db8104a32614b3 assets/better_deco/models/block/spruce_
 0d602b63220766737a11894c284d9e76f649b1ec assets/better_deco/models/block/spruce_kitchen_drawer_open.json
 93db36262d3bffe1a0f13d3e8e3c1a5c8fff8588 assets/better_deco/models/block/spruce_oven.json
 5f1234b7b40946deedf806aadae0264b30d08f67 assets/better_deco/models/block/spruce_sink.json
+cfb4dbe04d47d52647d02c4a3e8ba9943c3d5837 assets/better_deco/models/block/toaster_dark.json
+a6a7756344cfe5e6993ba944c2b3e8f8fee8acfe assets/better_deco/models/block/toaster_light.json
 0d18f15b2e7fb0fdea2d7153c59a3a80f9493504 assets/better_deco/models/block/warped_cutting_board.json
 f13bb9b77648b08d9cc3c51d46e41af53e5dcb58 assets/better_deco/models/block/warped_jar.json
 409c9a0acefe82bec218c6512590bc18d677fc0a assets/better_deco/models/block/warped_kitchen_cabinet_closed_left.json
@@ -330,6 +334,8 @@ b5e5c4e073b27740279b5e0b1016ba6343b981a4 assets/better_deco/models/item/spruce_k
 313c44b628ad60208f353ffb7053994b1fbf782b assets/better_deco/models/item/spruce_kitchen_drawer.json
 3c097e706c7939c28edb10ccf7c163e9e35c557a assets/better_deco/models/item/spruce_oven.json
 e342b607a525e461871a654caf7a6ff7fb1cca02 assets/better_deco/models/item/spruce_sink.json
+3457fd68fbf66ef8b312b034efb709fc5d8f5d48 assets/better_deco/models/item/toaster_dark.json
+56a0c7991815676d9917583aea0cef1a355621cf assets/better_deco/models/item/toaster_light.json
 4024b61a9d56209c57d51dde4f0a73f5ee40262b assets/better_deco/models/item/warped_cutting_board.json
 d5b17045459f1fe08252641fa653c4598f63345c assets/better_deco/models/item/warped_jar.json
 86ed663d7f97dc1d986d32b084210a9154e1e2df assets/better_deco/models/item/warped_kitchen_cabinet.json

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/toaster",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen_counter/toaster/toaster_dark",
+    "particle": "better_deco:block/furniture/kitchen_counter/toaster/toaster_dark"
+  }
+}

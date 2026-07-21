@@ -116,6 +116,8 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         microwave(ModBlocks.DARK_MICROWAVE.get(), Constants.id("block/furniture/kitchen_counter/microwave/microwave_dark"));
         fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/furniture/kitchen_counter/fridge/fridge_light"));
         fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/furniture/kitchen_counter/fridge/fridge_dark"));
+        toaster(ModBlocks.TOASTER_LIGHT.get(), Constants.id("block/furniture/kitchen_counter/toaster/toaster_light"));
+        toaster(ModBlocks.TOASTER_DARK.get(), Constants.id("block/furniture/kitchen_counter/toaster/toaster_dark"));
 
         cuttingBoard(ModBlocks.OAK_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_counter"));
         cuttingBoard(ModBlocks.SPRUCE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_counter"));

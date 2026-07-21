@@ -153,9 +153,9 @@ public class ModBlocks {
     public static final RegistryEntry<Block> WARPED_PARK_BENCH = register("warped_park_bench",
             ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
 
-    public static final RegistryEntry<Block> TOASTER_LIGHT = register("toaster_light",
+    public static final RegistryEntry<ToasterBlock> TOASTER_LIGHT = register("toaster_light",
             ()->  new ToasterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> TOASTER_DARK = register("toaster_dark",
+    public static final RegistryEntry<ToasterBlock> TOASTER_DARK = register("toaster_dark",
             ()->  new ToasterBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //FRIDGE & FREEZERS

@@ -16,6 +16,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToasterBlock extends FurnitureHorizontalBlock {
@@ -30,22 +31,16 @@ public class ToasterBlock extends FurnitureHorizontalBlock {
 
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
-        final VoxelShape BODY = Block.box(3, 0, 3, 13, 7, 11);
-        final VoxelShape LEVER_LEFT = Block.box(5, 0, 4, 6, 1, 10);
-        final VoxelShape LEVER_RIGHT = Block.box(10, 0, 4, 11, 1, 10);
-        final VoxelShape SIDE_LEFT = Block.box(4, 1, 3.5, 5, 7, 10.5);
-        final VoxelShape SIDE_RIGHT = Block.box(11, 1, 3.5, 12, 7, 10.5);
-
-        final VoxelShape BASE_SHAPE = VoxelShapeHelper.combineAll(List.of(
-                BODY, LEVER_LEFT, LEVER_RIGHT, SIDE_LEFT, SIDE_RIGHT
-        ));
-
-        final VoxelShape[] ROTATED = VoxelShapeHelper.getRotatedShapes(BASE_SHAPE);
+        final VoxelShape[] BODY = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(3,0,5,13,7,11), Direction.NORTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for (BlockState state : states) {
-            Direction dir = state.getValue(DIRECTION);
-            builder.put(state, ROTATED[dir.get2DDataValue()]);
+            Direction direction = state.getValue(DIRECTION);
+            List<VoxelShape> shapes = new ArrayList<>();
+            shapes.add(BODY[direction.get2DDataValue()]);
+
+
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
     }
