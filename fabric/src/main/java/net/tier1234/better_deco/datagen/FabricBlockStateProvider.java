@@ -119,17 +119,18 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         fridge(ModBlocks.FRIDGE_LIGHT.get(), Constants.id("block/furniture/kitchen_counter/fridge/fridge_light"));
         fridge(ModBlocks.FRIDGE_DARK.get(), Constants.id("block/furniture/kitchen_counter/fridge/fridge_dark"));
 
-        cuttingBoard(ModBlocks.OAK_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_kitchen_counter"));
-        cuttingBoard(ModBlocks.SPRUCE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_kitchen_counter"));
-        cuttingBoard(ModBlocks.BIRCH_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_kitchen_counter"));
-        cuttingBoard(ModBlocks.JUNGLE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_kitchen_counter"));
-        cuttingBoard(ModBlocks.ACACIA_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_kitchen_counter"));
-        cuttingBoard(ModBlocks.DARK_OAK_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_kitchen_counter"));
-        cuttingBoard(ModBlocks.MANGROVE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_kitchen_counter"));
-        cuttingBoard(ModBlocks.CHERRY_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_kitchen_counter"));
-        cuttingBoard(ModBlocks.BAMBOO_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_kitchen_counter"));
-        cuttingBoard(ModBlocks.CRIMSON_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_kitchen_counter"));
-        cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_kitchen_counter"));
+        cuttingBoard(ModBlocks.OAK_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/oak/oak_cutting_board"));
+        cuttingBoard(ModBlocks.SPRUCE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/spruce/spruce_cutting_board"));
+        cuttingBoard(ModBlocks.BIRCH_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/birch/birch_cutting_board"));
+        cuttingBoard(ModBlocks.JUNGLE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/jungle/jungle_cutting_board"));
+        cuttingBoard(ModBlocks.ACACIA_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/acacia/acacia_cutting_board"));
+        cuttingBoard(ModBlocks.DARK_OAK_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/dark_oak/dark_oak_cutting_board"));
+        cuttingBoard(ModBlocks.MANGROVE_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/mangrove/mangrove_cutting_board"));
+        cuttingBoard(ModBlocks.CHERRY_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/cherry/cherry_cutting_board"));
+        cuttingBoard(ModBlocks.BAMBOO_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/bamboo/bamboo_cutting_board"));
+        cuttingBoard(ModBlocks.CRIMSON_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/crimson/crimson_cutting_board"));
+        cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get(), Constants.id("block/furniture/kitchen_counter/warped/warped_cutting_board"));
+
 
         registerItemModel(ModItems.KITCHEN_KNIFE.get(), Constants.id("item/knife"));
 
