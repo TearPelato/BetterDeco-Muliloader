@@ -163,11 +163,11 @@ public class BundledTabSelector {
             widgets.accept(tab);
         });
 
-        this.scrollUpButton = new ScrollButton(this.guiLeft - 27, this.guiTop + 6, 37, button -> {
+        this.scrollUpButton = new ScrollButton(this.guiLeft - 30, this.guiTop + 6, 37, button -> {
             if (this.scroll > 0) this.scroll--;
             this.updateWidgets();
         });
-        this.scrollDownButton = new ScrollButton(this.guiLeft - 27, this.guiTop + 107, 57, button -> {
+        this.scrollDownButton = new ScrollButton(this.guiLeft - 30, this.guiTop + 108, 61, button -> {
             if (this.scroll < this.getMaxScroll()) this.scroll++;
             this.updateWidgets();
         });
@@ -289,7 +289,7 @@ public class BundledTabSelector {
         private final int uOffset;
 
         private ScrollButton(int x, int y, int uOffset, OnPress onPress) {
-            super(x, y, 18, 11, Component.empty(), onPress, DEFAULT_NARRATION);
+            super(x, y, 24, 11, Component.empty(), onPress, DEFAULT_NARRATION);
             this.uOffset = uOffset;
         }
 
@@ -298,7 +298,7 @@ public class BundledTabSelector {
             int textureY = this.isHovered ? 0 : 12;
             graphics.pose().pushPose();
             graphics.pose().translate(0.0, 0.0, 20.0);
-            graphics.blit(SELECTOR_BAR, this.getX(), this.getY(), this.uOffset, textureY, 18, 11);
+            graphics.blit(SELECTOR_BAR, this.getX(), this.getY(), this.uOffset, textureY, 24, 11);
             graphics.pose().popPose();
         }
     }
