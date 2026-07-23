@@ -5,7 +5,6 @@ import net.tier1234.better_deco.registries.ModBlocks;
 
 public class CutoutRenderLayerBlocks {
 
-
     public static Block[] getBlocks() {
         return new Block[]{
                 ModBlocks.OAK_SINK.get(),

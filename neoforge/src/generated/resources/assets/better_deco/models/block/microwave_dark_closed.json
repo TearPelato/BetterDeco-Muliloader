@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/microwave_closed",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen_counter/microwave/microwave_dark",
-    "particle": "better_deco:block/furniture/kitchen_counter/microwave/microwave_dark"
+    "0": "better_deco:block/furniture/kitchen/microwave/microwave_dark",
+    "particle": "better_deco:block/furniture/kitchen/microwave/microwave_dark"
   }
 }
