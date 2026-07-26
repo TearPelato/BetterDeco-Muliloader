@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-25T23:22:28.3213812	BetterDeco BlockStates & Models
+// 1.21.1	2026-07-26T15:24:34.3214679	BetterDeco BlockStates & Models
 2203a9f60d92ffcdd27c47cdc8cdaa6feb881827 assets/better_deco/blockstates/acacia_cutting_board.json
 0e7af5227c3e746e7df0655e850eaacb695fcea6 assets/better_deco/blockstates/acacia_jar.json
 a7c39408667db477e4cb90c2858cb55a6adc4cab assets/better_deco/blockstates/acacia_kitchen_cabinet.json
@@ -63,6 +63,7 @@ ba119421b475cd37e359ef60785fdeb9a865a550 assets/better_deco/blockstates/dark_oak
 1baa3186aacbbc5a9d326afde615c17ee3969819 assets/better_deco/blockstates/dark_oak_sink.json
 333350faeb7c97e73cbb7618b8a588aa3020d3d5 assets/better_deco/blockstates/fridge_dark.json
 aa1c7ad9b185a2046608b2501f2b9d1490e1dcc3 assets/better_deco/blockstates/fridge_light.json
+2d42826056703ee104be6c27b5d017fee40e00f6 assets/better_deco/blockstates/furni_workbench.json
 bda1dd9b41f4490a2e4d4ffbc6a53e5d52793995 assets/better_deco/blockstates/gray_cabinet.json
 07f2b0abf67bd3c050724c237cdc0b9c7b4afa69 assets/better_deco/blockstates/gray_kitchen_counter.json
 cb70e7d518aef930aa72bcbb70485138ca6782c6 assets/better_deco/blockstates/gray_kitchen_drawer.json
@@ -310,6 +311,7 @@ cb37f3fcf9d47c4cdec986e11ab19ac734719153 assets/better_deco/models/block/dark_oa
 fcad17080ebe9975455b6935e68f9d8aaf34cb45 assets/better_deco/models/block/fridge_light.json
 a706f1b92d65bc1ccf53e098f11a957b3dbb85c0 assets/better_deco/models/block/fridge_light_bottom.json
 3ca69d2073728139454548367d7757d71f7be0d3 assets/better_deco/models/block/fridge_light_top.json
+025ade422e513f11a834e1c0c87e2f120a9abcb1 assets/better_deco/models/block/furni_workbench.json
 272f0175586669d249e05843ba2b84dfd3495f08 assets/better_deco/models/block/gray_cabinet_closed_left.json
 3885645a0a7250b4ccff2f443f38d4898b94122c assets/better_deco/models/block/gray_cabinet_closed_right.json
 e87382358172f443ae4b76506cd1e60e4ddb8375 assets/better_deco/models/block/gray_cabinet_open_left.json
@@ -611,6 +613,7 @@ d1e2c2323f3afac78f79d2dc04183abe9ba5f756 assets/better_deco/models/item/dark_oak
 b5503056dd9ee624f906b662b3f6766390fd01c0 assets/better_deco/models/item/dark_oak_sink.json
 30f9d8807104c002c6006529d8aa475ff43c2acb assets/better_deco/models/item/fridge_dark.json
 23c223023d7897f35bb889bc7da88c4d66dd1ee0 assets/better_deco/models/item/fridge_light.json
+0fedc7f2379fe81f8a63ad8f5d30a112b32ed343 assets/better_deco/models/item/furni_workbench.json
 319b95dbb4d60c28a1a646de8c21642d9bcf36c1 assets/better_deco/models/item/gray_cabinet.json
 09a4512b20c51027a7fc416e3e12475a45e0cb31 assets/better_deco/models/item/gray_kitchen_counter.json
 98ff3a52d7f482d6469292b67bf5db9ee4e9218d assets/better_deco/models/item/gray_kitchen_drawer.json

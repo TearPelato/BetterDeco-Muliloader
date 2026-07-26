@@ -1,16 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chest": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:chest"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_iron_ingot": {
       "conditions": {
         "items": [
@@ -23,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:fridge_light"
+        "recipe": "better_deco:microwave_light"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_ingot",
-      "has_chest"
+      "has_iron_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "better_deco:fridge_light"
+      "better_deco:microwave_light"
     ]
   }
 }

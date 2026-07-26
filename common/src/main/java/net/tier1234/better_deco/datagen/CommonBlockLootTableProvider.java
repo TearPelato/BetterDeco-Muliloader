@@ -1,15 +1,15 @@
 package net.tier1234.better_deco.datagen;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlags;
 import net.tier1234.better_deco.registries.ModBlocks;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
-public class FabricLootTableProvider extends FabricBlockLootTableProvider {
-    public FabricLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(dataOutput, registryLookup);
+public abstract class CommonBlockLootTableProvider extends BlockLootSubProvider {
+    public CommonBlockLootTableProvider(HolderLookup.Provider registries) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
@@ -453,4 +453,6 @@ public class FabricLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.CRIMSON_CUTTING_BOARD.get());
         dropSelf(ModBlocks.WARPED_CUTTING_BOARD.get());
     }
+
+
 }
