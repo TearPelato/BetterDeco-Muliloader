@@ -13,7 +13,9 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
+/**
+ * All the wooden variants + wooden decorations
+ **/
         //Kitchen Counters
         kitchenCounter(ModBlocks.OAK_KITCHEN_COUNTER.get(),
                 Constants.id("block/furniture/kitchen/wodden/oak/oak_kitchen_counter"));
@@ -144,6 +146,114 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         jar(ModBlocks.BAMBOO_JAR.get(), Constants.id("block/furniture/kitchen/wodden/bamboo/bamboo_jar"));
         jar(ModBlocks.CRIMSON_JAR.get(), Constants.id("block/furniture/kitchen/wodden/crimson/crimson_jar"));
         jar(ModBlocks.WARPED_JAR.get(), Constants.id("block/furniture/kitchen/wodden/warped/warped_jar"));
+
+/**
+ * All the coloured variants
+ **/
+        kitchenCounter(ModBlocks.WHITE_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/white/white_kitchen_counter"));
+        kitchenDrawer(ModBlocks.WHITE_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/white/white_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/white/white_kitchen_drawer"));
+        oven(ModBlocks.WHITE_OVEN.get(), Constants.id("block/furniture/kitchen/colored/white/white_kitchen_oven"));
+        kitchenSink(ModBlocks.WHITE_SINK.get(), Constants.id("block/furniture/kitchen/colored/white/white_kitchen_sink"));
+        kitchenCabinet(ModBlocks.WHITE_CABINET.get(), Constants.id("block/furniture/kitchen/colored/white/white_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.LIGHT_GRAY_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/light_gray/light_gray_kitchen_counter"));
+        kitchenDrawer(ModBlocks.LIGHT_GRAY_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/light_gray/light_gray_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/light_gray/light_gray_kitchen_drawer"));
+        oven(ModBlocks.LIGHT_GRAY_OVEN.get(), Constants.id("block/furniture/kitchen/colored/light_gray/light_gray_kitchen_oven"));
+        kitchenSink(ModBlocks.LIGHT_GRAY_SINK.get(), Constants.id("block/furniture/kitchen/colored/light_gray/light_gray_kitchen_sink"));
+        kitchenCabinet(ModBlocks.LIGHT_GRAY_CABINET.get(), Constants.id("block/furniture/kitchen/colored/light_gray/light_gray_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.GRAY_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/gray/gray_kitchen_counter"));
+        kitchenDrawer(ModBlocks.GRAY_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/gray/gray_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/gray/gray_kitchen_drawer"));
+        oven(ModBlocks.GRAY_OVEN.get(), Constants.id("block/furniture/kitchen/colored/gray/gray_kitchen_oven"));
+        kitchenSink(ModBlocks.GRAY_SINK.get(), Constants.id("block/furniture/kitchen/colored/gray/gray_kitchen_sink"));
+        kitchenCabinet(ModBlocks.GRAY_CABINET.get(), Constants.id("block/furniture/kitchen/colored/gray/gray_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.BLACK_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/black/black_kitchen_counter"));
+        kitchenDrawer(ModBlocks.BLACK_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/black/black_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/black/black_kitchen_drawer"));
+        oven(ModBlocks.BLACK_OVEN.get(), Constants.id("block/furniture/kitchen/colored/black/black_kitchen_oven"));
+        kitchenSink(ModBlocks.BLACK_SINK.get(), Constants.id("block/furniture/kitchen/colored/black/black_kitchen_sink"));
+        kitchenCabinet(ModBlocks.BLACK_CABINET.get(), Constants.id("block/furniture/kitchen/colored/black/black_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.BROWN_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/brown/brown_kitchen_counter"));
+        kitchenDrawer(ModBlocks.BROWN_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/brown/brown_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/brown_kitchen_drawer"));
+        oven(ModBlocks.BROWN_OVEN.get(), Constants.id("block/furniture/kitchen/colored/brown/brown_kitchen_oven"));
+        kitchenSink(ModBlocks.BROWN_SINK.get(), Constants.id("block/furniture/kitchen/colored/brown/brown_kitchen_sink"));
+        kitchenCabinet(ModBlocks.BROWN_CABINET.get(), Constants.id("block/furniture/kitchen/colored/brown/brown_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.RED_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/red/red_kitchen_counter"));
+        kitchenDrawer(ModBlocks.RED_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/red/red_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/red/red_kitchen_drawer"));
+        oven(ModBlocks.RED_OVEN.get(), Constants.id("block/furniture/kitchen/colored/red/red_kitchen_oven"));
+        kitchenSink(ModBlocks.RED_SINK.get(), Constants.id("block/furniture/kitchen/colored/red/red_kitchen_sink"));
+        kitchenCabinet(ModBlocks.RED_CABINET.get(), Constants.id("block/furniture/kitchen/colored/red/red_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.ORANGE_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/orange/orange_kitchen_counter"));
+        kitchenDrawer(ModBlocks.ORANGE_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/orange/orange_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/orange/orange_kitchen_drawer"));
+        oven(ModBlocks.ORANGE_OVEN.get(), Constants.id("block/furniture/kitchen/colored/orange/orange_kitchen_oven"));
+        kitchenSink(ModBlocks.ORANGE_SINK.get(), Constants.id("block/furniture/kitchen/colored/orange/orange_kitchen_sink"));
+        kitchenCabinet(ModBlocks.ORANGE_CABINET.get(), Constants.id("block/furniture/kitchen/colored/orange/orange_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.YELLOW_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/yellow/yellow_kitchen_counter"));
+        kitchenDrawer(ModBlocks.YELLOW_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/yellow/yellow_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/yellow/yellow_kitchen_drawer"));
+        oven(ModBlocks.YELLOW_OVEN.get(), Constants.id("block/furniture/kitchen/colored/yellow/yellow_kitchen_oven"));
+        kitchenSink(ModBlocks.YELLOW_SINK.get(), Constants.id("block/furniture/kitchen/colored/yellow/yellow_kitchen_sink"));
+        kitchenCabinet(ModBlocks.YELLOW_CABINET.get(), Constants.id("block/furniture/kitchen/colored/yellow/yellow_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.LIME_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/lime/lime_kitchen_counter"));
+        kitchenDrawer(ModBlocks.LIME_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/lime/lime_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/lime/lime_kitchen_drawer"));
+        oven(ModBlocks.LIME_OVEN.get(), Constants.id("block/furniture/kitchen/colored/lime/lime_kitchen_oven"));
+        kitchenSink(ModBlocks.LIME_SINK.get(), Constants.id("block/furniture/kitchen/colored/lime/lime_kitchen_sink"));
+        kitchenCabinet(ModBlocks.LIME_CABINET.get(), Constants.id("block/furniture/kitchen/colored/lime/lime_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.GREEN_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/green/green_kitchen_counter"));
+        kitchenDrawer(ModBlocks.GREEN_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/green/green_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/green/green_kitchen_drawer"));
+        oven(ModBlocks.GREEN_OVEN.get(), Constants.id("block/furniture/kitchen/colored/green/green_kitchen_oven"));
+        kitchenSink(ModBlocks.GREEN_SINK.get(), Constants.id("block/furniture/kitchen/colored/green/green_kitchen_sink"));
+        kitchenCabinet(ModBlocks.GREEN_CABINET.get(), Constants.id("block/furniture/kitchen/colored/green/green_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.CYAN_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/cyan/cyan_kitchen_counter"));
+        kitchenDrawer(ModBlocks.CYAN_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/cyan/cyan_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/cyan/cyan_kitchen_drawer"));
+        oven(ModBlocks.CYAN_OVEN.get(), Constants.id("block/furniture/kitchen/colored/cyan/cyan_kitchen_oven"));
+        kitchenSink(ModBlocks.CYAN_SINK.get(), Constants.id("block/furniture/kitchen/colored/cyan/cyan_kitchen_sink"));
+        kitchenCabinet(ModBlocks.CYAN_CABINET.get(), Constants.id("block/furniture/kitchen/colored/cyan/cyan_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.LIGHT_BLUE_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/light_blue/light_blue_kitchen_counter"));
+        kitchenDrawer(ModBlocks.LIGHT_BLUE_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/light_blue/light_blue_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/light_blue/light_blue_kitchen_drawer"));
+        oven(ModBlocks.LIGHT_BLUE_OVEN.get(), Constants.id("block/furniture/kitchen/colored/light_blue/light_blue_kitchen_oven"));
+        kitchenSink(ModBlocks.LIGHT_BLUE_SINK.get(), Constants.id("block/furniture/kitchen/colored/light_blue/light_blue_kitchen_sink"));
+        kitchenCabinet(ModBlocks.LIGHT_BLUE_CABINET.get(), Constants.id("block/furniture/kitchen/colored/light_blue/light_blue_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.BLUE_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/blue/blue_kitchen_counter"));
+        kitchenDrawer(ModBlocks.BLUE_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/blue/blue_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/blue/blue_kitchen_drawer"));
+        oven(ModBlocks.BLUE_OVEN.get(), Constants.id("block/furniture/kitchen/colored/blue/blue_kitchen_oven"));
+        kitchenSink(ModBlocks.BLUE_SINK.get(), Constants.id("block/furniture/kitchen/colored/blue/blue_kitchen_sink"));
+        kitchenCabinet(ModBlocks.BLUE_CABINET.get(), Constants.id("block/furniture/kitchen/colored/blue/blue_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.PURPLE_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/purple/purple_kitchen_counter"));
+        kitchenDrawer(ModBlocks.PURPLE_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/purple/purple_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/purple/purple_kitchen_drawer"));
+        oven(ModBlocks.PURPLE_OVEN.get(), Constants.id("block/furniture/kitchen/colored/purple/purple_kitchen_oven"));
+        kitchenSink(ModBlocks.PURPLE_SINK.get(), Constants.id("block/furniture/kitchen/colored/purple/purple_kitchen_sink"));
+        kitchenCabinet(ModBlocks.PURPLE_CABINET.get(), Constants.id("block/furniture/kitchen/colored/purple/purple_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.MAGENTA_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/magenta/magenta_kitchen_counter"));
+        kitchenDrawer(ModBlocks.MAGENTA_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/magenta/magenta_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/magenta/magenta_kitchen_drawer"));
+        oven(ModBlocks.MAGENTA_OVEN.get(), Constants.id("block/furniture/kitchen/colored/magenta/magenta_kitchen_oven"));
+        kitchenSink(ModBlocks.MAGENTA_SINK.get(), Constants.id("block/furniture/kitchen/colored/magenta/magenta_kitchen_sink"));
+        kitchenCabinet(ModBlocks.MAGENTA_CABINET.get(), Constants.id("block/furniture/kitchen/colored/magenta/magenta_kitchen_cabinet"));
+
+        kitchenCounter(ModBlocks.PINK_KITCHEN_COUNTER.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_counter"));
+        kitchenDrawer(ModBlocks.PINK_KITCHEN_DRAWER.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_drawer"), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_drawer"));
+        oven(ModBlocks.PINK_OVEN.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_oven"));
+        kitchenSink(ModBlocks.PINK_SINK.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_sink"));
+        kitchenCabinet(ModBlocks.PINK_CABINET.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_cabinet"));
+
+
+
+
+
+
+
+
+
 
 
 

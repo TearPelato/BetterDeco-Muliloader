@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_closed_left",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen/colored/lime/lime_kitchen_cabinet",
+    "particle": "better_deco:block/furniture/kitchen/colored/lime/lime_kitchen_cabinet"
+  }
+}

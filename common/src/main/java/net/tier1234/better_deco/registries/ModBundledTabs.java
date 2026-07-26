@@ -158,6 +158,7 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.LIGHT_GRAY_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.GRAY_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.BLACK_KITCHEN_COUNTER.get());
+                        output.accept(ModBlocks.BROWN_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.RED_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.ORANGE_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.YELLOW_KITCHEN_COUNTER.get());
@@ -169,13 +170,14 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PURPLE_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.MAGENTA_KITCHEN_COUNTER.get());
                         output.accept(ModBlocks.PINK_KITCHEN_COUNTER.get());
-                        output.accept(ModBlocks.BROWN_KITCHEN_COUNTER.get());
+
 
 
                         output.accept(ModBlocks.WHITE_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.LIGHT_GRAY_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.GRAY_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.BLACK_KITCHEN_DRAWER.get());
+                        output.accept(ModBlocks.BROWN_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.RED_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.ORANGE_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.YELLOW_KITCHEN_DRAWER.get());
@@ -187,12 +189,12 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PURPLE_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.MAGENTA_KITCHEN_DRAWER.get());
                         output.accept(ModBlocks.PINK_KITCHEN_DRAWER.get());
-                        output.accept(ModBlocks.BROWN_KITCHEN_DRAWER.get());
 
                         output.accept(ModBlocks.WHITE_OVEN.get());
                         output.accept(ModBlocks.LIGHT_GRAY_OVEN.get());
                         output.accept(ModBlocks.GRAY_OVEN.get());
                         output.accept(ModBlocks.BLACK_OVEN.get());
+                        output.accept(ModBlocks.BROWN_OVEN.get());
                         output.accept(ModBlocks.RED_OVEN.get());
                         output.accept(ModBlocks.ORANGE_OVEN.get());
                         output.accept(ModBlocks.YELLOW_OVEN.get());
@@ -204,13 +206,13 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PURPLE_OVEN.get());
                         output.accept(ModBlocks.MAGENTA_OVEN.get());
                         output.accept(ModBlocks.PINK_OVEN.get());
-                        output.accept(ModBlocks.BROWN_OVEN.get());
 
 
                         output.accept(ModBlocks.WHITE_SINK.get());
                         output.accept(ModBlocks.LIGHT_GRAY_SINK.get());
                         output.accept(ModBlocks.GRAY_SINK.get());
                         output.accept(ModBlocks.BLACK_SINK.get());
+                        output.accept(ModBlocks.BROWN_SINK.get());
                         output.accept(ModBlocks.RED_SINK.get());
                         output.accept(ModBlocks.ORANGE_SINK.get());
                         output.accept(ModBlocks.YELLOW_SINK.get());
@@ -222,13 +224,13 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PURPLE_SINK.get());
                         output.accept(ModBlocks.MAGENTA_SINK.get());
                         output.accept(ModBlocks.PINK_SINK.get());
-                        output.accept(ModBlocks.BROWN_SINK.get());
 
 
                         output.accept(ModBlocks.WHITE_CABINET.get());
                         output.accept(ModBlocks.LIGHT_GRAY_CABINET.get());
                         output.accept(ModBlocks.GRAY_CABINET.get());
                         output.accept(ModBlocks.BLACK_CABINET.get());
+                        output.accept(ModBlocks.BROWN_CABINET.get());
                         output.accept(ModBlocks.RED_CABINET.get());
                         output.accept(ModBlocks.ORANGE_CABINET.get());
                         output.accept(ModBlocks.YELLOW_CABINET.get());
@@ -240,7 +242,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PURPLE_CABINET.get());
                         output.accept(ModBlocks.MAGENTA_CABINET.get());
                         output.accept(ModBlocks.PINK_CABINET.get());
-                        output.accept(ModBlocks.BROWN_CABINET.get());
 
                         output.accept(ModBlocks.OAK_CUTTING_BOARD.get());
                         output.accept(ModBlocks.SPRUCE_CUTTING_BOARD.get());

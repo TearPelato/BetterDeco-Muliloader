@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_drawer_closed",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen/colored/green/green_kitchen_drawer",
+    "particle": "better_deco:block/furniture/kitchen/colored/green/green_kitchen_drawer"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/cabinet_open_left",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen/colored/light_gray/light_gray_kitchen_cabinet",
+    "particle": "better_deco:block/furniture/kitchen/colored/light_gray/light_gray_kitchen_cabinet"
+  }
+}

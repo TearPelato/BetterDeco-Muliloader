@@ -57,8 +57,62 @@ public class CutoutRenderLayerBlocks {
                 ModBlocks.CRIMSON_JAR.get(),
                 ModBlocks.WARPED_JAR.get(),
                 ModBlocks.LIGHT_MICROWAVE.get(),
-                ModBlocks.DARK_MICROWAVE.get()
+                ModBlocks.DARK_MICROWAVE.get(),
 
+
+
+                ModBlocks.WHITE_OVEN.get(),
+                ModBlocks.LIGHT_GRAY_OVEN.get(),
+                ModBlocks.GRAY_OVEN.get(),
+                ModBlocks.BLACK_OVEN.get(),
+                ModBlocks.BROWN_OVEN.get(),
+                ModBlocks.RED_OVEN.get(),
+                ModBlocks.ORANGE_OVEN.get(),
+                ModBlocks.YELLOW_OVEN.get(),
+                ModBlocks.LIME_OVEN.get(),
+                ModBlocks.GREEN_OVEN.get(),
+                ModBlocks.CYAN_OVEN.get(),
+                ModBlocks.LIGHT_BLUE_OVEN.get(),
+                ModBlocks.BLUE_OVEN.get(),
+                ModBlocks.PURPLE_OVEN.get(),
+                ModBlocks.MAGENTA_OVEN.get(),
+                ModBlocks.PINK_OVEN.get(),
+
+                ModBlocks.WHITE_OVEN.get(),
+                ModBlocks.LIGHT_GRAY_OVEN.get(),
+                ModBlocks.GRAY_OVEN.get(),
+                ModBlocks.BLACK_OVEN.get(),
+                ModBlocks.BROWN_OVEN.get(),
+                ModBlocks.RED_OVEN.get(),
+                ModBlocks.ORANGE_OVEN.get(),
+                ModBlocks.YELLOW_OVEN.get(),
+                ModBlocks.LIME_OVEN.get(),
+                ModBlocks.GREEN_OVEN.get(),
+                ModBlocks.CYAN_OVEN.get(),
+                ModBlocks.LIGHT_BLUE_OVEN.get(),
+                ModBlocks.BLUE_OVEN.get(),
+                ModBlocks.PURPLE_OVEN.get(),
+                ModBlocks.MAGENTA_OVEN.get(),
+                ModBlocks.PINK_OVEN.get(),
+
+
+
+                ModBlocks.WHITE_SINK.get(),
+                ModBlocks.LIGHT_GRAY_SINK.get(),
+                ModBlocks.GRAY_SINK.get(),
+                ModBlocks.BLACK_SINK.get(),
+                ModBlocks.BROWN_SINK.get(),
+                ModBlocks.RED_SINK.get(),
+                ModBlocks.ORANGE_SINK.get(),
+                ModBlocks.YELLOW_SINK.get(),
+                ModBlocks.LIME_SINK.get(),
+                ModBlocks.GREEN_SINK.get(),
+                ModBlocks.CYAN_SINK.get(),
+                ModBlocks.LIGHT_BLUE_SINK.get(),
+                ModBlocks.BLUE_SINK.get(),
+                ModBlocks.PURPLE_SINK.get(),
+                ModBlocks.MAGENTA_SINK.get(),
+                ModBlocks.PINK_SINK.get()
 
 
         };

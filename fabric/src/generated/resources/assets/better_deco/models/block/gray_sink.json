@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_sink",
+  "textures": {
+    "0": "better_deco:block/furniture/kitchen/colored/gray/gray_kitchen_sink",
+    "particle": "better_deco:block/furniture/kitchen/colored/gray/gray_kitchen_sink"
+  }
+}

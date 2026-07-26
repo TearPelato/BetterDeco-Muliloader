@@ -490,171 +490,171 @@ public class ModBlocks {
             () -> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Colored Variants
-    public static final RegistryEntry<Block> RED_KITCHEN_COUNTER = register("red_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> RED_KITCHEN_COUNTER = register("red_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_KITCHEN_COUNTER = register("yellow_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> YELLOW_KITCHEN_COUNTER = register("yellow_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_KITCHEN_COUNTER = register("orange_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> ORANGE_KITCHEN_COUNTER = register("orange_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_KITCHEN_COUNTER = register("magenta_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> MAGENTA_KITCHEN_COUNTER = register("magenta_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_KITCHEN_COUNTER = register("purple_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> PURPLE_KITCHEN_COUNTER = register("purple_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_KITCHEN_COUNTER = register("pink_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> PINK_KITCHEN_COUNTER = register("pink_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_KITCHEN_COUNTER = register("blue_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> BLUE_KITCHEN_COUNTER = register("blue_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_KITCHEN_COUNTER = register("light_blue_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> LIGHT_BLUE_KITCHEN_COUNTER = register("light_blue_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_KITCHEN_COUNTER = register("cyan_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> CYAN_KITCHEN_COUNTER = register("cyan_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_KITCHEN_COUNTER = register("green_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> GREEN_KITCHEN_COUNTER = register("green_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_KITCHEN_COUNTER = register("lime_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> LIME_KITCHEN_COUNTER = register("lime_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_KITCHEN_COUNTER = register("gray_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> GRAY_KITCHEN_COUNTER = register("gray_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_KITCHEN_COUNTER = register("light_gray_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> LIGHT_GRAY_KITCHEN_COUNTER = register("light_gray_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_KITCHEN_COUNTER = register("black_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> BLACK_KITCHEN_COUNTER = register("black_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_KITCHEN_COUNTER = register("brown_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> BROWN_KITCHEN_COUNTER = register("brown_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_KITCHEN_COUNTER = register("white_kitchen_counter",
+    public static final RegistryEntry<KitchenCounterBlock> WHITE_KITCHEN_COUNTER = register("white_kitchen_counter",
             ()-> new KitchenCounterBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //Colored Drawers
-    public static final RegistryEntry<Block> RED_KITCHEN_DRAWER = register("red_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> RED_KITCHEN_DRAWER = register("red_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_KITCHEN_DRAWER = register("yellow_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> YELLOW_KITCHEN_DRAWER = register("yellow_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_KITCHEN_DRAWER = register("orange_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> ORANGE_KITCHEN_DRAWER = register("orange_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_KITCHEN_DRAWER = register("magenta_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> MAGENTA_KITCHEN_DRAWER = register("magenta_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_KITCHEN_DRAWER = register("purple_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> PURPLE_KITCHEN_DRAWER = register("purple_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_KITCHEN_DRAWER = register("pink_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> PINK_KITCHEN_DRAWER = register("pink_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_KITCHEN_DRAWER = register("blue_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> BLUE_KITCHEN_DRAWER = register("blue_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_KITCHEN_DRAWER = register("light_blue_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> LIGHT_BLUE_KITCHEN_DRAWER = register("light_blue_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_KITCHEN_DRAWER = register("cyan_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> CYAN_KITCHEN_DRAWER = register("cyan_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_KITCHEN_DRAWER = register("green_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> GREEN_KITCHEN_DRAWER = register("green_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_KITCHEN_DRAWER = register("lime_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> LIME_KITCHEN_DRAWER = register("lime_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_KITCHEN_DRAWER = register("gray_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> GRAY_KITCHEN_DRAWER = register("gray_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_KITCHEN_DRAWER = register("light_gray_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> LIGHT_GRAY_KITCHEN_DRAWER = register("light_gray_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_KITCHEN_DRAWER = register("black_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> BLACK_KITCHEN_DRAWER = register("black_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_KITCHEN_DRAWER = register("brown_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> BROWN_KITCHEN_DRAWER = register("brown_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_KITCHEN_DRAWER = register("white_kitchen_drawer",
+    public static final RegistryEntry<KitchenDrawerBlock> WHITE_KITCHEN_DRAWER = register("white_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //Oven colored
-    public static final RegistryEntry<Block> RED_OVEN = register("red_oven",
+    public static final RegistryEntry<OvenBlock> RED_OVEN = register("red_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_OVEN = register("yellow_oven",
+    public static final RegistryEntry<OvenBlock> YELLOW_OVEN = register("yellow_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_OVEN = register("orange_oven",
+    public static final RegistryEntry<OvenBlock> ORANGE_OVEN = register("orange_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_OVEN = register("magenta_oven",
+    public static final RegistryEntry<OvenBlock> MAGENTA_OVEN = register("magenta_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_OVEN = register("purple_oven",
+    public static final RegistryEntry<OvenBlock> PURPLE_OVEN = register("purple_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_OVEN = register("pink_oven",
+    public static final RegistryEntry<OvenBlock> PINK_OVEN = register("pink_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_OVEN = register("blue_oven",
+    public static final RegistryEntry<OvenBlock> BLUE_OVEN = register("blue_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_OVEN = register("light_blue_oven",
+    public static final RegistryEntry<OvenBlock> LIGHT_BLUE_OVEN = register("light_blue_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_OVEN = register("cyan_oven",
+    public static final RegistryEntry<OvenBlock> CYAN_OVEN = register("cyan_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_OVEN = register("green_oven",
+    public static final RegistryEntry<OvenBlock> GREEN_OVEN = register("green_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_OVEN = register("lime_oven",
+    public static final RegistryEntry<OvenBlock> LIME_OVEN = register("lime_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_OVEN = register("gray_oven",
+    public static final RegistryEntry<OvenBlock> GRAY_OVEN = register("gray_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_OVEN = register("light_gray_oven",
+    public static final RegistryEntry<OvenBlock> LIGHT_GRAY_OVEN = register("light_gray_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_OVEN = register("black_oven",
+    public static final RegistryEntry<OvenBlock> BLACK_OVEN = register("black_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_OVEN = register("brown_oven",
+    public static final RegistryEntry<OvenBlock> BROWN_OVEN = register("brown_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_OVEN = register("white_oven",
+    public static final RegistryEntry<OvenBlock> WHITE_OVEN = register("white_oven",
             ()-> new OvenBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
-    public static final RegistryEntry<Block> RED_SINK = register("red_sink",
+    public static final RegistryEntry<KitchenSinkBlock> RED_SINK = register("red_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_SINK = register("yellow_sink",
+    public static final RegistryEntry<KitchenSinkBlock> YELLOW_SINK = register("yellow_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_SINK = register("orange_sink",
+    public static final RegistryEntry<KitchenSinkBlock> ORANGE_SINK = register("orange_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_SINK = register("magenta_sink",
+    public static final RegistryEntry<KitchenSinkBlock> MAGENTA_SINK = register("magenta_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_SINK = register("purple_sink",
+    public static final RegistryEntry<KitchenSinkBlock> PURPLE_SINK = register("purple_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_SINK = register("pink_sink",
+    public static final RegistryEntry<KitchenSinkBlock> PINK_SINK = register("pink_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_SINK = register("blue_sink",
+    public static final RegistryEntry<KitchenSinkBlock> BLUE_SINK = register("blue_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_SINK = register("light_blue_sink",
+    public static final RegistryEntry<KitchenSinkBlock> LIGHT_BLUE_SINK = register("light_blue_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_SINK = register("cyan_sink",
+    public static final RegistryEntry<KitchenSinkBlock> CYAN_SINK = register("cyan_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_SINK = register("green_sink",
+    public static final RegistryEntry<KitchenSinkBlock> GREEN_SINK = register("green_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_SINK = register("lime_sink",
+    public static final RegistryEntry<KitchenSinkBlock> LIME_SINK = register("lime_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_SINK = register("gray_sink",
+    public static final RegistryEntry<KitchenSinkBlock> GRAY_SINK = register("gray_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_SINK = register("light_gray_sink",
+    public static final RegistryEntry<KitchenSinkBlock> LIGHT_GRAY_SINK = register("light_gray_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_SINK = register("black_sink",
+    public static final RegistryEntry<KitchenSinkBlock> BLACK_SINK = register("black_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_SINK = register("brown_sink",
+    public static final RegistryEntry<KitchenSinkBlock> BROWN_SINK = register("brown_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_SINK = register("white_sink",
+    public static final RegistryEntry<KitchenSinkBlock> WHITE_SINK = register("white_sink",
             ()-> new KitchenSinkBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
-    public static final RegistryEntry<Block> RED_CABINET = register("red_cabinet",
+    public static final RegistryEntry<CabinetBlock> RED_CABINET = register("red_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_CABINET = register("yellow_cabinet",
+    public static final RegistryEntry<CabinetBlock> YELLOW_CABINET = register("yellow_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_CABINET = register("orange_cabinet",
+    public static final RegistryEntry<CabinetBlock> ORANGE_CABINET = register("orange_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_CABINET = register("magenta_cabinet",
+    public static final RegistryEntry<CabinetBlock> MAGENTA_CABINET = register("magenta_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_CABINET = register("purple_cabinet",
+    public static final RegistryEntry<CabinetBlock> PURPLE_CABINET = register("purple_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_CABINET = register("pink_cabinet",
+    public static final RegistryEntry<CabinetBlock> PINK_CABINET = register("pink_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_CABINET = register("blue_cabinet",
+    public static final RegistryEntry<CabinetBlock> BLUE_CABINET = register("blue_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_CABINET = register("light_blue_cabinet",
+    public static final RegistryEntry<CabinetBlock> LIGHT_BLUE_CABINET = register("light_blue_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_CABINET = register("cyan_cabinet",
+    public static final RegistryEntry<CabinetBlock> CYAN_CABINET = register("cyan_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_CABINET = register("green_cabinet",
+    public static final RegistryEntry<CabinetBlock> GREEN_CABINET = register("green_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_CABINET = register("lime_cabinet",
+    public static final RegistryEntry<CabinetBlock> LIME_CABINET = register("lime_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> GRAY_CABINET = register("gray_cabinet",
+    public static final RegistryEntry<CabinetBlock> GRAY_CABINET = register("gray_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GRAY_CABINET = register("light_gray_cabinet",
+    public static final RegistryEntry<CabinetBlock> LIGHT_GRAY_CABINET = register("light_gray_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_CABINET = register("black_cabinet",
+    public static final RegistryEntry<CabinetBlock> BLACK_CABINET = register("black_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_CABINET = register("brown_cabinet",
+    public static final RegistryEntry<CabinetBlock> BROWN_CABINET = register("brown_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
-    public static final RegistryEntry<Block> WHITE_CABINET = register("white_cabinet",
+    public static final RegistryEntry<CabinetBlock> WHITE_CABINET = register("white_cabinet",
             ()-> new CabinetBlock(BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //STOOL
