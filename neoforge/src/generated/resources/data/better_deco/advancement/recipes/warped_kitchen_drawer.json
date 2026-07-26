@@ -7,7 +7,7 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "this.hasItem.apply_warped_planks": {
+    "has_warped_planks": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "this.hasItem.apply_warped_planks"
+      "has_warped_planks"
     ]
   ],
   "rewards": {

@@ -1,13 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "better_deco:stone_glass_tecque"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "this.hasItem.apply_glass": {
+    "has_glass": {
       "conditions": {
         "items": [
           {
@@ -17,7 +11,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "this.hasItem.apply_stone_slab": {
+    "has_stone_slab": {
       "conditions": {
         "items": [
           {
@@ -26,13 +20,19 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "better_deco:stone_glass_tecque"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "this.hasItem.apply_glass",
-      "this.hasItem.apply_stone_slab"
+      "has_glass",
+      "has_stone_slab"
     ]
   ],
   "rewards": {
