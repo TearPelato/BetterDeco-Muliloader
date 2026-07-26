@@ -9,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.custom.*;
@@ -380,11 +381,27 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     }
 
+    protected void workbench(Block block,
+                             ResourceLocation textureFront,
+                             ResourceLocation textureSide,
+                             ResourceLocation textureTop,
+                             ResourceLocation textureBottom) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
+        ResourceLocation modelKey = modId(baseName);
+        ResourceLocation modelRef = modId("block/" + baseName);
 
+        registerCubeModel(modelKey, textureTop, textureFront, textureSide, textureBottom);
 
+        JsonObject variants = new JsonObject();
+        variants.add("", variantJson(modelRef, 0));
 
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
 
+        registerItemBlockModel(baseName, modelRef);
+    }
 
 
 
@@ -505,6 +522,31 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
 
 
+
+
+
+
+
+    private void registerCubeModel(ResourceLocation id,
+                                   ResourceLocation top,
+                                   ResourceLocation front,
+                                   ResourceLocation side,
+                                   ResourceLocation bottom) {
+        JsonObject textures = new JsonObject();
+        textures.addProperty("particle", front.toString());
+        textures.addProperty("up",    top.toString());
+        textures.addProperty("down",  bottom.toString());
+        textures.addProperty("north", front.toString());
+        textures.addProperty("south", front.toString());
+        textures.addProperty("east",  side.toString());
+        textures.addProperty("west",  side.toString());
+
+        JsonObject model = new JsonObject();
+        model.addProperty("parent", "minecraft:block/cube");
+        model.add("textures", textures);
+
+        models.put(id, model);
+    }
 
 
 

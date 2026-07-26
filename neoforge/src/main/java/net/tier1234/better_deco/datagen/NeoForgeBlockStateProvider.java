@@ -246,7 +246,7 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         kitchenSink(ModBlocks.PINK_SINK.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_sink"));
         kitchenCabinet(ModBlocks.PINK_CABINET.get(), Constants.id("block/furniture/kitchen/colored/pink/pink_kitchen_cabinet"));
 
-
+        workbench(ModBlocks.FURNI_WORKBENCH.get(), Constants.id("block/furniture/workbench/workbench_front"),Constants.id("block/furniture/workbench/workbench_side"),Constants.id("block/furniture/workbench/workbench_top"), Constants.id("block/furniture/workbench/workbench_bottom"));
 
 
 
