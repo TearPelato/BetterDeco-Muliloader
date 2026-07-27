@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_counter_right_corner_inverted",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/wodden/oak/oak_kitchen_counter",
-    "particle": "better_deco:block/furniture/kitchen/wodden/oak/oak_kitchen_counter"
+    "0": "better_deco:block/oak_kitchen_counter",
+    "particle": "better_deco:block/oak_kitchen_counter"
   }
 }

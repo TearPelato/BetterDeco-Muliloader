@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_sink",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/colored/orange/orange_kitchen_sink",
-    "particle": "better_deco:block/furniture/kitchen/colored/orange/orange_kitchen_sink"
+    "0": "better_deco:block/orange_kitchen_sink",
+    "particle": "better_deco:block/orange_kitchen_sink"
   }
 }

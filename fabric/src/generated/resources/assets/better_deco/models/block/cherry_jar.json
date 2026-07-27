@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/jar",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/wodden/cherry/cherry_jar",
-    "particle": "better_deco:block/furniture/kitchen/wodden/cherry/cherry_jar"
+    "0": "better_deco:block/cherry_jar",
+    "particle": "better_deco:block/cherry_jar"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_counter_default",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/colored/magenta/magenta_kitchen_counter",
-    "particle": "better_deco:block/furniture/kitchen/colored/magenta/magenta_kitchen_counter"
+    "0": "better_deco:block/magenta_kitchen_counter",
+    "particle": "better_deco:block/magenta_kitchen_counter"
   }
 }

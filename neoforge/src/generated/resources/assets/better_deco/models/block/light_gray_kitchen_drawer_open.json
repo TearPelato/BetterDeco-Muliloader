@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_drawer_open",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/colored/light_gray/light_gray_kitchen_drawer",
-    "particle": "better_deco:block/furniture/kitchen/colored/light_gray/light_gray_kitchen_drawer"
+    "0": "better_deco:block/light_gray_kitchen_drawer",
+    "particle": "better_deco:block/light_gray_kitchen_drawer"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/cabinet_closed_right",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/colored/magenta/magenta_kitchen_cabinet",
-    "particle": "better_deco:block/furniture/kitchen/colored/magenta/magenta_kitchen_cabinet"
+    "0": "better_deco:block/magenta_kitchen_cabinet",
+    "particle": "better_deco:block/magenta_kitchen_cabinet"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_counter_left_corner_inverted",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/colored/white/white_kitchen_counter",
-    "particle": "better_deco:block/furniture/kitchen/colored/white/white_kitchen_counter"
+    "0": "better_deco:block/white_kitchen_counter",
+    "particle": "better_deco:block/white_kitchen_counter"
   }
 }

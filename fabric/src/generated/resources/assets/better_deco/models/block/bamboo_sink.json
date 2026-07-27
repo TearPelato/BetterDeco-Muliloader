@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_sink",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/wodden/bamboo/bamboo_kitchen_sink",
-    "particle": "better_deco:block/furniture/kitchen/wodden/bamboo/bamboo_kitchen_sink"
+    "0": "better_deco:block/bamboo_kitchen_sink",
+    "particle": "better_deco:block/bamboo_kitchen_sink"
   }
 }

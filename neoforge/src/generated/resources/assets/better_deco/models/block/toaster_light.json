@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/toaster",
   "textures": {
-    "0": "better_deco:block/furniture/kitchen/toaster/toaster_light",
-    "particle": "better_deco:block/furniture/kitchen/toaster/toaster_light"
+    "0": "better_deco:block/toaster_light",
+    "particle": "better_deco:block/toaster_light"
   }
 }
