@@ -2,7 +2,7 @@
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "better_deco:block/furniture/kitchen/kitchen_counter_base"
+		"1": "better_deco:block/kitchen_counter_base"
 	},
 	"elements": [
 		{

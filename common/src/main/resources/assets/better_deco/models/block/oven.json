@@ -4,7 +4,7 @@
 	"render_type": "minecraft:cutout",
 	"texture_size": [128, 128],
 	"textures": {
-		"1": "better_deco:block/furniture/kitchen/kitchen_counter_base",
+		"1": "better_deco:block/kitchen_counter_base",
 		"particle": "0"
 	},
 	"elements": [

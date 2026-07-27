@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "better_deco:block/furniture/kitchen/kitchen_counter_base",
-		"particle": "better_deco:block/furniture/kitchen/wodden/oak/oak_kitchen_counter"
+		"1": "better_deco:block/kitchen_counter_base",
+		"particle": "better_deco:block/wodden/oak/oak_kitchen_counter"
 	},
 	"elements": [
 		{

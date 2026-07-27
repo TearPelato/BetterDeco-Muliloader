@@ -3,7 +3,7 @@
 	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "better_deco:block/furniture/kitchen/kitchen_counter_base"
+		"1": "better_deco:block/kitchen_counter_base"
 	},
 	"elements": [
 		{
