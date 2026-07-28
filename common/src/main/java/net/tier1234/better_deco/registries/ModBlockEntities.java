@@ -356,6 +356,20 @@ public class ModBlockEntities {
                     ModBlocks.WARPED_JAR.get()
             });
 
+    public static final RegistryEntry<BlockEntityType<BasinBlockEntity>> BASIN =
+            RegistryEntry.blockEntity(Constants.id("basin"), BasinBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.OAK_BASIN.get(),
+                    ModBlocks.SPRUCE_BASIN.get(),
+                    ModBlocks.BIRCH_BASIN.get(),
+                    ModBlocks.JUNGLE_BASIN.get(),
+                    ModBlocks.ACACIA_BASIN.get(),
+                    ModBlocks.DARK_OAK_BASIN.get(),
+                    ModBlocks.MANGROVE_BASIN.get(),
+                    ModBlocks.CHERRY_BASIN.get(),
+                    ModBlocks.BAMBOO_BASIN.get(),
+                    ModBlocks.CRIMSON_BASIN.get(),
+                    ModBlocks.WARPED_BASIN.get()
 
+            });
 
 }

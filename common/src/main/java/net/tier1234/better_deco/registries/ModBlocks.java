@@ -23,6 +23,31 @@ public class ModBlocks {
             ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
 
 
+    public static final RegistryEntry<BasinBlock> OAK_BASIN = register("oak_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> SPRUCE_BASIN = register("spruce_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> BIRCH_BASIN = register("birch_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> JUNGLE_BASIN = register("jungle_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> ACACIA_BASIN = register("acacia_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> DARK_OAK_BASIN = register("dark_oak_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> MANGROVE_BASIN = register("mangrove_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> CHERRY_BASIN = register("cherry_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> BAMBOO_BASIN = register("bamboo_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> CRIMSON_BASIN = register("crimson_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BasinBlock> WARPED_BASIN = register("warped_basin",
+            ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+
+
+
     public static final RegistryEntry<JarBlock> OAK_JAR = register("oak_jar",
             ()-> new JarBlock(BlockBehaviour.Properties.of().strength(1.0F)));
     public static final RegistryEntry<JarBlock> SPRUCE_JAR = register("spruce_jar",

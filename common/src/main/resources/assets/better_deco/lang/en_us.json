@@ -32,13 +32,27 @@
 
   "bundled_tab.general": "General Furniture",
   "bundled_tab.kitchen": "Kitchen Furniture",
-  "bundled_tab.living_room": "Living Room Furnitures",
+  "bundled_tab.living_room": "Living Furniture",
   "bundled_tab.buildings_extras": "Buildings Extras",
   "bundled_tab.utilities.title": "Utilities",
   "bundled_tabs.item": "Items",
   "bundled_tab.bedroom_furniture.title": "Bedroom Furniture",
   "bundled_tab.external_deco": "External Decorations",
   "bundled_tab.everycompat": "EveryCompat",
+  "bundled_tab.bathroom_furniture.title": "Bathroom",
+
+  "block.better_deco.oak_basin": "Oak Basin",
+  "block.better_deco.spruce_basin": "Spruce Basin",
+  "block.better_deco.birch_basin": "Birch Basin",
+  "block.better_deco.jungle_basin": "Jungle Basin",
+  "block.better_deco.acacia_basin": "Acacia Basin",
+  "block.better_deco.dark_oak_basin": "Dark Oak Basin",
+  "block.better_deco.mangrove_basin": "Mangrove Basin",
+  "block.better_deco.cherry_basin": "Cherry Basin",
+  "block.better_deco.bamboo_basin": "Bamboo Basin",
+  "block.better_deco.crimson_basin": "Crimson Basin",
+  "block.better_deco.warped_basin": "Warped Basin",
+
 
   "block.better_deco.red_stool": "Red Stool",
   "block.better_deco.orange_stool": "Orange Stool",
@@ -581,4 +595,5 @@
 
   "block_type.better_deco.kitchen_counter": "%s Kitchen Counter",
   "block_type.better_deco.kitchen_drawer": "%s Kitchen Drawer"
+
 }

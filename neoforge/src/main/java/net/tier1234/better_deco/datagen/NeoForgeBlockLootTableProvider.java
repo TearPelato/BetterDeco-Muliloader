@@ -454,7 +454,25 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_CUTTING_BOARD.get());
         dropSelf(ModBlocks.CRIMSON_CUTTING_BOARD.get());
         dropSelf(ModBlocks.WARPED_CUTTING_BOARD.get());
+
+        dropSelf(ModBlocks.OAK_BASIN.get());
+        dropSelf(ModBlocks.SPRUCE_BASIN.get());
+        dropSelf(ModBlocks.BIRCH_BASIN.get());
+        dropSelf(ModBlocks.JUNGLE_BASIN.get());
+        dropSelf(ModBlocks.ACACIA_BASIN.get());
+        dropSelf(ModBlocks.DARK_OAK_BASIN.get());
+        dropSelf(ModBlocks.MANGROVE_BASIN.get());
+        dropSelf(ModBlocks.CHERRY_BASIN.get());
+        dropSelf(ModBlocks.BAMBOO_BASIN.get());
+        dropSelf(ModBlocks.CRIMSON_BASIN.get());
+        dropSelf(ModBlocks.WARPED_BASIN.get());
     }
 
+    @Override
+    protected Iterable<Block> getKnownBlocks() {
+        return ModBlocks.BLOCKS.stream()
+                .map(entry-> (Block) entry.get())
+                .collect(Collectors.toList());
+    }
 
 }

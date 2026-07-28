@@ -11,6 +11,9 @@ public class Config {
         @ConfigProperty(name = "Sink", comment = "Sinks related settings")
         public final Fluid sink = new Fluid();
 
+        @ConfigProperty(name = "Basin", comment = "Basin Related settings")
+        public final Fluid basin = new Fluid();
+
         @ConfigProperty(name = "BathTube", comment = "BathTube related settings")
         public final Fluid bathTube = new Fluid();
 

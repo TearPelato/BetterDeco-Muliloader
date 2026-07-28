@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/basin",
+  "textures": {
+    "0": "better_deco:block/cherry_basin",
+    "particle": "better_deco:block/cherry_basin"
+  }
+}

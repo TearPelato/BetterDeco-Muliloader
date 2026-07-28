@@ -468,6 +468,27 @@ public class ModBundledTabs {
                     })
                     .build());
 
+    public static final BundledTabs BATHROOM = register(
+            BundledTabs.builder()
+                    .title(Component.translatable("bundled_tab.bathroom_furniture.title"))
+                    .icon(new ItemStack(ModBlocks.OAK_BASIN.get()))
+                    .displayItems((provider, output) -> {
+
+                        output.accept(ModBlocks.OAK_BASIN.get());
+                        output.accept(ModBlocks.SPRUCE_BASIN.get());
+                        output.accept(ModBlocks.BIRCH_BASIN.get());
+                        output.accept(ModBlocks.JUNGLE_BASIN.get());
+                        output.accept(ModBlocks.ACACIA_BASIN.get());
+                        output.accept(ModBlocks.DARK_OAK_BASIN.get());
+                        output.accept(ModBlocks.MANGROVE_BASIN.get());
+                        output.accept(ModBlocks.CHERRY_BASIN.get());
+                        output.accept(ModBlocks.BAMBOO_BASIN.get());
+                        output.accept(ModBlocks.CRIMSON_BASIN.get());
+                        output.accept(ModBlocks.WARPED_BASIN.get());
+
+
+                    })
+                    .build());
 
 
     public static BundledTabs register(BundledTabs builder) {

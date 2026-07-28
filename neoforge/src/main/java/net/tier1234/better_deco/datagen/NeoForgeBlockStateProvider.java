@@ -248,6 +248,17 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
 
         workbench(ModBlocks.FURNI_WORKBENCH.get(), Constants.id("block/workbench_front"),Constants.id("block/workbench_side"),Constants.id("block/workbench_top"), Constants.id("block/workbench_bottom"));
 
+        basin(ModBlocks.OAK_BASIN.get(), Constants.id("block/oak_basin"));
+        basin(ModBlocks.SPRUCE_BASIN.get(), Constants.id("block/spruce_basin"));
+        basin(ModBlocks.BIRCH_BASIN.get(), Constants.id("block/birch_basin"));
+        basin(ModBlocks.JUNGLE_BASIN.get(), Constants.id("block/jungle_basin"));
+        basin(ModBlocks.ACACIA_BASIN.get(), Constants.id("block/acacia_basin"));
+        basin(ModBlocks.DARK_OAK_BASIN.get(), Constants.id("block/dark_oak_basin"));
+        basin(ModBlocks.MANGROVE_BASIN.get(), Constants.id("block/mangrove_basin"));
+        basin(ModBlocks.CHERRY_BASIN.get(), Constants.id("block/cherry_basin"));
+        basin(ModBlocks.BAMBOO_BASIN.get(), Constants.id("block/bamboo_basin"));
+        basin(ModBlocks.CRIMSON_BASIN.get(), Constants.id("block/crimson_basin"));
+        basin(ModBlocks.WARPED_BASIN.get(), Constants.id("block/warped_basin"));
 
     }
 }

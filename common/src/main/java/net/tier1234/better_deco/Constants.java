@@ -1,6 +1,5 @@
 package net.tier1234.better_deco;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +14,5 @@ public class Constants {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
-    public static Component translatable(String text) {
-        return Component.translatable(text);
-    }
 
 }
