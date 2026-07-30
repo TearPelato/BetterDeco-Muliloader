@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/toilet",
+  "textures": {
+    "0": "better_deco:block/acacia_toilet",
+    "particle": "better_deco:block/acacia_toilet"
+  }
+}

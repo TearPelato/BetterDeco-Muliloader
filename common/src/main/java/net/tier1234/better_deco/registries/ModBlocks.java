@@ -23,6 +23,42 @@ public class ModBlocks {
             ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
 
 
+    public static final RegistryEntry<ToiletBlock> OAK_TOILET = register("oak_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> SPRUCE_TOILET = register("spruce_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> BIRCH_TOILET = register("birch_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> JUNGLE_TOILET = register("jungle_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> ACACIA_TOILET = register("acacia_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> DARK_OAK_TOILET = register("dark_oak_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> MANGROVE_TOILET = register("mangrove_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> CHERRY_TOILET = register("cherry_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> BAMBOO_TOILET = register("bamboo_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> CRIMSON_TOILET = register("crimson_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<ToiletBlock> WARPED_TOILET = register("warped_toilet",
+            ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static final RegistryEntry<BasinBlock> OAK_BASIN = register("oak_basin",
             ()-> new BasinBlock(BlockBehaviour.Properties.of().strength(2.0f)));
     public static final RegistryEntry<BasinBlock> SPRUCE_BASIN = register("spruce_basin",

@@ -124,6 +124,7 @@ public class BasinBlock extends FurnitureHorizontalBlock implements SimpleWaterl
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new BasinBlockEntity(blockPos, blockState);
     }
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return shapesByState.get(state);

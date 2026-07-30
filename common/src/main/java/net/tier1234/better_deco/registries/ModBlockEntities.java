@@ -372,4 +372,21 @@ public class ModBlockEntities {
 
             });
 
+    public static final RegistryEntry<BlockEntityType<ToiletBlockEntity>> TOILET =
+            RegistryEntry.blockEntity(Constants.id("toilet"), ToiletBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.OAK_TOILET.get(),
+                    ModBlocks.SPRUCE_TOILET.get(),
+                    ModBlocks.BIRCH_TOILET.get(),
+                    ModBlocks.JUNGLE_TOILET.get(),
+                    ModBlocks.ACACIA_TOILET.get(),
+                    ModBlocks.DARK_OAK_TOILET.get(),
+                    ModBlocks.MANGROVE_TOILET.get(),
+                    ModBlocks.CHERRY_TOILET.get(),
+                    ModBlocks.BAMBOO_TOILET.get(),
+                    ModBlocks.CRIMSON_TOILET.get(),
+                    ModBlocks.WARPED_TOILET.get()
+
+            });
+
+
 }

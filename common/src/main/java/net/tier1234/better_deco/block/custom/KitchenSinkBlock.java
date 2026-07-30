@@ -96,7 +96,7 @@ public class KitchenSinkBlock extends FurnitureHorizontalBlock implements Simple
         FluidState fs = world.getFluidState(pos.below(2));
         if (!fs.isSource() || fs.isEmpty()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         Fluid fluid = fs.getType();
-        if (!Config.CLIENT.sink.sinkAllowAllLiquids.get() && fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
+        if (!Config.CLIENT.sink.allowAllLiquids.get() && fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
         return sink.addFluid(fluid) ? ItemInteractionResult.SUCCESS : ItemInteractionResult.FAIL;
 
     }
@@ -104,7 +104,7 @@ public class KitchenSinkBlock extends FurnitureHorizontalBlock implements Simple
     private ItemInteractionResult fillFromItemStack(KitchenSinkBlockEntity sink, Player player, InteractionHand hand, ItemStack stack) {
         Fluid fluid = FluidInteractionUtil.getFluidFromItemStack(stack);
         if (fluid == Fluids.EMPTY || stack.getItem() == Items.BUCKET) return ItemInteractionResult.FAIL;
-        if (!Config.CLIENT.sink.sinkAllowAllLiquids.get() && fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
+        if (!Config.CLIENT.sink.allowAllLiquids.get() && fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
         boolean success = sink.addFluid(fluid);
         if (success && !player.isCreative()) player.setItemInHand(hand, Items.BUCKET.getDefaultInstance());
         return success ? ItemInteractionResult.SUCCESS : ItemInteractionResult.FAIL;

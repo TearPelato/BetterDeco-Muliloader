@@ -50,5 +50,6 @@ public class ClientBootstrap {
         register.apply(ModBlockEntities.CUTTING_BOARD.get(), CuttingBoardBlockEntityRenderer::new);
         register.apply(ModBlockEntities.JAR.get(), JarBlockEntityRenderer::new);
         register.apply(ModBlockEntities.BASIN.get(), BasinBlockEntityRenderer::new);
+        register.apply(ModBlockEntities.TOILET.get(), ToiletBlockEntityRenderer::new);
     }
 }

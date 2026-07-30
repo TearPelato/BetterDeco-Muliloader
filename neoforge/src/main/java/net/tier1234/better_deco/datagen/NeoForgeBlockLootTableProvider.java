@@ -466,6 +466,18 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_BASIN.get());
         dropSelf(ModBlocks.CRIMSON_BASIN.get());
         dropSelf(ModBlocks.WARPED_BASIN.get());
+
+        dropSelf(ModBlocks.OAK_TOILET.get());
+        dropSelf(ModBlocks.SPRUCE_TOILET.get());
+        dropSelf(ModBlocks.BIRCH_TOILET.get());
+        dropSelf(ModBlocks.JUNGLE_TOILET.get());
+        dropSelf(ModBlocks.ACACIA_TOILET.get());
+        dropSelf(ModBlocks.DARK_OAK_TOILET.get());
+        dropSelf(ModBlocks.MANGROVE_TOILET.get());
+        dropSelf(ModBlocks.CHERRY_TOILET.get());
+        dropSelf(ModBlocks.BAMBOO_TOILET.get());
+        dropSelf(ModBlocks.CRIMSON_TOILET.get());
+        dropSelf(ModBlocks.WARPED_TOILET.get());
     }
 
     @Override

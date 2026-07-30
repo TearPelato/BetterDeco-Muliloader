@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "better_deco:block/oak_basin",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "better_deco:block/oak_basin",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "better_deco:block/oak_basin"
+    },
+    "facing=west": {
+      "model": "better_deco:block/oak_basin",
+      "y": 90
+    }
+  }
+}

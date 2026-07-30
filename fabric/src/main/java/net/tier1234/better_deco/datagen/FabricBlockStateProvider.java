@@ -248,6 +248,30 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
 
         workbench(ModBlocks.FURNI_WORKBENCH.get(), Constants.id("block/workbench_front"),Constants.id("block/workbench_side"),Constants.id("block/workbench_top"), Constants.id("block/workbench_bottom"));
 
+        basin(ModBlocks.OAK_BASIN.get(), Constants.id("block/oak_basin"));
+        basin(ModBlocks.SPRUCE_BASIN.get(), Constants.id("block/spruce_basin"));
+        basin(ModBlocks.BIRCH_BASIN.get(), Constants.id("block/birch_basin"));
+        basin(ModBlocks.JUNGLE_BASIN.get(), Constants.id("block/jungle_basin"));
+        basin(ModBlocks.ACACIA_BASIN.get(), Constants.id("block/acacia_basin"));
+        basin(ModBlocks.DARK_OAK_BASIN.get(), Constants.id("block/dark_oak_basin"));
+        basin(ModBlocks.MANGROVE_BASIN.get(), Constants.id("block/mangrove_basin"));
+        basin(ModBlocks.CHERRY_BASIN.get(), Constants.id("block/cherry_basin"));
+        basin(ModBlocks.BAMBOO_BASIN.get(), Constants.id("block/bamboo_basin"));
+        basin(ModBlocks.CRIMSON_BASIN.get(), Constants.id("block/crimson_basin"));
+        basin(ModBlocks.WARPED_BASIN.get(), Constants.id("block/warped_basin"));
+
+        toilet(ModBlocks.OAK_TOILET.get(), Constants.id(("block/oak_toilet")));
+        toilet(ModBlocks.SPRUCE_TOILET.get(), Constants.id(("block/spruce_toilet")));
+        toilet(ModBlocks.BIRCH_TOILET.get(), Constants.id(("block/birch_toilet")));
+        toilet(ModBlocks.JUNGLE_TOILET.get(), Constants.id(("block/jungle_toilet")));
+        toilet(ModBlocks.ACACIA_TOILET.get(), Constants.id(("block/acacia_toilet")));
+        toilet(ModBlocks.DARK_OAK_TOILET.get(), Constants.id(("block/dark_oak_toilet")));
+        toilet(ModBlocks.MANGROVE_TOILET.get(), Constants.id(("block/mangrove_toilet")));
+        toilet(ModBlocks.CHERRY_TOILET.get(), Constants.id(("block/cherry_toilet")));
+        toilet(ModBlocks.BAMBOO_TOILET.get(), Constants.id(("block/bamboo_toilet")));
+        toilet(ModBlocks.CRIMSON_TOILET.get(), Constants.id(("block/crimson_toilet")));
+        toilet(ModBlocks.WARPED_TOILET.get(), Constants.id(("block/warped_toilet")));
+
 
     }
 }

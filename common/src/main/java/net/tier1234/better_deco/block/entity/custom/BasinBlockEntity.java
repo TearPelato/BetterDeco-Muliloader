@@ -1,7 +1,6 @@
 package net.tier1234.better_deco.block.entity.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.tearpelato.deco_lib.api.fluid.block_entity.FluidContainerBlockEntity;
@@ -10,7 +9,7 @@ import net.tier1234.better_deco.registries.ModBlockEntities;
 
 public class BasinBlockEntity extends FluidContainerBlockEntity {
     public BasinBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BASIN.get(), pos, state, Config.CLIENT.basin.sinkCapacity.get() * FluidContainerBlockEntity.BUCKET_VOLUME);
+        super(ModBlockEntities.BASIN.get(), pos, state, Config.CLIENT.basin.capacity.get() * FluidContainerBlockEntity.BUCKET_VOLUME);
     }
 
     public boolean addFluid(Fluid fluid) {

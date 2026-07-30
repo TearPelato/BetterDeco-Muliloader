@@ -486,6 +486,18 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_BASIN.get());
                         output.accept(ModBlocks.WARPED_BASIN.get());
 
+                        output.accept(ModBlocks.OAK_TOILET.get());
+                        output.accept(ModBlocks.SPRUCE_TOILET.get());
+                        output.accept(ModBlocks.BIRCH_TOILET.get());
+                        output.accept(ModBlocks.JUNGLE_TOILET.get());
+                        output.accept(ModBlocks.ACACIA_TOILET.get());
+                        output.accept(ModBlocks.DARK_OAK_TOILET.get());
+                        output.accept(ModBlocks.MANGROVE_TOILET.get());
+                        output.accept(ModBlocks.CHERRY_TOILET.get());
+                        output.accept(ModBlocks.BAMBOO_TOILET.get());
+                        output.accept(ModBlocks.CRIMSON_TOILET.get());
+                        output.accept(ModBlocks.WARPED_TOILET.get());
+
 
                     })
                     .build());

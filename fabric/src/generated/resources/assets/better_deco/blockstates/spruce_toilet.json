@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "better_deco:block/spruce_toilet",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "better_deco:block/spruce_toilet",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "better_deco:block/spruce_toilet"
+    },
+    "facing=west": {
+      "model": "better_deco:block/spruce_toilet",
+      "y": 90
+    }
+  }
+}

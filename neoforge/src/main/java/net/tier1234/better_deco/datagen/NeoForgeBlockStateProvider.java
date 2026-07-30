@@ -260,5 +260,18 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         basin(ModBlocks.CRIMSON_BASIN.get(), Constants.id("block/crimson_basin"));
         basin(ModBlocks.WARPED_BASIN.get(), Constants.id("block/warped_basin"));
 
+        toilet(ModBlocks.OAK_TOILET.get(), Constants.id(("block/oak_toilet")));
+        toilet(ModBlocks.SPRUCE_TOILET.get(), Constants.id(("block/spruce_toilet")));
+        toilet(ModBlocks.BIRCH_TOILET.get(), Constants.id(("block/birch_toilet")));
+        toilet(ModBlocks.JUNGLE_TOILET.get(), Constants.id(("block/jungle_toilet")));
+        toilet(ModBlocks.ACACIA_TOILET.get(), Constants.id(("block/acacia_toilet")));
+        toilet(ModBlocks.DARK_OAK_TOILET.get(), Constants.id(("block/dark_oak_toilet")));
+        toilet(ModBlocks.MANGROVE_TOILET.get(), Constants.id(("block/mangrove_toilet")));
+        toilet(ModBlocks.CHERRY_TOILET.get(), Constants.id(("block/cherry_toilet")));
+        toilet(ModBlocks.BAMBOO_TOILET.get(), Constants.id(("block/bamboo_toilet")));
+        toilet(ModBlocks.CRIMSON_TOILET.get(), Constants.id(("block/crimson_toilet")));
+        toilet(ModBlocks.WARPED_TOILET.get(), Constants.id(("block/warped_toilet")));
+
+
     }
 }
