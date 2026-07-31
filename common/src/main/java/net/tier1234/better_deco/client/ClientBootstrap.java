@@ -18,6 +18,7 @@ public class ClientBootstrap {
 
     public static void init() {
         BundledTabSelector.bootstrap();
+        net.tier1234.better_deco.creative_tabs.bulding_expansion.BundledTabSelector.bootstrap();
 
     }
 

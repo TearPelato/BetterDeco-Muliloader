@@ -1,4 +1,4 @@
-package net.tier1234.better_deco.creative_tabs;
+package net.tier1234.better_deco.creative_tabs.bulding_expansion;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.framework.api.event.ClientConnectionEvents;
@@ -15,19 +15,17 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.creative_tabs.BundledTabs;
 import net.tier1234.better_deco.mixin.access.CreativeModeInventoryScreenAccessor;
 import net.tier1234.better_deco.platform.Services;
-import net.tier1234.better_deco.registries.ModBundledTabs;
 import net.tier1234.better_deco.registries.ModCreativeTabs;
+import net.tier1234.better_deco.registries.building_expansion.ModBundledTabs2;
 
 import java.util.*;
 import java.util.function.Consumer;
 
-/**
- * BundledTabs from VanillaBackport, used with BlackGear's permission.
- * @author BlackGear
- */
 public class BundledTabSelector {
+
     private static final ResourceLocation SELECTOR_BAR =
             Constants.id("textures/gui/tab_selector/tab_interface.png");
     private static final int VISIBLE_CATEGORIES = 5;
@@ -52,7 +50,7 @@ public class BundledTabSelector {
 
     private BundledTabSelector() {
 
-        this.bundles = ModBundledTabs.getFilters();
+        this.bundles = ModBundledTabs2.getFilters();
 
         ScreenEvents.MODIFY_WIDGETS.register((screen, widgets, add, remove) -> {
             if(screen instanceof CreativeModeInventoryScreen creativeScreen) {
@@ -66,10 +64,10 @@ public class BundledTabSelector {
 
         ScreenEvents.CLOSED.register(screen -> {
             if (screen instanceof CreativeModeInventoryScreen) {
-                this.bundles.forEach(bundledTabs -> {
+                this.bundles.forEach(BundledTabs2 -> {
                     this.scrollUpButton = null;
                     this.scrollDownButton = null;
-                    bundledTabs.setVisible(false);
+                    BundledTabs2.setVisible(false);
 
                 });
             }
@@ -116,7 +114,7 @@ public class BundledTabSelector {
                 if (this.scroll < this.getMaxScroll()) this.scroll++;
             }
 
-        this.updateWidgets();
+            this.updateWidgets();
             return true;
         }
         return false;
@@ -149,7 +147,7 @@ public class BundledTabSelector {
 
     private void injectWidgets(CreativeModeInventoryScreen screen, Consumer<AbstractWidget> widgets) {
         this.bundles.forEach(bundle -> {
-            Tab tab = new Tab(this.guiLeft - 26, this.guiTop + 7, bundle, button -> {
+            net.tier1234.better_deco.creative_tabs.BundledTabSelector.Tab tab = new net.tier1234.better_deco.creative_tabs.BundledTabSelector.Tab(this.guiLeft - 26, this.guiTop + 7, bundle, button -> {
                 if (bundle.isSelected()) {
                     bundle.deselect();
                 } else {
@@ -188,7 +186,7 @@ public class BundledTabSelector {
 
         boolean hasSelected = this.bundles.stream().anyMatch(BundledTabs::isSelected);
 
-        ModCreativeTabs.BETTER_DECO.get().getDisplayItems().forEach(stack -> {
+        ModCreativeTabs.BETTER_DECO_BUILDINGS.get().getDisplayItems().forEach(stack -> {
             if (!hasSelected) {
                 if (!seenItems.contains(stack)) {
                     displayItems.add(stack.copy());
@@ -239,51 +237,13 @@ public class BundledTabSelector {
     }
 
     private boolean isValidTab(CreativeModeTab tab) {
-        return tab == ModCreativeTabs.BETTER_DECO.get();
+        return tab == ModCreativeTabs.BETTER_DECO_BUILDINGS.get();
     }
 
     private boolean hasSelectedBundle() {
         return this.bundles.stream().anyMatch(BundledTabs::isSelected);
     }
 
-    public static class Tab extends Button {
-        private final BundledTabs bundle;
-
-        public Tab(int x, int y, BundledTabs bundle, OnPress onPress) {
-            super(x, y, 16, 16, Component.empty(), onPress, DEFAULT_NARRATION);
-            this.bundle = bundle;
-            bundle.setContentTab(this);
-            this.setTooltip(Tooltip.create(bundle.getTooltip()));
-        }
-
-        @Override
-        protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-            graphics.pose().pushPose();
-            graphics.pose().translate(0.0, 0.0, 20.0);
-            this.renderSelected(graphics);
-            graphics.renderItem(this.bundle.getIcon(), this.getX(), this.getY());
-            graphics.pose().popPose();
-            this.renderHighlight(graphics);
-        }
-
-        private void renderSelected(GuiGraphics graphics) {
-            if (this.bundle.isSelected()) {
-                graphics.blit(SELECTOR_BAR, this.getX() - 7, this.getY() - 1, 37, 24, 30, 19);
-            }
-        }
-
-        private void renderHighlight(GuiGraphics graphics) {
-            if (this.isHovered() && !this.bundle.isSelected()) {
-                graphics.pose().pushPose();
-                graphics.pose().translate(0.0, 0.0, 20.0);
-                RenderSystem.enableBlend();
-                RenderSystem.defaultBlendFunc();
-                graphics.blit(SELECTOR_BAR, this.getX(), this.getY(),  33, 44, 16, 16);
-                RenderSystem.disableBlend();
-                graphics.pose().popPose();
-            }
-        }
-    }
 
     public static class ScrollButton extends Button {
         private final int uOffset;
@@ -302,4 +262,6 @@ public class BundledTabSelector {
             graphics.pose().popPose();
         }
     }
+    
+    
 }

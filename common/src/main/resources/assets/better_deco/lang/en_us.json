@@ -617,6 +617,8 @@
   "container.better_deco.cutting_board": "Cutting Board",
 
   "block_type.better_deco.kitchen_counter": "%s Kitchen Counter",
-  "block_type.better_deco.kitchen_drawer": "%s Kitchen Drawer"
+  "block_type.better_deco.kitchen_drawer": "%s Kitchen Drawer",
+  "creativetab.better_deco.better_deco_building": "BetterDeco: Building Blocks",
+  "bundled_tab.miscellaneous.title": "Miscellaneous"
 
 }

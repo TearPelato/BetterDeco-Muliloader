@@ -17,5 +17,10 @@ public class CreativeModeInventoryScreenMixin {
             cir.setReturnValue(true);
         }
 
+        if(net.tier1234.better_deco.creative_tabs.bulding_expansion.BundledTabSelector.bootstrap().onScroll(mouseX, mouseY, scrollY))
+        {
+            cir.setReturnValue(true);
+        }
+
     }
 }
