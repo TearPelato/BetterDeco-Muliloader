@@ -477,6 +477,17 @@ public class FabricLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.CRIMSON_TOILET.get());
         dropSelf(ModBlocks.WARPED_TOILET.get());
 
+        dropSelf(ModBlocks.OAK_BATH.get());
+        dropSelf(ModBlocks.SPRUCE_BATH.get());
+        dropSelf(ModBlocks.BIRCH_BATH.get());
+        dropSelf(ModBlocks.JUNGLE_BATH.get());
+        dropSelf(ModBlocks.ACACIA_BATH.get());
+        dropSelf(ModBlocks.DARK_OAK_BATH.get());
+        dropSelf(ModBlocks.MANGROVE_BATH.get());
+        dropSelf(ModBlocks.CHERRY_BATH.get());
+        dropSelf(ModBlocks.BAMBOO_BATH.get());
+        dropSelf(ModBlocks.CRIMSON_BATH.get());
+        dropSelf(ModBlocks.WARPED_BATH.get());
 
 
     }

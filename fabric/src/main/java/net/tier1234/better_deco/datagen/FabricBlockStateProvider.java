@@ -273,5 +273,18 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         toilet(ModBlocks.WARPED_TOILET.get(), Constants.id(("block/warped_toilet")));
 
 
+        bath(ModBlocks.OAK_BATH.get(), Constants.id(("block/oak_bath")));
+        bath(ModBlocks.SPRUCE_BATH.get(), Constants.id(("block/spruce_bath")));
+        bath(ModBlocks.BIRCH_BATH.get(), Constants.id(("block/birch_bath")));
+        bath(ModBlocks.JUNGLE_BATH.get(), Constants.id(("block/jungle_bath")));
+        bath(ModBlocks.ACACIA_BATH.get(), Constants.id(("block/acacia_bath")));
+        bath(ModBlocks.DARK_OAK_BATH.get(), Constants.id(("block/dark_oak_bath")));
+        bath(ModBlocks.MANGROVE_BATH.get(), Constants.id(("block/mangrove_bath")));
+        bath(ModBlocks.CHERRY_BATH.get(), Constants.id(("block/cherry_bath")));
+        bath(ModBlocks.BAMBOO_BATH.get(), Constants.id(("block/bamboo_bath")));
+        bath(ModBlocks.CRIMSON_BATH.get(), Constants.id(("block/crimson_bath")));
+        bath(ModBlocks.WARPED_BATH.get(), Constants.id(("block/warped_bath")));
+
+
     }
 }

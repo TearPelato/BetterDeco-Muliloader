@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "facing=east,part=extension": {
+      "model": "minecraft:block/air"
+    },
+    "facing=east,part=main": {
+      "model": "better_deco:block/birch_bath",
+      "y": 270
+    },
+    "facing=north,part=extension": {
+      "model": "minecraft:block/air"
+    },
+    "facing=north,part=main": {
+      "model": "better_deco:block/birch_bath",
+      "y": 180
+    },
+    "facing=south,part=extension": {
+      "model": "minecraft:block/air"
+    },
+    "facing=south,part=main": {
+      "model": "better_deco:block/birch_bath"
+    },
+    "facing=west,part=extension": {
+      "model": "minecraft:block/air"
+    },
+    "facing=west,part=main": {
+      "model": "better_deco:block/birch_bath",
+      "y": 90
+    }
+  }
+}

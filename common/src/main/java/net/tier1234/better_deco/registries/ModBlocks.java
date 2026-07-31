@@ -23,6 +23,32 @@ public class ModBlocks {
             ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
 
 
+    public static final RegistryEntry<BathBlock> OAK_BATH = register("oak_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> SPRUCE_BATH = register("spruce_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> BIRCH_BATH = register("birch_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> JUNGLE_BATH = register("jungle_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> ACACIA_BATH = register("acacia_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> DARK_OAK_BATH = register("dark_oak_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> MANGROVE_BATH = register("mangrove_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> CHERRY_BATH = register("cherry_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> BAMBOO_BATH = register("bamboo_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> CRIMSON_BATH = register("crimson_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<BathBlock> WARPED_BATH = register("warped_bath",
+            ()-> new BathBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+
+
+
+
     public static final RegistryEntry<ToiletBlock> OAK_TOILET = register("oak_toilet",
             ()-> new ToiletBlock(BlockBehaviour.Properties.of().strength(2.0f)));
     public static final RegistryEntry<ToiletBlock> SPRUCE_TOILET = register("spruce_toilet",

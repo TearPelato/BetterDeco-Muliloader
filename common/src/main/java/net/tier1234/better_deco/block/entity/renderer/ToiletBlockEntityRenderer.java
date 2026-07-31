@@ -12,7 +12,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.tearpelato.deco_lib.api.fluid.renderer.FluidContainerRenderer;
 import net.tier1234.better_deco.block.entity.custom.ToiletBlockEntity;
+import org.lwjgl.system.NonnullDefault;
 
+@NonnullDefault
 public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBlockEntity> {
 
    public ToiletBlockEntityRenderer(BlockEntityRendererProvider.Context ignored) {}

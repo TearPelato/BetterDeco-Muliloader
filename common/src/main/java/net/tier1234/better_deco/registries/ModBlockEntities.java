@@ -5,6 +5,7 @@ import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.block.custom.BathBlock;
 import net.tier1234.better_deco.block.entity.custom.*;
 
 @RegistryContainer
@@ -388,5 +389,19 @@ public class ModBlockEntities {
 
             });
 
+    public static final RegistryEntry<BlockEntityType<BathBlockEntity>> BATH =
+            RegistryEntry.blockEntity(Constants.id("bath"), BathBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.OAK_BATH.get(),
+                    ModBlocks.SPRUCE_BATH.get(),
+                    ModBlocks.BIRCH_BATH.get(),
+                    ModBlocks.JUNGLE_BATH.get(),
+                    ModBlocks.ACACIA_BATH.get(),
+                    ModBlocks.DARK_OAK_BATH.get(),
+                    ModBlocks.MANGROVE_BATH.get(),
+                    ModBlocks.CHERRY_BATH.get(),
+                    ModBlocks.BAMBOO_BATH.get(),
+                    ModBlocks.CRIMSON_BATH.get(),
+                    ModBlocks.WARPED_BATH.get()
 
+            });
 }
