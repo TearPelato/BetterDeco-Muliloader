@@ -9,9 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
-import net.tier1234.better_deco.registries.building_expansion.ModBundledTabs2;
 
 import java.util.List;
+
 @RegistryContainer
 
 public class ModCreativeTabs {
@@ -33,15 +33,11 @@ public class ModCreativeTabs {
    public static final RegistryEntry<CreativeModeTab> BETTER_DECO_BUILDINGS = RegistryEntry.creativeModeTab(
            Constants.id("better_deco_building"), builder -> {
                builder.title(Component.translatable("creativetab.better_deco.better_deco_building"));
-               //Temprorary Icon just to test it works properly
                builder.icon(() -> new ItemStack(Blocks.BARREL));
                builder.displayItems((parameters, output) -> {
-                   var provider = parameters.holders();
-                   List<BundledTabs> filters = ModBundledTabs2.getFilters();
-                   filters.forEach(tab -> tab.populate(provider));
-                   filters.stream()
-                           .flatMap(filter -> filter.getDisplayItems().stream())
-                           .forEach(output::accept);
+
+
+
                });
 
 
