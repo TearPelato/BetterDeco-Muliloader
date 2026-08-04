@@ -15,9 +15,14 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -30,16 +35,17 @@ import net.tier1234.better_deco.entity.custom.SeatEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SofaBlock extends FurnitureHorizontalBlock
+public class SofaBlock extends FurnitureHorizontalBlock implements SimpleWaterloggedBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public SofaBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(WATERLOGGED, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
@@ -113,7 +119,8 @@ public class SofaBlock extends FurnitureHorizontalBlock
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        BlockState state = super.getStateForPlacement(context);
+        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+        BlockState state = this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
         return this.getSofaState(state, context.getLevel(), context.getClickedPos(), state.getValue(DIRECTION));
     }
 
@@ -135,6 +142,10 @@ public class SofaBlock extends FurnitureHorizontalBlock
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
+        if(state.getValue(WATERLOGGED)){
+        level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
         return this.getSofaState(state, level, pos, state.getValue(DIRECTION));
     }
 
@@ -183,7 +194,7 @@ public class SofaBlock extends FurnitureHorizontalBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder);
-        builder.add(TYPE);
+        builder.add(TYPE, WATERLOGGED);
     }
 
     public enum Type implements StringRepresentable

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Constants {
+    private Constants() {}
 
     public static final String MOD_ID = "better_deco";
     public static final String MOD_NAME = "BetterDeco";

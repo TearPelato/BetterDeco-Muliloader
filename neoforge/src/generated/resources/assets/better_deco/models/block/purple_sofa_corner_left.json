@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/sofa_corner_left",
+  "textures": {
+    "0": "better_deco:block/purple_sofa",
+    "particle": "better_deco:block/purple_sofa"
+  }
+}

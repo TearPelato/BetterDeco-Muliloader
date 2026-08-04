@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "craftWorkbench": {
+      "conditions": {
+        "items": [
+          {
+            "items": "better_deco:furni_workbench"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "better_deco:",
+    "description": {
+      "translate": "advancement.better_deco.craft_workbench.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "better_deco:furni_workbench"
+    },
+    "title": {
+      "translate": "advancement.better_deco.craft_workbench.title"
+    }
+  },
+  "requirements": [
+    [
+      "craftWorkbench"
+    ]
+  ]
+}

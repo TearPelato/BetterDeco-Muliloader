@@ -112,7 +112,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BROWN_SOFA.get());
         dropSelf(ModBlocks.ORANGE_SOFA.get());
         dropSelf(ModBlocks.BLACK_SOFA.get());
-        dropSelf(ModBlocks.WITHE_SOFA.get());
+        dropSelf(ModBlocks.WHITE_SOFA.get());
         dropSelf(ModBlocks.MAGENTA_SOFA.get());
         dropSelf(ModBlocks.LIGHT_BLUE_SOFA.get());
         dropSelf(ModBlocks.BLUE_SOFA.get());

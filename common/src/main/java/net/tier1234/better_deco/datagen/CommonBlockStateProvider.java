@@ -6,7 +6,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -473,7 +472,54 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     }
 
 
+    protected void sofa(SofaBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
+        ResourceLocation defaultKey     = modId(baseName + "_single");
+        ResourceLocation leftCornerKey  = modId(baseName + "_left");
+        ResourceLocation rightCornerKey = modId(baseName + "_right");
+        ResourceLocation middleKey     = modId(baseName + "_middle");
+        ResourceLocation corner_leftKey    = modId(baseName + "_corner_left");
+        ResourceLocation corner_rightKey   = modId(baseName + "_corner_right");
+
+        ResourceLocation defaultRef     = modId("block/" + baseName + "_single");
+        ResourceLocation leftCornerRef  = modId("block/" + baseName + "_left");
+        ResourceLocation rightCornerRef = modId("block/" + baseName + "_right");
+        ResourceLocation middleRef    = modId("block/" + baseName + "_middle");
+        ResourceLocation corner_leftRef    = modId("block/" + baseName + "_corner_left");
+        ResourceLocation corner_rightRef   = modId("block/" + baseName + "_corner_right");
+
+        registerModel(defaultKey,     Constants.id("block/sofa_single"),               texture);
+        registerModel(leftCornerKey,  Constants.id("block/sofa_left"),           texture);
+        registerModel(rightCornerKey, Constants.id("block/sofa_right"),          texture);
+        registerModel(middleKey,     Constants.id("block/sofa_middle"),  texture);
+        registerModel(corner_leftKey,    Constants.id("block/sofa_corner_left"), texture);
+        registerModel(corner_rightKey,    Constants.id("block/sofa_corner_right"), texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int defRot  = defaultRotation(dir);
+            int cornRot = cornerRotation(dir);
+            for (SofaBlock.Type type : SofaBlock.Type.values()) {
+                String key = "facing=" + dir.getSerializedName() + ",type=" + type.getSerializedName();
+                ResourceLocation model = switch (type) {
+                    case SINGLE               -> defaultRef;
+                    case LEFT           -> leftCornerRef;
+                    case RIGHT          -> rightCornerRef;
+                    case MIDDLE  -> middleRef;
+                    case CORNER_LEFT -> corner_leftRef;
+                    case CORNER_RIGHT -> corner_rightRef;
+                };
+                int rot = (type == SofaBlock.Type.SINGLE) ? defRot : cornRot;
+                variants.add(key, variantJson(model, rot));
+            }
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName,defaultRef);
+    }
 
 
 

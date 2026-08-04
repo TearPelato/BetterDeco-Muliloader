@@ -407,37 +407,37 @@ public class ModBlocks {
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Sofas
-    public static final RegistryEntry<Block> RED_SOFA = register("red_sofa",
+    public static final RegistryEntry<SofaBlock> RED_SOFA = register("red_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_SOFA = register("orange_sofa",
+    public static final RegistryEntry<SofaBlock> ORANGE_SOFA = register("orange_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_SOFA = register("blue_sofa",
+    public static final RegistryEntry<SofaBlock> BLUE_SOFA = register("blue_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_SOFA = register("cyan_sofa",
+    public static final RegistryEntry<SofaBlock> CYAN_SOFA = register("cyan_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_SOFA = register("light_blue_sofa",
+    public static final RegistryEntry<SofaBlock> LIGHT_BLUE_SOFA = register("light_blue_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_SOFA = register("purple_sofa",
+    public static final RegistryEntry<SofaBlock> PURPLE_SOFA = register("purple_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_SOFA = register("magenta_sofa",
+    public static final RegistryEntry<SofaBlock> MAGENTA_SOFA = register("magenta_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_SOFA = register("yellow_sofa",
+    public static final RegistryEntry<SofaBlock> YELLOW_SOFA = register("yellow_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREY_SOFA = register("grey_sofa",
+    public static final RegistryEntry<SofaBlock> GREY_SOFA = register("grey_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GREY_SOFA = register("light_grey_sofa",
+    public static final RegistryEntry<SofaBlock> LIGHT_GREY_SOFA = register("light_grey_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_SOFA = register("black_sofa",
+    public static final RegistryEntry<SofaBlock> BLACK_SOFA = register("black_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WITHE_SOFA = register("white_sofa",
+    public static final RegistryEntry<SofaBlock> WHITE_SOFA = register("white_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_SOFA = register("green_sofa",
+    public static final RegistryEntry<SofaBlock> GREEN_SOFA = register("green_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_SOFA = register("lime_sofa",
+    public static final RegistryEntry<SofaBlock> LIME_SOFA = register("lime_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_SOFA = register("pink_sofa",
+    public static final RegistryEntry<SofaBlock> PINK_SOFA = register("pink_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_SOFA = register("brown_sofa",
+    public static final RegistryEntry<SofaBlock> BROWN_SOFA = register("brown_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Cabinet

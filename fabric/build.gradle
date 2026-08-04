@@ -32,7 +32,7 @@ dependencies {
     modImplementation "curse.maven:selene-499980:8065894"
     modImplementation "curse.maven:terrablender-fabric-565956:6054948"
     modImplementation "curse.maven:natures-spirit-1044992:6962791"
-
+    modImplementation "curse.maven:refurbished-furniture-897116:7473562"
 
     modCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     modCompileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"

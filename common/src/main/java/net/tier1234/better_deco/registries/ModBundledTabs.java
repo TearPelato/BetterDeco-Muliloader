@@ -286,10 +286,10 @@ public class ModBundledTabs {
     public static final BundledTabs LIVING_ROOM = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.living_room"))
-                    .icon(new ItemStack(ModBlocks.WITHE_SOFA.get()))
+                    .icon(new ItemStack(ModBlocks.WHITE_SOFA.get()))
                     .displayItems(((provider, output) -> {
 
-                        output.accept(ModBlocks.WITHE_SOFA.get());
+                        output.accept(ModBlocks.WHITE_SOFA.get());
                         output.accept(ModBlocks.LIGHT_GREY_SOFA.get());
                         output.accept(ModBlocks.GREY_SOFA.get());
                         output.accept(ModBlocks.BLACK_SOFA.get());

@@ -284,6 +284,22 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         bath(ModBlocks.CRIMSON_BATH.get(), Constants.id(("block/crimson_bath")));
         bath(ModBlocks.WARPED_BATH.get(), Constants.id(("block/warped_bath")));
 
+        sofa(ModBlocks.WHITE_SOFA.get(), Constants.id("block/white_sofa"));
+        sofa(ModBlocks.LIGHT_GREY_SOFA.get(), Constants.id("block/light_gray_sofa"));
+        sofa(ModBlocks.GREY_SOFA.get(), Constants.id("block/gray_sofa"));
+        sofa(ModBlocks.BLACK_SOFA.get(), Constants.id("block/black_sofa"));
+        sofa(ModBlocks.BROWN_SOFA.get(), Constants.id("block/brown_sofa"));
+        sofa(ModBlocks.RED_SOFA.get(), Constants.id("block/red_sofa"));
+        sofa(ModBlocks.ORANGE_SOFA.get(), Constants.id("block/orange_sofa"));
+        sofa(ModBlocks.YELLOW_SOFA.get(), Constants.id("block/yellow_sofa"));
+        sofa(ModBlocks.LIME_SOFA.get(), Constants.id("block/lime_sofa"));
+        sofa(ModBlocks.GREEN_SOFA.get(), Constants.id("block/green_sofa"));
+        sofa(ModBlocks.CYAN_SOFA.get(), Constants.id("block/cyan_sofa"));
+        sofa(ModBlocks.LIGHT_BLUE_SOFA.get(), Constants.id("block/light_blue_sofa"));
+        sofa(ModBlocks.BLUE_SOFA.get(), Constants.id("block/blue_sofa"));
+        sofa(ModBlocks.PURPLE_SOFA.get(), Constants.id("block/purple_sofa"));
+        sofa(ModBlocks.MAGENTA_SOFA.get(), Constants.id("block/magenta_sofa"));
+        sofa(ModBlocks.PINK_SOFA.get(), Constants.id("block/pink_sofa"));
 
     }
 }

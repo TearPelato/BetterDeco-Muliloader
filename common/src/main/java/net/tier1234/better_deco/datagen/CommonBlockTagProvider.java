@@ -131,7 +131,7 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .add(ModBlocks.GREY_SOFA.get())
                 .add(ModBlocks.LIGHT_GREY_SOFA.get())
                 .add(ModBlocks.BLACK_SOFA.get())
-                .add(ModBlocks.WITHE_SOFA.get())
+                .add(ModBlocks.WHITE_SOFA.get())
                 .add(ModBlocks.BROWN_SOFA.get())
 
                 //Shelf

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/sofa_right",
+  "textures": {
+    "0": "better_deco:block/pink_sofa",
+    "particle": "better_deco:block/pink_sofa"
+  }
+}

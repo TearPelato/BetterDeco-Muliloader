@@ -74,7 +74,7 @@ dependencies {
     implementation "curse.maven:biomes-o-plenty-220318:7251965"
     implementation "curse.maven:terrablender-neoforge-940057:6054947"
     implementation "curse.maven:glitchcore-955399:5660740"
-
+    implementation "curse.maven:refurbished-furniture-897116:7473565"
 
     implementation("net.liukrast:compat_manager-1.21.1:${compat_manager_version}")
     jarJar("net.liukrast:compat_manager-1.21.1:${compat_manager_version}")
