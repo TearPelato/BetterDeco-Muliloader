@@ -30,10 +30,6 @@ public class ModMenuTypes {
     public static final RegistryEntry<MenuType<MicrowaveMenu>> MICROWAVE_MENU =
             RegistryEntry.menuTypeWithData(Constants.id("microwave_menu"), MicrowaveMenu.CustomData.CODEC, MicrowaveMenu::new);
 
-    public static final RegistryEntry<MenuType<SinkMenu>> SINK_MENU =
-            RegistryEntry.menuType(Constants.id("sink_menu"),
-                    (id,inv)-> new SinkMenu(id, inv, (FriendlyByteBuf) null));
-
     public static final RegistryEntry<MenuType<FreezerMenu>> FREEZER_MENU =
             RegistryEntry.menuTypeWithData(Constants.id("freezer_menu"), FreezerMenu.FreezerData.CODEC, FreezerMenu::new);
 
