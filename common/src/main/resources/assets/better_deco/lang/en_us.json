@@ -32,7 +32,6 @@
 
   "bundled_tab.general": "General Furniture",
   "bundled_tab.kitchen": "Kitchen Furniture",
-  "bundled_tab.living_room": "Living Furniture",
   "bundled_tab.buildings_extras": "Buildings Extras",
   "bundled_tab.utilities.title": "Utilities",
   "bundled_tabs.item": "Items",
@@ -618,8 +617,6 @@
 
   "block_type.better_deco.kitchen_counter": "%s Kitchen Counter",
   "block_type.better_deco.kitchen_drawer": "%s Kitchen Drawer",
-  "creativetab.better_deco.better_deco_building": "BetterDeco: Building Blocks",
-  "bundled_tab.miscellaneous.title": "Miscellaneous",
   "advancement.better_deco.craft_workbench.title": "Ready to Craft",
   "advancement.better_deco.craft_workbench.description": "Craft a workbench and start decor!",
   "advancement.better_deco.craft_furniture.title": "Start Decor",

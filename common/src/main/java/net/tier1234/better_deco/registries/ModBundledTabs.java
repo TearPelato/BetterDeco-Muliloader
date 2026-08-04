@@ -33,24 +33,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_CHAIR.get());
                         output.accept(ModBlocks.WARPED_CHAIR.get());
 
-                        output.accept(ModBlocks.WITHE_STOOL.get());
-                        output.accept(ModBlocks.LIGHT_GREY_STOOL.get());
-                        output.accept(ModBlocks.GREY_STOOL.get());
-                        output.accept(ModBlocks.BLACK_STOOL.get());
-                        output.accept(ModBlocks.RED_STOOL.get());
-                        output.accept(ModBlocks.ORANGE_STOOL.get());
-                        output.accept(ModBlocks.YELLOW_STOOL.get());
-                        output.accept(ModBlocks.LIME_STOOL.get());
-                        output.accept(ModBlocks.GREEN_STOOL.get());
-                        output.accept(ModBlocks.CYAN_STOOL.get());
-                        output.accept(ModBlocks.LIGHT_BLUE_STOOL.get());
-                        output.accept(ModBlocks.BLUE_STOOL.get());
-                        output.accept(ModBlocks.PURPLE_STOOL.get());
-                        output.accept(ModBlocks.MAGENTA_STOOL.get());
-                        output.accept(ModBlocks.PINK_STOOL.get());
-                        output.accept(ModBlocks.BROWN_STOOL.get());
-
-
                         output.accept(ModBlocks.OAK_TABLE.get());
                         output.accept(ModBlocks.SPRUCE_TABLE.get());
                         output.accept(ModBlocks.BIRCH_TABLE.get());
@@ -75,8 +57,51 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_DINNING_TABLE.get());
                         output.accept(ModBlocks.WARPED_DINNING_TABLE.get());
 
+                        output.accept(ModBlocks.WHITE_SOFA.get());
+                        output.accept(ModBlocks.LIGHT_GREY_SOFA.get());
+                        output.accept(ModBlocks.GREY_SOFA.get());
+                        output.accept(ModBlocks.BLACK_SOFA.get());
+                        output.accept(ModBlocks.RED_SOFA.get());
+                        output.accept(ModBlocks.ORANGE_SOFA.get());
+                        output.accept(ModBlocks.YELLOW_SOFA.get());
+                        output.accept(ModBlocks.LIME_SOFA.get());
+                        output.accept(ModBlocks.GREEN_SOFA.get());
+                        output.accept(ModBlocks.CYAN_SOFA.get());
+                        output.accept(ModBlocks.LIGHT_BLUE_SOFA.get());
+                        output.accept(ModBlocks.BLUE_SOFA.get());
+                        output.accept(ModBlocks.PURPLE_SOFA.get());
+                        output.accept(ModBlocks.MAGENTA_SOFA.get());
+                        output.accept(ModBlocks.PINK_SOFA.get());
+                        output.accept(ModBlocks.BROWN_SOFA.get());
 
+                        output.accept(ModBlocks.OAK_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.SPRUCE_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.BIRCH_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.JUNGLE_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.ACACIA_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.DARK_OAK_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.MANGROVE_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.CHERRY_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.BAMBOO_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.CRIMSON_COFFEE_TABLE.get());
+                        output.accept(ModBlocks.WARPED_COFFEE_TABLE.get());
 
+                        output.accept(ModBlocks.WITHE_STOOL.get());
+                        output.accept(ModBlocks.LIGHT_GREY_STOOL.get());
+                        output.accept(ModBlocks.GREY_STOOL.get());
+                        output.accept(ModBlocks.BLACK_STOOL.get());
+                        output.accept(ModBlocks.RED_STOOL.get());
+                        output.accept(ModBlocks.ORANGE_STOOL.get());
+                        output.accept(ModBlocks.YELLOW_STOOL.get());
+                        output.accept(ModBlocks.LIME_STOOL.get());
+                        output.accept(ModBlocks.GREEN_STOOL.get());
+                        output.accept(ModBlocks.CYAN_STOOL.get());
+                        output.accept(ModBlocks.LIGHT_BLUE_STOOL.get());
+                        output.accept(ModBlocks.BLUE_STOOL.get());
+                        output.accept(ModBlocks.PURPLE_STOOL.get());
+                        output.accept(ModBlocks.MAGENTA_STOOL.get());
+                        output.accept(ModBlocks.PINK_STOOL.get());
+                        output.accept(ModBlocks.BROWN_STOOL.get());
 
                     }))
                     .build());
@@ -283,43 +308,6 @@ public class ModBundledTabs {
                     .build()
     );
 
-    public static final BundledTabs LIVING_ROOM = register(
-            BundledTabs.builder()
-                    .title(Component.translatable("bundled_tab.living_room"))
-                    .icon(new ItemStack(ModBlocks.WHITE_SOFA.get()))
-                    .displayItems(((provider, output) -> {
-
-                        output.accept(ModBlocks.WHITE_SOFA.get());
-                        output.accept(ModBlocks.LIGHT_GREY_SOFA.get());
-                        output.accept(ModBlocks.GREY_SOFA.get());
-                        output.accept(ModBlocks.BLACK_SOFA.get());
-                        output.accept(ModBlocks.RED_SOFA.get());
-                        output.accept(ModBlocks.ORANGE_SOFA.get());
-                        output.accept(ModBlocks.YELLOW_SOFA.get());
-                        output.accept(ModBlocks.LIME_SOFA.get());
-                        output.accept(ModBlocks.GREEN_SOFA.get());
-                        output.accept(ModBlocks.CYAN_SOFA.get());
-                        output.accept(ModBlocks.LIGHT_BLUE_SOFA.get());
-                        output.accept(ModBlocks.BLUE_SOFA.get());
-                        output.accept(ModBlocks.PURPLE_SOFA.get());
-                        output.accept(ModBlocks.MAGENTA_SOFA.get());
-                        output.accept(ModBlocks.PINK_SOFA.get());
-                        output.accept(ModBlocks.BROWN_SOFA.get());
-
-                        output.accept(ModBlocks.OAK_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.SPRUCE_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.BIRCH_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.JUNGLE_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.ACACIA_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.DARK_OAK_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.MANGROVE_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.CHERRY_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.BAMBOO_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.CRIMSON_COFFEE_TABLE.get());
-                        output.accept(ModBlocks.WARPED_COFFEE_TABLE.get());
-
-                    }))
-                    .build());
 
     public static final BundledTabs FURNITURE_EXTRAS = register(
             BundledTabs.builder()
