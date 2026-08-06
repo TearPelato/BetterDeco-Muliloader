@@ -6,6 +6,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
 import net.tier1234.better_deco.compat.everycomp.FabricEveryCompatModule;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
+import net.tier1234.better_deco.registries.ModKeybinds;
 
 public class BetterDeco implements ModInitializer {
 
@@ -14,6 +15,7 @@ public class BetterDeco implements ModInitializer {
         FrameworkSetup.run();
         FabricNetworkHandler.registerPayloads();
         FabricNetworkHandler.registerServer();
+        ModKeybinds.init();
 
         if (FabricLoader.getInstance().isModLoaded("everycomp")) {
             EveryCompatAPI.registerModule(new FabricEveryCompatModule());

@@ -11,9 +11,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.client.ClientBootstrap;
+import net.tier1234.better_deco.registries.ModKeybinds;
 import org.apache.commons.lang3.function.TriFunction;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
@@ -45,5 +47,10 @@ public class BetterDecoClient {
                 event.register(type, factory::apply);
             }
         });
+    }
+
+    @SubscribeEvent
+    public static void registerKeybinding(RegisterKeyMappingsEvent event){
+        event.register(ModKeybinds.PRESS_G.get());
     }
 }

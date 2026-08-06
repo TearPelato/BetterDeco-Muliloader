@@ -2,6 +2,8 @@ package net.tier1234.better_deco;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -17,6 +19,7 @@ import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.network.ModPackets;
+import net.tier1234.better_deco.registries.ModKeybinds;
 import net.tier1234.better_deco.util.CutoutRenderLayerBlocks;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -37,5 +40,8 @@ public class BetterDecoClient implements ClientModInitializer {
         FabricNetworkHandler.registerClient();
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), CutoutRenderLayerBlocks.getBlocks());
+
+        KeyBindingHelper.registerKeyBinding(ModKeybinds.KEY_MAPPING_G);
+
     }
 }
