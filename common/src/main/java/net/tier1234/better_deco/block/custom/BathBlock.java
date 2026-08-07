@@ -30,7 +30,9 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.fluid.block_entity.FluidContainerBlockEntity;
@@ -39,40 +41,39 @@ import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.entity.custom.BathBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterloggedBlock, EntityBlock {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HAS_WATER = ModBlockStateProperties.HAS_WATER;
     public static final EnumProperty<BathPart> PART = EnumProperty.create("part", BathPart.class);
+    protected static final VoxelShape BASE_SHAPE = Block.box(0, 2, 0, 32, 16, 16);
+    protected static final VoxelShape COLLISION_SHAPE = Shapes.join(BASE_SHAPE, Block.box(2, 4, 2, 28, 16, 14), BooleanOp.ONLY_FIRST);
 
-    private final ImmutableMap<BlockState, VoxelShape> shapesByState;
 
     public BathBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.SOUTH)
-                .setValue(PART, BathPart.MAIN)
+                .setValue(PART, BathPart.BOTTOM)
                 .setValue(HAS_WATER, false));
-        this.shapesByState = generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
     @Override
-    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
-        ImmutableMap.Builder<BlockState, VoxelShape> builder = ImmutableMap.builder();
-        for (BlockState s : states) {
-            Direction dir = s.getValue(DIRECTION);
-            VoxelShape shape = createShape(0, 0, 0, 16, 16, 16, dir);
-            builder.put(s, shape);
-        }
-        return builder.build();
+    protected Map<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    {
+        return ImmutableMap.copyOf(states.stream().collect(Collectors.toMap(state -> state, state -> {
+            if(state.getValue(PART) == BathPart.HEAD) {
+                return VoxelShapeHelper.rotateHorizontally(BASE_SHAPE.move(-1, 0, 0), state.getValue(DIRECTION));
+            }
+            return VoxelShapeHelper.rotateHorizontally(BASE_SHAPE, state.getValue(DIRECTION));
+        })));
     }
 
-    private VoxelShape createShape(double x1, double y1, double z1, double x2, double y2, double z2, Direction dir) {
-        VoxelShape[] rotated = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(x1, y1, z1, x2, y2, z2), Direction.SOUTH));
-        return rotated[dir.get2DDataValue()];
-    }
 
-     @Nullable
+    @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
@@ -80,34 +81,45 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
 
         Direction dir = state.getValue(DIRECTION);
         Level level = context.getLevel();
-        BlockPos extPos = context.getClickedPos().relative(dir);
+        BlockPos headPos = context.getClickedPos().relative(dir);
 
-        if (!level.getWorldBorder().isWithinBounds(extPos)) return null;
-        if (!level.getBlockState(extPos).canBeReplaced(context)) return null;
+        if (!level.getWorldBorder().isWithinBounds(headPos)) return null;
+        if (!level.getBlockState(headPos).canBeReplaced(context)) return null;
 
-        return state.setValue(PART, BathPart.MAIN);
+        return state.setValue(PART, BathPart.BOTTOM);
     }
 
-      @Override
+    @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.setPlacedBy(level, pos, state, placer, stack);
         if (level.isClientSide) return;
 
         Direction dir = state.getValue(DIRECTION);
-        BlockPos extPos = pos.relative(dir);
-        boolean extWaterlogged = level.getFluidState(extPos).getType() == Fluids.WATER;
+        BlockPos headPos = pos.relative(dir);
+        boolean headWaterlogged = level.getFluidState(headPos).getType() == Fluids.WATER;
 
-        level.setBlock(extPos, state
-                .setValue(PART, BathPart.EXTENSION)
-                .setValue(WATERLOGGED, extWaterlogged), Block.UPDATE_ALL);
+        level.setBlock(headPos, state
+                .setValue(PART, BathPart.HEAD)
+                .setValue(WATERLOGGED, headWaterlogged), Block.UPDATE_ALL);
     }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context)
+    {
+        if(state.getValue(PART) == BathPart.HEAD)
+        {
+            return VoxelShapeHelper.rotateHorizontally(COLLISION_SHAPE.move(-1, 0, 0), state.getValue(DIRECTION));
+        }
+        return VoxelShapeHelper.rotateHorizontally(COLLISION_SHAPE, state.getValue(DIRECTION));
+    }
+
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!level.isClientSide && !state.is(newState.getBlock())) {
             BathPart part = state.getValue(PART);
             Direction facing = state.getValue(DIRECTION);
-            BlockPos otherPos = part == BathPart.MAIN ? pos.relative(facing) : pos.relative(facing.getOpposite());
+            BlockPos otherPos = part == BathPart.BOTTOM ? pos.relative(facing) : pos.relative(facing.getOpposite());
             BlockState otherState = level.getBlockState(otherPos);
 
             if (otherState.is(this) && otherState.getValue(PART) != part) {
@@ -126,22 +138,13 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (world.isClientSide) return ItemInteractionResult.SUCCESS;
-
-        BlockPos bePos = mainPos(state, pos);
-        BlockEntity be = world.getBlockEntity(bePos);
+        BlockEntity be = world.getBlockEntity(pos);
         if (!(be instanceof BathBlockEntity sink)) return ItemInteractionResult.FAIL;
 
-        if (stack.isEmpty()) return fillFromNearbyFluid(sink, world, bePos);
+        if (stack.isEmpty()) return fillFromNearbyFluid(sink, world, pos);
         Item item = stack.getItem();
         if (item == Items.BUCKET) return handleBucket(sink, player, hand, stack);
         return fillFromItemStack(sink, player, hand, stack);
-    }
-
-
-    private BlockPos mainPos(BlockState state, BlockPos pos) {
-        if (state.getValue(PART) == BathPart.MAIN) return pos;
-        Direction facing = state.getValue(DIRECTION);
-        return pos.relative(facing.getOpposite());
     }
 
     private ItemInteractionResult fillFromNearbyFluid(BathBlockEntity sink, Level world, BlockPos pos) {
@@ -150,6 +153,7 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
         Fluid fluid = fs.getType();
         if (fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
         return sink.addFluid(fluid) ? ItemInteractionResult.SUCCESS : ItemInteractionResult.FAIL;
+
     }
 
     private ItemInteractionResult fillFromItemStack(BathBlockEntity sink, Player player, InteractionHand hand, ItemStack stack) {
@@ -178,13 +182,9 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return blockState.getValue(PART) == BathPart.EXTENSION ? null : new BathBlockEntity(blockPos, blockState);
+        return new BathBlockEntity(blockPos, blockState);
     }
 
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return shapesByState.get(state);
-    }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -192,7 +192,7 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
     }
 
     public enum BathPart implements StringRepresentable {
-        MAIN, EXTENSION;
+        BOTTOM, HEAD;
 
         @Override
         public String getSerializedName() {

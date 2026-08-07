@@ -9,16 +9,23 @@ public class Config {
 
     public static class Client {
         @ConfigProperty(name = "Sink", comment = "Sinks related settings")
-        public final Fluid sink = new Fluid();
+        public final Fluid sink = new Fluid(3);
 
         @ConfigProperty(name = "Basin", comment = "Basin Related settings")
-        public final Fluid basin = new Fluid();
+        public final Fluid basin = new Fluid(3);
 
         @ConfigProperty(name = "BathTube", comment = "BathTube related settings")
-        public final Fluid bathTube = new Fluid();
+        public final Fluid bathTube = new Fluid(10);
 
 
         public static class Fluid {
+
+            private static int assignedCapacity;
+
+           public Fluid(int defaultCapacity) {
+               assignedCapacity = defaultCapacity;
+           }
+
             @ConfigProperty(name = "Allow All Liquids", comment = """
                 Define if the sink accept all liquids: by default it accepts only water, turning this config to true,
                 allow the sink to accept lava or modded fluids""")
@@ -26,7 +33,7 @@ public class Config {
 
             @ConfigProperty(name = "Capacity", comment = """
                 Define the maximun capcacity of sinks in buckets""")
-            public final IntProperty capacity = IntProperty.create(3,1,10);
+            public final IntProperty capacity = IntProperty.create(assignedCapacity,1,10);
 
         }
 

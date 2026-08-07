@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/bath_bottom",
+  "textures": {
+    "0": "better_deco:block/bamboo_bath",
+    "particle": "better_deco:block/bamboo_bath"
+  }
+}

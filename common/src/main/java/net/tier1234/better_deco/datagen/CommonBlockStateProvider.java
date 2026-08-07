@@ -448,29 +448,38 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     protected void bath(BathBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation textureKey = modId(baseName);
-        ResourceLocation textureRef = modId("block/" + baseName);
-        ResourceLocation emptyModel = ResourceLocation.withDefaultNamespace("block/air");
 
-        registerModel(textureKey, Constants.id("block/bath"), texture);
+        ResourceLocation bottomModelKey = modId(baseName + "_bottom");
+        ResourceLocation headModelKey   = modId(baseName + "_head");
+        ResourceLocation itemModelKey   = modId(baseName);
+
+        ResourceLocation bottomRef = modId("block/" + baseName + "_bottom");
+        ResourceLocation headRef   = modId("block/" + baseName + "_head");
+        ResourceLocation itemRef   = modId("block/" + baseName);
+
+        registerModel(bottomModelKey, Constants.id("block/bath_bottom"), texture);
+        registerModel(headModelKey,   Constants.id("block/bath_head"), texture);
+
+        registerModel(itemModelKey,   Constants.id("block/bath"), texture);
 
         JsonObject variants = new JsonObject();
 
-        variants.add("facing=" + Direction.NORTH + ",part=main", variantJson(textureRef, 180));
-        variants.add("facing=" + Direction.EAST + ",part=main", variantJson(textureRef, 270));
-        variants.add("facing=" + Direction.SOUTH + ",part=main", variantJson(textureRef, 0));
-        variants.add("facing=" + Direction.WEST + ",part=main", variantJson(textureRef, 90));
+        variants.add("facing=" + Direction.NORTH + ",part=bottom", variantJson(bottomRef, 180));
+        variants.add("facing=" + Direction.EAST  + ",part=bottom", variantJson(bottomRef, 270));
+        variants.add("facing=" + Direction.SOUTH + ",part=bottom", variantJson(bottomRef, 0));
+        variants.add("facing=" + Direction.WEST  + ",part=bottom", variantJson(bottomRef, 90));
 
-        for (Direction dir : HORIZONTALS) {
-            variants.add("facing=" + dir + ",part=extension", variantJson(emptyModel, 0));
-        }
+        variants.add("facing=" + Direction.NORTH + ",part=head", variantJson(headRef, 180));
+        variants.add("facing=" + Direction.EAST  + ",part=head", variantJson(headRef, 270));
+        variants.add("facing=" + Direction.SOUTH + ",part=head", variantJson(headRef, 0));
+        variants.add("facing=" + Direction.WEST  + ",part=head", variantJson(headRef, 90));
 
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemBlockModel(baseName, textureRef);
-    }
 
+        registerItemBlockModel(baseName, itemRef);
+    }
 
     protected void sofa(SofaBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
