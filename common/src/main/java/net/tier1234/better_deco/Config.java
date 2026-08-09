@@ -4,27 +4,22 @@ import com.mrcrayfish.framework.api.config.*;
 
 public class Config {
 
-    @FrameworkConfig(id = Constants.MOD_ID, name = "client", type = ConfigType.CLIENT)
-    public static final Client CLIENT = new Client();
+    @FrameworkConfig(id = Constants.MOD_ID, name = "server", type = ConfigType.SERVER_SYNC)
+    public static final Server SERVER = new Server();
 
-    public static class Client {
+    public static class Server {
         @ConfigProperty(name = "Sink", comment = "Sinks related settings")
-        public final Fluid sink = new Fluid(3);
+        public final Fluid sink = new Fluid(3,5);
 
         @ConfigProperty(name = "Basin", comment = "Basin Related settings")
-        public final Fluid basin = new Fluid(3);
+        public final Fluid basin = new Fluid(3,5);
 
         @ConfigProperty(name = "BathTube", comment = "BathTube related settings")
-        public final Fluid bathTube = new Fluid(10);
+        public final Fluid bathTube = new Fluid(10,13);
 
 
         public static class Fluid {
 
-            private static int assignedCapacity;
-
-           public Fluid(int defaultCapacity) {
-               assignedCapacity = defaultCapacity;
-           }
 
             @ConfigProperty(name = "Allow All Liquids", comment = """
                 Define if the sink accept all liquids: by default it accepts only water, turning this config to true,
@@ -33,7 +28,12 @@ public class Config {
 
             @ConfigProperty(name = "Capacity", comment = """
                 Define the maximun capcacity of sinks in buckets""")
-            public final IntProperty capacity = IntProperty.create(assignedCapacity,1,10);
+            public final IntProperty capacity;
+
+            public Fluid(int capacity, int maxCapacity) {
+                this.capacity = IntProperty.create(capacity,1,maxCapacity);
+            }
+
 
         }
 
