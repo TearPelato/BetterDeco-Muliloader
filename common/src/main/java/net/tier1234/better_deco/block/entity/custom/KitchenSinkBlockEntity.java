@@ -1,7 +1,6 @@
 package net.tier1234.better_deco.block.entity.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.tearpelato.deco_lib.api.fluid.block_entity.FluidContainerBlockEntity;
@@ -14,7 +13,7 @@ public class KitchenSinkBlockEntity extends FluidContainerBlockEntity {
 
     public KitchenSinkBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.KITCHEN_SINK.get(), pos, state,
-                Config.CLIENT.sink.capacity.get() * FluidContainerBlockEntity.BUCKET_VOLUME);
+                Config.SERVER.sink.capacity.get() * FluidContainerBlockEntity.BUCKET_VOLUME);
     }
 
     public boolean addFluid(Fluid fluid) {

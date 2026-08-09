@@ -20,7 +20,7 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
                 ModBlockEntities.BATH.get(),
                 pos,
                 state,
-                Config.CLIENT.bathTube.capacity.get() * BUCKET_VOLUME
+                Config.SERVER.bathTube.capacity.get() * BUCKET_VOLUME
         );
     }
 

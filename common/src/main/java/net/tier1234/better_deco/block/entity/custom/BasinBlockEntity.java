@@ -11,7 +11,7 @@ import org.lwjgl.system.NonnullDefault;
 @NonnullDefault
 public class BasinBlockEntity extends FluidContainerBlockEntity {
     public BasinBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BASIN.get(), pos, state, Config.CLIENT.basin.capacity.get() * FluidContainerBlockEntity.BUCKET_VOLUME);
+        super(ModBlockEntities.BASIN.get(), pos, state, Config.SERVER.basin.capacity.get() * FluidContainerBlockEntity.BUCKET_VOLUME);
     }
 
     public boolean addFluid(Fluid fluid) {
