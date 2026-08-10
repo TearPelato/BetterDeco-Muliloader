@@ -8,8 +8,9 @@
     "${mod_author}"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/betterdeco",
+    "sources": "https://github.com/TearPelato/BetterDeco-Muliloader",
+    "issues": "https://github.com/TearPelato/BetterDeco-Muliloader/issues"
   },
   "license": "${license}",
   "icon": "better_deco.png",
