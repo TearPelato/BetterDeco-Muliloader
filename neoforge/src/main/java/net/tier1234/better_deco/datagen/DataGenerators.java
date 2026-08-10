@@ -33,5 +33,6 @@ public class DataGenerators {
                 List.of(new LootTableProvider.SubProviderEntry(NeoForgeBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
         generator.addProvider(event.includeServer(), new CommonAdvancementsProvider(output, lookupProvider));
 
+
     }
 }

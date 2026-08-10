@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.tearpelato.deco_lib.api.fluid.renderer.FluidContainerRenderer;
+import net.tier1234.better_deco.block.custom.ToiletBlock;
 import net.tier1234.better_deco.block.entity.custom.ToiletBlockEntity;
 import org.lwjgl.system.NonnullDefault;
 
@@ -24,9 +24,8 @@ public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBloc
         Fluid fluid = be.getFluid();
         if (fluid == Fluids.EMPTY || be.getLevel() == null) return;
         BlockState state = be.getBlockState();
-        if (!state.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) return;
-        Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-        AABB box = FluidContainerRenderer.createRotatedBox(dir, 3, 0, 5, 11, 5, 11);
+        Direction dir = state.getValue(ToiletBlock.DIRECTION);
+        AABB box = FluidContainerRenderer.createRotatedBox(dir, 4, 3.2f, 5, 12, 5.5f, 12);
         FluidContainerRenderer.drawContainer(be.getLevel(), be.getBlockPos(), be, box, poseStack, multiBufferSource, light);
     }
 }

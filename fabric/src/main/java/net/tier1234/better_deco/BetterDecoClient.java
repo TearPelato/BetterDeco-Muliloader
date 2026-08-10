@@ -2,24 +2,32 @@ package net.tier1234.better_deco;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.Level;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
+import net.tier1234.better_deco.block.custom.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
+import net.tier1234.better_deco.entity.custom.SeatEntity;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.registries.ModKeybinds;
+import net.tier1234.better_deco.registries.ModSounds;
 import net.tier1234.better_deco.util.CutoutRenderLayerBlocks;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -36,12 +44,32 @@ public class BetterDecoClient implements ClientModInitializer {
                 MenuScreens.register(type, factory::apply);
             }
         });
+
         ModPackets.init(payload -> ClientPlayNetworking.send(payload));
         FabricNetworkHandler.registerClient();
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), CutoutRenderLayerBlocks.getBlocks());
-
         KeyBindingHelper.registerKeyBinding(ModKeybinds.KEY_MAPPING_G);
+        ClientTickEvents.END_CLIENT_TICK.register(BetterDecoClient::onClientTick);
 
+
+
+    }
+
+
+    private static void onClientTick(Minecraft mc) {
+        LocalPlayer player = mc.player;
+
+        if (player != null && ModKeybinds.KEY_MAPPING_G.consumeClick()) {
+            Entity vehicle = player.getVehicle();
+            if (vehicle instanceof SeatEntity seat) {
+                BlockPos seatPos = seat.blockPosition();
+                Level level = player.level();
+
+                if (level.getBlockState(seatPos).getBlock() instanceof ToiletBlock) {
+                    player.playSound(ModSounds.FART.get(), 0.5f, 1.0f);
+                }
+            }
+        }
     }
 }

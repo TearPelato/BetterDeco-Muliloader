@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWaterloggedBlock,EntityBlock {
+public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWaterloggedBlock, EntityBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HAS_WATER = ModBlockStateProperties.HAS_WATER;
 
@@ -59,6 +59,31 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
     }
 
     @Override
+    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = ImmutableMap.builder();
+        for (BlockState state : states) {
+            Direction dir = state.getValue(DIRECTION);
+
+            VoxelShape base = createShape(3, 0, 7, 13, 3, 16, dir);   // piedistallo
+            VoxelShape bowlLower = createShape(3, 3, 4, 13, 6, 13, dir);   // corpo/vaso basso
+            VoxelShape tankBack = createShape(3, 3, 13, 13, 14, 16, dir); // schienale/cassetta
+            VoxelShape tankTop = createShape(2, 14, 12, 14, 16, 17, dir);// coperchio cassetta
+            VoxelShape seatRimRight = createShape(10, 6, 4, 13, 8, 13, dir);  // bordo sedile destro
+            VoxelShape seatRimLeft = createShape(3, 6, 4, 6, 8, 13, dir);    // bordo sedile sinistro
+            VoxelShape seatRimFront = createShape(6, 6, 4, 10, 8, 7, dir);    // bordo sedile frontale
+
+            builder.put(state, VoxelShapeHelper.combineAll(Arrays.asList(base, bowlLower, tankBack, tankTop, seatRimRight, seatRimLeft, seatRimFront)));
+        }
+        return builder.build();
+    }
+
+    private VoxelShape createShape(double x1, double y1, double z1, double x2, double y2, double z2, Direction dir) {
+        VoxelShape[] rotated = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(x1, y1, z1, x2, y2, z2), Direction.NORTH));
+        return rotated[dir.get2DDataValue()];
+    }
+
+
+    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if(!level.isClientSide()) {
             Entity entity = null;
@@ -71,21 +96,25 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
 
             player.startRiding(entity);
         }
-
         return InteractionResult.SUCCESS;
     }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!player.isShiftKeyDown()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        Item item = stack.getItem();
+        Fluid fluidInStack = FluidInteractionUtil.getFluidFromItemStack(stack);
+        boolean isEmptyBucket = item == Items.BUCKET;
+        boolean isFilledFluidBucket = fluidInStack != Fluids.EMPTY;
+
+        if (!isEmptyBucket && !isFilledFluidBucket) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
 
         if (world.isClientSide) return ItemInteractionResult.SUCCESS;
         BlockEntity be = world.getBlockEntity(pos);
         if (!(be instanceof ToiletBlockEntity sink)) return ItemInteractionResult.FAIL;
 
-        if (stack.isEmpty()) return fillFromNearbyFluid(sink, world, pos);
-        Item item = stack.getItem();
-        if (item == Items.BUCKET) return handleBucket(sink, player, hand, stack);
+        if (isEmptyBucket) return handleBucket(sink, player, hand, stack);
         return fillFromItemStack(sink, player, hand, stack);
     }
 
@@ -122,27 +151,6 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
         return ItemInteractionResult.SUCCESS;
     }
 
-
-
-    @Override
-    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
-        ImmutableMap.Builder<BlockState, VoxelShape> builder = ImmutableMap.builder();
-        for (BlockState s : states) {
-            Direction dir = s.getValue(DIRECTION);
-            VoxelShape base = createShape(3, 0, 2, 13, 3, 14, dir);
-            VoxelShape bowl = createShape(2, 3, 2, 14, 9, 13, dir);
-            VoxelShape tank = createShape(1, 9, 11, 15, 16, 16, dir);
-
-            builder.put(s, VoxelShapeHelper.combineAll(Arrays.asList(base, bowl, tank)));
-        }
-        return builder.build();
-    }
-
-    private VoxelShape createShape(double x1, double y1, double z1, double x2, double y2, double z2, Direction dir) {
-        VoxelShape[] rotated = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(x1, y1, z1, x2, y2, z2), Direction.NORTH));
-        return rotated[dir.get2DDataValue()];
-    }
-
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new ToiletBlockEntity(blockPos, blockState);
@@ -157,7 +165,5 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DIRECTION, WATERLOGGED, HAS_WATER);
     }
-
-
 
 }

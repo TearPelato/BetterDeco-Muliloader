@@ -11,7 +11,7 @@ import org.lwjgl.system.NonnullDefault;
 @NonnullDefault
 public class ToiletBlockEntity extends FluidContainerBlockEntity {
     public ToiletBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.TOILET.get(), pos, blockState, Config.CLIENT.basin.capacity.get());
+        super(ModBlockEntities.TOILET.get(), pos, blockState, Config.SERVER.toilet.capacity.get());
     }
 
     public boolean addFluid(Fluid fluid) {
