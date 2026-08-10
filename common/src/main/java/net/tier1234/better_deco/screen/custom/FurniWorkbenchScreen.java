@@ -49,7 +49,7 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
     private static final int SCROLLBAR_TEXTURE_Y = 40;
 
     private static final int TOGGLE_BUTTON_WIDTH = 12;
-    private static final int TOGGLE_BUTTON_HEIGHT = 21;
+    private static final int TOGGLE_BUTTON_HEIGHT = 12;
 
     private static final int Y_OFFSET_CORRECTION = 0;
 
