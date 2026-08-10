@@ -58,9 +58,15 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
         return Component.translatable("furni_crafting");
     }
 
+
     @Override
-    public @Nullable IDrawable getBackground() {
-        return background;
+    public int getWidth() {
+        return background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return background.getHeight();
     }
 
     @Override
@@ -99,6 +105,6 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
 
     @Override
     public void draw(FurniCraftingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-
+        this.background.draw(guiGraphics, 0, 0);
     }
 }

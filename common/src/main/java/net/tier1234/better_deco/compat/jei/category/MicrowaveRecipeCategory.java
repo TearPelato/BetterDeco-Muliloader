@@ -3,15 +3,18 @@ package net.tier1234.better_deco.compat.jei.category;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.recipe.OvenRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.recipe.MicrowaveRecipe;
 import org.jetbrains.annotations.Nullable;
@@ -50,8 +53,13 @@ public class MicrowaveRecipeCategory implements IRecipeCategory<MicrowaveRecipe>
     }
 
     @Override
-    public IDrawable getBackground() {
-        return background;
+    public int getWidth() {
+        return background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return background.getHeight();
     }
 
     @Override
@@ -59,6 +67,11 @@ public class MicrowaveRecipeCategory implements IRecipeCategory<MicrowaveRecipe>
         builder.addSlot(RecipeIngredientRole.INPUT, 54, 34).addIngredients(recipe.getIngredients().get(0));
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 104, 34).addItemStack(recipe.getResultItem(null));
+    }
+
+    @Override
+    public void draw(MicrowaveRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        this.background.draw(guiGraphics, 0, 0);
     }
 
 }

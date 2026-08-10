@@ -3,11 +3,13 @@ package net.tier1234.better_deco.compat.jei.category;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -55,8 +57,13 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
     }
 
     @Override
-    public IDrawable getBackground() {
-        return background;
+    public int getWidth() {
+        return background.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return background.getHeight();
     }
 
 
@@ -66,6 +73,11 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
         builder.addSlot(RecipeIngredientRole.OUTPUT, 78, 53).addItemStack(recipe.output);
         builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 42, 35).addItemStacks(OvenFuels.get());
 
+    }
+
+    @Override
+    public void draw(OvenRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        this.background.draw(guiGraphics, 0, 0);
     }
 
     public enum OvenFuels {
