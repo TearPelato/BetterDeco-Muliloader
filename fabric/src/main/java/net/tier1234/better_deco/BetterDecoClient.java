@@ -21,7 +21,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
-import net.tier1234.better_deco.block.custom.ToiletBlock;
+import net.tier1234.better_deco.block.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 import net.tier1234.better_deco.network.FabricNetworkHandler;

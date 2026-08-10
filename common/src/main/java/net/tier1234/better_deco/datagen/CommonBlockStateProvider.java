@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.block.custom.*;
+import net.tier1234.better_deco.block.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

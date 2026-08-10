@@ -20,7 +20,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
-import net.tier1234.better_deco.block.custom.ToiletBlock;
+import net.tier1234.better_deco.block.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 import net.tier1234.better_deco.registries.ModKeybinds;

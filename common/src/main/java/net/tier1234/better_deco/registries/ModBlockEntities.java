@@ -5,13 +5,12 @@ import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.block.custom.BathBlock;
-import net.tier1234.better_deco.block.entity.custom.*;
+import net.tier1234.better_deco.blockentity.*;
 
 @RegistryContainer
 public class ModBlockEntities {
     public static final RegistryEntry<BlockEntityType<KitchenDrawerBlockEntity>> CUSTOM_KITCHEN_DRAWER_BE =
-            RegistryEntry.blockEntity(Constants.id("kitchen_drawer"),KitchenDrawerBlockEntity::new, () -> new Block[]{
+            RegistryEntry.blockEntity(Constants.id("kitchen_drawer"), KitchenDrawerBlockEntity::new, () -> new Block[]{
 
                     ModBlocks.OAK_KITCHEN_DRAWER.get(),
                     ModBlocks.SPRUCE_KITCHEN_DRAWER.get(),

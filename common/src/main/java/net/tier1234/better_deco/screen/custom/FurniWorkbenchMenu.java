@@ -15,7 +15,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.tier1234.better_deco.block.entity.custom.FurniWorkbenchBlockEntity;
+import net.tier1234.better_deco.blockentity.FurniWorkbenchBlockEntity;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.network.ModPackets;

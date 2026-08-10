@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.tier1234.better_deco.block.entity.custom.OvenBlockEntity;
+import net.tier1234.better_deco.blockentity.OvenBlockEntity;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.screen.slot.OvenFuelSlot;

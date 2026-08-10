@@ -12,7 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
+import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 import net.tier1234.better_deco.recipe.FreezerRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
 import org.jetbrains.annotations.Nullable;

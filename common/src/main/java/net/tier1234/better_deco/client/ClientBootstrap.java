@@ -3,7 +3,7 @@ package net.tier1234.better_deco.client;
 import net.tearpelato.deco_lib.core.registries.helper.BlockEntityRendererRegister;
 import net.tearpelato.deco_lib.core.registries.helper.EntityRendererRegister;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
-import net.tier1234.better_deco.block.entity.renderer.*;
+import net.tier1234.better_deco.blockentity.renderer.*;
 import net.tier1234.better_deco.creative_tabs.BundledTabSelector;
 import net.tier1234.better_deco.entity.client.SeatRender;
 import net.tier1234.better_deco.registries.ModBlockEntities;

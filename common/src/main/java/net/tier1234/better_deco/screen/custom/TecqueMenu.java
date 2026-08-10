@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.tier1234.better_deco.block.entity.custom.TecqueBlockEntity;
+import net.tier1234.better_deco.blockentity.TecqueBlockEntity;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 

@@ -3,7 +3,7 @@ package net.tier1234.better_deco.screen.slot;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.tier1234.better_deco.block.entity.custom.FreezerBlockEntity;
+import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 
 public class FreezerFuelSlot extends Slot {
 
