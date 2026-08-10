@@ -16,12 +16,7 @@ import org.lwjgl.system.NonnullDefault;
 public class BathBlockEntity extends FluidContainerBlockEntity {
 
     public BathBlockEntity(BlockPos pos, BlockState state) {
-        super(
-                ModBlockEntities.BATH.get(),
-                pos,
-                state,
-                Config.SERVER.bathTube.capacity.get() * BUCKET_VOLUME
-        );
+        super(ModBlockEntities.BATH.get(), pos, state, Config.SERVER.bathTube.capacity.get() * BUCKET_VOLUME);
     }
 
     public boolean addFluid(Fluid fluid) {
@@ -40,7 +35,6 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
         setChanged();
 
         BathBlockEntity other = getOtherPart();
-
         if (other != null) {
             other.setFluid(fluid, newAmount);
             other.setChanged();
@@ -56,7 +50,6 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
         setChanged();
 
         BathBlockEntity other = getOtherPart();
-
         if (other != null) {
             other.setFluid(getFluid(), remaining);
             other.setChanged();
@@ -69,12 +62,7 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
 
         BlockState state = getBlockState();
         Direction direction = state.getValue(BathBlock.DIRECTION);
-
-        BlockPos otherPos =
-                state.getValue(BathBlock.PART) == BathBlock.BathPart.BOTTOM
-                        ? worldPosition.relative(direction)
-                        : worldPosition.relative(direction.getOpposite());
-
+        BlockPos otherPos = state.getValue(BathBlock.PART) == BathBlock.BathPart.BOTTOM ? worldPosition.relative(direction) : worldPosition.relative(direction.getOpposite());
         BlockEntity other = level.getBlockEntity(otherPos);
 
         return other instanceof BathBlockEntity bath ? bath : null;
