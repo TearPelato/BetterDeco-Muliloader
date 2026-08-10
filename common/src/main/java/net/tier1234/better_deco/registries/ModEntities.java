@@ -11,5 +11,5 @@ import net.tier1234.better_deco.entity.custom.SeatEntity;
 public class ModEntities {
 
     public static final RegistryEntry<EntityType<SeatEntity>> SEAT_ENTITY = RegistryEntry.entityType(Constants.id("seat_entity"),
-            ()-> EntityType.Builder.of(SeatEntity::new, MobCategory.MISC).sized(0.5f,0.5f).build("seat_entity"));
+            ()-> EntityType.Builder.<SeatEntity>of(((entityType, level) -> new SeatEntity(level)), MobCategory.MISC).sized(0.5f,0.5f).build("seat_entity"));
 }

@@ -3,12 +3,12 @@ package net.tier1234.better_deco.entity.custom;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import net.tier1234.better_deco.registries.ModEntities;
 
 public class SeatEntity extends Entity {
-    public SeatEntity(EntityType<?> entityType, Level level) {
-        super(entityType, level);
+    public SeatEntity(Level level) {
+        super(ModEntities.SEAT_ENTITY.get(), level);
     }
 
     @Override
