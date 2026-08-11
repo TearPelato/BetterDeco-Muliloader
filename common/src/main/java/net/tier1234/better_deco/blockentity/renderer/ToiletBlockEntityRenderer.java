@@ -1,10 +1,14 @@
 package net.tier1234.better_deco.blockentity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -25,7 +29,12 @@ public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBloc
         if (fluid == Fluids.EMPTY || be.getLevel() == null) return;
         BlockState state = be.getBlockState();
         Direction dir = state.getValue(ToiletBlock.DIRECTION);
-        AABB box = FluidContainerRenderer.createRotatedBox(dir, 4, 3.2f, 5, 12, 5.5f, 12);
-        FluidContainerRenderer.drawContainer(be.getLevel(), be.getBlockPos(), be, box, poseStack, multiBufferSource, light);
+        AABB box = FluidContainerRenderer.createRotatedBox(dir, 5,5,5, 13,8,11);
+        FluidContainerRenderer.drawContainer(be.getLevel(), be.getBlockPos(), be, box, poseStack, multiBufferSource, getLightLevel(be.getLevel(), be.getBlockPos()));
+    }
+    private int getLightLevel(Level level, BlockPos pos) {
+        int bLight = level.getBrightness(LightLayer.BLOCK, pos);
+        int sLight = level.getBrightness(LightLayer.SKY, pos);
+        return LightTexture.pack(bLight, sLight);
     }
 }
