@@ -11,9 +11,11 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.util.ModTags;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -55,10 +57,22 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                     .addCriterion("craftFurniture", InventoryChangeTrigger.TriggerInstance.hasItems(
                             ItemPredicate.Builder.item().of(
                                     ModBlocks.BLOCKS.stream()
+                                            .filter(entry-> entry!= ModBlocks.FURNI_WORKBENCH)
                                             .map(entry -> entry.get().asItem())
                                             .toArray(Item[]::new)
                             ).build()))
                     .save(consumer, "better_deco/craft_furniture");
+
+            AdvancementHolder craft_electronic_furnitures = Advancement.Builder.advancement()
+                    .parent(root)
+                    .display(ModBlocks.FRIDGE_LIGHT.get(),
+                            Component.translatable("advancement.better_deco.craft_electronic_furnitures"),
+                            Component.translatable("advancement.better_deco.craft_electronic_furnitures.desc"),
+                            null,AdvancementType.TASK,true,true,false)
+                    .addCriterion("craft_electronic_furnitures", InventoryChangeTrigger.TriggerInstance.hasItems(
+                            ItemPredicate.Builder.item().of(ModTags.Items.ELECTRONIC_APPLIANCES).build()))
+                    .save(consumer, "better_deco/craft_electronic_furnitures");
+
 
         }
     }

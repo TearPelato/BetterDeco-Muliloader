@@ -621,6 +621,8 @@
   "advancement.better_deco.craft_workbench.description": "Craft a workbench and start decor!",
   "advancement.better_deco.craft_furniture.title": "Start Decor",
   "advancement.better_deco.craft_furniture.description": "Craft your first piece of furniture",
+  "advancement.better_deco.craft_electronic_furnitures": "Evolved Furnitures",
+  "advancement.better_deco.craft_electronic_furnitures.desc": "Craft your first Electronic Furniture",
   "key.categories.better_deco": "BetterDeco",
   "key.better_deco.g": "Press G to Fart",
   "sounds.better_deco.fart": "Player Farted"

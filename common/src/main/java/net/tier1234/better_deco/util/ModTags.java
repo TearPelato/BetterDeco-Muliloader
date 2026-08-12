@@ -15,6 +15,8 @@ public class ModTags {
     }
     public static class Items {
 
+        public static final TagKey<Item> ELECTRONIC_APPLIANCES = createTag("electronic_appliances");
+
         private static TagKey<Item> createTag(String name) {
             return TagKey.create(Registries.ITEM, Constants.id(name));
         }
