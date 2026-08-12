@@ -47,7 +47,7 @@ public class FabricEveryCompatModule extends EveryCompatModule {
                         w -> new KitchenCounterBlock(Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/furniture/kitchen/wodden/oak/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
+                .addTexture(modRes("block/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
                 .noTab()
                 .build();
 
@@ -57,7 +57,7 @@ public class FabricEveryCompatModule extends EveryCompatModule {
                         w-> new KitchenDrawerBlock(Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/furniture/kitchen/wodden/oak/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)
+                .addTexture(modRes("block/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)
                 .addTile(getModTile("kitchen_drawer"))
                 .noTab()
                 .build();
@@ -93,12 +93,6 @@ public class FabricEveryCompatModule extends EveryCompatModule {
                                 });
                             }
 
-                                    /* if (module != null) {
-                                        module.kitchenCounter.blocks.forEach((woodType, block) -> {
-                                            output.accept(block.asItem());
-                                        });
-
-                                    }*/
                         })
                         .build()
         );
