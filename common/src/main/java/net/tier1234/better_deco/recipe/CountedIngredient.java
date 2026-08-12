@@ -41,4 +41,9 @@ public record CountedIngredient(Ingredient ingredient, int count) {
                     Codec.INT.fieldOf("count").forGetter(CountedIngredient::count)
             ).apply(instance, CountedIngredient::new)
     );
+
+    public static CountedIngredient of(Ingredient ingredient, int count)
+    {
+        return new CountedIngredient(ingredient, count);
+    }
 }
