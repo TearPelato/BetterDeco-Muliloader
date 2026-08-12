@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:better_deco/craft_workbench",
+  "criteria": {
+    "craft_electronic_furnitures": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#better_deco:electronic_appliances"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.better_deco.craft_electronic_furnitures.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "better_deco:fridge_light"
+    },
+    "title": {
+      "translate": "advancement.better_deco.craft_electronic_furnitures"
+    }
+  },
+  "requirements": [
+    [
+      "craft_electronic_furnitures"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

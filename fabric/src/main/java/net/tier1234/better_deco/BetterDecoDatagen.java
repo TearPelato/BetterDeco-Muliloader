@@ -23,6 +23,7 @@ public class BetterDecoDatagen implements DataGeneratorEntrypoint {
         pack.addProvider(CommonRecipeProvider::new);
         pack.addProvider(FabricLootTableProvider::new);
         pack.addProvider(CommonAdvancementsProvider::new);
+        pack.addProvider(CommonItemTagProvider::new);
     }
 
 }
