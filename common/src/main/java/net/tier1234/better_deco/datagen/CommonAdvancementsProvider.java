@@ -11,8 +11,6 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.util.ModTags;
@@ -20,7 +18,6 @@ import net.tier1234.better_deco.util.ModTags;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class CommonAdvancementsProvider extends AdvancementProvider {
     public CommonAdvancementsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

@@ -55,7 +55,7 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
 
     @Override
     public Component getTitle() {
-        return Component.translatable("furni_crafting");
+        return Component.translatable("gui.better_deco.jei.workbench");
     }
 
 

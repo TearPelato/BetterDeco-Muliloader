@@ -593,7 +593,7 @@
   "block.better_deco.bamboo_desk_cabinet": "Bamboo Desk Cabinet",
   "block.better_deco.crimson_desk_cabinet": "Crimson Desk Cabinet",
   "block.better_deco.warped_desk_cabinet": "Warped Desk Cabinet",
-  "block.better_deco.furni_workbench":"Furniture Workbench",
+  "block.better_deco.workbench":"Deco Workbench",
   "item.better_deco.kitchen_knife": "Kitchen Knife",
 
 
@@ -612,7 +612,7 @@
 
   "container.better_deco.workbench": "Furniture Workbench",
   "gui.better_deco.hold_shift_for_details": "Hold SHIFT for Details",
-  "furni_crafting": "FurniCrafting",
+  "gui.better_deco.jei.workbench": "Deco Workbench",
   "container.better_deco.cutting_board": "Cutting Board",
 
   "block_type.better_deco.kitchen_counter": "%s Kitchen Counter",
