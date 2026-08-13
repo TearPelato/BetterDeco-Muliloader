@@ -16,6 +16,16 @@ public class ModTags {
     public static class Items {
 
         public static final TagKey<Item> ELECTRONIC_APPLIANCES = createTag("electronic_appliances");
+        public static final TagKey<Item> DISPLAYED = createTag("displayed");
+
+        public static final TagKey<Item> GENERAL = createTag("general");
+        public static final TagKey<Item> KITCHEN = createTag("kitchen");
+        public static final TagKey<Item> LIVING = createTag("living");
+        public static final TagKey<Item> BATH = createTag("bath");
+        public static final TagKey<Item> BEDROOM = createTag("bedroom");
+
+
+
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.create(Registries.ITEM, Constants.id(name));
