@@ -16,14 +16,14 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.registries.ModBlockEntities;
-import net.tier1234.better_deco.screen.custom.FurniWorkbenchMenu;
+import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
 
 import org.jetbrains.annotations.Nullable;
 
-public class FurniWorkbenchBlockEntity extends BlockEntity implements MenuProvider {
+public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
     private final SimpleContainer outputContainer = new SimpleContainer(1);
 
-    public FurniWorkbenchBlockEntity(BlockPos blockPos, BlockState blockState) {
+    public WorkbenchBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.FURNI_WORKBENCH.get(), blockPos, blockState);
     }
 
@@ -34,7 +34,7 @@ public class FurniWorkbenchBlockEntity extends BlockEntity implements MenuProvid
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-        return new FurniWorkbenchMenu(id, inventory, level,this.worldPosition, this.outputContainer);
+        return new WorkbenchMenu(id, inventory, level,this.worldPosition, this.outputContainer);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class FurniWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     public SimpleContainer getOutputContainer() {
         return outputContainer;
     }
-    public FurniWorkbenchMenu.CustomData createCustomData() {
-        return new FurniWorkbenchMenu.CustomData(new boolean[0]);
+    public WorkbenchMenu.CustomData createCustomData() {
+        return new WorkbenchMenu.CustomData(new boolean[0]);
     }
 }

@@ -31,7 +31,7 @@ public class ClientBootstrap {
         register.apply(ModMenuTypes.CRATE_MENU.get(), CrateScreen::new);
         register.apply(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
         register.apply(ModMenuTypes.TECQUE_MENU.get(), TecqueScreen::new);
-        register.apply(ModMenuTypes.FURNI_WORKBENCH.get(), FurniWorkbenchScreen::new);
+        register.apply(ModMenuTypes.FURNI_WORKBENCH.get(), WorkbenchScreen::new);
         register.apply(ModMenuTypes.SHELF_MENU.get(), ShelfScreen::new);
         register.apply(ModMenuTypes.MICROWAVE_MENU.get(), MicrowaveScreen::new);
         register.apply(ModMenuTypes.OVEN_MENU.get(), OvenScreen::new);

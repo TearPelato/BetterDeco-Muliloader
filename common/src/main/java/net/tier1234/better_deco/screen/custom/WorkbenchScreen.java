@@ -20,16 +20,17 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.mixin.GuiGraphicsInvoker;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.network.message.CraftRecipePayload;
+import net.tier1234.better_deco.network.message.SelectRecipePayload;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
-import net.tier1234.better_deco.screen.tooltip.ClientFurnicrafterRecipeIngredientTooltip;
-import net.tier1234.better_deco.screen.tooltip.ClientFurnicrafterRecipeTooltip;
+import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeIngredientTooltip;
+import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeTooltip;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.*;
 import java.util.stream.Stream;
 
-public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbenchMenu> {
+public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     public static final ResourceLocation TEXTURE = Constants.id("textures/gui/workbench/workbench_interface.png");
     public static final ResourceLocation BUTTON_ENABLED = Constants.id("textures/gui/workbench/toggle_enabled.png");
     public static final ResourceLocation BUTTON_DISABLED = Constants.id("textures/gui/workbench/toggle_disabled.png");
@@ -52,6 +53,10 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
     private static final int TOGGLE_BUTTON_HEIGHT = 12;
 
     private static final int Y_OFFSET_CORRECTION = 0;
+    private static final int OUTPUT_SLOT_X = 149;
+    private static final int OUTPUT_SLOT_Y = 86;
+    private static final int SLOT_SIZE = 16;
+
 
     private List<RecipeHolder<FurniCraftingRecipe>> allRecipes = new ArrayList<>();
     private List<RecipeHolder<FurniCraftingRecipe>> visibleRecipes = new ArrayList<>();
@@ -65,7 +70,7 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
 
     private boolean filterCraftable = false;
 
-    public FurniWorkbenchScreen(FurniWorkbenchMenu menu, Inventory inventory, Component title) {
+    public WorkbenchScreen(WorkbenchMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         this.imageWidth = 176;
         this.imageHeight = 204;
@@ -170,7 +175,7 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
         ));
 
         if (!Screen.hasShiftDown()) {
-            components.add(new ClientFurnicrafterRecipeTooltip(menu, recipe));
+            components.add(new ClientWorkbenchRecipeTooltip(menu, recipe));
             components.add(new ClientTextTooltip(
                     Component.translatable("gui.better_deco.hold_shift_for_details")
                             .withStyle(ChatFormatting.GRAY)
@@ -179,7 +184,7 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
         } else {
             Map<Integer, Integer> counted = new HashMap<>();
             for (CountedIngredient ingredient : recipe.getMaterials()) {
-                components.add(new ClientFurnicrafterRecipeIngredientTooltip(menu, ingredient, counted));
+                components.add(new ClientWorkbenchRecipeIngredientTooltip(menu, ingredient, counted));
             }
         }
 
@@ -270,8 +275,8 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
             }
 
             if (hoveredRecipeIndex != -1) {
-                int amount = getRequestedAmount();
-                craftItem(hoveredRecipeIndex, amount);
+                int amountDelta = Screen.hasShiftDown() ? 16 : 1;
+                sendSelectRecipe(hoveredRecipeIndex, amountDelta);
                 Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
             }
@@ -320,13 +325,22 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
         return super.charTyped(codePoint, modifiers);
     }
 
-    private int getRequestedAmount() {
-        if (Screen.hasShiftDown()) {
-            return 64;
-        } else if (Screen.hasControlDown()) {
-            return 16;
-        }
-        return 1;
+    private void sendSelectRecipe(int visibleIndex, int amountDelta) {
+        if (visibleIndex < 0 || visibleIndex >= visibleRecipes.size()) return;
+
+        RecipeHolder<FurniCraftingRecipe> holder = visibleRecipes.get(visibleIndex);
+        int serverIndex = menu.getAvailableRecipes().indexOf(holder);
+        if (serverIndex < 0) return;
+
+        menu.selectRecipe(serverIndex, amountDelta);
+        ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, serverIndex, amountDelta));
+    }
+
+    private boolean isSelectedRecipe(int visibleIndex) {
+        int selected = menu.getSelectedRecipeIndex();
+        if (selected == -1 || visibleIndex < 0 || visibleIndex >= visibleRecipes.size()) return false;
+        RecipeHolder<FurniCraftingRecipe> holder = visibleRecipes.get(visibleIndex);
+        return menu.getAvailableRecipes().get(selected) == holder;
     }
 
     @Override
@@ -353,6 +367,21 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+        int selected = menu.getSelectedRecipeIndex();
+        int amountDelta = deltaY > 0 ? 1 : -1;
+
+        boolean overSelectedRecipe = hoveredRecipeIndex != -1 && isSelectedRecipe(hoveredRecipeIndex);
+
+        int outputX = leftPos + OUTPUT_SLOT_X;
+        int outputY = topPos + OUTPUT_SLOT_Y;
+        boolean overOutputSlot = isMouseWithinBounds(mouseX, mouseY, outputX, outputY, SLOT_SIZE, SLOT_SIZE);
+
+        if (selected != -1 && (overSelectedRecipe || overOutputSlot)) {
+            menu.selectRecipe(selected, amountDelta);
+            ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, selected, amountDelta));
+            return true;
+        }
+
         if (clickedY == -1 && isMouseWithinBounds(mouseX, mouseY, leftPos + GRID_X_OFFSET, topPos + GRID_Y_OFFSET, WINDOW_WIDTH + 15, WINDOW_HEIGHT)) {
             scroll = Mth.clamp(scroll - deltaY * SCROLL_SPEED, 0, getMaxScroll());
             return true;
@@ -360,15 +389,7 @@ public class FurniWorkbenchScreen extends AbstractContainerScreen<FurniWorkbench
         return super.mouseScrolled(mouseX, mouseY, deltaX, deltaY);
     }
 
-    private void craftItem(int recipeIndex, int amount) {
-        if (recipeIndex < 0 || recipeIndex >= visibleRecipes.size()) return;
 
-        RecipeHolder<FurniCraftingRecipe> holder = visibleRecipes.get(recipeIndex);
-        int serverIndex = menu.getAvailableRecipes().indexOf(holder);
-        if (serverIndex < 0) return;
-
-        ModPackets.sendToServer(new CraftRecipePayload(menu.containerId, serverIndex));
-    }
 
     public void updateRecipeButtons() {
         updateRecipes();

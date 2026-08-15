@@ -321,9 +321,9 @@ public class ModBlockEntities {
                     ModBlocks.FRIDGE_DARK.get()}
             );
 
-    public static final RegistryEntry<BlockEntityType<FurniWorkbenchBlockEntity>> FURNI_WORKBENCH =
-            RegistryEntry.blockEntity(Constants.id("workbench"), FurniWorkbenchBlockEntity::new, ()-> new Block[]{
-                   ModBlocks.FURNI_WORKBENCH.get()
+    public static final RegistryEntry<BlockEntityType<WorkbenchBlockEntity>> FURNI_WORKBENCH =
+            RegistryEntry.blockEntity(Constants.id("workbench"), WorkbenchBlockEntity::new, ()-> new Block[]{
+                   ModBlocks.WORKBENCH.get()
                     });
 
     public static final RegistryEntry<BlockEntityType<CuttingBoardBlockEntity>> CUTTING_BOARD =

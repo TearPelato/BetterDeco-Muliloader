@@ -4,7 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": "better_deco:furni_workbench"
+            "items": "better_deco:workbench"
           }
         ]
       },
@@ -18,7 +18,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "better_deco:furni_workbench"
+      "id": "better_deco:workbench"
     },
     "title": {
       "translate": "advancement.better_deco.craft_workbench.title"

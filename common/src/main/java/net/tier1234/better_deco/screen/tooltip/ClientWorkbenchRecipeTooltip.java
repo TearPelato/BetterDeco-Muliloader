@@ -8,19 +8,19 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
-import net.tier1234.better_deco.screen.custom.FurniWorkbenchMenu;
-import net.tier1234.better_deco.screen.custom.FurniWorkbenchScreen;
+import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
+import net.tier1234.better_deco.screen.custom.WorkbenchScreen;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class ClientFurnicrafterRecipeTooltip implements ClientTooltipComponent {
-    private final FurniWorkbenchMenu menu;
+public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
+    private final WorkbenchMenu menu;
     private final FurniCraftingRecipe recipe;
 
-    public ClientFurnicrafterRecipeTooltip(FurniWorkbenchMenu menu, FurniCraftingRecipe recipe) {
+    public ClientWorkbenchRecipeTooltip(WorkbenchMenu menu, FurniCraftingRecipe recipe) {
         this.menu = menu;
         this.recipe = recipe;
     }
@@ -54,7 +54,7 @@ public class ClientFurnicrafterRecipeTooltip implements ClientTooltipComponent {
             // Translate Z so the overlay is drawn on top.
             pose.translate(0, 0, 200);
             boolean hasEnough = this.menu.hasMaterials(material, counted);
-            graphics.blit(FurniWorkbenchScreen.TEXTURE, start + i * 18, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256);
+            graphics.blit(WorkbenchScreen.TEXTURE, start + i * 18, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256);
             pose.popPose();
         }
     }

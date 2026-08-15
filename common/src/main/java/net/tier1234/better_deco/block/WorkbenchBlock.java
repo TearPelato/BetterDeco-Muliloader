@@ -25,17 +25,17 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
-import net.tier1234.better_deco.blockentity.FurniWorkbenchBlockEntity;
+import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FurniWorkbench extends FurnitureHorizontalBlock implements EntityBlock {
-    public static final MapCodec<FurniWorkbench> CODEC = simpleCodec(FurniWorkbench::new);
+public class WorkbenchBlock extends FurnitureHorizontalBlock implements EntityBlock {
+    public static final MapCodec<WorkbenchBlock> CODEC = simpleCodec(WorkbenchBlock::new);
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public FurniWorkbench(Properties properties) {
+    public WorkbenchBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
@@ -101,7 +101,7 @@ public class FurniWorkbench extends FurnitureHorizontalBlock implements EntityBl
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof FurniWorkbenchBlockEntity workbench) {
+            if (blockEntity instanceof WorkbenchBlockEntity workbench) {
                 FrameworkAPI.openMenuWithData(serverPlayer, workbench, workbench.createCustomData());
             }
         }
@@ -110,14 +110,14 @@ public class FurniWorkbench extends FurnitureHorizontalBlock implements EntityBl
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new FurniWorkbenchBlockEntity(blockPos, blockState);
+        return new WorkbenchBlockEntity(blockPos, blockState);
     }
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) { // Ensure block is actually removed and not just updated
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof FurniWorkbenchBlockEntity furniWorkbenchBE) {
+            if (blockEntity instanceof WorkbenchBlockEntity furniWorkbenchBE) {
                 SimpleContainer container = furniWorkbenchBE.getOutputContainer();
 
                 for (int i = 0; i < container.getContainerSize(); i++) {

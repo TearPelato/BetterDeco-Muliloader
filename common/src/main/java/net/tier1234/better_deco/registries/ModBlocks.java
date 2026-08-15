@@ -19,8 +19,8 @@ public class ModBlocks {
     
 
     //Test
-    public static final RegistryEntry<FurniWorkbench> FURNI_WORKBENCH = register("furni_workbench",
-            ()-> new FurniWorkbench(BlockBehaviour.Properties.of().strength(2.0f)));
+    public static final RegistryEntry<WorkbenchBlock> WORKBENCH = register("workbench",
+            ()-> new WorkbenchBlock(BlockBehaviour.Properties.of().strength(2.0f)));
 
 
     public static final RegistryEntry<BathBlock> OAK_BATH = register("oak_bath",

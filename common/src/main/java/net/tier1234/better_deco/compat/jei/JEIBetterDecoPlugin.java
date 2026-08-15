@@ -130,7 +130,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_MICROWAVE.get().asItem()),
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FURNI_WORKBENCH.get().asItem()),
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WORKBENCH.get().asItem()),
                 FurniWorkbenchCategory.TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_LIGHT.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_DARK.get()), FreezerCategory.FREEZER_RECIPE_TYPE);

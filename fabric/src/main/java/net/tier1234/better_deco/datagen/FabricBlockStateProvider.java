@@ -246,7 +246,7 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         kitchenSink(ModBlocks.PINK_SINK.get(), Constants.id("block/pink_kitchen_sink"));
         kitchenCabinet(ModBlocks.PINK_CABINET.get(), Constants.id("block/pink_kitchen_cabinet"));
 
-        workbench(ModBlocks.FURNI_WORKBENCH.get(), Constants.id("block/workbench_front"),Constants.id("block/workbench_side"),Constants.id("block/workbench_top"), Constants.id("block/workbench_bottom"));
+        workbench(ModBlocks.WORKBENCH.get(), Constants.id("block/workbench_front"),Constants.id("block/workbench_side"),Constants.id("block/workbench_top"), Constants.id("block/workbench_bottom"));
 
         basin(ModBlocks.OAK_BASIN.get(), Constants.id("block/oak_basin"));
         basin(ModBlocks.SPRUCE_BASIN.get(), Constants.id("block/spruce_basin"));

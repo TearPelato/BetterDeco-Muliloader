@@ -19,7 +19,7 @@ public class ModBundledTabs {
                     .title(Component.translatable("bundled_tab.general"))
                     .icon(new ItemStack(ModBlocks.OAK_CHAIR.get()))
                     .displayItems(((provider, output) -> {
-                        output.accept(ModBlocks.FURNI_WORKBENCH.get());
+                        output.accept(ModBlocks.WORKBENCH.get());
 
                         output.accept(ModBlocks.OAK_CHAIR.get());
                         output.accept(ModBlocks.SPRUCE_CHAIR.get());

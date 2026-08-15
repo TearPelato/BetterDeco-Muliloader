@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-14T00:01:55.833498	Loot Tables
+// 1.21.1	2026-08-15T15:13:22.3253651	Loot Tables
 c960760c1f59c9357137ea82119a6aad0ee1e688 data/better_deco/loot_table/blocks/acacia_basin.json
 fceb576f27dd459dbe9f7a6db8922c82f60b608e data/better_deco/loot_table/blocks/acacia_bath.json
 a3a550e985f91cd952484fe2aba00e9eee359c7a data/better_deco/loot_table/blocks/acacia_bedside.json
@@ -169,7 +169,6 @@ a21636030a3d7719be8ad4453000a74d8a2552a9 data/better_deco/loot_table/blocks/dark
 8784186586c11a2b76797179e1ac1468affd9401 data/better_deco/loot_table/blocks/diorite_pedestal.json
 abe04c165383d534109f6febf10af5af99d6e43e data/better_deco/loot_table/blocks/fridge_dark.json
 8d778ea0f8c75ec0f63c97d2513c4d23117cf889 data/better_deco/loot_table/blocks/fridge_light.json
-572f584b98212a6351fbb96155a0863b18f9f762 data/better_deco/loot_table/blocks/furni_workbench.json
 2f8fd745c5b73e039718613e75496eb56f87192d data/better_deco/loot_table/blocks/granite_pedestal.json
 e1452a16cb23d21e50b403d55485992cb37eee45 data/better_deco/loot_table/blocks/gray_cabinet.json
 e4091ad532353a873b1782e15ede33aab06a1628 data/better_deco/loot_table/blocks/gray_digital_clock.json
@@ -377,6 +376,7 @@ aa8ed4ba697ebcd5420915779251e4d1228aee7b data/better_deco/loot_table/blocks/whit
 29ad8d634de2fd9c5980b9670048456dc9589e87 data/better_deco/loot_table/blocks/white_sink.json
 c935221ded0cb0ffbca92d96d971bc66a63dd810 data/better_deco/loot_table/blocks/white_sofa.json
 e478c69198ab58b5dfa8a9bba0b21451e934176d data/better_deco/loot_table/blocks/white_stool.json
+104ff3de6fc207e4e43e61874a3c2ba966fda97b data/better_deco/loot_table/blocks/workbench.json
 d6bbf088c61477b0daaff4043fe379335e2c24fc data/better_deco/loot_table/blocks/yellow_cabinet.json
 7e06040d4210f0d06f410769b2fbbf1ba3e40800 data/better_deco/loot_table/blocks/yellow_digital_clock.json
 d53b45e977f26c918333f599c15aee1d0bd87cd0 data/better_deco/loot_table/blocks/yellow_kitchen_counter.json

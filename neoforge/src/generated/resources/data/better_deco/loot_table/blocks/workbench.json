@@ -11,10 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "better_deco:furni_workbench"
+          "name": "better_deco:workbench"
         }
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "better_deco:blocks/workbench"
 }

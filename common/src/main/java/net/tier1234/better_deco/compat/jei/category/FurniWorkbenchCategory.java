@@ -45,7 +45,7 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
     public FurniWorkbenchCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
         this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 75);
-        this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.FURNI_WORKBENCH.get()));
+        this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.WORKBENCH.get()));
     }
 
     @Override

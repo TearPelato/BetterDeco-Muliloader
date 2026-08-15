@@ -16,7 +16,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     public void generate() {
-        dropSelf(ModBlocks.FURNI_WORKBENCH.get());
+        dropSelf(ModBlocks.WORKBENCH.get());
         //Tecque
         dropSelf(ModBlocks.STONE_GLASS_TECQUE.get());
         dropSelf(ModBlocks.OAK_GLASS_TECQUE.get());
@@ -429,7 +429,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.STONE_PATH.get());
         dropSelf(ModBlocks.OAK_CUTTING_BOARD.get());
 
-        dropSelf(ModBlocks.FURNI_WORKBENCH.get());
+        dropSelf(ModBlocks.WORKBENCH.get());
 
         dropSelf(ModBlocks.OAK_JAR.get());
         dropSelf(ModBlocks.SPRUCE_JAR.get());

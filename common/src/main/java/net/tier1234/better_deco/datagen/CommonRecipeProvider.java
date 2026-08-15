@@ -212,7 +212,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
 
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.FURNI_WORKBENCH.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.WORKBENCH.get())
                 .pattern("PPP")
                 .pattern("ICI")
                 .pattern("I I")

@@ -29,7 +29,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
         public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer) {
 
             AdvancementHolder root = Advancement.Builder.recipeAdvancement().display(
-                    ModBlocks.FURNI_WORKBENCH.get(),
+                    ModBlocks.WORKBENCH.get(),
                     Component.translatable("advancement.better_deco.craft_workbench.title"),
                     Component.translatable("advancement.better_deco.craft_workbench.description"),
                     Constants.id(""),
@@ -38,7 +38,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                     true,
                     false
             )
-                    .addCriterion("craftWorkbench", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModBlocks.FURNI_WORKBENCH.get()).build()))
+                    .addCriterion("craftWorkbench", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModBlocks.WORKBENCH.get()).build()))
                     .save(consumer, "better_deco/craft_workbench");
 
             AdvancementHolder craft_furniture = Advancement.Builder.advancement()
@@ -54,7 +54,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                     .addCriterion("craftFurniture", InventoryChangeTrigger.TriggerInstance.hasItems(
                             ItemPredicate.Builder.item().of(
                                     ModBlocks.BLOCKS.stream()
-                                            .filter(entry-> entry!= ModBlocks.FURNI_WORKBENCH)
+                                            .filter(entry-> entry!= ModBlocks.WORKBENCH)
                                             .map(entry -> entry.get().asItem())
                                             .toArray(Item[]::new)
                             ).build()))

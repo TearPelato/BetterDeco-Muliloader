@@ -224,7 +224,7 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .add(ModBlocks.BAMBOO_OVEN.get())
                 .add(ModBlocks.CRIMSON_OVEN.get())
                 .add(ModBlocks.WARPED_OVEN.get())
-                .add(ModBlocks.FURNI_WORKBENCH.get())
+                .add(ModBlocks.WORKBENCH.get())
 
                 .add(ModBlocks.OAK_CUTTING_BOARD.get())
                 .add(ModBlocks.SPRUCE_CUTTING_BOARD.get())

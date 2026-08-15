@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-12T21:14:24.5044087	BetterDeco/Block Loot Tables
+// 1.21.1	2026-08-15T15:14:23.3153888	BetterDeco/Block Loot Tables
 b5a5d954d7990fe36aa85b1c94ca1ec1a406f3b4 data\better_deco\loot_table\blocks\crimson_kitchen_counter.json
 3c3aef1ca6981b5d7378a22db4aca14d9cfa66b5 data\better_deco\loot_table\blocks\mangrove_glass_tecque.json
 c265be515cfb0e7b8470815d4a8af76c26a1b133 data\better_deco\loot_table\blocks\bamboo_cutting_board.json
@@ -68,7 +68,6 @@ d83b985323802edc36768e32767bd706f503e4a1 data\better_deco\loot_table\blocks\jung
 bdc0060991c3985693a63fe3be43cb54e3b99311 data\better_deco\loot_table\blocks\cherry_park_bench.json
 d8997c65adffa00e9774d0ed00fa36a040a53c49 data\better_deco\loot_table\blocks\oak_jar.json
 300d41efa0fc3d5b557849e22efdc128b1067329 data\better_deco\loot_table\blocks\lime_digital_clock.json
-fd08a12b8c0c6354df5698c81c5cf7a9239854fd data\better_deco\loot_table\blocks\furni_workbench.json
 bf433c93b0d660dce50f2879a031766814186c01 data\better_deco\loot_table\blocks\mangrove_sink.json
 10c4ce00a63eff1a0fb4319196c5b18081fefc6b data\better_deco\loot_table\blocks\mangrove_dinning_table.json
 e0349f71a5da4fabadb7f8a1e650ec1ea1e2b3dd data\better_deco\loot_table\blocks\mangrove_coffee_table.json
@@ -370,6 +369,7 @@ a5aff043b78a4417127f66b414ce4b6185b7bd38 data\better_deco\loot_table\blocks\crim
 9f154d041344dea20e0ca665de23b392681796fa data\better_deco\loot_table\blocks\birch_sink_dark.json
 d4d993a0c24bea761b110557748d06f00ad9eea2 data\better_deco\loot_table\blocks\acacia_sink.json
 1565354d9e87c9d841bdd78dee38641fb28cc44a data\better_deco\loot_table\blocks\dark_oak_park_bench.json
+16d772cc22af19072ed86cb9ab6729e43aab8205 data\better_deco\loot_table\blocks\workbench.json
 ede70d69dc9baafcfa2d18fba73dd9bcb1e1b184 data\better_deco\loot_table\blocks\black_digital_clock.json
 eede29753e398fdd1ca37a746eeddcd266d7be78 data\better_deco\loot_table\blocks\white_stool.json
 fa5cc063fe50de2b474022cbe4faf7dfe50dcc6b data\better_deco\loot_table\blocks\jungle_toilet.json
