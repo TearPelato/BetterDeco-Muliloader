@@ -309,27 +309,27 @@ public class ModBlocks {
 
     //Furnitures
     //Chairs
-    public static final RegistryEntry<Block> BIRCH_CHAIR = register("birch_chair",
+    public static final RegistryEntry<ChairBlock> OAK_CHAIR = register("oak_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_CHAIR = register("spruce_chair",
+    public static final RegistryEntry<ChairBlock> SPRUCE_CHAIR = register("spruce_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> OAK_CHAIR = register("oak_chair",
+    public static final RegistryEntry<ChairBlock> BIRCH_CHAIR = register("birch_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_CHAIR = register("dark_oak_chair",
+    public static final RegistryEntry<ChairBlock> JUNGLE_CHAIR = register("jungle_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_CHAIR = register("mangrove_chair",
+    public static final RegistryEntry<ChairBlock> ACACIA_CHAIR = register("acacia_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_CHAIR = register("warped_chair",
+    public static final RegistryEntry<ChairBlock> DARK_OAK_CHAIR = register("dark_oak_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_CHAIR = register("crimson_chair",
+    public static final RegistryEntry<ChairBlock> MANGROVE_CHAIR = register("mangrove_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_CHAIR = register("acacia_chair",
+    public static final RegistryEntry<ChairBlock> CHERRY_CHAIR = register("cherry_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_CHAIR = register("jungle_chair",
+    public static final RegistryEntry<ChairBlock> BAMBOO_CHAIR = register("bamboo_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_CHAIR = register("cherry_chair",
+    public static final RegistryEntry<ChairBlock> CRIMSON_CHAIR = register("crimson_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_CHAIR = register("bamboo_chair",
+    public static final RegistryEntry<ChairBlock> WARPED_CHAIR = register("warped_chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Counters

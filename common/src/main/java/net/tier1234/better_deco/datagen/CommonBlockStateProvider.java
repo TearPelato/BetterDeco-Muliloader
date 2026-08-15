@@ -72,17 +72,17 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void kitchenCounter(KitchenCounterBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation defaultKey     = modId(baseName + "_default");
-        ResourceLocation leftCornerKey  = modId(baseName + "_left_corner");
-        ResourceLocation rightCornerKey = modId(baseName + "_right_corner");
-        ResourceLocation leftInvKey     = modId(baseName + "_left_corner_inverted");
-        ResourceLocation rightInvKey    = modId(baseName + "_right_corner_inverted");
+        ResourceLocation defaultKey     = Constants.id(baseName + "_default");
+        ResourceLocation leftCornerKey  = Constants.id(baseName + "_left_corner");
+        ResourceLocation rightCornerKey = Constants.id(baseName + "_right_corner");
+        ResourceLocation leftInvKey     = Constants.id(baseName + "_left_corner_inverted");
+        ResourceLocation rightInvKey    = Constants.id(baseName + "_right_corner_inverted");
 
-        ResourceLocation defaultRef     = modId("block/" + baseName + "_default");
-        ResourceLocation leftCornerRef  = modId("block/" + baseName + "_left_corner");
-        ResourceLocation rightCornerRef = modId("block/" + baseName + "_right_corner");
-        ResourceLocation leftInvRef     = modId("block/" + baseName + "_left_corner_inverted");
-        ResourceLocation rightInvRef    = modId("block/" + baseName + "_right_corner_inverted");
+        ResourceLocation defaultRef     = Constants.id("block/" + baseName + "_default");
+        ResourceLocation leftCornerRef  = Constants.id("block/" + baseName + "_left_corner");
+        ResourceLocation rightCornerRef = Constants.id("block/" + baseName + "_right_corner");
+        ResourceLocation leftInvRef     = Constants.id("block/" + baseName + "_left_corner_inverted");
+        ResourceLocation rightInvRef    = Constants.id("block/" + baseName + "_right_corner_inverted");
 
         registerModel(defaultKey,     Constants.id("block/kitchen_counter_default"),               texture);
         registerModel(leftCornerKey,  Constants.id("block/kitchen_counter_left_corner"),           texture);
@@ -119,11 +119,11 @@ public abstract class CommonBlockStateProvider implements DataProvider {
                                  ResourceLocation textureOpen) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation closedKey = modId(baseName + "_closed");
-        ResourceLocation openKey   = modId(baseName + "_open");
+        ResourceLocation closedKey = Constants.id(baseName + "_closed");
+        ResourceLocation openKey   = Constants.id(baseName + "_open");
 
-        ResourceLocation closedRef = modId("block/" + baseName + "_closed");
-        ResourceLocation openRef   = modId("block/" + baseName + "_open");
+        ResourceLocation closedRef = Constants.id("block/" + baseName + "_closed");
+        ResourceLocation openRef   = Constants.id("block/" + baseName + "_open");
 
         registerModel(closedKey, Constants.id("block/kitchen_drawer_closed"), textureClosed);
         registerModel(openKey,   Constants.id("block/kitchen_drawer_open"),   textureOpen);
@@ -151,8 +151,8 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     protected void  kitchenSink(KitchenSinkBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation textureKey = modId(baseName);
-        ResourceLocation textureRef = modId("block/" + baseName );
+        ResourceLocation textureKey = Constants.id(baseName);
+        ResourceLocation textureRef = Constants.id("block/" + baseName );
 
         registerModel(textureKey, Constants.id("block/kitchen_sink"), texture);
 
@@ -173,8 +173,8 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     protected void oven(OvenBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation textureKey = modId(baseName);
-        ResourceLocation textureRef = modId("block/" + baseName );
+        ResourceLocation textureKey = Constants.id(baseName);
+        ResourceLocation textureRef = Constants.id("block/" + baseName );
 
         registerModel(textureKey, Constants.id("block/oven"), texture);
 
@@ -193,15 +193,15 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void kitchenCabinet(CabinetBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation closedRightKey = modId(baseName + "_closed_right");
-        ResourceLocation closedLeftKey   = modId(baseName + "_closed_left");
-        ResourceLocation openRightKey    = modId(baseName + "_open_right");
-        ResourceLocation openLeftKey    = modId(baseName + "_open_left");
+        ResourceLocation closedRightKey = Constants.id(baseName + "_closed_right");
+        ResourceLocation closedLeftKey   = Constants.id(baseName + "_closed_left");
+        ResourceLocation openRightKey    = Constants.id(baseName + "_open_right");
+        ResourceLocation openLeftKey    = Constants.id(baseName + "_open_left");
 
-        ResourceLocation closedRightRef = modId("block/" + baseName + "_closed_right");
-        ResourceLocation closedLeftRef = modId("block/" + baseName + "_closed_left");
-        ResourceLocation openRightRef   = modId("block/" + baseName + "_open_right");
-        ResourceLocation openLeftRef   = modId("block/" + baseName + "_open_left");
+        ResourceLocation closedRightRef = Constants.id("block/" + baseName + "_closed_right");
+        ResourceLocation closedLeftRef = Constants.id("block/" + baseName + "_closed_left");
+        ResourceLocation openRightRef   = Constants.id("block/" + baseName + "_open_right");
+        ResourceLocation openLeftRef   = Constants.id("block/" + baseName + "_open_left");
 
 
 
@@ -247,12 +247,12 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void fridge(FridgeBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation bottomKey = modId(baseName + "_bottom");
-        ResourceLocation topKey    = modId(baseName + "_top");
-        ResourceLocation fullKey    = modId(baseName);
+        ResourceLocation bottomKey = Constants.id(baseName + "_bottom");
+        ResourceLocation topKey    = Constants.id(baseName + "_top");
+        ResourceLocation fullKey    = Constants.id(baseName);
 
-        ResourceLocation bottomRef = modId("block/" + baseName + "_bottom");
-        ResourceLocation topRef    = modId("block/" + baseName + "_top");
+        ResourceLocation bottomRef = Constants.id("block/" + baseName + "_bottom");
+        ResourceLocation topRef    = Constants.id("block/" + baseName + "_top");
 
         registerModel(bottomKey, Constants.id("block/fridge_bottom"), texture);
         registerModel(topKey,    Constants.id("block/fridge_top"),    texture);
@@ -270,17 +270,17 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
 
-        registerItemBlockModel(baseName, modId("block/" + baseName));
+        registerItemBlockModel(baseName, Constants.id("block/" + baseName));
     }
 
     protected void microwave(MicrowaveBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation closedKey = modId(baseName + "_closed");
-        ResourceLocation openKey   = modId(baseName + "_open");
+        ResourceLocation closedKey = Constants.id(baseName + "_closed");
+        ResourceLocation openKey   = Constants.id(baseName + "_open");
 
-        ResourceLocation closedRef = modId("block/" + baseName + "_closed");
-        ResourceLocation openRef   = modId("block/" + baseName + "_open");
+        ResourceLocation closedRef = Constants.id("block/" + baseName + "_closed");
+        ResourceLocation openRef   = Constants.id("block/" + baseName + "_open");
 
         registerModel(closedKey, Constants.id("block/microwave_closed"), texture);
         registerModel(openKey,   Constants.id("block/microwave_open"),   texture);
@@ -309,8 +309,8 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     protected void toaster(ToasterBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation toasterKey = modId(baseName);
-        ResourceLocation toasterRef = modId("block/" + baseName);
+        ResourceLocation toasterKey = Constants.id(baseName);
+        ResourceLocation toasterRef = Constants.id("block/" + baseName);
 
         registerModel(toasterKey, Constants.id("block/toaster"), texture);
 
@@ -334,9 +334,9 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void cuttingBoard(CuttingBoardBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation cuttingBoardKey = modId(baseName);
+        ResourceLocation cuttingBoardKey = Constants.id(baseName);
 
-        ResourceLocation cuttingBoardRef = modId("block/" + baseName);
+        ResourceLocation cuttingBoardRef = Constants.id("block/" + baseName);
 
         registerModel(cuttingBoardKey, Constants.id("block/cutting_board"), texture);
 
@@ -353,14 +353,14 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemBlockModel(baseName, modId("block/" + baseName));
+        registerItemBlockModel(baseName, Constants.id("block/" + baseName));
     }
 
     protected void jar(JarBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation jarKey = modId(baseName);
-        ResourceLocation jarRef = modId("block/" + baseName);
+        ResourceLocation jarKey = Constants.id(baseName);
+        ResourceLocation jarRef = Constants.id("block/" + baseName);
 
         registerModel(jarKey, Constants.id("block/jar"), texture);
 
@@ -376,7 +376,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject root = new JsonObject();
         root.add("variants", variants);
         blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
-        registerItemBlockModel(baseName, modId("block/" + baseName));
+        registerItemBlockModel(baseName, Constants.id("block/" + baseName));
 
     }
 
@@ -387,8 +387,8 @@ public abstract class CommonBlockStateProvider implements DataProvider {
                              ResourceLocation textureBottom) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation modelKey = modId(baseName);
-        ResourceLocation modelRef = modId("block/" + baseName);
+        ResourceLocation modelKey = Constants.id(baseName);
+        ResourceLocation modelRef = Constants.id("block/" + baseName);
 
         registerCubeModel(modelKey, textureTop, textureFront, textureSide, textureBottom);
 
@@ -404,8 +404,8 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     protected void basin(BasinBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation textureKey = modId(baseName);
-        ResourceLocation textureRef = modId("block/" + baseName );
+        ResourceLocation textureKey = Constants.id(baseName);
+        ResourceLocation textureRef = Constants.id("block/" + baseName );
 
         registerModel(textureKey, Constants.id("block/basin"), texture);
 
@@ -426,8 +426,8 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     protected void toilet(ToiletBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ResourceLocation textureKey = modId(baseName);
-        ResourceLocation textureRef = modId("block/" + baseName );
+        ResourceLocation textureKey = Constants.id(baseName);
+        ResourceLocation textureRef = Constants.id("block/" + baseName );
 
         registerModel(textureKey, Constants.id("block/toilet"), texture);
 
@@ -449,13 +449,13 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void bath(BathBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation bottomModelKey = modId(baseName + "_bottom");
-        ResourceLocation headModelKey   = modId(baseName + "_head");
-        ResourceLocation itemModelKey   = modId(baseName);
+        ResourceLocation bottomModelKey = Constants.id(baseName + "_bottom");
+        ResourceLocation headModelKey   = Constants.id(baseName + "_head");
+        ResourceLocation itemModelKey   = Constants.id(baseName);
 
-        ResourceLocation bottomRef = modId("block/" + baseName + "_bottom");
-        ResourceLocation headRef   = modId("block/" + baseName + "_head");
-        ResourceLocation itemRef   = modId("block/" + baseName);
+        ResourceLocation bottomRef = Constants.id("block/" + baseName + "_bottom");
+        ResourceLocation headRef   = Constants.id("block/" + baseName + "_head");
+        ResourceLocation itemRef   = Constants.id("block/" + baseName);
 
         registerModel(bottomModelKey, Constants.id("block/bath_bottom"), texture);
         registerModel(headModelKey,   Constants.id("block/bath_head"), texture);
@@ -484,19 +484,19 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     protected void sofa(SofaBlock block, ResourceLocation texture) {
         String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
-        ResourceLocation defaultKey     = modId(baseName + "_single");
-        ResourceLocation leftCornerKey  = modId(baseName + "_left");
-        ResourceLocation rightCornerKey = modId(baseName + "_right");
-        ResourceLocation middleKey     = modId(baseName + "_middle");
-        ResourceLocation corner_leftKey    = modId(baseName + "_corner_left");
-        ResourceLocation corner_rightKey   = modId(baseName + "_corner_right");
+        ResourceLocation defaultKey     = Constants.id(baseName + "_single");
+        ResourceLocation leftCornerKey  = Constants.id(baseName + "_left");
+        ResourceLocation rightCornerKey = Constants.id(baseName + "_right");
+        ResourceLocation middleKey     = Constants.id(baseName + "_middle");
+        ResourceLocation corner_leftKey    = Constants.id(baseName + "_corner_left");
+        ResourceLocation corner_rightKey   = Constants.id(baseName + "_corner_right");
 
-        ResourceLocation defaultRef     = modId("block/" + baseName + "_single");
-        ResourceLocation leftCornerRef  = modId("block/" + baseName + "_left");
-        ResourceLocation rightCornerRef = modId("block/" + baseName + "_right");
-        ResourceLocation middleRef    = modId("block/" + baseName + "_middle");
-        ResourceLocation corner_leftRef    = modId("block/" + baseName + "_corner_left");
-        ResourceLocation corner_rightRef   = modId("block/" + baseName + "_corner_right");
+        ResourceLocation defaultRef     = Constants.id("block/" + baseName + "_single");
+        ResourceLocation leftCornerRef  = Constants.id("block/" + baseName + "_left");
+        ResourceLocation rightCornerRef = Constants.id("block/" + baseName + "_right");
+        ResourceLocation middleRef    = Constants.id("block/" + baseName + "_middle");
+        ResourceLocation corner_leftRef    = Constants.id("block/" + baseName + "_corner_left");
+        ResourceLocation corner_rightRef   = Constants.id("block/" + baseName + "_corner_right");
 
         registerModel(defaultKey,     Constants.id("block/sofa_single"),               texture);
         registerModel(leftCornerKey,  Constants.id("block/sofa_left"),           texture);
@@ -531,7 +531,26 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     }
 
 
-
+    protected void chair(ChairBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation chairKey = Constants.id(baseName);
+        ResourceLocation chairRef = Constants.id("block/" + baseName);
+        
+        registerModel(chairKey, Constants.id("block/chair"),texture);
+        
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            variants.add("facing=" + Direction.NORTH, variantJson(chairRef, 0));
+            variants.add("facing=" + Direction.EAST, variantJson(chairRef, 90));
+            variants.add("facing=" + Direction.SOUTH, variantJson(chairRef, 180));
+            variants.add("facing=" + Direction.WEST , variantJson(chairRef, 270));
+        }
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName,chairRef);
+    }
 
 
 
@@ -686,14 +705,14 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         JsonObject model = new JsonObject();
         model.addProperty("parent", "minecraft:item/handheld");
         model.add("textures", textures);
-        itemModels.put(modId(baseName), model);
+        itemModels.put(Constants.id(baseName), model);
 
     }
 
     protected void registerItemBlockModel(String blockName, ResourceLocation blockModelRef) {
         JsonObject model = new JsonObject();
         model.addProperty("parent", blockModelRef.toString());
-        itemModels.put(modId(blockName), model);
+        itemModels.put(Constants.id(blockName), model);
     }
 
     private static JsonObject variantJson(ResourceLocation model, int rotY) {
@@ -702,11 +721,7 @@ public abstract class CommonBlockStateProvider implements DataProvider {
         if (rotY != 0) obj.addProperty("y", rotY);
         return obj;
     }
-
-    private static ResourceLocation modId(String path) {
-        return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, path);
-    }
-
+    
     private static final Direction[] HORIZONTALS = {
             Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST
     };
