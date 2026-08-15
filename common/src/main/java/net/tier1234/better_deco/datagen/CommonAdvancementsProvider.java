@@ -67,7 +67,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                             Component.translatable("advancement.better_deco.craft_electronic_furnitures.desc"),
                             null,AdvancementType.TASK,true,true,false)
                     .addCriterion("craft_electronic_furnitures", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item().of(ModTags.Items.ELECTRONIC_APPLIANCES).build()))
+                            ItemPredicate.Builder.item().of(ModTags.Items.ELECTRONIC_FURNITURES).build()))
                     .save(consumer, "better_deco/craft_electronic_furnitures");
 
 

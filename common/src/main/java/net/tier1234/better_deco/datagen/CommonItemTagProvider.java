@@ -17,7 +17,7 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(ModTags.Items.ELECTRONIC_APPLIANCES)
+        tag(ModTags.Items.ELECTRONIC_FURNITURES)
                 .add(ModBlocks.FRIDGE_LIGHT.get().asItem())
                 .add(ModBlocks.FRIDGE_DARK.get().asItem())
                 .add(ModBlocks.LIGHT_MICROWAVE.get().asItem())
