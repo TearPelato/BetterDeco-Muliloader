@@ -272,7 +272,6 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         toilet(ModBlocks.CRIMSON_TOILET.get(), Constants.id(("block/crimson_toilet")));
         toilet(ModBlocks.WARPED_TOILET.get(), Constants.id(("block/warped_toilet")));
 
-
         bath(ModBlocks.OAK_BATH.get(), Constants.id(("block/oak_bath")));
         bath(ModBlocks.SPRUCE_BATH.get(), Constants.id(("block/spruce_bath")));
         bath(ModBlocks.BIRCH_BATH.get(), Constants.id(("block/birch_bath")));
@@ -302,6 +301,17 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         sofa(ModBlocks.MAGENTA_SOFA.get(), Constants.id("block/magenta_sofa"));
         sofa(ModBlocks.PINK_SOFA.get(), Constants.id("block/pink_sofa"));
 
+        chair(ModBlocks.OAK_CHAIR.get(), Constants.id("block/oak_chair"));
+        chair(ModBlocks.SPRUCE_CHAIR.get(), Constants.id("block/spruce_chair"));
+        chair(ModBlocks.BIRCH_CHAIR.get(), Constants.id("block/birch_chair"));
+        chair(ModBlocks.JUNGLE_CHAIR.get(), Constants.id("block/jungle_chair"));
+        chair(ModBlocks.ACACIA_CHAIR.get(), Constants.id("block/acacia_chair"));
+        chair(ModBlocks.DARK_OAK_CHAIR.get(), Constants.id("block/dark_oak_chair"));
+        chair(ModBlocks.MANGROVE_CHAIR.get(), Constants.id("block/mangrove_chair"));
+        chair(ModBlocks.CHERRY_CHAIR.get(), Constants.id("block/cherry_chair"));
+        chair(ModBlocks.BAMBOO_CHAIR.get(), Constants.id("block/bamboo_chair"));
+        chair(ModBlocks.CRIMSON_CHAIR.get(), Constants.id("block/crimson_chair"));
+        chair(ModBlocks.WARPED_CHAIR.get(), Constants.id("block/warped_chair"));
 
 
 

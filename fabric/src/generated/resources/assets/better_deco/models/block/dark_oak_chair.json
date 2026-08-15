@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/chair",
+  "textures": {
+    "0": "better_deco:block/dark_oak_chair",
+    "particle": "better_deco:block/dark_oak_chair"
+  }
+}
