@@ -23,17 +23,17 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
 
         //Furniture
                    //Tables
-                .add(ModBlocks.OAK_TABLE.get())
-                .add(ModBlocks.SPRUCE_TABLE.get())
-                .add(ModBlocks.BIRCH_TABLE.get())
-                .add(ModBlocks.JUNGLE_TABLE.get())
-                .add(ModBlocks.ACACIA_TABLE.get())
-                .add(ModBlocks.MANGROVE_TABLE.get())
-                .add(ModBlocks.DARK_OAK_TABLE.get())
-                .add(ModBlocks.CHERRY_TABLE.get())
-                .add(ModBlocks.BAMBOO_TABLE.get())
-                .add(ModBlocks.CRIMSON_TABLE.get())
-                .add(ModBlocks.WARPED_TABLE.get())
+                .add(ModBlocks.OAK_BASIC_TABLE.get())
+                .add(ModBlocks.SPRUCE_BASIC_TABLE.get())
+                .add(ModBlocks.BIRCH_BASIC_TABLE.get())
+                .add(ModBlocks.JUNGLE_BASIC_TABLE.get())
+                .add(ModBlocks.ACACIA_BASIC_TABLE.get())
+                .add(ModBlocks.MANGROVE_BASIC_TABLE.get())
+                .add(ModBlocks.DARK_OAK_BASIC_TABLE.get())
+                .add(ModBlocks.CHERRY_BASIC_TABLE.get())
+                .add(ModBlocks.BAMBOO_BASIC_TABLE.get())
+                .add(ModBlocks.CRIMSON_BASIC_TABLE.get())
+                .add(ModBlocks.WARPED_BASIC_TABLE.get())
 
 
         //Chairs
@@ -162,17 +162,17 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .add(ModBlocks.WARPED_COFFEE_TABLE.get())
 
                  //Dinning Table
-                .add(ModBlocks.OAK_DINNING_TABLE.get())
-                .add(ModBlocks.SPRUCE_DINNING_TABLE.get())
-                .add(ModBlocks.BIRCH_DINNING_TABLE.get())
-                .add(ModBlocks.JUNGLE_DINNING_TABLE.get())
-                .add(ModBlocks.ACACIA_DINNING_TABLE.get())
-                .add(ModBlocks.DARK_OAK_DINNING_TABLE.get())
-                .add(ModBlocks.MANGROVE_DINNING_TABLE.get())
-                .add(ModBlocks.CHERRY_DINNING_TABLE.get())
-                .add(ModBlocks.BAMBOO_DINNING_TABLE.get())
-                .add(ModBlocks.CRIMSON_DINNING_TABLE.get())
-                .add(ModBlocks.WARPED_DINNING_TABLE.get())
+                .add(ModBlocks.OAK_TABLE.get())
+                .add(ModBlocks.SPRUCE_TABLE.get())
+                .add(ModBlocks.BIRCH_TABLE.get())
+                .add(ModBlocks.JUNGLE_TABLE.get())
+                .add(ModBlocks.ACACIA_TABLE.get())
+                .add(ModBlocks.DARK_OAK_TABLE.get())
+                .add(ModBlocks.MANGROVE_TABLE.get())
+                .add(ModBlocks.CHERRY_TABLE.get())
+                .add(ModBlocks.BAMBOO_TABLE.get())
+                .add(ModBlocks.CRIMSON_TABLE.get())
+                .add(ModBlocks.WARPED_TABLE.get())
 
 
 

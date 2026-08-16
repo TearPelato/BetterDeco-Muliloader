@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "better_deco:cherry_dinning_table"
+          "name": "better_deco:cherry_basic_table"
         }
       ],
       "rolls": 1.0

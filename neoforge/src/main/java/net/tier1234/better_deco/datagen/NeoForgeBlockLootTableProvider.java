@@ -91,17 +91,17 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
 
 
         //Tables
-        dropSelf(ModBlocks.OAK_TABLE.get());
-        dropSelf(ModBlocks.SPRUCE_TABLE.get());
-        dropSelf(ModBlocks.BIRCH_TABLE.get());
-        dropSelf(ModBlocks.JUNGLE_TABLE.get());
-        dropSelf(ModBlocks.ACACIA_TABLE.get());
-        dropSelf(ModBlocks.MANGROVE_TABLE.get());
-        dropSelf(ModBlocks.DARK_OAK_TABLE.get());
-        dropSelf(ModBlocks.CHERRY_TABLE.get());
-        dropSelf(ModBlocks.BAMBOO_TABLE.get());
-        dropSelf(ModBlocks.CRIMSON_TABLE.get());
-        dropSelf(ModBlocks.WARPED_TABLE.get());
+        dropSelf(ModBlocks.OAK_BASIC_TABLE.get());
+        dropSelf(ModBlocks.SPRUCE_BASIC_TABLE.get());
+        dropSelf(ModBlocks.BIRCH_BASIC_TABLE.get());
+        dropSelf(ModBlocks.JUNGLE_BASIC_TABLE.get());
+        dropSelf(ModBlocks.ACACIA_BASIC_TABLE.get());
+        dropSelf(ModBlocks.MANGROVE_BASIC_TABLE.get());
+        dropSelf(ModBlocks.DARK_OAK_BASIC_TABLE.get());
+        dropSelf(ModBlocks.CHERRY_BASIC_TABLE.get());
+        dropSelf(ModBlocks.BAMBOO_BASIC_TABLE.get());
+        dropSelf(ModBlocks.CRIMSON_BASIC_TABLE.get());
+        dropSelf(ModBlocks.WARPED_BASIC_TABLE.get());
 
 
         //Sofa
@@ -268,17 +268,17 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WARPED_COFFEE_TABLE.get());
 
 
-        dropSelf(ModBlocks.OAK_DINNING_TABLE.get());
-        dropSelf(ModBlocks.SPRUCE_DINNING_TABLE.get());
-        dropSelf(ModBlocks.BIRCH_DINNING_TABLE.get());
-        dropSelf(ModBlocks.JUNGLE_DINNING_TABLE.get());
-        dropSelf(ModBlocks.ACACIA_DINNING_TABLE.get());
-        dropSelf(ModBlocks.DARK_OAK_DINNING_TABLE.get());
-        dropSelf(ModBlocks.MANGROVE_DINNING_TABLE.get());
-        dropSelf(ModBlocks.CHERRY_DINNING_TABLE.get());
-        dropSelf(ModBlocks.BAMBOO_DINNING_TABLE.get());
-        dropSelf(ModBlocks.CRIMSON_DINNING_TABLE.get());
-        dropSelf(ModBlocks.WARPED_DINNING_TABLE.get());
+        dropSelf(ModBlocks.OAK_TABLE.get());
+        dropSelf(ModBlocks.SPRUCE_TABLE.get());
+        dropSelf(ModBlocks.BIRCH_TABLE.get());
+        dropSelf(ModBlocks.JUNGLE_TABLE.get());
+        dropSelf(ModBlocks.ACACIA_TABLE.get());
+        dropSelf(ModBlocks.DARK_OAK_TABLE.get());
+        dropSelf(ModBlocks.MANGROVE_TABLE.get());
+        dropSelf(ModBlocks.CHERRY_TABLE.get());
+        dropSelf(ModBlocks.BAMBOO_TABLE.get());
+        dropSelf(ModBlocks.CRIMSON_TABLE.get());
+        dropSelf(ModBlocks.WARPED_TABLE.get());
 
 
         dropSelf(ModBlocks.OAK_OVEN.get());

@@ -11,10 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "better_deco:oak_dinning_table"
+          "name": "better_deco:jungle_basic_table"
         }
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "better_deco:blocks/jungle_basic_table"
 }

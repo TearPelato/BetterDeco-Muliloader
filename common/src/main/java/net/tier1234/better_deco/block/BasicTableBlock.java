@@ -12,13 +12,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.tearpelato.deco_lib.api.block.furniture.FurnitureWaterloggedBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DinningTableBlock extends FurnitureWaterloggedBlock
+public class BasicTableBlock extends Block
 {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty EAST = BooleanProperty.create("east");
@@ -27,28 +26,22 @@ public class DinningTableBlock extends FurnitureWaterloggedBlock
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public DinningTableBlock(Properties properties)
+    public BasicTableBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(NORTH, false)
-                .setValue(EAST, false)
-                .setValue(SOUTH, false)
-                .setValue(WEST, false)
-                .setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape TABLE_TOP_TALL = Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
-        final VoxelShape LEG_SOUTH_EAST_TALL = Block.box(13.5, 0, 13.5, 15.5, 14, 15.5);
-        final VoxelShape LEG_SOUTH_WEST_TALL = Block.box(0.5, 0, 13.5, 2.5, 14, 15.5);
-        final VoxelShape LEG_NORTH_WEST_TALL = Block.box(0.5, 0, 0.5, 2.5, 14, 2.5);
-        final VoxelShape LEG_NORTH_EAST_TALL = Block.box(13.5, 0, 0.5, 15.5, 14, 2.5);
+        final VoxelShape TABLE_TOP = Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape MIDDLE_POST = Block.box(6.0, 0.0, 6.0, 10.0, 14.0, 10.0);
+        final VoxelShape END_POST = Block.box(3.0, 0.0, 6.0, 7.0, 14.0, 10.0);
+        final VoxelShape CORNER_POST = Block.box(3.0, 0.0, 9.0, 7.0, 14.0, 13.0);
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
-        for (BlockState state : states)
+        for(BlockState state : states)
         {
             boolean north = state.getValue(NORTH);
             boolean east = state.getValue(EAST);
@@ -56,23 +49,45 @@ public class DinningTableBlock extends FurnitureWaterloggedBlock
             boolean west = state.getValue(WEST);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(TABLE_TOP_TALL);
-            if (!north && !west)
+            shapes.add(TABLE_TOP);
+
+            if(!north & !east && !south && !west)
             {
-                shapes.add(LEG_NORTH_WEST_TALL);
+                shapes.add(MIDDLE_POST);
             }
-            if (!north && !east)
+            else if(north & !east && !south && !west)
             {
-                shapes.add(LEG_NORTH_EAST_TALL);
+                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.NORTH));
             }
-            if (!south && !west)
+            else if(!north & east && !south && !west)
             {
-                shapes.add(LEG_SOUTH_WEST_TALL);
+                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.EAST));
             }
-            if (!south && !east)
+            else if(!north & !east && south && !west)
             {
-                shapes.add(LEG_SOUTH_EAST_TALL);
+                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.SOUTH));
             }
+            else if(!north & !east && !south && west)
+            {
+                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.WEST));
+            }
+            else if(north && east && !south && !west)
+            {
+                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.EAST));
+            }
+            else if(!north && east && south && !west)
+            {
+                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.SOUTH));
+            }
+            else if(!north && !east && south && west)
+            {
+                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.WEST));
+            }
+            else if(north && !east && !south && west)
+            {
+                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.NORTH));
+            }
+
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
@@ -93,23 +108,20 @@ public class DinningTableBlock extends FurnitureWaterloggedBlock
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
-        boolean north = this.isCoffeeTable(level, pos, Direction.NORTH);
-        boolean east = this.isCoffeeTable(level, pos, Direction.EAST);
-        boolean south = this.isCoffeeTable(level, pos, Direction.SOUTH);
-        boolean west = this.isCoffeeTable(level, pos, Direction.WEST);
+        boolean north = level.getBlockState(pos.north()).getBlock() == this;
+        boolean east = level.getBlockState(pos.east()).getBlock() == this;
+        boolean south = level.getBlockState(pos.south()).getBlock() == this;
+        boolean west = level.getBlockState(pos.west()).getBlock() == this;
         return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
-    }
-
-    private boolean isCoffeeTable(LevelAccessor level, BlockPos source, Direction direction)
-    {
-        BlockState state = level.getBlockState(source.relative(direction));
-        return state.getBlock() == this;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder);
-        builder.add(NORTH, EAST, SOUTH, WEST);
+        builder.add(NORTH);
+        builder.add(EAST);
+        builder.add(SOUTH);
+        builder.add(WEST);
     }
 }

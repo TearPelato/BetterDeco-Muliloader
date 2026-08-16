@@ -11,11 +11,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "better_deco:crimson_dinning_table"
+          "name": "better_deco:spruce_basic_table"
         }
       ],
       "rolls": 1.0
     }
-  ],
-  "random_sequence": "better_deco:blocks/crimson_dinning_table"
+  ]
 }

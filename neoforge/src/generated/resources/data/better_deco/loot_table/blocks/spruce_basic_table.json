@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "better_deco:birch_dinning_table"
+          "name": "better_deco:spruce_basic_table"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "better_deco:blocks/birch_dinning_table"
+  "random_sequence": "better_deco:blocks/spruce_basic_table"
 }

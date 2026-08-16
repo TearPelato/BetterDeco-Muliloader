@@ -33,6 +33,18 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_CHAIR.get());
                         output.accept(ModBlocks.WARPED_CHAIR.get());
 
+                        output.accept(ModBlocks.OAK_BASIC_TABLE.get());
+                        output.accept(ModBlocks.SPRUCE_BASIC_TABLE.get());
+                        output.accept(ModBlocks.BIRCH_BASIC_TABLE.get());
+                        output.accept(ModBlocks.JUNGLE_BASIC_TABLE.get());
+                        output.accept(ModBlocks.ACACIA_BASIC_TABLE.get());
+                        output.accept(ModBlocks.DARK_OAK_BASIC_TABLE.get());
+                        output.accept(ModBlocks.MANGROVE_BASIC_TABLE.get());
+                        output.accept(ModBlocks.CHERRY_BASIC_TABLE.get());
+                        output.accept(ModBlocks.BAMBOO_BASIC_TABLE.get());
+                        output.accept(ModBlocks.CRIMSON_BASIC_TABLE.get());
+                        output.accept(ModBlocks.WARPED_BASIC_TABLE.get());
+
                         output.accept(ModBlocks.OAK_TABLE.get());
                         output.accept(ModBlocks.SPRUCE_TABLE.get());
                         output.accept(ModBlocks.BIRCH_TABLE.get());
@@ -44,18 +56,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.BAMBOO_TABLE.get());
                         output.accept(ModBlocks.CRIMSON_TABLE.get());
                         output.accept(ModBlocks.WARPED_TABLE.get());
-
-                        output.accept(ModBlocks.OAK_DINNING_TABLE.get());
-                        output.accept(ModBlocks.SPRUCE_DINNING_TABLE.get());
-                        output.accept(ModBlocks.BIRCH_DINNING_TABLE.get());
-                        output.accept(ModBlocks.JUNGLE_DINNING_TABLE.get());
-                        output.accept(ModBlocks.ACACIA_DINNING_TABLE.get());
-                        output.accept(ModBlocks.DARK_OAK_DINNING_TABLE.get());
-                        output.accept(ModBlocks.MANGROVE_DINNING_TABLE.get());
-                        output.accept(ModBlocks.CHERRY_DINNING_TABLE.get());
-                        output.accept(ModBlocks.BAMBOO_DINNING_TABLE.get());
-                        output.accept(ModBlocks.CRIMSON_DINNING_TABLE.get());
-                        output.accept(ModBlocks.WARPED_DINNING_TABLE.get());
 
                         output.accept(ModBlocks.WHITE_SOFA.get());
                         output.accept(ModBlocks.LIGHT_GREY_SOFA.get());

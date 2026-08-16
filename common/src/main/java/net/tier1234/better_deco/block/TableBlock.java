@@ -12,12 +12,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.deco_lib.api.block.furniture.FurnitureWaterloggedBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableBlock extends Block
+public class TableBlock extends FurnitureWaterloggedBlock
 {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty EAST = BooleanProperty.create("east");
@@ -29,19 +30,25 @@ public class TableBlock extends Block
     public TableBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(NORTH, false)
+                .setValue(EAST, false)
+                .setValue(SOUTH, false)
+                .setValue(WEST, false)
+                .setValue(WATERLOGGED, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape TABLE_TOP = Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
-        final VoxelShape MIDDLE_POST = Block.box(6.0, 0.0, 6.0, 10.0, 14.0, 10.0);
-        final VoxelShape END_POST = Block.box(3.0, 0.0, 6.0, 7.0, 14.0, 10.0);
-        final VoxelShape CORNER_POST = Block.box(3.0, 0.0, 9.0, 7.0, 14.0, 13.0);
+        final VoxelShape TABLE_TOP_TALL = Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape LEG_SOUTH_EAST_TALL = Block.box(13.5, 0, 13.5, 15.5, 14, 15.5);
+        final VoxelShape LEG_SOUTH_WEST_TALL = Block.box(0.5, 0, 13.5, 2.5, 14, 15.5);
+        final VoxelShape LEG_NORTH_WEST_TALL = Block.box(0.5, 0, 0.5, 2.5, 14, 2.5);
+        final VoxelShape LEG_NORTH_EAST_TALL = Block.box(13.5, 0, 0.5, 15.5, 14, 2.5);
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
-        for(BlockState state : states)
+        for (BlockState state : states)
         {
             boolean north = state.getValue(NORTH);
             boolean east = state.getValue(EAST);
@@ -49,45 +56,23 @@ public class TableBlock extends Block
             boolean west = state.getValue(WEST);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(TABLE_TOP);
-
-            if(!north & !east && !south && !west)
+            shapes.add(TABLE_TOP_TALL);
+            if (!north && !west)
             {
-                shapes.add(MIDDLE_POST);
+                shapes.add(LEG_NORTH_WEST_TALL);
             }
-            else if(north & !east && !south && !west)
+            if (!north && !east)
             {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.NORTH));
+                shapes.add(LEG_NORTH_EAST_TALL);
             }
-            else if(!north & east && !south && !west)
+            if (!south && !west)
             {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.EAST));
+                shapes.add(LEG_SOUTH_WEST_TALL);
             }
-            else if(!north & !east && south && !west)
+            if (!south && !east)
             {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.SOUTH));
+                shapes.add(LEG_SOUTH_EAST_TALL);
             }
-            else if(!north & !east && !south && west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.WEST));
-            }
-            else if(north && east && !south && !west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.EAST));
-            }
-            else if(!north && east && south && !west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.SOUTH));
-            }
-            else if(!north && !east && south && west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.WEST));
-            }
-            else if(north && !east && !south && west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.NORTH));
-            }
-
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
@@ -108,20 +93,23 @@ public class TableBlock extends Block
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
-        boolean north = level.getBlockState(pos.north()).getBlock() == this;
-        boolean east = level.getBlockState(pos.east()).getBlock() == this;
-        boolean south = level.getBlockState(pos.south()).getBlock() == this;
-        boolean west = level.getBlockState(pos.west()).getBlock() == this;
+        boolean north = this.isCoffeeTable(level, pos, Direction.NORTH);
+        boolean east = this.isCoffeeTable(level, pos, Direction.EAST);
+        boolean south = this.isCoffeeTable(level, pos, Direction.SOUTH);
+        boolean west = this.isCoffeeTable(level, pos, Direction.WEST);
         return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
+    }
+
+    private boolean isCoffeeTable(LevelAccessor level, BlockPos source, Direction direction)
+    {
+        BlockState state = level.getBlockState(source.relative(direction));
+        return state.getBlock() == this;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder);
-        builder.add(NORTH);
-        builder.add(EAST);
-        builder.add(SOUTH);
-        builder.add(WEST);
+        builder.add(NORTH, EAST, SOUTH, WEST);
     }
 }
