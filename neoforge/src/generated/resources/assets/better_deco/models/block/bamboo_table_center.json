@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/table_center",
+  "textures": {
+    "0": "better_deco:block/bamboo_table",
+    "particle": "better_deco:block/bamboo_table"
+  }
+}

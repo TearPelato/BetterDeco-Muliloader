@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/table",
+  "textures": {
+    "0": "better_deco:block/spruce_table",
+    "particle": "better_deco:block/spruce_table"
+  }
+}

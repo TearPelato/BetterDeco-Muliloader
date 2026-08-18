@@ -803,27 +803,27 @@ public class ModBlocks {
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     //DINNING TABLE
-    public static final RegistryEntry<Block> OAK_TABLE = register("oak_table",
+    public static final RegistryEntry<TableBlock> OAK_TABLE = register("oak_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> SPRUCE_TABLE = register("spruce_table",
+    public static final RegistryEntry<TableBlock> SPRUCE_TABLE = register("spruce_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BIRCH_TABLE = register("birch_table",
+    public static final RegistryEntry<TableBlock> BIRCH_TABLE = register("birch_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> JUNGLE_TABLE = register("jungle_table",
+    public static final RegistryEntry<TableBlock> JUNGLE_TABLE = register("jungle_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> ACACIA_TABLE = register("acacia_table",
+    public static final RegistryEntry<TableBlock> ACACIA_TABLE = register("acacia_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> DARK_OAK_TABLE = register("dark_oak_table",
+    public static final RegistryEntry<TableBlock> DARK_OAK_TABLE = register("dark_oak_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> MANGROVE_TABLE = register("mangrove_table",
+    public static final RegistryEntry<TableBlock> MANGROVE_TABLE = register("mangrove_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CHERRY_TABLE = register("cherry_table",
+    public static final RegistryEntry<TableBlock> CHERRY_TABLE = register("cherry_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BAMBOO_TABLE = register("bamboo_table",
+    public static final RegistryEntry<TableBlock> BAMBOO_TABLE = register("bamboo_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CRIMSON_TABLE = register("crimson_table",
+    public static final RegistryEntry<TableBlock> CRIMSON_TABLE = register("crimson_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> WARPED_TABLE = register("warped_table",
+    public static final RegistryEntry<TableBlock> WARPED_TABLE = register("warped_table",
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     //Digital Clock

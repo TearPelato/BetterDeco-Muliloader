@@ -313,7 +313,17 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         chair(ModBlocks.CRIMSON_CHAIR.get(), Constants.id("block/crimson_chair"));
         chair(ModBlocks.WARPED_CHAIR.get(), Constants.id("block/warped_chair"));
 
-
+        table(ModBlocks.OAK_TABLE.get(), Constants.id("block/oak_table"));
+        table(ModBlocks.SPRUCE_TABLE.get(), Constants.id("block/spruce_table"));
+        table(ModBlocks.BIRCH_TABLE.get(), Constants.id("block/birch_table"));
+        table(ModBlocks.JUNGLE_TABLE.get(), Constants.id("block/jungle_table"));
+        table(ModBlocks.ACACIA_TABLE.get(), Constants.id("block/acacia_table"));
+        table(ModBlocks.DARK_OAK_TABLE.get(), Constants.id("block/dark_oak_table"));
+        table(ModBlocks.MANGROVE_TABLE.get(), Constants.id("block/mangrove_table"));
+        table(ModBlocks.CHERRY_TABLE.get(), Constants.id("block/cherry_table"));
+        table(ModBlocks.BAMBOO_TABLE.get(), Constants.id("block/bamboo_table"));
+        table(ModBlocks.CRIMSON_TABLE.get(), Constants.id("block/crimson_table"));
+        table(ModBlocks.WARPED_TABLE.get(), Constants.id("block/warped_table"));
 
     }
 }

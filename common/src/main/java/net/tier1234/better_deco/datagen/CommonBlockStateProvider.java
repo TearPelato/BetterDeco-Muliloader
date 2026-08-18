@@ -6,9 +6,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
@@ -553,8 +555,66 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     }
 
 
+    protected void table(TableBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
+        ResourceLocation defaultKey      = Constants.id(baseName + "_default");
+        ResourceLocation leftKey         = Constants.id(baseName + "_left");
+        ResourceLocation rightKey        = Constants.id(baseName + "_right");
+        ResourceLocation cornerLeftKey   = Constants.id(baseName + "_corner_left");
+        ResourceLocation cornerRightKey  = Constants.id(baseName + "_corner_right");
+        ResourceLocation middleKey       = Constants.id(baseName + "_middle");
+        ResourceLocation centerKey       = Constants.id(baseName + "_center");
+        ResourceLocation middleTopKey    = Constants.id(baseName + "_middle_top");
+        ResourceLocation middleBottomKey = Constants.id(baseName + "_middle_bottom");
 
+        ResourceLocation defaultRef      = Constants.id("block/" + baseName + "_default");
+        ResourceLocation leftRef         = Constants.id("block/" + baseName + "_left");
+        ResourceLocation rightRef        = Constants.id("block/" + baseName + "_right");
+        ResourceLocation cornerLeftRef   = Constants.id("block/" + baseName + "_corner_left");
+        ResourceLocation cornerRightRef  = Constants.id("block/" + baseName + "_corner_right");
+        ResourceLocation middleRef       = Constants.id("block/" + baseName + "_middle");
+        ResourceLocation centerRef       = Constants.id("block/" + baseName + "_center");
+        ResourceLocation middleTopRef    = Constants.id("block/" + baseName + "_middle_top");
+        ResourceLocation middleBottomRef = Constants.id("block/" + baseName + "_middle_bottom");
+
+        registerModel(defaultKey,      Constants.id("block/table"),       texture);
+        registerModel(leftKey,         Constants.id("block/table_left"),          texture);
+        registerModel(rightKey,        Constants.id("block/table_right"),         texture);
+        registerModel(cornerLeftKey,   Constants.id("block/table_corner_left"),   texture);
+        registerModel(cornerRightKey,  Constants.id("block/table_corner_right"),  texture);
+        registerModel(middleKey,       Constants.id("block/table_middle"),        texture);
+        registerModel(centerKey,       Constants.id("block/table_center"),        texture);
+        registerModel(middleTopKey,    Constants.id("block/table_middle_top"),    texture);
+        registerModel(middleBottomKey, Constants.id("block/table_middle_bottom"), texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            for (TableBlock.Type type : TableBlock.Type.values()) {
+                String key = "facing=" + dir.getSerializedName() + ",type=" + type.getSerializedName();
+
+                ResourceLocation model = switch (type) {
+                    case DEFAULT        -> defaultRef;
+                    case LEFT           -> leftRef;
+                    case RIGHT          -> rightRef;
+                    case CORNER_LEFT    -> cornerLeftRef;
+                    case CORNER_RIGHT   -> cornerRightRef;
+                    case MIDDLE         -> middleRef;
+                    case CENTER         -> centerRef;
+                    case MIDDLE_TOP     -> middleTopRef;
+                    case MIDDLE_BOTTOM  -> middleBottomRef;
+                };
+
+                variants.add(key, variantJson(model, rot));
+            }
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName, defaultRef);
+    }
 
 
 

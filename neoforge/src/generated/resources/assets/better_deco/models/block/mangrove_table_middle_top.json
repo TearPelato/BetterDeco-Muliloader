@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/table_middle_top",
+  "textures": {
+    "0": "better_deco:block/mangrove_table",
+    "particle": "better_deco:block/mangrove_table"
+  }
+}
