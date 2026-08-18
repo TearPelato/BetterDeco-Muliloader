@@ -6,10 +6,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -139,6 +143,37 @@ public class SofaBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
         return InteractionResult.SUCCESS;
     }
 
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
+    {
+        if (stack.is(Items.WATER_BUCKET) && !state.getValue(WATERLOGGED))
+        {
+            if (!level.isClientSide())
+            {
+                level.setBlock(pos, state.setValue(WATERLOGGED, true), 3);
+                level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+
+                if (!player.getAbilities().instabuild)
+                {
+                    player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+                }
+            }
+
+            return ItemInteractionResult.SUCCESS;
+        }
+
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state)
+    {
+        return state.getValue(WATERLOGGED)
+                ? Fluids.WATER.getSource(false)
+                : super.getFluidState(state);
+    }
+
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
@@ -151,43 +186,45 @@ public class SofaBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
 
     private BlockState getSofaState(BlockState state, LevelAccessor level, BlockPos pos, Direction dir)
     {
-        boolean left = this.isSofa(level, pos, dir.getCounterClockWise(), dir) || this.isSofa(level, pos, dir.getCounterClockWise(), dir.getCounterClockWise());
-        boolean right = this.isSofa(level, pos, dir.getClockWise(), dir) || this.isSofa(level, pos, dir.getClockWise(), dir.getClockWise());
+        boolean left = this.isSofa(level, pos, dir.getCounterClockWise(), dir)
+                || this.isSofa(level, pos, dir.getCounterClockWise(), dir.getCounterClockWise());
+
+        boolean right = this.isSofa(level, pos, dir.getClockWise(), dir)
+                || this.isSofa(level, pos, dir.getClockWise(), dir.getClockWise());
+
         boolean cornerLeft = this.isSofa(level, pos, dir.getOpposite(), dir.getCounterClockWise());
         boolean cornerRight = this.isSofa(level, pos, dir.getOpposite(), dir.getClockWise());
 
-        if(cornerLeft)
+        if (cornerLeft)
         {
             return state.setValue(TYPE, Type.CORNER_LEFT);
         }
-        else if(cornerRight)
+        else if (cornerRight)
         {
             return state.setValue(TYPE, Type.CORNER_RIGHT);
         }
-        else if(left && right)
+        else if (left && right)
         {
             return state.setValue(TYPE, Type.MIDDLE);
         }
-        else if(left)
+        else if (left)
         {
             return state.setValue(TYPE, Type.RIGHT);
         }
-        else if(right)
+        else if (right)
         {
             return state.setValue(TYPE, Type.LEFT);
         }
+
         return state.setValue(TYPE, Type.SINGLE);
     }
 
-    private boolean isSofa(LevelAccessor level, BlockPos source, Direction direction, Direction targetDirection)
+    private boolean isSofa(LevelAccessor level, BlockPos pos, Direction offset, Direction sofaDirection)
     {
-        BlockState state = level.getBlockState(source.relative(direction));
-        if(state.getBlock() == this)
-        {
-            Direction sofaDirection = state.getValue(DIRECTION);
-            return sofaDirection.equals(targetDirection);
-        }
-        return false;
+        BlockState state = level.getBlockState(pos.relative(offset));
+
+        return state.getBlock() instanceof SofaBlock
+                && state.getValue(DIRECTION) == sofaDirection;
     }
 
     @Override
