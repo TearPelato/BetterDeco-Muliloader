@@ -617,7 +617,52 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     }
 
 
+    protected void desk(DeskBlock block, ResourceLocation texture)  {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
+        ResourceLocation deskSingleKey = Constants.id(baseName + "_single");
+        ResourceLocation deskRightKey = Constants.id(baseName + "_right");
+        ResourceLocation deskLeftKey = Constants.id(baseName + "_left");
+        ResourceLocation deskMiddleKey = Constants.id(baseName + "_middle");
+
+        ResourceLocation deskSingleRef = Constants.id("block/" + baseName + "_single");
+        ResourceLocation deskRightRef = Constants.id("block/" + baseName + "_right");
+        ResourceLocation deskLeftRef = Constants.id("block/" + baseName + "_left");
+        ResourceLocation deskMiddleRef = Constants.id("block/" + baseName + "_middle");
+
+        registerModel(deskSingleKey, Constants.id("block/desk_single"), texture);
+        registerModel(deskRightKey, Constants.id("block/desk_right"), texture);
+        registerModel(deskLeftKey, Constants.id("block/desk_left"), texture);
+        registerModel(deskMiddleKey, Constants.id("block/desk_middle"), texture);
+
+
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            for(DeskBlock.Type type : DeskBlock.Type.values()) {
+                String key = "facing=" + dir.getSerializedName() + ",type=" + type.getSerializedName();
+
+                ResourceLocation model = switch (type) {
+                    case SINGLE ->  deskSingleRef;
+                    case RIGHT ->  deskRightRef;
+                    case LEFT ->  deskLeftRef;
+                    case MIDDLE ->   deskMiddleRef;
+
+
+                };
+                variants.add(key, variantJson(model, rot));
+
+
+            }
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName, deskSingleRef);
+
+    }
 
 
 

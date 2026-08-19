@@ -22,5 +22,30 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
                 .add(ModBlocks.FRIDGE_DARK.get().asItem())
                 .add(ModBlocks.LIGHT_MICROWAVE.get().asItem())
                 .add(ModBlocks.DARK_MICROWAVE.get().asItem());
+
+        tag(ModTags.Items.OFFICE)
+                .add(ModBlocks.OAK_DESK.get().asItem())
+                .add(ModBlocks.SPRUCE_DESK.get().asItem())
+                .add(ModBlocks.BIRCH_DESK.get().asItem())
+                .add(ModBlocks.JUNGLE_DESK.get().asItem())
+                .add(ModBlocks.ACACIA_DESK.get().asItem())
+                .add(ModBlocks.DARK_OAK_DESK.get().asItem())
+                .add(ModBlocks.MANGROVE_DESK.get().asItem())
+                .add(ModBlocks.CHERRY_DESK.get().asItem())
+                .add(ModBlocks.BAMBOO_DESK.get().asItem())
+                .add(ModBlocks.CRIMSON_DESK.get().asItem())
+                .add(ModBlocks.WARPED_DESK.get().asItem())
+
+                .add(ModBlocks.OAK_DESK_CABINET.get().asItem())
+                .add(ModBlocks.SPRUCE_DESK_CABINET.get().asItem())
+                .add(ModBlocks.BIRCH_DESK_CABINET.get().asItem())
+                .add(ModBlocks.JUNGLE_DESK_CABINET.get().asItem())
+                .add(ModBlocks.ACACIA_DESK_CABINET.get().asItem())
+                .add(ModBlocks.DARK_OAK_DESK_CABINET.get().asItem())
+                .add(ModBlocks.MANGROVE_DESK_CABINET.get().asItem())
+                .add(ModBlocks.CHERRY_DESK_CABINET.get().asItem())
+                .add(ModBlocks.BAMBOO_DESK_CABINET.get().asItem())
+                .add(ModBlocks.CRIMSON_DESK_CABINET.get().asItem())
+                .add(ModBlocks.WARPED_DESK_CABINET.get().asItem());
     }
 }

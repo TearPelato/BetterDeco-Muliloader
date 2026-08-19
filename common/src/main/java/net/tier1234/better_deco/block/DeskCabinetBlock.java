@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
@@ -29,7 +30,7 @@ public class DeskCabinetBlock extends DeskBlock implements EntityBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
-    public DeskCabinetBlock(Properties properties, MaterialType materialType)
+    public DeskCabinetBlock(Properties properties, WoodType materialType)
     {
         super(properties, materialType);
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(OPEN, false));

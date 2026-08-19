@@ -37,8 +37,10 @@
   "bundled_tabs.item": "Items",
   "bundled_tab.bedroom_furniture.title": "Bedroom Furniture",
   "bundled_tab.external_deco": "External Decorations",
-  "bundled_tab.everycompat": "EveryCompat",
   "bundled_tab.bathroom_furniture.title": "Bathroom",
+  "bundled_tab.office.title": "Office",
+  "bundled_tab.everycompat": "EveryCompat",
+
 
   "block.better_deco.oak_basin": "Oak Basin",
   "block.better_deco.spruce_basin": "Spruce Basin",

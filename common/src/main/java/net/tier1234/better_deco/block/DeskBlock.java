@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
@@ -23,10 +24,10 @@ public class DeskBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
-    private final MaterialType materialType;
+    private final WoodType materialType;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public DeskBlock(Properties properties, MaterialType materialType)
+    public DeskBlock(Properties properties, WoodType materialType)
     {
         super(properties);
         this.materialType = materialType;
@@ -37,7 +38,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
         final VoxelShape[] DESK_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 14, 0, 16, 16, 16), Direction.SOUTH));
-        final VoxelShape[] DESK_BACK = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 2, 1, 16, 14, 3), Direction.SOUTH));
+        final VoxelShape[] DESK_BACK = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 7, 0, 16, 14, 1), Direction.SOUTH));
         final VoxelShape[] DESK_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 2, 14, 15), Direction.SOUTH));
         final VoxelShape[] DESK_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(14, 0, 0, 16, 14, 15), Direction.SOUTH));
 
@@ -103,7 +104,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
     private boolean isDesk(LevelAccessor level, BlockPos source, Direction checkDirection, Direction tableDirection)
     {
         BlockState state = level.getBlockState(source.relative(checkDirection));
-        return state.getBlock() instanceof DeskBlock && ((DeskBlock) state.getBlock()).materialType == materialType && state.getValue(DIRECTION) == tableDirection;
+        return state.getBlock() instanceof DeskBlock;
     }
 
     @Override
@@ -140,20 +141,4 @@ public class DeskBlock extends FurnitureHorizontalBlock
         }
     }
 
-    public enum MaterialType
-    {
-        OAK,
-        SPRUCE,
-        BIRCH,
-        JUNGLE,
-        ACACIA,
-        DARK_OAK,
-        MANGROVE,
-        CHERRY,
-        BAMBOO,
-        CRIMSON,
-        WARPED,
-
-
-    }
 }

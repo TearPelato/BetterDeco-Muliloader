@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
 
@@ -166,51 +167,51 @@ public class ModBlocks {
 
 
     //Desk
-    public static final RegistryEntry<Block> OAK_DESK = register("oak_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.OAK));
-    public static final RegistryEntry<Block> SPRUCE_DESK = register("spruce_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.SPRUCE));
-    public static final RegistryEntry<Block> BIRCH_DESK = register("birch_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BIRCH));
-    public static final RegistryEntry<Block> JUNGLE_DESK = register("jungle_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.JUNGLE));
-    public static final RegistryEntry<Block> ACACIA_DESK = register("acacia_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.ACACIA));
-    public static final RegistryEntry<Block> MANGROVE_DESK = register("mangrove_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.MANGROVE));
-    public static final RegistryEntry<Block> DARK_OAK_DESK = register("dark_oak_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.DARK_OAK));
-    public static final RegistryEntry<Block> CHERRY_DESK = register("cherry_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CHERRY));
-    public static final RegistryEntry<Block> BAMBOO_DESK = register("bamboo_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BAMBOO));
-    public static final RegistryEntry<Block> CRIMSON_DESK = register("crimson_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CRIMSON));
-    public static final RegistryEntry<Block> WARPED_DESK = register("warped_desk",
-            ()-> new DeskBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.WARPED));
+    public static final RegistryEntry<DeskBlock> OAK_DESK = register("oak_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.OAK));
+    public static final RegistryEntry<DeskBlock> SPRUCE_DESK = register("spruce_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.SPRUCE));
+    public static final RegistryEntry<DeskBlock> BIRCH_DESK = register("birch_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.BIRCH));
+    public static final RegistryEntry<DeskBlock> JUNGLE_DESK = register("jungle_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.JUNGLE));
+    public static final RegistryEntry<DeskBlock> ACACIA_DESK = register("acacia_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.ACACIA));
+    public static final RegistryEntry<DeskBlock> MANGROVE_DESK = register("mangrove_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.MANGROVE));
+    public static final RegistryEntry<DeskBlock> DARK_OAK_DESK = register("dark_oak_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.DARK_OAK));
+    public static final RegistryEntry<DeskBlock> CHERRY_DESK = register("cherry_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.CHERRY));
+    public static final RegistryEntry<DeskBlock> BAMBOO_DESK = register("bamboo_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.BAMBOO));
+    public static final RegistryEntry<DeskBlock> CRIMSON_DESK = register("crimson_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.CRIMSON));
+    public static final RegistryEntry<DeskBlock> WARPED_DESK = register("warped_desk",
+            ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.WARPED));
 
     public static final RegistryEntry<Block> OAK_DESK_CABINET = register("oak_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.OAK));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.OAK));
     public static final RegistryEntry<Block> SPRUCE_DESK_CABINET = register("spruce_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.SPRUCE));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.SPRUCE));
     public static final RegistryEntry<Block> BIRCH_DESK_CABINET = register("birch_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BIRCH));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.BIRCH));
     public static final RegistryEntry<Block> JUNGLE_DESK_CABINET = register("jungle_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.JUNGLE));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.JUNGLE));
     public static final RegistryEntry<Block> ACACIA_DESK_CABINET = register("acacia_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.ACACIA));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.ACACIA));
     public static final RegistryEntry<Block> MANGROVE_DESK_CABINET = register("mangrove_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.MANGROVE));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.MANGROVE));
     public static final RegistryEntry<Block> DARK_OAK_DESK_CABINET = register("dark_oak_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.DARK_OAK));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.DARK_OAK));
     public static final RegistryEntry<Block> CHERRY_DESK_CABINET = register("cherry_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CHERRY));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.CHERRY));
     public static final RegistryEntry<Block> BAMBOO_DESK_CABINET = register("bamboo_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.BAMBOO));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.BAMBOO));
     public static final RegistryEntry<Block> CRIMSON_DESK_CABINET = register("crimson_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.CRIMSON));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.CRIMSON));
     public static final RegistryEntry<Block> WARPED_DESK_CABINET = register("warped_desk_cabinet",
-            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), DeskBlock.MaterialType.WARPED));
+            ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.WARPED));
 
     //Path
     public static final RegistryEntry<Block> STONE_PATH = register("stone_path",
