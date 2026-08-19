@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,type=left": {
+      "model": "better_deco:block/oak_desk_left",
+      "y": 270
+    },
+    "facing=east,type=middle": {
+      "model": "better_deco:block/oak_desk_middle",
+      "y": 270
+    },
+    "facing=east,type=right": {
+      "model": "better_deco:block/oak_desk_right",
+      "y": 270
+    },
+    "facing=east,type=single": {
+      "model": "better_deco:block/oak_desk_single",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "better_deco:block/oak_desk_left",
+      "y": 180
+    },
+    "facing=north,type=middle": {
+      "model": "better_deco:block/oak_desk_middle",
+      "y": 180
+    },
+    "facing=north,type=right": {
+      "model": "better_deco:block/oak_desk_right",
+      "y": 180
+    },
+    "facing=north,type=single": {
+      "model": "better_deco:block/oak_desk_single",
+      "y": 180
+    },
+    "facing=south,type=left": {
+      "model": "better_deco:block/oak_desk_left"
+    },
+    "facing=south,type=middle": {
+      "model": "better_deco:block/oak_desk_middle"
+    },
+    "facing=south,type=right": {
+      "model": "better_deco:block/oak_desk_right"
+    },
+    "facing=south,type=single": {
+      "model": "better_deco:block/oak_desk_single"
+    },
+    "facing=west,type=left": {
+      "model": "better_deco:block/oak_desk_left",
+      "y": 90
+    },
+    "facing=west,type=middle": {
+      "model": "better_deco:block/oak_desk_middle",
+      "y": 90
+    },
+    "facing=west,type=right": {
+      "model": "better_deco:block/oak_desk_right",
+      "y": 90
+    },
+    "facing=west,type=single": {
+      "model": "better_deco:block/oak_desk_single",
+      "y": 90
+    }
+  }
+}

@@ -1,9 +1,15 @@
 package net.tier1234.better_deco.creative_tabs;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.tier1234.better_deco.Constants;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -49,7 +55,7 @@ public class BundledTabs {
     }
 
     public boolean contains(ItemStack stack) {
-        return this.displayItems.contains(stack);
+        return this.displayItems.stream().anyMatch(st-> ItemStack.isSameItemSameComponents(st,stack));
     }
 
     public void select() {
@@ -83,9 +89,22 @@ public class BundledTabs {
             public void accept(ItemLike item) {
                 displayItems.add(new ItemStack(item));
             }
+
             @Override
             public void accept(ItemStack stack) {
                 displayItems.add(stack);
+            }
+
+            @Override
+            public void accept(TagKey<Item> tag) {
+                var opt = provider.lookupOrThrow(Registries.ITEM).get(tag);
+                Constants.LOG.info("Tag {} presente: {}, size: {}",
+                        tag.location(), opt.isPresent(), opt.map(HolderSet.Named::size).orElse(-1));
+                opt.ifPresent(holderSet -> {
+                    for (Holder<Item> holder : holderSet) {
+                        displayItems.add(new ItemStack(holder));
+                    }
+                });
             }
         });
         this.populated = true;
@@ -126,5 +145,7 @@ public class BundledTabs {
     public interface Output {
         void accept(ItemLike item);
         void accept(ItemStack stack);
+        void accept(TagKey<Item> tag);
+
     }
 }
