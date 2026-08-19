@@ -3,6 +3,7 @@ package net.tier1234.better_deco.registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
+import net.tier1234.better_deco.util.ModTags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -456,6 +457,18 @@ public class ModBundledTabs {
                     })
                     .build());
 
+
+
+    public static final BundledTabs OFFICE = register(
+            BundledTabs.builder()
+                    .icon(new ItemStack(ModBlocks.OAK_DESK.get()))
+                    .title(Component.translatable("bundled_tab.office.title"))
+                    .displayItems((provider, output) -> {
+                        output.accept(ModTags.Items.OFFICE);
+                    })
+                    .build());
+
+
     public static final BundledTabs BATHROOM = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.bathroom_furniture.title"))
@@ -501,6 +514,7 @@ public class ModBundledTabs {
 
                     })
                     .build());
+
 
 
     public static BundledTabs register(BundledTabs builder) {

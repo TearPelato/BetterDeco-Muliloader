@@ -13,7 +13,6 @@ import net.tier1234.better_deco.creative_tabs.BundledTabs;
 import java.util.List;
 
 @RegistryContainer
-
 public class ModCreativeTabs {
    public static final RegistryEntry<CreativeModeTab> BETTER_DECO = RegistryEntry.creativeModeTab(
            Constants.id("better_deco"), builder -> {
@@ -29,19 +28,5 @@ public class ModCreativeTabs {
                        });
            });
 
-
-   public static final RegistryEntry<CreativeModeTab> BETTER_DECO_BUILDINGS = RegistryEntry.creativeModeTab(
-           Constants.id("better_deco_building"), builder -> {
-               builder.title(Component.translatable("creativetab.better_deco.better_deco_building"));
-               builder.icon(() -> new ItemStack(Blocks.BARREL));
-               builder.displayItems((parameters, output) -> {
-
-
-
-               });
-
-
-
-           });
 
 }
