@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/desk_cabinet_single_closed",
+  "textures": {
+    "0": "better_deco:block/jungle_desk_drawer",
+    "particle": "better_deco:block/jungle_desk_drawer"
+  }
+}

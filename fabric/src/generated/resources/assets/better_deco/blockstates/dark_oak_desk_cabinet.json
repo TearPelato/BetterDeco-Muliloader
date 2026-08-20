@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,type=left": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_left_closed",
+      "y": 270
+    },
+    "facing=east,type=middle": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_middle_closed",
+      "y": 270
+    },
+    "facing=east,type=right": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_right_closed",
+      "y": 270
+    },
+    "facing=east,type=single": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_single_closed",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_left_closed",
+      "y": 180
+    },
+    "facing=north,type=middle": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_middle_closed",
+      "y": 180
+    },
+    "facing=north,type=right": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_right_closed",
+      "y": 180
+    },
+    "facing=north,type=single": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_single_closed",
+      "y": 180
+    },
+    "facing=south,type=left": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_left_closed"
+    },
+    "facing=south,type=middle": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_middle_closed"
+    },
+    "facing=south,type=right": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_right_closed"
+    },
+    "facing=south,type=single": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_single_closed"
+    },
+    "facing=west,type=left": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_left_closed",
+      "y": 90
+    },
+    "facing=west,type=middle": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_middle_closed",
+      "y": 90
+    },
+    "facing=west,type=right": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_right_closed",
+      "y": 90
+    },
+    "facing=west,type=single": {
+      "model": "better_deco:block/dark_oak_desk_cabinet_single_closed",
+      "y": 90
+    }
+  }
+}

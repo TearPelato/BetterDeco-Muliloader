@@ -190,27 +190,27 @@ public class ModBlocks {
     public static final RegistryEntry<DeskBlock> WARPED_DESK = register("warped_desk",
             ()-> new DeskBlock(BlockBehaviour.Properties.of(), WoodType.WARPED));
 
-    public static final RegistryEntry<Block> OAK_DESK_CABINET = register("oak_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> OAK_DESK_CABINET = register("oak_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.OAK));
-    public static final RegistryEntry<Block> SPRUCE_DESK_CABINET = register("spruce_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> SPRUCE_DESK_CABINET = register("spruce_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.SPRUCE));
-    public static final RegistryEntry<Block> BIRCH_DESK_CABINET = register("birch_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> BIRCH_DESK_CABINET = register("birch_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.BIRCH));
-    public static final RegistryEntry<Block> JUNGLE_DESK_CABINET = register("jungle_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> JUNGLE_DESK_CABINET = register("jungle_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.JUNGLE));
-    public static final RegistryEntry<Block> ACACIA_DESK_CABINET = register("acacia_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> ACACIA_DESK_CABINET = register("acacia_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.ACACIA));
-    public static final RegistryEntry<Block> MANGROVE_DESK_CABINET = register("mangrove_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> MANGROVE_DESK_CABINET = register("mangrove_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.MANGROVE));
-    public static final RegistryEntry<Block> DARK_OAK_DESK_CABINET = register("dark_oak_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> DARK_OAK_DESK_CABINET = register("dark_oak_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.DARK_OAK));
-    public static final RegistryEntry<Block> CHERRY_DESK_CABINET = register("cherry_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> CHERRY_DESK_CABINET = register("cherry_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.CHERRY));
-    public static final RegistryEntry<Block> BAMBOO_DESK_CABINET = register("bamboo_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> BAMBOO_DESK_CABINET = register("bamboo_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.BAMBOO));
-    public static final RegistryEntry<Block> CRIMSON_DESK_CABINET = register("crimson_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> CRIMSON_DESK_CABINET = register("crimson_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.CRIMSON));
-    public static final RegistryEntry<Block> WARPED_DESK_CABINET = register("warped_desk_cabinet",
+    public static final RegistryEntry<DeskCabinetBlock> WARPED_DESK_CABINET = register("warped_desk_cabinet",
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.WARPED));
 
     //Path

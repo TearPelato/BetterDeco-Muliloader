@@ -98,8 +98,6 @@ public class BundledTabs {
             @Override
             public void accept(TagKey<Item> tag) {
                 var opt = provider.lookupOrThrow(Registries.ITEM).get(tag);
-                Constants.LOG.info("Tag {} presente: {}, size: {}",
-                        tag.location(), opt.isPresent(), opt.map(HolderSet.Named::size).orElse(-1));
                 opt.ifPresent(holderSet -> {
                     for (Holder<Item> holder : holderSet) {
                         displayItems.add(new ItemStack(holder));

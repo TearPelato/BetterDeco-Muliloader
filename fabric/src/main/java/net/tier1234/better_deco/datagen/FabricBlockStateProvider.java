@@ -338,5 +338,18 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         desk(ModBlocks.CRIMSON_DESK.get(), Constants.id("block/crimson_desk"));
         desk(ModBlocks.WARPED_DESK.get(), Constants.id("block/warped_desk"));
 
+        deskCabinet(ModBlocks.OAK_DESK_CABINET.get(), Constants.id("block/oak_desk_drawer"));
+        deskCabinet(ModBlocks.SPRUCE_DESK_CABINET.get(), Constants.id("block/spruce_desk_drawer"));
+        deskCabinet(ModBlocks.BIRCH_DESK_CABINET.get(), Constants.id("block/birch_desk_drawer"));
+        deskCabinet(ModBlocks.JUNGLE_DESK_CABINET.get(), Constants.id("block/jungle_desk_drawer"));
+        deskCabinet(ModBlocks.ACACIA_DESK_CABINET.get(), Constants.id("block/acacia_desk_drawer"));
+        deskCabinet(ModBlocks.DARK_OAK_DESK_CABINET.get(), Constants.id("block/dark_oak_desk_drawer"));
+        deskCabinet(ModBlocks.MANGROVE_DESK_CABINET.get(), Constants.id("block/mangrove_desk_drawer"));
+        deskCabinet(ModBlocks.CHERRY_DESK_CABINET.get(), Constants.id("block/cherry_desk_drawer"));
+        deskCabinet(ModBlocks.BAMBOO_DESK_CABINET.get(), Constants.id("block/bamboo_desk_drawer"));
+        deskCabinet(ModBlocks.CRIMSON_DESK_CABINET.get(), Constants.id("block/crimson_desk_drawer"));
+        deskCabinet(ModBlocks.WARPED_DESK_CABINET.get(), Constants.id("block/warped_desk_drawer"));
+
+
     }
 }

@@ -28,12 +28,10 @@ import java.util.List;
 
 public class DeskCabinetBlock extends DeskBlock implements EntityBlock
 {
-    public static final BooleanProperty OPEN = BooleanProperty.create("open");
-
     public DeskCabinetBlock(Properties properties, WoodType materialType)
     {
         super(properties, materialType);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(OPEN, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
     }
 
     @Override
@@ -102,7 +100,6 @@ public class DeskCabinetBlock extends DeskBlock implements EntityBlock
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder);
-        builder.add(OPEN);
     }
 
     @Nullable

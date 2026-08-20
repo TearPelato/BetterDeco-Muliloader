@@ -6,11 +6,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
@@ -665,7 +663,48 @@ public abstract class CommonBlockStateProvider implements DataProvider {
     }
 
 
+    protected void deskCabinet(DeskCabinetBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
 
+        ResourceLocation singleKey = Constants.id(baseName + "_single_closed");
+        ResourceLocation rightKey = Constants.id(baseName + "_right_closed");
+        ResourceLocation leftKey = Constants.id(baseName + "_left_closed");
+        ResourceLocation middleKey = Constants.id(baseName + "_middle_closed");
+
+
+        ResourceLocation singleRef = Constants.id("block/" + baseName + "_single_closed");
+        ResourceLocation rightRef = Constants.id("block/" + baseName + "_right_closed");
+        ResourceLocation leftRef = Constants.id("block/" + baseName + "_left_closed");
+        ResourceLocation middleRef = Constants.id("block/" + baseName + "_middle_closed");
+
+        registerModel(singleKey, Constants.id("block/desk_cabinet_single_closed"), texture);
+        registerModel(rightKey, Constants.id("block/desk_cabinet_right_closed"), texture);
+        registerModel(leftKey, Constants.id("block/desk_cabinet_left_closed"), texture);
+        registerModel(middleKey, Constants.id("block/desk_cabinet_middle_closed"), texture);
+
+        JsonObject variants = new JsonObject();
+
+        for (Direction dir : HORIZONTALS) {
+            int rot = defaultRotation(dir);
+            for (DeskBlock.Type type : DeskBlock.Type.values()) {
+                String key = "facing=" + dir.getSerializedName() + ",type=" + type.getSerializedName();
+                ResourceLocation closedModel = switch (type) {
+                    case SINGLE -> singleRef;
+                    case RIGHT -> rightRef;
+                    case LEFT -> leftRef;
+                    case MIDDLE -> middleRef;
+                };
+
+
+                variants.add(key, variantJson(closedModel, rot));
+            }
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName, singleRef);
+    }
 
 
 
