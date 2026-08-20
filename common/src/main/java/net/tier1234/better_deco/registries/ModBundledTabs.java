@@ -34,17 +34,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_CHAIR.get());
                         output.accept(ModBlocks.WARPED_CHAIR.get());
 
-                        output.accept(ModBlocks.OAK_BASIC_TABLE.get());
-                        output.accept(ModBlocks.SPRUCE_BASIC_TABLE.get());
-                        output.accept(ModBlocks.BIRCH_BASIC_TABLE.get());
-                        output.accept(ModBlocks.JUNGLE_BASIC_TABLE.get());
-                        output.accept(ModBlocks.ACACIA_BASIC_TABLE.get());
-                        output.accept(ModBlocks.DARK_OAK_BASIC_TABLE.get());
-                        output.accept(ModBlocks.MANGROVE_BASIC_TABLE.get());
-                        output.accept(ModBlocks.CHERRY_BASIC_TABLE.get());
-                        output.accept(ModBlocks.BAMBOO_BASIC_TABLE.get());
-                        output.accept(ModBlocks.CRIMSON_BASIC_TABLE.get());
-                        output.accept(ModBlocks.WARPED_BASIC_TABLE.get());
 
                         output.accept(ModBlocks.OAK_TABLE.get());
                         output.accept(ModBlocks.SPRUCE_TABLE.get());

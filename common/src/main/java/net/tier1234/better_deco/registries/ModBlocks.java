@@ -381,33 +381,7 @@ public class ModBlocks {
     public static final RegistryEntry<KitchenDrawerBlock> WARPED_KITCHEN_DRAWER = register("warped_kitchen_drawer",
             ()-> new KitchenDrawerBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
-
-
-    //Tables
-    public static final RegistryEntry<Block> OAK_BASIC_TABLE = register("oak_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_BASIC_TABLE = register("spruce_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_BASIC_TABLE = register("birch_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_BASIC_TABLE = register("jungle_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_BASIC_TABLE = register("acacia_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_BASIC_TABLE = register("dark_oak_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_BASIC_TABLE = register("mangrove_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_BASIC_TABLE = register("cherry_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_BASIC_TABLE = register("bamboo_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_BASIC_TABLE = register("crimson_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_BASIC_TABLE = register("warped_basic_table",
-            ()-> new BasicTableBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-
-    //Sofas
+        //Sofas
     public static final RegistryEntry<SofaBlock> RED_SOFA = register("red_sofa",
             ()-> new SofaBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
     public static final RegistryEntry<SofaBlock> ORANGE_SOFA = register("orange_sofa",

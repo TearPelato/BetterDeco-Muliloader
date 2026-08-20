@@ -21,22 +21,7 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
         tag(BlockTags.MINEABLE_WITH_AXE)
 
 
-        //Furniture
-                   //Tables
-                .add(ModBlocks.OAK_BASIC_TABLE.get())
-                .add(ModBlocks.SPRUCE_BASIC_TABLE.get())
-                .add(ModBlocks.BIRCH_BASIC_TABLE.get())
-                .add(ModBlocks.JUNGLE_BASIC_TABLE.get())
-                .add(ModBlocks.ACACIA_BASIC_TABLE.get())
-                .add(ModBlocks.MANGROVE_BASIC_TABLE.get())
-                .add(ModBlocks.DARK_OAK_BASIC_TABLE.get())
-                .add(ModBlocks.CHERRY_BASIC_TABLE.get())
-                .add(ModBlocks.BAMBOO_BASIC_TABLE.get())
-                .add(ModBlocks.CRIMSON_BASIC_TABLE.get())
-                .add(ModBlocks.WARPED_BASIC_TABLE.get())
 
-
-        //Chairs
                 .add(ModBlocks.OAK_CHAIR.get())
                 .add(ModBlocks.SPRUCE_CHAIR.get())
                 .add(ModBlocks.BIRCH_CHAIR.get())
@@ -50,7 +35,6 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .add(ModBlocks.WARPED_CHAIR.get())
 
 
-        //Crates
                 .add(ModBlocks.OAK_CRATE.get())
                 .add(ModBlocks.SPRUCE_CRATE.get())
                 .add(ModBlocks.BIRCH_CRATE.get())

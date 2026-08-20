@@ -90,18 +90,6 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
 
 
 
-        //Tables
-        dropSelf(ModBlocks.OAK_BASIC_TABLE.get());
-        dropSelf(ModBlocks.SPRUCE_BASIC_TABLE.get());
-        dropSelf(ModBlocks.BIRCH_BASIC_TABLE.get());
-        dropSelf(ModBlocks.JUNGLE_BASIC_TABLE.get());
-        dropSelf(ModBlocks.ACACIA_BASIC_TABLE.get());
-        dropSelf(ModBlocks.MANGROVE_BASIC_TABLE.get());
-        dropSelf(ModBlocks.DARK_OAK_BASIC_TABLE.get());
-        dropSelf(ModBlocks.CHERRY_BASIC_TABLE.get());
-        dropSelf(ModBlocks.BAMBOO_BASIC_TABLE.get());
-        dropSelf(ModBlocks.CRIMSON_BASIC_TABLE.get());
-        dropSelf(ModBlocks.WARPED_BASIC_TABLE.get());
 
 
         //Sofa
