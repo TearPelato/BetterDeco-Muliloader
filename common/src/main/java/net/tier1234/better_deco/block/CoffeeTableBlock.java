@@ -4,38 +4,33 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.tearpelato.deco_lib.api.block.furniture.FurnitureWaterloggedBlock;
+import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoffeeTableBlock extends FurnitureWaterloggedBlock
+public class CoffeeTableBlock extends FurnitureHorizontalBlock
 {
-    public static final BooleanProperty NORTH = BooleanProperty.create("north");
-    public static final BooleanProperty EAST = BooleanProperty.create("east");
-    public static final BooleanProperty SOUTH = BooleanProperty.create("south");
-    public static final BooleanProperty WEST = BooleanProperty.create("west");
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
     public CoffeeTableBlock(Properties properties)
     {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(NORTH, false)
-                .setValue(EAST, false)
-                .setValue(SOUTH, false)
-                .setValue(WEST, false)
-                .setValue(WATERLOGGED, false));
+                .setValue(DIRECTION, Direction.NORTH)
+                .setValue(TYPE, Type.DEFAULT));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
@@ -50,29 +45,16 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for (BlockState state : states)
         {
-            boolean north = state.getValue(NORTH);
-            boolean east = state.getValue(EAST);
-            boolean south = state.getValue(SOUTH);
-            boolean west = state.getValue(WEST);
-
+            Type type = state.getValue(TYPE);
             List<VoxelShape> shapes = new ArrayList<>();
             shapes.add(TABLE_TOP_SHORT);
-            if (!north && !west)
-            {
-                shapes.add(LEG_NORTH_WEST_SHORT);
+            switch (type) {
+
+
+
             }
-            if (!north && !east)
-            {
-                shapes.add(LEG_NORTH_EAST_SHORT);
-            }
-            if (!south && !west)
-            {
-                shapes.add(LEG_SOUTH_WEST_SHORT);
-            }
-            if (!south && !east)
-            {
-                shapes.add(LEG_SOUTH_EAST_SHORT);
-            }
+
+
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
@@ -91,25 +73,110 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
     {
-        boolean north = this.isCoffeeTable(level, pos, Direction.NORTH);
-        boolean east = this.isCoffeeTable(level, pos, Direction.EAST);
-        boolean south = this.isCoffeeTable(level, pos, Direction.SOUTH);
-        boolean west = this.isCoffeeTable(level, pos, Direction.WEST);
-        return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
+        return this.getCofeeTableState(state, level, pos);
     }
 
-    private boolean isCoffeeTable(LevelAccessor level, BlockPos source, Direction direction)
+    public BlockState getCofeeTableState(BlockState state, LevelAccessor level, BlockPos pos)
     {
-        BlockState state = level.getBlockState(source.relative(direction));
-        return state.getBlock() == this;
+        boolean north = this.isCoffeeTable(level.getBlockState(pos.north()));
+        boolean east = this.isCoffeeTable(level.getBlockState(pos.east()));
+        boolean south = this.isCoffeeTable(level.getBlockState(pos.south()));
+        boolean west = this.isCoffeeTable(level.getBlockState(pos.west()));
+
+        int count = (north ? 1 : 0) + (east ? 1 : 0) + (south ? 1 : 0) + (west ? 1 : 0);
+
+        if (count == 0)
+        {
+            return state.setValue(TYPE, Type.DEFAULT);
+        }
+        if (count == 4)
+        {
+            return state.setValue(TYPE, Type.CENTER);
+        }
+
+        for (Direction facing : Direction.Plane.HORIZONTAL)
+        {
+            boolean front = pick(facing, north, east, south, west);
+            boolean back  = pick(facing.getOpposite(), north, east, south, west);
+            boolean left  = pick(facing.getCounterClockWise(), north, east, south, west);
+            boolean right = pick(facing.getClockWise(), north, east, south, west);
+
+            Type type = resolveType(front, back, left, right);
+            if (type != null)
+            {
+                return state.setValue(TYPE, type).setValue(DIRECTION, facing);
+            }
+        }
+
+        return state.setValue(TYPE, Type.DEFAULT);
+    }
+
+    private static boolean pick(Direction direction, boolean north, boolean east, boolean south, boolean west)
+    {
+        return switch (direction)
+        {
+            case NORTH -> north;
+            case EAST  -> east;
+            case SOUTH -> south;
+            case WEST  -> west;
+            default    -> false;
+        };
+    }
+
+    private static Type resolveType(boolean front, boolean back, boolean left, boolean right)
+    {
+        if (!front && !back && right && !left)  return Type.LEFT;
+        if (!front && !back && left && !right)  return Type.RIGHT;
+        if (!front && !back && left && right)   return Type.MIDDLE;
+        if (!front && back && right && !left)   return Type.CORNER_LEFT;
+        if (!front && back && left && !right)   return Type.CORNER_RIGHT;
+        if (!front && back && left && right)    return Type.MIDDLE_TOP;
+        if (front && !back && left && right)    return Type.MIDDLE_BOTTOM;
+        return null;
+    }
+
+    private boolean isCoffeeTable(BlockState state)
+    {
+        return state.getBlock() instanceof CoffeeTableBlock;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         super.createBlockStateDefinition(builder);
-        builder.add(NORTH, EAST, SOUTH, WEST);
+        builder.add(TYPE);
     }
+
+    public enum Type implements StringRepresentable {
+        DEFAULT("default"),
+        LEFT("left"),
+        RIGHT("right"),
+        CORNER_LEFT("corner_left"),
+        CORNER_RIGHT("corner_right"),
+        MIDDLE("middle"),
+        MIDDLE_TOP("middle_top"),
+        MIDDLE_BOTTOM("middle_bottom"),
+        CENTER("center");
+
+        private final String id;
+
+        Type(String id) {
+            this.id = id;
+        }
+
+        @Override
+        public String toString() {
+            return this.getSerializedName();
+        }
+
+        @Override
+        public String getSerializedName() {
+            return id;
+        }
+
+
+    }
+
 }

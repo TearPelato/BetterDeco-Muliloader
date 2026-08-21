@@ -754,27 +754,27 @@ public class ModBlocks {
             ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //COFFEE TABLE
-    public static final RegistryEntry<Block> OAK_COFFEE_TABLE = register("oak_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> OAK_COFFEE_TABLE = register("oak_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> SPRUCE_COFFEE_TABLE = register("spruce_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> SPRUCE_COFFEE_TABLE = register("spruce_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BIRCH_COFFEE_TABLE = register("birch_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> BIRCH_COFFEE_TABLE = register("birch_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> JUNGLE_COFFEE_TABLE = register("jungle_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> JUNGLE_COFFEE_TABLE = register("jungle_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> ACACIA_COFFEE_TABLE = register("acacia_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> ACACIA_COFFEE_TABLE = register("acacia_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> DARK_OAK_COFFEE_TABLE = register("dark_oak_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> DARK_OAK_COFFEE_TABLE = register("dark_oak_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> MANGROVE_COFFEE_TABLE = register("mangrove_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> MANGROVE_COFFEE_TABLE = register("mangrove_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CHERRY_COFFEE_TABLE = register("cherry_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> CHERRY_COFFEE_TABLE = register("cherry_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BAMBOO_COFFEE_TABLE = register("bamboo_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> BAMBOO_COFFEE_TABLE = register("bamboo_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CRIMSON_COFFEE_TABLE = register("crimson_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> CRIMSON_COFFEE_TABLE = register("crimson_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> WARPED_COFFEE_TABLE = register("warped_coffee_table",
+    public static final RegistryEntry<CoffeeTableBlock> WARPED_COFFEE_TABLE = register("warped_coffee_table",
             ()-> new CoffeeTableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     //DINNING TABLE

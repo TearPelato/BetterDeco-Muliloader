@@ -124,8 +124,19 @@ public class CutoutRenderLayerBlocks {
                 ModBlocks.CHERRY_BASIN.get(),
                 ModBlocks.BAMBOO_BASIN.get(),
                 ModBlocks.CRIMSON_BASIN.get(),
-                ModBlocks.WARPED_BASIN.get()
+                ModBlocks.WARPED_BASIN.get(),
 
+                ModBlocks.OAK_COFFEE_TABLE.get(),
+                ModBlocks.SPRUCE_COFFEE_TABLE.get(),
+                ModBlocks.BIRCH_COFFEE_TABLE.get(),
+                ModBlocks.JUNGLE_COFFEE_TABLE.get(),
+                ModBlocks.ACACIA_COFFEE_TABLE.get(),
+                ModBlocks.DARK_OAK_COFFEE_TABLE.get(),
+                ModBlocks.MANGROVE_COFFEE_TABLE.get(),
+                ModBlocks.CHERRY_COFFEE_TABLE.get(),
+                ModBlocks.BAMBOO_COFFEE_TABLE.get(),
+                ModBlocks.CRIMSON_COFFEE_TABLE.get(),
+                ModBlocks.WARPED_COFFEE_TABLE.get()
 
         };
     }

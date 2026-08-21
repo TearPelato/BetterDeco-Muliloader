@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/coffee_table_middle",
+  "textures": {
+    "0": "better_deco:block/mangrove_coffee_table",
+    "particle": "better_deco:block/mangrove_coffee_table"
+  }
+}

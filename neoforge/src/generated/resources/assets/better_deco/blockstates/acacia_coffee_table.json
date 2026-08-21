@@ -1,0 +1,139 @@
+{
+  "variants": {
+    "facing=east,type=center": {
+      "model": "better_deco:block/acacia_coffee_table_center",
+      "y": 270
+    },
+    "facing=east,type=corner_left": {
+      "model": "better_deco:block/acacia_coffee_table_corner_left",
+      "y": 270
+    },
+    "facing=east,type=corner_right": {
+      "model": "better_deco:block/acacia_coffee_table_corner_right",
+      "y": 270
+    },
+    "facing=east,type=default": {
+      "model": "better_deco:block/acacia_coffee_table_default",
+      "y": 270
+    },
+    "facing=east,type=left": {
+      "model": "better_deco:block/acacia_coffee_table_left",
+      "y": 270
+    },
+    "facing=east,type=middle": {
+      "model": "better_deco:block/acacia_coffee_table_middle",
+      "y": 270
+    },
+    "facing=east,type=middle_bottom": {
+      "model": "better_deco:block/acacia_coffee_table_middle_bottom",
+      "y": 270
+    },
+    "facing=east,type=middle_top": {
+      "model": "better_deco:block/acacia_coffee_table_middle_top",
+      "y": 270
+    },
+    "facing=east,type=right": {
+      "model": "better_deco:block/acacia_coffee_table_right",
+      "y": 270
+    },
+    "facing=north,type=center": {
+      "model": "better_deco:block/acacia_coffee_table_center",
+      "y": 180
+    },
+    "facing=north,type=corner_left": {
+      "model": "better_deco:block/acacia_coffee_table_corner_left",
+      "y": 180
+    },
+    "facing=north,type=corner_right": {
+      "model": "better_deco:block/acacia_coffee_table_corner_right",
+      "y": 180
+    },
+    "facing=north,type=default": {
+      "model": "better_deco:block/acacia_coffee_table_default",
+      "y": 180
+    },
+    "facing=north,type=left": {
+      "model": "better_deco:block/acacia_coffee_table_left",
+      "y": 180
+    },
+    "facing=north,type=middle": {
+      "model": "better_deco:block/acacia_coffee_table_middle",
+      "y": 180
+    },
+    "facing=north,type=middle_bottom": {
+      "model": "better_deco:block/acacia_coffee_table_middle_bottom",
+      "y": 180
+    },
+    "facing=north,type=middle_top": {
+      "model": "better_deco:block/acacia_coffee_table_middle_top",
+      "y": 180
+    },
+    "facing=north,type=right": {
+      "model": "better_deco:block/acacia_coffee_table_right",
+      "y": 180
+    },
+    "facing=south,type=center": {
+      "model": "better_deco:block/acacia_coffee_table_center"
+    },
+    "facing=south,type=corner_left": {
+      "model": "better_deco:block/acacia_coffee_table_corner_left"
+    },
+    "facing=south,type=corner_right": {
+      "model": "better_deco:block/acacia_coffee_table_corner_right"
+    },
+    "facing=south,type=default": {
+      "model": "better_deco:block/acacia_coffee_table_default"
+    },
+    "facing=south,type=left": {
+      "model": "better_deco:block/acacia_coffee_table_left"
+    },
+    "facing=south,type=middle": {
+      "model": "better_deco:block/acacia_coffee_table_middle"
+    },
+    "facing=south,type=middle_bottom": {
+      "model": "better_deco:block/acacia_coffee_table_middle_bottom"
+    },
+    "facing=south,type=middle_top": {
+      "model": "better_deco:block/acacia_coffee_table_middle_top"
+    },
+    "facing=south,type=right": {
+      "model": "better_deco:block/acacia_coffee_table_right"
+    },
+    "facing=west,type=center": {
+      "model": "better_deco:block/acacia_coffee_table_center",
+      "y": 90
+    },
+    "facing=west,type=corner_left": {
+      "model": "better_deco:block/acacia_coffee_table_corner_left",
+      "y": 90
+    },
+    "facing=west,type=corner_right": {
+      "model": "better_deco:block/acacia_coffee_table_corner_right",
+      "y": 90
+    },
+    "facing=west,type=default": {
+      "model": "better_deco:block/acacia_coffee_table_default",
+      "y": 90
+    },
+    "facing=west,type=left": {
+      "model": "better_deco:block/acacia_coffee_table_left",
+      "y": 90
+    },
+    "facing=west,type=middle": {
+      "model": "better_deco:block/acacia_coffee_table_middle",
+      "y": 90
+    },
+    "facing=west,type=middle_bottom": {
+      "model": "better_deco:block/acacia_coffee_table_middle_bottom",
+      "y": 90
+    },
+    "facing=west,type=middle_top": {
+      "model": "better_deco:block/acacia_coffee_table_middle_top",
+      "y": 90
+    },
+    "facing=west,type=right": {
+      "model": "better_deco:block/acacia_coffee_table_right",
+      "y": 90
+    }
+  }
+}

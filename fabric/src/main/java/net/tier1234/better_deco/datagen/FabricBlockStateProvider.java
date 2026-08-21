@@ -350,6 +350,18 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         deskCabinet(ModBlocks.CRIMSON_DESK_CABINET.get(), Constants.id("block/crimson_desk_drawer"));
         deskCabinet(ModBlocks.WARPED_DESK_CABINET.get(), Constants.id("block/warped_desk_drawer"));
 
+        coffeeTable(ModBlocks.OAK_COFFEE_TABLE.get(), Constants.id("block/oak_coffee_table"));
+        coffeeTable(ModBlocks.SPRUCE_COFFEE_TABLE.get(), Constants.id("block/spruce_coffee_table"));
+        coffeeTable(ModBlocks.BIRCH_COFFEE_TABLE.get(), Constants.id("block/birch_coffee_table"));
+        coffeeTable(ModBlocks.JUNGLE_COFFEE_TABLE.get(), Constants.id("block/jungle_coffee_table"));
+        coffeeTable(ModBlocks.ACACIA_COFFEE_TABLE.get(), Constants.id("block/acacia_coffee_table"));
+        coffeeTable(ModBlocks.DARK_OAK_COFFEE_TABLE.get(), Constants.id("block/dark_oak_coffee_table"));
+        coffeeTable(ModBlocks.MANGROVE_COFFEE_TABLE.get(), Constants.id("block/mangrove_coffee_table"));
+        coffeeTable(ModBlocks.CHERRY_COFFEE_TABLE.get(), Constants.id("block/cherry_coffee_table"));
+        coffeeTable(ModBlocks.BAMBOO_COFFEE_TABLE.get(), Constants.id("block/bamboo_coffee_table"));
+        coffeeTable(ModBlocks.CRIMSON_COFFEE_TABLE.get(), Constants.id("block/crimson_coffee_table"));
+        coffeeTable(ModBlocks.WARPED_COFFEE_TABLE.get(), Constants.id("block/warped_coffee_table"));
+
 
     }
 }
