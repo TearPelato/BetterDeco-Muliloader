@@ -362,6 +362,19 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         coffeeTable(ModBlocks.CRIMSON_COFFEE_TABLE.get(), Constants.id("block/crimson_coffee_table"));
         coffeeTable(ModBlocks.WARPED_COFFEE_TABLE.get(), Constants.id("block/warped_coffee_table"));
 
+        bedsideCabinet(ModBlocks.OAK_BEDSIDE.get(), Constants.id("block/oak_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.SPRUCE_BEDSIDE.get(), Constants.id("block/spruce_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.BIRCH_BEDSIDE.get(), Constants.id("block/birch_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.JUNGLE_BEDSIDE.get(), Constants.id("block/jungle_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.ACACIA_BEDSIDE.get(), Constants.id("block/acacia_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.DARK_OAK_BEDSIDE.get(), Constants.id("block/dark_oak_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.MANGROVE_BEDSIDE.get(), Constants.id("block/mangrove_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.CHERRY_BEDSIDE.get(), Constants.id("block/cherry_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.BAMBOO_BEDSIDE.get(), Constants.id("block/bamboo_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.CRIMSON_BEDSIDE.get(), Constants.id("block/crimson_bedside_cabinet"));
+        bedsideCabinet(ModBlocks.WARPED_BEDSIDE.get(), Constants.id("block/warped_bedside_cabinet"));
+
+
 
     }
 }

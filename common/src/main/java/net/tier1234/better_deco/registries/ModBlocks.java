@@ -457,27 +457,27 @@ public class ModBlocks {
             ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
 
     //Bedside Cabinets
-    public static final RegistryEntry<Block> OAK_BEDSIDE = register("oak_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> OAK_BEDSIDE = register("oak_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_BEDSIDE = register("spruce_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> SPRUCE_BEDSIDE = register("spruce_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_BEDSIDE = register("birch_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> BIRCH_BEDSIDE = register("birch_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_BEDSIDE = register("jungle_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> JUNGLE_BEDSIDE = register("jungle_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_BEDSIDE = register("acacia_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> ACACIA_BEDSIDE = register("acacia_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_BEDSIDE = register("mangrove_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> MANGROVE_BEDSIDE = register("mangrove_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_BEDSIDE = register("dark_oak_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> DARK_OAK_BEDSIDE = register("dark_oak_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_BEDSIDE = register("cherry_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> CHERRY_BEDSIDE = register("cherry_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_BEDSIDE = register("bamboo_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> BAMBOO_BEDSIDE = register("bamboo_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_BEDSIDE = register("crimson_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> CRIMSON_BEDSIDE = register("crimson_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_BEDSIDE = register("warped_bedside",
+    public static final RegistryEntry<BedsideCabinetBlock> WARPED_BEDSIDE = register("warped_bedside",
             ()-> new BedsideCabinetBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //Crates
