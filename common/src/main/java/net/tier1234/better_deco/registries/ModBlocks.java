@@ -802,37 +802,37 @@ public class ModBlocks {
             ()-> new TableBlock(BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     //Digital Clock
-    public static final RegistryEntry<Block> RED_DIGITAL_CLOCK = register("red_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> RED_DIGITAL_CLOCK = register("red_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> ORANGE_DIGITAL_CLOCK = register("orange_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> ORANGE_DIGITAL_CLOCK = register("orange_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> YELLOW_DIGITAL_CLOCK = register("yellow_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> YELLOW_DIGITAL_CLOCK = register("yellow_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> MAGENTA_DIGITAL_CLOCK = register("magenta_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> MAGENTA_DIGITAL_CLOCK = register("magenta_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> PINK_DIGITAL_CLOCK = register("pink_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> PINK_DIGITAL_CLOCK = register("pink_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> PURPLE_DIGITAL_CLOCK = register("purple_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> PURPLE_DIGITAL_CLOCK = register("purple_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> BLUE_DIGITAL_CLOCK = register("blue_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> BLUE_DIGITAL_CLOCK = register("blue_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> LIGHT_BLUE_DIGITAL_CLOCK = register("light_blue_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> LIGHT_BLUE_DIGITAL_CLOCK = register("light_blue_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> CYAN_DIGITAL_CLOCK = register("cyan_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> CYAN_DIGITAL_CLOCK = register("cyan_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> GREEN_DIGITAL_CLOCK = register("green_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> GREEN_DIGITAL_CLOCK = register("green_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> LIME_DIGITAL_CLOCK = register("lime_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> LIME_DIGITAL_CLOCK = register("lime_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> GRAY_DIGITAL_CLOCK = register("gray_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> GRAY_DIGITAL_CLOCK = register("gray_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> LIGHT_GRAY_DIGITAL_CLOCK = register("light_gray_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> LIGHT_GRAY_DIGITAL_CLOCK = register("light_gray_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> BROWN_DIGITAL_CLOCK = register("brown_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> BROWN_DIGITAL_CLOCK = register("brown_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> BLACK_DIGITAL_CLOCK = register("black_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> BLACK_DIGITAL_CLOCK = register("black_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
-    public static final RegistryEntry<Block> WHITE_DIGITAL_CLOCK = register("white_digital_clock",
+    public static final RegistryEntry<DigitalClockBlock> WHITE_DIGITAL_CLOCK = register("white_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
 
     //Glass Tecque

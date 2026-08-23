@@ -375,6 +375,24 @@ public class NeoForgeBlockStateProvider extends CommonBlockStateProvider {
         bedsideCabinet(ModBlocks.CRIMSON_BEDSIDE.get(), Constants.id("block/crimson_bedside_cabinet"));
         bedsideCabinet(ModBlocks.WARPED_BEDSIDE.get(), Constants.id("block/warped_bedside_cabinet"));
 
+        digitalClock(ModBlocks.WHITE_DIGITAL_CLOCK.get(), Constants.id("block/white_digital_clock"));
+        digitalClock(ModBlocks.LIGHT_GRAY_DIGITAL_CLOCK.get(), Constants.id("block/light_gray_digital_clock"));
+        digitalClock(ModBlocks.GRAY_DIGITAL_CLOCK.get(), Constants.id("block/gray_digital_clock"));
+        digitalClock(ModBlocks.BLACK_DIGITAL_CLOCK.get(), Constants.id("block/black_digital_clock"));
+        digitalClock(ModBlocks.BROWN_DIGITAL_CLOCK.get(), Constants.id("block/brown_digital_clock"));
+        digitalClock(ModBlocks.RED_DIGITAL_CLOCK.get(), Constants.id("block/red_digital_clock"));
+        digitalClock(ModBlocks.ORANGE_DIGITAL_CLOCK.get(), Constants.id("block/orange_digital_clock"));
+        digitalClock(ModBlocks.YELLOW_DIGITAL_CLOCK.get(), Constants.id("block/yellow_digital_clock"));
+        digitalClock(ModBlocks.LIME_DIGITAL_CLOCK.get(), Constants.id("block/lime_digital_clock"));
+        digitalClock(ModBlocks.GREEN_DIGITAL_CLOCK.get(), Constants.id("block/green_digital_clock"));
+        digitalClock(ModBlocks.CYAN_DIGITAL_CLOCK.get(), Constants.id("block/cyan_digital_clock"));
+        digitalClock(ModBlocks.LIGHT_BLUE_DIGITAL_CLOCK.get(), Constants.id("block/light_blue_digital_clock"));
+        digitalClock(ModBlocks.BLUE_DIGITAL_CLOCK.get(), Constants.id("block/blue_digital_clock"));
+        digitalClock(ModBlocks.PURPLE_DIGITAL_CLOCK.get(), Constants.id("block/purple_digital_clock"));
+        digitalClock(ModBlocks.MAGENTA_DIGITAL_CLOCK.get(), Constants.id("block/magenta_digital_clock"));
+        digitalClock(ModBlocks.PINK_DIGITAL_CLOCK.get(), Constants.id("block/pink_digital_clock"));
+
+
 
     }
 }
