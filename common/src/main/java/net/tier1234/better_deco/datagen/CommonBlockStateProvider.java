@@ -781,11 +781,10 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
         JsonObject variants = new JsonObject();
         for (Direction dir : HORIZONTALS) {
-            variants.add("facing=" + Direction.NORTH, variantJson(closedRef, 0));
-            variants.add("facing=" + Direction.EAST, variantJson(closedRef, 90));
-            variants.add("facing=" + Direction.SOUTH, variantJson(closedRef, 180));
-            variants.add("facing=" + Direction.WEST, variantJson(closedRef, 270));
-
+            variants.add("facing=" + Direction.NORTH, variantJson(closedRef, 180));
+            variants.add("facing=" + Direction.EAST, variantJson(closedRef, 270));
+            variants.add("facing=" + Direction.SOUTH, variantJson(closedRef, 0));
+            variants.add("facing=" + Direction.WEST, variantJson(closedRef, 90));
         }
 
         JsonObject root = new JsonObject();
