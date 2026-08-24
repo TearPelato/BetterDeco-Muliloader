@@ -46,6 +46,19 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
                 .add(ModBlocks.CHERRY_DESK_CABINET.get().asItem())
                 .add(ModBlocks.BAMBOO_DESK_CABINET.get().asItem())
                 .add(ModBlocks.CRIMSON_DESK_CABINET.get().asItem())
-                .add(ModBlocks.WARPED_DESK_CABINET.get().asItem());
+                .add(ModBlocks.WARPED_DESK_CABINET.get().asItem())
+
+                .add(ModBlocks.OAK_CLOCK.get().asItem())
+                .add(ModBlocks.SPRUCE_CLOCK.get().asItem())
+                .add(ModBlocks.BIRCH_CLOCK.get().asItem())
+                .add(ModBlocks.JUNGLE_CLOCK.get().asItem())
+                .add(ModBlocks.ACACIA_CLOCK.get().asItem())
+                .add(ModBlocks.DARK_OAK_CLOCK.get().asItem())
+                .add(ModBlocks.MANGROVE_CLOCK.get().asItem())
+                .add(ModBlocks.CHERRY_CLOCK.get().asItem())
+                .add(ModBlocks.BAMBOO_CLOCK.get().asItem())
+                .add(ModBlocks.CRIMSON_CLOCK.get().asItem())
+                .add(ModBlocks.WARPED_CLOCK.get().asItem());
+
     }
 }

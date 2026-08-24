@@ -403,4 +403,21 @@ public class ModBlockEntities {
                     ModBlocks.WARPED_BATH.get()
 
             });
+
+
+    public static final RegistryEntry<BlockEntityType<WoodenClockBlockEntity>> WOODEN_CLOCK =
+            RegistryEntry.blockEntity(Constants.id("wooden_clock"), WoodenClockBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.OAK_CLOCK.get(),
+                    ModBlocks.SPRUCE_CLOCK.get(),
+                    ModBlocks.BIRCH_CLOCK.get(),
+                    ModBlocks.JUNGLE_CLOCK.get(),
+                    ModBlocks.ACACIA_CLOCK.get(),
+                    ModBlocks.DARK_OAK_CLOCK.get(),
+                    ModBlocks.MANGROVE_CLOCK.get(),
+                    ModBlocks.CHERRY_CLOCK.get(),
+                    ModBlocks.BAMBOO_CLOCK.get(),
+                    ModBlocks.CRIMSON_CLOCK.get(),
+                    ModBlocks.WARPED_CLOCK.get()
+
+            });
 }

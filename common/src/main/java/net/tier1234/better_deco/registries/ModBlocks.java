@@ -835,6 +835,36 @@ public class ModBlocks {
     public static final RegistryEntry<DigitalClockBlock> WHITE_DIGITAL_CLOCK = register("white_digital_clock",
             ()-> new DigitalClockBlock(BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
 
+    public static final RegistryEntry<WoodenClockBlock> OAK_CLOCK = register("oak_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> SPRUCE_CLOCK = register("spruce_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> BIRCH_CLOCK = register("birch_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> JUNGLE_CLOCK = register("jungle_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> ACACIA_CLOCK = register("acacia_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> DARK_OAK_CLOCK = register("dark_oak_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> MANGROVE_CLOCK = register("mangrove_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> CHERRY_CLOCK = register("cherry_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> BAMBOO_CLOCK = register("bamboo_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> CRIMSON_CLOCK = register("crimson_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<WoodenClockBlock> WARPED_CLOCK = register("warped_clock",
+            ()-> new WoodenClockBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+
+
+
+
+
+
+
+
     //Glass Tecque
     public static final RegistryEntry<Block> STONE_GLASS_TECQUE = register("stone_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));

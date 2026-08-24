@@ -819,6 +819,29 @@ public abstract class CommonBlockStateProvider implements DataProvider {
 
     }
 
+    protected void woodenClock(WoodenClockBlock block, ResourceLocation texture) {
+        String baseName = BuiltInRegistries.BLOCK.getKey(block).getPath();
+
+        ResourceLocation closedKey = Constants.id(baseName);
+        ResourceLocation closedRef = Constants.id("block/" + baseName);
+
+        registerModel(closedKey, Constants.id("block/wooden_clock"), texture);
+
+        JsonObject variants = new JsonObject();
+        for (Direction dir : HORIZONTALS) {
+            variants.add("facing=" + Direction.NORTH, variantJson(closedRef, 180));
+            variants.add("facing=" + Direction.EAST, variantJson(closedRef, 270));
+            variants.add("facing=" + Direction.SOUTH, variantJson(closedRef, 0));
+            variants.add("facing=" + Direction.WEST, variantJson(closedRef, 90));
+
+        }
+
+        JsonObject root = new JsonObject();
+        root.add("variants", variants);
+        blockStates.put(BuiltInRegistries.BLOCK.getKey(block), root);
+        registerItemBlockModel(baseName, closedRef);
+
+    }
 
 
 

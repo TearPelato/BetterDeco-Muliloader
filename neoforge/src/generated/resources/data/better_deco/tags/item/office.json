@@ -21,6 +21,17 @@
     "better_deco:cherry_desk_cabinet",
     "better_deco:bamboo_desk_cabinet",
     "better_deco:crimson_desk_cabinet",
-    "better_deco:warped_desk_cabinet"
+    "better_deco:warped_desk_cabinet",
+    "better_deco:oak_clock",
+    "better_deco:spruce_clock",
+    "better_deco:birch_clock",
+    "better_deco:jungle_clock",
+    "better_deco:acacia_clock",
+    "better_deco:dark_oak_clock",
+    "better_deco:mangrove_clock",
+    "better_deco:cherry_clock",
+    "better_deco:bamboo_clock",
+    "better_deco:crimson_clock",
+    "better_deco:warped_clock"
   ]
 }

@@ -480,6 +480,18 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WARPED_BATH.get());
 
 
+        dropSelf(ModBlocks.OAK_CLOCK.get());
+        dropSelf(ModBlocks.SPRUCE_CLOCK.get());
+        dropSelf(ModBlocks.BIRCH_CLOCK.get());
+        dropSelf(ModBlocks.JUNGLE_CLOCK.get());
+        dropSelf(ModBlocks.ACACIA_CLOCK.get());
+        dropSelf(ModBlocks.DARK_OAK_CLOCK.get());
+        dropSelf(ModBlocks.MANGROVE_CLOCK.get());
+        dropSelf(ModBlocks.CHERRY_CLOCK.get());
+        dropSelf(ModBlocks.BAMBOO_CLOCK.get());
+        dropSelf(ModBlocks.CRIMSON_CLOCK.get());
+        dropSelf(ModBlocks.WARPED_CLOCK.get());
+
 
     }
 

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "better_deco:block/crimson_clock",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "better_deco:block/crimson_clock",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "better_deco:block/crimson_clock"
+    },
+    "facing=west": {
+      "model": "better_deco:block/crimson_clock",
+      "y": 90
+    }
+  }
+}

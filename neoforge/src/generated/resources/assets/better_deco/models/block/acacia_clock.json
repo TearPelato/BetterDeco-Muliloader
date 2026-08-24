@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/wooden_clock",
+  "textures": {
+    "0": "better_deco:block/acacia_clock",
+    "particle": "better_deco:block/acacia_clock"
+  }
+}

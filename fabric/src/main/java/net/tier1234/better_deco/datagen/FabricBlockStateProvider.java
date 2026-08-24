@@ -391,6 +391,17 @@ public class FabricBlockStateProvider extends CommonBlockStateProvider {
         digitalClock(ModBlocks.MAGENTA_DIGITAL_CLOCK.get(), Constants.id("block/magenta_digital_clock"));
         digitalClock(ModBlocks.PINK_DIGITAL_CLOCK.get(), Constants.id("block/pink_digital_clock"));
 
+        woodenClock(ModBlocks.OAK_CLOCK.get(), Constants.id("block/oak_clock"));
+        woodenClock(ModBlocks.SPRUCE_CLOCK.get(), Constants.id("block/spruce_clock"));
+        woodenClock(ModBlocks.BIRCH_CLOCK.get(), Constants.id("block/birch_clock"));
+        woodenClock(ModBlocks.JUNGLE_CLOCK.get(), Constants.id("block/jungle_clock"));
+        woodenClock(ModBlocks.ACACIA_CLOCK.get(), Constants.id("block/acacia_clock"));
+        woodenClock(ModBlocks.DARK_OAK_CLOCK.get(), Constants.id("block/dark_oak_clock"));
+        woodenClock(ModBlocks.MANGROVE_CLOCK.get(), Constants.id("block/mangrove_clock"));
+        woodenClock(ModBlocks.CHERRY_CLOCK.get(), Constants.id("block/cherry_clock"));
+        woodenClock(ModBlocks.BAMBOO_CLOCK.get(), Constants.id("block/bamboo_clock"));
+        woodenClock(ModBlocks.CRIMSON_CLOCK.get(), Constants.id("block/crimson_clock"));
+        woodenClock(ModBlocks.WARPED_CLOCK.get(), Constants.id("block/warped_clock"));
 
 
     }
