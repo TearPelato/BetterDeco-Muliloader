@@ -40,7 +40,7 @@ public class DigitalClockBlock extends FurnitureHorizontalBlock implements Entit
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
 
-        final VoxelShape[] SHAPE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0,0,0,16,5,16), Direction.SOUTH));
+        final VoxelShape[] SHAPE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(4,0,7,12,5,9.5), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for (BlockState state : states) {
