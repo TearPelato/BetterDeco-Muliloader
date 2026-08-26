@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -41,17 +43,35 @@ public class KitchenSinkBlock extends FurnitureHorizontalBlock implements Simple
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HAS_WATER = ModBlockStateProperties.HAS_WATER;
-
+    private WoodType woodType;
+    private DyeColor color;
     private final ImmutableMap<BlockState, VoxelShape> shapesByState;
 
-    public KitchenSinkBlock(Properties props) {
+    public KitchenSinkBlock(WoodType type,Properties props) {
         super(props);
+        this.woodType = type;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.SOUTH)
                 .setValue(HAS_WATER, false));
         this.shapesByState = generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
+    public KitchenSinkBlock(DyeColor color,Properties props) {
+        super(props);
+        this.color = color;
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(DIRECTION, Direction.SOUTH)
+                .setValue(HAS_WATER, false));
+        this.shapesByState = generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public DyeColor getColor() {
+        return color;
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
+    }
 
     public ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
         ImmutableMap.Builder<BlockState, VoxelShape> builder = ImmutableMap.builder();

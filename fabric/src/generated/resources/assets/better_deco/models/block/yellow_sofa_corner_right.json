@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/sofa_corner_right",
   "textures": {
-    "0": "better_deco:block/yellow_sofa",
-    "particle": "better_deco:block/yellow_sofa"
+    "particle": "minecraft:block/yellow_concrete",
+    "texture": "better_deco:block/yellow_sofa"
   }
 }

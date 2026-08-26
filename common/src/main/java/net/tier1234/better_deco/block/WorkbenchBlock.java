@@ -132,4 +132,8 @@ public class WorkbenchBlock extends FurnitureHorizontalBlock implements EntityBl
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
+
+    public String name() {
+        return "workbench";
+    }
 }

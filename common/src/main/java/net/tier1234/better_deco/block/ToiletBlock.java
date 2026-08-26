@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -46,16 +47,21 @@ import java.util.List;
 public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWaterloggedBlock, EntityBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HAS_WATER = ModBlockStateProperties.HAS_WATER;
-
+    private WoodType woodType;
     private final ImmutableMap<BlockState, VoxelShape> shapesByState;
 
 
-    public ToiletBlock(Properties properties) {
+    public ToiletBlock(WoodType type,Properties properties) {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.SOUTH)
                 .setValue(HAS_WATER, false));
         this.shapesByState = generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     @Override

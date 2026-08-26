@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/desk_left",
   "textures": {
-    "0": "better_deco:block/crimson_desk",
-    "particle": "better_deco:block/crimson_desk"
+    "particle": "minecraft:block/crimson_planks",
+    "texture": "better_deco:block/crimson_desk"
   }
 }

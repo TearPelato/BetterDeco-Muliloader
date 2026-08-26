@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/coffee_table_middle_bottom",
   "textures": {
-    "0": "better_deco:block/jungle_coffee_table",
-    "particle": "better_deco:block/jungle_coffee_table"
+    "particle": "minecraft:block/jungle_planks",
+    "texture": "better_deco:block/jungle_coffee_table"
   }
 }

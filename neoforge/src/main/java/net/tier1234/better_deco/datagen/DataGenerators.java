@@ -28,7 +28,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(), new CommonRecipeProvider(output, lookupProvider));
         CommonBlockTagProvider blockTagProvider = generator.addProvider(event.includeServer(), new CommonBlockTagProvider(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new NeoForgeBlockStateProvider(output));
+        generator.addProvider(event.includeServer(), new NeoForgeBlockStateProvider(output, existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(NeoForgeBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
         generator.addProvider(event.includeServer(), new CommonAdvancementsProvider(output, lookupProvider));

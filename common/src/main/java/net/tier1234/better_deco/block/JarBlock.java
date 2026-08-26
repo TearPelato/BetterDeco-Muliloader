@@ -2,7 +2,6 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -11,26 +10,31 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
+import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tier1234.better_deco.blockentity.JarBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class JarBlock extends FurnitureHorizontalEntityBlock {
+public class JarBlock extends FurnitureHorizontalBlock implements EntityBlock {
 
-    public static final MapCodec<JarBlock> CODEC = simpleCodec(JarBlock::new);
+    private WoodType woodType;
 
-
-    public JarBlock(Properties properties) {
+    public JarBlock(WoodType type,Properties properties) {
         super(properties);
+        this.woodType = type;
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     @Override
@@ -91,10 +95,6 @@ public class JarBlock extends FurnitureHorizontalEntityBlock {
         return  ImmutableMap.copyOf(states.stream().collect(Collectors.toMap(state -> state, o -> shapes)));
     }
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

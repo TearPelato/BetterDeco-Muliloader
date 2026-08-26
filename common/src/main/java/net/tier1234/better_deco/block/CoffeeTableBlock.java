@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
@@ -24,14 +25,20 @@ public class CoffeeTableBlock extends FurnitureHorizontalBlock
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
+    private WoodType woodType;
 
-    public CoffeeTableBlock(Properties properties)
+    public CoffeeTableBlock(WoodType type,Properties properties)
     {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(DIRECTION, Direction.NORTH)
                 .setValue(TYPE, Type.DEFAULT));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)

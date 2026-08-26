@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -31,12 +33,31 @@ import org.jetbrains.annotations.Nullable;
 public class OvenBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    private WoodType woodType;
+    private DyeColor color;
 
-    public OvenBlock(Properties properties)
+    public OvenBlock(WoodType type,Properties properties)
     {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public OvenBlock(DyeColor color,Properties properties)
+    {
+        super(properties);
+        this.color = color;
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
+    }
+
+    public DyeColor getColor() {
+        return color;
     }
 
     @Override

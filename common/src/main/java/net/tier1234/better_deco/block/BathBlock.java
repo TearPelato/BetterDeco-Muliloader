@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -53,14 +54,19 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
     public static final EnumProperty<BathPart> PART = EnumProperty.create("part", BathPart.class);
     protected static final VoxelShape BASE_SHAPE = Block.box(0, 2, 0, 32, 16, 16);
     protected static final VoxelShape COLLISION_SHAPE = Shapes.join(BASE_SHAPE, Block.box(2, 4, 2, 28, 16, 14), BooleanOp.ONLY_FIRST);
+    private WoodType woodType;
 
-
-    public BathBlock(Properties properties) {
+    public BathBlock(WoodType type,Properties properties) {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.SOUTH)
                 .setValue(PART, BathPart.BOTTOM)
                 .setValue(HAS_WATER, false));
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     @Override

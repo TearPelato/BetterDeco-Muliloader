@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -24,15 +25,20 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BedsideCabinetBlock extends FurnitureHorizontalBlock implements EntityBlock
-{
+public class BedsideCabinetBlock extends FurnitureHorizontalBlock implements EntityBlock {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    private WoodType woodType;
 
-    public BedsideCabinetBlock(Properties properties)
+    public BedsideCabinetBlock(WoodType type,Properties properties)
     {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)

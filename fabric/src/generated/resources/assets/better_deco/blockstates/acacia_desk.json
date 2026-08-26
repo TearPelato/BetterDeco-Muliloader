@@ -33,16 +33,20 @@
       "y": 180
     },
     "facing=south,type=left": {
-      "model": "better_deco:block/acacia_desk_left"
+      "model": "better_deco:block/acacia_desk_left",
+      "y": 0
     },
     "facing=south,type=middle": {
-      "model": "better_deco:block/acacia_desk_middle"
+      "model": "better_deco:block/acacia_desk_middle",
+      "y": 0
     },
     "facing=south,type=right": {
-      "model": "better_deco:block/acacia_desk_right"
+      "model": "better_deco:block/acacia_desk_right",
+      "y": 0
     },
     "facing=south,type=single": {
-      "model": "better_deco:block/acacia_desk_single"
+      "model": "better_deco:block/acacia_desk_single",
+      "y": 0
     },
     "facing=west,type=left": {
       "model": "better_deco:block/acacia_desk_left",

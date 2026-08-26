@@ -9,7 +9,8 @@
       "y": 180
     },
     "facing=south": {
-      "model": "better_deco:block/warped_bedside"
+      "model": "better_deco:block/warped_bedside",
+      "y": 0
     },
     "facing=west": {
       "model": "better_deco:block/warped_bedside",

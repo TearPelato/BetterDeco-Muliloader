@@ -44,7 +44,7 @@ public class FabricEveryCompatModule extends EveryCompatModule {
         kitchenCounter = SimpleEntrySet.builder(WoodType.class, "kitchen_counter",
                         ModBlocks.OAK_KITCHEN_COUNTER::get,
                         () -> VanillaWoodTypes.OAK,
-                        w -> new KitchenCounterBlock(Utils.copyPropertySafe(w.planks)))
+                        w -> new KitchenCounterBlock(w.toVanillaOrOak(),Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
                 .addTexture(modRes("block/oak_kitchen_counter"), PaletteStrategies.PLANKS_STANDARD)
@@ -54,7 +54,7 @@ public class FabricEveryCompatModule extends EveryCompatModule {
         kitchenDrawer = SimpleEntrySet.builder(WoodType.class, "kitchen_drawer",
                         ModBlocks.OAK_KITCHEN_DRAWER::get,
                         () -> VanillaWoodTypes.OAK,
-                        w-> new KitchenDrawerBlock(Utils.copyPropertySafe(w.planks)))
+                        w-> new KitchenDrawerBlock(w.toVanillaOrOak(),Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
                 .addTexture(modRes("block/oak_kitchen_drawer"), PaletteStrategies.PLANKS_STANDARD)

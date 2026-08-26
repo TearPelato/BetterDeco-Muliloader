@@ -73,19 +73,6 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                 .add(ModBlocks.CRIMSON_SINK.get())
                 .add(ModBlocks.WARPED_SINK.get())
 
-                .add(ModBlocks.OAK_SINK_DARK.get())
-                .add(ModBlocks.SPRUCE_SINK_DARK.get())
-                .add(ModBlocks.BIRCH_SINK_DARK.get())
-                .add(ModBlocks.JUNGLE_SINK_DARK.get())
-                .add(ModBlocks.ACACIA_SINK_DARK.get())
-                .add(ModBlocks.DARK_OAK_SINK_DARK.get())
-                .add(ModBlocks.MANGROVE_SINK_DARK.get())
-                .add(ModBlocks.CHERRY_SINK_DARK.get())
-                .add(ModBlocks.BAMBOO_SINK_DARK.get())
-                .add(ModBlocks.CRIMSON_SINK_DARK.get())
-                .add(ModBlocks.WARPED_SINK_DARK.get())
-
-
 
                 //Wooden Tecque
                 .add(ModBlocks.OAK_GLASS_TECQUE.get())

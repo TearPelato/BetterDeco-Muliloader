@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -42,14 +43,19 @@ public class BasinBlock extends FurnitureHorizontalBlock implements SimpleWaterl
     public static final BooleanProperty HAS_WATER = ModBlockStateProperties.HAS_WATER;
 
     private final ImmutableMap<BlockState, VoxelShape> shapesByState;
+    private WoodType woodType;
 
-
-    public BasinBlock(Properties properties) {
+    public BasinBlock(WoodType type,Properties properties) {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.SOUTH)
                 .setValue(HAS_WATER, false));
         this.shapesByState = generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     @Override

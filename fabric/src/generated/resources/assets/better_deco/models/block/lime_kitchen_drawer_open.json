@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_drawer_open",
   "textures": {
-    "0": "better_deco:block/lime_kitchen_drawer",
-    "particle": "better_deco:block/lime_kitchen_drawer"
+    "particle": "minecraft:block/lime_concrete",
+    "texture": "better_deco:block/lime_kitchen_drawer"
   }
 }

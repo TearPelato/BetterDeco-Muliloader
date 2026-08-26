@@ -9,7 +9,8 @@
       "y": 180
     },
     "facing=south": {
-      "model": "better_deco:block/mangrove_toilet"
+      "model": "better_deco:block/mangrove_toilet",
+      "y": 0
     },
     "facing=west": {
       "model": "better_deco:block/mangrove_toilet",

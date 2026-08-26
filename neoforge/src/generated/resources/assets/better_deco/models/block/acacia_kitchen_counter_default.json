@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_counter_default",
   "textures": {
-    "0": "better_deco:block/acacia_kitchen_counter",
-    "particle": "better_deco:block/acacia_kitchen_counter"
+    "particle": "minecraft:block/acacia_planks",
+    "texture": "better_deco:block/acacia_kitchen_counter"
   }
 }

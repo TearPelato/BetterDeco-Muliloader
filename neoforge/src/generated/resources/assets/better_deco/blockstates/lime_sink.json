@@ -9,7 +9,8 @@
       "y": 180
     },
     "facing=south": {
-      "model": "better_deco:block/lime_sink"
+      "model": "better_deco:block/lime_sink",
+      "y": 0
     },
     "facing=west": {
       "model": "better_deco:block/lime_sink",

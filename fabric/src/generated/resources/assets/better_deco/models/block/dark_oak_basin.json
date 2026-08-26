@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/basin",
   "textures": {
-    "0": "better_deco:block/dark_oak_basin",
-    "particle": "better_deco:block/dark_oak_basin"
+    "particle": "minecraft:block/dark_oak_planks",
+    "texture": "better_deco:block/dark_oak_basin"
   }
 }

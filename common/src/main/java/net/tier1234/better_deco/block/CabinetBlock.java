@@ -2,25 +2,23 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DoorHingeSide;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
+import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.blockentity.CabinetBlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -29,24 +27,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CabinetBlock extends FurnitureHorizontalEntityBlock {
+public class CabinetBlock extends FurnitureHorizontalBlock implements EntityBlock {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
     public static final EnumProperty<DoorHingeSide> HANDLE = BlockStateProperties.DOOR_HINGE;
 
-    public static final MapCodec<CabinetBlock> CODEC = simpleCodec(CabinetBlock::new);
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    private WoodType type;
+    private DyeColor color;
 
-    public CabinetBlock(Properties properties)
+
+    public CabinetBlock(WoodType type, Properties properties)
     {
         super(properties);
+        this.type = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, false).setValue(HANDLE, DoorHingeSide.LEFT));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
+    public CabinetBlock(DyeColor color, Properties properties)
+    {
+        super(properties);
+        this.color = color;
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, false).setValue(HANDLE, DoorHingeSide.LEFT));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
+
+    public DyeColor getColor() {
+        return color;
+    }
+
+    public WoodType getWoodType() {
+        return type;
+    }
+
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

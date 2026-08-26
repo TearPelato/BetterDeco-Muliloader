@@ -1,7 +1,7 @@
 {
-  "parent": "better_deco:block/table",
+  "parent": "better_deco:block/table_default",
   "textures": {
-    "0": "better_deco:block/acacia_table",
-    "particle": "better_deco:block/acacia_table"
+    "particle": "minecraft:block/acacia_planks",
+    "texture": "better_deco:block/acacia_table"
   }
 }

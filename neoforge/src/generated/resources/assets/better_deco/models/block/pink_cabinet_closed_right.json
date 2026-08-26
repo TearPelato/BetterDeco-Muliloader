@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/cabinet_closed_right",
   "textures": {
-    "0": "better_deco:block/pink_kitchen_cabinet",
-    "particle": "better_deco:block/pink_kitchen_cabinet"
+    "particle": "minecraft:block/pink_concrete",
+    "texture": "better_deco:block/pink_kitchen_cabinet"
   }
 }

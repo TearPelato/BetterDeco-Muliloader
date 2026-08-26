@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/coffee_table_right",
   "textures": {
-    "0": "better_deco:block/warped_coffee_table",
-    "particle": "better_deco:block/warped_coffee_table"
+    "particle": "minecraft:block/warped_planks",
+    "texture": "better_deco:block/warped_coffee_table"
   }
 }

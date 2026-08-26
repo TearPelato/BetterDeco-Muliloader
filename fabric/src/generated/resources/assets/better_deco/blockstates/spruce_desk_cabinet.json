@@ -33,16 +33,20 @@
       "y": 180
     },
     "facing=south,type=left": {
-      "model": "better_deco:block/spruce_desk_cabinet_left_closed"
+      "model": "better_deco:block/spruce_desk_cabinet_left_closed",
+      "y": 0
     },
     "facing=south,type=middle": {
-      "model": "better_deco:block/spruce_desk_cabinet_middle_closed"
+      "model": "better_deco:block/spruce_desk_cabinet_middle_closed",
+      "y": 0
     },
     "facing=south,type=right": {
-      "model": "better_deco:block/spruce_desk_cabinet_right_closed"
+      "model": "better_deco:block/spruce_desk_cabinet_right_closed",
+      "y": 0
     },
     "facing=south,type=single": {
-      "model": "better_deco:block/spruce_desk_cabinet_single_closed"
+      "model": "better_deco:block/spruce_desk_cabinet_single_closed",
+      "y": 0
     },
     "facing=west,type=left": {
       "model": "better_deco:block/spruce_desk_cabinet_left_closed",

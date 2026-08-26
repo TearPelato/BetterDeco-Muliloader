@@ -4,8 +4,8 @@
     "down": "better_deco:block/workbench_bottom",
     "east": "better_deco:block/workbench_side",
     "north": "better_deco:block/workbench_front",
-    "particle": "better_deco:block/workbench_front",
-    "south": "better_deco:block/workbench_front",
+    "particle": "minecraft:block/oak_planks",
+    "south": "better_deco:block/workbench_side",
     "up": "better_deco:block/workbench_top",
     "west": "better_deco:block/workbench_side"
   }

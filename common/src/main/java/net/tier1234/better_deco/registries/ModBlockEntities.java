@@ -133,18 +133,6 @@ public class ModBlockEntities {
                             ModBlocks.CRIMSON_SINK.get(),
                             ModBlocks.WARPED_SINK.get(),
 
-                            ModBlocks.OAK_SINK_DARK.get(),
-                            ModBlocks.SPRUCE_SINK_DARK.get(),
-                            ModBlocks.BIRCH_SINK_DARK.get(),
-                            ModBlocks.JUNGLE_SINK_DARK.get(),
-                            ModBlocks.ACACIA_SINK_DARK.get(),
-                            ModBlocks.MANGROVE_SINK_DARK.get(),
-                            ModBlocks.DARK_OAK_SINK_DARK.get(),
-                            ModBlocks.CHERRY_SINK_DARK.get(),
-                            ModBlocks.BAMBOO_SINK_DARK.get(),
-                            ModBlocks.CRIMSON_SINK_DARK.get(),
-                            ModBlocks.WARPED_SINK_DARK.get(),
-
                             ModBlocks.RED_SINK.get(),
                             ModBlocks.ORANGE_SINK.get(),
                             ModBlocks.YELLOW_SINK.get(),

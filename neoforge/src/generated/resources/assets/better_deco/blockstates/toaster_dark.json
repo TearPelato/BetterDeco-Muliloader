@@ -1,7 +1,8 @@
 {
   "variants": {
     "facing=east": {
-      "model": "better_deco:block/toaster_dark"
+      "model": "better_deco:block/toaster_dark",
+      "y": 0
     },
     "facing=north": {
       "model": "better_deco:block/toaster_dark",
@@ -13,7 +14,7 @@
     },
     "facing=west": {
       "model": "better_deco:block/toaster_dark",
-      "y": 1800
+      "y": 180
     }
   }
 }

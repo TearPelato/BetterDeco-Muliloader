@@ -5,7 +5,8 @@
       "y": 90
     },
     "facing=north": {
-      "model": "better_deco:block/black_oven"
+      "model": "better_deco:block/black_oven",
+      "y": 0
     },
     "facing=south": {
       "model": "better_deco:block/black_oven",

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/microwave",
+  "textures": {
+    "particle": "better_deco:light",
+    "texture": "better_deco:block/microwave_light"
+  }
+}

@@ -15,6 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
+import net.tier1234.better_deco.block.type.MetalType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,17 @@ import java.util.List;
 public class ToasterBlock extends FurnitureHorizontalBlock {
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
-
-    public ToasterBlock(Properties properties) {
+    public final MetalType type;
+    public ToasterBlock(MetalType type, Properties properties) {
         super(properties);
+        this.type = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
         this.SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
+    public MetalType getType() {
+        return type;
+    }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
         final VoxelShape[] BODY = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(3,0,5,13,7,11), Direction.NORTH));

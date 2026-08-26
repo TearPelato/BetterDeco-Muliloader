@@ -73,31 +73,40 @@
       "y": 180
     },
     "facing=south,type=center": {
-      "model": "better_deco:block/dark_oak_coffee_table_center"
+      "model": "better_deco:block/dark_oak_coffee_table_center",
+      "y": 0
     },
     "facing=south,type=corner_left": {
-      "model": "better_deco:block/dark_oak_coffee_table_corner_left"
+      "model": "better_deco:block/dark_oak_coffee_table_corner_left",
+      "y": 0
     },
     "facing=south,type=corner_right": {
-      "model": "better_deco:block/dark_oak_coffee_table_corner_right"
+      "model": "better_deco:block/dark_oak_coffee_table_corner_right",
+      "y": 0
     },
     "facing=south,type=default": {
-      "model": "better_deco:block/dark_oak_coffee_table_default"
+      "model": "better_deco:block/dark_oak_coffee_table_default",
+      "y": 0
     },
     "facing=south,type=left": {
-      "model": "better_deco:block/dark_oak_coffee_table_left"
+      "model": "better_deco:block/dark_oak_coffee_table_left",
+      "y": 0
     },
     "facing=south,type=middle": {
-      "model": "better_deco:block/dark_oak_coffee_table_middle"
+      "model": "better_deco:block/dark_oak_coffee_table_middle",
+      "y": 0
     },
     "facing=south,type=middle_bottom": {
-      "model": "better_deco:block/dark_oak_coffee_table_middle_bottom"
+      "model": "better_deco:block/dark_oak_coffee_table_middle_bottom",
+      "y": 0
     },
     "facing=south,type=middle_top": {
-      "model": "better_deco:block/dark_oak_coffee_table_middle_top"
+      "model": "better_deco:block/dark_oak_coffee_table_middle_top",
+      "y": 0
     },
     "facing=south,type=right": {
-      "model": "better_deco:block/dark_oak_coffee_table_right"
+      "model": "better_deco:block/dark_oak_coffee_table_right",
+      "y": 0
     },
     "facing=west,type=center": {
       "model": "better_deco:block/dark_oak_coffee_table_center",

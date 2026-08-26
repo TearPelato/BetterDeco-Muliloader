@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/bedside_cabinet",
   "textures": {
-    "0": "better_deco:block/birch_bedside_cabinet",
-    "particle": "better_deco:block/birch_bedside_cabinet"
+    "particle": "minecraft:block/birch_planks",
+    "texture": "better_deco:block/birch_bedside_cabinet"
   }
 }

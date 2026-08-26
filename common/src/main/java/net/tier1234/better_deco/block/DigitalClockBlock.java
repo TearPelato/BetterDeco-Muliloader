@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -29,10 +30,12 @@ import java.util.List;
 public class DigitalClockBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    public final DyeColor dyeColor;
 
-    public DigitalClockBlock(Properties properties)
+    public DigitalClockBlock(DyeColor color, Properties properties)
     {
         super(properties);
+        this.dyeColor= color;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.SOUTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
@@ -51,6 +54,10 @@ public class DigitalClockBlock extends FurnitureHorizontalBlock implements Entit
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
+    }
+
+    public DyeColor getDyeColor() {
+        return dyeColor;
     }
 
     @Override

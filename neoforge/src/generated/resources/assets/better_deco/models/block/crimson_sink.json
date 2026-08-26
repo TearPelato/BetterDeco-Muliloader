@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_sink",
   "textures": {
-    "0": "better_deco:block/crimson_kitchen_sink",
-    "particle": "better_deco:block/crimson_kitchen_sink"
+    "particle": "minecraft:block/crimson_planks",
+    "texture": "better_deco:block/crimson_kitchen_sink"
   }
 }

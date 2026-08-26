@@ -160,20 +160,6 @@ public class FabricLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.CRIMSON_SINK.get());
         dropSelf(ModBlocks.WARPED_SINK.get());
 
-        dropSelf(ModBlocks.OAK_SINK_DARK.get());
-        dropSelf(ModBlocks.SPRUCE_SINK_DARK.get());
-        dropSelf(ModBlocks.BIRCH_SINK_DARK.get());
-        dropSelf(ModBlocks.JUNGLE_SINK_DARK.get());
-        dropSelf(ModBlocks.ACACIA_SINK_DARK.get());
-        dropSelf(ModBlocks.MANGROVE_SINK_DARK.get());
-        dropSelf(ModBlocks.DARK_OAK_SINK_DARK.get());
-        dropSelf(ModBlocks.CHERRY_SINK_DARK.get());
-        dropSelf(ModBlocks.BAMBOO_SINK_DARK.get());
-        dropSelf(ModBlocks.CRIMSON_SINK_DARK.get());
-        dropSelf(ModBlocks.WARPED_SINK_DARK.get());
-
-
-
         dropSelf(ModBlocks.STONE_GLASS_TECQUE.get());
         dropSelf(ModBlocks.OAK_GLASS_TECQUE.get());
         dropSelf(ModBlocks.SPRUCE_GLASS_TECQUE.get());

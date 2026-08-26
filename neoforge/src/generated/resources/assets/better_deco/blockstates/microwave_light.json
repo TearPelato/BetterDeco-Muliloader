@@ -1,33 +1,19 @@
 {
   "variants": {
-    "facing=east,open=false": {
-      "model": "better_deco:block/microwave_light_closed",
+    "facing=east": {
+      "model": "better_deco:block/microwave_light",
       "y": 90
     },
-    "facing=east,open=true": {
-      "model": "better_deco:block/microwave_light_open",
-      "y": 90
+    "facing=north": {
+      "model": "better_deco:block/microwave_light",
+      "y": 0
     },
-    "facing=north,open=false": {
-      "model": "better_deco:block/microwave_light_closed"
-    },
-    "facing=north,open=true": {
-      "model": "better_deco:block/microwave_light_open"
-    },
-    "facing=south,open=false": {
-      "model": "better_deco:block/microwave_light_closed",
+    "facing=south": {
+      "model": "better_deco:block/microwave_light",
       "y": 180
     },
-    "facing=south,open=true": {
-      "model": "better_deco:block/microwave_light_open",
-      "y": 180
-    },
-    "facing=west,open=false": {
-      "model": "better_deco:block/microwave_light_closed",
-      "y": 270
-    },
-    "facing=west,open=true": {
-      "model": "better_deco:block/microwave_light_open",
+    "facing=west": {
+      "model": "better_deco:block/microwave_light",
       "y": 270
     }
   }

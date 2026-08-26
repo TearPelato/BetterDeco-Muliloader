@@ -12,6 +12,7 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -43,14 +44,19 @@ public class SofaBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
+    private DyeColor color;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public SofaBlock(Properties properties)
+    public SofaBlock(DyeColor color,Properties properties)
     {
         super(properties);
+        this.color = color;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(WATERLOGGED, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public DyeColor getColor() {
+        return color;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)

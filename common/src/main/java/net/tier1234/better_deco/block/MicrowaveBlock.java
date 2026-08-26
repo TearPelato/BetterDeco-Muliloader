@@ -2,6 +2,7 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,6 +25,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
+import net.tier1234.better_deco.block.type.MetalType;
 import net.tier1234.better_deco.blockentity.MicrowaveBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
@@ -33,14 +35,23 @@ import java.util.List;
 import java.util.Map;
 
 public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
-    public static final MapCodec<MicrowaveBlock> CODEC = simpleCodec(MicrowaveBlock::new);
-    public static final BooleanProperty OPEN = BooleanProperty.create("open");
+    public static final MapCodec<MicrowaveBlock> CODEC = RecordCodecBuilder.mapCodec(builder->{
+        return builder.group(MetalType.CODEC.fieldOf("metal_type").forGetter(block-> {
+            return block.type;
+        }), propertiesCodec()).apply(builder, MicrowaveBlock::new);
+    });
+    public final MetalType type;
 
-    public MicrowaveBlock(Properties properties) {
+
+    public MicrowaveBlock(MetalType type,Properties properties) {
         super(properties);
+        this.type = type;
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(DIRECTION, Direction.NORTH)
-                .setValue(OPEN, false));
+                .setValue(DIRECTION, Direction.NORTH));
+    }
+
+    public MetalType getType() {
+        return type;
     }
 
     @Override
@@ -51,7 +62,6 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(OPEN);
     }
 
     @Override
@@ -69,12 +79,8 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
         for (BlockState state : states) {
             Direction direction = state.getValue(DIRECTION);
             int idx = direction.get2DDataValue();
-
-            if (state.getValue(OPEN)) {
-                map.put(state, VoxelShapeHelper.combineAll(List.of(BASE_OPEN[idx], DOOR_OPEN[idx])));
-            } else {
                 map.put(state, CLOSED[idx]);
-            }
+
         }
         return map;
     }
@@ -124,4 +130,6 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
         return createTicker(blockEntityType, ModBlockEntities.MICROWAVE.get(),
                 (level1, blockPos, blockState, blockEntity) -> blockEntity.tick(level1, blockPos, blockState));
     }
+
+
 }

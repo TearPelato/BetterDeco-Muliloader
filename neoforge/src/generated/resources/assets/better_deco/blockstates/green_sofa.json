@@ -25,19 +25,24 @@
       "y": 270
     },
     "facing=north,type=corner_left": {
-      "model": "better_deco:block/green_sofa_corner_left"
+      "model": "better_deco:block/green_sofa_corner_left",
+      "y": 0
     },
     "facing=north,type=corner_right": {
-      "model": "better_deco:block/green_sofa_corner_right"
+      "model": "better_deco:block/green_sofa_corner_right",
+      "y": 0
     },
     "facing=north,type=left": {
-      "model": "better_deco:block/green_sofa_left"
+      "model": "better_deco:block/green_sofa_left",
+      "y": 0
     },
     "facing=north,type=middle": {
-      "model": "better_deco:block/green_sofa_middle"
+      "model": "better_deco:block/green_sofa_middle",
+      "y": 0
     },
     "facing=north,type=right": {
-      "model": "better_deco:block/green_sofa_right"
+      "model": "better_deco:block/green_sofa_right",
+      "y": 0
     },
     "facing=north,type=single": {
       "model": "better_deco:block/green_sofa_single",
@@ -64,7 +69,8 @@
       "y": 180
     },
     "facing=south,type=single": {
-      "model": "better_deco:block/green_sofa_single"
+      "model": "better_deco:block/green_sofa_single",
+      "y": 0
     },
     "facing=west,type=corner_left": {
       "model": "better_deco:block/green_sofa_corner_left",

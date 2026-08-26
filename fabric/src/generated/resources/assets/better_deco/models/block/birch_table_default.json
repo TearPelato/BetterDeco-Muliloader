@@ -1,7 +1,7 @@
 {
-  "parent": "better_deco:block/table",
+  "parent": "better_deco:block/table_default",
   "textures": {
-    "0": "better_deco:block/birch_table",
-    "particle": "better_deco:block/birch_table"
+    "particle": "minecraft:block/birch_planks",
+    "texture": "better_deco:block/birch_table"
   }
 }

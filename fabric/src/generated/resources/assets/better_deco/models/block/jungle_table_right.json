@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/table_right",
   "textures": {
-    "0": "better_deco:block/jungle_table",
-    "particle": "better_deco:block/jungle_table"
+    "particle": "minecraft:block/jungle_planks",
+    "texture": "better_deco:block/jungle_table"
   }
 }

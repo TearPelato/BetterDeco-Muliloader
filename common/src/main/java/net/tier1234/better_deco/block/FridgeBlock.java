@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.block;
 
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,6 +33,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
+import net.tier1234.better_deco.block.type.MetalType;
 import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 import net.tier1234.better_deco.blockentity.FridgeBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
@@ -41,22 +43,28 @@ import java.util.Locale;
 import java.util.stream.Stream;
 
 public class FridgeBlock extends BaseEntityBlock {
-    public static final MapCodec<FridgeBlock> CODEC = simpleCodec(FridgeBlock::new);
+
+    public static final MapCodec<FridgeBlock> CODEC = RecordCodecBuilder.mapCodec(builder->{
+        return builder.group(MetalType.CODEC.fieldOf("metal_type").forGetter(block-> {
+            return block.type;
+        }), propertiesCodec()).apply(builder, FridgeBlock::new);
+            });
+
     public static final DirectionProperty DIRECTION = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<FridgeModelType> MODEL_TYPE = EnumProperty.create("model", FridgeModelType.class);
+    private MetalType type;
 
-
-    public FridgeBlock(Properties properties) {
+    public FridgeBlock(MetalType type,Properties properties) {
         super(properties);
+        this.type = type;
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.NORTH)
                 .setValue(MODEL_TYPE, FridgeModelType.FRIDGE));
 
     }
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
+    public MetalType getType() {
+        return type;
     }
 
     @Override
@@ -147,6 +155,11 @@ public class FridgeBlock extends BaseEntityBlock {
                 level.setBlock(above, state.setValue(MODEL_TYPE, FridgeModelType.FREEZER), Block.UPDATE_ALL);
             }
         }
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override

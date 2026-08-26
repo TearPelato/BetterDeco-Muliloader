@@ -9,10 +9,12 @@
       "y": 90
     },
     "facing=north,open=false": {
-      "model": "better_deco:block/oak_kitchen_drawer_closed"
+      "model": "better_deco:block/oak_kitchen_drawer_closed",
+      "y": 0
     },
     "facing=north,open=true": {
-      "model": "better_deco:block/oak_kitchen_drawer_open"
+      "model": "better_deco:block/oak_kitchen_drawer_open",
+      "y": 0
     },
     "facing=south,open=false": {
       "model": "better_deco:block/oak_kitchen_drawer_closed",

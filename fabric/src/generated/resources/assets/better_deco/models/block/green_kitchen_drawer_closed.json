@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_drawer_closed",
   "textures": {
-    "0": "better_deco:block/green_kitchen_drawer",
-    "particle": "better_deco:block/green_kitchen_drawer"
+    "particle": "minecraft:block/green_concrete",
+    "texture": "better_deco:block/green_kitchen_drawer"
   }
 }

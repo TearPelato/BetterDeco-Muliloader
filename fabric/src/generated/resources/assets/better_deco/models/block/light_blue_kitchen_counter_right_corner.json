@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/kitchen_counter_right_corner",
   "textures": {
-    "0": "better_deco:block/light_blue_kitchen_counter",
-    "particle": "better_deco:block/light_blue_kitchen_counter"
+    "particle": "minecraft:block/light_blue_concrete",
+    "texture": "better_deco:block/light_blue_kitchen_counter"
   }
 }

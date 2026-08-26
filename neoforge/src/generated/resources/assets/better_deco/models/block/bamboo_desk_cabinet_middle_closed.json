@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/desk_cabinet_middle_closed",
   "textures": {
-    "0": "better_deco:block/bamboo_desk_drawer",
-    "particle": "better_deco:block/bamboo_desk_drawer"
+    "particle": "minecraft:block/bamboo_planks",
+    "texture": "better_deco:block/bamboo_desk"
   }
 }

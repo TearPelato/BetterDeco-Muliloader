@@ -5,7 +5,8 @@
       "y": 90
     },
     "facing=north": {
-      "model": "better_deco:block/acacia_cutting_board"
+      "model": "better_deco:block/acacia_cutting_board",
+      "y": 0
     },
     "facing=south": {
       "model": "better_deco:block/acacia_cutting_board",

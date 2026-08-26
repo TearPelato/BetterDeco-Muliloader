@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/cabinet_closed_left",
   "textures": {
-    "0": "better_deco:block/lime_kitchen_cabinet",
-    "particle": "better_deco:block/lime_kitchen_cabinet"
+    "particle": "minecraft:block/lime_concrete",
+    "texture": "better_deco:block/lime_kitchen_cabinet"
   }
 }

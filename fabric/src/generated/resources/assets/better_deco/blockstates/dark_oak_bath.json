@@ -17,10 +17,12 @@
       "y": 180
     },
     "facing=south,part=bottom": {
-      "model": "better_deco:block/dark_oak_bath_bottom"
+      "model": "better_deco:block/dark_oak_bath_bottom",
+      "y": 0
     },
     "facing=south,part=head": {
-      "model": "better_deco:block/dark_oak_bath_head"
+      "model": "better_deco:block/dark_oak_bath_head",
+      "y": 0
     },
     "facing=west,part=bottom": {
       "model": "better_deco:block/dark_oak_bath_bottom",

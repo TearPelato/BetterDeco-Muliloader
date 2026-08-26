@@ -2,16 +2,12 @@ package net.tier1234.better_deco.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,11 +18,10 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
-import net.tier1234.better_deco.block.MicrowaveBlock;
+import net.tier1234.better_deco.recipe.MicrowaveRecipe;
 import net.tier1234.better_deco.recipe.input.MicrowaveRecipeInput;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
-import net.tier1234.better_deco.recipe.*;
 import net.tier1234.better_deco.screen.custom.MicrowaveMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -200,42 +195,6 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
         return Component.translatable("gui.better_deco.microwave");
     }
 
-
-    @Override
-    public void onOpen(Level level, BlockPos pos, BlockState state)
-    {
-        this.playDoorSound(state, SoundEvents.UI_TOAST_IN);
-        this.setDoorState(state, true);
-    }
-
-    @Override
-    public void onClose(Level level, BlockPos pos, BlockState state)
-    {
-        this.playDoorSound(state, SoundEvents.UI_LOOM_TAKE_RESULT);
-        this.setDoorState(state, false);
-    }
-
-    private void playDoorSound(BlockState state, SoundEvent event)
-    {
-        Vec3i directionVec = state.getValue(MicrowaveBlock.DIRECTION).getNormal();
-        double x = this.worldPosition.getX() + 0.5D + directionVec.getX() / 2.0D;
-        double y = this.worldPosition.getY() + 0.5D + directionVec.getY() / 2.0D;
-        double z = this.worldPosition.getZ() + 0.5D + directionVec.getZ() / 2.0D;
-        Level level = this.getLevel();
-        if(level != null)
-        {
-            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
-        }
-    }
-
-    private void setDoorState(BlockState state, boolean open)
-    {
-        Level level = this.getLevel();
-        if(level != null)
-        {
-            level.setBlock(this.getBlockPos(), state.setValue(MicrowaveBlock.OPEN, open), 3);
-        }
-    }
 
     public ItemStack getDisplayedItem() {
         ItemStack output = itemHandler.getItem(1);

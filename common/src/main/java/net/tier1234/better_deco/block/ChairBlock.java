@@ -13,6 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -25,15 +26,19 @@ import net.tier1234.better_deco.entity.custom.SeatEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChairBlock extends FurnitureHorizontalBlock
-{
+public class ChairBlock extends FurnitureHorizontalBlock {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    private WoodType woodType;
 
-    public ChairBlock(Properties properties)
-    {
+    public ChairBlock(WoodType type, Properties properties) {
         super(properties);
+        this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)

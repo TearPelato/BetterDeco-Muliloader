@@ -24,15 +24,19 @@ public class DeskBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
-    private final WoodType materialType;
+    private final WoodType woodType;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public DeskBlock(Properties properties, WoodType materialType)
+    public DeskBlock(Properties properties, WoodType type)
     {
         super(properties);
-        this.materialType = materialType;
+        this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)

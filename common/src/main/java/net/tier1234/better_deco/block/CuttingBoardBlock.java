@@ -15,10 +15,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.deco_lib.api.block.furniture.FurnitureBlock;
+import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.blockentity.CuttingBoardBlockEntity;
@@ -28,11 +32,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CuttingBoardBlock extends FurnitureHorizontalEntityBlock {
-    public static final MapCodec<CuttingBoardBlock> CODEC = simpleCodec(CuttingBoardBlock::new);
-
-    public CuttingBoardBlock(Properties properties) {
+public class CuttingBoardBlock extends FurnitureHorizontalBlock implements EntityBlock {
+   private WoodType woodType;
+    public CuttingBoardBlock(WoodType type, Properties properties) {
         super(properties);
+        this.woodType = type;
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     @Override
@@ -49,11 +57,6 @@ public class CuttingBoardBlock extends FurnitureHorizontalEntityBlock {
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

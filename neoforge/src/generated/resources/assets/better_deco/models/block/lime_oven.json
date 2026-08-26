@@ -1,7 +1,7 @@
 {
   "parent": "better_deco:block/oven",
   "textures": {
-    "0": "better_deco:block/lime_kitchen_oven",
-    "particle": "better_deco:block/lime_kitchen_oven"
+    "particle": "minecraft:block/lime_concrete",
+    "texture": "better_deco:block/lime_kitchen_oven"
   }
 }

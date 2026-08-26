@@ -5,7 +5,8 @@
       "y": 90
     },
     "facing=north": {
-      "model": "better_deco:block/mangrove_jar"
+      "model": "better_deco:block/mangrove_jar",
+      "y": 0
     },
     "facing=south": {
       "model": "better_deco:block/mangrove_jar",

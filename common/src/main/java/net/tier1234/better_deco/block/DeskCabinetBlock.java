@@ -26,12 +26,19 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeskCabinetBlock extends DeskBlock implements EntityBlock
-{
-    public DeskCabinetBlock(Properties properties, WoodType materialType)
+public class DeskCabinetBlock extends DeskBlock implements EntityBlock {
+
+    private WoodType woodType;
+
+    public DeskCabinetBlock(Properties properties, WoodType type)
     {
-        super(properties, materialType);
+        super(properties,type);
+        this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
+    }
+
+    public WoodType getWoodType() {
+        return woodType;
     }
 
     @Override
