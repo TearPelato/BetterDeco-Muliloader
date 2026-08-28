@@ -2,6 +2,6 @@
   "parent": "better_deco:block/desk_cabinet_right_closed",
   "textures": {
     "particle": "minecraft:block/spruce_planks",
-    "texture": "better_deco:block/spruce_desk"
+    "texture": "better_deco:block/spruce_desk_drawer"
   }
 }

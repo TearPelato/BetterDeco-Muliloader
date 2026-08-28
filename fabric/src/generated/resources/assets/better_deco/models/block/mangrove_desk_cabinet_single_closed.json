@@ -2,6 +2,6 @@
   "parent": "better_deco:block/desk_cabinet_single_closed",
   "textures": {
     "particle": "minecraft:block/mangrove_planks",
-    "texture": "better_deco:block/mangrove_desk"
+    "texture": "better_deco:block/mangrove_desk_drawer"
   }
 }

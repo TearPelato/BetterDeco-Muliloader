@@ -2,6 +2,6 @@
   "parent": "better_deco:block/bath_head",
   "textures": {
     "particle": "minecraft:block/acacia_planks",
-    "texture": "better_deco:block/acacia_toilet"
+    "texture": "better_deco:block/acacia_bath"
   }
 }

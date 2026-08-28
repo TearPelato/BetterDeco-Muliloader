@@ -2,6 +2,6 @@
   "parent": "better_deco:block/desk_cabinet_middle_closed",
   "textures": {
     "particle": "minecraft:block/birch_planks",
-    "texture": "better_deco:block/birch_desk"
+    "texture": "better_deco:block/birch_desk_drawer"
   }
 }

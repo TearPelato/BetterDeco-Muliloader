@@ -2,6 +2,6 @@
   "parent": "better_deco:block/desk_cabinet_right_closed",
   "textures": {
     "particle": "minecraft:block/cherry_planks",
-    "texture": "better_deco:block/cherry_desk"
+    "texture": "better_deco:block/cherry_desk_drawer"
   }
 }

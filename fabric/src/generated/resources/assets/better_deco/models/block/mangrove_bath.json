@@ -2,6 +2,6 @@
   "parent": "better_deco:block/bath",
   "textures": {
     "particle": "minecraft:block/mangrove_planks",
-    "texture": "better_deco:block/mangrove_toilet"
+    "texture": "better_deco:block/mangrove_bath"
   }
 }

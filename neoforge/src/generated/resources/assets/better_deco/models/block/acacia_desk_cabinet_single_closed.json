@@ -2,6 +2,6 @@
   "parent": "better_deco:block/desk_cabinet_single_closed",
   "textures": {
     "particle": "minecraft:block/acacia_planks",
-    "texture": "better_deco:block/acacia_desk"
+    "texture": "better_deco:block/acacia_desk_drawer"
   }
 }

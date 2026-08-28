@@ -2,6 +2,6 @@
   "parent": "better_deco:block/bath",
   "textures": {
     "particle": "minecraft:block/warped_planks",
-    "texture": "better_deco:block/warped_toilet"
+    "texture": "better_deco:block/warped_bath"
   }
 }

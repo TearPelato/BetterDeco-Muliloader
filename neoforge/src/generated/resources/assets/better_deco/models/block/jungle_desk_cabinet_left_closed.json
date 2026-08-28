@@ -2,6 +2,6 @@
   "parent": "better_deco:block/desk_cabinet_left_closed",
   "textures": {
     "particle": "minecraft:block/jungle_planks",
-    "texture": "better_deco:block/jungle_desk"
+    "texture": "better_deco:block/jungle_desk_drawer"
   }
 }

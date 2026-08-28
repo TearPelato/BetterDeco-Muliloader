@@ -838,9 +838,9 @@ public class CommonModelsProvider {
 
     protected void bath(BathBlock block) {
         WoodType type = block.getWoodType();
-        TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_toilet"));
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_bath"));
 
         ResourceLocation modelHead = new ModelTemplate(Optional.of(Constants.id("block/bath_head")), Optional.of("_head"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
         ResourceLocation modelBottom = new ModelTemplate(Optional.of(Constants.id("block/bath_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
@@ -1026,7 +1026,7 @@ public class CommonModelsProvider {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
         textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_desk"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_desk_drawer"));
 
         ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_single_closed")), Optional.of("_single_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
         ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_left_closed")), Optional.of("_left_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
