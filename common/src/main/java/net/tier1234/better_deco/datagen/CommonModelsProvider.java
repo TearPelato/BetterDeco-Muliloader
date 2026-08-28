@@ -369,6 +369,22 @@ public class CommonModelsProvider {
         bedsideCabinet(ModBlocks.CRIMSON_BEDSIDE.get());
         bedsideCabinet(ModBlocks.WARPED_BEDSIDE.get());
 
+        lamp(ModBlocks.WHITE_LAMP.get());
+        lamp(ModBlocks.LIGHT_GRAY_LAMP.get());
+        lamp(ModBlocks.GRAY_LAMP.get());
+        lamp(ModBlocks.BLACK_LAMP.get());
+        lamp(ModBlocks.BROWN_LAMP.get());
+        lamp(ModBlocks.RED_LAMP.get());
+        lamp(ModBlocks.ORANGE_LAMP.get());
+        lamp(ModBlocks.YELLOW_LAMP.get());
+        lamp(ModBlocks.LIME_LAMP.get());
+        lamp(ModBlocks.GREEN_LAMP.get());
+        lamp(ModBlocks.CYAN_LAMP.get());
+        lamp(ModBlocks.LIGHT_BLUE_LAMP.get());
+        lamp(ModBlocks.BLUE_LAMP.get());
+        lamp(ModBlocks.PURPLE_LAMP.get());
+        lamp(ModBlocks.MAGENTA_LAMP.get());
+        lamp(ModBlocks.PINK_LAMP.get());
 
         digitalClock(ModBlocks.WHITE_DIGITAL_CLOCK.get());
         digitalClock(ModBlocks.LIGHT_GRAY_DIGITAL_CLOCK.get());
@@ -1118,6 +1134,70 @@ public class CommonModelsProvider {
 
         blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
         registerItemModel(block, model);
+    }
+
+    protected void lamp(LampBlock block) {
+        DyeColor color = block.getColor();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + color.getName() + "_wool"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_lamp"));
+        ResourceLocation singleOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_off")), Optional.of("_single_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation singleOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_on")), Optional.of("_single_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation bottomModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation topOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_off")), Optional.of("_top_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation topOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_on")), Optional.of("_top_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation wallOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_off")), Optional.of("_wall_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        ResourceLocation wallOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_on")), Optional.of("_wall_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+
+        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING,LampBlock.POWERED, LampBlock.TYPE)
+                        .select(Direction.NORTH, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                        .select(Direction.NORTH, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+
+
+
+        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, singleOffModel);
+
     }
 
     protected void digitalClock(DigitalClockBlock block) {

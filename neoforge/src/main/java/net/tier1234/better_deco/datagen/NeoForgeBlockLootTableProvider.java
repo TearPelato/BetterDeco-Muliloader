@@ -479,6 +479,22 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CRIMSON_CLOCK.get());
         dropSelf(ModBlocks.WARPED_CLOCK.get());
 
+        dropSelf(ModBlocks.RED_LAMP.get());
+        dropSelf(ModBlocks.YELLOW_LAMP.get());
+        dropSelf(ModBlocks.PINK_LAMP.get());
+        dropSelf(ModBlocks.PURPLE_LAMP.get());
+        dropSelf(ModBlocks.BROWN_LAMP.get());
+        dropSelf(ModBlocks.ORANGE_LAMP.get());
+        dropSelf(ModBlocks.BLACK_LAMP.get());
+        dropSelf(ModBlocks.WHITE_LAMP.get());
+        dropSelf(ModBlocks.MAGENTA_LAMP.get());
+        dropSelf(ModBlocks.LIGHT_BLUE_LAMP.get());
+        dropSelf(ModBlocks.BLUE_LAMP.get());
+        dropSelf(ModBlocks.GREEN_LAMP.get());
+        dropSelf(ModBlocks.LIME_LAMP.get());
+        dropSelf(ModBlocks.LIGHT_GRAY_LAMP.get());
+        dropSelf(ModBlocks.GRAY_LAMP.get());
+        dropSelf(ModBlocks.CYAN_LAMP.get());
 
     }
 

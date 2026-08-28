@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/lamp_top_on",
+  "textures": {
+    "particle": "minecraft:block/purple_wool",
+    "texture": "better_deco:block/purple_lamp"
+  }
+}

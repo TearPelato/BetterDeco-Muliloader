@@ -1,0 +1,164 @@
+{
+  "variants": {
+    "facing=east,powered=false,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 90
+    },
+    "facing=east,powered=false,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 90
+    },
+    "facing=east,powered=false,type=single": {
+      "model": "better_deco:block/black_lamp_single_off",
+      "y": 90
+    },
+    "facing=east,powered=false,type=top": {
+      "model": "better_deco:block/black_lamp_top_off",
+      "y": 90
+    },
+    "facing=east,powered=false,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_off",
+      "y": 90
+    },
+    "facing=east,powered=true,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 90
+    },
+    "facing=east,powered=true,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 90
+    },
+    "facing=east,powered=true,type=single": {
+      "model": "better_deco:block/black_lamp_single_on",
+      "y": 90
+    },
+    "facing=east,powered=true,type=top": {
+      "model": "better_deco:block/black_lamp_top_on",
+      "y": 90
+    },
+    "facing=east,powered=true,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_on",
+      "y": 90
+    },
+    "facing=north,powered=false,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 0
+    },
+    "facing=north,powered=false,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 0
+    },
+    "facing=north,powered=false,type=single": {
+      "model": "better_deco:block/black_lamp_single_off",
+      "y": 0
+    },
+    "facing=north,powered=false,type=top": {
+      "model": "better_deco:block/black_lamp_top_off",
+      "y": 0
+    },
+    "facing=north,powered=false,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_off",
+      "y": 0
+    },
+    "facing=north,powered=true,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 0
+    },
+    "facing=north,powered=true,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 0
+    },
+    "facing=north,powered=true,type=single": {
+      "model": "better_deco:block/black_lamp_single_on",
+      "y": 0
+    },
+    "facing=north,powered=true,type=top": {
+      "model": "better_deco:block/black_lamp_top_on",
+      "y": 0
+    },
+    "facing=north,powered=true,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_on",
+      "y": 0
+    },
+    "facing=south,powered=false,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 180
+    },
+    "facing=south,powered=false,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 180
+    },
+    "facing=south,powered=false,type=single": {
+      "model": "better_deco:block/black_lamp_single_off",
+      "y": 180
+    },
+    "facing=south,powered=false,type=top": {
+      "model": "better_deco:block/black_lamp_top_off",
+      "y": 180
+    },
+    "facing=south,powered=false,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_off",
+      "y": 180
+    },
+    "facing=south,powered=true,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 180
+    },
+    "facing=south,powered=true,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 180
+    },
+    "facing=south,powered=true,type=single": {
+      "model": "better_deco:block/black_lamp_single_on",
+      "y": 180
+    },
+    "facing=south,powered=true,type=top": {
+      "model": "better_deco:block/black_lamp_top_on",
+      "y": 180
+    },
+    "facing=south,powered=true,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_on",
+      "y": 180
+    },
+    "facing=west,powered=false,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 270
+    },
+    "facing=west,powered=false,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 270
+    },
+    "facing=west,powered=false,type=single": {
+      "model": "better_deco:block/black_lamp_single_off",
+      "y": 270
+    },
+    "facing=west,powered=false,type=top": {
+      "model": "better_deco:block/black_lamp_top_off",
+      "y": 270
+    },
+    "facing=west,powered=false,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_off",
+      "y": 270
+    },
+    "facing=west,powered=true,type=bottom": {
+      "model": "better_deco:block/black_lamp_bottom",
+      "y": 270
+    },
+    "facing=west,powered=true,type=middle": {
+      "model": "better_deco:block/black_lamp_middle",
+      "y": 270
+    },
+    "facing=west,powered=true,type=single": {
+      "model": "better_deco:block/black_lamp_single_on",
+      "y": 270
+    },
+    "facing=west,powered=true,type=top": {
+      "model": "better_deco:block/black_lamp_top_on",
+      "y": 270
+    },
+    "facing=west,powered=true,type=wall": {
+      "model": "better_deco:block/black_lamp_wall_on",
+      "y": 270
+    }
+  }
+}

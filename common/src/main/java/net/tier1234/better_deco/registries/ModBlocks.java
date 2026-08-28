@@ -780,6 +780,42 @@ public class ModBlocks {
     public static final RegistryEntry<TableBlock> WARPED_TABLE = register("warped_table",
             ()-> new TableBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
+    public static final RegistryEntry<LampBlock> WHITE_LAMP = register("white_lamp",
+            ()-> new LampBlock(DyeColor.WHITE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> LIGHT_GRAY_LAMP = register("light_gray_lamp",
+            ()-> new LampBlock(DyeColor.LIGHT_GRAY, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> GRAY_LAMP = register("gray_lamp",
+            ()-> new LampBlock(DyeColor.GRAY, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> BLACK_LAMP = register("black_lamp",
+            ()-> new LampBlock(DyeColor.BLACK, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> BROWN_LAMP = register("brown_lamp",
+            ()-> new LampBlock(DyeColor.BROWN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> RED_LAMP = register("red_lamp",
+            ()-> new LampBlock(DyeColor.RED, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> ORANGE_LAMP = register("orange_lamp",
+            ()-> new LampBlock(DyeColor.ORANGE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> YELLOW_LAMP = register("yellow_lamp",
+            ()-> new LampBlock(DyeColor.YELLOW, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> LIME_LAMP = register("lime_lamp",
+            ()-> new LampBlock(DyeColor.LIME, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> GREEN_LAMP = register("green_lamp",
+            ()-> new LampBlock(DyeColor.GREEN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> CYAN_LAMP = register("cyan_lamp",
+            ()-> new LampBlock(DyeColor.CYAN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> LIGHT_BLUE_LAMP = register("light_blue_lamp",
+            ()-> new LampBlock(DyeColor.LIGHT_BLUE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> BLUE_LAMP = register("blue_lamp",
+            ()-> new LampBlock(DyeColor.BLUE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> PURPLE_LAMP = register("purple_lamp",
+            ()-> new LampBlock(DyeColor.PURPLE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> MAGENTA_LAMP = register("magenta_lamp",
+            ()-> new LampBlock(DyeColor.MAGENTA, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+    public static final RegistryEntry<LampBlock> PINK_LAMP = register("pink_lamp",
+            ()-> new LampBlock(DyeColor.PINK, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+
+
+
+
     //Digital Clock
     public static final RegistryEntry<DigitalClockBlock> RED_DIGITAL_CLOCK = register("red_digital_clock",
             ()-> new DigitalClockBlock(DyeColor.RED,BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
