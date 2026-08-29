@@ -453,7 +453,58 @@ public class ModBundledTabs {
                     .icon(new ItemStack(ModBlocks.OAK_DESK.get()))
                     .title(Component.translatable("bundled_tab.office.title"))
                     .displayItems((provider, output) -> {
-                        output.accept(ModTags.Items.OFFICE);
+                        output.accept(ModBlocks.OAK_DESK.get());
+                        output.accept(ModBlocks.SPRUCE_DESK.get());
+                        output.accept(ModBlocks.BIRCH_DESK.get());
+                        output.accept(ModBlocks.JUNGLE_DESK.get());
+                        output.accept(ModBlocks.ACACIA_DESK.get());
+                        output.accept(ModBlocks.DARK_OAK_DESK.get());
+                        output.accept(ModBlocks.MANGROVE_DESK.get());
+                        output.accept(ModBlocks.CHERRY_DESK.get());
+                        output.accept(ModBlocks.BAMBOO_DESK.get());
+                        output.accept(ModBlocks.CRIMSON_DESK.get());
+                        output.accept(ModBlocks.WARPED_DESK.get());
+
+                        output.accept(ModBlocks.OAK_DESK_CABINET.get());
+                        output.accept(ModBlocks.SPRUCE_DESK_CABINET.get());
+                        output.accept(ModBlocks.BIRCH_DESK_CABINET.get());
+                        output.accept(ModBlocks.JUNGLE_DESK_CABINET.get());
+                        output.accept(ModBlocks.ACACIA_DESK_CABINET.get());
+                        output.accept(ModBlocks.DARK_OAK_DESK_CABINET.get());
+                        output.accept(ModBlocks.MANGROVE_DESK_CABINET.get());
+                        output.accept(ModBlocks.CHERRY_DESK_CABINET.get());
+                        output.accept(ModBlocks.BAMBOO_DESK_CABINET.get());
+                        output.accept(ModBlocks.CRIMSON_DESK_CABINET.get());
+                        output.accept(ModBlocks.WARPED_DESK_CABINET.get());
+
+                        output.accept(ModBlocks.WHITE_LAMP.get());
+                        output.accept(ModBlocks.LIGHT_GRAY_LAMP.get());
+                        output.accept(ModBlocks.GRAY_LAMP.get());
+                        output.accept(ModBlocks.BLACK_LAMP.get());
+                        output.accept(ModBlocks.RED_LAMP.get());
+                        output.accept(ModBlocks.ORANGE_LAMP.get());
+                        output.accept(ModBlocks.YELLOW_LAMP.get());
+                        output.accept(ModBlocks.LIME_LAMP.get());
+                        output.accept(ModBlocks.GREEN_LAMP.get());
+                        output.accept(ModBlocks.CYAN_LAMP.get());
+                        output.accept(ModBlocks.LIGHT_BLUE_LAMP.get());
+                        output.accept(ModBlocks.BLUE_LAMP.get());
+                        output.accept(ModBlocks.PURPLE_LAMP.get());
+                        output.accept(ModBlocks.MAGENTA_LAMP.get());
+                        output.accept(ModBlocks.PINK_LAMP.get());
+                        output.accept(ModBlocks.BROWN_LAMP.get());
+
+                        output.accept(ModBlocks.OAK_CLOCK.get());
+                        output.accept(ModBlocks.SPRUCE_CLOCK.get());
+                        output.accept(ModBlocks.BIRCH_CLOCK.get());
+                        output.accept(ModBlocks.JUNGLE_CLOCK.get());
+                        output.accept(ModBlocks.ACACIA_CLOCK.get());
+                        output.accept(ModBlocks.DARK_OAK_CLOCK.get());
+                        output.accept(ModBlocks.MANGROVE_CLOCK.get());
+                        output.accept(ModBlocks.CHERRY_CLOCK.get());
+                        output.accept(ModBlocks.BAMBOO_CLOCK.get());
+                        output.accept(ModBlocks.CRIMSON_CLOCK.get());
+                        output.accept(ModBlocks.WARPED_CLOCK.get());
                     })
                     .build());
 
