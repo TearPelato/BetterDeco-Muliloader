@@ -4,7 +4,6 @@ import com.mrcrayfish.framework.api.registry.RegistryContainer;
 import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -699,38 +698,38 @@ public class ModBlocks {
             ()-> new CabinetBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().strength(2.5f).noOcclusion()));
 
     //STOOL
-    public static final RegistryEntry<Block> RED_STOOL = register("red_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> ORANGE_STOOL = register("orange_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLUE_STOOL = register("blue_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> CYAN_STOOL = register("cyan_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_BLUE_STOOL = register("light_blue_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PURPLE_STOOL = register("purple_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> MAGENTA_STOOL = register("magenta_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> YELLOW_STOOL = register("yellow_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREY_STOOL = register("grey_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIGHT_GREY_STOOL = register("light_grey_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACK_STOOL = register("black_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> WITHE_STOOL = register("white_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> GREEN_STOOL = register("green_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> LIME_STOOL = register("lime_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> PINK_STOOL = register("pink_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-    public static final RegistryEntry<Block> BROWN_STOOL = register("brown_stool",
-            ()-> new BarStoolBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> RED_STOOL = register("red_stool",
+            ()-> new StoolBlock(DyeColor.RED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> ORANGE_STOOL = register("orange_stool",
+            ()-> new StoolBlock(DyeColor.ORANGE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> BLUE_STOOL = register("blue_stool",
+            ()-> new StoolBlock(DyeColor.BLUE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> CYAN_STOOL = register("cyan_stool",
+            ()-> new StoolBlock(DyeColor.CYAN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> LIGHT_BLUE_STOOL = register("light_blue_stool",
+            ()-> new StoolBlock(DyeColor.LIGHT_BLUE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> PURPLE_STOOL = register("purple_stool",
+            ()-> new StoolBlock(DyeColor.PURPLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> MAGENTA_STOOL = register("magenta_stool",
+            ()-> new StoolBlock(DyeColor.MAGENTA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> YELLOW_STOOL = register("yellow_stool",
+            ()-> new StoolBlock(DyeColor.YELLOW,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> GREY_STOOL = register("grey_stool",
+            ()-> new StoolBlock(DyeColor.GRAY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> LIGHT_GREY_STOOL = register("light_grey_stool",
+            ()-> new StoolBlock(DyeColor.LIGHT_GRAY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> BLACK_STOOL = register("black_stool",
+            ()-> new StoolBlock(DyeColor.BLACK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> WHITE_STOOL = register("white_stool",
+            ()-> new StoolBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> GREEN_STOOL = register("green_stool",
+            ()-> new StoolBlock(DyeColor.GREEN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> LIME_STOOL = register("lime_stool",
+            ()-> new StoolBlock(DyeColor.LIME,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> PINK_STOOL = register("pink_stool",
+            ()-> new StoolBlock(DyeColor.PINK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+    public static final RegistryEntry<StoolBlock> BROWN_STOOL = register("brown_stool",
+            ()-> new StoolBlock(DyeColor.BROWN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
 
     //COFFEE TABLE
     public static final RegistryEntry<CoffeeTableBlock> OAK_COFFEE_TABLE = register("oak_coffee_table",

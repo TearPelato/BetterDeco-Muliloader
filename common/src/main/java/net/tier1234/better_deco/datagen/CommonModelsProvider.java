@@ -305,6 +305,23 @@ public class CommonModelsProvider {
         chair(ModBlocks.CRIMSON_CHAIR.get());
         chair(ModBlocks.WARPED_CHAIR.get());
 
+        stool(ModBlocks.WHITE_STOOL.get());
+        stool(ModBlocks.LIGHT_GREY_STOOL.get());
+        stool(ModBlocks.GREY_STOOL.get());
+        stool(ModBlocks.BLACK_STOOL.get());
+        stool(ModBlocks.BROWN_STOOL.get());
+        stool(ModBlocks.RED_STOOL.get());
+        stool(ModBlocks.ORANGE_STOOL.get());
+        stool(ModBlocks.YELLOW_STOOL.get());
+        stool(ModBlocks.LIME_STOOL.get());
+        stool(ModBlocks.GREEN_STOOL.get());
+        stool(ModBlocks.CYAN_STOOL.get());
+        stool(ModBlocks.LIGHT_BLUE_STOOL.get());
+        stool(ModBlocks.BLUE_STOOL.get());
+        stool(ModBlocks.PURPLE_STOOL.get());
+        stool(ModBlocks.MAGENTA_STOOL.get());
+        stool(ModBlocks.PINK_STOOL.get());
+
         table(ModBlocks.OAK_TABLE.get());
         table(ModBlocks.SPRUCE_TABLE.get());
         table(ModBlocks.BIRCH_TABLE.get());
@@ -920,6 +937,24 @@ public class CommonModelsProvider {
                 .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
                 .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
                 .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, model);
+    }
+
+    protected void stool(StoolBlock block) {
+        DyeColor color = block.getColor();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + color.getName() + "_wool"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_stool"));
+        ModelTemplate template = getModel(Constants.id("block/stool"));
+        ResourceLocation model = template.create(block, textures, modelConsumer);
+
+        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                        .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                        .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                        .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
 
         blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
         registerItemModel(block, model);

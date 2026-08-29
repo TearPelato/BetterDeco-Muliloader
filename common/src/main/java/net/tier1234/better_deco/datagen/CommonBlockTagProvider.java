@@ -282,7 +282,7 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                   .add(ModBlocks.GREY_STOOL.get())
                   .add(ModBlocks.LIGHT_GREY_STOOL.get())
                   .add(ModBlocks.BLACK_STOOL.get())
-                  .add(ModBlocks.WITHE_STOOL.get())
+                  .add(ModBlocks.WHITE_STOOL.get())
                   .add(ModBlocks.BROWN_STOOL.get())
 
                   .add(ModBlocks.LIGHT_MICROWAVE.get())

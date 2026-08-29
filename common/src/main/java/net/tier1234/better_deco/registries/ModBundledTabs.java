@@ -76,10 +76,11 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_COFFEE_TABLE.get());
                         output.accept(ModBlocks.WARPED_COFFEE_TABLE.get());
 
-                        output.accept(ModBlocks.WITHE_STOOL.get());
+                        output.accept(ModBlocks.WHITE_STOOL.get());
                         output.accept(ModBlocks.LIGHT_GREY_STOOL.get());
                         output.accept(ModBlocks.GREY_STOOL.get());
                         output.accept(ModBlocks.BLACK_STOOL.get());
+                        output.accept(ModBlocks.BROWN_STOOL.get());
                         output.accept(ModBlocks.RED_STOOL.get());
                         output.accept(ModBlocks.ORANGE_STOOL.get());
                         output.accept(ModBlocks.YELLOW_STOOL.get());
@@ -91,7 +92,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.PURPLE_STOOL.get());
                         output.accept(ModBlocks.MAGENTA_STOOL.get());
                         output.accept(ModBlocks.PINK_STOOL.get());
-                        output.accept(ModBlocks.BROWN_STOOL.get());
 
                     }))
                     .build());
