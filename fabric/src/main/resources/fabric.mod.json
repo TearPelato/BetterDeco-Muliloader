@@ -53,7 +53,7 @@
       ]
     },
     "catalogue": {
-      "banner": "${mod_id}.png",
+      "banner": "icon.png",
       "background": "background.png"
     }
   },
