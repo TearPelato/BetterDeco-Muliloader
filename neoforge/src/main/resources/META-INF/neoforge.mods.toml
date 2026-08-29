@@ -36,7 +36,7 @@ side = "BOTH"
 [[dependencies."${mod_id}"]]
 modId = "framework"
 type =  "required"
-versionRange = "[0.13.18,)"
+versionRange = "[0.13.11,)"
 ordering = "NONE"
 side = "BOTH"
 
