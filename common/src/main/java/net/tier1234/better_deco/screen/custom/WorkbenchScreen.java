@@ -13,8 +13,10 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.mixin.GuiGraphicsInvoker;
@@ -24,6 +26,7 @@ import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeIngredientTooltip;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeTooltip;
+import net.tier1234.better_deco.util.ModTags;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.*;

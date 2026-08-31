@@ -3,10 +3,14 @@ package net.tier1234.better_deco.screen.custom;
 import com.mrcrayfish.framework.api.menu.IMenuData;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +18,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import net.tier1234.better_deco.network.ModPackets;
@@ -22,11 +27,10 @@ import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.registries.ModRecipes;
+import net.tier1234.better_deco.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WorkbenchMenu extends AbstractContainerMenu {
@@ -42,6 +46,13 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     private final Player player;
     private final Level level;
 
+    private static final List<TagKey<Item>> RECIPE_ORDER = List.of(
+            ModTags.Items.GENERAL,
+            ModTags.Items.KITCHEN,
+            ModTags.Items.OFFICE,
+            ModTags.Items.BEDROOM,
+            ModTags.Items.BATHROOM
+    );
 
     public WorkbenchMenu(int id, Inventory inventory, CustomData data) {
         this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
@@ -93,10 +104,30 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public List<RecipeHolder<WorkbenchRecipe>> getRecipes() {
-        return this.recipes = level.getRecipeManager()
+        RecipeManager recipeManager = level.getRecipeManager();
+
+        List<RecipeHolder<WorkbenchRecipe>> all = recipeManager
                 .getAllRecipesFor(ModRecipes.WORKBENCH_TYPE.get())
                 .stream()
-                .sorted(Comparator.comparing(RecipeHolder::id))
+                .collect(Collectors.toList());
+
+        Map<Item, Integer> priority = new HashMap<>();
+        int counter = 0;
+
+        for (TagKey<Item> tag : RECIPE_ORDER) {
+            Optional<HolderSet.Named<Item>> tagHolders = BuiltInRegistries.ITEM.getTag(tag);
+            if (tagHolders.isPresent()) {
+                for (Holder<Item> holder : tagHolders.get()) {
+                    priority.putIfAbsent(holder.value(), counter++);
+                }
+            }
+        }
+
+        return this.recipes = all.stream()
+                .sorted(Comparator.comparingInt(holder -> {
+                    Item resultItem = holder.value().getResultItem(level.registryAccess()).getItem();
+                    return priority.getOrDefault(resultItem, Integer.MAX_VALUE);
+                }))
                 .collect(Collectors.toList());
     }
 

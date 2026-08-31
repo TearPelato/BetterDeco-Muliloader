@@ -16,12 +16,10 @@ public class ModTags {
     public static class Items {
 
         public static final TagKey<Item> ELECTRONIC_FURNITURES = createTag("electronic_furnitures");
-        public static final TagKey<Item> DISPLAYED = createTag("displayed");
 
         public static final TagKey<Item> GENERAL = createTag("general");
         public static final TagKey<Item> KITCHEN = createTag("kitchen");
-        public static final TagKey<Item> LIVING = createTag("living");
-        public static final TagKey<Item> BATH = createTag("bath");
+        public static final TagKey<Item> BATHROOM = createTag("bath");
         public static final TagKey<Item> BEDROOM = createTag("bedroom");
         public static final TagKey<Item> OFFICE = createTag("office");
 
