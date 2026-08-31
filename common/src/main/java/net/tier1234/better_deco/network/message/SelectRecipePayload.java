@@ -5,7 +5,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.tier1234.better_deco.Constants;
 
-public record SelectRecipePayload(int containerId, int recipeIndex, int amountDelta)
+public record SelectRecipePayload(int containerId, int recipeIndex)
         implements CustomPacketPayload {
 
     public static final Type<SelectRecipePayload> TYPE =
@@ -16,9 +16,8 @@ public record SelectRecipePayload(int containerId, int recipeIndex, int amountDe
                     (buf, payload) -> {
                         buf.writeInt(payload.containerId());
                         buf.writeInt(payload.recipeIndex());
-                        buf.writeInt(payload.amountDelta());
                     },
-                    buf -> new SelectRecipePayload(buf.readInt(), buf.readInt(), buf.readInt())
+                    buf -> new SelectRecipePayload(buf.readInt(), buf.readInt())
             );
 
     @Override

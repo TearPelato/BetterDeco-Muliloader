@@ -6,7 +6,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.tier1234.better_deco.datagen.custom.FurniCraftingRecipeBuilder;
+import net.tier1234.better_deco.datagen.custom.WorkbenchRecipeBuilder;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModItems;
 
@@ -280,7 +280,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.FRIDGE_LIGHT.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.FRIDGE_LIGHT.get(), 1)
                 .requires(Items.CHEST,1)
                 .requires(Items.WHITE_CONCRETE, 5)
                 .requires(Items.IRON_INGOT, 3)
@@ -289,7 +289,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_chest", has(Items.CHEST))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.FRIDGE_DARK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.FRIDGE_DARK.get(), 1)
                 .requires(Items.CHEST,1)
                 .requires(Items.GRAY_CONCRETE, 5)
                 .requires(Items.IRON_INGOT, 3)
@@ -299,7 +299,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.LIGHT_MICROWAVE.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.LIGHT_MICROWAVE.get(), 1)
                 .requires(Items.WHITE_CONCRETE,3)
                 .requires(Items.IRON_INGOT, 3)
                 .requires(Items.REDSTONE, 2)
@@ -308,7 +308,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_MICROWAVE.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_MICROWAVE.get(), 1)
                 .requires(Items.GRAY_CONCRETE,3)
                 .requires(Items.IRON_INGOT, 3)
                 .requires(Items.REDSTONE, 2)
@@ -318,14 +318,14 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_oak_planks", has(Items.OAK_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -333,7 +333,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_OVEN.get(), 1)
                 .requires(Items.OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -341,7 +341,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_SINK.get(), 1)
                 .requires(Items.OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -349,7 +349,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_CABINET.get(), 1)
                 .requires(Items.OAK_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -357,12 +357,12 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_CUTTING_BOARD.get(), 1)
                 .requires(Items.OAK_PLANKS,1)
                 .unlockedBy("has_oak_planks", has(Items.OAK_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.OAK_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.OAK_JAR.get(), 1)
                 .requires(Items.OAK_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_oak_planks", has(Items.OAK_PLANKS))
@@ -370,14 +370,14 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_spruce_planks", has(Items.SPRUCE_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -385,7 +385,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_OVEN.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -393,7 +393,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_SINK.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -401,7 +401,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_CABINET.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -409,25 +409,25 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_CUTTING_BOARD.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,1)
                 .unlockedBy("has_spruce_planks", has(Items.SPRUCE_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.SPRUCE_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.SPRUCE_JAR.get(), 1)
                 .requires(Items.SPRUCE_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_spruce_planks", has(Items.SPRUCE_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.BIRCH_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_birch_planks", has(Items.BIRCH_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.BIRCH_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -435,7 +435,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_OVEN.get(), 1)
                 .requires(Items.BIRCH_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -443,7 +443,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_SINK.get(), 1)
                 .requires(Items.BIRCH_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -451,7 +451,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_CABINET.get(), 1)
                 .requires(Items.BIRCH_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -459,26 +459,26 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_CUTTING_BOARD.get(), 1)
                 .requires(Items.BIRCH_PLANKS,1)
                 .unlockedBy("has_birch_planks", has(Items.BIRCH_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BIRCH_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BIRCH_JAR.get(), 1)
                 .requires(Items.BIRCH_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_birch_planks", has(Items.BIRCH_PLANKS))
                 .save(recipeOutput);
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_jungle_planks", has(Items.JUNGLE_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -486,7 +486,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_OVEN.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -494,7 +494,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_SINK.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -502,7 +502,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_CABINET.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -510,25 +510,25 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_CUTTING_BOARD.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,1)
                 .unlockedBy("has_jungle_planks", has(Items.JUNGLE_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.JUNGLE_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.JUNGLE_JAR.get(), 1)
                 .requires(Items.JUNGLE_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_jungle_planks", has(Items.JUNGLE_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.ACACIA_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_acacia_planks", has(Items.ACACIA_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.ACACIA_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -536,7 +536,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_OVEN.get(), 1)
                 .requires(Items.ACACIA_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -544,7 +544,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_SINK.get(), 1)
                 .requires(Items.ACACIA_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -552,7 +552,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_CABINET.get(), 1)
                 .requires(Items.ACACIA_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -560,25 +560,25 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_CUTTING_BOARD.get(), 1)
                 .requires(Items.ACACIA_PLANKS,1)
                 .unlockedBy("has_acacia_planks", has(Items.ACACIA_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.ACACIA_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.ACACIA_JAR.get(), 1)
                 .requires(Items.ACACIA_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_acacia_planks", has(Items.ACACIA_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_dark_oak_planks", has(Items.DARK_OAK_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -586,7 +586,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_OVEN.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -594,7 +594,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_SINK.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -602,7 +602,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_CABINET.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -610,26 +610,26 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_CUTTING_BOARD.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,1)
                 .unlockedBy("has_dark_oak_planks", has(Items.DARK_OAK_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.DARK_OAK_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_OAK_JAR.get(), 1)
                 .requires(Items.DARK_OAK_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_dark_oak_planks", has(Items.DARK_OAK_PLANKS))
                 .save(recipeOutput);
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_mangrove_planks", has(Items.MANGROVE_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -637,7 +637,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_OVEN.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -645,7 +645,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_SINK.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -653,7 +653,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_CABINET.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -661,26 +661,26 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_CUTTING_BOARD.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,1)
                 .unlockedBy("has_mangrove_planks", has(Items.MANGROVE_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.MANGROVE_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.MANGROVE_JAR.get(), 1)
                 .requires(Items.MANGROVE_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_mangrove_planks", has(Items.MANGROVE_PLANKS))
                 .save(recipeOutput);
 
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.CHERRY_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_cherry_planks", has(Items.CHERRY_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.CHERRY_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -688,7 +688,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_OVEN.get(), 1)
                 .requires(Items.CHERRY_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -696,7 +696,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_SINK.get(), 1)
                 .requires(Items.CHERRY_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -704,7 +704,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_CABINET.get(), 1)
                 .requires(Items.CHERRY_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -712,25 +712,25 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_CUTTING_BOARD.get(), 1)
                 .requires(Items.CHERRY_PLANKS,1)
                 .unlockedBy("has_cherry_planks", has(Items.CHERRY_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CHERRY_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CHERRY_JAR.get(), 1)
                 .requires(Items.CHERRY_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_cherry_planks", has(Items.CHERRY_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_bamboo_planks", has(Items.BAMBOO_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -738,7 +738,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_OVEN.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -746,7 +746,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_SINK.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -754,7 +754,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_CABINET.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -762,25 +762,25 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_CUTTING_BOARD.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,1)
                 .unlockedBy("has_bamboo_planks", has(Items.BAMBOO_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.BAMBOO_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.BAMBOO_JAR.get(), 1)
                 .requires(Items.BAMBOO_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_bamboo_planks", has(Items.BAMBOO_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_crimson_planks", has(Items.CRIMSON_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -788,7 +788,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_OVEN.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -796,7 +796,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_SINK.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -804,7 +804,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_CABINET.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -812,25 +812,25 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_CUTTING_BOARD.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,1)
                 .unlockedBy("has_crimson_planks", has(Items.CRIMSON_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.CRIMSON_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.CRIMSON_JAR.get(), 1)
                 .requires(Items.CRIMSON_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_crimson_planks", has(Items.CRIMSON_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_KITCHEN_COUNTER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_KITCHEN_COUNTER.get(), 1)
                 .requires(Items.WARPED_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .unlockedBy("has_warped_planks", has(Items.WARPED_PLANKS))
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_KITCHEN_DRAWER.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_KITCHEN_DRAWER.get(), 1)
                 .requires(Items.WARPED_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.CHEST,1)
@@ -838,7 +838,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_OVEN.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_OVEN.get(), 1)
                 .requires(Items.WARPED_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.SMOKER,1)
@@ -846,7 +846,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_SINK.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_SINK.get(), 1)
                 .requires(Items.WARPED_PLANKS,2)
                 .requires(Items.QUARTZ_BLOCK,3)
                 .requires(Items.BUCKET,1)
@@ -854,7 +854,7 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_CABINET.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_CABINET.get(), 1)
                 .requires(Items.WARPED_PLANKS,1)
                 .requires(Items.QUARTZ_BLOCK,2)
                 .requires(Items.CHEST,1)
@@ -862,12 +862,12 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_quartz", has(Items.QUARTZ_BLOCK))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_CUTTING_BOARD.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_CUTTING_BOARD.get(), 1)
                 .requires(Items.WARPED_PLANKS,1)
                 .unlockedBy("has_warped_planks", has(Items.WARPED_PLANKS))
                 .save(recipeOutput);
 
-        FurniCraftingRecipeBuilder.crafting(ModBlocks.WARPED_JAR.get(), 1)
+        WorkbenchRecipeBuilder.crafting(ModBlocks.WARPED_JAR.get(), 1)
                 .requires(Items.WARPED_PLANKS,1)
                 .requires(Items.GLASS_PANE,1)
                 .unlockedBy("has_warped_planks", has(Items.WARPED_PLANKS))

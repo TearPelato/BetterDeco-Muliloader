@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.compat.jei.category.FreezerCategory;
-import net.tier1234.better_deco.compat.jei.category.FurniWorkbenchCategory;
+import net.tier1234.better_deco.compat.jei.category.WorkbenchCategory;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.compat.jei.category.MicrowaveRecipeCategory;
 import net.tier1234.better_deco.compat.jei.category.OvenRecipeCategory;
@@ -41,7 +41,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
 
         registration.addRecipeCategories(new OvenRecipeCategory(guiHelper));
         registration.addRecipeCategories(new MicrowaveRecipeCategory(guiHelper));
-        registration.addRecipeCategories(new FurniWorkbenchCategory(guiHelper));
+        registration.addRecipeCategories(new WorkbenchCategory(guiHelper));
         registration.addRecipeCategories(new FreezerCategory(guiHelper));
     }
 
@@ -50,7 +50,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         RecipeManager manager = getRecipeManager();
         registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.OVEN_TYPE.get()));
         registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
-        registration.addRecipes(FurniWorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
+        registration.addRecipes(WorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
         registration.addRecipes(FreezerCategory.FREEZER_RECIPE_TYPE, this.getRecipes(ModRecipes.FREEZER_TYPE.get()));
     }
 
@@ -131,7 +131,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_MICROWAVE.get().asItem()),
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.WORKBENCH.get().asItem()),
-                FurniWorkbenchCategory.TYPE);
+                WorkbenchCategory.TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_LIGHT.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_DARK.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
     }

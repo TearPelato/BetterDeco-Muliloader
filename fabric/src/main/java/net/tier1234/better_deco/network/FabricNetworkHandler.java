@@ -3,7 +3,6 @@ package net.tier1234.better_deco.network;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.server.level.ServerPlayer;
 import net.tier1234.better_deco.network.message.CraftRecipePayload;
 import net.tier1234.better_deco.network.message.SelectRecipePayload;
 import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;

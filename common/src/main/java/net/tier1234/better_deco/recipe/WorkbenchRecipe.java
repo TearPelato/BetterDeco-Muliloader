@@ -15,12 +15,12 @@ import net.tier1234.better_deco.registries.ModRecipes;
 import org.jetbrains.annotations.NotNull;
 
 
-public class FurniCraftingRecipe implements Recipe<SingleRecipeInput> {
+public class WorkbenchRecipe implements Recipe<SingleRecipeInput> {
     private final NonNullList<CountedIngredient> materials;
     private final ItemStack result;
     private final boolean notification;
 
-    public FurniCraftingRecipe(NonNullList<CountedIngredient> materials, ItemStack result, boolean notification) {
+    public WorkbenchRecipe(NonNullList<CountedIngredient> materials, ItemStack result, boolean notification) {
         this.materials = materials;
         this.result = result;
         this.notification = notification;
@@ -90,10 +90,10 @@ public class FurniCraftingRecipe implements Recipe<SingleRecipeInput> {
     /**
      * Serializer for the recipe.
      */
-    public static class Serializer implements RecipeSerializer<FurniCraftingRecipe> {
+    public static class Serializer implements RecipeSerializer<WorkbenchRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
-        public static final MapCodec<FurniCraftingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
+        public static final MapCodec<WorkbenchRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
                 instance.group(
                         CountedIngredient.CODEC.listOf().fieldOf("materials")
                                 .flatXmap(
@@ -102,10 +102,10 @@ public class FurniCraftingRecipe implements Recipe<SingleRecipeInput> {
                                 ).forGetter(recipe -> recipe.materials),
                         ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result),
                         Codec.BOOL.optionalFieldOf("show_notification", false).forGetter(recipe -> recipe.notification)
-                ).apply(instance, FurniCraftingRecipe::new)
+                ).apply(instance, WorkbenchRecipe::new)
         );
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, FurniCraftingRecipe> STREAM_CODEC = StreamCodec.of(
+        public static final StreamCodec<RegistryFriendlyByteBuf, WorkbenchRecipe> STREAM_CODEC = StreamCodec.of(
                 (buf, recipe) -> {
                     buf.writeVarInt(recipe.materials.size());
                     for (CountedIngredient ci : recipe.materials) {
@@ -126,17 +126,17 @@ public class FurniCraftingRecipe implements Recipe<SingleRecipeInput> {
                     }
                     ItemStack result = ItemStack.STREAM_CODEC.decode(buf);
                     boolean notification = buf.readBoolean();
-                    return new FurniCraftingRecipe(materials, result, notification);
+                    return new WorkbenchRecipe(materials, result, notification);
                 }
         );
 
         @Override
-        public MapCodec<FurniCraftingRecipe> codec() {
+        public MapCodec<WorkbenchRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public StreamCodec<RegistryFriendlyByteBuf, FurniCraftingRecipe> streamCodec() {
+        public StreamCodec<RegistryFriendlyByteBuf, WorkbenchRecipe> streamCodec() {
             return STREAM_CODEC;
         }
     }
@@ -144,7 +144,7 @@ public class FurniCraftingRecipe implements Recipe<SingleRecipeInput> {
     /**
      * Recipe Type for the crafting system.
      */
-    public static class Type implements RecipeType<FurniCraftingRecipe> {
+    public static class Type implements RecipeType<WorkbenchRecipe> {
         public static final Type INSTANCE = new Type();
     }
 }

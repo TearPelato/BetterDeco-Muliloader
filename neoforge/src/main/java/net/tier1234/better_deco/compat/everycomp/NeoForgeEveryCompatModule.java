@@ -18,7 +18,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -27,8 +26,7 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
 import net.tier1234.better_deco.recipe.CountedIngredient;
-import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
-import net.tier1234.better_deco.registries.ModBlockEntities;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModBundledTabs;
 import org.jetbrains.annotations.NotNull;
@@ -122,7 +120,7 @@ public class NeoForgeEveryCompatModule extends EveryCompatModule {
     public void onModSetup() {
         super.onModSetup();
 
-        RecipeTemplate.register(FurniCraftingRecipe.class, (old, from, to)-> {
+        RecipeTemplate.register(WorkbenchRecipe.class, (old, from, to)-> {
             List<CountedIngredient> newIngredients = convertCountedIngredients(old.getMaterials(), from, to);
             ItemStack originalResult = old.getResultItem(RegistryAccess.EMPTY);
             ItemStack newResult = RecipeTemplate.convertItemStack(originalResult, from, to);
@@ -130,7 +128,7 @@ public class NeoForgeEveryCompatModule extends EveryCompatModule {
                 throw new UnsupportedOperationException("Failed to convert recipe result");
             } else {
                 NonNullList<CountedIngredient> ingredients = NonNullList.of(CountedIngredient.EMPTY, newIngredients.toArray(CountedIngredient[]::new));
-                return new FurniCraftingRecipe(ingredients, newResult, old.showNotification());
+                return new WorkbenchRecipe(ingredients, newResult, old.showNotification());
             }
 
         });

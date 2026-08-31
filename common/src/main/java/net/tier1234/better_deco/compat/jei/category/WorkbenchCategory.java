@@ -19,7 +19,7 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.compat.jei.JEIBetterDecoPlugin;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.recipe.CountedIngredient;
-import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2i;
 
@@ -27,13 +27,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingRecipe> {
+public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
 
     public static final ResourceLocation TEXTURE = Constants.id("textures/gui/workbench/workbench_jei.png");
 
     public static final ResourceLocation UID = Constants.id("furni_crafting");
-    public static final RecipeType<FurniCraftingRecipe> TYPE =
-            new RecipeType<>(UID, FurniCraftingRecipe.class);
+    public static final RecipeType<WorkbenchRecipe> TYPE =
+            new RecipeType<>(UID, WorkbenchRecipe.class);
 
 
 
@@ -42,14 +42,14 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
     private IGuiHelper guiHelper;
     private List<Pair<Vector2i, IDrawable>> slots = new ArrayList<>();
 
-    public FurniWorkbenchCategory(IGuiHelper guiHelper) {
+    public WorkbenchCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
         this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 75);
         this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.WORKBENCH.get()));
     }
 
     @Override
-    public RecipeType<FurniCraftingRecipe> getRecipeType() {
+    public RecipeType<WorkbenchRecipe> getRecipeType() {
         return TYPE;
     }
 
@@ -75,7 +75,7 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, FurniCraftingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, WorkbenchRecipe recipe, IFocusGroup focuses) {
 
         this.slots.clear();
         NonNullList<CountedIngredient> ingredients =recipe.getMaterials();
@@ -104,7 +104,7 @@ public class FurniWorkbenchCategory implements IRecipeCategory<FurniCraftingReci
 }
 
     @Override
-    public void draw(FurniCraftingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(WorkbenchRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         this.background.draw(guiGraphics, 0, 0);
     }
 }

@@ -13,6 +13,7 @@ import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
 import net.tier1234.better_deco.screen.custom.WorkbenchScreen;
 
 import java.util.Map;
+//TODO rework
 public class ClientWorkbenchRecipeIngredientTooltip implements ClientTooltipComponent {
     private final WorkbenchMenu menu;
     private final CountedIngredient material;

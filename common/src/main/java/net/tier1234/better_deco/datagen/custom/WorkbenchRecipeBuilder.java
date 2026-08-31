@@ -15,58 +15,58 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.tier1234.better_deco.recipe.CountedIngredient;
-import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FurniCraftingRecipeBuilder implements RecipeBuilder {
+public class WorkbenchRecipeBuilder implements RecipeBuilder {
     private final NonNullList<CountedIngredient> materials = NonNullList.create();
     private final ItemStack result;
     private boolean showNotification = false;
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
-    private FurniCraftingRecipeBuilder(ItemStack result) {
+    private WorkbenchRecipeBuilder(ItemStack result) {
         this.result = result;
     }
 
-    public static FurniCraftingRecipeBuilder crafting(ItemLike result, int count) {
-        return new FurniCraftingRecipeBuilder(new ItemStack(result, count));
+    public static WorkbenchRecipeBuilder crafting(ItemLike result, int count) {
+        return new WorkbenchRecipeBuilder(new ItemStack(result, count));
     }
 
-    public static FurniCraftingRecipeBuilder crafting(ItemLike result) {
+    public static WorkbenchRecipeBuilder crafting(ItemLike result) {
         return crafting(result, 1);
     }
 
-    public FurniCraftingRecipeBuilder requires(ItemLike item, int count) {
+    public WorkbenchRecipeBuilder requires(ItemLike item, int count) {
         this.materials.add(new CountedIngredient(Ingredient.of(item), count));
         return this;
     }
 
-    public FurniCraftingRecipeBuilder requires(TagKey<Item> tag, int count) {
+    public WorkbenchRecipeBuilder requires(TagKey<Item> tag, int count) {
         this.materials.add(new CountedIngredient(Ingredient.of(tag), count));
         return this;
     }
 
-    public FurniCraftingRecipeBuilder requires(Ingredient ingredient, int count) {
+    public WorkbenchRecipeBuilder requires(Ingredient ingredient, int count) {
         this.materials.add(new CountedIngredient(ingredient, count));
         return this;
     }
 
-    public FurniCraftingRecipeBuilder showNotification(boolean show) {
+    public WorkbenchRecipeBuilder showNotification(boolean show) {
         this.showNotification = show;
         return this;
     }
 
     @Override
-    public FurniCraftingRecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
+    public WorkbenchRecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
     }
 
     @Override
-    public FurniCraftingRecipeBuilder group(@Nullable String groupName) {
+    public WorkbenchRecipeBuilder group(@Nullable String groupName) {
         return this;
     }
 
@@ -88,7 +88,7 @@ public class FurniCraftingRecipeBuilder implements RecipeBuilder {
 
         this.criteria.forEach(advancementBuilder::addCriterion);
 
-        FurniCraftingRecipe recipe = new FurniCraftingRecipe(
+        WorkbenchRecipe recipe = new WorkbenchRecipe(
                 this.materials,
                 this.result,
                 this.showNotification

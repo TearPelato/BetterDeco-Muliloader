@@ -9,14 +9,17 @@ public class ClientPayloadHandler {
 
     public static void handleSyncCraftableRecipes(SyncCraftableRecipesPayload payload) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null) return;
+        mc.execute(() -> {
+            if (mc.player == null) return;
 
-        if (mc.player.containerMenu instanceof WorkbenchMenu menu &&
-                menu.containerId == payload.containerId()) {
-            menu.setCraftableRecipes(payload.craftable());
-            if (mc.screen instanceof WorkbenchScreen screen) {
-                screen.updateRecipeButtons();
+            if (mc.player.containerMenu instanceof WorkbenchMenu menu
+                    && menu.containerId == payload.containerId()) {
+                menu.setCraftableRecipes(payload.craftable());
+
+                if (mc.screen instanceof WorkbenchScreen screen) {
+                    screen.updateRecipeButtons();
+                }
             }
-        }
+        });
     }
 }

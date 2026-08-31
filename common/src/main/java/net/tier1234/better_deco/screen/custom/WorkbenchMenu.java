@@ -1,18 +1,17 @@
 package net.tier1234.better_deco.screen.custom;
 
 import com.mrcrayfish.framework.api.menu.IMenuData;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
@@ -20,9 +19,10 @@ import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
 import net.tier1234.better_deco.recipe.CountedIngredient;
-import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.registries.ModRecipes;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 import java.util.List;
@@ -32,215 +32,101 @@ import java.util.stream.Collectors;
 public class WorkbenchMenu extends AbstractContainerMenu {
 
     private final ContainerLevelAccess access;
+    private final WorkbenchBlockEntity workbench;
+    private Slot outputSlot;
+    private final DataSlot selectedRecipes;
+    public List<RecipeHolder<WorkbenchRecipe>> recipes;
+    private final ResultContainer resultContainer = new ResultContainer();
+    private Map<Integer, Integer> counts = new Int2IntOpenHashMap();
+    private List<Boolean> canCraftRecipes;
     private final Player player;
     private final Level level;
-    private final WorkbenchBlockEntity blockEntity;
-    private final SimpleContainer outputContainer;
-    private List<RecipeHolder<FurniCraftingRecipe>> availableRecipes;
-    private List<Boolean> canCraftRecipes;
 
-    private int selectedRecipeIndex = -1;
-    private int selectedAmount = 0;
-
-    private static final int OUTPUT_SLOT_INDEX = 0;
 
     public WorkbenchMenu(int id, Inventory inventory, CustomData data) {
         this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
-        this.setCraftableRecipes(data.canCraft());
+        this.selectedRecipes.set(data.selectedRecipe);
     }
 
     public WorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos, SimpleContainer outputContainer) {
         super(ModMenuTypes.FURNI_WORKBENCH.get(), id);
-        this.access = ContainerLevelAccess.create(level, pos);
+        this.access = ContainerLevelAccess.create(level,pos);
+        this.workbench = level.getBlockEntity(pos) instanceof WorkbenchBlockEntity entity ? entity  : null;
         this.player = inventory.player;
         this.level = level;
-        this.blockEntity = level.getBlockEntity(pos) instanceof WorkbenchBlockEntity entity ? entity : null;
-        this.outputContainer = outputContainer;
+        this.selectedRecipes = workbench != null
+                ? workbench.selectedRecipeDataSlot()
+                : new DataSlot() {
+            private int value;
 
-        fetchAvailableRecipes();
-        addPlayerInventorySlots(inventory);
-        addOutputSlot();
-
-        updateCraftableRecipes();
-    }
-
-    public WorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos) {
-        this(id, inventory, level, pos, new SimpleContainer(1));
-    }
-
-    public WorkbenchMenu(int id, Inventory inventory, FriendlyByteBuf buf) {
-        this(id, inventory, inventory.player.level(), buf.readBlockPos(), new SimpleContainer(1));
-    }
-
-    public WorkbenchMenu(int id, Inventory inventory) {
-        this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
-    }
-
-
-    @Override
-    public void broadcastChanges() {
-        super.broadcastChanges();
-        updateCraftableRecipes();
-    }
-
-    public CustomData createCustomData() {
-        boolean[] craftable = new boolean[canCraftRecipes.size()];
-        for (int i = 0; i < canCraftRecipes.size(); i++) {
-            craftable[i] = canCraftRecipes.get(i);
-        }
-        return new CustomData(craftable);
-    }
-
-    public void updateCraftableRecipes() {
-        this.canCraftRecipes = availableRecipes.stream()
-                .map(r -> canCraft(r.value()))
-                .collect(Collectors.toList());
-        syncCraftableRecipesToClient();
-    }
-
-    private void syncCraftableRecipesToClient() {
-        if (!(player instanceof ServerPlayer serverPlayer)) return;
-
-        boolean[] craftableArray = new boolean[canCraftRecipes.size()];
-        for (int i = 0; i < canCraftRecipes.size(); i++) {
-            craftableArray[i] = canCraftRecipes.get(i);
-        }
-
-        ModPackets.sendToClient(serverPlayer,
-                new SyncCraftableRecipesPayload(containerId, craftableArray));
-    }
-
-    private void fetchAvailableRecipes() {
-        this.availableRecipes = level.getRecipeManager()
-                .getAllRecipesFor(ModRecipes.WORKBENCH_TYPE.get())
-                .stream()
-                .sorted(Comparator.comparing(holder -> holder.value().getResultItem(null).getHoverName().getString()))
-                .collect(Collectors.toList());
-    }
-
-    public void selectRecipe(int recipeIndex, int amountDelta) {
-        if (recipeIndex < 0 || recipeIndex >= availableRecipes.size()) return;
-
-        if (selectedRecipeIndex != recipeIndex) {
-            selectedRecipeIndex = recipeIndex;
-            selectedAmount = 0;
-        }
-
-        FurniCraftingRecipe recipe = availableRecipes.get(selectedRecipeIndex).value();
-        ItemStack base = recipe.getResultItem(null);
-        int maxMultiplier = Math.max(1, base.getMaxStackSize() / Math.max(1, base.getCount()));
-
-        selectedAmount = Mth.clamp(selectedAmount + amountDelta, 1, maxMultiplier);
-
-        updateOutputPreview();
-    }
-
-    public void clearSelection() {
-        selectedRecipeIndex = -1;
-        selectedAmount = 0;
-        outputContainer.setItem(OUTPUT_SLOT_INDEX, ItemStack.EMPTY);
-    }
-
-    private void updateOutputPreview() {
-        if (selectedRecipeIndex < 0 || selectedRecipeIndex >= availableRecipes.size()) {
-            outputContainer.setItem(OUTPUT_SLOT_INDEX, ItemStack.EMPTY);
-            return;
-        }
-
-        FurniCraftingRecipe recipe = availableRecipes.get(selectedRecipeIndex).value();
-        ItemStack base = recipe.getResultItem(null);
-        int totalCount = Math.min(base.getCount() * selectedAmount, base.getMaxStackSize());
-
-        ItemStack preview = base.copy();
-        preview.setCount(totalCount);
-        outputContainer.setItem(OUTPUT_SLOT_INDEX, preview);
-    }
-
-    public int getSelectedRecipeIndex() {
-        return selectedRecipeIndex;
-    }
-
-    public int getSelectedAmount() {
-        return selectedAmount;
-    }
-
-    public List<RecipeHolder<FurniCraftingRecipe>> getAvailableRecipes() {
-        return availableRecipes;
-    }
-
-    public boolean canCraft(FurniCraftingRecipe recipe) {
-        return canCraft(recipe, 1);
-    }
-
-    public boolean canCraft(FurniCraftingRecipe recipe, int multiplier) {
-        for (CountedIngredient ci : recipe.getMaterials()) {
-            int requiredCount = ci.count() * multiplier;
-            int totalCount = 0;
-            for (ItemStack stack : player.getInventory().items) {
-                if (!stack.isEmpty() && ci.ingredient().test(stack)) {
-                    totalCount += stack.getCount();
-                }
+            @Override
+            public int get() {
+                return value;
             }
-            if (totalCount < requiredCount) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    private void addOutputSlot() {
-        this.addSlot(new Slot(outputContainer, OUTPUT_SLOT_INDEX, 149, 86) {
+            @Override
+            public void set(int value) {
+                this.value = value;
+            }
+        };
+        this.recipes = this.getRecipes();
+        this.outputSlot = addSlot(new Slot(outputContainer, 0, 149, 79){
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
             }
 
             @Override
-            public boolean mayPickup(Player player) {
-                if (selectedRecipeIndex < 0 || selectedRecipeIndex >= availableRecipes.size()) {
-                    return false;
-                }
-                FurniCraftingRecipe recipe = availableRecipes.get(selectedRecipeIndex).value();
-                return canCraft(recipe, selectedAmount);
-            }
-
-            @Override
             public void onTake(Player player, ItemStack stack) {
+                stack.onCraftedBy(player.level(), player, stack.getCount());
+                WorkbenchMenu.this.onCraft();
                 super.onTake(player, stack);
-                confirmCraft();
             }
         });
+        this.addDataSlot(this.selectedRecipes);
+        this.addPlayerInventorySlots(inventory);
+        this.updateCraftableRecipes();
     }
 
-    // NEW: consuma i materiali per la recipe/quantità selezionata (chiamato SOLO da onTake)
-    private void confirmCraft() {
-        if (selectedRecipeIndex < 0 || selectedRecipeIndex >= availableRecipes.size()) {
-            clearSelection();
-            return;
-        }
-
-        FurniCraftingRecipe recipe = availableRecipes.get(selectedRecipeIndex).value();
-        int amount = selectedAmount;
-
-        if (canCraft(recipe, amount)) {
-            for (CountedIngredient ci : recipe.getMaterials()) {
-                removeItemsFromInventory(ci, amount);
-            }
-        }
-
-        clearSelection();
+    public Level getLevel() {
+        return level;
     }
 
-    private void removeItemsFromInventory(CountedIngredient ci, int multiplier) {
-        int remaining = ci.count() * multiplier;
-        for (int i = 0; i < player.getInventory().items.size(); i++) {
-            ItemStack stack = player.getInventory().items.get(i);
-            if (!stack.isEmpty() && ci.ingredient().test(stack)) {
-                int take = Math.min(stack.getCount(), remaining);
-                stack.shrink(take);
-                remaining -= take;
-                if (remaining <= 0) break;
+    public List<RecipeHolder<WorkbenchRecipe>> getRecipes() {
+        return this.recipes = level.getRecipeManager()
+                .getAllRecipesFor(ModRecipes.WORKBENCH_TYPE.get())
+                .stream()
+                .sorted(Comparator.comparing(RecipeHolder::id))
+                .collect(Collectors.toList());
+    }
+
+    private void updateOutputSlot()
+    {
+        if(!this.level.isClientSide())
+        {
+            int selectedRecipeIndex = this.selectedRecipes.get();
+            if(selectedRecipeIndex >= 0 && selectedRecipeIndex < this.recipes.size())
+            {
+                RecipeHolder<WorkbenchRecipe> recipe = this.recipes.get(selectedRecipeIndex);
+                if(this.canCraft(recipe))
+                {
+                    ItemStack result = this.resultContainer.getItem(0);
+                    ItemStack output = recipe.value().getResultItem(this.level.registryAccess());
+                    if(!ItemStack.matches(result, output))
+                    {
+                        this.outputSlot.set(output.copy());
+                    }
+                }
+                else
+                {
+                    this.outputSlot.set(ItemStack.EMPTY);
+                }
             }
+            else
+            {
+                this.outputSlot.set(ItemStack.EMPTY);
+            }
+            super.broadcastChanges();
         }
     }
 
@@ -257,66 +143,25 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         }
     }
 
-
-
-    public void craftSelectedRecipe(int recipeIndex) {
-        if (recipeIndex < 0 || recipeIndex >= availableRecipes.size() || blockEntity == null) {
-            return;
-        }
-
-        RecipeHolder<FurniCraftingRecipe> recipeHolder = availableRecipes.get(recipeIndex);
-        FurniCraftingRecipe recipe = recipeHolder.value();
-
-        if (!canCraft(recipe)) {
-            return;
-        }
-
-        ItemStack result = recipe.getResultItem(null);
-        ItemStack outputSlot = outputContainer.getItem(OUTPUT_SLOT_INDEX);
-
-        if (!outputSlot.isEmpty()) {
-            if (!outputSlot.is(result.getItem()) ||
-                    outputSlot.getCount() + result.getCount() > outputSlot.getMaxStackSize()) {
-                return;
-            }
-        }
-
-        for (CountedIngredient ci : recipe.getMaterials()) {
-            removeItemsFromInventory(ci);
-        }
-
-        if (outputSlot.isEmpty()) {
-            outputContainer.setItem(OUTPUT_SLOT_INDEX, result.copy());
-        } else {
-            outputSlot.grow(result.getCount());
-        }
+    public void updateCraftableRecipes() {
+        this.canCraftRecipes = recipes.stream()
+                .map(this::canCraft)
+                .collect(Collectors.toList());
+        syncCraftableRecipesToClient();
     }
 
-    private void removeItemsFromInventory(CountedIngredient ci) {
-        int requiredCount = ci.count();
-        int remaining = requiredCount;
-        for (int i = 0; i < player.getInventory().items.size(); i++) {
-            ItemStack stack = player.getInventory().items.get(i);
-            if (!stack.isEmpty() && ci.ingredient().test(stack)) {
-                int take = Math.min(stack.getCount(), remaining);
-                stack.shrink(take);
-                remaining -= take;
-                if (remaining <= 0) {
-                    break;
-                }
-            }
+    private void syncCraftableRecipesToClient() {
+        if (!(player instanceof ServerPlayer serverPlayer)) return;
+
+        boolean[] craftableArray = new boolean[canCraftRecipes.size()];
+        for (int i = 0; i < canCraftRecipes.size(); i++) {
+            craftableArray[i] = canCraftRecipes.get(i);
         }
+
+        ModPackets.sendToClient(serverPlayer,
+                new SyncCraftableRecipesPayload(containerId, craftableArray));
     }
 
-    @Override
-    public ItemStack quickMoveStack(Player player, int i) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return access.evaluate((level, pos) -> level.getBlockEntity(pos) instanceof WorkbenchBlockEntity, true);
-    }
 
     public void setCraftableRecipes(boolean[] canCraft) {
         for (int i = 0; i < canCraft.length && i < this.canCraftRecipes.size(); i++) {
@@ -324,51 +169,127 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         }
     }
 
-    public boolean hasMaterials(CountedIngredient material, Map<Integer, Integer> counted) {
-        int required = material.count();
-        // Loop over every item in the player's inventory.
-        for (ItemStack stack : player.getInventory().items) {
-            if (!stack.isEmpty() && material.ingredient().test(stack)) {
-                // Use the item's hashCode as a key.
-                int key = stack.getItem().hashCode();
-                int alreadyUsed = counted.getOrDefault(key, 0);
-                // Determine how many of this item are still available.
-                int available = stack.getCount() - alreadyUsed;
-                if (available > 0) {
-                    // Use up as many items as needed from this stack.
-                    int used = Math.min(required, available);
-                    required -= used;
-                    counted.put(key, alreadyUsed + used);
-                    if (required <= 0) {
-                        return true; // Requirement satisfied.
-                    }
+
+    @Override
+    public void broadcastChanges() {
+        this.updateOutputSlot();
+        super.broadcastChanges();
+    }
+
+    public void selectRecipe(int recipeIndex) {
+        if (recipeIndex < -1 || recipeIndex >= this.recipes.size()) {
+            return;
+        }
+        this.selectedRecipes.set(recipeIndex);
+        this.broadcastChanges();
+    }
+
+    public int getSelectedRecipe() {
+        return this.selectedRecipes.get();
+    }
+
+    @Override
+     public ItemStack quickMoveStack(Player player, int i) {
+         return ItemStack.EMPTY;
+     }
+
+     @Override
+     public boolean stillValid(Player player) {
+         return access.evaluate((level, blockPos)-> level.getBlockEntity(blockPos) instanceof WorkbenchBlockEntity, true);
+     }
+
+    public List<RecipeHolder<WorkbenchRecipe>> getAvailableRecipes() {
+        return recipes;
+    }
+
+    public boolean canCraft(RecipeHolder<WorkbenchRecipe> recipe){
+        for(CountedIngredient ingredient : recipe.value().getMaterials()) {
+            int required = ingredient.count();
+            int totalCount = 0;
+            for (ItemStack stack: player.getInventory().items) {
+                if(!stack.isEmpty()&& ingredient.ingredient().test(stack)){
+                    totalCount += stack.getCount();
                 }
             }
+
+            if(totalCount < required){
+                return false;
+            }
         }
-        return false; // Not enough items found.
+
+        return true;
+     }
+
+     public boolean hasMaterials(CountedIngredient material, Map<Integer, Integer> counted) {
+        int remaining = material.count();
+        for(ItemStack stack: material.ingredient().getItems()){
+            int itemId = Item.getId(stack.getItem());
+            int count = this.counts.getOrDefault(itemId, 0);
+            count -= counted.getOrDefault(itemId, 0);
+            if(count > 0){
+                if(count >= remaining){
+                    counted.merge(itemId, remaining, Integer::sum);
+                    remaining = 0;
+                    break;
+                }
+                counted.merge(itemId, count, Integer::sum);
+                remaining -= count;
+            }
+        }
+
+        return remaining > 0;
+    }
+
+    public void onCraft() {
+        RecipeHolder<WorkbenchRecipe> recipe = this.selectedRecipe();
+        if(recipe != null && this.canCraft(recipe)){
+            this.craft(recipe);
+            this.updateOutputSlot();
+        }
+
+    }
+
+    public void craft(RecipeHolder<WorkbenchRecipe> recipe) {
+        if (recipe == null || !this.canCraft(recipe)) {
+            return;
+        }
+
+        for (CountedIngredient ingredient : recipe.value().getMaterials()) {
+            this.consumeIngredients(ingredient);
+        }
     }
 
 
-    public record CustomData(boolean[] canCraft) implements IMenuData<CustomData> {
+    private void consumeIngredients(CountedIngredient ingredient) {
+        int remaining = ingredient.count();
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> STREAM_CODEC =
-                StreamCodec.of(
-                        (buf, data) -> {
-                            buf.writeVarInt(data.canCraft().length);
-                            for (boolean b : data.canCraft()) {
-                                buf.writeBoolean(b);
-                            }
-                        },
-                        buf -> {
-                            int size = buf.readVarInt();
-                            boolean[] canCraft = new boolean[size];
-                            for (int i = 0; i < size; i++) {
-                                canCraft[i] = buf.readBoolean();
-                            }
-                            return new CustomData(canCraft);
-                        }
-                );
+        for (ItemStack stack : player.getInventory().items) {
+            if (remaining <= 0) {
+                break;
+            }
+            if (!stack.isEmpty() && ingredient.ingredient().test(stack)) {
+                int take = Math.min(stack.getCount(), remaining);
+                stack.shrink(take);
+                remaining -= take;
+            }
+        }
+    }
 
+    @Nullable
+    private RecipeHolder<WorkbenchRecipe> selectedRecipe() {
+        int index = this.selectedRecipes.get();
+        return index != -1 ? this.recipes.get(index) : null;
+    }
+
+
+    public record CustomData(int selectedRecipe) implements IMenuData<CustomData> {
+
+         public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> STREAM_CODEC = StreamCodec.composite(
+                 ByteBufCodecs.VAR_INT,
+                 CustomData::selectedRecipe,
+                 CustomData::new
+
+         );
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, CustomData> codec() {
             return STREAM_CODEC;

@@ -19,10 +19,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.mixin.GuiGraphicsInvoker;
 import net.tier1234.better_deco.network.ModPackets;
-import net.tier1234.better_deco.network.message.CraftRecipePayload;
 import net.tier1234.better_deco.network.message.SelectRecipePayload;
 import net.tier1234.better_deco.recipe.CountedIngredient;
-import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeIngredientTooltip;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeTooltip;
 import org.lwjgl.glfw.GLFW;
@@ -40,10 +39,10 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     private static final int GRID_X_OFFSET = 7;
     private static final int GRID_Y_OFFSET = 39;
     private static final int WINDOW_WIDTH = RECIPES_PER_ROW * BUTTON_SIZE;
-    private static final int WINDOW_HEIGHT = 67;
+    private static final int WINDOW_HEIGHT = 60;
     private static final int SCROLL_SPEED = 10;
     private static final int SCROLLBAR_HEIGHT = 15;
-    private static final int SCROLLBAR_AREA = 67;
+    private static final int SCROLLBAR_AREA = 60;
 
     private static final int SCROLLBAR_TEXTURE_ENABLED_X = 176;
     private static final int SCROLLBAR_TEXTURE_DISABLED_X = 188;
@@ -54,12 +53,12 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     private static final int Y_OFFSET_CORRECTION = 0;
     private static final int OUTPUT_SLOT_X = 149;
-    private static final int OUTPUT_SLOT_Y = 86;
+    private static final int OUTPUT_SLOT_Y = 79;
     private static final int SLOT_SIZE = 16;
 
 
-    private List<RecipeHolder<FurniCraftingRecipe>> allRecipes = new ArrayList<>();
-    private List<RecipeHolder<FurniCraftingRecipe>> visibleRecipes = new ArrayList<>();
+    private List<RecipeHolder<WorkbenchRecipe>> allRecipes = new ArrayList<>();
+    private List<RecipeHolder<WorkbenchRecipe>> visibleRecipes = new ArrayList<>();
 
     private EditBox searchBox;
     private double scroll = 0;
@@ -82,24 +81,27 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     protected void init() {
         super.init();
 
-        int x = this.leftPos + 7;
-        int y = this.topPos + 18;
+        int x = this.leftPos + 8;
+        int y = this.topPos + 21;
 
-        this.searchBox = new EditBox(
-                this.font,
-                x,
-                y,
-                120,
-                20,
-                Component.translatable("text.better_deco.recipe.search")
-        );
+        this.searchBox = new EditBox(this.font, x, y, 120, 12, Component.translatable("text.better_deco.recipe.search"));
         this.searchBox.setMaxLength(64);
-        this.searchBox.setBordered(true);
+        this.searchBox.setBordered(false);
+        this.searchBox.setVisible(true);
         this.searchBox.setResponder(s -> applySearchFilter());
-
-        this.addRenderableWidget(this.searchBox);
+        this.addWidget(this.searchBox);
 
         applySearchFilter();
+    }
+
+    @Override
+    public void resize(Minecraft minecraft, int width, int height) {
+        String string = this.searchBox.getValue();
+        this.init(minecraft, width, height);
+        this.searchBox.setValue(string);
+        if (!this.searchBox.getValue().isEmpty()) {
+            this.applySearchFilter();
+        }
     }
 
     private void updateRecipes() {
@@ -119,10 +121,10 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             lastQuery = query;
         }
 
-        Stream<RecipeHolder<FurniCraftingRecipe>> stream = this.allRecipes.stream();
+        Stream<RecipeHolder<WorkbenchRecipe>> stream = this.allRecipes.stream();
 
         if (filterCraftable) {
-            stream = stream.filter(holder -> menu.canCraft(holder.value()));
+            stream = stream.filter(menu::canCraft);
         }
 
         if (!query.isEmpty()) {
@@ -166,8 +168,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     }
 
     private void renderRecipeTooltip(GuiGraphics graphics, int mouseX, int mouseY, int recipeIndex) {
-        RecipeHolder<FurniCraftingRecipe> holder = visibleRecipes.get(recipeIndex);
-        FurniCraftingRecipe recipe = holder.value();
+        RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(recipeIndex);
+        WorkbenchRecipe recipe = holder.value();
 
         List<ClientTooltipComponent> components = new ArrayList<>();
         components.add(new ClientTextTooltip(
@@ -198,6 +200,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         renderRecipes(graphics, mouseX, mouseY);
         renderScrollbar(graphics);
         renderToggleButton(graphics);
+        this.searchBox.render(graphics, mouseX, mouseY, partialTicks);
     }
 
     private void renderToggleButton(GuiGraphics graphics) {
@@ -227,13 +230,13 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             int x = leftPos + GRID_X_OFFSET + col * BUTTON_SIZE;
             int y = topPos + GRID_Y_OFFSET + row * BUTTON_SIZE - (int) scroll - Y_OFFSET_CORRECTION;
 
-            FurniCraftingRecipe recipe = visibleRecipes.get(i).value();
+            RecipeHolder<WorkbenchRecipe> recipe = visibleRecipes.get(i);
             boolean canCraft = menu.canCraft(recipe);
 
             int textureU = 176 + (!canCraft ? BUTTON_SIZE : 0);
             int textureV = 0;
             graphics.blit(TEXTURE, x, y, textureU, textureV, BUTTON_SIZE, BUTTON_SIZE, 256, 256);
-            graphics.renderFakeItem(recipe.getResultItem(null), x + 2, y + 2);
+            graphics.renderFakeItem(recipe.value().getResultItem(this.menu.getLevel().registryAccess()), x + 2, y + 2);
 
             if (mouseInGrid && mouseX >= x && mouseX < x + BUTTON_SIZE && mouseY >= y && mouseY < y + BUTTON_SIZE) {
                 hoveredRecipeIndex = i;
@@ -328,18 +331,18 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     private void sendSelectRecipe(int visibleIndex, int amountDelta) {
         if (visibleIndex < 0 || visibleIndex >= visibleRecipes.size()) return;
 
-        RecipeHolder<FurniCraftingRecipe> holder = visibleRecipes.get(visibleIndex);
+        RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(visibleIndex);
         int serverIndex = menu.getAvailableRecipes().indexOf(holder);
         if (serverIndex < 0) return;
 
-        menu.selectRecipe(serverIndex, amountDelta);
-        ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, serverIndex, amountDelta));
+        menu.selectRecipe(serverIndex);
+        ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, serverIndex));
     }
 
     private boolean isSelectedRecipe(int visibleIndex) {
-        int selected = menu.getSelectedRecipeIndex();
+        int selected = menu.getSelectedRecipe();
         if (selected == -1 || visibleIndex < 0 || visibleIndex >= visibleRecipes.size()) return false;
-        RecipeHolder<FurniCraftingRecipe> holder = visibleRecipes.get(visibleIndex);
+        RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(visibleIndex);
         return menu.getAvailableRecipes().get(selected) == holder;
     }
 
@@ -367,8 +370,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
-        int selected = menu.getSelectedRecipeIndex();
-        int amountDelta = deltaY > 0 ? 1 : -1;
+        int selected = menu.getSelectedRecipe();
 
         boolean overSelectedRecipe = hoveredRecipeIndex != -1 && isSelectedRecipe(hoveredRecipeIndex);
 
@@ -377,8 +379,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         boolean overOutputSlot = isMouseWithinBounds(mouseX, mouseY, outputX, outputY, SLOT_SIZE, SLOT_SIZE);
 
         if (selected != -1 && (overSelectedRecipe || overOutputSlot)) {
-            menu.selectRecipe(selected, amountDelta);
-            ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, selected, amountDelta));
+            menu.selectRecipe(selected);
+            ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, selected));
             return true;
         }
 

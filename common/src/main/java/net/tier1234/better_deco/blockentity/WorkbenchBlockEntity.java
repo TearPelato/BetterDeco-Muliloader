@@ -8,11 +8,13 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tier1234.better_deco.registries.ModBlockEntities;
@@ -21,10 +23,12 @@ import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
 import org.jetbrains.annotations.Nullable;
 
 public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
-    private final SimpleContainer outputContainer = new SimpleContainer(1);
+    private final SimpleContainer inventory = new SimpleContainer(1);
+    protected final DataSlot selectedRecipe = DataSlot.standalone();
 
     public WorkbenchBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.FURNI_WORKBENCH.get(), blockPos, blockState);
+        this.selectedRecipe.set(-1);
     }
 
     @Override
@@ -34,19 +38,33 @@ public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-        return new WorkbenchMenu(id, inventory, level,this.worldPosition, this.outputContainer);
+        return new WorkbenchMenu(id, inventory, level, this.worldPosition, this.inventory);
+    }
+
+    public DataSlot selectedRecipeDataSlot()
+    {
+        return this.selectedRecipe;
+    }
+
+    public void drops() {
+        SimpleContainer inv = new SimpleContainer(inventory.getContainerSize());
+        for(int i = 0; i < inventory.getContainerSize(); i++) {
+            inv.setItem(i, inventory.getItem(i));
+        }
+
+        Containers.dropContents(this.level, this.worldPosition, inv);
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        ContainerHelper.saveAllItems(tag, outputContainer.getItems(), registries);
+        ContainerHelper.saveAllItems(tag, inventory.getItems(), registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        ContainerHelper.loadAllItems(tag, outputContainer.getItems(), registries);
+        ContainerHelper.loadAllItems(tag, inventory.getItems(), registries);
     }
 
     @Nullable
@@ -60,10 +78,8 @@ public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
         return saveWithoutMetadata(registries);
     }
 
-    public SimpleContainer getOutputContainer() {
-        return outputContainer;
-    }
+
     public WorkbenchMenu.CustomData createCustomData() {
-        return new WorkbenchMenu.CustomData(new boolean[0]);
+        return new WorkbenchMenu.CustomData(this.selectedRecipe.get());
     }
 }

@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.recipe.CountedIngredient;
-import net.tier1234.better_deco.recipe.FurniCraftingRecipe;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
 import net.tier1234.better_deco.screen.custom.WorkbenchScreen;
 
@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+//TODO rework
 public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
     private final WorkbenchMenu menu;
-    private final FurniCraftingRecipe recipe;
+    private final WorkbenchRecipe recipe;
 
-    public ClientWorkbenchRecipeTooltip(WorkbenchMenu menu, FurniCraftingRecipe recipe) {
+    public ClientWorkbenchRecipeTooltip(WorkbenchMenu menu, WorkbenchRecipe recipe) {
         this.menu = menu;
         this.recipe = recipe;
     }
