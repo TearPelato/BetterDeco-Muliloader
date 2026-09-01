@@ -1,0 +1,15 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:spruce_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:spruce_table"
+  }
+}

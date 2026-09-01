@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_quartz": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:quartz_block"
+            "items": "minecraft:warped_planks"
           }
         ]
       },
@@ -16,23 +16,12 @@
         "recipe": "better_deco:warped_kitchen_drawer"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_warped_planks": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:warped_planks"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_warped_planks",
-      "has_quartz"
+      "has_item"
     ]
   ],
   "rewards": {

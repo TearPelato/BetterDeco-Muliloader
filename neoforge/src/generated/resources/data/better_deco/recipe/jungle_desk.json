@@ -1,0 +1,15 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 3,
+      "item": {
+        "item": "minecraft:jungle_planks"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:jungle_desk"
+  }
+}

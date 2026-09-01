@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:red_concrete"
+      }
+    },
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:clock"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:red_digital_clock"
+  }
+}

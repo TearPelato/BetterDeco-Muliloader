@@ -1,0 +1,21 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:gray_wool"
+      }
+    },
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:stick"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:grey_stool"
+  }
+}
