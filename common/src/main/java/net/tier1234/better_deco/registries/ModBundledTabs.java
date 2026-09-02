@@ -62,14 +62,6 @@ public class ModBundledTabs {
                         output.accept(ModBlocks.CRIMSON_SHELF.get());
                         output.accept(ModBlocks.WARPED_SHELF.get());
 
-                        output.accept(ModBlocks.PEDESTAL.get());
-                        output.accept(ModBlocks.STONE_PEDESTAL.get());
-                        output.accept(ModBlocks.DIORITE_PEDESTAL.get());
-                        output.accept(ModBlocks.GRANITE_PEDESTAL.get());
-                        output.accept(ModBlocks.DEEPSLATE_PEDESTAL.get());
-                        output.accept(ModBlocks.DEEPSLATE_TILE_PEDESTAL.get());
-                        output.accept(ModBlocks.BLACKSTONE_PEDESTAL.get());
-
                         output.accept(ModBlocks.STONE_GLASS_TECQUE.get());
 
                         output.accept(ModBlocks.OAK_GLASS_TECQUE.get());

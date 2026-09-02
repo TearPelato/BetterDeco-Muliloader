@@ -141,14 +141,6 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
 
         //Pedestals
 
-        dropSelf(ModBlocks.PEDESTAL.get());
-        dropSelf(ModBlocks.DIORITE_PEDESTAL.get());
-        dropSelf(ModBlocks.GRANITE_PEDESTAL.get());
-        dropSelf(ModBlocks.BLACKSTONE_PEDESTAL.get());
-        dropSelf(ModBlocks.DEEPSLATE_PEDESTAL.get());
-        dropSelf(ModBlocks.DEEPSLATE_TILE_PEDESTAL.get());
-        dropSelf(ModBlocks.STONE_PEDESTAL.get());
-
         //Sinks
         dropSelf(ModBlocks.OAK_SINK.get());
         dropSelf(ModBlocks.SPRUCE_SINK.get());

@@ -84,19 +84,6 @@ public class ModBlockEntities {
 
             );
 
-    public static final RegistryEntry<BlockEntityType<PedestalBlockEntity>> PEDESTAL_BE =
-            RegistryEntry.blockEntity(Constants.id("pedestal_be"), PedestalBlockEntity::new, ()-> new Block[]
-                            {
-                                    ModBlocks.PEDESTAL.get(),
-                                    ModBlocks.STONE_PEDESTAL.get(),
-                                    ModBlocks.DIORITE_PEDESTAL.get(),
-                                    ModBlocks.GRANITE_PEDESTAL.get(),
-                                    ModBlocks.DEEPSLATE_PEDESTAL.get(),
-                                    ModBlocks.DEEPSLATE_TILE_PEDESTAL.get(),
-                                    ModBlocks.BLACKSTONE_PEDESTAL.get()
-                            }
-
-            );
 
     public static final RegistryEntry<BlockEntityType<BedsideCabinetBlockEntity>> BEDSIDE_CABINET =
             RegistryEntry.blockEntity(Constants.id("bedside_cabinet"), BedsideCabinetBlockEntity::new, ()-> new Block[]

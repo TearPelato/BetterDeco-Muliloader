@@ -225,26 +225,9 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                  ;
 
           tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                  .add(ModBlocks.PEDESTAL.get())
-                  .add(ModBlocks.STONE_PEDESTAL.get())
-                  .add(ModBlocks.BLACKSTONE_PEDESTAL.get())
-                  .add(ModBlocks.DIORITE_PEDESTAL.get())
-                  .add(ModBlocks.GRANITE_PEDESTAL.get())
-                  .add(ModBlocks.DEEPSLATE_TILE_PEDESTAL.get())
-                  .add(ModBlocks.DEEPSLATE_PEDESTAL.get())
-
-                  //Andesite
-
                   .add(ModBlocks.STONE_GLASS_TECQUE.get())
 
-                  //Pedestal
-                  .add(ModBlocks.PEDESTAL.get())
-                  .add(ModBlocks.STONE_PEDESTAL.get())
-                  .add(ModBlocks.DIORITE_PEDESTAL.get())
-                  .add(ModBlocks.GRANITE_PEDESTAL.get())
-                  .add(ModBlocks.DEEPSLATE_PEDESTAL.get())
-                  .add(ModBlocks.DEEPSLATE_TILE_PEDESTAL.get())
-                  .add(ModBlocks.BLACKSTONE_PEDESTAL.get())
+
 
 
 

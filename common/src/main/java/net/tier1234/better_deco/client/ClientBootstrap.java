@@ -29,7 +29,6 @@ public class ClientBootstrap {
     public static void registerScreens(ScreenRegister register)
     {
         register.apply(ModMenuTypes.CRATE_MENU.get(), CrateScreen::new);
-        register.apply(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
         register.apply(ModMenuTypes.TECQUE_MENU.get(), TecqueScreen::new);
         register.apply(ModMenuTypes.FURNI_WORKBENCH.get(), WorkbenchScreen::new);
         register.apply(ModMenuTypes.SHELF_MENU.get(), ShelfScreen::new);
@@ -42,7 +41,6 @@ public class ClientBootstrap {
     public static void registerBlockEntityRenderers(BlockEntityRendererRegister register)
     {
         register.apply(ModBlockEntities.GLASS_TECQUE.get(), TecqueBlockEntityRenderer::new);
-        register.apply(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
         register.apply(ModBlockEntities.KITCHEN_SINK.get(), KitchenSinkBlockEntityRenderer::new);
         register.apply(ModBlockEntities.SHELF_BE.get(), ShelfBlockEntityRenderer::new);
         register.apply(ModBlockEntities.DIGITAL_CLOCK.get(), DigitalClockBlockEntityRenderer::new);

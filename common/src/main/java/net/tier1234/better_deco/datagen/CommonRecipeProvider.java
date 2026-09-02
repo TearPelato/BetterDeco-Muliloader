@@ -23,77 +23,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput recipeOutput) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.STONE_SLAB.asItem())
-                .define('X', Blocks.SMOOTH_STONE.asItem())
-                .unlockedBy("has_stone_slab", has(Blocks.STONE_SLAB))
-                .unlockedBy("has_smooth_stone", has(Blocks.SMOOTH_STONE))
-                .save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STONE_PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.STONE_SLAB.asItem())
-                .define('X', Blocks.STONE.asItem())
-                .unlockedBy("has_stone_slab", has(Blocks.STONE_SLAB))
-                .unlockedBy("has_stone", has(Blocks.STONE))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.GRANITE_PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.POLISHED_GRANITE_SLAB.asItem())
-                .define('X', Blocks.GRANITE.asItem())
-                .unlockedBy("has_polished_granite_slab", has(Blocks.POLISHED_GRANITE_SLAB))
-                .unlockedBy("has_granite", has(Blocks.GRANITE))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DIORITE_PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.POLISHED_DIORITE_SLAB.asItem())
-                .define('X', Blocks.DIORITE.asItem())
-                .unlockedBy("has_polished_diorite_slab", has(Blocks.POLISHED_DIORITE_SLAB))
-                .unlockedBy("has_diorite", has(Blocks.DIORITE))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DEEPSLATE_PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.DEEPSLATE_BRICK_SLAB.asItem())
-                .define('X', Blocks.POLISHED_DEEPSLATE.asItem())
-                .unlockedBy("has_deepslate_slab", has(Blocks.DEEPSLATE_BRICK_SLAB))
-                .unlockedBy("has_ddeepslate_polished", has(Blocks.POLISHED_DEEPSLATE))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DEEPSLATE_TILE_PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.DEEPSLATE_TILE_SLAB.asItem())
-                .define('X', Blocks.POLISHED_DEEPSLATE.asItem())
-                .unlockedBy("has_deepslate_tile_slab", has(Blocks.DEEPSLATE_TILE_SLAB))
-                .unlockedBy("has_deepslate_polished", has(Blocks.POLISHED_DEEPSLATE))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.BLACKSTONE_PEDESTAL.get())
-                .pattern(" B ")
-                .pattern(" X ")
-                .pattern(" B ")
-                .define('B', Items.POLISHED_BLACKSTONE_BRICK_SLAB.asItem())
-                .define('X', Blocks.BLACKSTONE.asItem())
-                .unlockedBy("has_polished_blackstone_slab", has(Blocks.POLISHED_BLACKSTONE_BRICK_SLAB))
-                .unlockedBy("has_blackstone", has(Blocks.BLACKSTONE))
-                .save(recipeOutput);
-
-        //Tecque
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STONE_GLASS_TECQUE.get())
                 .pattern("###")
                 .pattern("# #")

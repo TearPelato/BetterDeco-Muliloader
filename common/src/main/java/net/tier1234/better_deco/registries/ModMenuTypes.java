@@ -14,9 +14,6 @@ public class ModMenuTypes {
             RegistryEntry.menuTypeWithData(Constants.id("tecque_menu"),
                     TecqueMenu.TecqueData.CODEC, TecqueMenu::new);
 
-    public static final RegistryEntry<MenuType<PedestalMenu>> PEDESTAL_MENU =
-            RegistryEntry.menuTypeWithData(Constants.id("pedestal_menu"), PedestalMenu.CustomData.CODEC, PedestalMenu::new);
-
     public static final RegistryEntry<MenuType<CrateMenu>> CRATE_MENU =
             RegistryEntry.menuTypeWithData(Constants.id("crate_menu"), CrateMenu.CustomData.CODEC, CrateMenu::new);
 
