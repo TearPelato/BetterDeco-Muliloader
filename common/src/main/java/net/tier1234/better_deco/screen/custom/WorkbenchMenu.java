@@ -54,7 +54,8 @@ public class WorkbenchMenu extends AbstractContainerMenu {
             ModTags.Items.KITCHEN,
             ModTags.Items.OFFICE,
             ModTags.Items.BEDROOM,
-            ModTags.Items.BATHROOM
+            ModTags.Items.BATHROOM,
+            ModTags.Items.OUTDOOR
     );
 
     public WorkbenchMenu(int id, Inventory inventory, CustomData data) {

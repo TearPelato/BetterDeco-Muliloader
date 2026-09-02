@@ -453,6 +453,32 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
         .add(ModBlocks.CRIMSON_BATH.get().asItem())
         .add(ModBlocks.WARPED_BATH.get().asItem());
         
+        tag(ModTags.Items.OUTDOOR)
+        .add(ModBlocks.OAK_CRATE.get().asItem())
+        .add(ModBlocks.SPRUCE_CRATE.get().asItem())
+        .add(ModBlocks.BIRCH_CRATE.get().asItem())
+        .add(ModBlocks.JUNGLE_CRATE.get().asItem())
+        .add(ModBlocks.ACACIA_CRATE.get().asItem())
+        .add(ModBlocks.MANGROVE_CRATE.get().asItem())
+        .add(ModBlocks.DARK_OAK_CRATE.get().asItem())
+        .add(ModBlocks.CHERRY_CRATE.get().asItem())
+        .add(ModBlocks.BAMBOO_CRATE.get().asItem())
+        .add(ModBlocks.CRIMSON_CRATE.get().asItem())
+        .add(ModBlocks.WARPED_CRATE.get().asItem())
+
+        .add(ModBlocks.OAK_PARK_BENCH.get().asItem())
+        .add(ModBlocks.SPRUCE_PARK_BENCH.get().asItem())
+        .add(ModBlocks.BIRCH_PARK_BENCH.get().asItem())
+        .add(ModBlocks.JUNGLE_PARK_BENCH.get().asItem())
+        .add(ModBlocks.ACACIA_PARK_BENCH.get().asItem())
+        .add(ModBlocks.DARK_OAK_PARK_BENCH.get().asItem())
+        .add(ModBlocks.MANGROVE_PARK_BENCH.get().asItem())
+        .add(ModBlocks.CHERRY_PARK_BENCH.get().asItem())
+        .add(ModBlocks.BAMBOO_PARK_BENCH.get().asItem())
+        .add(ModBlocks.CRIMSON_PARK_BENCH.get().asItem())
+        .add(ModBlocks.WARPED_PARK_BENCH.get().asItem())
+
+        .add(ModBlocks.STONE_PATH.get().asItem());
 
     }
 }

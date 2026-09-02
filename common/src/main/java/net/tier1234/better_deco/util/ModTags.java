@@ -22,7 +22,7 @@ public class ModTags {
         public static final TagKey<Item> BATHROOM = createTag("bath");
         public static final TagKey<Item> BEDROOM = createTag("bedroom");
         public static final TagKey<Item> OFFICE = createTag("office");
-
+        public static final TagKey<Item> OUTDOOR = createTag("outdoor");
 
 
         private static TagKey<Item> createTag(String name) {

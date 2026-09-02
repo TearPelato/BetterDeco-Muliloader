@@ -43,43 +43,6 @@ public class ModBundledTabs {
                     .build());
 
 
-
-    public static final BundledTabs EXTERNAL_DECORATIONS = register(
-            BundledTabs.builder()
-                    .title(Component.translatable("bundled_tab.external_deco"))
-                    .icon(new ItemStack(ModBlocks.OAK_PARK_BENCH.get()))
-                    .displayItems((provider, output) -> {
-                        output.accept(ModBlocks.OAK_CRATE.get());
-                        output.accept(ModBlocks.SPRUCE_CRATE.get());
-                        output.accept(ModBlocks.BIRCH_CRATE.get());
-                        output.accept(ModBlocks.JUNGLE_CRATE.get());
-                        output.accept(ModBlocks.ACACIA_CRATE.get());
-                        output.accept(ModBlocks.MANGROVE_CRATE.get());
-                        output.accept(ModBlocks.DARK_OAK_CRATE.get());
-                        output.accept(ModBlocks.CHERRY_CRATE.get());
-                        output.accept(ModBlocks.BAMBOO_CRATE.get());
-                        output.accept(ModBlocks.CRIMSON_CRATE.get());
-                        output.accept(ModBlocks.WARPED_CRATE.get());
-
-                        output.accept(ModBlocks.OAK_PARK_BENCH.get());
-                        output.accept(ModBlocks.SPRUCE_PARK_BENCH.get());
-                        output.accept(ModBlocks.BIRCH_PARK_BENCH.get());
-                        output.accept(ModBlocks.JUNGLE_PARK_BENCH.get());
-                        output.accept(ModBlocks.ACACIA_PARK_BENCH.get());
-                        output.accept(ModBlocks.DARK_OAK_PARK_BENCH.get());
-                        output.accept(ModBlocks.MANGROVE_PARK_BENCH.get());
-                        output.accept(ModBlocks.CHERRY_PARK_BENCH.get());
-                        output.accept(ModBlocks.BAMBOO_PARK_BENCH.get());
-                        output.accept(ModBlocks.CRIMSON_PARK_BENCH.get());
-                        output.accept(ModBlocks.WARPED_PARK_BENCH.get());
-
-                        output.accept(ModBlocks.STONE_PATH.get());
-
-
-                    })
-                            .build());
-
-
     public static final BundledTabs BEDROOM = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.bedroom_furniture.title"))
@@ -88,7 +51,6 @@ public class ModBundledTabs {
                         output.accept(ModTags.Items.BEDROOM);
                     })
                     .build());
-
 
 
     public static final BundledTabs OFFICE = register(
@@ -110,6 +72,16 @@ public class ModBundledTabs {
                     })
                     .build());
 
+    public static final BundledTabs EXTERNAL_DECORATIONS = register(
+            BundledTabs.builder()
+                    .title(Component.translatable("bundled_tab.external_deco"))
+                    .icon(new ItemStack(ModBlocks.OAK_PARK_BENCH.get()))
+                    .displayItems((provider, output) -> {
+                        output.accept(ModTags.Items.OUTDOOR);
+
+
+                    })
+                    .build());
 
 
     public static BundledTabs register(BundledTabs builder) {
