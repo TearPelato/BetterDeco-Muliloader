@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-02T14:44:16.5151544	BetterDeco/Block Loot Tables
+// 1.21.1	2026-09-02T15:09:04.5574611	BetterDeco/Block Loot Tables
 b5a5d954d7990fe36aa85b1c94ca1ec1a406f3b4 data\better_deco\loot_table\blocks\crimson_kitchen_counter.json
 afc2e14ef1bf5194576c4b81f5dff4520b8c7cbb data\better_deco\loot_table\blocks\bamboo_shelf.json
 3c3aef1ca6981b5d7378a22db4aca14d9cfa66b5 data\better_deco\loot_table\blocks\mangrove_glass_tecque.json
@@ -218,8 +218,8 @@ c6a0d491025afe6b911f7535faa53a06b90353db data\better_deco\loot_table\blocks\blue
 33dcebf6f66dea77a9d240c569c70887fcc5b488 data\better_deco\loot_table\blocks\black_kitchen_counter.json
 a18de90440c633eeeaea836b04495cb555ea8e40 data\better_deco\loot_table\blocks\acacia_desk.json
 29be7e9f78e523408b7e4dbf17a749059a9ee71e data\better_deco\loot_table\blocks\birch_oven.json
-9650b821792838d007356c30125fd2af5f5a17db data\better_deco\loot_table\blocks\crimson_jar.json
 25eda2379c8fc494501123c5476ff9624f6e6c86 data\better_deco\loot_table\blocks\bamboo_jar.json
+9650b821792838d007356c30125fd2af5f5a17db data\better_deco\loot_table\blocks\crimson_jar.json
 940bb0447fde392b7bc234acc4a78227fcb84765 data\better_deco\loot_table\blocks\magenta_cabinet.json
 256955e5b0ad62ff30a9ffa3f29aae3f25e9c71a data\better_deco\loot_table\blocks\cherry_table.json
 d14310e428c010d8bc1aafa07c0c9cdcab9a6564 data\better_deco\loot_table\blocks\red_oven.json
