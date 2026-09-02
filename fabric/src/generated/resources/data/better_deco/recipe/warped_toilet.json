@@ -1,0 +1,33 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:warped_planks"
+      }
+    },
+    {
+      "count": 3,
+      "item": {
+        "item": "minecraft:quartz_block"
+      }
+    },
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:bucket"
+      }
+    },
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:iron_ingot"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:warped_toilet"
+  }
+}

@@ -585,6 +585,44 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.bedside(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BEDSIDE.get(), recipeOutput);
         this.bedside(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BEDSIDE.get(), recipeOutput);
 
+        this.toilet(Blocks.OAK_PLANKS, ModBlocks.OAK_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_TOILET.get(), recipeOutput);
+        this.toilet(Blocks.WARPED_PLANKS, ModBlocks.WARPED_TOILET.get(), recipeOutput);
+
+        this.basin(Blocks.OAK_PLANKS, ModBlocks.OAK_BASIN.get(), recipeOutput);
+        this.basin(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_BASIN.get(), recipeOutput);
+        this.basin(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_BASIN.get(), recipeOutput);
+        this.basin(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_BASIN.get(), recipeOutput);
+        this.basin(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_BASIN.get(), recipeOutput);
+        this.basin(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_BASIN.get(), recipeOutput);
+        this.basin(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_BASIN.get(), recipeOutput);
+        this.basin(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_BASIN.get(), recipeOutput);
+        this.basin(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_BASIN.get(), recipeOutput);
+        this.basin(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BASIN.get(), recipeOutput);
+        this.basin(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BASIN.get(), recipeOutput);
+
+        this.bath(Blocks.OAK_PLANKS, ModBlocks.OAK_BATH.get(), recipeOutput);
+        this.bath(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_BATH.get(), recipeOutput);
+        this.bath(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_BATH.get(), recipeOutput);
+        this.bath(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_BATH.get(), recipeOutput);
+        this.bath(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_BATH.get(), recipeOutput);
+        this.bath(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_BATH.get(), recipeOutput);
+        this.bath(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_BATH.get(), recipeOutput);
+        this.bath(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_BATH.get(), recipeOutput);
+        this.bath(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_BATH.get(), recipeOutput);
+        this.bath(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BATH.get(), recipeOutput);
+        this.bath(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BATH.get(), recipeOutput);
+
+
+
 
 
     }
@@ -729,10 +767,41 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(concrete))
                 .save(output);
     }
+
     public void woodenClock(Block wood,  Block result, RecipeOutput output) {
         WorkbenchRecipeBuilder.crafting(result)
                 .requires(wood,2)
                 .requires(Items.CLOCK,1)
+                .unlockedBy("has_item", has(wood))
+                .save(output);
+    }
+
+    public void basin(Block wood,  Block result, RecipeOutput output) {
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(wood,2)
+                .requires(Items.QUARTZ_BLOCK,2)
+                .requires(Items.BUCKET, 1)
+                .unlockedBy("has_item", has(wood))
+                .save(output);
+    }
+
+    public void toilet(Block wood,  Block result, RecipeOutput output) {
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(wood,1)
+                .requires(Items.QUARTZ_BLOCK,3)
+                .requires(Items.BUCKET, 1)
+                .requires(Items.IRON_INGOT, 2)
+                .unlockedBy("has_item", has(wood))
+                .save(output);
+    }
+
+    public void bath(Block wood,  Block result, RecipeOutput output) {
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(wood,2)
+                .requires(Items.QUARTZ_BLOCK,5)
+                .requires(Items.BUCKET, 1)
+                .requires(Items.IRON_INGOT, 5)
+                .requires(Items.COPPER_INGOT, 2)
                 .unlockedBy("has_item", has(wood))
                 .save(output);
     }

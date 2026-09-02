@@ -1,0 +1,27 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:acacia_planks"
+      }
+    },
+    {
+      "count": 2,
+      "item": {
+        "item": "minecraft:quartz_block"
+      }
+    },
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:bucket"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:acacia_basin"
+  }
+}
