@@ -10,6 +10,8 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.SoundType;
 import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
@@ -92,6 +95,7 @@ public class WorkbenchMenu extends AbstractContainerMenu {
                 stack.onCraftedBy(player.level(), player, stack.getCount());
                 WorkbenchMenu.this.onCraft();
                 super.onTake(player, stack);
+                level.playSound(null, pos, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         });
         this.addDataSlot(this.selectedRecipes);
