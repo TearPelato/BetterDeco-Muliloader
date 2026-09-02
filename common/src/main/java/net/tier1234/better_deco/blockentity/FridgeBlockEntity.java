@@ -43,29 +43,4 @@ public class FridgeBlockEntity extends BasicLootBlockEntity
         return new ChestMenu(MenuType.GENERIC_9x5, windowId, playerInventory, this, 5);
     }
 
-    @Override
-    public void onOpen(Level level, BlockPos pos, BlockState state)
-    {
-        this.playDoorSound(state,SoundEvents.UI_LOOM_SELECT_PATTERN);
-    }
-
-    @Override
-    public void onClose(Level level, BlockPos pos, BlockState state)
-    {
-        this.playDoorSound(state, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT);
-    }
-
-    private void playDoorSound(BlockState state, SoundEvent event)
-    {
-        Vec3i directionVec = state.getValue(FridgeBlock.DIRECTION).getOpposite().getNormal();
-        double x = this.worldPosition.getX() + 0.5D + directionVec.getX() / 2.0D;
-        double y = this.worldPosition.getY() + 0.5D + directionVec.getY() / 2.0D;
-        double z = this.worldPosition.getZ() + 0.5D + directionVec.getZ() / 2.0D;
-        Level level = this.getLevel();
-        if(level != null)
-        {
-            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 1.0F, 1.0F);
-        }
-    }
-
 }

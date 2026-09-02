@@ -1,5 +1,7 @@
 package net.tier1234.better_deco.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mrcrayfish.framework.api.FrameworkAPI;
@@ -30,8 +32,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.type.MetalType;
 import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
@@ -39,10 +41,11 @@ import net.tier1234.better_deco.blockentity.FridgeBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.stream.Stream;
 
-public class FridgeBlock extends BaseEntityBlock {
+public class FridgeBlock extends FurnitureHorizontalEntityBlock {
 
     public static final MapCodec<FridgeBlock> CODEC = RecordCodecBuilder.mapCodec(builder->{
         return builder.group(MetalType.CODEC.fieldOf("metal_type").forGetter(block-> {
@@ -53,6 +56,7 @@ public class FridgeBlock extends BaseEntityBlock {
     public static final DirectionProperty DIRECTION = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<FridgeModelType> MODEL_TYPE = EnumProperty.create("model", FridgeModelType.class);
     private MetalType type;
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public FridgeBlock(MetalType type,Properties properties) {
         super(properties);
@@ -60,6 +64,7 @@ public class FridgeBlock extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(DIRECTION, Direction.NORTH)
                 .setValue(MODEL_TYPE, FridgeModelType.FRIDGE));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
 
     }
 
@@ -68,19 +73,26 @@ public class FridgeBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(DIRECTION, MODEL_TYPE);
+    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
+        final VoxelShape[] FRIDGE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0,0,0,16,23,16), Direction.SOUTH));
+        final VoxelShape[] FREEZER = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0,7,0,16,16,16), Direction.SOUTH));
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for (BlockState state : states) {
+            Direction direction = state.getValue(DIRECTION);
+            FridgeModelType type = state.getValue(MODEL_TYPE);
+            List<VoxelShape> shapes = new ArrayList<>();
+            switch (type) {
+                case FRIDGE: shapes.add(FRIDGE[direction.get2DDataValue()]);
+                     break;
+                case FREEZER: shapes.add(FREEZER[direction.get2DDataValue()]);
+                      break;
+            }
+            builder.put(state,VoxelShapeHelper.combineAll(shapes));
+        }
+
+        return builder.build();
     }
 
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockPos blockPos = context.getClickedPos();
-        Level level = context.getLevel();
-        if (level.getBlockState(blockPos.above()).canBeReplaced(context)) {
-            return this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection().getOpposite());
-        }
-        return null;
-    }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
@@ -103,6 +115,7 @@ public class FridgeBlock extends BaseEntityBlock {
         return InteractionResult.CONSUME;
     }
 
+    @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.is(newState.getBlock())) return;
 
@@ -113,6 +126,22 @@ public class FridgeBlock extends BaseEntityBlock {
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(DIRECTION, MODEL_TYPE);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos blockPos = context.getClickedPos();
+        Level level = context.getLevel();
+        if (level.getBlockState(blockPos.above()).canBeReplaced(context)) {
+            return this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection().getOpposite());
+        }
+        return null;
+    }
+
 
     private static Direction getNeighbourDirection(FridgeModelType modelType) {
         return modelType == FridgeModelType.FRIDGE ? Direction.UP : Direction.DOWN;
@@ -174,65 +203,12 @@ public class FridgeBlock extends BaseEntityBlock {
         } return new FridgeBlockEntity(pos, state);
     }
 
-
-    public enum FridgeModelType implements StringRepresentable {
-        FRIDGE, FREEZER;
-
-        @Override
-        public String getSerializedName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
-
-        @Override
-        public String toString() {
-            return getSerializedName();
-        }
-    }
-
-
-    private static final VoxelShape FRIDGE = Stream.of(
-            // Fridge (Corpo principale. Corretto Y=32 -> Y=16 per il blocco inferiore)
-            Block.box(0, 0, 4, 16, 23, 12),  // Corpo: Z da 4 a 12 (Base Y 0-16, Z 4-12)
-            Block.box(0, 0, 0, 16, 23, 4),   // Corpo: Z da 0 a 4
-            Block.box(0, 0, 12, 16, 23, 16), // Corpo: Z da 12 a 16
-            // Base
-            Block.box(0, 0, 2, 16, 2, 16)
-
-    ).reduce((v1, v2) -> Shapes.or(v1, v2)).get();
-
-    private static final VoxelShape FREEZER = Stream.of(
-            // Freezer (Corpo principale. Y va da 7 a 16)
-            Block.box(0, 7, 4, 16, 16, 12),
-            Block.box(0, 7, 0, 16, 16, 4),
-            Block.box(0, 7, 12, 16, 16, 16)
-
-
-    ).reduce((v1, v2) -> Shapes.or(v1, v2)).get();
-
-
-    private static final VoxelShape[] SHAPES = new VoxelShape[8];
-
-    static {
-        SHAPES[0] = VoxelShapeHelper.rotateShape(FREEZER, Direction.SOUTH); //South
-        SHAPES[1] = VoxelShapeHelper.rotateShape(FREEZER, Direction.WEST); //West
-        SHAPES[2] = VoxelShapeHelper.rotateShape(FREEZER, Direction.NORTH); //North
-        SHAPES[3] = VoxelShapeHelper.rotateShape(FREEZER, Direction.EAST); //East
-        SHAPES[4] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.SOUTH); //South Lower
-        SHAPES[5] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.WEST); //West Lower
-        SHAPES[6] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.NORTH); //North Lower
-        SHAPES[7] = VoxelShapeHelper.rotateShape(FRIDGE, Direction.EAST); //East Lower
-    }
-
-
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        Direction direction = state.getValue(DIRECTION);
-        int d2d = direction.get2DDataValue();
-
         if (state.getValue(MODEL_TYPE) == FridgeModelType.FRIDGE) {
-            return SHAPES[4 + d2d];
+            return SHAPES.get(state);
         } else {
-            return SHAPES[d2d];
+            return SHAPES.get(state);
         }
     }
 
@@ -247,5 +223,19 @@ public class FridgeBlock extends BaseEntityBlock {
         }
         return createTickerHelper(blockEntityType, ModBlockEntities.FREEZER.get(),
                 (level1, blockPos, blockState, blockEntity) -> blockEntity.tick(level1, blockPos, blockState));
+    }
+
+    public enum FridgeModelType implements StringRepresentable {
+        FRIDGE, FREEZER;
+
+        @Override
+        public String getSerializedName() {
+            return name().toLowerCase(Locale.ROOT);
+        }
+
+        @Override
+        public String toString() {
+            return getSerializedName();
+        }
     }
 }
