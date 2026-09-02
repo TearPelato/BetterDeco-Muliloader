@@ -22,57 +22,57 @@ public class ModBlocks {
 
     //Test
     public static final RegistryEntry<WorkbenchBlock> WORKBENCH = register("workbench",
-            ()-> new WorkbenchBlock(BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new WorkbenchBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
 
 
     public static final RegistryEntry<BathBlock> OAK_BATH = register("oak_bath",
-            ()-> new BathBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> SPRUCE_BATH = register("spruce_bath",
-            ()-> new BathBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> BIRCH_BATH = register("birch_bath",
-            ()-> new BathBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> JUNGLE_BATH = register("jungle_bath",
-            ()-> new BathBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> ACACIA_BATH = register("acacia_bath",
-            ()-> new BathBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> DARK_OAK_BATH = register("dark_oak_bath",
-            ()-> new BathBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> MANGROVE_BATH = register("mangrove_bath",
-            ()-> new BathBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> CHERRY_BATH = register("cherry_bath",
-            ()-> new BathBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> BAMBOO_BATH = register("bamboo_bath",
-            ()-> new BathBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> CRIMSON_BATH = register("crimson_bath",
-            ()-> new BathBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BathBlock> WARPED_BATH = register("warped_bath",
-            ()-> new BathBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BathBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
 
 
 
 
     public static final RegistryEntry<ToiletBlock> OAK_TOILET = register("oak_toilet",
-            ()-> new ToiletBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> SPRUCE_TOILET = register("spruce_toilet",
-            ()-> new ToiletBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> BIRCH_TOILET = register("birch_toilet",
-            ()-> new ToiletBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> JUNGLE_TOILET = register("jungle_toilet",
-            ()-> new ToiletBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> ACACIA_TOILET = register("acacia_toilet",
-            ()-> new ToiletBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> DARK_OAK_TOILET = register("dark_oak_toilet",
-            ()-> new ToiletBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> MANGROVE_TOILET = register("mangrove_toilet",
-            ()-> new ToiletBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> CHERRY_TOILET = register("cherry_toilet",
-            ()-> new ToiletBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> BAMBOO_TOILET = register("bamboo_toilet",
-            ()-> new ToiletBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> CRIMSON_TOILET = register("crimson_toilet",
-            ()-> new ToiletBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<ToiletBlock> WARPED_TOILET = register("warped_toilet",
-            ()-> new ToiletBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new ToiletBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
 
 
 
@@ -88,27 +88,27 @@ public class ModBlocks {
 
 
     public static final RegistryEntry<BasinBlock> OAK_BASIN = register("oak_basin",
-            ()-> new BasinBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> SPRUCE_BASIN = register("spruce_basin",
-            ()-> new BasinBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> BIRCH_BASIN = register("birch_basin",
-            ()-> new BasinBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> JUNGLE_BASIN = register("jungle_basin",
-            ()-> new BasinBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> ACACIA_BASIN = register("acacia_basin",
-            ()-> new BasinBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> DARK_OAK_BASIN = register("dark_oak_basin",
-            ()-> new BasinBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> MANGROVE_BASIN = register("mangrove_basin",
-            ()-> new BasinBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> CHERRY_BASIN = register("cherry_basin",
-            ()-> new BasinBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> BAMBOO_BASIN = register("bamboo_basin",
-            ()-> new BasinBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> CRIMSON_BASIN = register("crimson_basin",
-            ()-> new BasinBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<BasinBlock> WARPED_BASIN = register("warped_basin",
-            ()-> new BasinBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f)));
+            ()-> new BasinBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
 
 
 
@@ -287,247 +287,230 @@ public class ModBlocks {
 
     //SHELFS
     public static final RegistryEntry<Block> OAK_SHELF = register("oak_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> SPRUCE_SHELF = register("spruce_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> BIRCH_SHELF = register("birch_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> JUNGLE_SHELF = register("jungle_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> ACACIA_SHELF = register("acacia_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> DARK_OAK_SHELF = register("dark_oak_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> MANGROVE_SHELF = register("mangrove_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> CHERRY_SHELF = register("cherry_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> BAMBOO_SHELF = register("bamboo_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> CRIMSON_SHELF = register("crimson_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final RegistryEntry<Block> WARPED_SHELF = register("warped_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f)));
+            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
 
     //Furnitures
     //Chairs
     public static final RegistryEntry<ChairBlock> OAK_CHAIR = register("oak_chair",
-            () -> new ChairBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> SPRUCE_CHAIR = register("spruce_chair",
-            () -> new ChairBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> BIRCH_CHAIR = register("birch_chair",
-            () -> new ChairBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> JUNGLE_CHAIR = register("jungle_chair",
-            () -> new ChairBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> ACACIA_CHAIR = register("acacia_chair",
-            () -> new ChairBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> DARK_OAK_CHAIR = register("dark_oak_chair",
-            () -> new ChairBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> MANGROVE_CHAIR = register("mangrove_chair",
-            () -> new ChairBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> CHERRY_CHAIR = register("cherry_chair",
-            () -> new ChairBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> BAMBOO_CHAIR = register("bamboo_chair",
-            () -> new ChairBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> CRIMSON_CHAIR = register("crimson_chair",
-            () -> new ChairBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<ChairBlock> WARPED_CHAIR = register("warped_chair",
-            () -> new ChairBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new ChairBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Counters
     public static final RegistryEntry<KitchenCounterBlock> OAK_KITCHEN_COUNTER = register("oak_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> SPRUCE_KITCHEN_COUNTER = register("spruce_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> BIRCH_KITCHEN_COUNTER = register("birch_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> JUNGLE_KITCHEN_COUNTER = register("jungle_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> ACACIA_KITCHEN_COUNTER = register("acacia_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> DARK_OAK_KITCHEN_COUNTER = register("dark_oak_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> MANGROVE_KITCHEN_COUNTER = register("mangrove_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> CHERRY_KITCHEN_COUNTER = register("cherry_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> BAMBOO_KITCHEN_COUNTER = register("bamboo_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> CRIMSON_KITCHEN_COUNTER = register("crimson_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenCounterBlock> WARPED_KITCHEN_COUNTER = register("warped_kitchen_counter",
-            ()-> new KitchenCounterBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenCounterBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Drawers
     public static final RegistryEntry<KitchenDrawerBlock> OAK_KITCHEN_DRAWER = register("oak_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> SPRUCE_KITCHEN_DRAWER = register("spruce_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> BIRCH_KITCHEN_DRAWER = register("birch_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> JUNGLE_KITCHEN_DRAWER = register("jungle_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> ACACIA_KITCHEN_DRAWER = register("acacia_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> DARK_OAK_KITCHEN_DRAWER = register("dark_oak_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> MANGROVE_KITCHEN_DRAWER = register("mangrove_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> CHERRY_KITCHEN_DRAWER = register("cherry_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> BAMBOO_KITCHEN_DRAWER = register("bamboo_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> CRIMSON_KITCHEN_DRAWER = register("crimson_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenDrawerBlock> WARPED_KITCHEN_DRAWER = register("warped_kitchen_drawer",
-            ()-> new KitchenDrawerBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new KitchenDrawerBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
         //Sofas
     public static final RegistryEntry<SofaBlock> RED_SOFA = register("red_sofa",
-            ()-> new SofaBlock(DyeColor.RED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.RED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> ORANGE_SOFA = register("orange_sofa",
-            ()-> new SofaBlock(DyeColor.ORANGE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.ORANGE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> BLUE_SOFA = register("blue_sofa",
-            ()-> new SofaBlock(DyeColor.BLUE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.BLUE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> CYAN_SOFA = register("cyan_sofa",
-            ()-> new SofaBlock(DyeColor.CYAN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.CYAN,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> LIGHT_BLUE_SOFA = register("light_blue_sofa",
-            ()-> new SofaBlock(DyeColor.LIGHT_BLUE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.LIGHT_BLUE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> PURPLE_SOFA = register("purple_sofa",
-            ()-> new SofaBlock(DyeColor.PURPLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.PURPLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> MAGENTA_SOFA = register("magenta_sofa",
-            ()-> new SofaBlock(DyeColor.MAGENTA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.MAGENTA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> YELLOW_SOFA = register("yellow_sofa",
-            ()-> new SofaBlock(DyeColor.YELLOW,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.YELLOW,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> GREY_SOFA = register("grey_sofa",
-            ()-> new SofaBlock(DyeColor.GRAY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.GRAY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> LIGHT_GREY_SOFA = register("light_grey_sofa",
-            ()-> new SofaBlock(DyeColor.LIGHT_GRAY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.LIGHT_GRAY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> BLACK_SOFA = register("black_sofa",
-            ()-> new SofaBlock(DyeColor.BLACK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.BLACK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> WHITE_SOFA = register("white_sofa",
-            ()-> new SofaBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> GREEN_SOFA = register("green_sofa",
-            ()-> new SofaBlock(DyeColor.GREEN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.GREEN,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> LIME_SOFA = register("lime_sofa",
-            ()-> new SofaBlock(DyeColor.LIME,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.LIME,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> PINK_SOFA = register("pink_sofa",
-            ()-> new SofaBlock(DyeColor.PINK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.PINK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<SofaBlock> BROWN_SOFA = register("brown_sofa",
-            ()-> new SofaBlock(DyeColor.BROWN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new SofaBlock(DyeColor.BROWN,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Cabinet
     public static final RegistryEntry<CabinetBlock> OAK_CABINET = register("oak_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> SPRUCE_CABINET = register("spruce_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> BIRCH_CABINET = register("birch_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> JUNGLE_CABINET = register("jungle_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> ACACIA_CABINET = register("acacia_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> DARK_OAK_CABINET = register("dark_oak_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> MANGROVE_CABINET = register("mangrove_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> CHERRY_CABINET = register("cherry_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> BAMBOO_CABINET = register("bamboo_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> CRIMSON_CABINET = register("crimson_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<CabinetBlock> WARPED_CABINET = register("warped_kitchen_cabinet",
-            ()-> new CabinetBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
-
-
-    //Pedestals
-    public static final RegistryEntry<Block> PEDESTAL = register("pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> STONE_PEDESTAL = register("stone_pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DIORITE_PEDESTAL = register("diorite_pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> GRANITE_PEDESTAL = register("granite_pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_PEDESTAL = register("deepslate_pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> DEEPSLATE_TILE_PEDESTAL = register("deepslate_tile_pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
-    public static final RegistryEntry<Block> BLACKSTONE_PEDESTAL = register("blackstone_pedestal",
-            ()-> new PedestalBlock(BlockBehaviour.Properties.of().strength(4f).noOcclusion()));
+            ()-> new CabinetBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Bedside Cabinets
     public static final RegistryEntry<BedsideCabinetBlock> OAK_BEDSIDE = register("oak_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> SPRUCE_BEDSIDE = register("spruce_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> BIRCH_BEDSIDE = register("birch_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> JUNGLE_BEDSIDE = register("jungle_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> ACACIA_BEDSIDE = register("acacia_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> MANGROVE_BEDSIDE = register("mangrove_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> DARK_OAK_BEDSIDE = register("dark_oak_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> CHERRY_BEDSIDE = register("cherry_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> BAMBOO_BEDSIDE = register("bamboo_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> CRIMSON_BEDSIDE = register("crimson_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<BedsideCabinetBlock> WARPED_BEDSIDE = register("warped_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new BedsideCabinetBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Crates
     public static final RegistryEntry<Block> OAK_CRATE = register("oak_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> SPRUCE_CRATE = register("spruce_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> BIRCH_CRATE = register("birch_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> JUNGLE_CRATE = register("jungle_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> ACACIA_CRATE = register("acacia_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> MANGROVE_CRATE = register("mangrove_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> DARK_OAK_CRATE = register("dark_oak_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> CHERRY_CRATE = register("cherry_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> BAMBOO_CRATE = register("bamboo_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> CRIMSON_CRATE = register("crimson_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<Block> WARPED_CRATE = register("warped_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Sinks
     public static final RegistryEntry<KitchenSinkBlock> OAK_SINK = register("oak_sink",
-            () -> new KitchenSinkBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> SPRUCE_SINK = register("spruce_sink",
-            () -> new KitchenSinkBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> BIRCH_SINK = register("birch_sink",
-            () -> new KitchenSinkBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> JUNGLE_SINK = register("jungle_sink",
-            () -> new KitchenSinkBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> ACACIA_SINK = register("acacia_sink",
-            () -> new KitchenSinkBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> MANGROVE_SINK = register("mangrove_sink",
-            () -> new KitchenSinkBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> DARK_OAK_SINK = register("dark_oak_sink",
-            () -> new KitchenSinkBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> CHERRY_SINK = register("cherry_sink",
-            () -> new KitchenSinkBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> BAMBOO_SINK = register("bamboo_sink",
-            () -> new KitchenSinkBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> CRIMSON_SINK = register("crimson_sink",
-            () -> new KitchenSinkBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<KitchenSinkBlock> WARPED_SINK = register("warped_sink",
-            () -> new KitchenSinkBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            () -> new KitchenSinkBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Colored Variants
     public static final RegistryEntry<KitchenCounterBlock> RED_KITCHEN_COUNTER = register("red_kitchen_counter",
@@ -699,37 +682,37 @@ public class ModBlocks {
 
     //STOOL
     public static final RegistryEntry<StoolBlock> RED_STOOL = register("red_stool",
-            ()-> new StoolBlock(DyeColor.RED,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.RED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> ORANGE_STOOL = register("orange_stool",
-            ()-> new StoolBlock(DyeColor.ORANGE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.ORANGE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> BLUE_STOOL = register("blue_stool",
-            ()-> new StoolBlock(DyeColor.BLUE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.BLUE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> CYAN_STOOL = register("cyan_stool",
-            ()-> new StoolBlock(DyeColor.CYAN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.CYAN,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> LIGHT_BLUE_STOOL = register("light_blue_stool",
-            ()-> new StoolBlock(DyeColor.LIGHT_BLUE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.LIGHT_BLUE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> PURPLE_STOOL = register("purple_stool",
-            ()-> new StoolBlock(DyeColor.PURPLE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.PURPLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> MAGENTA_STOOL = register("magenta_stool",
-            ()-> new StoolBlock(DyeColor.MAGENTA,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.MAGENTA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> YELLOW_STOOL = register("yellow_stool",
-            ()-> new StoolBlock(DyeColor.YELLOW,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.YELLOW,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> GREY_STOOL = register("grey_stool",
-            ()-> new StoolBlock(DyeColor.GRAY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.GRAY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> LIGHT_GREY_STOOL = register("light_grey_stool",
-            ()-> new StoolBlock(DyeColor.LIGHT_GRAY,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.LIGHT_GRAY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> BLACK_STOOL = register("black_stool",
-            ()-> new StoolBlock(DyeColor.BLACK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.BLACK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> WHITE_STOOL = register("white_stool",
-            ()-> new StoolBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> GREEN_STOOL = register("green_stool",
-            ()-> new StoolBlock(DyeColor.GREEN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.GREEN,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> LIME_STOOL = register("lime_stool",
-            ()-> new StoolBlock(DyeColor.LIME,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.LIME,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> PINK_STOOL = register("pink_stool",
-            ()-> new StoolBlock(DyeColor.PINK,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.PINK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryEntry<StoolBlock> BROWN_STOOL = register("brown_stool",
-            ()-> new StoolBlock(DyeColor.BROWN,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));
+            ()-> new StoolBlock(DyeColor.BROWN,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //COFFEE TABLE
     public static final RegistryEntry<CoffeeTableBlock> OAK_COFFEE_TABLE = register("oak_coffee_table",
@@ -780,37 +763,37 @@ public class ModBlocks {
             ()-> new TableBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD)));
 
     public static final RegistryEntry<LampBlock> WHITE_LAMP = register("white_lamp",
-            ()-> new LampBlock(DyeColor.WHITE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.WHITE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> LIGHT_GRAY_LAMP = register("light_gray_lamp",
-            ()-> new LampBlock(DyeColor.LIGHT_GRAY, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.LIGHT_GRAY, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> GRAY_LAMP = register("gray_lamp",
-            ()-> new LampBlock(DyeColor.GRAY, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.GRAY, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> BLACK_LAMP = register("black_lamp",
-            ()-> new LampBlock(DyeColor.BLACK, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.BLACK, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> BROWN_LAMP = register("brown_lamp",
-            ()-> new LampBlock(DyeColor.BROWN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.BROWN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> RED_LAMP = register("red_lamp",
-            ()-> new LampBlock(DyeColor.RED, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.RED, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> ORANGE_LAMP = register("orange_lamp",
-            ()-> new LampBlock(DyeColor.ORANGE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.ORANGE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> YELLOW_LAMP = register("yellow_lamp",
-            ()-> new LampBlock(DyeColor.YELLOW, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.YELLOW, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> LIME_LAMP = register("lime_lamp",
-            ()-> new LampBlock(DyeColor.LIME, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.LIME, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> GREEN_LAMP = register("green_lamp",
-            ()-> new LampBlock(DyeColor.GREEN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.GREEN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> CYAN_LAMP = register("cyan_lamp",
-            ()-> new LampBlock(DyeColor.CYAN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.CYAN, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> LIGHT_BLUE_LAMP = register("light_blue_lamp",
-            ()-> new LampBlock(DyeColor.LIGHT_BLUE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.LIGHT_BLUE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> BLUE_LAMP = register("blue_lamp",
-            ()-> new LampBlock(DyeColor.BLUE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.BLUE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> PURPLE_LAMP = register("purple_lamp",
-            ()-> new LampBlock(DyeColor.PURPLE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.PURPLE, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> MAGENTA_LAMP = register("magenta_lamp",
-            ()-> new LampBlock(DyeColor.MAGENTA, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.MAGENTA, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
     public static final RegistryEntry<LampBlock> PINK_LAMP = register("pink_lamp",
-            ()-> new LampBlock(DyeColor.PINK, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight)));
+            ()-> new LampBlock(DyeColor.PINK, BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
 
 
 
@@ -850,27 +833,27 @@ public class ModBlocks {
             ()-> new DigitalClockBlock(DyeColor.WHITE,BlockBehaviour.Properties.of().sound(SoundType.DECORATED_POT).strength(2f)));
 
     public static final RegistryEntry<WoodenClockBlock> OAK_CLOCK = register("oak_clock",
-            ()-> new WoodenClockBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> SPRUCE_CLOCK = register("spruce_clock",
-            ()-> new WoodenClockBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> BIRCH_CLOCK = register("birch_clock",
-            ()-> new WoodenClockBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> JUNGLE_CLOCK = register("jungle_clock",
-            ()-> new WoodenClockBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> ACACIA_CLOCK = register("acacia_clock",
-            ()-> new WoodenClockBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> DARK_OAK_CLOCK = register("dark_oak_clock",
-            ()-> new WoodenClockBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> MANGROVE_CLOCK = register("mangrove_clock",
-            ()-> new WoodenClockBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> CHERRY_CLOCK = register("cherry_clock",
-            ()-> new WoodenClockBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> BAMBOO_CLOCK = register("bamboo_clock",
-            ()-> new WoodenClockBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> CRIMSON_CLOCK = register("crimson_clock",
-            ()-> new WoodenClockBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final RegistryEntry<WoodenClockBlock> WARPED_CLOCK = register("warped_clock",
-            ()-> new WoodenClockBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD)));
+            ()-> new WoodenClockBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
 
 
 
