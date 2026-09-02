@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-02T17:30:19.8106284	Loot Tables
+// 1.21.1	2026-09-02T17:37:58.4466827	Loot Tables
 c960760c1f59c9357137ea82119a6aad0ee1e688 data/better_deco/loot_table/blocks/acacia_basin.json
 fceb576f27dd459dbe9f7a6db8922c82f60b608e data/better_deco/loot_table/blocks/acacia_bath.json
 a3a550e985f91cd952484fe2aba00e9eee359c7a data/better_deco/loot_table/blocks/acacia_bedside.json
@@ -339,7 +339,6 @@ fe8a928a8da1455789271b45d6d378852ff41355 data/better_deco/loot_table/blocks/spru
 84f758d888d792458311aea44280e36ee70621ad data/better_deco/loot_table/blocks/spruce_storage_crate.json
 945f15b360cf61685d159bfe941617a041287160 data/better_deco/loot_table/blocks/spruce_table.json
 333c73b3dee2e81ef068e90aedb75aa23be9749d data/better_deco/loot_table/blocks/spruce_toilet.json
-c1ea080868a9f4518ec4e5a60406222f2229262a data/better_deco/loot_table/blocks/stone_glass_tecque.json
 0d481b118bcb6b34bab17fe1d8e9ac8dd7213e25 data/better_deco/loot_table/blocks/stone_path.json
 0e9e0a23dd5fbd2ee5c1e23a00adfbfd7d225174 data/better_deco/loot_table/blocks/toaster_dark.json
 b7abb0de02eb3ab5e3b444f6dd8ab7abc13dfef5 data/better_deco/loot_table/blocks/toaster_light.json

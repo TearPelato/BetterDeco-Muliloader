@@ -30,7 +30,6 @@ public class CutoutRenderLayerBlocks {
                 ModBlocks.BAMBOO_GLASS_TECQUE.get(),
                 ModBlocks.CRIMSON_GLASS_TECQUE.get(),
                 ModBlocks.WARPED_GLASS_TECQUE.get(),
-                ModBlocks.STONE_GLASS_TECQUE.get(),
 
                 ModBlocks.OAK_OVEN.get(),
                 ModBlocks.SPRUCE_OVEN.get(),

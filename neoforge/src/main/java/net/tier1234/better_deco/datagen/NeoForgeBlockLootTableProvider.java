@@ -17,17 +17,6 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     public void generate() {
         dropSelf(ModBlocks.WORKBENCH.get());
-        //Tecque
-        dropSelf(ModBlocks.STONE_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.OAK_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.SPRUCE_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.BIRCH_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.JUNGLE_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.ACACIA_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.DARK_OAK_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.MANGROVE_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.CHERRY_GLASS_TECQUE.get());
-        dropSelf(ModBlocks.BAMBOO_GLASS_TECQUE.get());
 
         //Furnitures
         //Chairs
@@ -155,7 +144,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WARPED_SINK.get());
 
 
-        dropSelf(ModBlocks.STONE_GLASS_TECQUE.get());
+
         dropSelf(ModBlocks.OAK_GLASS_TECQUE.get());
         dropSelf(ModBlocks.SPRUCE_GLASS_TECQUE.get());
         dropSelf(ModBlocks.BIRCH_GLASS_TECQUE.get());

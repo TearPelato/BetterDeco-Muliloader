@@ -142,7 +142,6 @@ public class ModBlockEntities {
     public static final RegistryEntry<BlockEntityType<TecqueBlockEntity>> GLASS_TECQUE =
             RegistryEntry.blockEntity(Constants.id("glass_tecque"), TecqueBlockEntity::new, ()-> new Block[]
                             {
-                                    ModBlocks.STONE_GLASS_TECQUE.get(),
                                     ModBlocks.SPRUCE_GLASS_TECQUE.get(),
                                     ModBlocks.ACACIA_GLASS_TECQUE.get(),
                                     ModBlocks.OAK_GLASS_TECQUE.get(),

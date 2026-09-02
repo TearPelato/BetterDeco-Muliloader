@@ -43,43 +43,6 @@ public class ModBundledTabs {
                     .build());
 
 
-    public static final BundledTabs FURNITURE_EXTRAS = register(
-            BundledTabs.builder()
-                    .title(Component.translatable("bundled_tab.utilities.title"))
-                    .icon(new ItemStack(ModBlocks.OAK_CRATE.get()))
-                    .displayItems((provider, output) -> {
-
-
-                        output.accept(ModBlocks.OAK_SHELF.get());
-                        output.accept(ModBlocks.SPRUCE_SHELF.get());
-                        output.accept(ModBlocks.BIRCH_SHELF.get());
-                        output.accept(ModBlocks.JUNGLE_SHELF.get());
-                        output.accept(ModBlocks.ACACIA_SHELF.get());
-                        output.accept(ModBlocks.DARK_OAK_SHELF.get());
-                        output.accept(ModBlocks.MANGROVE_SHELF.get());
-                        output.accept(ModBlocks.CHERRY_SHELF.get());
-                        output.accept(ModBlocks.BAMBOO_SHELF.get());
-                        output.accept(ModBlocks.CRIMSON_SHELF.get());
-                        output.accept(ModBlocks.WARPED_SHELF.get());
-
-                        output.accept(ModBlocks.STONE_GLASS_TECQUE.get());
-
-                        output.accept(ModBlocks.OAK_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.SPRUCE_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.BIRCH_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.JUNGLE_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.ACACIA_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.MANGROVE_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.DARK_OAK_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.CHERRY_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.BAMBOO_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.CRIMSON_GLASS_TECQUE.get());
-                        output.accept(ModBlocks.WARPED_GLASS_TECQUE.get());
-                    })
-                    .build()
-    );
-
-
 
     public static final BundledTabs EXTERNAL_DECORATIONS = register(
             BundledTabs.builder()
@@ -114,8 +77,7 @@ public class ModBundledTabs {
 
 
                     })
-                            .build()
-    );
+                            .build());
 
 
     public static final BundledTabs BEDROOM = register(

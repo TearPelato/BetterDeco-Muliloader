@@ -225,10 +225,6 @@ public class CommonBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
                  ;
 
           tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                  .add(ModBlocks.STONE_GLASS_TECQUE.get())
-
-
-
 
 
           //Clock

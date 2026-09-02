@@ -863,8 +863,6 @@ public class ModBlocks {
 
 
     //Glass Tecque
-    public static final RegistryEntry<Block> STONE_GLASS_TECQUE = register("stone_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
     public static final RegistryEntry<Block> ACACIA_GLASS_TECQUE = register("acacia_glass_tecque",
             ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
     public static final RegistryEntry<Block> SPRUCE_GLASS_TECQUE = register("spruce_glass_tecque",

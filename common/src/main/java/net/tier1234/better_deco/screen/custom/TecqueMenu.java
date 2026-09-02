@@ -96,9 +96,6 @@ public class TecqueMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.STONE_GLASS_TECQUE.get())
-        ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                         player, ModBlocks.ACACIA_GLASS_TECQUE.get())
         ||
         stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),

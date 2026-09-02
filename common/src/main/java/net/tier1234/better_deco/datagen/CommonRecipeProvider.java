@@ -24,16 +24,6 @@ public class CommonRecipeProvider extends RecipeProvider {
     @Override
     public void buildRecipes(RecipeOutput recipeOutput) {
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STONE_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.STONE_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_stone_slab", has(Blocks.STONE_SLAB))
-                .save(recipeOutput);
-
         //Wood Tecque
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OAK_GLASS_TECQUE.get())
                 .pattern("###")

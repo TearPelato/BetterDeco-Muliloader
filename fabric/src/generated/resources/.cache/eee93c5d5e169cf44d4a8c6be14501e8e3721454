@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-02T17:31:02.1491353	BetterDeco/Block Loot Tables
+// 1.21.1	2026-09-02T17:38:44.0291663	BetterDeco/Block Loot Tables
 b5a5d954d7990fe36aa85b1c94ca1ec1a406f3b4 data\better_deco\loot_table\blocks\crimson_kitchen_counter.json
 afc2e14ef1bf5194576c4b81f5dff4520b8c7cbb data\better_deco\loot_table\blocks\bamboo_shelf.json
 3c3aef1ca6981b5d7378a22db4aca14d9cfa66b5 data\better_deco\loot_table\blocks\mangrove_glass_tecque.json
@@ -184,7 +184,6 @@ a1b9adc3f514d8f88c5294e44e1f7b738cc271f6 data\better_deco\loot_table\blocks\brow
 996058debd805f00647eb2a5872c83c557083840 data\better_deco\loot_table\blocks\cherry_kitchen_drawer.json
 91bcc3952bc2647b94db4cd2a574b788c3b57e0b data\better_deco\loot_table\blocks\oak_shelf.json
 9b1f7adb581de70b4f4b90ec0bab11f8568f90ab data\better_deco\loot_table\blocks\dark_oak_bedside.json
-5ed974dd960cdedac700962cd63056868213113a data\better_deco\loot_table\blocks\stone_glass_tecque.json
 c04490042017c07b632812fd07f47c642042fd58 data\better_deco\loot_table\blocks\dark_oak_kitchen_drawer.json
 e7ea75cfe4a12cb7d681ade0bf207614a46d62c4 data\better_deco\loot_table\blocks\spruce_coffee_table.json
 b55fb4356203c9b57517bbcb7306e975080960f2 data\better_deco\loot_table\blocks\crimson_bedside.json
@@ -311,8 +310,8 @@ a732b9054c5e5d3fcdde915559b52e68833417fd data\better_deco\loot_table\blocks\crim
 c5934f221226c5a2245d76d99a309a4f916c2dd9 data\better_deco\loot_table\blocks\orange_sink.json
 7d1aa3938a6650d122682b777b3f75c68c2e5bee data\better_deco\loot_table\blocks\acacia_table.json
 39aacdc17669574161067af348fc2ecc89b279c8 data\better_deco\loot_table\blocks\yellow_lamp.json
-0e8da341f135b7e98e71853eacbdf6f85c6c770d data\better_deco\loot_table\blocks\cyan_kitchen_counter.json
 666fe8a02ce8dbecf8bcb3b2511427c644959062 data\better_deco\loot_table\blocks\orange_sofa.json
+0e8da341f135b7e98e71853eacbdf6f85c6c770d data\better_deco\loot_table\blocks\cyan_kitchen_counter.json
 0efc97fc173bab8da0ba94002b69434dc8a6022f data\better_deco\loot_table\blocks\stone_path.json
 df9a3c8c0d324317f4a8e854308dbf1bca56fba7 data\better_deco\loot_table\blocks\acacia_kitchen_counter.json
 d46750f91d46d6cc3f6df6fea81a5fddcaa63f9e data\better_deco\loot_table\blocks\mangrove_jar.json

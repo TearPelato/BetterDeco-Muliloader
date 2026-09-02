@@ -28,15 +28,13 @@
 
   "block.better_deco.stone_path": "Stone Path",
 
-  "bundled_tab.general": "General Furniture",
-  "bundled_tab.kitchen": "Kitchen Furniture",
-  "bundled_tab.buildings_extras": "Buildings Extras",
-  "bundled_tab.utilities.title": "Utilities",
+  "bundled_tab.general": "General Furnitures",
+  "bundled_tab.kitchen": "Kitchen Furnitures",
   "bundled_tabs.item": "Items",
-  "bundled_tab.bedroom_furniture.title": "Bedroom Furniture",
-  "bundled_tab.external_deco": "External Decorations",
-  "bundled_tab.bathroom_furniture.title": "Bathroom",
-  "bundled_tab.office.title": "Office",
+  "bundled_tab.bedroom_furniture.title": "Bedroom Furnitures",
+  "bundled_tab.external_deco": "Outdoor Furnitures",
+  "bundled_tab.bathroom_furniture.title": "Bathrooms",
+  "bundled_tab.office.title": "Office Furnitures",
   "bundled_tab.everycompat": "EveryCompat",
 
 
