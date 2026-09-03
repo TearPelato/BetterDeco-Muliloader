@@ -431,6 +431,18 @@ public class CommonModelsProvider {
         woodenClock(ModBlocks.BAMBOO_CLOCK.get());
         woodenClock(ModBlocks.CRIMSON_CLOCK.get());
         woodenClock(ModBlocks.WARPED_CLOCK.get());
+
+        shelf(ModBlocks.OAK_SHELF.get());
+        shelf(ModBlocks.SPRUCE_SHELF.get());
+        shelf(ModBlocks.BIRCH_SHELF.get());
+        shelf(ModBlocks.JUNGLE_SHELF.get());
+        shelf(ModBlocks.ACACIA_SHELF.get());
+        shelf(ModBlocks.DARK_OAK_SHELF.get());
+        shelf(ModBlocks.MANGROVE_SHELF.get());
+        shelf(ModBlocks.CHERRY_SHELF.get());
+        shelf(ModBlocks.BAMBOO_SHELF.get());
+        shelf(ModBlocks.CRIMSON_SHELF.get());
+        shelf(ModBlocks.WARPED_SHELF.get());
     }
 
 
@@ -1289,6 +1301,41 @@ public class CommonModelsProvider {
 
         registerItemModel(block, model);
 
+    }
+
+    private void shelf(ShelfBlock block) {
+        WoodType type = block.getWoodType();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_shelf"));
+
+        ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+
+        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, ShelfBlock.TYPE)
+                .select(Direction.NORTH, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                .select(Direction.NORTH, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                .select(Direction.NORTH, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                .select(Direction.NORTH, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+
+
+        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, singleModel);
     }
 
 

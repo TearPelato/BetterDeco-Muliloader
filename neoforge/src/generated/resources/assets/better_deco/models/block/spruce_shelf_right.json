@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/shelf_right",
+  "textures": {
+    "particle": "minecraft:block/spruce_planks",
+    "texture": "better_deco:block/spruce_shelf"
+  }
+}

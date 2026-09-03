@@ -7,8 +7,9 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.tier1234.better_deco.block.CustomShelfBlock;
+import net.tier1234.better_deco.block.ShelfBlock;
 import net.tier1234.better_deco.blockentity.ShelfBlockEntity;
 import net.tier1234.better_deco.registries.ModInventory;
 
@@ -23,8 +24,8 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
                        PoseStack poseStack, MultiBufferSource bufferSource,
                        int packedLight, int packedOverlay) {
 
-        Direction dir = blockEntity.getBlockState().getValue(CustomShelfBlock.FACING);
-        ModInventory items = blockEntity.handler;
+        Direction dir = blockEntity.getBlockState().getValue(ShelfBlock.DIRECTION);
+        SimpleContainer items = blockEntity.handler;
 
         float scale = 0.30f;
         float xOffset = 5.2f;
@@ -32,94 +33,27 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
         float yOffset2 = 4.5f;
         float zOffset = 0.15f;
 
-        // Slot 0
-        if (!items.getItem(0).isEmpty()) {
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(U1 * xOffset, U1 * yOffset, zOffset);
-            poseStack.scale(scale, scale, scale);
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    items.getItem(0), ItemDisplayContext.FIXED,
-                    packedLight, packedOverlay, poseStack, bufferSource,
-                    blockEntity.getLevel(), 0
-            );
-            poseStack.popPose();
-        }
+        int[] xMult = {1, 0, -1, 1, 0, -1};
+        float[] yVals = {
+                U1 * yOffset,  U1 * yOffset,  U1 * yOffset,
+                -U1 * yOffset2, -U1 * yOffset2, -U1 * yOffset2
+        };
 
-        // Slot 1
-        if (!items.getItem(1).isEmpty()) {
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(0, U1 * yOffset, zOffset);
-            poseStack.scale(scale, scale, scale);
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    items.getItem(1), ItemDisplayContext.FIXED,
-                    packedLight, packedOverlay, poseStack, bufferSource,
-                    blockEntity.getLevel(), 0
-            );
-            poseStack.popPose();
-        }
 
-        // Slot 2
-        if (!items.getItem(2).isEmpty()) {
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(-U1 * xOffset, U1 * yOffset, zOffset);
-            poseStack.scale(scale, scale, scale);
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    items.getItem(2), ItemDisplayContext.FIXED,
-                    packedLight, packedOverlay, poseStack, bufferSource,
-                    blockEntity.getLevel(), 0
-            );
-            poseStack.popPose();
-        }
+        for (int index = 0; index < items.getContainerSize(); index++) {
+            if (items.getItem(index).isEmpty()) continue;
 
-        // Slot 3
-        if (!items.getItem(3).isEmpty()) {
             poseStack.pushPose();
             poseStack.translate(0.5f, 0.5f, 0.5f);
             poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(U1 * xOffset, -U1 * yOffset2, zOffset);
+            poseStack.translate(U1 * xOffset * xMult[index], yVals[index], zOffset);
             poseStack.scale(scale, scale, scale);
             Minecraft.getInstance().getItemRenderer().renderStatic(
-                    items.getItem(3), ItemDisplayContext.FIXED,
+                    items.getItem(index), ItemDisplayContext.FIXED,
                     packedLight, packedOverlay, poseStack, bufferSource,
-                    blockEntity.getLevel(), 0
-            );
+                    blockEntity.getLevel(), 0);
             poseStack.popPose();
-        }
 
-        // Slot 4
-        if (!items.getItem(4).isEmpty()) {
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(0, -U1 * yOffset2, zOffset);
-            poseStack.scale(scale, scale, scale);
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    items.getItem(4), ItemDisplayContext.FIXED,
-                    packedLight, packedOverlay, poseStack, bufferSource,
-                    blockEntity.getLevel(), 0
-            );
-            poseStack.popPose();
-        }
-
-        // Slot 5
-        if (!items.getItem(5).isEmpty()) {
-            poseStack.pushPose();
-            poseStack.translate(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(-U1 * xOffset, -U1 * yOffset2, zOffset);
-            poseStack.scale(scale, scale, scale);
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    items.getItem(5), ItemDisplayContext.FIXED,
-                    packedLight, packedOverlay, poseStack, bufferSource,
-                    blockEntity.getLevel(), 0
-            );
-            poseStack.popPose();
         }
     }
 }

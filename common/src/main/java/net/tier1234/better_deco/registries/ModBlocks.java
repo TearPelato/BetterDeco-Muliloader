@@ -286,28 +286,28 @@ public class ModBlocks {
 
 
     //SHELFS
-    public static final RegistryEntry<Block> OAK_SHELF = register("oak_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> SPRUCE_SHELF = register("spruce_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BIRCH_SHELF = register("birch_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> JUNGLE_SHELF = register("jungle_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> ACACIA_SHELF = register("acacia_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> DARK_OAK_SHELF = register("dark_oak_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> MANGROVE_SHELF = register("mangrove_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CHERRY_SHELF = register("cherry_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> BAMBOO_SHELF = register("bamboo_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> CRIMSON_SHELF = register("crimson_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
-    public static final RegistryEntry<Block> WARPED_SHELF = register("warped_shelf",
-            ()-> new CustomShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> OAK_SHELF = register("oak_shelf",
+            ()-> new ShelfBlock(WoodType.OAK,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> SPRUCE_SHELF = register("spruce_shelf",
+            ()-> new ShelfBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> BIRCH_SHELF = register("birch_shelf",
+            ()-> new ShelfBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> JUNGLE_SHELF = register("jungle_shelf",
+            ()-> new ShelfBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> ACACIA_SHELF = register("acacia_shelf",
+            ()-> new ShelfBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> DARK_OAK_SHELF = register("dark_oak_shelf",
+            ()-> new ShelfBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> MANGROVE_SHELF = register("mangrove_shelf",
+            ()-> new ShelfBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> CHERRY_SHELF = register("cherry_shelf",
+            ()-> new ShelfBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> BAMBOO_SHELF = register("bamboo_shelf",
+            ()-> new ShelfBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> CRIMSON_SHELF = register("crimson_shelf",
+            ()-> new ShelfBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final RegistryEntry<ShelfBlock> WARPED_SHELF = register("warped_shelf",
+            ()-> new ShelfBlock(WoodType.WARPED,BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
 
     //Furnitures
     //Chairs

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/shelf_left",
+  "textures": {
+    "particle": "minecraft:block/warped_planks",
+    "texture": "better_deco:block/warped_shelf"
+  }
+}

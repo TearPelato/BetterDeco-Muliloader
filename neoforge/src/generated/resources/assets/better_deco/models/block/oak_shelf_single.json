@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/shelf_single",
+  "textures": {
+    "particle": "minecraft:block/oak_planks",
+    "texture": "better_deco:block/oak_shelf"
+  }
+}
