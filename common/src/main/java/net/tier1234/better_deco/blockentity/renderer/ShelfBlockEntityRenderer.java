@@ -28,32 +28,33 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
         SimpleContainer items = blockEntity.handler;
 
         float scale = 0.30f;
-        float xOffset = 5.2f;
-        float yOffset = 3.5f;
-        float yOffset2 = 4.5f;
-        float zOffset = 0.15f;
 
-        int[] xMult = {1, 0, -1, 1, 0, -1};
-        float[] yVals = {
-                U1 * yOffset,  U1 * yOffset,  U1 * yOffset,
-                -U1 * yOffset2, -U1 * yOffset2, -U1 * yOffset2
-        };
+        float xOffset = 3.5f;
+        float zFront = 2.0f;
+        float zBack = 5.5f;
+        float yOffset = 9.3f;
 
+        int[] xMult   = {-1, 1, -1, 1};
+        float[] zVals = { zFront, zFront, zBack, zBack };
 
-        for (int index = 0; index < items.getContainerSize(); index++) {
+        int size = Math.min(items.getContainerSize(), 4);
+        for (int index = 0; index < size; index++) {
             if (items.getItem(index).isEmpty()) continue;
 
             poseStack.pushPose();
             poseStack.translate(0.5f, 0.5f, 0.5f);
             poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
-            poseStack.translate(U1 * xOffset * xMult[index], yVals[index], zOffset);
+            poseStack.translate(
+                    U1 * xOffset * xMult[index],
+                    U1 * yOffset,
+                    U1 * zVals[index]
+            );
             poseStack.scale(scale, scale, scale);
             Minecraft.getInstance().getItemRenderer().renderStatic(
                     items.getItem(index), ItemDisplayContext.FIXED,
                     packedLight, packedOverlay, poseStack, bufferSource,
                     blockEntity.getLevel(), 0);
             poseStack.popPose();
-
         }
     }
 }
