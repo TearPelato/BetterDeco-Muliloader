@@ -1,8 +1,11 @@
 package net.tier1234.better_deco.entity.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 
@@ -19,5 +22,10 @@ public class SeatRender extends EntityRenderer<SeatEntity> {
     @Override
     public boolean shouldRender(SeatEntity livingEntity, Frustum camera, double camX, double camY, double camZ) {
         return true;
+    }
+
+    @Override
+    protected void renderNameTag(SeatEntity entity, Component displayName, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, float partialTick) {
+
     }
 }

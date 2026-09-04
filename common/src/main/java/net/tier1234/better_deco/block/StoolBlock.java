@@ -59,19 +59,7 @@ public class StoolBlock extends FurnitureHorizontalBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if(!level.isClientSide()) {
-            Entity entity = null;
-            List<SeatEntity> entities = level.getEntities(ModEntities.SEAT_ENTITY.get(), new AABB(pos), stool -> true);
-            if(entities.isEmpty()) {
-                entity = ModEntities.SEAT_ENTITY.get().spawn(((ServerLevel) level), pos, MobSpawnType.TRIGGERED);
-            } else {
-                entity = entities.get(0);
-            }
-
-            player.startRiding(entity);
-        }
-
-        return InteractionResult.SUCCESS;
+       return SeatEntity.create(level,pos,0.3, player, state.getValue(DIRECTION));
     }
 
     @Override

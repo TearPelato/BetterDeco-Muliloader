@@ -136,17 +136,7 @@ public class SofaBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide()) {
-            Entity entity;
-            List<SeatEntity> entities = level.getEntities(ModEntities.SEAT_ENTITY.get(), new AABB(pos), chair -> true);
-            if (entities.isEmpty()) {
-                entity = ModEntities.SEAT_ENTITY.get().spawn((ServerLevel) level, pos, MobSpawnType.TRIGGERED);
-            } else {
-                entity = entities.get(0);
-            }
-            player.startRiding(entity);
-        }
-        return InteractionResult.SUCCESS;
+        return SeatEntity.create(level,pos,0.1, player, state.getValue(DIRECTION));
     }
 
 
