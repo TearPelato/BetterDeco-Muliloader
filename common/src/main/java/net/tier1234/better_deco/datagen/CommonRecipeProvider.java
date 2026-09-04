@@ -541,6 +541,17 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.bath(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BATH.get(), recipeOutput);
         this.bath(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BATH.get(), recipeOutput);
 
+        this.shelf(Blocks.OAK_PLANKS, ModBlocks.OAK_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_SHELF.get(), recipeOutput);
+        this.shelf(Blocks.WARPED_PLANKS, ModBlocks.WARPED_SHELF.get(), recipeOutput);
 
 
 
@@ -724,6 +735,17 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .requires(Items.COPPER_INGOT, 2)
                 .unlockedBy("has_item", has(wood))
                 .save(output);
+    }
+
+    public void shelf(Block wood,  Block result, RecipeOutput output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result)
+                .pattern("###")
+                .pattern("B B")
+                .define('B', Items.STICK)
+                .define('#', wood.asItem())
+                .unlockedBy("has_item", has(wood))
+                .save(output);
+
     }
 
 

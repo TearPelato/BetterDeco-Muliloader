@@ -7,12 +7,6 @@ import net.minecraft.world.level.block.Block;
 import net.tier1234.better_deco.Constants;
 
 public class ModTags {
-    public static class Blocks {
-
-        private static TagKey<Block> createTag(String name) {
-            return TagKey.create(Registries.BLOCK, Constants.id(name));
-        }
-    }
     public static class Items {
 
         public static final TagKey<Item> ELECTRONIC_FURNITURES = createTag("electronic_furnitures");
