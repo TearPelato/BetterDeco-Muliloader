@@ -2,10 +2,8 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -36,12 +35,18 @@ public class CrateBlock extends FurnitureHorizontalBlock implements EntityBlock
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    public final WoodType type;
 
-    public CrateBlock(Properties properties)
+    public CrateBlock(WoodType type, Properties properties)
     {
         super(properties);
+        this.type = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(OPEN, false).setValue(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getType() {
+        return type;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
@@ -101,7 +106,7 @@ public class CrateBlock extends FurnitureHorizontalBlock implements EntityBlock
         } else {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof CrateBlockEntity crateBlockEntity) {
-                FrameworkAPI.openMenuWithData((ServerPlayer) player, crateBlockEntity, crateBlockEntity.createCustomData());
+                player.openMenu(crateBlockEntity);
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;

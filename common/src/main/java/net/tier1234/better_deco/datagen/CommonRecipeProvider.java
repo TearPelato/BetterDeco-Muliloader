@@ -571,6 +571,19 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.stonePath(Blocks.GRANITE, ModBlocks.GRANITE_PATH.get(), recipeOutput);
         this.stonePath(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_PATH.get(), recipeOutput);
 
+
+        this.crate(Blocks.OAK_PLANKS, ModBlocks.OAK_CRATE.get(), recipeOutput);
+        this.crate(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_CRATE.get(), recipeOutput);
+        this.crate(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_CRATE.get(), recipeOutput);
+        this.crate(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_CRATE.get(), recipeOutput);
+        this.crate(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_CRATE.get(), recipeOutput);
+        this.crate(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_CRATE.get(), recipeOutput);
+        this.crate(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_CRATE.get(), recipeOutput);
+        this.crate(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_CRATE.get(), recipeOutput);
+        this.crate(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_CRATE.get(), recipeOutput);
+        this.crate(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CRATE.get(), recipeOutput);
+        this.crate(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CRATE.get(), recipeOutput);
+
     }
 
     public void kitchenCounter(Block wood, Block result, RecipeOutput output) {
@@ -778,5 +791,12 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .save(output);
     }
 
+    public void crate(Block wood,  Block result, RecipeOutput output) {
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(wood,4)
+                .requires(Items.CHEST,2)
+                .unlockedBy("has_item", has(wood))
+                .save(output);
+    }
 
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-05T18:12:30.6931985	BetterDeco/Block Loot Tables
+// 1.21.1	2026-09-05T22:23:33.656271	BetterDeco/Block Loot Tables
 b5a5d954d7990fe36aa85b1c94ca1ec1a406f3b4 data\better_deco\loot_table\blocks\crimson_kitchen_counter.json
 afc2e14ef1bf5194576c4b81f5dff4520b8c7cbb data\better_deco\loot_table\blocks\bamboo_shelf.json
 3c3aef1ca6981b5d7378a22db4aca14d9cfa66b5 data\better_deco\loot_table\blocks\mangrove_glass_tecque.json
@@ -89,6 +89,7 @@ b0da3705bf7dfdecb717cac4cd8d3b4175af5925 data\better_deco\loot_table\blocks\acac
 a6ed731b041b0d29db6d2715f736a882ed599d05 data\better_deco\loot_table\blocks\magenta_sofa.json
 1e37e8f6184ec62aeb923edae18ee19b887ca60c data\better_deco\loot_table\blocks\oak_storage_crate.json
 a7bbdd8b8d942ffff28e88d603fa919c519aa302 data\better_deco\loot_table\blocks\dark_oak_chair.json
+d4306d832c199b858ac0bf11842604dc6ef9dab9 data\better_deco\loot_table\blocks\deepslate_path.json
 864981df88191b489b5dc607f8b4105d586dd705 data\better_deco\loot_table\blocks\bamboo_storage_crate.json
 ceb52f9607023ba1bdde1523151307bfac99ab7a data\better_deco\loot_table\blocks\black_kitchen_drawer.json
 20a193bf2c024e5d4414746c0e271daed0110111 data\better_deco\loot_table\blocks\acacia_cutting_board.json
@@ -191,6 +192,7 @@ dcefa83de3773b64dfef12d5a8c49c05178374ec data\better_deco\loot_table\blocks\warp
 86366316f5c5df7bb2ae5ecf910c840dedcfe69b data\better_deco\loot_table\blocks\mangrove_bedside.json
 9b232f9401843bfd270ee183990449347b89c512 data\better_deco\loot_table\blocks\oak_cutting_board.json
 22635cd8f9eeaee104549e736c6e919fa61548fb data\better_deco\loot_table\blocks\white_sink.json
+10ac04927da04822e27e42a0aae97632c30958ee data\better_deco\loot_table\blocks\andesite_path.json
 707b69a7d9b2b88b3b234637359f8fde10176035 data\better_deco\loot_table\blocks\brown_stool.json
 a66e3bc4701d709b52a58c5fe67c0ca11171533a data\better_deco\loot_table\blocks\grey_sofa.json
 d3d3847d03c21bc1692938c1a41cbb2a3fb9ba0b data\better_deco\loot_table\blocks\oak_kitchen_drawer.json
@@ -226,6 +228,7 @@ da24f3381ddc2db1322a54114d658d91e7a8eb96 data\better_deco\loot_table\blocks\pink
 3bef9987c6897968bb22a82f8ad598d38ba26c5a data\better_deco\loot_table\blocks\brown_lamp.json
 9a2d102098c298d341e03323c2c1c93585aeaa5d data\better_deco\loot_table\blocks\cherry_oven.json
 7627b51c2de5b9cab777c0d1fa3a893216731436 data\better_deco\loot_table\blocks\crimson_park_bench.json
+eeb3c41e29de4aa0592f1f4d239315b4a9076043 data\better_deco\loot_table\blocks\granite_path.json
 9aafa4d97a3cabf38dafb158a7a7e9e82dfd9260 data\better_deco\loot_table\blocks\warped_glass_tecque.json
 11b0a0459f8840727e4ea2a36198d4bd850fe063 data\better_deco\loot_table\blocks\cyan_digital_clock.json
 1c007c243a60f4e77ce1c9fd3548aef06448daab data\better_deco\loot_table\blocks\purple_cabinet.json
@@ -307,6 +310,7 @@ b200bfc154a00b9a1ac58b8d29f0946db5f54fe7 data\better_deco\loot_table\blocks\cher
 a568726d70cddf4efe3c77043505c76b1fe6959e data\better_deco\loot_table\blocks\black_sink.json
 a732b9054c5e5d3fcdde915559b52e68833417fd data\better_deco\loot_table\blocks\crimson_oven.json
 4999d43f71cbe556563625c03a21fc71310a0e65 data\better_deco\loot_table\blocks\cherry_storage_crate.json
+efb97d608008239fcf6f85662859343694b787c8 data\better_deco\loot_table\blocks\diorite_path.json
 c5934f221226c5a2245d76d99a309a4f916c2dd9 data\better_deco\loot_table\blocks\orange_sink.json
 7d1aa3938a6650d122682b777b3f75c68c2e5bee data\better_deco\loot_table\blocks\acacia_table.json
 39aacdc17669574161067af348fc2ecc89b279c8 data\better_deco\loot_table\blocks\yellow_lamp.json

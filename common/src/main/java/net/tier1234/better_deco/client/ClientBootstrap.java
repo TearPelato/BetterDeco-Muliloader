@@ -28,7 +28,6 @@ public class ClientBootstrap {
 
     public static void registerScreens(ScreenRegister register)
     {
-        register.apply(ModMenuTypes.CRATE_MENU.get(), CrateScreen::new);
         register.apply(ModMenuTypes.TECQUE_MENU.get(), TecqueScreen::new);
         register.apply(ModMenuTypes.FURNI_WORKBENCH.get(), WorkbenchScreen::new);
         register.apply(ModMenuTypes.SHELF_MENU.get(), ShelfScreen::new);

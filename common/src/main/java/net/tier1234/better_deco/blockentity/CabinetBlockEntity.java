@@ -11,7 +11,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.block.CabinetBlock;
@@ -19,11 +18,6 @@ import net.tier1234.better_deco.registries.ModBlockEntities;
 
 public class CabinetBlockEntity extends BasicLootBlockEntity
 {
-    protected CabinetBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
-    {
-        super(type, pos, state);
-    }
-
     public CabinetBlockEntity(BlockPos pos, BlockState state)
     {
         super(ModBlockEntities.CUSTOM_CABINET_BE.get(), pos, state);

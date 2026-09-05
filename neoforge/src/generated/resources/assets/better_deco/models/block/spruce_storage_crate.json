@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/crate",
+  "textures": {
+    "particle": "minecraft:block/spruce_planks",
+    "texture": "better_deco:block/spruce_crate"
+  }
+}

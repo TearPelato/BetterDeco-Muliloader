@@ -477,28 +477,28 @@ public class ModBlocks {
             ()-> new BedsideCabinetBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Crates
-    public static final RegistryEntry<Block> OAK_CRATE = register("oak_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_CRATE = register("spruce_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_CRATE = register("birch_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_CRATE = register("jungle_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> ACACIA_CRATE = register("acacia_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_CRATE = register("mangrove_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_CRATE = register("dark_oak_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_CRATE = register("cherry_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_CRATE = register("bamboo_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_CRATE = register("crimson_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_CRATE = register("warped_storage_crate",
-            ()-> new CrateBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> OAK_CRATE = register("oak_storage_crate",
+            ()-> new CrateBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> SPRUCE_CRATE = register("spruce_storage_crate",
+            ()-> new CrateBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> BIRCH_CRATE = register("birch_storage_crate",
+            ()-> new CrateBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> JUNGLE_CRATE = register("jungle_storage_crate",
+            ()-> new CrateBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> ACACIA_CRATE = register("acacia_storage_crate",
+            ()-> new CrateBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> MANGROVE_CRATE = register("mangrove_storage_crate",
+            ()-> new CrateBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> DARK_OAK_CRATE = register("dark_oak_storage_crate",
+            ()-> new CrateBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> CHERRY_CRATE = register("cherry_storage_crate",
+            ()-> new CrateBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> BAMBOO_CRATE = register("bamboo_storage_crate",
+            ()-> new CrateBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> CRIMSON_CRATE = register("crimson_storage_crate",
+            ()-> new CrateBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryEntry<CrateBlock> WARPED_CRATE = register("warped_storage_crate",
+            ()-> new CrateBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Sinks
     public static final RegistryEntry<KitchenSinkBlock> OAK_SINK = register("oak_sink",

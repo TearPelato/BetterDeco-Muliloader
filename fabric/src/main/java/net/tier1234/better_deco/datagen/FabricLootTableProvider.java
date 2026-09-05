@@ -380,6 +380,10 @@ public class FabricLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.TOASTER_DARK.get());
 
         dropSelf(ModBlocks.STONE_PATH.get());
+        dropSelf(ModBlocks.ANDESITE_PATH.get());
+        dropSelf(ModBlocks.GRANITE_PATH.get());
+        dropSelf(ModBlocks.DIORITE_PATH.get());
+        dropSelf(ModBlocks.DEEPSLATE_PATH.get());
         dropSelf(ModBlocks.OAK_CUTTING_BOARD.get());
 
         dropSelf(ModBlocks.WORKBENCH.get());

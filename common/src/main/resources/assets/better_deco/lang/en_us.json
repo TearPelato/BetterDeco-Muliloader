@@ -478,6 +478,7 @@
   "key.better_deco.g": "Press G to Fart",
 
   "sounds.better_deco.fart": "Player Farted",
-  "container.better_deco.shelf": "Shelf"
+  "container.better_deco.shelf": "Shelf",
+  "container.better_deco.crate": "Crate"
 
 }

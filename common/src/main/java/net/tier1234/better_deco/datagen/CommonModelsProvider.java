@@ -462,6 +462,18 @@ public class CommonModelsProvider {
         stonePath(ModBlocks.GRANITE_PATH.get());
         stonePath(ModBlocks.DIORITE_PATH.get());
         stonePath(ModBlocks.DEEPSLATE_PATH.get());
+
+        crate(ModBlocks.OAK_CRATE.get());
+        crate(ModBlocks.SPRUCE_CRATE.get());
+        crate(ModBlocks.BIRCH_CRATE.get());
+        crate(ModBlocks.JUNGLE_CRATE.get());
+        crate(ModBlocks.ACACIA_CRATE.get());
+        crate(ModBlocks.DARK_OAK_CRATE.get());
+        crate(ModBlocks.MANGROVE_CRATE.get());
+        crate(ModBlocks.CHERRY_CRATE.get());
+        crate(ModBlocks.BAMBOO_CRATE.get());
+        crate(ModBlocks.CRIMSON_CRATE.get());
+        crate(ModBlocks.WARPED_CRATE.get());
     }
 
 
@@ -1413,6 +1425,27 @@ public class CommonModelsProvider {
                 .select(Direction.SOUTH,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
                 .select(Direction.EAST,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
                 .select(Direction.WEST,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+
+        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, model);
+    }
+
+    private void crate(CrateBlock block) {
+        WoodType type = block.getType();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_crate"));
+
+        ModelTemplate template = getModel(Constants.id("block/crate"));
+        ResourceLocation model = template.create(block, textures, modelConsumer);
+
+
+        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
 
 
         blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));

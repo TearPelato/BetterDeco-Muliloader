@@ -2,22 +2,18 @@ package net.tier1234.better_deco.blockentity;
 
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
-import net.tier1234.better_deco.screen.custom.CrateMenu;
-import org.jetbrains.annotations.Nullable;
 
-public class CrateBlockEntity extends BlockEntity implements MenuProvider {
+public class CrateBlockEntity extends BasicLootBlockEntity {
     public final SimpleContainer inventory = new SimpleContainer(66) {
         @Override
         public int getMaxStackSize() {
@@ -41,27 +37,19 @@ public class CrateBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
+    public int getContainerSize() {
+        return 66;
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    protected Component getDefaultName() {
+        return Component.translatable("container.better_deco.crate");
     }
 
     @Override
-    public Component getDisplayName() {
-        return Component.literal("Crate");
+    protected AbstractContainerMenu createMenu(int windowId, Inventory playerInventory) {
+        return new ChestMenu(MenuType.GENERIC_9x6, windowId, playerInventory, this,6);
     }
 
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new CrateMenu(i, inventory, this);
-    }
-    public CrateMenu.CustomData createCustomData() {
-        return new CrateMenu.CustomData(this.getBlockPos());
-    }
 
 }
