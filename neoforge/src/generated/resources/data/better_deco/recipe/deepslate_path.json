@@ -1,0 +1,15 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:deepslate"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "better_deco:deepslate_path"
+  }
+}

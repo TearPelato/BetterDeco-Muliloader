@@ -565,7 +565,11 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.bench(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_PARK_BENCH.get(), recipeOutput);
         this.bench(Blocks.WARPED_PLANKS, ModBlocks.WARPED_PARK_BENCH.get(), recipeOutput);
 
-
+        this.stonePath(Blocks.COBBLESTONE, ModBlocks.STONE_PATH.get(), recipeOutput);
+        this.stonePath(Blocks.ANDESITE, ModBlocks.ANDESITE_PATH.get(), recipeOutput);
+        this.stonePath(Blocks.DIORITE, ModBlocks.DIORITE_PATH.get(), recipeOutput);
+        this.stonePath(Blocks.GRANITE, ModBlocks.GRANITE_PATH.get(), recipeOutput);
+        this.stonePath(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_PATH.get(), recipeOutput);
 
     }
 
@@ -764,6 +768,13 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .requires(wood,3)
                 .requires(Items.CHAIN, 2)
                 .unlockedBy("has_item", has(wood))
+                .save(output);
+    }
+
+    public void stonePath(Block stone, Block result, RecipeOutput output){
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(stone,1)
+                .unlockedBy("has_item", has(stone))
                 .save(output);
     }
 

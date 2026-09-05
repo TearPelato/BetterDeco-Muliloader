@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/stone_path0",
+  "textures": {
+    "particle": "minecraft:block/granite",
+    "texture": "minecraft:block/granite"
+  }
+}

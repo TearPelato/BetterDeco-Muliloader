@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-02T17:37:58.4466827	Loot Tables
+// 1.21.1	2026-09-05T17:57:12.2792564	Loot Tables
 c960760c1f59c9357137ea82119a6aad0ee1e688 data/better_deco/loot_table/blocks/acacia_basin.json
 fceb576f27dd459dbe9f7a6db8922c82f60b608e data/better_deco/loot_table/blocks/acacia_bath.json
 a3a550e985f91cd952484fe2aba00e9eee359c7a data/better_deco/loot_table/blocks/acacia_bedside.json
@@ -20,6 +20,7 @@ b39d1cfd239a885e8c4bb40169f9879f3e0ede35 data/better_deco/loot_table/blocks/acac
 7a288dd348c79e3795cc6e1391d33f952296e9f8 data/better_deco/loot_table/blocks/acacia_storage_crate.json
 0b4655b61b7c160cd5a27dc2ac7eee6e9ee333e8 data/better_deco/loot_table/blocks/acacia_table.json
 2a413bc67f5655c50f5a574bb7d5874a7dd39c84 data/better_deco/loot_table/blocks/acacia_toilet.json
+bcc9c7daaf5cb1c972b8882b132511ea41543e57 data/better_deco/loot_table/blocks/andesite_path.json
 ff58215690977b30749b7bfbd16d064dfeab9228 data/better_deco/loot_table/blocks/bamboo_basin.json
 b5103380a029a0b3a2f31ecb048093f778b8efe4 data/better_deco/loot_table/blocks/bamboo_bath.json
 f5ceb6832e2986fbae7f684ec0a9bb31897af25b data/better_deco/loot_table/blocks/bamboo_bedside.json
@@ -161,8 +162,11 @@ a21636030a3d7719be8ad4453000a74d8a2552a9 data/better_deco/loot_table/blocks/dark
 42500b1d7e957bd6aff1f188c99219e8ac1597b6 data/better_deco/loot_table/blocks/dark_oak_storage_crate.json
 286a5e9f33cb92f86e1576f5a473896305f5cc64 data/better_deco/loot_table/blocks/dark_oak_table.json
 9bc4d549a1054732f3a1dd213f1bdb8a32c5f247 data/better_deco/loot_table/blocks/dark_oak_toilet.json
+06e226e65a9b50da401964426772b6a898196b0f data/better_deco/loot_table/blocks/deepslate_path.json
+bb9a35c95ac4a3cfe7639b39ea14396622aaf9a6 data/better_deco/loot_table/blocks/diorite_path.json
 abe04c165383d534109f6febf10af5af99d6e43e data/better_deco/loot_table/blocks/fridge_dark.json
 8d778ea0f8c75ec0f63c97d2513c4d23117cf889 data/better_deco/loot_table/blocks/fridge_light.json
+ff9ee9c02b2ed765e53d6b2e8a161b9605a0837f data/better_deco/loot_table/blocks/granite_path.json
 e1452a16cb23d21e50b403d55485992cb37eee45 data/better_deco/loot_table/blocks/gray_cabinet.json
 e4091ad532353a873b1782e15ede33aab06a1628 data/better_deco/loot_table/blocks/gray_digital_clock.json
 eaa10f018a8583ea692e2283883ae252414e435f data/better_deco/loot_table/blocks/gray_kitchen_counter.json

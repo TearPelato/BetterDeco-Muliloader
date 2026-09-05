@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
 import net.tier1234.better_deco.block.type.MetalType;
+import net.tier1234.better_deco.block.type.StoneType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -215,8 +216,19 @@ public class ModBlocks {
             ()-> new DeskCabinetBlock(BlockBehaviour.Properties.of(), WoodType.WARPED));
 
     //Path
-    public static final RegistryEntry<Block> STONE_PATH = register("stone_path",
-            ()-> new RockPath(BlockBehaviour.Properties.of().strength(3.1f)));
+    public static final RegistryEntry<PathBlock> STONE_PATH = register("stone_path",
+            ()-> new PathBlock(StoneType.STONE,BlockBehaviour.Properties.of().strength(3.1f)));
+    public static final RegistryEntry<PathBlock> ANDESITE_PATH = register("andesite_path",
+            ()-> new PathBlock(StoneType.ANDESITE,BlockBehaviour.Properties.of().strength(3.1f)));
+    public static final RegistryEntry<PathBlock> GRANITE_PATH = register("granite_path",
+            ()-> new PathBlock(StoneType.GRANITE,BlockBehaviour.Properties.of().strength(3.1f)));
+    public static final RegistryEntry<PathBlock> DIORITE_PATH = register("diorite_path",
+            ()-> new PathBlock(StoneType.DIORITE,BlockBehaviour.Properties.of().strength(3.1f)));
+    public static final RegistryEntry<PathBlock> DEEPSLATE_PATH = register("deepslate_path",
+            ()-> new PathBlock(StoneType.DEEPSLATE,BlockBehaviour.Properties.of().strength(3.1f)));
+
+
+
 
     //PARK BENCH
     public static final RegistryEntry<ParkBenchBlock> OAK_PARK_BENCH = register("oak_park_bench",

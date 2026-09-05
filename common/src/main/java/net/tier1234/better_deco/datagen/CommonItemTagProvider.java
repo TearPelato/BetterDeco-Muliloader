@@ -478,7 +478,11 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
         .add(ModBlocks.CRIMSON_PARK_BENCH.get().asItem())
         .add(ModBlocks.WARPED_PARK_BENCH.get().asItem())
 
-        .add(ModBlocks.STONE_PATH.get().asItem());
+        .add(ModBlocks.STONE_PATH.get().asItem())
+        .add(ModBlocks.ANDESITE_PATH.get().asItem())
+        .add(ModBlocks.GRANITE_PATH.get().asItem())
+        .add(ModBlocks.DIORITE_PATH.get().asItem())
+        .add(ModBlocks.DEEPSLATE_PATH.get().asItem());
 
     }
 }

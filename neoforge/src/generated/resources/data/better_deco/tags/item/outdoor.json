@@ -22,6 +22,10 @@
     "better_deco:bamboo_park_bench",
     "better_deco:crimson_park_bench",
     "better_deco:warped_park_bench",
-    "better_deco:stone_path"
+    "better_deco:stone_path",
+    "better_deco:andesite_path",
+    "better_deco:granite_path",
+    "better_deco:diorite_path",
+    "better_deco:deepslate_path"
   ]
 }

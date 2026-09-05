@@ -1,8 +1,8 @@
-// 1.21.1	2026-09-05T13:55:02.3449657	BetterDeco/Tags for minecraft:item
+// 1.21.1	2026-09-05T18:12:30.6788614	BetterDeco/Tags for minecraft:item
 6db0b9023c29715c498efcfc1db1e4456441369a data\minecraft\tags\item\swords.json
 cd89c96d2c2f67e4640f534d244d6b43cc696701 data\better_deco\tags\item\kitchen.json
 b3b2d40c14f412be49d0b22cd8e0d7f20aa49164 data\better_deco\tags\item\bath.json
-aaa6a3e2bf078386a77ef3074286b052378d0150 data\better_deco\tags\item\outdoor.json
+0981eed4e5577f33eac667a01cdedfda2353184d data\better_deco\tags\item\outdoor.json
 a604d465849503f6215d193c440f881624a7c392 data\better_deco\tags\item\general.json
 258ef8d52b924b7336371cbfe1d5f609f240bd45 data\better_deco\tags\item\bedroom.json
 fd64d63f3bef9ccd609dfaa9012777c1f44fa681 data\better_deco\tags\item\office.json

@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
 import net.tier1234.better_deco.block.type.MetalType;
+import net.tier1234.better_deco.block.type.StoneType;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModItems;
 
@@ -455,6 +456,12 @@ public class CommonModelsProvider {
         bench(ModBlocks.BAMBOO_PARK_BENCH.get());
         bench(ModBlocks.CRIMSON_PARK_BENCH.get());
         bench(ModBlocks.WARPED_PARK_BENCH.get());
+
+        stonePath(ModBlocks.STONE_PATH.get());
+        stonePath(ModBlocks.ANDESITE_PATH.get());
+        stonePath(ModBlocks.GRANITE_PATH.get());
+        stonePath(ModBlocks.DIORITE_PATH.get());
+        stonePath(ModBlocks.DEEPSLATE_PATH.get());
     }
 
 
@@ -1385,6 +1392,32 @@ public class CommonModelsProvider {
         registerItemModel(block, singleModel);
     }
 
+
+    private void stonePath(PathBlock block) {
+        StoneType type = block.getType();
+
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.getName()));
+        textures.put(TextureSlot.TEXTURE, ResourceLocation.withDefaultNamespace("block/"+type.getName()));
+
+        ModelTemplate template = getModel(Constants.id("block/stone_path0"));
+        ResourceLocation model = template.create(block, textures, modelConsumer);
+
+        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, PathBlock.WATERLOGGED)
+                .select(Direction.NORTH,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+
+                .select(Direction.NORTH,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+
+        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, model);
+    }
 
 
 

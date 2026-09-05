@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=east,waterlogged=false": {
+      "model": "better_deco:block/granite_path",
+      "y": 90
+    },
+    "facing=east,waterlogged=true": {
+      "model": "better_deco:block/granite_path",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
+      "model": "better_deco:block/granite_path",
+      "y": 0
+    },
+    "facing=north,waterlogged=true": {
+      "model": "better_deco:block/granite_path",
+      "y": 0
+    },
+    "facing=south,waterlogged=false": {
+      "model": "better_deco:block/granite_path",
+      "y": 180
+    },
+    "facing=south,waterlogged=true": {
+      "model": "better_deco:block/granite_path",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "better_deco:block/granite_path",
+      "y": 270
+    },
+    "facing=west,waterlogged=true": {
+      "model": "better_deco:block/granite_path",
+      "y": 270
+    }
+  }
+}
