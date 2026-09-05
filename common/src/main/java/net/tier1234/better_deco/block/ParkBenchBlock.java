@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -33,14 +34,19 @@ import java.util.List;
 public class ParkBenchBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
-
+    public final WoodType type;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public ParkBenchBlock(Properties properties)
+    public ParkBenchBlock(WoodType type,Properties properties)
     {
         super(properties);
+        this.type = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
+    }
+
+    public WoodType getType() {
+        return type;
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
@@ -109,19 +115,7 @@ public class ParkBenchBlock extends FurnitureHorizontalBlock
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if(!level.isClientSide()) {
-            Entity entity = null;
-            List<SeatEntity> entities = level.getEntities(ModEntities.SEAT_ENTITY.get(), new AABB(pos), chair -> true);
-            if(entities.isEmpty()) {
-                entity = ModEntities.SEAT_ENTITY.get().spawn(((ServerLevel) level), pos, MobSpawnType.TRIGGERED);
-            } else {
-                entity = entities.get(0);
-            }
-
-            player.startRiding(entity);
-        }
-
-        return InteractionResult.SUCCESS;
+        return SeatEntity.create(level, pos, 0, player, state.getValue(DIRECTION));
     }
 
     @Override
@@ -159,7 +153,7 @@ public class ParkBenchBlock extends FurnitureHorizontalBlock
     private boolean isBench(LevelAccessor level, BlockPos source, Direction direction, Direction targetDirection)
     {
         BlockState state = level.getBlockState(source.relative(direction));
-        if(state.getBlock() == this)
+        if(state.getBlock() instanceof ParkBenchBlock)
         {
             Direction sofaDirection = state.getValue(DIRECTION);
             return sofaDirection.equals(targetDirection);

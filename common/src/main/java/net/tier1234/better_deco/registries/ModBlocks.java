@@ -219,28 +219,28 @@ public class ModBlocks {
             ()-> new RockPath(BlockBehaviour.Properties.of().strength(3.1f)));
 
     //PARK BENCH
-    public static final RegistryEntry<Block> OAK_PARK_BENCH = register("oak_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> SPRUCE_PARK_BENCH = register("spruce_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> BIRCH_PARK_BENCH = register("birch_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> JUNGLE_PARK_BENCH = register("jungle_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> ACACIA_PARK_BENCH = register("acacia_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> DARK_OAK_PARK_BENCH = register("dark_oak_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> MANGROVE_PARK_BENCH = register("mangrove_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> CHERRY_PARK_BENCH = register("cherry_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> BAMBOO_PARK_BENCH = register("bamboo_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> CRIMSON_PARK_BENCH = register("crimson_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
-    public static final RegistryEntry<Block> WARPED_PARK_BENCH = register("warped_park_bench",
-            ()-> new ParkBenchBlock(BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> OAK_PARK_BENCH = register("oak_park_bench",
+            ()-> new ParkBenchBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> SPRUCE_PARK_BENCH = register("spruce_park_bench",
+            ()-> new ParkBenchBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> BIRCH_PARK_BENCH = register("birch_park_bench",
+            ()-> new ParkBenchBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> JUNGLE_PARK_BENCH = register("jungle_park_bench",
+            ()-> new ParkBenchBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> ACACIA_PARK_BENCH = register("acacia_park_bench",
+            ()-> new ParkBenchBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> DARK_OAK_PARK_BENCH = register("dark_oak_park_bench",
+            ()-> new ParkBenchBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> MANGROVE_PARK_BENCH = register("mangrove_park_bench",
+            ()-> new ParkBenchBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> CHERRY_PARK_BENCH = register("cherry_park_bench",
+            ()-> new ParkBenchBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> BAMBOO_PARK_BENCH = register("bamboo_park_bench",
+            ()-> new ParkBenchBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> CRIMSON_PARK_BENCH = register("crimson_park_bench",
+            ()-> new ParkBenchBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(2.5f)));
+    public static final RegistryEntry<ParkBenchBlock> WARPED_PARK_BENCH = register("warped_park_bench",
+            ()-> new ParkBenchBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(2.5f)));
 
     public static final RegistryEntry<ToasterBlock> TOASTER_LIGHT = register("toaster_light",
             ()->  new ToasterBlock(MetalType.LIGHT,BlockBehaviour.Properties.of().strength(2f).noOcclusion()));

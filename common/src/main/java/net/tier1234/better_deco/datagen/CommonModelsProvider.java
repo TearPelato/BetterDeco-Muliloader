@@ -443,6 +443,18 @@ public class CommonModelsProvider {
         shelf(ModBlocks.BAMBOO_SHELF.get());
         shelf(ModBlocks.CRIMSON_SHELF.get());
         shelf(ModBlocks.WARPED_SHELF.get());
+
+        bench(ModBlocks.OAK_PARK_BENCH.get());
+        bench(ModBlocks.SPRUCE_PARK_BENCH.get());
+        bench(ModBlocks.BIRCH_PARK_BENCH.get());
+        bench(ModBlocks.JUNGLE_PARK_BENCH.get());
+        bench(ModBlocks.ACACIA_PARK_BENCH.get());
+        bench(ModBlocks.DARK_OAK_PARK_BENCH.get());
+        bench(ModBlocks.MANGROVE_PARK_BENCH.get());
+        bench(ModBlocks.CHERRY_PARK_BENCH.get());
+        bench(ModBlocks.BAMBOO_PARK_BENCH.get());
+        bench(ModBlocks.CRIMSON_PARK_BENCH.get());
+        bench(ModBlocks.WARPED_PARK_BENCH.get());
     }
 
 
@@ -1337,6 +1349,43 @@ public class CommonModelsProvider {
         blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
         registerItemModel(block, singleModel);
     }
+
+        private void bench(ParkBenchBlock block) {
+        WoodType type = block.getType();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
+        textures.put(TextureSlot.TEXTURE,Constants.id("block/"+type.name()+"_bench"));
+
+            ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+            ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+            ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+            ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+
+            PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, ParkBenchBlock.TYPE)
+                    .select(Direction.NORTH, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                    .select(Direction.SOUTH, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                    .select(Direction.EAST, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                    .select(Direction.WEST, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                    .select(Direction.NORTH, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                    .select(Direction.SOUTH, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                    .select(Direction.EAST, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                    .select(Direction.WEST, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                    .select(Direction.NORTH, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                    .select(Direction.SOUTH, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                    .select(Direction.EAST, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                    .select(Direction.WEST, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                    .select(Direction.NORTH, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                    .select(Direction.SOUTH, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                    .select(Direction.EAST, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+                    .select(Direction.WEST, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+
+
+
+            blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, singleModel);
+    }
+
+
 
 
     private static ModelTemplate getModel(ResourceLocation model) {

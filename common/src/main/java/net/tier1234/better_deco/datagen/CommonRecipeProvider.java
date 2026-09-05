@@ -553,6 +553,17 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.shelf(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_SHELF.get(), recipeOutput);
         this.shelf(Blocks.WARPED_PLANKS, ModBlocks.WARPED_SHELF.get(), recipeOutput);
 
+        this.bench(Blocks.OAK_PLANKS, ModBlocks.OAK_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_PARK_BENCH.get(), recipeOutput);
+        this.bench(Blocks.WARPED_PLANKS, ModBlocks.WARPED_PARK_BENCH.get(), recipeOutput);
 
 
 
@@ -746,6 +757,14 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(wood))
                 .save(output);
 
+    }
+
+    public void bench(Block wood,  Block result, RecipeOutput output) {
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(wood,3)
+                .requires(Items.CHAIN, 2)
+                .unlockedBy("has_item", has(wood))
+                .save(output);
     }
 
 

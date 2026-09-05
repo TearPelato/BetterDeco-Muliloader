@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/park_bench_single",
+  "textures": {
+    "particle": "minecraft:block/mangrove_planks",
+    "texture": "better_deco:block/mangrove_bench"
+  }
+}
