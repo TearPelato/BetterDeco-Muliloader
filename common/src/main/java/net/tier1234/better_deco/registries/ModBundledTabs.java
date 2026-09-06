@@ -30,6 +30,8 @@ public class ModBundledTabs {
             .icon(new ItemStack(ModItems.KITCHEN_KNIFE.get()))
             .displayItems((provider, output) -> {
                 output.accept(ModItems.KITCHEN_KNIFE.get());
+                output.accept(ModItems.SLICED_BREAD.get());
+                output.accept(ModItems.COOKED_SLICED_BREAD.get());
             })
             .build());
 
