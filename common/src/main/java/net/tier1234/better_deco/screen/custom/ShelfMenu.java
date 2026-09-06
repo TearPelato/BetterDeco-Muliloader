@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.tier1234.better_deco.blockentity.OvenBlockEntity;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.blockentity.ShelfBlockEntity;
 import net.tier1234.better_deco.registries.ModMenuTypes;
@@ -20,6 +21,7 @@ import net.tier1234.better_deco.registries.ModMenuTypes;
 public class ShelfMenu extends AbstractContainerMenu {
     public final ShelfBlockEntity blockEntity;
     private final Level level;
+    private final ContainerLevelAccess access;
 
 
     public ShelfMenu(int containerId, Inventory inv, ShelfMenu.CustomData data) {
@@ -30,6 +32,7 @@ public class ShelfMenu extends AbstractContainerMenu {
         super(ModMenuTypes.SHELF_MENU.get(), containerId);
         this.blockEntity = ((ShelfBlockEntity) blockEntity);
         this.level = inv.player.level();
+        this.access = ContainerLevelAccess.create(level,blockEntity.getBlockPos());
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -85,41 +88,8 @@ public class ShelfMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.ACACIA_SHELF.get())
-        ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.OAK_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.BIRCH_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.JUNGLE_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.SPRUCE_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.CHERRY_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.BAMBOO_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.DARK_OAK_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.MANGROVE_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.CRIMSON_SHELF.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.WARPED_SHELF.get());
-
-
+    public boolean stillValid(Player pPlayer) {
+        return access.evaluate((level, blockPos)-> level.getBlockEntity(blockPos) instanceof ShelfBlockEntity, true);
 
     }
 

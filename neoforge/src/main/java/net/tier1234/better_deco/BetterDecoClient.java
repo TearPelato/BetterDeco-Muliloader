@@ -5,6 +5,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,9 +20,11 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.block.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
+import net.tier1234.better_deco.compat.everycomp.CommonEveryCompatModule;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 import net.tier1234.better_deco.registries.ModKeybinds;
 import net.tier1234.better_deco.registries.ModSounds;
@@ -56,6 +59,11 @@ public class BetterDecoClient {
                 event.register(type, factory::apply);
             }
         });
+    }
+
+    @SubscribeEvent
+    private static void register(RegisterEvent event){
+        event.register(BuiltInRegistries.CREATIVE_MODE_TAB.key(), helper-> CommonEveryCompatModule.EveryCompatCreativeTabRegister.register());
     }
 
     @SubscribeEvent

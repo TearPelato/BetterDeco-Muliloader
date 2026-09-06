@@ -14,7 +14,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.tier1234.better_deco.block.OvenBlock;
 import net.tier1234.better_deco.blockentity.OvenBlockEntity;
+import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.screen.slot.OvenFuelSlot;
@@ -23,6 +25,7 @@ public class OvenMenu extends AbstractContainerMenu {
     public final OvenBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
+    private final ContainerLevelAccess access;
 
     public OvenMenu(int pContainerId, Inventory inv, CustomData data) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(data.pos()), new SimpleContainerData(5));
@@ -34,6 +37,7 @@ public class OvenMenu extends AbstractContainerMenu {
         this.blockEntity = ((OvenBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
+        this.access = ContainerLevelAccess.create(level,blockEntity.getBlockPos());
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -124,62 +128,7 @@ public class OvenMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.OAK_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.SPRUCE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.BIRCH_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.JUNGLE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.ACACIA_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.DARK_OAK_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.MANGROVE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.CHERRY_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.BAMBOO_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.CRIMSON_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.WARPED_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.RED_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.ORANGE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.YELLOW_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.MAGENTA_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.PINK_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.PURPLE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.BLUE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.LIGHT_BLUE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.GREEN_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.LIME_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.CYAN_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.WHITE_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.BLACK_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.BROWN_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.LIGHT_GRAY_OVEN.get())
-                || stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.GRAY_OVEN.get());
-
-
+        return access.evaluate((level, blockPos)-> level.getBlockEntity(blockPos) instanceof OvenBlockEntity, true);
 
     }
 
