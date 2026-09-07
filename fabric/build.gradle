@@ -39,6 +39,7 @@ dependencies {
     modRuntimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
     modCompileOnly ("net.mehvahdjukaar:everycomp-fabric:${everycomp_version}:fabric") { transitive = false }
     modCompileOnly ("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") { transitive = false }
+    modImplementation("net.mehvahdjukaar:codecui-fabric:${codecui_version}")
 }
 
 sourceSets.main.resources.srcDir 'src/generated/resources'

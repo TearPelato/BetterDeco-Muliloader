@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-05T22:23:33.6189361	BetterDeco/Recipes
+// 1.21.1	2026-09-07T17:49:05.8025305	BetterDeco/Recipes
 e1f23224dbbe93eb09d7afca8214839ae8f25c21 data\better_deco\advancement\recipes\crimson_cutting_board.json
 bf85d53c3677692889be2fce7d4c42e5170a8a99 data\better_deco\recipe\orange_kitchen_drawer.json
 097a258c188025e885dceb322c8c1ea4ae1179b2 data\better_deco\recipe\bamboo_cutting_board.json
@@ -220,10 +220,12 @@ e5791e1ef3896ef8c6078601c5835edbbee6f650 data\better_deco\advancement\recipes\de
 2d1bb14e79121af1daed7817cd46e8f69e41ab9c data\better_deco\advancement\recipes\light_gray_oven.json
 8d5fcbf846bc332d8ecb2f5bad8ac0f8c2b4434a data\better_deco\advancement\recipes\decorations\workbench.json
 53c7a4fa043dbf0df44c4c4640618dd42f5e7511 data\better_deco\advancement\recipes\crimson_bath.json
+29e241e8d5ca2cbaa666bd6c4e1c1db8796b7e42 data\better_deco\advancement\recipes\misc\slicing\sliced_bread_from_bread.json
 fe16497f88c0f4248ce75a12c06417b7a356c0e7 data\better_deco\recipe\oak_jar.json
 49b009fc2cdaa58db98523f1e4c6fa034205dc3e data\better_deco\recipe\light_gray_kitchen_drawer.json
 5a7a950ca063f75a53d9f44ea0ead7c005e2f458 data\better_deco\recipe\workbench.json
 cc094f1d27a2ecdfaac02d5b73b49fe300f547e0 data\better_deco\recipe\white_lamp.json
+cfebce4a79abb80efdbb88bd401c532d365cfba3 data\better_deco\recipe\slicing\sliced_bread_from_bread.json
 7b8c8e6b2c38e6bee4b6bd9a018330b678da262e data\better_deco\recipe\spruce_kitchen_counter.json
 4fdd72051d51c8d90b9ac2c037871d2d9901df40 data\better_deco\recipe\dark_oak_bedside.json
 c0b4375f8e4319d5f2d70a475a9901ea1d69fe85 data\better_deco\advancement\recipes\oak_cutting_board.json

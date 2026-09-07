@@ -443,7 +443,10 @@
   "block.better_deco.crimson_desk_cabinet": "Crimson Desk Cabinet",
   "block.better_deco.warped_desk_cabinet": "Warped Desk Cabinet",
   "block.better_deco.workbench":"Deco Workbench",
+
   "item.better_deco.kitchen_knife": "Kitchen Knife",
+  "item.better_deco.sliced_bread": "Sliced Bread",
+  "item.better_deco.cooked_sliced_bread": "Toasted Bread",
 
 
   "better_deco.configuration.sink_category": "Sink Settings",

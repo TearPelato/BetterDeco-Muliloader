@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-05T22:22:53.8718183	Recipes
+// 1.21.1	2026-09-07T16:01:25.0335567	Recipes
 ad2a867d2b8038c11d67ee6a27b1f557ceec9a64 data/better_deco/advancement/recipes/acacia_basin.json
 62a95418052fb7d6c818690c0b9739da8fce5a4f data/better_deco/advancement/recipes/acacia_bath.json
 81838960eb8524c8a54e09e0251f02472e406772 data/better_deco/advancement/recipes/acacia_bedside.json
@@ -260,6 +260,7 @@ e12400ed70f8c79d708586fb1c247515ada47125 data/better_deco/advancement/recipes/mi
 a21b4eb8c88556918a3b9621d64d20bf2066ef9f data/better_deco/advancement/recipes/misc/jungle_glass_tecque.json
 ffb4e5996ccb21759ea743d0d682c21aec070b8b data/better_deco/advancement/recipes/misc/mangrove_glass_tecque.json
 8dd6c7ee5b18da37a331e669066dc15a61bd4a0d data/better_deco/advancement/recipes/misc/oak_glass_tecque.json
+29e241e8d5ca2cbaa666bd6c4e1c1db8796b7e42 data/better_deco/advancement/recipes/misc/slicing/sliced_bread_from_bread.json
 5fbf489cdf117390db34fa2668b3a280345a7613 data/better_deco/advancement/recipes/misc/spruce_glass_tecque.json
 59fa4f1a5b2511480380d23756683c8e1cbe9425 data/better_deco/advancement/recipes/misc/warped_glass_tecque.json
 5bd0a270cdfa244027253af60259c7148a53f9d4 data/better_deco/advancement/recipes/oak_basin.json
@@ -679,6 +680,7 @@ dc154a59b938391b3369863c33de5970c6f556bd data/better_deco/recipe/red_oven.json
 8aa39fbe6efba44f8ac09ab75d9119b428e68fb9 data/better_deco/recipe/red_sink.json
 78317d51e89b12b0022d8a1bc520fa1356dc8edc data/better_deco/recipe/red_sofa.json
 314dadbe2925993a89cb15c58ac8bf13c9baa3bb data/better_deco/recipe/red_stool.json
+cfebce4a79abb80efdbb88bd401c532d365cfba3 data/better_deco/recipe/slicing/sliced_bread_from_bread.json
 0102ec19be3d30da2d7e811854a94383fdeb692e data/better_deco/recipe/spruce_basin.json
 05ecdfc47f580409d35299d0277a6db130016083 data/better_deco/recipe/spruce_bath.json
 7005de3a46519a2fa6c034d7cf769d23595fe7d1 data/better_deco/recipe/spruce_bedside.json

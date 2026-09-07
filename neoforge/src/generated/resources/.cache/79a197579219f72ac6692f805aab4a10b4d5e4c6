@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-05T21:58:20.8069062	Block States: better_deco
+// 1.21.1	2026-09-07T00:15:52.0823648	Block States: better_deco
 3890089e5dd33a0797e330d98da9b0a033bcbe0a assets/better_deco/blockstates/acacia_basin.json
 9ed614c8c26ed92ee18f1ed39f6c0e86e6c10a4d assets/better_deco/blockstates/acacia_bath.json
 7e0e5a31d206a467b9cec839fb16c1c455b3ec2b assets/better_deco/blockstates/acacia_bedside.json
@@ -1601,6 +1601,7 @@ d7ad2dca07b1ebe2e5a49f48fe009b3faf4512e1 assets/better_deco/models/item/cherry_p
 88405de776a02bffe32db925f10aaee0c7dc0ce1 assets/better_deco/models/item/cherry_storage_crate.json
 9d588fe4a1a555d755a64d199f7f914b1614325c assets/better_deco/models/item/cherry_table.json
 6a356104319991f9606cfaf87c027b7726641f4c assets/better_deco/models/item/cherry_toilet.json
+839f808da1c0b23ea6a1f1485f27186b21e504df assets/better_deco/models/item/cooked_sliced_bread.json
 6fbcbb4b9752e8880c8936a931e658c366f37fef assets/better_deco/models/item/crimson_basin.json
 8646a7f8af2b0c56677560e8aa33b1706d05150d assets/better_deco/models/item/crimson_bath.json
 1a886cf4565a6a2f7ac0f77fd999fd64670ca9b3 assets/better_deco/models/item/crimson_bedside.json
@@ -1808,6 +1809,7 @@ e811c0caaae7d21aa3e1d04df24418665e73876a assets/better_deco/models/item/red_kitc
 c42ba2db10da64b591edee7564442a6168b3f601 assets/better_deco/models/item/red_sink.json
 e573a6f09b3048313116048dbde308ae4cae8ef9 assets/better_deco/models/item/red_sofa.json
 932d383f5f24bc230fc79188f1bf271d1aa2dbf3 assets/better_deco/models/item/red_stool.json
+779d5a8f30cd8206f7c4349b245037a9b793a600 assets/better_deco/models/item/sliced_bread.json
 104f0d4e4eb91e32535573519cebf7af58e08225 assets/better_deco/models/item/spruce_basin.json
 f90c15f4790209e14ce90da93c464ae79ea771ff assets/better_deco/models/item/spruce_bath.json
 a101c04c3232d402fb23f05b6b24be796b76edaf assets/better_deco/models/item/spruce_bedside.json

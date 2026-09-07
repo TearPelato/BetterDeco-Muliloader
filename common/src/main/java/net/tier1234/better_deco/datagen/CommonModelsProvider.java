@@ -130,6 +130,8 @@ public class CommonModelsProvider {
         cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get());
 
         registerItemModel(ModItems.KITCHEN_KNIFE.get(),ResourceLocation.withDefaultNamespace("item/handheld"),Constants.id("item/knife"));
+        registerItemModel(ModItems.SLICED_BREAD.get(),ResourceLocation.withDefaultNamespace("item/handheld"),Constants.id("item/sliced_bread"));
+        registerItemModel(ModItems.COOKED_SLICED_BREAD.get(),ResourceLocation.withDefaultNamespace("item/handheld"),Constants.id("item/cooked_sliced_bread"));
 
         jar(ModBlocks.OAK_JAR.get());
         jar(ModBlocks.SPRUCE_JAR.get());

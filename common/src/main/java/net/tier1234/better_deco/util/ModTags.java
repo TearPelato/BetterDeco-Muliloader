@@ -18,6 +18,7 @@ public class ModTags {
         public static final TagKey<Item> OFFICE = createTag("office");
         public static final TagKey<Item> OUTDOOR = createTag("outdoor");
 
+        public static final TagKey<Item> KNIVES = createTag("knives");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.create(Registries.ITEM, Constants.id(name));

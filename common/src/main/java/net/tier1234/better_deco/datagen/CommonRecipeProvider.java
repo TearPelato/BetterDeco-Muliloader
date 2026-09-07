@@ -1,16 +1,18 @@
 package net.tier1234.better_deco.datagen;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.datagen.custom.WorkbenchRecipeBuilder;
+import net.tier1234.better_deco.recipe.CuttingBoardRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModItems;
 
@@ -584,6 +586,8 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.crate(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CRATE.get(), recipeOutput);
         this.crate(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CRATE.get(), recipeOutput);
 
+        this.cuttingBoardRecipe(Items.BREAD, ModItems.SLICED_BREAD.get(), 2, recipeOutput);
+
     }
 
     public void kitchenCounter(Block wood, Block result, RecipeOutput output) {
@@ -798,5 +802,14 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(wood))
                 .save(output);
     }
+
+
+    public void cuttingBoardRecipe(ItemLike input, ItemLike result, int count, RecipeOutput output) {
+        String baseName = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
+        String resultName = BuiltInRegistries.ITEM.getKey(result.asItem()).getPath();
+        SingleItemRecipeBuilder builder = new SingleItemRecipeBuilder(RecipeCategory.MISC, CuttingBoardRecipe::new, Ingredient.of(input), result, count);
+        builder.unlockedBy("has_" + baseName, has(input)).save(output, Constants.id("slicing/" + resultName + "_from_" + baseName));
+    }
+
 
 }

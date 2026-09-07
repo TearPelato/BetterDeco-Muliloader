@@ -21,7 +21,9 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
     protected void addTags(HolderLookup.Provider provider) {
 
         tag(ItemTags.SWORDS)
-                .add(ModItems.KITCHEN_KNIFE.get().asItem());
+                .add(ModItems.KITCHEN_KNIFE.get());
+        tag(ModTags.Items.KNIVES)
+                .add(ModItems.KITCHEN_KNIFE.get());
 
         tag(ModTags.Items.ELECTRONIC_FURNITURES)
                 .add(ModBlocks.FRIDGE_LIGHT.get().asItem())

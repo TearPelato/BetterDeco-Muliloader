@@ -4,10 +4,7 @@ import com.mrcrayfish.framework.api.registry.RegistryContainer;
 import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.recipe.FreezerRecipe;
-import net.tier1234.better_deco.recipe.WorkbenchRecipe;
-import net.tier1234.better_deco.recipe.MicrowaveRecipe;
-import net.tier1234.better_deco.recipe.OvenRecipe;
+import net.tier1234.better_deco.recipe.*;
 
 @RegistryContainer
 public class ModRecipes {
@@ -34,5 +31,10 @@ public class ModRecipes {
             RegistryEntry.recipeSerializer(Constants.id("workbench"), WorkbenchRecipe.Serializer::new);
     public static final RegistryEntry<RecipeType<WorkbenchRecipe>> WORKBENCH_TYPE =
             RegistryEntry.recipeType(Constants.id("workbench"));
+
+    public static final RegistryEntry<CuttingBoardRecipe.Serializer> CUTTING_BOARD_SERIALIZER =
+            RegistryEntry.recipeSerializer(Constants.id("cutting_board"), CuttingBoardRecipe.Serializer::new);
+    public static final RegistryEntry<RecipeType<CuttingBoardRecipe>> CUTTING_BOARD_TYPE =
+            RegistryEntry.recipeType(Constants.id("cutting_board"));
 
 }
