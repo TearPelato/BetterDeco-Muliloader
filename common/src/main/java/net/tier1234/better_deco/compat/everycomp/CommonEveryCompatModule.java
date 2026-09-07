@@ -363,6 +363,10 @@ public class CommonEveryCompatModule extends SimpleModule {
         }
     }
 
+    public static CommonEveryCompatModule getModuleInstance() {
+        return INSTANCE;
+    }
+
 
     @Override
     public void onModSetup() {
