@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-07T21:04:04.5601555	Recipes
+// 1.21.1	2026-09-07T22:59:25.6027041	Recipes
 ad2a867d2b8038c11d67ee6a27b1f557ceec9a64 data/better_deco/advancement/recipes/acacia_basin.json
 62a95418052fb7d6c818690c0b9739da8fce5a4f data/better_deco/advancement/recipes/acacia_bath.json
 81838960eb8524c8a54e09e0251f02472e406772 data/better_deco/advancement/recipes/acacia_bedside.json
@@ -333,6 +333,7 @@ d90abc8786ce890dfce378a5dfa54347c858bc3d data/better_deco/advancement/recipes/sp
 935794b709de2c271bbb5aabd39b82269ccbdc37 data/better_deco/advancement/recipes/spruce_table.json
 cbf5bf2570b72411c34c2cb1e2cfe2716038913e data/better_deco/advancement/recipes/spruce_toilet.json
 8c9020a45b6b3992cb200cb73f382ce834978a8c data/better_deco/advancement/recipes/stone_path.json
+cfe4e71ae033a50f31a49d19e5c613cd599cf175 data/better_deco/advancement/recipes/toasting/toasting/cooked_sliced_bread_from_sliced_bread.json
 371ea704182cde0684ddcb391b600fbdbfaeec5f data/better_deco/advancement/recipes/tools/kitchen_knife.json
 5002bec38cd49061cb19c014c1fea8e00303ee16 data/better_deco/advancement/recipes/warped_basin.json
 c70f026c27ec940b53641b146b114040243ea458 data/better_deco/advancement/recipes/warped_bath.json
@@ -703,6 +704,7 @@ fb1d725328f868c3eb83cb4a95afc30ec2cce076 data/better_deco/recipe/spruce_storage_
 2b6b8cb5febb457caaaebcd1ba0b5fbcac2b110c data/better_deco/recipe/spruce_table.json
 e44f44ef0d000c99ea73b74cd8e3a8d4fd67148d data/better_deco/recipe/spruce_toilet.json
 6a40afa997191e107338e22b67b5bca35af7fec2 data/better_deco/recipe/stone_path.json
+cacf1c14d40ef65d274fb395711d64560a15fac8 data/better_deco/recipe/toasting/cooked_sliced_bread_from_sliced_bread.json
 db1de7c7404645eb49ed22773c1f6ddc4e78baa3 data/better_deco/recipe/warped_basin.json
 fe140d7e5cc59f3dbb4b2cd25c3de1783f2f7dc2 data/better_deco/recipe/warped_bath.json
 552b299b72da2518ce7460ac39ffc09434a8915e data/better_deco/recipe/warped_bedside.json

@@ -394,4 +394,12 @@ public class ModBlockEntities {
                     ModBlocks.WARPED_CLOCK.get()
 
             });
+
+    public static final RegistryEntry<BlockEntityType<ToasterBlockEntity>> TOASTER =
+            RegistryEntry.blockEntity(Constants.id("toaster"), ToasterBlockEntity::new, ()-> new Block[]{
+                    ModBlocks.TOASTER_LIGHT.get(),
+                    ModBlocks.TOASTER_DARK.get()
+
+
+            });
 }

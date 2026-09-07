@@ -37,4 +37,10 @@ public class ModRecipes {
     public static final RegistryEntry<RecipeType<CuttingBoardRecipe>> CUTTING_BOARD_TYPE =
             RegistryEntry.recipeType(Constants.id("cutting_board"));
 
+    public static final RegistryEntry<ToasterRecipe.Serializer> TOASTER_SERIALIZER =
+            RegistryEntry.recipeSerializer(Constants.id("toaster"), ToasterRecipe.Serializer::new);
+    public static final RegistryEntry<RecipeType<ToasterRecipe>> TOASTER_TYPE =
+            RegistryEntry.recipeType(Constants.id("toaster"));
+
+
 }

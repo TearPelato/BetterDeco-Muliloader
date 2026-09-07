@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-07T22:16:16.5802357	BetterDeco/Recipes
+// 1.21.1	2026-09-07T23:11:43.6277384	BetterDeco/Recipes
 32904456c0b77f7fe114d93d790c0f5a7c0fe888 data\better_deco\advancement\recipes\oak_glass_tecque.json
 e1f23224dbbe93eb09d7afca8214839ae8f25c21 data\better_deco\advancement\recipes\crimson_cutting_board.json
 bf85d53c3677692889be2fce7d4c42e5170a8a99 data\better_deco\recipe\orange_kitchen_drawer.json
@@ -260,6 +260,7 @@ b38da034123d948cb2cc7f6d4664aabdf413e358 data\better_deco\recipe\dark_oak_kitche
 f2f1d03c7299cc97b903b78afc42fe7c56663855 data\better_deco\recipe\jungle_clock.json
 8c9020a45b6b3992cb200cb73f382ce834978a8c data\better_deco\advancement\recipes\stone_path.json
 cdb195b48e9c5584b7546875cf62c2b3420cb7dc data\better_deco\advancement\recipes\birch_glass_tecque.json
+cfe4e71ae033a50f31a49d19e5c613cd599cf175 data\better_deco\advancement\recipes\toasting\toasting\cooked_sliced_bread_from_sliced_bread.json
 de9a88609a957a1dd3880d88e79abd1e3efcf7d2 data\better_deco\recipe\light_gray_kitchen_counter.json
 0bdb2c64500bc4fbb704f857ceb8226790c1724e data\better_deco\advancement\recipes\oak_chair.json
 b9b723032bad641f04925a9da44d25179cc81a3c data\better_deco\recipe\mangrove_shelf.json
@@ -598,6 +599,7 @@ de1d2ddfa9b7ac964f368f97c20d6c445d474708 data\better_deco\advancement\recipes\cr
 32deda8faa0db48eee9513bc8e578c0d83a0f4e8 data\better_deco\advancement\recipes\lime_sink.json
 6dfb7fd89cd8f3bd8f0079be516290b082060270 data\better_deco\advancement\recipes\dark_oak_coffee_table.json
 8fdc6d61b1a78481b41458a51d81a511dded3fdb data\better_deco\advancement\recipes\decorations\warped_shelf.json
+cacf1c14d40ef65d274fb395711d64560a15fac8 data\better_deco\recipe\toasting\cooked_sliced_bread_from_sliced_bread.json
 be9449c8204dc3184fcd0c9e428e0c1e0da5b33d data\better_deco\recipe\black_kitchen_counter.json
 a77f7cdf7be0f62a98bc973e9376e1b3f13ef737 data\better_deco\advancement\recipes\black_oven.json
 061edd49a64203d639cc4571ce076f7edb31ea27 data\better_deco\recipe\jungle_chair.json

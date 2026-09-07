@@ -11,6 +11,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.tier1234.better_deco.Constants;
+import net.tier1234.better_deco.datagen.custom.ToasterRecipeBuilder;
 import net.tier1234.better_deco.datagen.custom.WorkbenchRecipeBuilder;
 import net.tier1234.better_deco.recipe.CuttingBoardRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
@@ -488,7 +489,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
         this.cuttingBoardRecipe(Items.BREAD, ModItems.SLICED_BREAD.get(), 2, recipeOutput);
-
+        this.toasterRecipe(ModItems.SLICED_BREAD.get(), ModItems.COOKED_SLICED_BREAD.get(),200,recipeOutput);
     }
 
     public void kitchenCounter(Block wood, Block result, RecipeOutput output) {
@@ -722,5 +723,12 @@ public class CommonRecipeProvider extends RecipeProvider {
         builder.unlockedBy("has_" + baseName, has(input)).save(output, Constants.id("slicing/" + resultName + "_from_" + baseName));
     }
 
+    public void toasterRecipe(ItemLike input, ItemLike result, int cookTime, RecipeOutput output) {
+        String baseName = BuiltInRegistries.ITEM.getKey(input.asItem()).getPath();
+        String resultName = BuiltInRegistries.ITEM.getKey(result.asItem()).getPath();
+        ToasterRecipeBuilder.toasting(Ingredient.of(input), result, 1, cookTime)
+                .unlockedBy("has_" + baseName, has(input))
+                .save(output, Constants.id("toasting/" + resultName + "_from_" + baseName));
+    }
 
 }
