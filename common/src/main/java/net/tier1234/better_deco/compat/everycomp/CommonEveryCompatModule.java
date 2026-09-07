@@ -98,7 +98,7 @@ public class CommonEveryCompatModule extends SimpleModule {
                         w -> new KitchenSinkBlock(w.toVanillaOrOak(),Utils.copyPropertySafe(w.planks)))
                 .copyParentDrop()
                 .defaultRecipe()
-                .addTexture(modRes("block/oak_kitchen_sink"), PaletteStrategies.PLANKS_STANDARD)
+                .addNonAnimatedTextureM(modRes("block/oak_kitchen_sink"), modRes("block/oak_kitchen_sink_m"))
                 .addTile(ModBlockEntities.KITCHEN_SINK::get)
                 .noTab()
                 .build();
