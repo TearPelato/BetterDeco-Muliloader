@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/glass_tecque",
+  "textures": {
+    "particle": "minecraft:block/bamboo_planks",
+    "texture": "better_deco:block/bamboo_glass_tecque"
+  }
+}

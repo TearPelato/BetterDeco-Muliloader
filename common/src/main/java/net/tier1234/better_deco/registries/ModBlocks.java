@@ -875,28 +875,28 @@ public class ModBlocks {
 
 
     //Glass Tecque
-    public static final RegistryEntry<Block> ACACIA_GLASS_TECQUE = register("acacia_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> SPRUCE_GLASS_TECQUE = register("spruce_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> OAK_GLASS_TECQUE = register("oak_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> BIRCH_GLASS_TECQUE = register("birch_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> JUNGLE_GLASS_TECQUE = register("jungle_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> MANGROVE_GLASS_TECQUE = register("mangrove_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> DARK_OAK_GLASS_TECQUE = register("dark_oak_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> CHERRY_GLASS_TECQUE = register("cherry_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> BAMBOO_GLASS_TECQUE = register("bamboo_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> CRIMSON_GLASS_TECQUE = register("crimson_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
-    public static final RegistryEntry<Block> WARPED_GLASS_TECQUE = register("warped_glass_tecque",
-            ()-> new TecqueBlock(BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> ACACIA_GLASS_TECQUE = register("acacia_glass_tecque",
+            ()-> new TecqueBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> SPRUCE_GLASS_TECQUE = register("spruce_glass_tecque",
+            ()-> new TecqueBlock(WoodType.SPRUCE,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> OAK_GLASS_TECQUE = register("oak_glass_tecque",
+            ()-> new TecqueBlock(WoodType.OAK,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> BIRCH_GLASS_TECQUE = register("birch_glass_tecque",
+            ()-> new TecqueBlock(WoodType.BIRCH,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> JUNGLE_GLASS_TECQUE = register("jungle_glass_tecque",
+            ()-> new TecqueBlock(WoodType.JUNGLE,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> MANGROVE_GLASS_TECQUE = register("mangrove_glass_tecque",
+            ()-> new TecqueBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> DARK_OAK_GLASS_TECQUE = register("dark_oak_glass_tecque",
+            ()-> new TecqueBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> CHERRY_GLASS_TECQUE = register("cherry_glass_tecque",
+            ()-> new TecqueBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> BAMBOO_GLASS_TECQUE = register("bamboo_glass_tecque",
+            ()-> new TecqueBlock(WoodType.BAMBOO,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> CRIMSON_GLASS_TECQUE = register("crimson_glass_tecque",
+            ()-> new TecqueBlock(WoodType.CRIMSON,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
+    public static final RegistryEntry<TecqueBlock> WARPED_GLASS_TECQUE = register("warped_glass_tecque",
+            ()-> new TecqueBlock(WoodType.WARPED,BlockBehaviour.Properties.of().strength(3f).noOcclusion()));
 
     private static <T extends Block> RegistryEntry<T> register(String name, Supplier<T> supplier) {
         RegistryEntry<T> entry = RegistryEntry.blockWithItem(Constants.id(name), supplier);

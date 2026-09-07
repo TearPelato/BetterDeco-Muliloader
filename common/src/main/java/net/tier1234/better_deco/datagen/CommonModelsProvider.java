@@ -476,6 +476,19 @@ public class CommonModelsProvider {
         crate(ModBlocks.BAMBOO_CRATE.get());
         crate(ModBlocks.CRIMSON_CRATE.get());
         crate(ModBlocks.WARPED_CRATE.get());
+
+        glassTecque(ModBlocks.OAK_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.SPRUCE_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.BIRCH_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.JUNGLE_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.ACACIA_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.DARK_OAK_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.MANGROVE_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.CHERRY_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.BAMBOO_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.CRIMSON_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.WARPED_GLASS_TECQUE.get());
+
     }
 
 
@@ -1454,6 +1467,25 @@ public class CommonModelsProvider {
         registerItemModel(block, model);
     }
 
+    private void glassTecque(TecqueBlock block) {
+        WoodType type = block.getWoodType();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
+        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_glass_tecque"));
+
+        ModelTemplate template = getModel(Constants.id("block/glass_tecque"));
+        ResourceLocation model = template.create(block, textures, modelConsumer);
+
+
+        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
+                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
+                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
+        registerItemModel(block, model);
+    }
 
 
     private static ModelTemplate getModel(ResourceLocation model) {

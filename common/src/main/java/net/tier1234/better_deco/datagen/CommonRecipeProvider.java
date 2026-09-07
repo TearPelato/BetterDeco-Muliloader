@@ -26,118 +26,6 @@ public class CommonRecipeProvider extends RecipeProvider {
     @Override
     public void buildRecipes(RecipeOutput recipeOutput) {
 
-        //Wood Tecque
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OAK_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.OAK_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_oak_slab", has(Blocks.OAK_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SPRUCE_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.SPRUCE_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_spruce_slab", has(Blocks.SPRUCE_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BIRCH_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.BIRCH_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_birch_slab", has(Blocks.BIRCH_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.JUNGLE_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.JUNGLE_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_jungle_slab", has(Blocks.JUNGLE_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ACACIA_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.ACACIA_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_acacia_slab", has(Blocks.ACACIA_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DARK_OAK_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.DARK_OAK_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_dark_oak_slab", has(Blocks.DARK_OAK_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.MANGROVE_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.MANGROVE_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_mangrove_slab", has(Blocks.MANGROVE_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CHERRY_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.CHERRY_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_cherry_slab", has(Blocks.CHERRY_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.BAMBOO_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.BAMBOO_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_bamboo_slab", has(Blocks.BAMBOO_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CRIMSON_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.CRIMSON_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_crimson_slab", has(Blocks.CRIMSON_SLAB))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WARPED_GLASS_TECQUE.get())
-                .pattern("###")
-                .pattern("# #")
-                .pattern("BBB")
-                .define('B', Blocks.WARPED_SLAB.asItem())
-                .define('#', Blocks.GLASS.asItem())
-                .unlockedBy("has_glass", has(Blocks.GLASS))
-                .unlockedBy("has_warped_slab", has(Blocks.WARPED_SLAB))
-                .save(recipeOutput);
-
-
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.WORKBENCH.get())
                 .pattern("PPP")
                 .pattern("ICI")
@@ -586,6 +474,19 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.crate(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CRATE.get(), recipeOutput);
         this.crate(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CRATE.get(), recipeOutput);
 
+        this.glassTecque(Blocks.OAK_PLANKS, ModBlocks.OAK_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.BIRCH_PLANKS, ModBlocks.BIRCH_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.JUNGLE_PLANKS, ModBlocks.JUNGLE_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.ACACIA_PLANKS, ModBlocks.ACACIA_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.MANGROVE_PLANKS, ModBlocks.MANGROVE_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.CHERRY_PLANKS, ModBlocks.CHERRY_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_GLASS_TECQUE.get(), recipeOutput);
+        this.glassTecque(Blocks.WARPED_PLANKS, ModBlocks.WARPED_GLASS_TECQUE.get(), recipeOutput);
+
+
         this.cuttingBoardRecipe(Items.BREAD, ModItems.SLICED_BREAD.get(), 2, recipeOutput);
 
     }
@@ -802,6 +703,16 @@ public class CommonRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_item", has(wood))
                 .save(output);
     }
+
+
+    public void glassTecque(Block wood,  Block result, RecipeOutput output) {
+        WorkbenchRecipeBuilder.crafting(result)
+                .requires(wood,1)
+                .requires(Items.GLASS_PANE,4)
+                .unlockedBy("has_item", has(wood))
+                .save(output);
+    }
+
 
 
     public void cuttingBoardRecipe(ItemLike input, ItemLike result, int count, RecipeOutput output) {

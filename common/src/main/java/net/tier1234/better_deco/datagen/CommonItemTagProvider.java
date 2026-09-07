@@ -411,8 +411,9 @@ public class CommonItemTagProvider extends IntrinsicHolderTagsProvider<Item> {
         .add(ModBlocks.BIRCH_GLASS_TECQUE.get().asItem())
         .add(ModBlocks.JUNGLE_GLASS_TECQUE.get().asItem())
         .add(ModBlocks.ACACIA_GLASS_TECQUE.get().asItem())
+
+                .add(ModBlocks.DARK_OAK_GLASS_TECQUE.get().asItem())
         .add(ModBlocks.MANGROVE_GLASS_TECQUE.get().asItem())
-        .add(ModBlocks.DARK_OAK_GLASS_TECQUE.get().asItem())
         .add(ModBlocks.CHERRY_GLASS_TECQUE.get().asItem())
         .add(ModBlocks.BAMBOO_GLASS_TECQUE.get().asItem())
         .add(ModBlocks.CRIMSON_GLASS_TECQUE.get().asItem())

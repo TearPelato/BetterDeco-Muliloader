@@ -3,6 +3,7 @@ package net.tier1234.better_deco.blockentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -43,9 +44,42 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
         return rotation;
     }
 
-    public void clearContents() {
-        inventory.setItem(0, ItemStack.EMPTY);
+    public boolean insertItem(Player player, ItemStack stack) {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if (inventory.getItem(i).isEmpty()) {
+                ItemStack toInsert = stack.copyWithCount(1);
+                inventory.setItem(i, toInsert);
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+                setChanged();
+                if (level != null) {
+                    level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                }
+                return true;
+            }
+        }
+        return false;
     }
+
+    public ItemStack extractItem(Player player) {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (!stack.isEmpty()) {
+                inventory.setItem(i, ItemStack.EMPTY);
+                if (!player.getInventory().add(stack)) {
+                    player.drop(stack, false);
+                }
+                setChanged();
+                if (level != null) {
+                    level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                }
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
 
     public void drops() {
         SimpleContainer inv = new SimpleContainer(inventory.getContainerSize());
@@ -57,15 +91,34 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.put("inventory", inventory.createTag(registries));
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        inventory.clearContent();
+        ListTag items = tag.getList("Items", Tag.TAG_COMPOUND);
+        for (int i = 0; i < items.size(); i++) {
+            CompoundTag itemTag = items.getCompound(i);
+            int slot = itemTag.getInt("Slot");
+            if (slot >= 0 && slot < inventory.getContainerSize()) {
+                ItemStack.parse(registries, itemTag.getCompound("Item"))
+                        .ifPresent(stack -> inventory.setItem(slot, stack));
+            }
+        }
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        inventory.fromTag(tag.getList("inventory", Tag.TAG_COMPOUND), registries);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        ListTag items = new ListTag();
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (!stack.isEmpty()) {
+                CompoundTag itemTag = new CompoundTag();
+                itemTag.putInt("Slot", i);
+                itemTag.put("Item", stack.save(registries));
+                items.add(itemTag);
+            }
+        }
+        tag.put("Items", items);
     }
 
     @Override

@@ -487,6 +487,7 @@
   "block_type.better_deco.basin": "%s Basin",
   "block_type.better_deco.bath": "%s Bath",
   "block_type.better_deco.shelf": "%s Shelf",
+  "block_type.better_deco.glass_tecque": "%s Tecque",
 
   "advancement.better_deco.craft_workbench.title": "Ready to Craft",
   "advancement.better_deco.craft_workbench.description": "Craft a workbench and start decor!",

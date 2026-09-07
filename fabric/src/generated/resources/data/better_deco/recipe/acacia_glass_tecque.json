@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
-      "item": "minecraft:glass"
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": {
+        "item": "minecraft:acacia_planks"
+      }
     },
-    "B": {
-      "item": "minecraft:acacia_slab"
+    {
+      "count": 4,
+      "item": {
+        "item": "minecraft:glass_pane"
+      }
     }
-  },
-  "pattern": [
-    "###",
-    "# #",
-    "BBB"
   ],
   "result": {
     "count": 1,

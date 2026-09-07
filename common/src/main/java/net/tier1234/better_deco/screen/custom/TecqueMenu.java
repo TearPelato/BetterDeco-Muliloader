@@ -20,11 +20,7 @@ import net.tier1234.better_deco.registries.ModMenuTypes;
 public class TecqueMenu extends AbstractContainerMenu {
     public final TecqueBlockEntity blockEntity;
     private final Level level;
-
-
-    public TecqueMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
-    }
+    private final ContainerLevelAccess access;
 
     public TecqueMenu(int containerId, Inventory inv, TecqueData data) {
         this(containerId, inv, inv.player.level().getBlockEntity(data.pos()));
@@ -34,7 +30,7 @@ public class TecqueMenu extends AbstractContainerMenu {
         super(ModMenuTypes.TECQUE_MENU.get(), containerId);
         this.blockEntity = ((TecqueBlockEntity) blockEntity);
         this.level = inv.player.level();
-
+        this.access= ContainerLevelAccess.create(level, blockEntity.getBlockPos());
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
@@ -95,40 +91,7 @@ public class TecqueMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.ACACIA_GLASS_TECQUE.get())
-        ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.SPRUCE_GLASS_TECQUE.get())
-        ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.OAK_GLASS_TECQUE.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.BIRCH_GLASS_TECQUE.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.JUNGLE_GLASS_TECQUE.get())
-                ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.MANGROVE_GLASS_TECQUE.get())
-                ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.DARK_OAK_GLASS_TECQUE.get())
-            ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.CHERRY_GLASS_TECQUE.get())
-        ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.BAMBOO_GLASS_TECQUE.get())
-                ||
-                stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                        player, ModBlocks.CRIMSON_GLASS_TECQUE.get())
-                ||
-        stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.WARPED_GLASS_TECQUE.get());
-
-
+        return access.evaluate((level, pos)-> level.getBlockEntity(pos) instanceof TecqueBlockEntity, true);
 
     }
 

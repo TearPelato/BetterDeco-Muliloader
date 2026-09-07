@@ -52,6 +52,7 @@ public class CommonEveryCompatModule extends SimpleModule {
    public final SimpleEntrySet<WoodType, BasinBlock> basin;
    public final SimpleEntrySet<WoodType, BathBlock> bath;
    public final SimpleEntrySet<WoodType, ShelfBlock> shelf;
+   public final SimpleEntrySet<WoodType, TecqueBlock> tecque;
 
 
     private static CommonEveryCompatModule INSTANCE;
@@ -278,6 +279,17 @@ public class CommonEveryCompatModule extends SimpleModule {
                 .noTab()
                 .build();
 
+        tecque = SimpleEntrySet.builder(WoodType.class, "glass_tecque",
+                        ModBlocks.OAK_GLASS_TECQUE::get,
+                        () -> VanillaWoodTypes.OAK,
+                        w -> new TecqueBlock(w.toVanillaOrOak(),Utils.copyPropertySafe(w.planks)))
+                .copyParentDrop()
+                .defaultRecipe()
+                .addTile(ModBlockEntities.GLASS_TECQUE::get)
+                .addNonAnimatedTextureM(modRes("block/oak_glass_tecque"), modRes("block/oak_glass_tecque_m"))
+                .noTab()
+                .build();
+
 
         //General
         this.addEntry(chair);
@@ -299,6 +311,7 @@ public class CommonEveryCompatModule extends SimpleModule {
         this.addEntry(deskCabinet);
         this.addEntry(woodenClock);
         this.addEntry(shelf);
+        this.addEntry(tecque);
 
         //Bath
         this.addEntry(basin);
