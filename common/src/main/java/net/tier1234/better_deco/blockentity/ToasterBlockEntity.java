@@ -28,7 +28,6 @@ public class ToasterBlockEntity extends BlockEntity {
     private final int[] cookTime = new int[SLOTS];
     private final int[] cookTimeTotal = new int[SLOTS];
 
-    @SuppressWarnings("unchecked")
     private final RecipeHolder<ToasterRecipe>[] cachedRecipe = new RecipeHolder[SLOTS];
 
     public ToasterBlockEntity(BlockPos pos, BlockState state) {
@@ -85,6 +84,15 @@ public class ToasterBlockEntity extends BlockEntity {
             entity.setChanged();
             level.sendBlockUpdated(pos, state, state, 3);
         }
+    }
+
+    public boolean hasEmptySlot() {
+        for (int slot = 0; slot < SLOTS; slot++) {
+            if (items.get(slot).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean insertItem(ItemStack stack) {

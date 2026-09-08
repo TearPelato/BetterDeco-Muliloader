@@ -53,7 +53,7 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
-        final VoxelShape[] BODY = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(3, 0, 5, 13, 7, 11), Direction.NORTH));
+        final VoxelShape[] BODY = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(3, 0, 5, 13, 9, 11), Direction.NORTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for (BlockState state : states) {
@@ -97,14 +97,39 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                              Player player, InteractionHand hand, BlockHitResult hit) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof ToasterBlockEntity toaster)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
+        if (level.isClientSide) {
+            return toaster.hasEmptySlot()
+                    ? ItemInteractionResult.SUCCESS
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        boolean inserted = toaster.insertItem(stack);
+        if (inserted) {
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
+            }
+            return ItemInteractionResult.sidedSuccess(false);
+        }
+
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         BlockEntity be = level.getBlockEntity(pos);
         if (!(be instanceof ToasterBlockEntity toaster)) {
             return InteractionResult.PASS;
+        }
+
+        if (level.isClientSide) {
+            return toaster.isEmpty() ? InteractionResult.PASS : InteractionResult.SUCCESS;
         }
 
         ItemStack removed = toaster.removeLastItem();
@@ -116,28 +141,6 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
         }
 
         return InteractionResult.PASS;
-    }
-
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (level.isClientSide) {
-            return ItemInteractionResult.SUCCESS;
-        }
-
-        BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof ToasterBlockEntity toaster)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-
-        boolean inserted = toaster.insertItem(stack);
-        if (inserted) {
-            if (!player.getAbilities().instabuild) {
-                stack.shrink(1);
-            }
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        }
-
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

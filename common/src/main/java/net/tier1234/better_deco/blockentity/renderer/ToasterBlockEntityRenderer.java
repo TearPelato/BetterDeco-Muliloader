@@ -15,11 +15,10 @@ import net.tier1234.better_deco.blockentity.ToasterBlockEntity;
 
 public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBlockEntity> {
 
-    private static final double[] SLOT_LOCAL_X = {6.0 / 16.0, 10.0 / 16.0};
-    private static final double SLOT_LOCAL_Z = 8.0 / 16.0;
+    private static final double SLOT_LOCAL_X = 0.0;
+    private static final double[] SLOT_LOCAL_Z = {-0.125, 0.125};
 
-    private static final double BASE_Y = 7.5 / 16.0;
-    private static final double MAX_RISE = 2.0 / 16.0;
+    private static final double ITEM_Y = 7.2 / 16.0;
     private static final float ITEM_SCALE = 0.5f;
 
     private final ItemRenderer itemRenderer;
@@ -47,18 +46,14 @@ public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBl
 
             poseStack.pushPose();
 
-            double localX = SLOT_LOCAL_X[slot] - 0.5;
-            double localZ = SLOT_LOCAL_Z - 0.5;
-            double[] rotated = rotateForFacing(localX, localZ, facing);
+            double[] rotated = rotateForFacing(SLOT_LOCAL_X, SLOT_LOCAL_Z[slot], facing);
 
-            float progress = toaster.getProgress(slot); // 0.0 -> 1.0, già presente nel BE
-            double rise = MAX_RISE * progress;
-
-            poseStack.translate(0.5 + rotated[0], BASE_Y + rise, 0.5 + rotated[1]);
+            poseStack.translate(0.5 + rotated[0], ITEM_Y, 0.5 + rotated[1]);
             poseStack.mulPose(Axis.YP.rotationDegrees(facing.toYRot()));
             poseStack.scale(ITEM_SCALE, ITEM_SCALE, ITEM_SCALE);
 
-            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, buffer, toaster.getLevel(), (int) toaster.getBlockPos().asLong());
+            itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, packedLight, packedOverlay, poseStack, buffer,
+                    toaster.getLevel(), (int) toaster.getBlockPos().asLong());
 
             poseStack.popPose();
         }
@@ -84,18 +79,3 @@ public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBl
         return 32;
     }
 }
-
-/*
- * ---- Aggiunta opzionale a ToasterBlockEntity.java ----
- * Utile per GUI/renderer/altri controlli, il limite di 2 item è già
- * garantito da SLOTS = 2 e dal loop in insertItem(), quindi qui servono
- * solo dei metodi di comodo, non una nuova logica:
- *
- * public boolean isFull() {
- *     return !items.get(0).isEmpty() && !items.get(1).isEmpty();
- * }
- *
- * public static int getSlotCount() {
- *     return SLOTS;
- * }
- */
