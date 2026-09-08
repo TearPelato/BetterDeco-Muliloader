@@ -8,16 +8,15 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -86,60 +85,13 @@ public class ShelfBlock extends FurnitureHorizontalBlock implements EntityBlock 
         return builder.build();
     }
 
-    @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos,
-                         BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock())) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof ShelfBlockEntity shelf) {
-                shelf.drops();
-                level.updateNeighborsAt(pos, this);
-            }
-            super.onRemove(state, level, pos, newState, isMoving);
-        }
-    }
+
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (player.isCrouching()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (!(blockEntity instanceof ShelfBlockEntity shelf)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-
-        if (stack.isEmpty()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-
-        if (level.isClientSide) {
-            return ItemInteractionResult.sidedSuccess(true);
-        }
-
-        boolean inserted = shelf.insertItem(player, stack);
-        if (inserted) {
-            level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0f, 1.0f);
-            level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            return ItemInteractionResult.SUCCESS;
-        }
-
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-
-    @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
-                                               Player player, BlockHitResult hitResult) {
-        if (player.isCrouching()) {
-            if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-                BlockEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
-                    FrameworkAPI.openMenuWithData(serverPlayer, shelfBlockEntity, shelfBlockEntity.createCustomData());
-                }
-            }
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.PASS;
         }
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -147,7 +99,43 @@ public class ShelfBlock extends FurnitureHorizontalBlock implements EntityBlock 
             return InteractionResult.PASS;
         }
 
-        if (level.isClientSide) {
+        if (stack.isEmpty()) {
+            return InteractionResult.PASS;
+        }
+
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        }
+
+        boolean inserted = shelf.insertItem(player, stack);
+        if (inserted) {
+            level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0f, 1.0f);
+            level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+            return InteractionResult.SUCCESS;
+        }
+
+        return InteractionResult.PASS;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
+                                               Player player, BlockHitResult hitResult) {
+        if (player.isCrouching()) {
+            if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+                BlockEntity blockEntity = level.getBlockEntity(pos);
+                if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
+                    FrameworkAPI.openMenuWithData(serverPlayer, shelfBlockEntity, shelfBlockEntity.createCustomData());
+                }
+            }
+            return InteractionResult.SUCCESS;
+        }
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (!(blockEntity instanceof ShelfBlockEntity shelf)) {
+            return InteractionResult.PASS;
+        }
+
+        if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
 
@@ -162,8 +150,8 @@ public class ShelfBlock extends FurnitureHorizontalBlock implements EntityBlock 
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        return this.getShelfState(state, level, pos);
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+        return this.getShelfState(state,(LevelAccessor) level, pos);
     }
 
     public BlockState getShelfState(BlockState state, LevelAccessor level, BlockPos pos){

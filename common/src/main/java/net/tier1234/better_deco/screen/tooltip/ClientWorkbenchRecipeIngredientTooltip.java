@@ -2,9 +2,7 @@ package net.tier1234.better_deco.screen.tooltip;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +24,7 @@ public class ClientWorkbenchRecipeIngredientTooltip implements ClientTooltipComp
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight(Font font) {
         return 18;
     }
 

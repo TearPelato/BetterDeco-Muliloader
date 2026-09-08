@@ -61,7 +61,7 @@ public class PathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }

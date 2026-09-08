@@ -53,30 +53,19 @@ public class WorkbenchBlock extends FurnitureHorizontalBlock implements EntityBl
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof WorkbenchBlockEntity workbench) {
                 FrameworkAPI.openMenuWithData(serverPlayer, workbench, workbench.createCustomData());
             }
         }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.SUCCESS;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new WorkbenchBlockEntity(blockPos, blockState);
-    }
-
-    @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if(state.getBlock() != newState.getBlock()) {
-            if(level.getBlockEntity(pos) instanceof WorkbenchBlockEntity workbench) {
-                workbench.drops();
-                level.updateNeighbourForOutputSignal(pos, this);
-            }
-        }
-        super.onRemove(state, level, pos, newState, isMoving);
     }
 
     public String name() {

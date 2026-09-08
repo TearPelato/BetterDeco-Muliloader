@@ -7,12 +7,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tier1234.better_deco.recipe.ToasterRecipe;
 import net.tier1234.better_deco.recipe.input.ToasterRecipeInput;
 import net.tier1234.better_deco.registries.ModBlockEntities;
@@ -35,7 +38,7 @@ public class ToasterBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, ToasterBlockEntity entity) {
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return;
         }
 
@@ -57,7 +60,7 @@ public class ToasterBlockEntity extends BlockEntity {
             RecipeHolder<ToasterRecipe> recipe = entity.cachedRecipe[slot];
 
             if (recipe == null || !recipe.value().matches(input, level)) {
-                recipe = level.getRecipeManager()
+                recipe = ((ServerLevel)level).recipeAccess()
                         .getRecipeFor(ModRecipes.TOASTER_TYPE.get(), input, level)
                         .orElse(null);
                 entity.cachedRecipe[slot] = recipe;
@@ -142,26 +145,26 @@ public class ToasterBlockEntity extends BlockEntity {
     }
 
     private void syncToClient() {
-        if (level != null && !level.isClientSide) {
+        if (level != null && !level.isClientSide()) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
         }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        ContainerHelper.saveAllItems(tag, items, registries);
-        tag.putIntArray("CookTime", cookTime);
-        tag.putIntArray("CookTimeTotal", cookTimeTotal);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        ContainerHelper.saveAllItems(output, items);
+        output.putIntArray("CookTime", cookTime);
+        output.putIntArray("CookTimeTotal", cookTimeTotal);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
         items.clear();
-        ContainerHelper.loadAllItems(tag, items, registries);
-        int[] ct = tag.getIntArray("CookTime");
-        int[] ctt = tag.getIntArray("CookTimeTotal");
+        ContainerHelper.loadAllItems(input, items);
+        int[] ct = input.getIntArray(cookTime);
+        int[] ctt = input.getIntArray("CookTimeTotal");
         for (int i = 0; i < SLOTS && i < ct.length; i++) {
             cookTime[i] = ct[i];
         }
@@ -179,7 +182,7 @@ public class ToasterBlockEntity extends BlockEntity {
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
-        saveAdditional(tag, registries);
+        saveAdditional(tag,registries);
         return tag;
     }
 }

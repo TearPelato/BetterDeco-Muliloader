@@ -13,10 +13,6 @@ import net.tier1234.better_deco.registries.ModBlockEntities;
 
 public class DeskCabinetBlockEntity extends BasicLootBlockEntity
 {
-    protected DeskCabinetBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
-    {
-        super(type, pos, state);
-    }
 
     public DeskCabinetBlockEntity(BlockPos pos, BlockState state)
     {

@@ -10,10 +10,6 @@ neoForge {
     if (at.exists()) {
         accessTransformers.add(at.absolutePath)
     }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
@@ -24,7 +20,7 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
         data {
-            data()
+            clientData()
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
         server {
@@ -57,27 +53,16 @@ repositories {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
-    implementation "com.mrcrayfish:framework-neoforge:${minecraft_version}-${framework_version}"
-    implementation("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
-    jarJar("net.tearpelato:deco_lib-neoforge-1.21.1:${deco_lib_version}")
+    implementation "com.mrcrayfish:framework-neoforge:${framework_version}+${minecraft_version}"
+    implementation("net.tearpelato:deco_lib-neoforge-26.1.2:${deco_lib_version}")
+    jarJar("net.tearpelato:deco_lib-neoforge-26.1.2:${deco_lib_version}")
 
-    implementation "curse.maven:catalogue-459701:6926815"
-    implementation "curse.maven:configured-457570:7276577"
+   /* implementation "curse.maven:catalogue-459701:6926815"
+    implementation "curse.maven:configured-457570:7276577"*/
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
-    compileOnly ("net.mehvahdjukaar:everycomp-neoforge:${everycomp_version}:neoforge") { transitive = false }
-    compileOnly ("net.mehvahdjukaar:moonlight-neoforge:${moonlight_version}") { transitive = false }
 
-    implementation "curse.maven:every-compat-628539:8680544"
-    implementation "curse.maven:selene-499980:8821083"
-    implementation "curse.maven:biomes-o-plenty-220318:7251965"
-    implementation "curse.maven:terrablender-neoforge-940057:6054947"
-    implementation "curse.maven:glitchcore-955399:5660740"
-    implementation "curse.maven:refurbished-furniture-897116:7473565"
-
-    implementation("net.liukrast:compat_manager-1.21.1:${compat_manager_version}")
-    jarJar("net.liukrast:compat_manager-1.21.1:${compat_manager_version}")
 
 }
 

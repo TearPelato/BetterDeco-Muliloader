@@ -22,6 +22,13 @@ public class JarBlockEntity extends BasicLootBlockEntity {
         super(ModBlockEntities.JAR.get(), pos, state);
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
+
     public void drops() {
         SimpleContainer inv = new SimpleContainer(getContainerSize());
         for(int i = 0; i < getContainerSize(); i++) {

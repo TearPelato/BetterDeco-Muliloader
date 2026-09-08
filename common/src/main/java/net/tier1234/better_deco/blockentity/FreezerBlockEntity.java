@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -17,10 +18,13 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
@@ -107,6 +111,13 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
 
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
+
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getContainerSize());
         for (int i = 0; i < itemHandler.getContainerSize(); i++) {
@@ -170,7 +181,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
     }
 
     private Optional<RecipeHolder<FreezerRecipe>> getRecipeFor(ItemStack input) {
-        return  this.level.getRecipeManager()
+        return ((ServerLevel) this.level).recipeAccess()
                 .getRecipeFor(ModRecipes.FREEZER_TYPE.get(), new SingleRecipeInput(input), level);
     }
 
@@ -215,23 +226,23 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
 
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.put("inventory", itemHandler.createTag(registries));
-        tag.putInt("Freezer.progress", progress);
-        tag.putInt("Freezer.max_progress", maxProgress);
-        tag.putInt("fuelTime", fuelTime);
-        tag.putInt("fuelDuration", fuelDuration);
-        super.saveAdditional(tag, registries);
+    protected void saveAdditional(ValueOutput output) {
+        output.store("inventory", ItemContainerContents.CODEC, ItemContainerContents.fromItems(itemHandler.getItems()));
+        output.putInt("Freezer.progress", progress);
+        output.putInt("Freezer.max_progress", maxProgress);
+        output.putInt("fuelTime", fuelTime);
+        output.putInt("fuelDuration", fuelDuration);
+        super.saveAdditional(output);
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        itemHandler.fromTag(tag.getList("inventory", Tag.TAG_COMPOUND), registries);
-        progress = tag.getInt("Freezer.progress");
-        maxProgress = tag.getInt("Freezer.max_progress");
-        fuelTime     = tag.getInt("fuelTime");
-        fuelDuration = tag.getInt("fuelDuration");
+    public void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        input.read("inventory", ItemContainerContents.CODEC).ifPresent(contents -> contents.copyInto(itemHandler.getItems()));
+        progress = input.getIntOr("Freezer.progress",0);
+        maxProgress = input.getIntOr("Freezer.max_progress",0);
+        fuelTime     = input.getIntOr("fuelTime",0);
+        fuelDuration = input.getIntOr("fuelDuration",0);
     }
 
     @Override

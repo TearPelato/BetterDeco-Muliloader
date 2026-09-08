@@ -26,6 +26,12 @@ public class CrateBlockEntity extends BasicLootBlockEntity {
         super(ModBlockEntities.STORAGE_CRATE.get(), pos, blockState);
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
 
     public void drops() {
         SimpleContainer inv = new SimpleContainer(inventory.getContainerSize());

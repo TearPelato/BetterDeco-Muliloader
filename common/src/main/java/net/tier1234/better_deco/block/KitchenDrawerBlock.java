@@ -83,7 +83,7 @@ public class KitchenDrawerBlock extends FurnitureHorizontalBlock implements Enti
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
@@ -98,14 +98,13 @@ public class KitchenDrawerBlock extends FurnitureHorizontalBlock implements Enti
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
                                                Player player, BlockHitResult hitResult) {
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof KitchenDrawerBlockEntity) {
                 player.openMenu((KitchenDrawerBlockEntity) blockEntity);
                 player.awardStat(Stats.OPEN_BARREL);
-                PiglinAi.angerNearbyPiglins(player, false);
                 return InteractionResult.CONSUME;
             }
             return InteractionResult.PASS;

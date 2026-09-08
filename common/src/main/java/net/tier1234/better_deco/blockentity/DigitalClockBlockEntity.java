@@ -8,6 +8,8 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tearpelato.deco_lib.api.util.BlockEntityUtil;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
@@ -21,18 +23,17 @@ public class DigitalClockBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        if (tag.contains("TextColor")) {
-            this.textColor = DyeColor.byName(tag.getString("TextColor"), DyeColor.WHITE);
-        }
+    protected void loadAdditional(ValueInput valueInput) {
+        super.loadAdditional(valueInput);
+        valueInput.getString("TextColor").ifPresent(name ->
+                this.textColor = DyeColor.byName(name, DyeColor.WHITE)
+        );
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        // Salva i dati extra
-        tag.putString("TextColor", this.textColor.getName());
+    protected void saveAdditional(ValueOutput valueOutput) {
+        super.saveAdditional(valueOutput);
+        valueOutput.putString("TextColor", this.textColor.getName());
     }
 
     @Override

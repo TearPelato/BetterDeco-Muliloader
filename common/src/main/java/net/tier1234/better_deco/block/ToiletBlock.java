@@ -7,9 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -91,62 +89,51 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if(!level.isClientSide()) {
-            Entity entity = null;
-            List<SeatEntity> entities = level.getEntities(ModEntities.SEAT_ENTITY.get(), new AABB(pos), toilet -> true);
-            if(entities.isEmpty()) {
-                entity = ModEntities.SEAT_ENTITY.get().spawn(((ServerLevel) level), pos, MobSpawnType.TRIGGERED);
-            } else {
-                entity = entities.get(0);
-            }
-
-            player.startRiding(entity);
-        }
-        return InteractionResult.SUCCESS;
+        return SeatEntity.create(level, pos,0.0,player, state.getValue(DIRECTION));
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         Item item = stack.getItem();
         Fluid fluidInStack = FluidInteractionUtil.getFluidFromItemStack(stack);
         boolean isEmptyBucket = item == Items.BUCKET;
         boolean isFilledFluidBucket = fluidInStack != Fluids.EMPTY;
 
         if (!isEmptyBucket && !isFilledFluidBucket) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
-        if (world.isClientSide) return ItemInteractionResult.SUCCESS;
+        if (world.isClientSide()) return InteractionResult.SUCCESS;
         BlockEntity be = world.getBlockEntity(pos);
-        if (!(be instanceof ToiletBlockEntity sink)) return ItemInteractionResult.FAIL;
+        if (!(be instanceof ToiletBlockEntity sink)) return InteractionResult.FAIL;
 
         if (isEmptyBucket) return handleBucket(sink, player, hand, stack);
         return fillFromItemStack(sink, player, hand, stack);
     }
 
-    private ItemInteractionResult fillFromNearbyFluid(ToiletBlockEntity sink, Level world, BlockPos pos) {
+    private InteractionResult fillFromNearbyFluid(ToiletBlockEntity sink, Level world, BlockPos pos) {
         FluidState fs = world.getFluidState(pos.below(2));
-        if (!fs.isSource() || fs.isEmpty()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (!fs.isSource() || fs.isEmpty()) return InteractionResult.PASS;
         Fluid fluid = fs.getType();
-        if (fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
-        return sink.addFluid(fluid) ? ItemInteractionResult.SUCCESS : ItemInteractionResult.FAIL;
+        if (fluid != Fluids.WATER) return InteractionResult.FAIL;
+        return sink.addFluid(fluid) ? InteractionResult.SUCCESS : InteractionResult.FAIL;
 
     }
 
-    private ItemInteractionResult fillFromItemStack(ToiletBlockEntity sink, Player player, InteractionHand hand, ItemStack stack) {
+    private InteractionResult fillFromItemStack(ToiletBlockEntity sink, Player player, InteractionHand hand, ItemStack stack) {
         Fluid fluid = FluidInteractionUtil.getFluidFromItemStack(stack);
-        if (fluid == Fluids.EMPTY || stack.getItem() == Items.BUCKET) return ItemInteractionResult.FAIL;
-        if (fluid != Fluids.WATER) return ItemInteractionResult.FAIL;
+        if (fluid == Fluids.EMPTY || stack.getItem() == Items.BUCKET) return InteractionResult.FAIL;
+        if (fluid != Fluids.WATER) return InteractionResult.FAIL;
         boolean success = sink.addFluid(fluid);
         if (success && !player.isCreative()) player.setItemInHand(hand, Items.BUCKET.getDefaultInstance());
-        return success ? ItemInteractionResult.SUCCESS : ItemInteractionResult.FAIL;
+        return success ? InteractionResult.SUCCESS : InteractionResult.FAIL;
     }
 
-    private ItemInteractionResult handleBucket(ToiletBlockEntity sink, Player player, InteractionHand hand, ItemStack stack) {
-        if (sink.isEmpty() || sink.getAmount() < FluidContainerBlockEntity.BUCKET_VOLUME) return ItemInteractionResult.FAIL;
+    private InteractionResult handleBucket(ToiletBlockEntity sink, Player player, InteractionHand hand, ItemStack stack) {
+        if (sink.isEmpty() || sink.getStoredAmount() < FluidContainerBlockEntity.BUCKET_VOLUME) return InteractionResult.FAIL;
         Fluid fluid = sink.getFluid();
         Item filledBucket = fluid.getBucket();
-        if (filledBucket == Items.AIR) return ItemInteractionResult.FAIL;
+        if (filledBucket == Items.AIR) return InteractionResult.FAIL;
         sink.removeFluid(FluidContainerBlockEntity.BUCKET_VOLUME);
         if (!player.isCreative()) {
             ItemStack newStack = filledBucket.getDefaultInstance();
@@ -154,7 +141,7 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
             if (stack.isEmpty()) player.setItemInHand(hand, newStack);
             else if (!player.getInventory().add(newStack)) player.drop(newStack, false);
         }
-        return ItemInteractionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

@@ -8,15 +8,19 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.recipe.MicrowaveRecipe;
 import net.tier1234.better_deco.recipe.input.MicrowaveRecipeInput;
@@ -120,7 +124,7 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
     }
 
     public Optional<RecipeHolder<MicrowaveRecipe>> getCurrentRecipe() {
-        return this.level.getRecipeManager()
+        return ((ServerLevel)this.level).recipeAccess()
                 .getRecipeFor(ModRecipes.MICROWAVE_TYPE.get(), new MicrowaveRecipeInput(itemHandler.getItem(INPUT_SLOT)), level);
     }
 
@@ -135,6 +139,13 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
 
         return maxCount >= currentCount + count;
     }
+
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getContainerSize());
@@ -160,21 +171,20 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        pTag.put("inventory", itemHandler.createTag(pRegistries));
-        pTag.putInt("growth_chamber.progress", progress);
-        pTag.putInt("growth_chamber.max_progress", maxProgress);
+    protected void saveAdditional(ValueOutput output) {
+        output.store("inventory", ItemContainerContents.CODEC, ItemContainerContents.fromItems(itemHandler.getItems()));
+        output.putInt("growth_chamber.progress", progress);
+        output.putInt("growth_chamber.max_progress", maxProgress);
 
-        super.saveAdditional(pTag, pRegistries);
+        super.saveAdditional(output);
     }
 
     @Override
-    public void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-
-        itemHandler.fromTag(pTag.getList("inventory", Tag.TAG_COMPOUND), pRegistries);
-        progress = pTag.getInt("growth_chamber.progress");
-        maxProgress = pTag.getInt("growth_chamber.max_progress");
+    public void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        input.read("inventory", ItemContainerContents.CODEC).ifPresent(contents -> contents.copyInto(itemHandler.getItems()));
+        progress = input.getIntOr("growth_chamber.progress",0);
+        maxProgress = input.getIntOr("growth_chamber.max_progress",0);
     }
 
 

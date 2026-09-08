@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.creative_tabs.BundledTabs;
+import net.tier1234.better_deco.platform.Services;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ModCreativeTabs {
             Constants.id("better_deco"), builder -> {
                 builder.title(Component.translatable("creativetab.better_deco.better_deco"));
                 builder.icon(() -> new ItemStack(ModBlocks.OAK_CHAIR.get()));
-                builder.displayItems((parameters, output) -> {
+                Services.PLATFORM.displayItemsAcceptor(builder, consumer -> {
                     var provider = parameters.holders();
                     List<BundledTabs> filters = ModBundledTabs.getFilters();
                     filters.forEach(tab -> tab.populate(provider));
@@ -29,7 +30,7 @@ public class ModCreativeTabs {
                             .flatMap(filter -> filter.getDisplayItems().stream())
                             .forEach(stack -> {
                                 if (seen.add(stack.getItem())) {
-                                    output.accept(stack);
+                                    consumer.accept(stack);
                                 }
                             });
                 });

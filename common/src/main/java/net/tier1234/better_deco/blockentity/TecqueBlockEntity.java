@@ -18,6 +18,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.TecqueMenu;
 import org.jetbrains.annotations.Nullable;
@@ -80,6 +82,12 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
         return ItemStack.EMPTY;
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
 
     public void drops() {
         SimpleContainer inv = new SimpleContainer(inventory.getContainerSize());
@@ -91,34 +99,34 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    public void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
         inventory.clearContent();
-        ListTag items = tag.getList("Items", Tag.TAG_COMPOUND);
+        ListTag items = input.getList("Items", Tag.TAG_COMPOUND);
         for (int i = 0; i < items.size(); i++) {
             CompoundTag itemTag = items.getCompound(i);
             int slot = itemTag.getInt("Slot");
             if (slot >= 0 && slot < inventory.getContainerSize()) {
-                ItemStack.parse(registries, itemTag.getCompound("Item"))
+                ItemStack.parse(input, itemTag.getCompound("Item"))
                         .ifPresent(stack -> inventory.setItem(slot, stack));
             }
         }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
         ListTag items = new ListTag();
         for (int i = 0; i < inventory.getContainerSize(); i++) {
             ItemStack stack = inventory.getItem(i);
             if (!stack.isEmpty()) {
                 CompoundTag itemTag = new CompoundTag();
                 itemTag.putInt("Slot", i);
-                itemTag.put("Item", stack.save(registries));
+                itemTag.put("Item", stack.save(output));
                 items.add(itemTag);
             }
         }
-        tag.put("Items", items);
+        output.putString("Items", items);
     }
 
     @Override

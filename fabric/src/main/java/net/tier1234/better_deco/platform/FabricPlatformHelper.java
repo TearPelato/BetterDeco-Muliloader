@@ -1,7 +1,7 @@
 package net.tier1234.better_deco.platform;
 
-import net.tier1234.better_deco.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.tier1234.better_deco.platform.services.IPlatformHelper;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 

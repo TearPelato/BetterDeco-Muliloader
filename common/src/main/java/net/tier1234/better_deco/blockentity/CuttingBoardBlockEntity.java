@@ -21,6 +21,12 @@ public class CuttingBoardBlockEntity extends BasicLootBlockEntity {
         super(ModBlockEntities.CUTTING_BOARD.get(), pos, state);
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
 
     public void drops() {
         SimpleContainer inv = new SimpleContainer(getContainerSize());

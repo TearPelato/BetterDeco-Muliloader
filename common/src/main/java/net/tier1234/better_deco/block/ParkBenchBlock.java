@@ -4,28 +4,22 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
-import net.tier1234.better_deco.registries.ModEntities;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 
 import java.util.ArrayList;
@@ -108,7 +102,7 @@ public class ParkBenchBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
@@ -126,9 +120,8 @@ public class ParkBenchBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
-    {
-        return this.getBenchState(state, level, pos, state.getValue(DIRECTION));
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+        return this.getBenchState(state,(LevelAccessor)level, pos, state.getValue(DIRECTION));
     }
 
     private BlockState getBenchState(BlockState state, LevelAccessor level, BlockPos pos, Direction dir)

@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -38,39 +38,28 @@ public class JarBlock extends FurnitureHorizontalBlock implements EntityBlock {
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if(state.getBlock() != newState.getBlock()) {
-            if(level.getBlockEntity(pos) instanceof JarBlockEntity jarBlockEntity) {
-                jarBlockEntity.drops();
-                level.updateNeighbourForOutputSignal(pos, this);
-            }
-        }
-        super.onRemove(state, level, pos, newState, movedByPiston);
-    }
-
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!(level.getBlockEntity(pos) instanceof JarBlockEntity jar)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
         if (stack.isEmpty()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
         ItemStack stored = jar.getItem(0);
 
         boolean sameItem = stored.isEmpty() || ItemStack.isSameItemSameComponents(stored, stack);
         if (!sameItem) {
-            return ItemInteractionResult.FAIL;
+            return InteractionResult.FAIL;
         }
 
         int maxCapacity = Math.min(stack.getMaxStackSize(), 16);
         if (stored.getCount() >= maxCapacity) {
-            return ItemInteractionResult.FAIL;
+            return InteractionResult.FAIL;
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             if (stored.isEmpty()) {
                 jar.setItem(0, stack.copyWithCount(1));
             } else {
@@ -86,7 +75,7 @@ public class JarBlock extends FurnitureHorizontalBlock implements EntityBlock {
             level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
         }
 
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.SUCCESS;
     }
 
     @Override

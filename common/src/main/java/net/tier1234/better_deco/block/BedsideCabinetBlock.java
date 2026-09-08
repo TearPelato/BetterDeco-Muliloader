@@ -67,15 +67,15 @@ public class BedsideCabinetBlock extends FurnitureHorizontalBlock implements Ent
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return SHAPES.get(state);
     }
+
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 
-        if(!level.isClientSide) {
+        if(!level.isClientSide()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof BedsideCabinetBlockEntity bedsideBlockEntity) {
                 player.openMenu(bedsideBlockEntity);

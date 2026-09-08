@@ -57,10 +57,10 @@ public class WoodenClockBlock extends FurnitureHorizontalBlock implements Entity
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if(blockEntity instanceof WoodenClockBlockEntity woodenClockBE) {
-                player.displayClientMessage(Component.literal(woodenClockBE.getFormattedTime(Minecraft.getInstance().level.getDayTime())), true);
+                player.sendOverlayMessage(Component.literal(woodenClockBE.getFormattedTime(Minecraft.getInstance().level.getGameTime())));
 
             }
         }

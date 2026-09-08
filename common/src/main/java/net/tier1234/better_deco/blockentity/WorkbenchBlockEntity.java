@@ -17,6 +17,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
 
@@ -46,6 +48,13 @@ public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
         return this.selectedRecipe;
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
+
+
     public void drops() {
         SimpleContainer inv = new SimpleContainer(inventory.getContainerSize());
         for(int i = 0; i < inventory.getContainerSize(); i++) {
@@ -56,15 +65,15 @@ public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        ContainerHelper.saveAllItems(tag, inventory.getItems(), registries);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        ContainerHelper.saveAllItems(output, inventory.getItems());
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        ContainerHelper.loadAllItems(tag, inventory.getItems(), registries);
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        ContainerHelper.loadAllItems(input, inventory.getItems());
     }
 
     @Nullable

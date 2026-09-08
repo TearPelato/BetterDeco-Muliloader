@@ -5,24 +5,19 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
-import net.tier1234.better_deco.registries.ModEntities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +64,7 @@ public class StoolBlock extends FurnitureHorizontalBlock {
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }

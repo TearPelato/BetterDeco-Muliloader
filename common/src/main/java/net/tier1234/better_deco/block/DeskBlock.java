@@ -4,9 +4,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -79,17 +82,16 @@ public class DeskBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
-    {
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
         Direction dir = state.getValue(DIRECTION);
-        boolean left = this.isDesk(level, pos, dir.getCounterClockWise(), dir);
-        boolean right = this.isDesk(level, pos, dir.getClockWise(), dir);
+        boolean left = this.isDesk((LevelAccessor)level, pos, dir.getCounterClockWise(), dir);
+        boolean right = this.isDesk((LevelAccessor)level, pos, dir.getClockWise(), dir);
         if(left && right)
         {
             return state.setValue(TYPE, Type.MIDDLE);

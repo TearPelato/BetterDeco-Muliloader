@@ -10,9 +10,8 @@ import net.tier1234.better_deco.Config;
 import net.tier1234.better_deco.block.BathBlock;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.system.NonnullDefault;
 
-@NonnullDefault
+
 public class BathBlockEntity extends FluidContainerBlockEntity {
 
     public BathBlockEntity(BlockPos pos, BlockState state) {
@@ -20,40 +19,20 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
     }
 
     public boolean addFluid(Fluid fluid) {
-        int current = getAmount();
+        int current = getStoredAmount();
         int max = getCapacity();
-
-        if (!isEmpty() && getFluid() != fluid)
-            return false;
-
-        if (current + BUCKET_VOLUME > max)
-            return false;
-
-        int newAmount = current + BUCKET_VOLUME;
-
-        setFluid(fluid, newAmount);
-        setChanged();
-
-        BathBlockEntity other = getOtherPart();
-        if (other != null) {
-            other.setFluid(fluid, newAmount);
-            other.setChanged();
+        if (isEmpty() || getFluid() == fluid) {
+            if (current + BUCKET_VOLUME <= max) {
+                setFluidAndAmount(fluid, current + BUCKET_VOLUME);
+                return true;
+            }
         }
-
-        return true;
+        return false;
     }
 
     public void removeFluid(int amount) {
-        int remaining = Math.max(getAmount() - amount, 0);
-
-        setFluid(getFluid(), remaining);
-        setChanged();
-
-        BathBlockEntity other = getOtherPart();
-        if (other != null) {
-            other.setFluid(getFluid(), remaining);
-            other.setChanged();
-        }
+        int remaining = getStoredAmount() - amount;
+        setFluidAndAmount(getFluid(), Math.max(remaining, 0));
     }
 
     private @Nullable BathBlockEntity getOtherPart() {

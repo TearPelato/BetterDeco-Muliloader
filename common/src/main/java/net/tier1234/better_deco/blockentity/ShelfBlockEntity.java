@@ -16,6 +16,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.screen.custom.ShelfMenu;
@@ -75,30 +77,30 @@ public class ShelfBlockEntity extends BasicLootBlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    public void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
         handler.clearContent();
-        ListTag items = tag.getList("Items", Tag.TAG_COMPOUND);
+        ListTag items = input.getList("Items", Tag.TAG_COMPOUND);
         for (int i = 0; i < items.size(); i++) {
             CompoundTag itemTag = items.getCompound(i);
             int slot = itemTag.getInt("Slot");
             if (slot >= 0 && slot < handler.getContainerSize()) {
-                ItemStack.parse(registries, itemTag.getCompound("Item"))
+                ItemStack.parse(input, itemTag.getCompound("Item"))
                         .ifPresent(stack -> handler.setItem(slot, stack));
             }
         }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
         ListTag items = new ListTag();
         for (int i = 0; i < handler.getContainerSize(); i++) {
             ItemStack stack = handler.getItem(i);
             if (!stack.isEmpty()) {
                 CompoundTag itemTag = new CompoundTag();
                 itemTag.putInt("Slot", i);
-                itemTag.put("Item", stack.save(registries));
+                itemTag.put("Item", stack.(registries));
                 items.add(itemTag);
             }
         }
@@ -115,6 +117,11 @@ public class ShelfBlockEntity extends BasicLootBlockEntity {
         return saveWithoutMetadata(registries);
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
 
 
     public void drops() {

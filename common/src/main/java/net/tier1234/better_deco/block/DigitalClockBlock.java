@@ -4,8 +4,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -67,7 +68,7 @@ public class DigitalClockBlock extends FurnitureHorizontalBlock implements Entit
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos) {
+    public VoxelShape getOcclusionShape(BlockState state) {
         return SHAPES.get(state);
     }
 
@@ -77,22 +78,23 @@ public class DigitalClockBlock extends FurnitureHorizontalBlock implements Entit
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (stack.getItem() instanceof DyeItem dyeItem) {
-            if (!level.isClientSide) {
-                BlockEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof DigitalClockBlockEntity digitalClock) {
-                    digitalClock.setTextColor(dyeItem.getDyeColor());
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                          Player player, InteractionHand hand, BlockHitResult hitResult) {
+        DyeColor dyeColor = stack.get(DataComponents.DYE);
+        if (dyeColor != null) {
+            if (!level.isClientSide()) {
+                if (level.getBlockEntity(pos) instanceof DigitalClockBlockEntity digitalClock) {
+                    digitalClock.setTextColor(dyeColor);
                     if (!player.isCreative()) {
                         stack.shrink(1);
                     }
                 }
             }
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
+
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

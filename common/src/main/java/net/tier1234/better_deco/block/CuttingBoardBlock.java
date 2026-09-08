@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -64,22 +63,12 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
         return builder.build();
     }
 
-    @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if(state.getBlock() != newState.getBlock()) {
-            if(level.getBlockEntity(pos) instanceof CuttingBoardBlockEntity cuttintBoardBlockEntity) {
-                cuttintBoardBlockEntity.drops();
-                level.updateNeighbourForOutputSignal(pos, this);
-            }
-        }
-        super.onRemove(state, level, pos, newState, movedByPiston);
-    }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!(level.getBlockEntity(pos) instanceof CuttingBoardBlockEntity cuttingBoard)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
         ItemStack stored = cuttingBoard.getItem(0);
@@ -89,14 +78,14 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
         }
 
         if (!stored.isEmpty()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
         if (stack.isEmpty()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             cuttingBoard.setItem(0, stack.copyWithCount(1));
 
             if (!player.getAbilities().instabuild) {
@@ -107,7 +96,7 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
             level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
         }
 
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.SUCCESS;
     }
 
     @Override
@@ -123,7 +112,7 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
             return InteractionResult.PASS;
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             player.addItem(stored.copy());
             cuttingBoard.setItem(0, ItemStack.EMPTY);
             cuttingBoard.setChanged();
@@ -131,22 +120,22 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
             level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
         }
 
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.SUCCESS;
     }
 
-    private ItemInteractionResult tryCut(CuttingBoardBlockEntity cuttingBoard, Level level, BlockPos pos,
+    private InteractionResult tryCut(CuttingBoardBlockEntity cuttingBoard, Level level, BlockPos pos,
                                          BlockState state, Player player, InteractionHand hand) {
         ItemStack stored = cuttingBoard.getItem(0);
         SingleRecipeInput input = new SingleRecipeInput(stored);
         ItemStack knife = player.getItemInHand(hand);
-        Optional<RecipeHolder<CuttingBoardRecipe>> match = level.getRecipeManager()
+        Optional<RecipeHolder<CuttingBoardRecipe>> match = level.recipe()
                 .getRecipeFor(ModRecipes.CUTTING_BOARD_TYPE.get(), input, level);
 
         if (match.isEmpty()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             ItemStack result = match.get().value().getResult().copy();
 
             cuttingBoard.setItem(0, result);
@@ -167,7 +156,7 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
             }
         }
 
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.SUCCESS;
     }
 
     @Override

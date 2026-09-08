@@ -1,10 +1,11 @@
 package net.tier1234.better_deco.screen.tooltip;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.Util;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO rework
+
 public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
     private final WorkbenchMenu menu;
     private final WorkbenchRecipe recipe;
@@ -25,8 +26,9 @@ public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
         this.recipe = recipe;
     }
 
+
     @Override
-    public int getHeight() {
+    public int getHeight(Font font) {
         return 20;
     }
 
@@ -37,7 +39,7 @@ public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int start, int top, GuiGraphics graphics) {
+    public void renderImage(Font font, int start, int top, GuiGraphicsExtractor graphics) {
         Map<Integer, Integer> counted = new HashMap<>();
         List<CountedIngredient> materials = this.recipe.getMaterials();
         for (int i = 0; i < materials.size(); i++) {
@@ -45,8 +47,8 @@ public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
             ItemStack copy = getStack(material).copy();
             copy.setCount(material.count());
             // Render the ingredient icon
-            graphics.renderFakeItem(copy, start + i * 18, top);
-            graphics.renderItemDecorations(font, copy, start + i * 18, top);
+            graphics.fakeItem(copy, start + i * 18, top);
+            graphics.itemDecorations(font, copy, start + i * 18, top);
 
             // Draw a check or a cross depending on whether the player has enough material.
             PoseStack pose = graphics.pose();
@@ -54,7 +56,7 @@ public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
             // Translate Z so the overlay is drawn on top.
             pose.translate(0, 0, 200);
             boolean hasEnough = this.menu.hasMaterials(material, counted);
-            graphics.blit(WorkbenchScreen.TEXTURE, start + i * 18, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256);
+            graphics.blit(RenderPipelines.GUI_TEXTURED,WorkbenchScreen.TEXTURE, start + i * 18, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256,256,256);
             pose.popPose();
         }
     }

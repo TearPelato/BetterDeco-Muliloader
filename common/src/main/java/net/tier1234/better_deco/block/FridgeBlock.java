@@ -28,7 +28,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -53,7 +52,6 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
         }), propertiesCodec()).apply(builder, FridgeBlock::new);
             });
 
-    public static final DirectionProperty DIRECTION = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<FridgeModelType> MODEL_TYPE = EnumProperty.create("model", FridgeModelType.class);
     private MetalType type;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
@@ -96,7 +94,7 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
 
@@ -115,17 +113,6 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
         return InteractionResult.CONSUME;
     }
 
-    @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.is(newState.getBlock())) return;
-
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof Container) {
-            Containers.dropContents(level, pos, (Container)blockEntity);
-            level.updateNeighbourForOutputSignal(pos, this);
-        }
-        super.onRemove(state, level, pos, newState, isMoving);
-    }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -149,7 +136,7 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
 
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             FridgeModelType modelType = state.getValue(MODEL_TYPE);
             BlockPos otherPos = pos.relative(getNeighbourDirection(modelType));
             BlockState otherState = level.getBlockState(otherPos);
@@ -178,7 +165,7 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.setPlacedBy(level, pos, state, placer, stack);
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             BlockPos above = pos.above();
             if (level.getBlockState(above).canBeReplaced()) {
                 level.setBlock(above, state.setValue(MODEL_TYPE, FridgeModelType.FREEZER), Block.UPDATE_ALL);

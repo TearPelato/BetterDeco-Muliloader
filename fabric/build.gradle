@@ -1,6 +1,6 @@
 plugins {
     id 'multiloader-loader'
-    id 'fabric-loom'
+    id 'net.fabricmc.fabric-loom'
 }
 
 repositories {
@@ -16,30 +16,25 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    modImplementation "com.mrcrayfish:framework-fabric:${minecraft_version}-${framework_version}"
-    modImplementation("net.tearpelato:deco_lib-fabric-1.21.1:${deco_lib_version}")
-    modImplementation "curse.maven:menulogue-682371:5705587"
-    modImplementation "curse.maven:configured-457570:7276575"
-    modImplementation "curse.maven:catalogue-459701:6926812"
 
-    modImplementation "curse.maven:every-compat-628539:8680543"
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    implementation "com.mrcrayfish:framework-fabric:${framework_version}+${minecraft_version}"
+    implementation("net.tearpelato:deco_lib-fabric-26.1.2:${deco_lib_version}")
+   /* modImplementation "curse.maven:menulogue-682371:5705587"
+    modImplementation "curse.maven:configured-457570:7276575"
+    modImplementation "curse.maven:catalogue-459701:6926812"*/
+
+   /* modImplementation "curse.maven:every-compat-628539:8680543"
     modImplementation "curse.maven:selene-499980:8821084"
     modImplementation "curse.maven:terrablender-fabric-565956:6054948"
     modImplementation "curse.maven:natures-spirit-1044992:6962791"
     modImplementation "curse.maven:refurbished-furniture-897116:7473562"
+*/
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
 
-    modCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    modCompileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
-    modRuntimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
-    modCompileOnly ("net.mehvahdjukaar:everycomp-fabric:${everycomp_version}:fabric") { transitive = false }
-    modCompileOnly ("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") { transitive = false }
-    modImplementation("net.mehvahdjukaar:codecui-fabric:${codecui_version}")
 }
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
