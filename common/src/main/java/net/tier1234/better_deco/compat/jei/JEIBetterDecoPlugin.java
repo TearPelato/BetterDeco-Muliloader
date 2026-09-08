@@ -42,6 +42,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipeCategories(new WorkbenchCategory(guiHelper));
         registration.addRecipeCategories(new FreezerCategory(guiHelper));
         registration.addRecipeCategories(new CuttingBoardCategory(guiHelper));
+        registration.addRecipeCategories(new ToasterCategory(guiHelper));
     }
 
     @Override
@@ -52,6 +53,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipes(WorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
         registration.addRecipes(FreezerCategory.FREEZER_RECIPE_TYPE, this.getRecipes(ModRecipes.FREEZER_TYPE.get()));
         registration.addRecipes(CuttingBoardCategory.TYPE, this.getRecipes(ModRecipes.CUTTING_BOARD_TYPE.get()));
+        registration.addRecipes(ToasterCategory.TYPE, this.getRecipes(ModRecipes.TOASTER_TYPE.get()));
     }
 
     @Override
@@ -159,6 +161,11 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 CuttingBoardCategory.TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.WARPED_CUTTING_BOARD.get().asItem()),
                 CuttingBoardCategory.TYPE);
+
+
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.TOASTER_LIGHT.get()), ToasterCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.TOASTER_DARK.get()), ToasterCategory.TYPE);
+
 
     }
 
