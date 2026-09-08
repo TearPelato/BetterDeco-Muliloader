@@ -15,11 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.compat.jei.category.FreezerCategory;
-import net.tier1234.better_deco.compat.jei.category.WorkbenchCategory;
+import net.tier1234.better_deco.compat.jei.category.*;
+import net.tier1234.better_deco.recipe.CuttingBoardRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
-import net.tier1234.better_deco.compat.jei.category.MicrowaveRecipeCategory;
-import net.tier1234.better_deco.compat.jei.category.OvenRecipeCategory;
 import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.screen.custom.FreezerScreen;
 import net.tier1234.better_deco.screen.custom.MicrowaveScreen;
@@ -43,6 +41,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipeCategories(new MicrowaveRecipeCategory(guiHelper));
         registration.addRecipeCategories(new WorkbenchCategory(guiHelper));
         registration.addRecipeCategories(new FreezerCategory(guiHelper));
+        registration.addRecipeCategories(new CuttingBoardCategory(guiHelper));
     }
 
     @Override
@@ -52,6 +51,7 @@ public class JEIBetterDecoPlugin implements IModPlugin {
         registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
         registration.addRecipes(WorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
         registration.addRecipes(FreezerCategory.FREEZER_RECIPE_TYPE, this.getRecipes(ModRecipes.FREEZER_TYPE.get()));
+        registration.addRecipes(CuttingBoardCategory.TYPE, this.getRecipes(ModRecipes.CUTTING_BOARD_TYPE.get()));
     }
 
     @Override
@@ -62,7 +62,6 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
         registration.addRecipeClickArea(FreezerScreen.class, 74, 30, 22, 20,
                 FreezerCategory.FREEZER_RECIPE_TYPE);
-
 
     }
     @Override
@@ -132,8 +131,35 @@ public class JEIBetterDecoPlugin implements IModPlugin {
                 MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.WORKBENCH.get().asItem()),
                 WorkbenchCategory.TYPE);
+
+        //Freezer
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_LIGHT.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_DARK.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
+
+        //Cutting Board
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.OAK_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.SPRUCE_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BIRCH_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.JUNGLE_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.ACACIA_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_OAK_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.MANGROVE_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CHERRY_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BAMBOO_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CRIMSON_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WARPED_CUTTING_BOARD.get().asItem()),
+                CuttingBoardCategory.TYPE);
+
     }
 
     /**

@@ -26,7 +26,7 @@ import java.util.List;
 public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
 
     public static final ResourceLocation UID = Constants.id("oven");
-    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/oven/oven_jei_2.png");
+    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/jei/oven_jei_2.png");
 
     public static final RecipeType<OvenRecipe> OVEN_RECIPE_RECIPE_TYPE =
             new RecipeType<>(UID, OvenRecipe.class);

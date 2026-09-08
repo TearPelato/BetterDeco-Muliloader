@@ -29,7 +29,7 @@ import java.util.List;
 
 public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
 
-    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/workbench/workbench_jei.png");
+    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/jei/workbench_jei.png");
 
     public static final ResourceLocation UID = Constants.id("furni_crafting");
     public static final RecipeType<WorkbenchRecipe> TYPE =

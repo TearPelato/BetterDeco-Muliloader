@@ -501,6 +501,7 @@
 
   "sounds.better_deco.fart": "Player Farted",
   "container.better_deco.shelf": "Shelf",
-  "container.better_deco.crate": "Crate"
+  "container.better_deco.crate": "Crate",
+  "category.better_deco.cutting_board": "Cutting Board"
 
 }

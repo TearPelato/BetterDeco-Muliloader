@@ -24,7 +24,7 @@ public class FreezerCategory implements IRecipeCategory<FreezerRecipe> {
 
 
     public static final ResourceLocation UID = Constants.id("freezer");
-    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/freezer/freezer_jei.png");
+    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/jei/freezer_jei.png");
 
     public static final RecipeType<FreezerRecipe> FREEZER_RECIPE_TYPE =
             new RecipeType<>(UID, FreezerRecipe.class);
