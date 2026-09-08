@@ -24,54 +24,47 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
     }
 
     @Override
-    public void render(JarBlockEntity jar, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        ItemStack filter = jar.getItem(0);
-        if(filter.isEmpty())
+    public void render(JarBlockEntity jar, float partialTick, PoseStack poseStack,
+                       MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+
+        ItemStack stack = jar.getItem(0);
+        if (stack.isEmpty())
             return;
 
         Direction direction = jar.getBlockState().getValue(JarBlock.DIRECTION);
+
         poseStack.pushPose();
         poseStack.translate(0.5, 0.1, 0.5);
         poseStack.scale(0.499F, 0.499F, 0.499F);
 
-        for(int i = 0; i < jar.getContainerSize(); i++)
-        {
-            ItemStack stack = jar.getItem(i);
-            if(stack.isEmpty())
-                continue;
+        BakedModel model = this.renderer.getModel(stack, jar.getLevel(), null, 0);
 
-            BakedModel model = this.renderer.getModel(stack, jar.getLevel(), null, 0);
-            float offset = model.isGui3d() ? 0.0375F : 0.0625F;
-            this.drawItem(stack, jar.getLevel(), direction, poseStack, bufferSource, packedLight, packedOverlay, !model.isGui3d(), offset);
+        float offset = model.isGui3d() ? 0.0375F : 0.0625F;
+        boolean flat = !model.isGui3d();
 
+        int count = stack.getCount();
+
+        for (int i = 0; i < count; i++) {
+            this.drawItem(stack, jar.getLevel(), direction, poseStack, bufferSource, packedLight, packedOverlay, flat, offset, i);
         }
+
         poseStack.popPose();
     }
 
-    private void drawItem(ItemStack stack, Level level, Direction facing, PoseStack poseStack, MultiBufferSource source, int light, int overlay, boolean flat, float offset)
-    {
+    private void drawItem(ItemStack stack, Level level, Direction facing, PoseStack poseStack, MultiBufferSource source, int light, int overlay, boolean flat, float offset, int index) {
         poseStack.pushPose();
+        poseStack.translate(0, index * offset, 0);
+
         this.setupItemRotation(poseStack, facing, flat);
         this.renderer.renderStatic(stack, ItemDisplayContext.NONE, light, overlay, poseStack, source, level, 0);
         poseStack.popPose();
-        poseStack.translate(0, offset, 0);
-        this.postDrawItem(poseStack, flat);
     }
 
-    private void setupItemRotation(PoseStack poseStack, Direction facing, boolean flat)
-    {
-        if(!flat) return;
+    private void setupItemRotation(PoseStack poseStack, Direction facing, boolean flat) {
+        if (!flat)
+            return;
+
         poseStack.mulPose(facing.getRotation());
         poseStack.mulPose(Axis.YP.rotation(Mth.PI));
-    }
-
-    private void postDrawItem(PoseStack poseStack, boolean flat)
-    {
-        if(flat)
-        {
-            poseStack.mulPose(Axis.YP.rotation(Mth.HALF_PI / 2.01F));
-            return;
-        }
-        poseStack.scale(0.998F, 0.998F, 0.998F);
     }
 }

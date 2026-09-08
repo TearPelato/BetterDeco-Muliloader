@@ -40,7 +40,7 @@ public class JarBlockEntity extends BasicLootBlockEntity {
     @Override
     public boolean canPlaceItem(int slot, ItemStack stack) {
         ItemStack stored = getItem(slot);
-        int maxCapacity = Math.min(stack.getMaxStackSize(), 64);
+        int maxCapacity = Math.min(stack.getMaxStackSize(), 16);
         return stored.isEmpty() || (ItemStack.isSameItemSameComponents(stored, stack) && stored.getCount() < maxCapacity);
     }
 

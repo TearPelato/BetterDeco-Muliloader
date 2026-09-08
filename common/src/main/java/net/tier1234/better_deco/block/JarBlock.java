@@ -65,7 +65,7 @@ public class JarBlock extends FurnitureHorizontalBlock implements EntityBlock {
             return ItemInteractionResult.FAIL;
         }
 
-        int maxCapacity = Math.min(stack.getMaxStackSize(), 64);
+        int maxCapacity = Math.min(stack.getMaxStackSize(), 16);
         if (stored.getCount() >= maxCapacity) {
             return ItemInteractionResult.FAIL;
         }
