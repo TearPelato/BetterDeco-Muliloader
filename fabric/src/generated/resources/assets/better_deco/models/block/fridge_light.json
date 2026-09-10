@@ -1,7 +1,0 @@
-{
-  "parent": "better_deco:block/fridge",
-  "textures": {
-    "particle": "minecraft:block/gray_concrete",
-    "texture": "better_deco:block/fridge_light"
-  }
-}

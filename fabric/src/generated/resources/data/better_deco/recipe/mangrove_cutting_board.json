@@ -3,13 +3,10 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:mangrove_planks"
-      }
+      "item": "minecraft:mangrove_planks"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:mangrove_cutting_board"
   }
 }

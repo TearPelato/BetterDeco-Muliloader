@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:mangrove_planks"
-      }
+      "item": "minecraft:mangrove_planks"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:chest"
-      }
+      "item": "minecraft:chest"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:mangrove_storage_crate"
   }
 }

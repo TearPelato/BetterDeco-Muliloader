@@ -1,8 +1,6 @@
 {
   "type": "better_deco:cutting_board",
-  "ingredient": {
-    "item": "minecraft:bread"
-  },
+  "ingredient": "minecraft:bread",
   "result": {
     "count": 2,
     "id": "better_deco:sliced_bread"

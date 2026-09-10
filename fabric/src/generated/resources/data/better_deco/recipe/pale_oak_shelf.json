@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:pale_oak_planks",
+    "B": "minecraft:stick"
+  },
+  "pattern": [
+    "###",
+    "B B"
+  ],
+  "result": {
+    "id": "better_deco:pale_oak_shelf"
+  }
+}

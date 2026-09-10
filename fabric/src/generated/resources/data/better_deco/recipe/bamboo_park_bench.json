@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:bamboo_planks"
-      }
+      "item": "minecraft:bamboo_planks"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:chain"
-      }
+      "item": "minecraft:iron_chain"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:bamboo_park_bench"
   }
 }

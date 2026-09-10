@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:acacia_planks"
-      }
+      "item": "minecraft:acacia_planks"
     },
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:quartz_block"
-      }
+      "item": "minecraft:quartz_block"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:acacia_kitchen_counter"
   }
 }

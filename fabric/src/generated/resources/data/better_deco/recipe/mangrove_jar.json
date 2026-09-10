@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:mangrove_planks"
-      }
+      "item": "minecraft:mangrove_planks"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:glass_pane"
-      }
+      "item": "minecraft:glass_pane"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:mangrove_jar"
   }
 }

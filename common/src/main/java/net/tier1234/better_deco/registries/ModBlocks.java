@@ -49,6 +49,8 @@ public class ModBlocks {
             properties -> new BathBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
     public static final RegistryEntry<BathBlock> WARPED_BATH = register("warped_bath",
             properties -> new BathBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
+    public static final RegistryEntry<BathBlock> PALE_OAK_BATH = register("pale_oak_bath",
+            properties -> new BathBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
 
 
 
@@ -75,6 +77,8 @@ public class ModBlocks {
             properties -> new ToiletBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
     public static final RegistryEntry<ToiletBlock> WARPED_TOILET = register("warped_toilet",
             properties -> new ToiletBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
+    public static final RegistryEntry<ToiletBlock> PALE_OAK_TOILET = register("pale_oak_toilet",
+            properties -> new ToiletBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
 
 
 
@@ -111,6 +115,8 @@ public class ModBlocks {
             properties -> new BasinBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
     public static final RegistryEntry<BasinBlock> WARPED_BASIN = register("warped_basin",
             properties -> new BasinBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
+    public static final RegistryEntry<BasinBlock> PALE_OAK_BASIN = register("pale_oak_basin",
+            properties -> new BasinBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD));
 
 
 
@@ -136,6 +142,8 @@ public class ModBlocks {
             properties -> new JarBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(1.0F));
     public static final RegistryEntry<JarBlock> WARPED_JAR = register("warped_jar",
             properties -> new JarBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(1.0F));
+    public static final RegistryEntry<JarBlock> PALE_OAK_JAR = register("pale_oak_jar",
+            properties -> new JarBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(1.0F));
 
 
 
@@ -164,6 +172,8 @@ public class ModBlocks {
             properties -> new CuttingBoardBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.5f));
     public static final RegistryEntry<CuttingBoardBlock> WARPED_CUTTING_BOARD = register("warped_cutting_board",
             properties -> new CuttingBoardBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.5f));
+    public static final RegistryEntry<CuttingBoardBlock> PALE_OAK_CUTTING_BOARD = register("pale_oak_cutting_board",
+            properties -> new CuttingBoardBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.5f));
 
 
 
@@ -192,6 +202,9 @@ public class ModBlocks {
             properties -> new DeskBlock(properties, WoodType.CRIMSON), ()-> BlockBehaviour.Properties.of());
     public static final RegistryEntry<DeskBlock> WARPED_DESK = register("warped_desk",
             properties -> new DeskBlock(properties, WoodType.WARPED), ()-> BlockBehaviour.Properties.of());
+    public static final RegistryEntry<DeskBlock> PALE_OAK_DESK = register("pale_oak_desk",
+            properties -> new DeskBlock(properties, WoodType.PALE_OAK), ()-> BlockBehaviour.Properties.of());
+
 
     public static final RegistryEntry<DeskCabinetBlock> OAK_DESK_CABINET = register("oak_desk_cabinet",
             properties -> new DeskCabinetBlock(properties, WoodType.OAK),()-> BlockBehaviour.Properties.of());
@@ -215,6 +228,8 @@ public class ModBlocks {
             properties -> new DeskCabinetBlock(properties, WoodType.CRIMSON), ()-> BlockBehaviour.Properties.of());
     public static final RegistryEntry<DeskCabinetBlock> WARPED_DESK_CABINET = register("warped_desk_cabinet",
             properties -> new DeskCabinetBlock(properties, WoodType.WARPED), ()-> BlockBehaviour.Properties.of());
+    public static final RegistryEntry<DeskCabinetBlock> PALE_OAK_DESK_CABINET = register("pale_oak_desk_cabinet",
+            properties -> new DeskCabinetBlock(properties, WoodType.PALE_OAK), ()-> BlockBehaviour.Properties.of());
 
     //Path
     public static final RegistryEntry<PathBlock> STONE_PATH = register("stone_path",
@@ -254,6 +269,10 @@ public class ModBlocks {
             properties -> new ParkBenchBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.5f));
     public static final RegistryEntry<ParkBenchBlock> WARPED_PARK_BENCH = register("warped_park_bench",
             properties -> new ParkBenchBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.5f));
+    public static final RegistryEntry<ParkBenchBlock> PALE_OAK_PARK_BENCH = register("pale_oak_park_bench",
+            properties -> new ParkBenchBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.5f));
+
+
 
     public static final RegistryEntry<ToasterBlock> TOASTER_LIGHT = register("toaster_light",
             properties ->  new ToasterBlock(MetalType.LIGHT, properties),()-> BlockBehaviour.Properties.of().strength(2f).noOcclusion());
@@ -296,6 +315,8 @@ public class ModBlocks {
             properties -> new OvenBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of());
     public static final RegistryEntry<OvenBlock> WARPED_OVEN = register("warped_oven",
             properties -> new OvenBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of());
+    public static final RegistryEntry<OvenBlock> PALE_OAK_OVEN = register("pale_oak_oven",
+            properties -> new OvenBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of());
 
 
     //SHELFS
@@ -321,6 +342,8 @@ public class ModBlocks {
             properties -> new ShelfBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD));
     public static final RegistryEntry<ShelfBlock> WARPED_SHELF = register("warped_shelf",
             properties -> new ShelfBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD));
+    public static final RegistryEntry<ShelfBlock> PALE_OAK_SHELF = register("pale_oak_shelf",
+            properties -> new ShelfBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD));
 
     //Furnitures
     //Chairs
@@ -346,6 +369,8 @@ public class ModBlocks {
             properties -> new ChairBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<ChairBlock> WARPED_CHAIR = register("warped_chair",
             properties -> new ChairBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<ChairBlock> PALE_OAK_CHAIR = register("pale_oak_chair",
+            properties -> new ChairBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
 
     //Counters
     public static final RegistryEntry<KitchenCounterBlock> OAK_KITCHEN_COUNTER = register("oak_kitchen_counter",
@@ -370,6 +395,8 @@ public class ModBlocks {
             properties -> new KitchenCounterBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<KitchenCounterBlock> WARPED_KITCHEN_COUNTER = register("warped_kitchen_counter",
             properties -> new KitchenCounterBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<KitchenCounterBlock> PALE_OAK_KITCHEN_COUNTER = register("pale_oak_kitchen_counter",
+            properties -> new KitchenCounterBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
 
     //Drawers
     public static final RegistryEntry<KitchenDrawerBlock> OAK_KITCHEN_DRAWER = register("oak_kitchen_drawer",
@@ -394,6 +421,8 @@ public class ModBlocks {
             properties -> new KitchenDrawerBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<KitchenDrawerBlock> WARPED_KITCHEN_DRAWER = register("warped_kitchen_drawer",
             properties -> new KitchenDrawerBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<KitchenDrawerBlock> PALE_OAK_KITCHEN_DRAWER = register("pale_oak_kitchen_drawer",
+            properties -> new KitchenDrawerBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
 
         //Sofas
     public static final RegistryEntry<SofaBlock> RED_SOFA = register("red_sofa",
@@ -452,6 +481,9 @@ public class ModBlocks {
             properties -> new CabinetBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<CabinetBlock> WARPED_CABINET = register("warped_kitchen_cabinet",
             properties -> new CabinetBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<CabinetBlock> PALE_OAK_CABINET = register("pale_oak_kitchen_cabinet",
+            properties -> new CabinetBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+
 
     //Bedside Cabinets
     public static final RegistryEntry<BedsideCabinetBlock> OAK_BEDSIDE = register("oak_bedside",
@@ -476,6 +508,8 @@ public class ModBlocks {
             properties -> new BedsideCabinetBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<BedsideCabinetBlock> WARPED_BEDSIDE = register("warped_bedside",
             properties -> new BedsideCabinetBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<BedsideCabinetBlock> PALE_OAK_BEDSIDE = register("pale_oak_bedside",
+            properties -> new BedsideCabinetBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
 
     //Crates
     public static final RegistryEntry<CrateBlock> OAK_CRATE = register("oak_storage_crate",
@@ -500,6 +534,8 @@ public class ModBlocks {
             properties -> new CrateBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<CrateBlock> WARPED_CRATE = register("warped_storage_crate",
             properties -> new CrateBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<CrateBlock> PALE_OAK_CRATE = register("pale_oak_storage_crate",
+            properties -> new CrateBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
 
     //Sinks
     public static final RegistryEntry<KitchenSinkBlock> OAK_SINK = register("oak_sink",
@@ -524,6 +560,8 @@ public class ModBlocks {
             properties -> new KitchenSinkBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
     public static final RegistryEntry<KitchenSinkBlock> WARPED_SINK = register("warped_sink",
             properties -> new KitchenSinkBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
+    public static final RegistryEntry<KitchenSinkBlock> PALE_OAK_SINK = register("pale_oak_sink",
+            properties -> new KitchenSinkBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion());
 
     //Colored Variants
     public static final RegistryEntry<KitchenCounterBlock> RED_KITCHEN_COUNTER = register("red_kitchen_counter",
@@ -750,6 +788,8 @@ public class ModBlocks {
             properties -> new CoffeeTableBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD));
     public static final RegistryEntry<CoffeeTableBlock> WARPED_COFFEE_TABLE = register("warped_coffee_table",
             properties -> new CoffeeTableBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD));
+    public static final RegistryEntry<CoffeeTableBlock> PALE_OAK_COFFEE_TABLE = register("pale_oak_coffee_table",
+            properties -> new CoffeeTableBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD));
 
     //Tables
     public static final RegistryEntry<TableBlock> OAK_TABLE = register("oak_table",
@@ -774,6 +814,8 @@ public class ModBlocks {
             properties -> new TableBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD));
     public static final RegistryEntry<TableBlock> WARPED_TABLE = register("warped_table",
             properties -> new TableBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD));
+    public static final RegistryEntry<TableBlock> PALE_OAK_TABLE = register("pale_oak_table",
+            properties -> new TableBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2f).sound(SoundType.WOOD));
 
     public static final RegistryEntry<LampBlock> WHITE_LAMP = register("white_lamp",
             properties -> new LampBlock(DyeColor.WHITE, properties), ()-> BlockBehaviour.Properties.of().strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD));
@@ -867,6 +909,8 @@ public class ModBlocks {
             properties -> new WoodenClockBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD));
     public static final RegistryEntry<WoodenClockBlock> WARPED_CLOCK = register("warped_clock",
             properties -> new WoodenClockBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD));
+    public static final RegistryEntry<WoodenClockBlock> PALE_OAK_CLOCK = register("pale_oak_clock",
+            properties -> new WoodenClockBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD));
 
 
 
@@ -898,6 +942,9 @@ public class ModBlocks {
             properties -> new TecqueBlock(WoodType.CRIMSON, properties),()-> BlockBehaviour.Properties.of().strength(3f).noOcclusion());
     public static final RegistryEntry<TecqueBlock> WARPED_GLASS_TECQUE = register("warped_glass_tecque",
             properties -> new TecqueBlock(WoodType.WARPED, properties),()-> BlockBehaviour.Properties.of().strength(3f).noOcclusion());
+    public static final RegistryEntry<TecqueBlock> PALE_OAK_GLASS_TECQUE = register("pale_oak_glass_tecque",
+            properties -> new TecqueBlock(WoodType.PALE_OAK, properties),()-> BlockBehaviour.Properties.of().strength(3f).noOcclusion());
+
 
     private static <T extends Block> RegistryEntry<T> register(String name, Function<BlockBehaviour.Properties, T> function, Supplier<BlockBehaviour.Properties> supplier) {
         RegistryEntry<T> entry = RegistryEntry.blockWithItem(Constants.id(name), function, supplier);

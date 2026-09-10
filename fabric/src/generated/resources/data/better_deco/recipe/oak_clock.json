@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:oak_planks"
-      }
+      "item": "minecraft:oak_planks"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:clock"
-      }
+      "item": "minecraft:clock"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:oak_clock"
   }
 }

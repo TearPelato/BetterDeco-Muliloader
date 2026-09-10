@@ -9,12 +9,10 @@
       "y": 90
     },
     "facing=north,open=false": {
-      "model": "better_deco:block/mangrove_kitchen_drawer_closed",
-      "y": 0
+      "model": "better_deco:block/mangrove_kitchen_drawer_closed"
     },
     "facing=north,open=true": {
-      "model": "better_deco:block/mangrove_kitchen_drawer_open",
-      "y": 0
+      "model": "better_deco:block/mangrove_kitchen_drawer_open"
     },
     "facing=south,open=false": {
       "model": "better_deco:block/mangrove_kitchen_drawer_closed",

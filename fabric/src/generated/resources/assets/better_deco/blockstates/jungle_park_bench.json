@@ -33,20 +33,16 @@
       "y": 180
     },
     "facing=south,type=left": {
-      "model": "better_deco:block/jungle_park_bench_left",
-      "y": 0
+      "model": "better_deco:block/jungle_park_bench_left"
     },
     "facing=south,type=middle": {
-      "model": "better_deco:block/jungle_park_bench_middle",
-      "y": 0
+      "model": "better_deco:block/jungle_park_bench_middle"
     },
     "facing=south,type=right": {
-      "model": "better_deco:block/jungle_park_bench_right",
-      "y": 0
+      "model": "better_deco:block/jungle_park_bench_right"
     },
     "facing=south,type=single": {
-      "model": "better_deco:block/jungle_park_bench_single",
-      "y": 0
+      "model": "better_deco:block/jungle_park_bench_single"
     },
     "facing=west,type=left": {
       "model": "better_deco:block/jungle_park_bench_left",

@@ -3,37 +3,26 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:mangrove_planks"
-      }
+      "item": "minecraft:mangrove_planks"
     },
     {
       "count": 5,
-      "item": {
-        "item": "minecraft:quartz_block"
-      }
+      "item": "minecraft:quartz_block"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:bucket"
-      }
+      "item": "minecraft:bucket"
     },
     {
       "count": 5,
-      "item": {
-        "item": "minecraft:iron_ingot"
-      }
+      "item": "minecraft:iron_ingot"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:copper_ingot"
-      }
+      "item": "minecraft:copper_ingot"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:mangrove_bath"
   }
 }

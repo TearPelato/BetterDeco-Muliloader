@@ -3,13 +3,10 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:granite"
-      }
+      "item": "minecraft:granite"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:granite_path"
   }
 }

@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:dark_oak_planks"
-      }
+      "item": "minecraft:dark_oak_planks"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:chest"
-      }
+      "item": "minecraft:chest"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:dark_oak_desk_cabinet"
   }
 }

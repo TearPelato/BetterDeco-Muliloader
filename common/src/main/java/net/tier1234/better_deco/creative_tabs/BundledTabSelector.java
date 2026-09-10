@@ -89,9 +89,9 @@ public class BundledTabSelector {
             }
         });
 
-        FrameworkScreenEvents.AFTER_EXTRACT_BACKGROUND.register((screen,graphics,mouseX,mouseY, partialTicks)->{
+        FrameworkScreenEvents.BEFORE_EXTRACT.register((screen,graphics,mouseX,mouseY, partialTicks)->{
             if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
-                this.renderBackground(screen,graphics,mouseX,mouseY);
+                this.renderBackground(creativeScreen,graphics,mouseX,mouseY);
             }
         });
 
@@ -261,15 +261,18 @@ public class BundledTabSelector {
 
         @Override
         protected void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+            graphics.pose().pushMatrix();
+            graphics.pose().translate(0.0F, 0.0F);
             this.renderSelected(graphics);
             graphics.item(this.bundle.getIcon(), this.getX(), this.getY());
+            graphics.pose().popMatrix();
             this.renderHighlight(graphics);
         }
 
 
         private void renderSelected(GuiGraphicsExtractor graphics) {
             if (this.bundle.isSelected()) {
-                graphics.blit(RenderPipelines.GUI_TEXTURED,SELECTOR_BAR, this.getX() - 7, this.getY() - 1, 64, 29, 30, 19,256,256);
+                graphics.blit(RenderPipelines.GUI_TEXTURED,SELECTOR_BAR, this.getX() - 7, this.getY() - 1, 37, 24, 30, 19,256,256);
             }
         }
 
@@ -298,7 +301,10 @@ public class BundledTabSelector {
         @Override
         protected void extractContents(GuiGraphicsExtractor guiGraphicsExtractor, int i, int i1, float v) {
             int textureY = this.isHovered ? 0 : 12;
+            guiGraphicsExtractor.pose().pushMatrix();
+            guiGraphicsExtractor.pose().translate(0.0F, 0.0F);
             guiGraphicsExtractor.blit(RenderPipelines.GUI_TEXTURED,SELECTOR_BAR, this.getX(), this.getY(), this.uOffset, textureY, 24, 11,256,256);
+            guiGraphicsExtractor.pose().popMatrix();
         }
     }
 }

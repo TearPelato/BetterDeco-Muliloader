@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:spruce_planks"
-    },
-    "B": {
-      "item": "minecraft:stick"
-    }
+    "#": "minecraft:spruce_planks",
+    "B": "minecraft:stick"
   },
   "pattern": [
     "###",
     "B B"
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:spruce_shelf"
   }
 }

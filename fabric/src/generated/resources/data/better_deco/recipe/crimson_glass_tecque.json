@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:crimson_planks"
-      }
+      "item": "minecraft:crimson_planks"
     },
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:glass_pane"
-      }
+      "item": "minecraft:glass_pane"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:crimson_glass_tecque"
   }
 }

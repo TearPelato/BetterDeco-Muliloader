@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:blue_wool"
-      }
+      "item": "minecraft:blue_wool"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:stick"
-      }
+      "item": "minecraft:stick"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:blue_sofa"
   }
 }

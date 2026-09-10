@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/bath_head",
+  "textures": {
+    "particle": "minecraft:block/pale_oak_planks",
+    "texture": "better_deco:block/pale_oak_bath"
+  }
+}

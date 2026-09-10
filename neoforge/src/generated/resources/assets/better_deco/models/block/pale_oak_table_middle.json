@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/table_middle",
+  "textures": {
+    "particle": "minecraft:block/pale_oak_planks",
+    "texture": "better_deco:block/pale_oak_table"
+  }
+}

@@ -17,12 +17,10 @@
       "y": 180
     },
     "facing=south,part=bottom": {
-      "model": "better_deco:block/mangrove_bath_bottom",
-      "y": 0
+      "model": "better_deco:block/mangrove_bath_bottom"
     },
     "facing=south,part=head": {
-      "model": "better_deco:block/mangrove_bath_head",
-      "y": 0
+      "model": "better_deco:block/mangrove_bath_head"
     },
     "facing=west,part=bottom": {
       "model": "better_deco:block/mangrove_bath_bottom",

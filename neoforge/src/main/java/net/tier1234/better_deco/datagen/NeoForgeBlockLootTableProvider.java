@@ -32,6 +32,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_CHAIR.get());
         dropSelf(ModBlocks.CRIMSON_CHAIR.get());
         dropSelf(ModBlocks.WARPED_CHAIR.get());
+        dropSelf(ModBlocks.PALE_OAK_CHAIR.get());
 
 
         //Kitchen Counters
@@ -46,6 +47,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_KITCHEN_COUNTER.get());
         dropSelf(ModBlocks.CRIMSON_KITCHEN_COUNTER.get());
         dropSelf(ModBlocks.WARPED_KITCHEN_COUNTER.get());
+        dropSelf(ModBlocks.PALE_OAK_KITCHEN_COUNTER.get());
         //Stripped Variants
 
         //Kitchen Drawers
@@ -60,6 +62,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_KITCHEN_DRAWER.get());
         dropSelf(ModBlocks.CRIMSON_KITCHEN_DRAWER.get());
         dropSelf(ModBlocks.WARPED_KITCHEN_DRAWER.get());
+        dropSelf(ModBlocks.PALE_OAK_KITCHEN_DRAWER.get());
 
         //Stripped Variants
 
@@ -75,6 +78,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_CABINET.get());
         dropSelf(ModBlocks.CRIMSON_CABINET.get());
         dropSelf(ModBlocks.WARPED_CABINET.get());
+        dropSelf(ModBlocks.PALE_OAK_CABINET.get());
 
 
 
@@ -112,6 +116,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_BEDSIDE.get());
         dropSelf(ModBlocks.CRIMSON_BEDSIDE.get());
         dropSelf(ModBlocks.WARPED_BEDSIDE.get());
+        dropSelf(ModBlocks.PALE_OAK_BEDSIDE.get());
 
         //Crates
         dropSelf(ModBlocks.OAK_CRATE.get());
@@ -125,6 +130,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_CRATE.get());
         dropSelf(ModBlocks.CRIMSON_CRATE.get());
         dropSelf(ModBlocks.WARPED_CRATE.get());
+        dropSelf(ModBlocks.PALE_OAK_CRATE.get());
 
         //Utilities
 
@@ -142,6 +148,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_SINK.get());
         dropSelf(ModBlocks.CRIMSON_SINK.get());
         dropSelf(ModBlocks.WARPED_SINK.get());
+        dropSelf(ModBlocks.PALE_OAK_SINK.get());
 
 
 
@@ -156,6 +163,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_GLASS_TECQUE.get());
         dropSelf(ModBlocks.CRIMSON_GLASS_TECQUE.get());
         dropSelf(ModBlocks.WARPED_GLASS_TECQUE.get());
+        dropSelf(ModBlocks.PALE_OAK_GLASS_TECQUE.get());
 
 
 
@@ -207,6 +215,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_SHELF.get());
         dropSelf(ModBlocks.CRIMSON_SHELF.get());
         dropSelf(ModBlocks.WARPED_SHELF.get());
+        dropSelf(ModBlocks.PALE_OAK_SHELF.get());
 
 
 
@@ -222,6 +231,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_COFFEE_TABLE.get());
         dropSelf(ModBlocks.CRIMSON_COFFEE_TABLE.get());
         dropSelf(ModBlocks.WARPED_COFFEE_TABLE.get());
+        dropSelf(ModBlocks.PALE_OAK_COFFEE_TABLE.get());
 
 
         dropSelf(ModBlocks.OAK_TABLE.get());
@@ -235,6 +245,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_TABLE.get());
         dropSelf(ModBlocks.CRIMSON_TABLE.get());
         dropSelf(ModBlocks.WARPED_TABLE.get());
+        dropSelf(ModBlocks.PALE_OAK_TABLE.get());
 
 
         dropSelf(ModBlocks.OAK_OVEN.get());
@@ -248,6 +259,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_OVEN.get());
         dropSelf(ModBlocks.CRIMSON_OVEN.get());
         dropSelf(ModBlocks.WARPED_OVEN.get());
+        dropSelf(ModBlocks.PALE_OAK_OVEN.get());
 
 
         dropSelf(ModBlocks.LIGHT_MICROWAVE.get());
@@ -266,6 +278,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_PARK_BENCH.get());
         dropSelf(ModBlocks.CRIMSON_PARK_BENCH.get());
         dropSelf(ModBlocks.WARPED_PARK_BENCH.get());
+        dropSelf(ModBlocks.PALE_OAK_PARK_BENCH.get());
 
         dropSelf(ModBlocks.OAK_DESK.get());
         dropSelf(ModBlocks.SPRUCE_DESK.get());
@@ -278,6 +291,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_DESK.get());
         dropSelf(ModBlocks.CRIMSON_DESK.get());
         dropSelf(ModBlocks.WARPED_DESK.get());
+        dropSelf(ModBlocks.PALE_OAK_DESK.get());
 
         dropSelf(ModBlocks.OAK_DESK_CABINET.get());
         dropSelf(ModBlocks.SPRUCE_DESK_CABINET.get());
@@ -290,6 +304,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_DESK_CABINET.get());
         dropSelf(ModBlocks.CRIMSON_DESK_CABINET.get());
         dropSelf(ModBlocks.WARPED_DESK_CABINET.get());
+        dropSelf(ModBlocks.PALE_OAK_DESK_CABINET.get());
 
         dropSelf(ModBlocks.RED_KITCHEN_COUNTER.get());
         dropSelf(ModBlocks.YELLOW_KITCHEN_COUNTER.get());
@@ -387,8 +402,6 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.GRANITE_PATH.get());
         dropSelf(ModBlocks.DIORITE_PATH.get());
         dropSelf(ModBlocks.DEEPSLATE_PATH.get());
-        dropSelf(ModBlocks.OAK_CUTTING_BOARD.get());
-
         dropSelf(ModBlocks.WORKBENCH.get());
 
         dropSelf(ModBlocks.OAK_JAR.get());
@@ -402,6 +415,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_JAR.get());
         dropSelf(ModBlocks.CRIMSON_JAR.get());
         dropSelf(ModBlocks.WARPED_JAR.get());
+        dropSelf(ModBlocks.PALE_OAK_JAR.get());
 
         dropSelf(ModBlocks.OAK_CUTTING_BOARD.get());
         dropSelf(ModBlocks.SPRUCE_CUTTING_BOARD.get());
@@ -414,6 +428,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_CUTTING_BOARD.get());
         dropSelf(ModBlocks.CRIMSON_CUTTING_BOARD.get());
         dropSelf(ModBlocks.WARPED_CUTTING_BOARD.get());
+        dropSelf(ModBlocks.PALE_OAK_CUTTING_BOARD.get());
 
         dropSelf(ModBlocks.OAK_BASIN.get());
         dropSelf(ModBlocks.SPRUCE_BASIN.get());
@@ -426,6 +441,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_BASIN.get());
         dropSelf(ModBlocks.CRIMSON_BASIN.get());
         dropSelf(ModBlocks.WARPED_BASIN.get());
+        dropSelf(ModBlocks.PALE_OAK_BASIN.get());
 
         dropSelf(ModBlocks.OAK_TOILET.get());
         dropSelf(ModBlocks.SPRUCE_TOILET.get());
@@ -438,6 +454,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_TOILET.get());
         dropSelf(ModBlocks.CRIMSON_TOILET.get());
         dropSelf(ModBlocks.WARPED_TOILET.get());
+        dropSelf(ModBlocks.PALE_OAK_TOILET.get());
 
         dropSelf(ModBlocks.OAK_BATH.get());
         dropSelf(ModBlocks.SPRUCE_BATH.get());
@@ -450,6 +467,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_BATH.get());
         dropSelf(ModBlocks.CRIMSON_BATH.get());
         dropSelf(ModBlocks.WARPED_BATH.get());
+        dropSelf(ModBlocks.PALE_OAK_BATH.get());
 
 
         dropSelf(ModBlocks.OAK_CLOCK.get());
@@ -463,6 +481,7 @@ public class NeoForgeBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BAMBOO_CLOCK.get());
         dropSelf(ModBlocks.CRIMSON_CLOCK.get());
         dropSelf(ModBlocks.WARPED_CLOCK.get());
+        dropSelf(ModBlocks.PALE_OAK_CLOCK.get());
 
         dropSelf(ModBlocks.RED_LAMP.get());
         dropSelf(ModBlocks.YELLOW_LAMP.get());

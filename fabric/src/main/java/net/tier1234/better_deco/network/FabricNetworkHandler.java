@@ -9,9 +9,8 @@ import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
 
 public class FabricNetworkHandler {
 
-
     public static void registerPayloads() {
-        PayloadTypeRegistry.serverboundPlay().register(SyncCraftableRecipesPayload.TYPE, SyncCraftableRecipesPayload.STREAM_CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(SyncCraftableRecipesPayload.TYPE, SyncCraftableRecipesPayload.STREAM_CODEC);
         PayloadTypeRegistry.serverboundPlay().register(CraftRecipePayload.TYPE, CraftRecipePayload.STREAM_CODEC);
         PayloadTypeRegistry.serverboundPlay().register(SelectRecipePayload.TYPE, SelectRecipePayload.STREAM_CODEC);
     }
@@ -29,10 +28,9 @@ public class FabricNetworkHandler {
                 (payload, context) -> context.server().execute(
                         () -> ServerPayloadHandler.handleCraftRecipe(payload, context.player())));
 
-    ServerPlayNetworking.registerGlobalReceiver(
-            SelectRecipePayload.TYPE,
-            (payload, context) -> context.server().execute(
-                    ()-> ServerPayloadHandler.handleSelectRecipe(payload, context.player())));
-
+        ServerPlayNetworking.registerGlobalReceiver(
+                SelectRecipePayload.TYPE,
+                (payload, context) -> context.server().execute(
+                        () -> ServerPayloadHandler.handleSelectRecipe(payload, context.player())));
     }
 }

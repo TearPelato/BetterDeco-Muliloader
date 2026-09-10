@@ -3,13 +3,10 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:acacia_planks"
-      }
+      "item": "minecraft:acacia_planks"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:acacia_cutting_board"
   }
 }

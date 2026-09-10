@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/glass_tecque",
+  "textures": {
+    "particle": "minecraft:block/pale_oak_planks",
+    "texture": "better_deco:block/pale_oak_glass_tecque"
+  }
+}

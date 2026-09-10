@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:jungle_planks"
-      }
+      "item": "minecraft:jungle_planks"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:chest"
-      }
+      "item": "minecraft:chest"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:jungle_storage_crate"
   }
 }

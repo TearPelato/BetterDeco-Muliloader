@@ -1,4 +1,4 @@
-// 1.21.1	2026-09-07T23:11:43.6530302	BetterDeco/Advancements
-1b24ce8628050d98d92347643e693cd24cec7ff4 data\minecraft\advancement\better_deco\craft_furniture.json
-df43e4f4a00df228385715a00420c641162e1fcd data\minecraft\advancement\better_deco\craft_workbench.json
-e168953757c81cca3424737a0b75929f1d892dd6 data\minecraft\advancement\better_deco\craft_electronic_furnitures.json
+// 26.1.2	-999999999-01-01T00:00:00	BetterDeco/Advancements
+db2b2eb14ccf57dbc904198afb5f781d04748365 data/minecraft/advancement/better_deco/craft_electronic_furnitures.json
+dff4270787345c75673d515950c530218376698e data/minecraft/advancement/better_deco/craft_furniture.json
+8c0fab1d7b55a0a9fc6af0bd958eb3a6464556be data/minecraft/advancement/better_deco/craft_workbench.json

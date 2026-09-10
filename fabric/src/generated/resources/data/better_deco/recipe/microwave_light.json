@@ -3,31 +3,22 @@
   "materials": [
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:white_concrete"
-      }
+      "item": "minecraft:white_concrete"
     },
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:iron_ingot"
-      }
+      "item": "minecraft:iron_ingot"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:redstone"
-      }
+      "item": "minecraft:redstone"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:glass_pane"
-      }
+      "item": "minecraft:glass_pane"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:microwave_light"
   }
 }

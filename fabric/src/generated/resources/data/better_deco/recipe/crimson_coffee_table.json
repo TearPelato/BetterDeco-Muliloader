@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:crimson_planks"
-      }
+      "item": "minecraft:crimson_planks"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:glass"
-      }
+      "item": "minecraft:glass"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:crimson_coffee_table"
   }
 }

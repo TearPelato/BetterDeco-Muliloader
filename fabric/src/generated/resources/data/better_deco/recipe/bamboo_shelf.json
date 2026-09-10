@@ -2,19 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:bamboo_planks"
-    },
-    "B": {
-      "item": "minecraft:stick"
-    }
+    "#": "minecraft:bamboo_planks",
+    "B": "minecraft:stick"
   },
   "pattern": [
     "###",
     "B B"
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:bamboo_shelf"
   }
 }

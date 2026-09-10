@@ -1,0 +1,8 @@
+{
+  "type": "better_deco:toaster",
+  "cookingtime": 200,
+  "ingredient": "better_deco:sliced_bread",
+  "result": {
+    "id": "better_deco:cooked_sliced_bread"
+  }
+}

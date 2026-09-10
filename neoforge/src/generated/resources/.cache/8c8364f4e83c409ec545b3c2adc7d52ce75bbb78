@@ -1,10 +1,10 @@
-// 26.1.2	2026-09-10T15:14:15.9660998	Tags for minecraft:item mod id vanilla
-b3b2d40c14f412be49d0b22cd8e0d7f20aa49164 data/better_deco/tags/item/bath.json
-258ef8d52b924b7336371cbfe1d5f609f240bd45 data/better_deco/tags/item/bedroom.json
+// 26.1.2	2026-09-10T21:00:32.6945207	Tags for minecraft:item mod id vanilla
+c4eaec76367e4aca24c3cd124f8b57b4da6e7177 data/better_deco/tags/item/bath.json
+aa9b0ebfe8a6c8716dd238e3dd55058e9c01d218 data/better_deco/tags/item/bedroom.json
 cf58d454dc12ba4c38bcef63958bcf38ffd4a046 data/better_deco/tags/item/electronic_furnitures.json
-a604d465849503f6215d193c440f881624a7c392 data/better_deco/tags/item/general.json
-cd89c96d2c2f67e4640f534d244d6b43cc696701 data/better_deco/tags/item/kitchen.json
+335696ee19888633a7d8445d613cf496e72ce22f data/better_deco/tags/item/general.json
+ae45ab7884945cb155032883c820aa4fe8c2f6bf data/better_deco/tags/item/kitchen.json
 6db0b9023c29715c498efcfc1db1e4456441369a data/better_deco/tags/item/knives.json
-0826e2159e76a37174b6dac4b41c14213eb30bad data/better_deco/tags/item/office.json
-0981eed4e5577f33eac667a01cdedfda2353184d data/better_deco/tags/item/outdoor.json
+e3dc14af521a7e029aa72954932f0c5ec0754f48 data/better_deco/tags/item/office.json
+e81ecc853e05a9f67c34c96eff1b0fa666fcfad6 data/better_deco/tags/item/outdoor.json
 6db0b9023c29715c498efcfc1db1e4456441369a data/minecraft/tags/item/swords.json

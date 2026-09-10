@@ -5,8 +5,7 @@
       "y": 90
     },
     "facing=north": {
-      "model": "better_deco:block/mangrove_glass_tecque",
-      "y": 0
+      "model": "better_deco:block/mangrove_glass_tecque"
     },
     "facing=south": {
       "model": "better_deco:block/mangrove_glass_tecque",

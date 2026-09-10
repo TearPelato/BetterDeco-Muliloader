@@ -1,0 +1,12 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": "minecraft:pale_oak_planks"
+    }
+  ],
+  "result": {
+    "id": "better_deco:pale_oak_cutting_board"
+  }
+}

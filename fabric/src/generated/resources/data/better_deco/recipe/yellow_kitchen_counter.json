@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:yellow_concrete"
-      }
+      "item": "minecraft:yellow_concrete"
     },
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:quartz_block"
-      }
+      "item": "minecraft:quartz_block"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:yellow_kitchen_counter"
   }
 }

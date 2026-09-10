@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:bamboo_planks"
-      }
+      "item": "minecraft:bamboo_planks"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:glass_pane"
-      }
+      "item": "minecraft:glass_pane"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:bamboo_jar"
   }
 }

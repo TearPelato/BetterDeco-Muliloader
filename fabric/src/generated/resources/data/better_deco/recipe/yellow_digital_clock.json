@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:yellow_concrete"
-      }
+      "item": "minecraft:yellow_concrete"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:clock"
-      }
+      "item": "minecraft:clock"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:yellow_digital_clock"
   }
 }

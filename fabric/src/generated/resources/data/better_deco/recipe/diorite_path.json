@@ -3,13 +3,10 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:diorite"
-      }
+      "item": "minecraft:diorite"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:diorite_path"
   }
 }

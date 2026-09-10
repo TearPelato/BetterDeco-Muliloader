@@ -73,40 +73,31 @@
       "y": 180
     },
     "facing=south,type=center": {
-      "model": "better_deco:block/mangrove_coffee_table_center",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_center"
     },
     "facing=south,type=corner_left": {
-      "model": "better_deco:block/mangrove_coffee_table_corner_left",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_corner_left"
     },
     "facing=south,type=corner_right": {
-      "model": "better_deco:block/mangrove_coffee_table_corner_right",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_corner_right"
     },
     "facing=south,type=default": {
-      "model": "better_deco:block/mangrove_coffee_table_default",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_default"
     },
     "facing=south,type=left": {
-      "model": "better_deco:block/mangrove_coffee_table_left",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_left"
     },
     "facing=south,type=middle": {
-      "model": "better_deco:block/mangrove_coffee_table_middle",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_middle"
     },
     "facing=south,type=middle_bottom": {
-      "model": "better_deco:block/mangrove_coffee_table_middle_bottom",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_middle_bottom"
     },
     "facing=south,type=middle_top": {
-      "model": "better_deco:block/mangrove_coffee_table_middle_top",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_middle_top"
     },
     "facing=south,type=right": {
-      "model": "better_deco:block/mangrove_coffee_table_right",
-      "y": 0
+      "model": "better_deco:block/mangrove_coffee_table_right"
     },
     "facing=west,type=center": {
       "model": "better_deco:block/mangrove_coffee_table_center",

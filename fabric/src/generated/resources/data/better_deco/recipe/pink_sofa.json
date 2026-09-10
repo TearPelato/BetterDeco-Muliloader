@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:pink_wool"
-      }
+      "item": "minecraft:pink_wool"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:stick"
-      }
+      "item": "minecraft:stick"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:pink_sofa"
   }
 }
