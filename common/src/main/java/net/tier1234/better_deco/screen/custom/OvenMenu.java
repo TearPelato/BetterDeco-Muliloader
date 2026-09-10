@@ -44,16 +44,16 @@ public class OvenMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         // Input
-        this.addSlot(new Slot(blockEntity.itemHandler, 0, 60, 17));
-        this.addSlot(new Slot(blockEntity.itemHandler, 1, 78, 17));
-        this.addSlot(new Slot(blockEntity.itemHandler, 2, 96, 17));
+        this.addSlot(new Slot(blockEntity.itemHandler, 0, 60, 8));
+        this.addSlot(new Slot(blockEntity.itemHandler, 1, 78, 8));
+        this.addSlot(new Slot(blockEntity.itemHandler, 2, 96, 8));
 
         // Output
-        this.addSlot(new Slot(blockEntity.itemHandler, 3, 60, 53));
-        this.addSlot(new Slot(blockEntity.itemHandler, 4, 78, 53));
-        this.addSlot(new Slot(blockEntity.itemHandler, 5, 96, 53));
+        this.addSlot(new Slot(blockEntity.itemHandler, 3, 60, 44));
+        this.addSlot(new Slot(blockEntity.itemHandler, 4, 78, 44));
+        this.addSlot(new Slot(blockEntity.itemHandler, 5, 96, 44));
 
-        this.addSlot(new OvenFuelSlot(this, this.blockEntity.itemHandler, 6, 42,35));
+        this.addSlot(new OvenFuelSlot(this, this.blockEntity.itemHandler, 6, 42,26));
 
         addDataSlots(data);
     }

@@ -60,6 +60,15 @@ public class BathBlockEntityRenderer implements BlockEntityRenderer<BathBlockEnt
 
     }
 
+    private AABB getFluidBox(BathBlockEntity bath, Direction direction)
+    {
+        if(bath.isHead())
+        {
+            return FluidContainerRenderer.createRotatedBox(direction, 0, 4, 2, 12, 15, 14);
+        }
+        return FluidContainerRenderer.createRotatedBox(direction, 2, 4, 2, 16, 15, 14);
+    }
+
     @Override
     public void submit(FluidRenderState fluidRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         if (fluidRenderState.fluid == Fluids.EMPTY || fluidRenderState.fluidSprites == null || fluidRenderState.world == null) {
@@ -82,12 +91,4 @@ public class BathBlockEntityRenderer implements BlockEntityRenderer<BathBlockEnt
     }
 
 
-    private AABB getFluidBox(BathBlockEntity bath, Direction direction)
-    {
-        if(bath.isHead())
-        {
-            return FluidContainerRenderer.createRotatedBox(direction, 0, 4, 2, 12, 15, 14);
-        }
-        return FluidContainerRenderer.createRotatedBox(direction, 2, 4, 2, 16, 15, 14);
-    }
 }

@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -43,11 +44,9 @@ public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBl
 
     @Override
     public void extractRenderState(ToasterBlockEntity toaster, ToasterRenderState state, float partialTick, Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
-
         BlockEntityRenderState.extractBase(toaster, state, breakProgress);
 
         BlockState blockState = toaster.getBlockState();
-
         if (!(blockState.getBlock() instanceof ToasterBlock)) {
             for (ItemStackRenderState item : state.items) {
                 item.clear();
@@ -63,14 +62,13 @@ public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBl
 
         for (int slot = 0; slot < ToasterBlockEntity.SLOTS; slot++) {
             ItemStack stack = toaster.getItem(slot);
-
             state.items[slot].clear();
 
             if (stack.isEmpty()) {
                 continue;
             }
 
-            this.itemModelResolver.updateForTopItem(state.items[slot], stack, ItemDisplayContext.FIXED, level, null, (int) toaster.getBlockPos().asLong() + slot);
+            this.itemModelResolver.updateForTopItem(state.items[slot], stack, ItemDisplayContext.GROUND, level, null, (int) toaster.getBlockPos().asLong() + slot);
         }
     }
 
@@ -85,13 +83,15 @@ public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBl
             }
 
             poseStack.pushPose();
+
             double[] rotated = rotateForFacing(SLOT_LOCAL_X, SLOT_LOCAL_Z[slot], state.facing);
 
             poseStack.translate(0.5D + rotated[0], ITEM_Y, 0.5D + rotated[1]);
-            poseStack.mulPose(Axis.YP.rotationDegrees(state.facing.toYRot()));
+            poseStack.mulPose(Axis.YP.rotationDegrees(-state.facing.toYRot()));
             poseStack.scale(ITEM_SCALE, ITEM_SCALE, ITEM_SCALE);
 
-            item.submit(poseStack, collector, state.lightCoords, 0, -1);
+            item.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+
             poseStack.popPose();
         }
     }

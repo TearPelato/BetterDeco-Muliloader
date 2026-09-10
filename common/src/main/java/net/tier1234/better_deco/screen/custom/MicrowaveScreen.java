@@ -16,37 +16,29 @@ public class MicrowaveScreen extends AbstractContainerScreen<MicrowaveMenu> {
             Constants.id("textures/gui/arrow_progress.png");
 
     public MicrowaveScreen(MicrowaveMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);    }
-
-    @Override
-    protected void extractLabels(GuiGraphicsExtractor graphics, int xm, int ym) {
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-
-        graphics.text(this.font, this.playerInventoryTitle, 7, 73, 4210752, false);
-        graphics.text(this.font, this.title, 7, 7, 4210752, false);
+        super(menu, playerInventory, title);
     }
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+        super.extractBackground(graphics, mouseX, mouseY, a);
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        graphics.blit(RenderPipelines.GUI_TEXTURED,GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight,256,256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
         renderProgressArrow(graphics, x, y);
     }
 
+    @Override
+    public void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+        super.extractContents(graphics, mouseX, mouseY, a);
+        this.extractTooltip(graphics, mouseX, mouseY);
+    }
 
-    private void renderProgressArrow(GuiGraphicsExtractor guiGraphics, int x, int y) {
+    private void renderProgressArrow(GuiGraphicsExtractor graphicsExtractor, int x, int y) {
         if(menu.isCrafting()) {
-            guiGraphics.blit(ARROW_TEXTURE,x + 73, y + 35, 0, 0, menu.getScaledArrowProgress(), 16, 24, 16);
+            graphicsExtractor.blit(RenderPipelines.GUI_TEXTURED,ARROW_TEXTURE,x + 73, y + 35, 0, 0, menu.getScaledArrowProgress(), 16, 24, 16);
         }
     }
-
-    @Override
-    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
-        super.extractRenderState(graphics, mouseX, mouseY, a);
-        this.extractLabels(graphics,mouseX,mouseY);
-    }
-
 }

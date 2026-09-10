@@ -7,6 +7,5 @@ import net.minecraft.core.Direction;
 public class CuttingBoardRenderState extends BlockEntityRenderState {
     public final ItemStackRenderState item = new ItemStackRenderState();
     public Direction direction = Direction.NORTH;
-    public float offset;
     public boolean flat;
 }

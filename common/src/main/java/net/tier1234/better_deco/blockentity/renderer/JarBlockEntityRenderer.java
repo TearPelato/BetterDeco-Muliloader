@@ -11,8 +11,8 @@ import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -20,7 +20,6 @@ import net.tier1234.better_deco.block.JarBlock;
 import net.tier1234.better_deco.blockentity.JarBlockEntity;
 import net.tier1234.better_deco.blockentity.renderer.render_state.JarRenderState;
 import org.jetbrains.annotations.Nullable;
-import org.joml.AxisAngle4f;
 
 public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntity, JarRenderState> {
 
@@ -36,12 +35,13 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
     }
 
     @Override
-    public void extractRenderState(JarBlockEntity jar, JarRenderState state, float partialTick, Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+    public void extractRenderState(JarBlockEntity jar, JarRenderState state, float partialTick,
+                                   Vec3 cameraPosition,
+                                   @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
 
         BlockEntityRenderState.extractBase(jar, state, breakProgress);
 
         state.direction = jar.getBlockState().getValue(JarBlock.DIRECTION);
-
         state.items.clear();
         state.offsets.clear();
         state.flat.clear();
@@ -55,20 +55,19 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
             return;
         }
 
-        int count = stack.getCount();
+        int count = Math.min(stack.getCount(), 16);
 
         for (int i = 0; i < count; i++) {
             ItemStackRenderState itemState = new ItemStackRenderState();
-
-            this.itemModelResolver.updateForTopItem(itemState, stack, ItemDisplayContext.NONE, level, null, i);
+            this.itemModelResolver.updateForTopItem(itemState, stack, ItemDisplayContext.GROUND, level, null, i);
 
             if (itemState.isEmpty()) {
                 continue;
             }
 
-
             boolean isFlat = !itemState.usesBlockLight();
-            float offset = isFlat ? 0.0625F : 0.0375F;
+            float offset = isFlat ? 0.06F : 0.04F;
+
             state.items.add(itemState);
             state.offsets.add(offset);
             state.flat.add(isFlat);
@@ -83,28 +82,29 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
         }
 
         poseStack.pushPose();
-
-        poseStack.translate(0.5D, 0.1D, 0.5D);
-        poseStack.scale(0.499F, 0.499F, 0.499F);
+        poseStack.translate(0.5D, 0.15D, 0.5D);
+        poseStack.scale(0.35F, 0.35F, 0.35F);
 
         for (int i = 0; i < state.items.size(); i++) {
             poseStack.pushPose();
-            float offset = state.offsets.get(i);
-            poseStack.translate(0.0D, i * offset, 0.0D);
+            poseStack.translate(0.0D, i * state.offsets.get(i), 0.0D);
 
-            if (state.flat.get(i)) {
-                setupItemRotation(poseStack, state.direction);
+            if (Boolean.TRUE.equals(state.flat.get(i))) {
+                poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                poseStack.mulPose(Axis.ZP.rotationDegrees(state.direction.toYRot()));
+            } else {
+                poseStack.mulPose(Axis.YP.rotationDegrees(-state.direction.toYRot()));
             }
 
-            state.items.get(i).submit(poseStack, collector, state.lightCoords, 0, -1);
+            state.items.get(i).submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+
             poseStack.popPose();
         }
 
         poseStack.popPose();
     }
-
     private void setupItemRotation(PoseStack poseStack, Direction facing) {
-        poseStack.mulPose(facing.getRotation());
-        poseStack.mulPose(Axis.YP.rotation(Mth.PI));
+        poseStack.mulPose(Axis.YP.rotationDegrees(facing.toYRot()));
+        poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
     }
 }

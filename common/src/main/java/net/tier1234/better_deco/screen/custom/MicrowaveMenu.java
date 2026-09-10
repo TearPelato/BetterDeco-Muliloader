@@ -22,10 +22,6 @@ public class MicrowaveMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-    public MicrowaveMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
-    }
-
     public MicrowaveMenu(int pContainerId, Inventory inv, MicrowaveMenu.CustomData data) {
         this(pContainerId, inv,
                 inv.player.level().getBlockEntity(data.pos()),

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
@@ -122,8 +123,6 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
     }
 
 
-
-
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         return InteractionResult.PASS;
@@ -182,6 +181,28 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
                 level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.GENERIC_EXTINGUISH_FIRE, entity.getSoundSource(), 0.5f, 1.0f);
             }
         }
+    }
+
+    @Override
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
+        if (!state.is(level.getBlockState(pos).getBlock())) {
+            BathPart part = state.getValue(PART);
+            Direction facing = state.getValue(DIRECTION);
+
+            BlockPos otherPos = part == BathPart.BOTTOM
+                    ? pos.relative(facing)
+                    : pos.relative(facing.getOpposite());
+
+            BlockState otherState = level.getBlockState(otherPos);
+
+            if (otherState.is(this) && otherState.getValue(PART) != part) {
+                level.setBlock(otherPos, Blocks.AIR.defaultBlockState(),
+                        Block.UPDATE_ALL | Block.UPDATE_SUPPRESS_DROPS);
+                level.levelEvent(2001, otherPos, Block.getId(otherState));
+            }
+        }
+
+        super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
     }
 
     @Override

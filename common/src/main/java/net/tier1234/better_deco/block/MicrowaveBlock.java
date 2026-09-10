@@ -69,12 +69,6 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
      final VoxelShape[] CLOSED = VoxelShapeHelper.getRotatedShapes(
                 VoxelShapeHelper.rotate(Block.box(1.0, 0.0, 3.0, 15.0, 8.0, 13.0), Direction.SOUTH));
 
-      final VoxelShape[] BASE_OPEN = VoxelShapeHelper.getRotatedShapes(
-                VoxelShapeHelper.rotate(Block.box(1.0, 0.0, 3.0, 15.0, 8.0, 13.0), Direction.SOUTH));
-
-       final VoxelShape[] DOOR_OPEN = VoxelShapeHelper.getRotatedShapes(
-                VoxelShapeHelper.rotate(Block.box(1.0, 0.0, 13.0, 15.0, 8.0, 16.0), Direction.SOUTH));
-
         Map<BlockState, VoxelShape> map = new HashMap<>();
         for (BlockState state : states) {
             Direction direction = state.getValue(DIRECTION);

@@ -27,6 +27,6 @@ public class ShelfScreen extends AbstractContainerScreen<ShelfMenu> {
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         super.extractRenderState(graphics, mouseX, mouseY, a);
-        this.extractLabels(graphics,mouseX,mouseY);
+        this.extractTooltip(graphics,mouseX,mouseY);
     }
 }

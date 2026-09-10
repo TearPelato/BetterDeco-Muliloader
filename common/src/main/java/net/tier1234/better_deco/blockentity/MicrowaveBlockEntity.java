@@ -40,7 +40,7 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
 
-    private int progress = 0;
+    public int progress = 0;
     private int maxProgress = 200;
 
     public MicrowaveBlockEntity(BlockPos pos, BlockState state) {
@@ -123,8 +123,15 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
     }
 
     public Optional<RecipeHolder<MicrowaveRecipe>> getCurrentRecipe() {
-        return ((ServerLevel)this.level).recipeAccess()
-                .getRecipeFor(ModRecipes.MICROWAVE_TYPE.get(), new SingleRecipeInput(itemHandler.getItem(INPUT_SLOT)), level);
+        if (this.level == null || this.level.isClientSide()) {
+            return Optional.empty();
+        }
+
+        return ((ServerLevel) this.level).recipeAccess()
+                .getRecipeFor(
+                        ModRecipes.MICROWAVE_TYPE.get(),
+                        new SingleRecipeInput(itemHandler.getItem(INPUT_SLOT)),
+                        this.level);
     }
 
     public boolean canInsertItemIntoOutputSlot(ItemStack output) {

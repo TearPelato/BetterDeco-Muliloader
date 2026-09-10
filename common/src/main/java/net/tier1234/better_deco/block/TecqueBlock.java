@@ -97,7 +97,7 @@ public class TecqueBlock extends FurnitureHorizontalEntityBlock {
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (player.isCrouching()) {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -106,7 +106,7 @@ public class TecqueBlock extends FurnitureHorizontalEntityBlock {
         }
 
         if (stack.isEmpty()) {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
         if (level.isClientSide()) {
@@ -120,7 +120,7 @@ public class TecqueBlock extends FurnitureHorizontalEntityBlock {
             return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.PASS;
+        return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
     @Override

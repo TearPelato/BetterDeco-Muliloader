@@ -100,7 +100,7 @@ public class ToiletBlock extends FurnitureHorizontalBlock implements SimpleWater
         boolean isFilledFluidBucket = fluidInStack != Fluids.EMPTY;
 
         if (!isEmptyBucket && !isFilledFluidBucket) {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
         if (world.isClientSide()) return InteractionResult.SUCCESS;

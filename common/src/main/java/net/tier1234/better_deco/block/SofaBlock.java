@@ -134,27 +134,20 @@ public class SofaBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
 
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult)
-    {
-        if (stack.is(Items.WATER_BUCKET) && !state.getValue(WATERLOGGED))
-        {
-            if (!level.isClientSide())
-            {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (stack.is(Items.WATER_BUCKET) && !state.getValue(WATERLOGGED)) {
+            if (!level.isClientSide()) {
                 level.setBlock(pos, state.setValue(WATERLOGGED, true), 3);
                 level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-
-                if (!player.getAbilities().instabuild)
-                {
+                if (!player.getAbilities().instabuild) {
                     player.setItemInHand(hand, new ItemStack(Items.BUCKET));
                 }
             }
-
             return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.PASS;
+        return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
-
     @Override
     public FluidState getFluidState(BlockState state)
     {

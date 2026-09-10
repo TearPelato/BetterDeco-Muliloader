@@ -10,8 +10,7 @@ import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.core.Direction;
-import net.minecraft.util.Mth;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -35,7 +34,6 @@ public class CuttingBoardBlockEntityRenderer implements BlockEntityRenderer<Cutt
 
     @Override
     public void extractRenderState(CuttingBoardBlockEntity blockEntity, CuttingBoardRenderState state, float partialTick, Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
-
         BlockEntityRenderState.extractBase(blockEntity, state, breakProgress);
         state.item.clear();
 
@@ -44,17 +42,14 @@ public class CuttingBoardBlockEntityRenderer implements BlockEntityRenderer<Cutt
             return;
         }
 
-        state.direction = blockEntity.getBlockState()
-                .getValue(CuttingBoardBlock.DIRECTION);
+        state.direction = blockEntity.getBlockState().getValue(CuttingBoardBlock.DIRECTION);
 
         if (!(blockEntity.getLevel() instanceof ClientLevel level)) {
             return;
         }
 
-        this.itemModelResolver.updateForTopItem(state.item, stack, ItemDisplayContext.NONE, level, null, 0);
-
+        this.itemModelResolver.updateForTopItem(state.item, stack, ItemDisplayContext.FIXED, level, null, (int) blockEntity.getBlockPos().asLong());
         state.flat = !state.item.usesBlockLight();
-        state.offset = state.flat ? 0.0625F : 0.0375F;
     }
 
     @Override
@@ -65,35 +60,18 @@ public class CuttingBoardBlockEntityRenderer implements BlockEntityRenderer<Cutt
         }
 
         poseStack.pushPose();
-        poseStack.translate(0.5D, 0.1D, 0.5D);
-        poseStack.scale(0.5F, 0.5F, 0.5F);
-        poseStack.pushPose();
+        poseStack.translate(0.5D, 0.08D, 0.5D);
+        poseStack.mulPose(Axis.YP.rotationDegrees(-state.direction.toYRot()));
 
-        this.setupItemRotation(poseStack, state.direction, state.flat);
-
-        state.item.submit(poseStack, collector, state.lightCoords, 0, -1);
-        poseStack.popPose();
-        poseStack.translate(0.0D, state.offset, 0.0D);
-
-        this.postDrawItem(poseStack, state.flat);
-        poseStack.popPose();
-    }
-
-    private void setupItemRotation(PoseStack poseStack, Direction facing, boolean flat) {
-        if (!flat) {
-            return;
+        if (state.flat) {
+            poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+            poseStack.scale(0.6F, 0.6F, 0.6F);
+        } else {
+            poseStack.scale(0.4F, 0.4F, 0.4F);
         }
 
-        poseStack.mulPose(facing.getRotation());
-        poseStack.mulPose(Axis.YP.rotation(Mth.PI));
-    }
 
-    private void postDrawItem(PoseStack poseStack, boolean flat) {
-
-        if (flat) {
-            poseStack.mulPose(Axis.YP.rotation(Mth.HALF_PI / 2.01F));
-            return;
-        }
-        poseStack.scale(0.998F, 0.998F, 0.998F);
+        state.item.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+        poseStack.popPose();
     }
 }

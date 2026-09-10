@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -40,9 +41,10 @@ public class MicrowaveBlockEntityRenderer implements BlockEntityRenderer<Microwa
         BlockEntityRenderState.extractBase(blockEntity, state, breakProgress);
 
         state.facing = blockEntity.getBlockState().getValue(MicrowaveBlock.DIRECTION);
-        ItemStack stack = blockEntity.getDisplayedItem();
         state.item.clear();
+        state.rotation = 0.0F;
 
+        ItemStack stack = blockEntity.getDisplayedItem();
         if (stack.isEmpty()) {
             return;
         }
@@ -52,29 +54,27 @@ public class MicrowaveBlockEntityRenderer implements BlockEntityRenderer<Microwa
         }
 
         this.itemModelResolver.updateForTopItem(state.item, stack, ItemDisplayContext.GROUND, level, null, (int) blockEntity.getBlockPos().asLong());
-        state.itemLight = LevelRenderer.getLightCoords(level, blockEntity.getBlockPos().above());
 
-        if (blockEntity.hasRecipe() && !blockEntity.hasCraftingFinished()) {
-            state.rotation = (blockEntity.getLevel().getGameTime() + partialTick) * 4F;
-        } else {
-            state.rotation = 0.0F;
+
+        if (blockEntity.progress > 0 && !blockEntity.hasCraftingFinished()) {
+            state.rotation = (level.getGameTime() + partialTick) * 4.0F;
         }
     }
 
     @Override
-    public void submit(MicrowaveRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
+    public void submit(MicrowaveRenderState state, PoseStack poseStack,
+                       SubmitNodeCollector collector, CameraRenderState camera) {
 
         if (state.item.isEmpty()) {
             return;
         }
 
         poseStack.pushPose();
-        poseStack.translate(0.5D, 0.0D, 0.5D);
-        poseStack.mulPose(
-                Axis.YP.rotationDegrees(-state.facing.toYRot())
-        );
 
+        poseStack.translate(0.5D, 0.0D, 0.5D);
+        poseStack.mulPose(Axis.YP.rotationDegrees(-state.facing.toYRot()));
         poseStack.translate(-0.5D, 0.0D, -0.5D);
+
         poseStack.translate(0.375D, 0.15D, 0.43D);
 
         if (state.rotation != 0.0F) {
@@ -83,9 +83,11 @@ public class MicrowaveBlockEntityRenderer implements BlockEntityRenderer<Microwa
             poseStack.translate(-0.125D, 0.0D, -0.07D);
         }
 
-        poseStack.mulPose(Axis.XP.rotationDegrees(90F));
+        poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
         poseStack.scale(0.5F, 0.5F, 0.5F);
-        state.item.submit(poseStack, collector, state.itemLight, 0, -1);
+
+        state.item.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+
         poseStack.popPose();
     }
 }

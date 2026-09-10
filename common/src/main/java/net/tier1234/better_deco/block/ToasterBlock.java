@@ -96,16 +96,18 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
 
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, InteractionHand hand, BlockHitResult hit) {
+                                          Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity be = level.getBlockEntity(pos);
         if (!(be instanceof ToasterBlockEntity toaster)) {
-            return InteractionResult.PASS;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        }
+
+        if (stack.isEmpty()) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
         if (level.isClientSide()) {
-            return toaster.hasEmptySlot()
-                    ? InteractionResult.SUCCESS
-                    : InteractionResult.PASS;
+            return toaster.hasEmptySlot() ? InteractionResult.SUCCESS : InteractionResult.TRY_WITH_EMPTY_HAND;
         }
 
         boolean inserted = toaster.insertItem(stack);
@@ -116,7 +118,7 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
             return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.PASS;
+        return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
     @Override

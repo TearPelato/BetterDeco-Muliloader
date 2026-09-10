@@ -163,13 +163,13 @@ public class ToasterBlockEntity extends BlockEntity {
         super.loadAdditional(input);
         items.clear();
         ContainerHelper.loadAllItems(input, items);
-        int[] ct = input.getIntArray("cooktime").get();
-        int[] ctt = input.getIntArray("CookTimeTotal").get();
-        for (int i = 0; i < SLOTS && i < ct.length; i++) {
-            cookTime[i] = ct[i];
-        }
-        for (int i = 0; i < SLOTS && i < ctt.length; i++) {
-            cookTimeTotal[i] = ctt[i];
+
+        int[] ct = input.getIntArray("CookTime").orElse(new int[SLOTS]);
+        int[] ctt = input.getIntArray("CookTimeTotal").orElse(new int[SLOTS]);
+
+        for (int i = 0; i < SLOTS; i++) {
+            cookTime[i] = i < ct.length ? ct[i] : 0;
+            cookTimeTotal[i] = i < ctt.length ? ctt[i] : 0;
         }
     }
 
@@ -181,6 +181,6 @@ public class ToasterBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        return super.getUpdateTag(registries);
+        return saveWithoutMetadata(registries);  // o salva esplicitamente items + cookTime
     }
 }

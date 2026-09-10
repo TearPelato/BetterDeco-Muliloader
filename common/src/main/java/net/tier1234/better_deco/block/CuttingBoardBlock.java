@@ -123,36 +123,39 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
     }
 
     private InteractionResult tryCut(CuttingBoardBlockEntity cuttingBoard, Level level, BlockPos pos,
-                                         BlockState state, Player player, InteractionHand hand) {
+                                     BlockState state, Player player, InteractionHand hand) {
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        }
+
         ItemStack stored = cuttingBoard.getItem(0);
         SingleRecipeInput input = new SingleRecipeInput(stored);
         ItemStack knife = player.getItemInHand(hand);
-        Optional<RecipeHolder<CuttingBoardRecipe>> match = ((ServerLevel)level).recipeAccess()
+
+        Optional<RecipeHolder<CuttingBoardRecipe>> match = level.getServer()
+                .getRecipeManager()
                 .getRecipeFor(ModRecipes.CUTTING_BOARD_TYPE.get(), input, level);
 
         if (match.isEmpty()) {
             return InteractionResult.PASS;
         }
 
-        if (!level.isClientSide()) {
-            ItemStack result = match.get().value().getResult().copy();
+        ItemStack result = match.get().value().getResult().copy(); // o assemble(...) se esiste
 
-            cuttingBoard.setItem(0, result);
-            cuttingBoard.setChanged();
+        cuttingBoard.setItem(0, result);
+        cuttingBoard.setChanged();
 
+        if (!player.getAbilities().instabuild) {
+            knife.hurtAndBreak(1, player, hand.asEquipmentSlot());
+        }
 
-            if (!player.getAbilities().instabuild) {
-                knife.hurtAndBreak(1, player, hand.asEquipmentSlot());
-            }
+        level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
 
-            level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
-            level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
-
-            if (level instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(ParticleTypes.CRIT,
-                        pos.getX() + 0.5, pos.getY() + 0.15, pos.getZ() + 0.5,
-                        6, 0.2, 0.05, 0.2, 0.0);
-            }
+        if (level instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(ParticleTypes.CRIT,
+                    pos.getX() + 0.5, pos.getY() + 0.15, pos.getZ() + 0.5,
+                    6, 0.2, 0.05, 0.2, 0.0);
         }
 
         return InteractionResult.SUCCESS;
