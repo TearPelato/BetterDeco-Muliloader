@@ -11,9 +11,9 @@ public class FabricNetworkHandler {
 
 
     public static void registerPayloads() {
-        PayloadTypeRegistry.playS2C().register(SyncCraftableRecipesPayload.TYPE, SyncCraftableRecipesPayload.STREAM_CODEC);
-        PayloadTypeRegistry.playC2S().register(CraftRecipePayload.TYPE, CraftRecipePayload.STREAM_CODEC);
-        PayloadTypeRegistry.playC2S().register(SelectRecipePayload.TYPE, SelectRecipePayload.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(SyncCraftableRecipesPayload.TYPE, SyncCraftableRecipesPayload.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(CraftRecipePayload.TYPE, CraftRecipePayload.STREAM_CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(SelectRecipePayload.TYPE, SelectRecipePayload.STREAM_CODEC);
     }
 
     public static void registerClient() {

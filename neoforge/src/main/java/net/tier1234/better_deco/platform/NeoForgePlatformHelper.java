@@ -1,11 +1,13 @@
 package net.tier1234.better_deco.platform;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.tier1234.better_deco.platform.services.IPlatformHelper;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
+import net.tier1234.better_deco.platform.services.IPlatformHelper;
+
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class NeoForgePlatformHelper implements IPlatformHelper {
 
@@ -25,8 +27,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public int getBurnTime(ItemStack stack) {
-        assert Minecraft.getInstance().level != null;
-        return stack.getBurnTime(RecipeType.SMELTING, Minecraft.getInstance().level.fuelValues());
+    public void displayItemsAcceptor(CreativeModeTab.Builder builder, BiConsumer<CreativeModeTab.ItemDisplayParameters, Consumer<ItemStack>> consumer) {
+        builder.displayItems((parameters, output) -> consumer.accept(parameters, output::accept));
     }
 }

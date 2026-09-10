@@ -41,44 +41,34 @@
       "y": 90
     },
     "facing=north,powered=false,type=bottom": {
-      "model": "better_deco:block/light_blue_lamp_bottom",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_bottom"
     },
     "facing=north,powered=false,type=middle": {
-      "model": "better_deco:block/light_blue_lamp_middle",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_middle"
     },
     "facing=north,powered=false,type=single": {
-      "model": "better_deco:block/light_blue_lamp_single_off",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_single_off"
     },
     "facing=north,powered=false,type=top": {
-      "model": "better_deco:block/light_blue_lamp_top_off",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_top_off"
     },
     "facing=north,powered=false,type=wall": {
-      "model": "better_deco:block/light_blue_lamp_wall_off",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_wall_off"
     },
     "facing=north,powered=true,type=bottom": {
-      "model": "better_deco:block/light_blue_lamp_bottom",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_bottom"
     },
     "facing=north,powered=true,type=middle": {
-      "model": "better_deco:block/light_blue_lamp_middle",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_middle"
     },
     "facing=north,powered=true,type=single": {
-      "model": "better_deco:block/light_blue_lamp_single_on",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_single_on"
     },
     "facing=north,powered=true,type=top": {
-      "model": "better_deco:block/light_blue_lamp_top_on",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_top_on"
     },
     "facing=north,powered=true,type=wall": {
-      "model": "better_deco:block/light_blue_lamp_wall_on",
-      "y": 0
+      "model": "better_deco:block/light_blue_lamp_wall_on"
     },
     "facing=south,powered=false,type=bottom": {
       "model": "better_deco:block/light_blue_lamp_bottom",

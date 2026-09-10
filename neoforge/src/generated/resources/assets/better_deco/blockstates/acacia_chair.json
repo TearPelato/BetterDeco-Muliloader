@@ -5,8 +5,7 @@
       "y": 90
     },
     "facing=north": {
-      "model": "better_deco:block/acacia_chair",
-      "y": 0
+      "model": "better_deco:block/acacia_chair"
     },
     "facing=south": {
       "model": "better_deco:block/acacia_chair",

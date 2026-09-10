@@ -1,15 +1,15 @@
 package net.tier1234.better_deco.datagen;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
 import net.tier1234.better_deco.registries.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
-public class FabricLootTableProvider extends FabricBlockLootTableProvider {
-    public FabricLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(dataOutput, registryLookup);
+public class FabricLootTableProvider extends FabricBlockLootSubProvider {
+    public FabricLootTableProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(packOutput, registryLookup);
     }
 
     @Override

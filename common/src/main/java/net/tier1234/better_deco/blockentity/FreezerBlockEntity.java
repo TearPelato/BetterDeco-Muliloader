@@ -3,7 +3,6 @@ package net.tier1234.better_deco.blockentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -26,9 +25,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
+import net.tier1234.better_deco.recipe.FreezerRecipe;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
-import net.tier1234.better_deco.recipe.FreezerRecipe;
 import net.tier1234.better_deco.screen.custom.FreezerMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -171,7 +170,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
         Optional<RecipeHolder<FreezerRecipe>> recipe = getRecipeFor(resource);
         if (recipe.isEmpty()) return false;
 
-        ItemStack output = recipe.get().value().output;
+        ItemStack output = recipe.get().value().output.create();
         return canInsert(output, outputSlot);
     }
 
@@ -185,21 +184,13 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
                 .getRecipeFor(ModRecipes.FREEZER_TYPE.get(), new SingleRecipeInput(input), level);
     }
 
-    private boolean canFreeze(RecipeHolder<FreezerRecipe> recipe) {
-        ItemStack output = recipe.value().getResultItem(this.level.registryAccess());
-        if (output.isEmpty()) return false;
-
-        ItemStack resultStack = itemHandler.getItem(SLOT_OUTPUT);
-        if (resultStack.isEmpty()) return true;
-        return resultStack.getCount() + output.getCount() <= resultStack.getMaxStackSize();
-    }
 
     private void craftItem(int inputSlot, int outputSlot) {
         ItemStack inputStack = itemHandler.getItem(inputSlot);
         Optional<RecipeHolder<FreezerRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return;
 
-        ItemStack output = recipe.get().value().output;
+        ItemStack output = recipe.get().value().output.create();
         ItemStack copy = itemHandler.getItem(inputSlot).copy();
         copy.shrink(1);
         itemHandler.setItem(inputSlot, copy.isEmpty() ? ItemStack.EMPTY : copy);

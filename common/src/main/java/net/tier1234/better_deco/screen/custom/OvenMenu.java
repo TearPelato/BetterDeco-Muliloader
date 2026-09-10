@@ -2,6 +2,7 @@ package net.tier1234.better_deco.screen.custom;
 
 
 import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -146,7 +147,8 @@ public class OvenMenu extends AbstractContainerMenu {
         }
     }
     public boolean isFuelItem(ItemStack stack) {
-        return AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack.getItem(), 0) > 0;
+        assert Minecraft.getInstance().level != null;
+        return Minecraft.getInstance().level.fuelValues().isFuel(stack);
     }
 
     public record CustomData(BlockPos pos, int progress1, int progress2, int progress3) implements IMenuData<CustomData> {

@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:orange_wool"
-      }
+      "item": "minecraft:orange_wool"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:stick"
-      }
+      "item": "minecraft:stick"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:orange_sofa"
   }
 }

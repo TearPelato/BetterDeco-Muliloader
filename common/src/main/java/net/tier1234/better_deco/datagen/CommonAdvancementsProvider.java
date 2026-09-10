@@ -3,9 +3,10 @@ package net.tier1234.better_deco.datagen;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
@@ -28,6 +29,8 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
         @Override
         public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer) {
 
+            var items = provider.lookupOrThrow(Registries.ITEM);
+
             AdvancementHolder root = Advancement.Builder.recipeAdvancement().display(
                     ModBlocks.WORKBENCH.get(),
                     Component.translatable("advancement.better_deco.craft_workbench.title"),
@@ -38,7 +41,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                     true,
                     false
             )
-                    .addCriterion("craftWorkbench", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModBlocks.WORKBENCH.get()).build()))
+                    .addCriterion("craftWorkbench", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items, ModBlocks.WORKBENCH.get()).build()))
                     .save(consumer, "better_deco/craft_workbench");
 
             AdvancementHolder craft_furniture = Advancement.Builder.advancement()
@@ -52,7 +55,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                             true,true,false
             )
                     .addCriterion("craftFurniture", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item().of(
+                            ItemPredicate.Builder.item().of(items,
                                     ModBlocks.BLOCKS.stream()
                                             .filter(entry-> entry!= ModBlocks.WORKBENCH)
                                             .map(entry -> entry.get().asItem())
@@ -67,7 +70,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                             Component.translatable("advancement.better_deco.craft_electronic_furnitures.desc"),
                             null,AdvancementType.TASK,true,true,false)
                     .addCriterion("craft_electronic_furnitures", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item().of(ModTags.Items.ELECTRONIC_FURNITURES).build()))
+                            ItemPredicate.Builder.item().of(items,ModTags.Items.ELECTRONIC_FURNITURES).build()))
                     .save(consumer, "better_deco/craft_electronic_furnitures");
 
 

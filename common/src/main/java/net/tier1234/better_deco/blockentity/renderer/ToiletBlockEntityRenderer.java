@@ -1,40 +1,80 @@
 package net.tier1234.better_deco.blockentity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.MultiBufferSource;
+import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.BlockPos;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.tearpelato.deco_lib.api.fluid.renderer.FluidContainerRenderer;
-import net.tier1234.better_deco.block.ToiletBlock;
+import net.tearpelato.deco_lib.api.fluid.renderer.FluidRenderState;
+import net.tearpelato.deco_lib.api.fluid.renderer.core.FluidSprites;
 import net.tier1234.better_deco.blockentity.ToiletBlockEntity;
-import org.lwjgl.system.NonnullDefault;
+import org.jspecify.annotations.Nullable;
 
-@NonnullDefault
-public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBlockEntity> {
+public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBlockEntity, FluidRenderState> {
 
    public ToiletBlockEntityRenderer(BlockEntityRendererProvider.Context ignored) {}
 
     @Override
-    public void render(ToiletBlockEntity be, float v, PoseStack poseStack, MultiBufferSource multiBufferSource, int overlay, int light) {
-        Fluid fluid = be.getFluid();
-        if (fluid == Fluids.EMPTY || be.getLevel() == null) return;
-        BlockState state = be.getBlockState();
-        Direction dir = state.getValue(ToiletBlock.DIRECTION);
+    public FluidRenderState createRenderState() {
+        return new FluidRenderState();
+    }
+
+    @Override
+    public void extractRenderState(ToiletBlockEntity blockEntity, FluidRenderState state, float partialTicks, Vec3 cameraPosition, ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
+        BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
+        if (blockEntity.getLevel() == null) return;
+
+        BlockState blockState = blockEntity.getBlockState();
+        if (!blockState.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) return;
+
+        state.facing = blockState.getValue(BlockStateProperties.HORIZONTAL_FACING);
+        state.fluid = blockEntity.getFluid();
+        state.level = blockEntity.getLevel();
+        state.world = (BlockAndTintGetter) blockEntity.getLevel();
+        state.pos = blockEntity.getBlockPos();
+        state.be = blockEntity;
+
+
+        if (state.fluid != Fluids.EMPTY && state.fluid != null) {
+            FluidState fluidState = state.fluid.defaultFluidState();
+            state.fluidSprites = new FluidSprites(null, null).getFluidSprites(fluidState);
+        } else {
+            state.fluidSprites = null;
+        }
+
+    }
+
+    @Override
+    public void submit(FluidRenderState fluidRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+        if (fluidRenderState.fluid == Fluids.EMPTY || fluidRenderState.fluidSprites == null || fluidRenderState.world == null) {
+            return;
+        }
+
+        poseStack.pushPose();
+        Direction dir = fluidRenderState.facing;
+
+        poseStack.translate(0.5, 0, 0.5);
+        poseStack.mulPose(Axis.YP.rotationDegrees(-90F * dir.get2DDataValue()));
+        poseStack.translate(-0.5, 0, -0.5);
+
         AABB box = FluidContainerRenderer.createRotatedBox(dir, 5,5,5, 13,8,11);
-        FluidContainerRenderer.drawContainer(be.getLevel(), be.getBlockPos(), be, box, poseStack, multiBufferSource, getLightLevel(be.getLevel(), be.getBlockPos()));
+
+        FluidContainerRenderer.drawContainer(fluidRenderState, fluidRenderState.world, fluidRenderState.pos, fluidRenderState.be, box, poseStack,
+                Minecraft.getInstance().renderBuffers().bufferSource());
+
+        poseStack.popPose();
     }
-    private int getLightLevel(Level level, BlockPos pos) {
-        int bLight = level.getBrightness(LightLayer.BLOCK, pos);
-        int sLight = level.getBrightness(LightLayer.SKY, pos);
-        return LightTexture.pack(bLight, sLight);
-    }
+
 }

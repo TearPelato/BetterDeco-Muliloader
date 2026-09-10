@@ -7,50 +7,41 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.gui.GuiGraphics;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.compat.jei.JEIBetterDecoPlugin;
-import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
-import org.jetbrains.annotations.Nullable;
+import net.tier1234.better_deco.registries.ModBlocks;
+import net.tier1234.better_deco.registries.ModRecipes;
 import org.joml.Vector2i;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
+public class WorkbenchCategory extends FurnitureRecipeCategory<WorkbenchRecipe> {
 
-    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/jei/workbench_jei.png");
-
-    public static final ResourceLocation UID = Constants.id("furni_crafting");
-    public static final RecipeType<WorkbenchRecipe> TYPE =
-            new RecipeType<>(UID, WorkbenchRecipe.class);
+    public static final Identifier TEXTURE = Constants.id("textures/gui/jei/workbench_jei.png");
+    public static final Supplier<IRecipeHolderType<WorkbenchRecipe>> TYPE = IRecipeHolderType.createDeferred(ModRecipes.WORKBENCH_TYPE::get);
 
 
-
-    private IDrawable icon;
-    private IDrawable background;
     private IGuiHelper guiHelper;
     private List<Pair<Vector2i, IDrawable>> slots = new ArrayList<>();
 
     public WorkbenchCategory(IGuiHelper guiHelper) {
-        this.guiHelper = guiHelper;
-        this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 75);
-        this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.WORKBENCH.get()));
-    }
+        super(TYPE,
+        Component.translatable("gui.better_deco.jei.workbench"),
+        guiHelper.createDrawable(TEXTURE, 0, 0, 176, 75),
+        guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.WORKBENCH.get())));
 
-    @Override
-    public RecipeType<WorkbenchRecipe> getRecipeType() {
-        return TYPE;
+        this.guiHelper = guiHelper;
     }
 
     @Override
@@ -58,27 +49,10 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
         return Component.translatable("gui.better_deco.jei.workbench");
     }
 
-
     @Override
-    public int getWidth() {
-        return background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return background.getHeight();
-    }
-
-    @Override
-    public @Nullable IDrawable getIcon() {
-        return this.icon;
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, WorkbenchRecipe recipe, IFocusGroup focuses) {
-
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<WorkbenchRecipe> recipe, IFocusGroup focuses) {
         this.slots.clear();
-        NonNullList<CountedIngredient> ingredients =recipe.getMaterials();
+        NonNullList<CountedIngredient> ingredients = recipe.value().getMaterials();
         int leftPos = 10;
         int topPos = 10;
         int slotSize = 18;
@@ -90,8 +64,8 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
             int x = leftPos + (i % 3) * slotSize + (boxSize - width) / 2;
             int y = topPos + (i / 3) * slotSize + (boxSize - height) / 2;
             CountedIngredient material = ingredients.get(i);
-            List<ItemStack> stacks = Arrays.stream(material.ingredient().getItems()).map(stack -> {
-                ItemStack copy = stack.copy();
+            List<ItemStack> stacks = material.ingredient().items().map(stack -> {
+                ItemStack copy = new ItemStack(stack.value());
                 copy.setCount(material.count());
                 return copy;
             }).toList();
@@ -99,12 +73,12 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
             this.slots.add(Pair.of(new Vector2i(x - 1, y - 1), this.guiHelper.createDrawable(TEXTURE, 0, 0, 16, 16)));
 
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 104,29).addItemStack(JEIBetterDecoPlugin.getResult(recipe));
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 104,29).add(recipe.value().getResult());
     }
-}
+ }
 
     @Override
-    public void draw(WorkbenchRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        this.background.draw(guiGraphics, 0, 0);
+    public void draw(RecipeHolder<WorkbenchRecipe> recipe, IRecipeSlotsView view, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
+        super.draw(recipe, view, graphics, mouseX, mouseY);
     }
 }

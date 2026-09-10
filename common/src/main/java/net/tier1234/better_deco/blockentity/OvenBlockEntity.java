@@ -169,7 +169,7 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         Optional<RecipeHolder<OvenRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return false;
 
-        ItemStack output = recipe.get().value().output;
+        ItemStack output = recipe.get().value().output.create();
         return canInsert(output, outputSlot);
     }
 
@@ -182,7 +182,7 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         Optional<RecipeHolder<OvenRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return;
 
-        ItemStack output = recipe.get().value().output;
+        ItemStack output = recipe.get().value().output.create();
         ItemStack copy = itemHandler.getItem(inputSlot).copy();
         copy.shrink(1);
         itemHandler.setItem(inputSlot, copy.isEmpty() ? ItemStack.EMPTY : copy);

@@ -2,48 +2,42 @@ package net.tier1234.better_deco.compat.jei.category;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
-import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.gui.GuiGraphics;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 import net.tier1234.better_deco.recipe.FreezerRecipe;
-import net.tier1234.better_deco.recipe.OvenRecipe;
+import net.tier1234.better_deco.recipe.MicrowaveRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
-import org.jetbrains.annotations.Nullable;
+import net.tier1234.better_deco.registries.ModRecipes;
 
-public class FreezerCategory implements IRecipeCategory<FreezerRecipe> {
+import java.util.function.Supplier;
 
-
-    public static final ResourceLocation UID = Constants.id("freezer");
-    public static final ResourceLocation TEXTURE = Constants.id("textures/gui/jei/freezer_jei.png");
-
-    public static final RecipeType<FreezerRecipe> FREEZER_RECIPE_TYPE =
-            new RecipeType<>(UID, FreezerRecipe.class);
+public class FreezerCategory extends FurnitureRecipeCategory<FreezerRecipe> {
 
 
-    private final IDrawable background;
-    private final IDrawable icon;
+    public static final Identifier TEXTURE = Constants.id("textures/gui/jei/freezer_jei.png");
+    public static final Supplier<IRecipeHolderType<FreezerRecipe>> TYPE = IRecipeHolderType.createDeferred(ModRecipes.FREEZER_TYPE::get);
+
+
 
     public FreezerCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0,0,176, 84);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.FRIDGE_LIGHT.get()));
+       super(TYPE,
+               Component.translatable("gui.better_deco.freezer"),
+               helper.createDrawable(TEXTURE, 0,0,176, 84),
+               helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.FRIDGE_LIGHT.get())));
+
 
     }
 
-
-    @Override
-    public RecipeType<FreezerRecipe> getRecipeType() {
-        return FREEZER_RECIPE_TYPE;
-    }
 
     @Override
     public Component getTitle() {
@@ -51,29 +45,15 @@ public class FreezerCategory implements IRecipeCategory<FreezerRecipe> {
     }
 
     @Override
-    public int getWidth() {
-        return background.getWidth();
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<FreezerRecipe> recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.INPUT, 56, 17).add(recipe.value().ingredient);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 116,35).add(recipe.value().output);
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 56, 53).add(FreezerBlockEntity.FreezerFuelValues.get().getFirst());
     }
 
     @Override
-    public int getHeight() {
-        return background.getHeight();
+    public void draw(RecipeHolder<FreezerRecipe> recipe, IRecipeSlotsView view, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
+        super.draw(recipe, view, graphics, mouseX, mouseY);
     }
 
-    @Override
-    public @Nullable IDrawable getIcon() {
-        return icon;
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, FreezerRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 56, 17).addIngredients(recipe.ingredient);
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 116,35).addItemStack(recipe.output);
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 56, 53).addItemStacks(FreezerBlockEntity.FreezerFuelValues.get());
-    }
-
-    @Override
-    public void draw(FreezerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        this.background.draw(guiGraphics, 0, 0);
-    }
 }

@@ -72,7 +72,7 @@ public class ToasterBlockEntity extends BlockEntity {
                 dirty = true;
 
                 if (entity.cookTime[slot] >= entity.cookTimeTotal[slot]) {
-                    ItemStack result = recipe.value().assemble(input, level.registryAccess());
+                    ItemStack result = recipe.value().assemble(input);
                     entity.items.set(slot, result.copy());
                     entity.cookTime[slot] = 0;
                     entity.cachedRecipe[slot] = null;
@@ -163,8 +163,8 @@ public class ToasterBlockEntity extends BlockEntity {
         super.loadAdditional(input);
         items.clear();
         ContainerHelper.loadAllItems(input, items);
-        int[] ct = input.getIntArray(cookTime);
-        int[] ctt = input.getIntArray("CookTimeTotal");
+        int[] ct = input.getIntArray("cooktime").get();
+        int[] ctt = input.getIntArray("CookTimeTotal").get();
         for (int i = 0; i < SLOTS && i < ct.length; i++) {
             cookTime[i] = ct[i];
         }
@@ -181,8 +181,6 @@ public class ToasterBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag,registries);
-        return tag;
+        return super.getUpdateTag(registries);
     }
 }

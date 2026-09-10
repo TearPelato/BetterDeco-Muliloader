@@ -1,9 +1,7 @@
 {
   "type": "better_deco:oven",
-  "ingredient": {
-    "item": "minecraft:rabbit"
-  },
+  "ingredient": "minecraft:salmon",
   "result": {
-    "id": "minecraft:cooked_rabbit"
+    "id": "minecraft:cooked_salmon"
   }
 }

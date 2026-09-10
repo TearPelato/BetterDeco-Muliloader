@@ -2,13 +2,13 @@ package net.tier1234.better_deco.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -99,34 +99,23 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    public void loadAdditional(ValueInput input) {
+    protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
-        inventory.clearContent();
-        ListTag items = input.getList("Items", Tag.TAG_COMPOUND);
+        NonNullList<ItemStack> items = NonNullList.withSize(inventory.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(input, items);
         for (int i = 0; i < items.size(); i++) {
-            CompoundTag itemTag = items.getCompound(i);
-            int slot = itemTag.getInt("Slot");
-            if (slot >= 0 && slot < inventory.getContainerSize()) {
-                ItemStack.parse(input, itemTag.getCompound("Item"))
-                        .ifPresent(stack -> inventory.setItem(slot, stack));
-            }
+            inventory.setItem(i, items.get(i));
         }
     }
 
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
-        ListTag items = new ListTag();
+        NonNullList<ItemStack> items = NonNullList.withSize(inventory.getContainerSize(), ItemStack.EMPTY);
         for (int i = 0; i < inventory.getContainerSize(); i++) {
-            ItemStack stack = inventory.getItem(i);
-            if (!stack.isEmpty()) {
-                CompoundTag itemTag = new CompoundTag();
-                itemTag.putInt("Slot", i);
-                itemTag.put("Item", stack.save(output));
-                items.add(itemTag);
-            }
+            items.set(i, inventory.getItem(i));
         }
-        output.putString("Items", items);
+        ContainerHelper.saveAllItems(output, items);
     }
 
     @Override

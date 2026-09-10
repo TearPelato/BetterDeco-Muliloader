@@ -3,13 +3,10 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:cobblestone"
-      }
+      "item": "minecraft:cobblestone"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:stone_path"
   }
 }

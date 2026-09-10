@@ -2,44 +2,55 @@ package net.tier1234.better_deco.blockentity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.phys.Vec3;
 import net.tier1234.better_deco.blockentity.TecqueBlockEntity;
+import net.tier1234.better_deco.blockentity.renderer.render_state.RotationRenderState;
+import org.jetbrains.annotations.Nullable;
 
-public class TecqueBlockEntityRenderer implements BlockEntityRenderer<TecqueBlockEntity> {
+public class TecqueBlockEntityRenderer implements BlockEntityRenderer<TecqueBlockEntity, RotationRenderState> {
+    private final ItemModelResolver itemModelResolver;
+
     public TecqueBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
-
+        itemModelResolver = context.itemModelResolver();
     }
 
     @Override
-    public void render(TecqueBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack,
-                       MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
-        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        ItemStack stack = pBlockEntity.inventory.getItem(0);
-
-        pPoseStack.pushPose();
-        pPoseStack.translate(0.5f, 0.35f, 0.5f);
-        pPoseStack.scale(0.5f, 0.5f, 0.5f);
-        pPoseStack.mulPose(Axis.YP.rotationDegrees(pBlockEntity.getRenderingRotation()));
-
-        itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, getLightLevel(pBlockEntity.getLevel(),
-                pBlockEntity.getBlockPos()), OverlayTexture.NO_OVERLAY, pPoseStack, pBufferSource, pBlockEntity.getLevel(), 1);
-        pPoseStack.popPose();
+    public RotationRenderState createRenderState() {
+        return new RotationRenderState();
     }
 
-    private int getLightLevel(Level level, BlockPos pos) {
-        int bLight = level.getBrightness(LightLayer.BLOCK, pos);
-        int sLight = level.getBrightness(LightLayer.SKY, pos);
-        return LightTexture.pack(bLight, sLight);
+    @Override
+    public void extractRenderState(TecqueBlockEntity blockEntity, RotationRenderState renderState, float partialTick,
+                                   Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+        BlockEntityRenderer.super.extractRenderState(blockEntity, renderState, partialTick, cameraPosition, breakProgress);
+
+        renderState.lightPosition = blockEntity.getBlockPos();
+        renderState.blockEntityLevel = blockEntity.getLevel();
+        renderState.rotation = blockEntity.getRenderingRotation();
+
+        itemModelResolver.updateForTopItem(renderState.itemStackRenderState,
+                blockEntity.inventory.getItems().get(0), ItemDisplayContext.FIXED, blockEntity.getLevel(), null, 0);
     }
+
+    @Override
+    public void submit(RotationRenderState renderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+        poseStack.pushPose();
+
+        poseStack.translate(0.5f, 0.32f, 0.5f);
+        poseStack.scale(0.5f, 0.5f, 0.5f);
+        poseStack.mulPose(Axis.YP.rotationDegrees(renderState.rotation));
+
+        renderState.itemStackRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+
+        poseStack.popPose();
+    }
+
 }

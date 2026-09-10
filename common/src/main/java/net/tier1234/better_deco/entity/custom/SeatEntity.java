@@ -2,15 +2,18 @@ package net.tier1234.better_deco.entity.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.tier1234.better_deco.registries.ModEntities;
@@ -41,7 +44,7 @@ public class SeatEntity extends Entity
     public void tick()
     {
         super.tick();
-        if(!this.level().isClientSide)
+        if(!this.level().isClientSide())
         {
             if(this.getPassengers().isEmpty() || this.level().isEmptyBlock(this.blockPosition()))
             {
@@ -51,13 +54,21 @@ public class SeatEntity extends Entity
         }
     }
 
-
+    @Override
+    public boolean hurtServer(ServerLevel serverLevel, DamageSource damageSource, float v) {
+        return false;
+    }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag compound) {}
+    protected void readAdditionalSaveData(ValueInput valueInput) {
+
+    }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag compound) {}
+    protected void addAdditionalSaveData(ValueOutput valueOutput) {
+
+    }
+
 
     @Override
     protected boolean canRide(Entity entity)
@@ -74,7 +85,7 @@ public class SeatEntity extends Entity
             {
                 SeatEntity seat = new SeatEntity(level, pos, yOffset, direction);
                 level.addFreshEntity(seat);
-                player.startRiding(seat, false);
+                player.startRiding(seat);
             }
         }
         return InteractionResult.SUCCESS;

@@ -13,7 +13,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
@@ -121,13 +120,13 @@ public class LampBlock extends FurnitureHorizontalBlock {
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
         if (state.getValue(TYPE) == Type.WALL) {
             Direction facing = state.getValue(DIRECTION);
-            if (direction == facing.getOpposite() && !neighborState.isFaceSturdy(level, neighborPos, facing)) {
+            if (directionToNeighbour == facing.getOpposite() && !neighbourState.isFaceSturdy(level, neighbourPos, facing)) {
                 return Blocks.AIR.defaultBlockState();
             }
             return state;
         }
 
-        if (direction.getAxis() == Direction.Axis.Y) {
+        if (directionToNeighbour.getAxis() == Direction.Axis.Y) {
             return state.setValue(TYPE, computeType(level, pos));
         }
 
@@ -144,7 +143,7 @@ public class LampBlock extends FurnitureHorizontalBlock {
         return super.canSurvive(state, level, pos);
     }
 
-    private Type computeType(LevelAccessor level, BlockPos pos) {
+    private Type computeType(LevelReader level, BlockPos pos) {
         boolean below = isLamp(level.getBlockState(pos.below()));
         boolean above = isLamp(level.getBlockState(pos.above()));
         if (below && above) return Type.MIDDLE;

@@ -1,11 +1,12 @@
 package net.tier1234.better_deco.screen.tooltip;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.core.Holder;
 import net.minecraft.util.Util;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
@@ -26,7 +27,6 @@ public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
         this.recipe = recipe;
     }
 
-
     @Override
     public int getHeight(Font font) {
         return 20;
@@ -34,36 +34,29 @@ public class ClientWorkbenchRecipeTooltip implements ClientTooltipComponent {
 
     @Override
     public int getWidth(Font font) {
-        // Each ingredient occupies 18 pixels in width.
         return this.recipe.getMaterials().size() * 18;
     }
 
     @Override
-    public void renderImage(Font font, int start, int top, GuiGraphicsExtractor graphics) {
+    public void extractImage(Font font, int start, int top, int width, int height, GuiGraphicsExtractor graphics) {
         Map<Integer, Integer> counted = new HashMap<>();
         List<CountedIngredient> materials = this.recipe.getMaterials();
         for (int i = 0; i < materials.size(); i++) {
             CountedIngredient material = materials.get(i);
             ItemStack copy = getStack(material).copy();
             copy.setCount(material.count());
-            // Render the ingredient icon
             graphics.fakeItem(copy, start + i * 18, top);
             graphics.itemDecorations(font, copy, start + i * 18, top);
 
-            // Draw a check or a cross depending on whether the player has enough material.
-            PoseStack pose = graphics.pose();
-            pose.pushPose();
-            // Translate Z so the overlay is drawn on top.
-            pose.translate(0, 0, 200);
+            graphics.nextStratum();
             boolean hasEnough = this.menu.hasMaterials(material, counted);
-            graphics.blit(RenderPipelines.GUI_TEXTURED,WorkbenchScreen.TEXTURE, start + i * 18, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256,256,256);
-            pose.popPose();
+            graphics.blit(RenderPipelines.GUI_TEXTURED, WorkbenchScreen.TEXTURE, start + i * 18, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256);
         }
     }
 
     private ItemStack getStack(CountedIngredient material) {
-        ItemStack[] items = material.ingredient().getItems();
-        int index = (int) ((Util.getMillis() / 1000) % items.length);
-        return items[index];
+        List<Holder<Item>> items = material.ingredient().items().toList();
+        int index = (int) ((Util.getMillis() / 1000) % items.size());
+        return new ItemStack(items.get(index).value());
     }
 }

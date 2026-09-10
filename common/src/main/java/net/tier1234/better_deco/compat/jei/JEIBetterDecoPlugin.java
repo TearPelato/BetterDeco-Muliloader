@@ -11,12 +11,14 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.compat.jei.category.*;
-import net.tier1234.better_deco.recipe.CuttingBoardRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.screen.custom.FreezerScreen;
@@ -29,7 +31,7 @@ import java.util.Objects;
 @JeiPlugin
 public class JEIBetterDecoPlugin implements IModPlugin {
     @Override
-    public ResourceLocation getPluginUid() {
+    public Identifier getPluginUid() {
         return Constants.id("jei_plugin");
     }
 
@@ -47,124 +49,82 @@ public class JEIBetterDecoPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        RecipeManager manager = getRecipeManager();
-        registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.OVEN_TYPE.get()));
-        registration.addRecipes(MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE, this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
-        registration.addRecipes(WorkbenchCategory.TYPE, this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
-        registration.addRecipes(FreezerCategory.FREEZER_RECIPE_TYPE, this.getRecipes(ModRecipes.FREEZER_TYPE.get()));
-        registration.addRecipes(CuttingBoardCategory.TYPE, this.getRecipes(ModRecipes.CUTTING_BOARD_TYPE.get()));
-        registration.addRecipes(ToasterCategory.TYPE, this.getRecipes(ModRecipes.TOASTER_TYPE.get()));
+        registration.addRecipes(OvenRecipeCategory.TYPE.get(), this.getRecipes(ModRecipes.OVEN_TYPE.get()));
+        registration.addRecipes(MicrowaveRecipeCategory.TYPE.get(), this.getRecipes(ModRecipes.MICROWAVE_TYPE.get()));
+        registration.addRecipes(WorkbenchCategory.TYPE.get(), this.getRecipes(ModRecipes.WORKBENCH_TYPE.get()));
+        registration.addRecipes(FreezerCategory.TYPE.get(), this.getRecipes(ModRecipes.FREEZER_TYPE.get()));
+        registration.addRecipes(CuttingBoardCategory.TYPE.get(), this.getRecipes(ModRecipes.CUTTING_BOARD_TYPE.get()));
+        registration.addRecipes(ToasterCategory.TYPE.get(), this.getRecipes(ModRecipes.TOASTER_TYPE.get()));
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(OvenScreen.class, 74, 30, 22, 20,
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
+                OvenRecipeCategory.TYPE.get());
         registration.addRecipeClickArea(MicrowaveScreen.class, 74, 30, 22, 20,
-                MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
+                MicrowaveRecipeCategory.TYPE.get());
         registration.addRecipeClickArea(FreezerScreen.class, 74, 30, 22, 20,
-                FreezerCategory.FREEZER_RECIPE_TYPE);
+                FreezerCategory.TYPE.get());
 
     }
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         //Oven
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.OAK_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.SPRUCE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BIRCH_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.JUNGLE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.ACACIA_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_OAK_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.MANGROVE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CHERRY_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BAMBOO_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CRIMSON_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WARPED_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.RED_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.ORANGE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.YELLOW_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.MAGENTA_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.PINK_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.PURPLE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.GREEN_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.LIME_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CYAN_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.LIGHT_BLUE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BLUE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WHITE_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BROWN_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BLACK_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.GRAY_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.LIGHT_GRAY_OVEN.get().asItem()),
-                OvenRecipeCategory.OVEN_RECIPE_RECIPE_TYPE);
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(),new ItemStack(ModBlocks.OAK_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.SPRUCE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.BIRCH_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.JUNGLE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.ACACIA_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.DARK_OAK_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.MANGROVE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.CHERRY_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.BAMBOO_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.CRIMSON_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.WARPED_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.RED_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.ORANGE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.YELLOW_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.MAGENTA_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.PINK_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.PURPLE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.GREEN_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.LIME_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.CYAN_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.LIGHT_BLUE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.BLUE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.WHITE_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.BROWN_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.BLACK_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.GRAY_OVEN.get().asItem()));
+        registration.addCraftingStation(OvenRecipeCategory.TYPE.get(), new ItemStack(ModBlocks.LIGHT_GRAY_OVEN.get().asItem()));
 
 
         //Microwave
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.LIGHT_MICROWAVE.get().asItem()),
-                MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_MICROWAVE.get().asItem()),
-                MicrowaveRecipeCategory.MICROWAVE_RECIPE_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WORKBENCH.get().asItem()),
-                WorkbenchCategory.TYPE);
+        registration.addCraftingStation(MicrowaveRecipeCategory.TYPE.get(),new ItemStack(ModBlocks.LIGHT_MICROWAVE.get().asItem()));
+        registration.addCraftingStation(MicrowaveRecipeCategory.TYPE.get(),new ItemStack(ModBlocks.DARK_MICROWAVE.get().asItem()));
+        registration.addCraftingStation(WorkbenchCategory.TYPE.get(),new ItemStack(ModBlocks.WORKBENCH.get().asItem())
+        );
 
         //Freezer
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_LIGHT.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.FRIDGE_DARK.get()), FreezerCategory.FREEZER_RECIPE_TYPE);
+        registration.addCraftingStation(FreezerCategory.TYPE.get(), new ItemStack(ModBlocks.FRIDGE_LIGHT.get()));
+        registration.addCraftingStation(FreezerCategory.TYPE.get(), new ItemStack(ModBlocks.FRIDGE_DARK.get()));
 
         //Cutting Board
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.OAK_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.SPRUCE_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BIRCH_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.JUNGLE_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.ACACIA_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_OAK_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.MANGROVE_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CHERRY_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BAMBOO_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CRIMSON_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WARPED_CUTTING_BOARD.get().asItem()),
-                CuttingBoardCategory.TYPE);
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.OAK_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.SPRUCE_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.BIRCH_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.JUNGLE_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.ACACIA_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.DARK_OAK_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.MANGROVE_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.CHERRY_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.BAMBOO_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.CRIMSON_CUTTING_BOARD.get().asItem()));
+        registration.addCraftingStation(CuttingBoardCategory.TYPE.get(), new ItemStack(ModBlocks.WARPED_CUTTING_BOARD.get().asItem()));
 
 
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.TOASTER_LIGHT.get()), ToasterCategory.TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.TOASTER_DARK.get()), ToasterCategory.TYPE);
+        registration.addCraftingStation(ToasterCategory.TYPE.get(), new ItemStack(ModBlocks.TOASTER_LIGHT.get()));
+        registration.addCraftingStation(ToasterCategory.TYPE.get(), new ItemStack(ModBlocks.TOASTER_DARK.get()));
 
 
     }
@@ -175,26 +135,16 @@ public class JEIBetterDecoPlugin implements IModPlugin {
      * Helpers
      * */
 
-    private <C extends RecipeInput, T extends Recipe<C>> List<T> getRecipes(RecipeType<T> type)
+    private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type)
     {
-        return getRecipeManager().getAllRecipesFor(type).stream().map(RecipeHolder::value).toList();
+        return List.copyOf(SyncedRecipes.getMap().byType(type));
     }
 
-    public static RecipeManager getRecipeManager()
-    {
-        ClientPacketListener listener = Objects.requireNonNull(Minecraft.getInstance().getConnection());
-        return listener.getRecipeManager();
-    }
 
     private static RegistryAccess getRegistryAccess()
     {
         ClientPacketListener listener = Objects.requireNonNull(Minecraft.getInstance().getConnection());
         return listener.registryAccess();
-    }
-
-    public static ItemStack getResult(Recipe<?> recipe)
-    {
-        return recipe.getResultItem(getRegistryAccess());
     }
 
 }

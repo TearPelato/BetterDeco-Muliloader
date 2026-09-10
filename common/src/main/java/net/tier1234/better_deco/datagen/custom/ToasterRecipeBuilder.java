@@ -4,14 +4,18 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
+import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.recipe.ToasterRecipe;
 
 import java.util.LinkedHashMap;
@@ -54,28 +58,32 @@ public class ToasterRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public Item getResult() {
-        return result;
+    public ResourceKey<Recipe<?>> defaultId() {
+        return null;
     }
 
     @Override
-    public void save(RecipeOutput output, ResourceLocation id) {
-        ensureValid(id);
+    public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
+        ensureValid(resourceKey);
 
-        Advancement.Builder advancement = output.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
-                .rewards(AdvancementRewards.Builder.recipe(id))
+        Advancement.Builder advancement = recipeOutput.advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
+                .rewards(AdvancementRewards.Builder.recipe(resourceKey))
                 .requirements(AdvancementRequirements.Strategy.OR);
 
         criteria.forEach(advancement::addCriterion);
 
-        ToasterRecipe recipe = new ToasterRecipe(ingredient, new ItemStack(result, count), cookTime);
-        output.accept(id, recipe, advancement.build(id.withPrefix("recipes/toasting/")));
+        ToasterRecipe recipe = new ToasterRecipe(ingredient, new ItemStackTemplate(result, count), cookTime);
+        recipeOutput.accept(resourceKey, recipe, advancement.build(Constants.id("recipes/toasting/")));
     }
 
-    private void ensureValid(ResourceLocation id) {
+    public Item getResult() {
+        return result;
+    }
+
+    private void ensureValid(ResourceKey<Recipe<?>> resourceKey) {
         if (criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + id);
+            throw new IllegalStateException("No way of obtaining recipe " + resourceKey);
         }
     }
 }

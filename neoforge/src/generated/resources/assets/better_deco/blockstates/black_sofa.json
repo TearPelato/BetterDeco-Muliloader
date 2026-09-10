@@ -25,24 +25,19 @@
       "y": 270
     },
     "facing=north,type=corner_left": {
-      "model": "better_deco:block/black_sofa_corner_left",
-      "y": 0
+      "model": "better_deco:block/black_sofa_corner_left"
     },
     "facing=north,type=corner_right": {
-      "model": "better_deco:block/black_sofa_corner_right",
-      "y": 0
+      "model": "better_deco:block/black_sofa_corner_right"
     },
     "facing=north,type=left": {
-      "model": "better_deco:block/black_sofa_left",
-      "y": 0
+      "model": "better_deco:block/black_sofa_left"
     },
     "facing=north,type=middle": {
-      "model": "better_deco:block/black_sofa_middle",
-      "y": 0
+      "model": "better_deco:block/black_sofa_middle"
     },
     "facing=north,type=right": {
-      "model": "better_deco:block/black_sofa_right",
-      "y": 0
+      "model": "better_deco:block/black_sofa_right"
     },
     "facing=north,type=single": {
       "model": "better_deco:block/black_sofa_single",
@@ -69,8 +64,7 @@
       "y": 180
     },
     "facing=south,type=single": {
-      "model": "better_deco:block/black_sofa_single",
-      "y": 0
+      "model": "better_deco:block/black_sofa_single"
     },
     "facing=west,type=corner_left": {
       "model": "better_deco:block/black_sofa_corner_left",

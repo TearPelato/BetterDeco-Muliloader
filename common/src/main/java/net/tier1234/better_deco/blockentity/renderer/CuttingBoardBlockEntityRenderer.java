@@ -2,62 +2,95 @@ package net.tier1234.better_deco.blockentity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.tier1234.better_deco.block.CuttingBoardBlock;
 import net.tier1234.better_deco.blockentity.CuttingBoardBlockEntity;
+import net.tier1234.better_deco.blockentity.renderer.render_state.CuttingBoardRenderState;
+import org.jetbrains.annotations.Nullable;
 
-public class CuttingBoardBlockEntityRenderer implements BlockEntityRenderer<CuttingBoardBlockEntity> {
+public class CuttingBoardBlockEntityRenderer implements BlockEntityRenderer<CuttingBoardBlockEntity, CuttingBoardRenderState> {
 
-    public ItemRenderer itemRenderer;
+    private final ItemModelResolver itemModelResolver;
 
     public CuttingBoardBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
-    this.itemRenderer = context.getItemRenderer();
+        this.itemModelResolver = context.itemModelResolver();
     }
 
     @Override
-    public void render(CuttingBoardBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack,
-                       MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
-        ItemStack stack = pBlockEntity.getItem(0);
-
-        Direction direction = pBlockEntity.getBlockState().getValue(CuttingBoardBlock.DIRECTION);
-
-        pPoseStack.pushPose();
-        pPoseStack.translate(0.5, 0.1, 0.5);
-        pPoseStack.scale(0.5f, 0.5f, 0.5f);
-        BakedModel model = this.itemRenderer.getModel(stack, pBlockEntity.getLevel(), null, 0);
-        float offset = model.isGui3d() ? 0.0375F : 0.0625F;
-        this.drawItem(stack, pBlockEntity.getLevel(), direction, pPoseStack, pBufferSource, pPackedLight, pPackedOverlay, !model.isGui3d(), offset);
-        pPoseStack.popPose();
+    public CuttingBoardRenderState createRenderState() {
+        return new CuttingBoardRenderState();
     }
 
-    private void drawItem(ItemStack stack, Level level, Direction facing, PoseStack poseStack, MultiBufferSource source, int light, int overlay, boolean flat, float offset)
-    {
+    @Override
+    public void extractRenderState(CuttingBoardBlockEntity blockEntity, CuttingBoardRenderState state, float partialTick, Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+
+        BlockEntityRenderState.extractBase(blockEntity, state, breakProgress);
+        state.item.clear();
+
+        ItemStack stack = blockEntity.getItem(0);
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        state.direction = blockEntity.getBlockState()
+                .getValue(CuttingBoardBlock.DIRECTION);
+
+        if (!(blockEntity.getLevel() instanceof ClientLevel level)) {
+            return;
+        }
+
+        this.itemModelResolver.updateForTopItem(state.item, stack, ItemDisplayContext.NONE, level, null, 0);
+
+        state.flat = !state.item.usesBlockLight();
+        state.offset = state.flat ? 0.0625F : 0.0375F;
+    }
+
+    @Override
+    public void submit(CuttingBoardRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
+
+        if (state.item.isEmpty()) {
+            return;
+        }
+
         poseStack.pushPose();
-        this.setupItemRotation(poseStack, facing, flat);
-        this.itemRenderer.renderStatic(stack, ItemDisplayContext.NONE, light, overlay, poseStack, source, level, 0);
+        poseStack.translate(0.5D, 0.1D, 0.5D);
+        poseStack.scale(0.5F, 0.5F, 0.5F);
+        poseStack.pushPose();
+
+        this.setupItemRotation(poseStack, state.direction, state.flat);
+
+        state.item.submit(poseStack, collector, state.lightCoords, 0, -1);
         poseStack.popPose();
-        poseStack.translate(0, offset, 0);
-        this.postDrawItem(poseStack, flat);
+        poseStack.translate(0.0D, state.offset, 0.0D);
+
+        this.postDrawItem(poseStack, state.flat);
+        poseStack.popPose();
     }
-    private void setupItemRotation(PoseStack poseStack, Direction facing, boolean flat)
-    {
-        if(!flat) return;
+
+    private void setupItemRotation(PoseStack poseStack, Direction facing, boolean flat) {
+        if (!flat) {
+            return;
+        }
+
         poseStack.mulPose(facing.getRotation());
         poseStack.mulPose(Axis.YP.rotation(Mth.PI));
     }
-    private void postDrawItem(PoseStack poseStack, boolean flat)
-    {
-        if(flat)
-        {
+
+    private void postDrawItem(PoseStack poseStack, boolean flat) {
+
+        if (flat) {
             poseStack.mulPose(Axis.YP.rotation(Mth.HALF_PI / 2.01F));
             return;
         }

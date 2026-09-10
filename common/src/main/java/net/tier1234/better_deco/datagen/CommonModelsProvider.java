@@ -1,14 +1,19 @@
 package net.tier1234.better_deco.datagen;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.mojang.math.Quadrant;
+import com.mrcrayfish.framework.api.datagen.FrameworkGenerator;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.client.data.models.blockstates.PropertyDispatch;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.dispatch.Variant;
+import net.minecraft.client.renderer.block.dispatch.VariantMutator;
+import net.minecraft.client.renderer.item.ClientItem;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
-import net.minecraft.data.models.blockstates.*;
-import net.minecraft.data.models.model.ModelLocationUtils;
-import net.minecraft.data.models.model.ModelTemplate;
-import net.minecraft.data.models.model.TextureMapping;
-import net.minecraft.data.models.model.TextureSlot;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -22,29 +27,22 @@ import net.tier1234.better_deco.block.type.StoneType;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModItems;
 
+import java.util.Map;
 import java.util.Optional;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import static net.tier1234.better_deco.block.BathBlock.BathPart.BOTTOM;
 import static net.tier1234.better_deco.block.BathBlock.BathPart.HEAD;
 import static net.tier1234.better_deco.block.FridgeBlock.FridgeModelType.FREEZER;
 import static net.tier1234.better_deco.block.FridgeBlock.FridgeModelType.FRIDGE;
 
-public class CommonModelsProvider {
+public class CommonModelsProvider extends FrameworkGenerator {
 
-    private final Consumer<BlockStateGenerator> blockStateConsumer;
-    private final BiConsumer<ResourceLocation, Supplier<JsonElement>> modelConsumer;
-
-    protected CommonModelsProvider(Consumer<BlockStateGenerator> blockStateConsumer,
-                                   BiConsumer<ResourceLocation, Supplier<JsonElement>> modelConsumer) {
-        this.blockStateConsumer = blockStateConsumer;
-        this.modelConsumer = modelConsumer;
+    public CommonModelsProvider(Map<Block, BlockModelDefinitionGenerator> generators, Map<Item, ClientItem> items, Map<Identifier, ModelInstance> models) {
+        super(generators, items, models);
     }
 
-
-    public void run() {
+    @Override
+    public void generate() {
 
         woodenKitchenCounter(ModBlocks.OAK_KITCHEN_COUNTER.get());
         woodenKitchenCounter(ModBlocks.SPRUCE_KITCHEN_COUNTER.get());
@@ -128,10 +126,6 @@ public class CommonModelsProvider {
         cuttingBoard(ModBlocks.BAMBOO_CUTTING_BOARD.get());
         cuttingBoard(ModBlocks.CRIMSON_CUTTING_BOARD.get());
         cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get());
-
-        registerItemModel(ModItems.KITCHEN_KNIFE.get(),ResourceLocation.withDefaultNamespace("item/handheld"),Constants.id("item/knife"));
-        registerItemModel(ModItems.SLICED_BREAD.get(),ResourceLocation.withDefaultNamespace("item/handheld"),Constants.id("item/sliced_bread"));
-        registerItemModel(ModItems.COOKED_SLICED_BREAD.get(),ResourceLocation.withDefaultNamespace("item/handheld"),Constants.id("item/cooked_sliced_bread"));
 
         jar(ModBlocks.OAK_JAR.get());
         jar(ModBlocks.SPRUCE_JAR.get());
@@ -495,717 +489,694 @@ public class CommonModelsProvider {
     protected void woodenKitchenCounter(KitchenCounterBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_kitchen_counter"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_counter")));
 
-        ResourceLocation defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, KitchenCounterBlock.TYPE)
-                        .select(Direction.NORTH, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenCounterBlock.TYPE)
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, defaultModel);
+        this.registerItemWithModel(block, defaultModel);
     }
 
     protected void coloredKitchenCounter(KitchenCounterBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + color.getName() + "_concrete"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_kitchen_counter"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_counter")));
 
-        ResourceLocation defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, KitchenCounterBlock.TYPE)
-                .select(Direction.NORTH, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, KitchenCounterBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER, Variant.variant().with(VariantProperties.MODEL, leftCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER, Variant.variant().with(VariantProperties.MODEL, rightCornerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, leftInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, Variant.variant().with(VariantProperties.MODEL, rightInvModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenCounterBlock.TYPE)
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER, new MultiVariant(WeightedList.of(new Variant(leftCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER, new MultiVariant(WeightedList.of(new Variant(rightCornerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.LEFT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(leftInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, KitchenCounterBlock.Type.RIGHT_CORNER_INVERTED, new MultiVariant(WeightedList.of(new Variant(rightInvModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, defaultModel);
-
+        this.registerItemWithModel(block, defaultModel);
     }
 
-    protected void woodenKitchenDrawer(KitchenDrawerBlock block){
+    protected void woodenKitchenDrawer(KitchenDrawerBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_kitchen_drawer"));
-        ResourceLocation closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")),
-                Optional.of("_closed"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")),
-                Optional.of("_open"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_drawer")));
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, KitchenDrawerBlock.OPEN)
-                .select(Direction.NORTH, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        Identifier closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")), Optional.of("_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")), Optional.of("_open"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, closedModel);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenDrawerBlock.OPEN)
+                        .select(Direction.NORTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
+
+        this.registerItemWithModel(block, closedModel);
     }
 
-    protected void coloredKitchenDrawer(KitchenDrawerBlock block){
+    protected void coloredKitchenDrawer(KitchenDrawerBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+color.getName()+"_concrete"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+color.getName()+"_kitchen_drawer"));
-        ResourceLocation closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")),
-                Optional.of("_closed"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")),
-                Optional.of("_open"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_drawer")));
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, KitchenDrawerBlock.OPEN)
-                .select(Direction.NORTH, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, false, Variant.variant().with(VariantProperties.MODEL, closedModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, true, Variant.variant().with(VariantProperties.MODEL, openModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        Identifier closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")), Optional.of("_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")), Optional.of("_open"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, closedModel);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenDrawerBlock.OPEN)
+                        .select(Direction.NORTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, new MultiVariant(WeightedList.of(new Variant(openModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
+
+        this.registerItemWithModel(block, closedModel);
     }
 
     protected void woodenKitchenSink(KitchenSinkBlock block) {
-       WoodType type = block.getWoodType();
-       TextureMapping textures = new TextureMapping();
-       textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-       textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_kitchen_sink"));
-       ModelTemplate template = getModel(Constants.id("block/kitchen_sink"));
-       ResourceLocation model  = template.create(block, textures, modelConsumer);
-       PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-               .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-               .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-               .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-               .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        WoodType type = block.getWoodType();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_sink")));
+        ModelTemplate template = getModel(Constants.id("block/kitchen_sink"));
+        Identifier model = template.create(block, textures, this.models::put);
 
-       blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
+
+        this.registerItemWithModel(block, model);
     }
 
     protected void coloredKitchenSink(KitchenSinkBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+color.getName()+"_concrete"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+color.getName()+"_kitchen_sink"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_sink")));
         ModelTemplate template = getModel(Constants.id("block/kitchen_sink"));
-        ResourceLocation model  = template.create(block, textures, modelConsumer);
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        Identifier model = template.create(block, textures, this.models::put);
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
+
+        this.registerItemWithModel(block, model);
     }
 
 
     protected void woodenOven(OvenBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_kitchen_oven"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_oven")));
         ModelTemplate template = getModel(Constants.id("block/oven"));
-        ResourceLocation model  = template.create(block, textures, modelConsumer);
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        Identifier model = template.create(block, textures, this.models::put);
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
+
+        this.registerItemWithModel(block, model);
     }
 
     protected void coloredOven(OvenBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+color.getName()+"_concrete"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+color.getName()+"_kitchen_oven"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_oven")));
         ModelTemplate template = getModel(Constants.id("block/oven"));
-        ResourceLocation model  = template.create(block, textures, modelConsumer);
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        Identifier model = template.create(block, textures, this.models::put);
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
+
+        this.registerItemWithModel(block, model);
     }
 
 
     protected void woodenKitchenCabinet(CabinetBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_kitchen_cabinet"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_cabinet")));
 
-        ResourceLocation closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")),
-                Optional.of("_closed_left"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")),
-                Optional.of("_open_left"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")), Optional.of("_closed_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")), Optional.of("_open_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        ResourceLocation closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")),
-                Optional.of("_closed_right"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")),
-                Optional.of("_open_right"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")), Optional.of("_closed_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")), Optional.of("_open_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, CabinetBlock.OPEN, CabinetBlock.HANDLE)
+                        .select(Direction.NORTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, CabinetBlock.OPEN, CabinetBlock.HANDLE)
-                .select(Direction.NORTH, false, DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, false,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, false,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, false,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, false, DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, false,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, false,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, false,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, closedModelLeft);
+        this.registerItemWithModel(block, closedModelLeft);
     }
 
     protected void coloredKitchenCabinet(CabinetBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+color.getName()+"_concrete"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+color.getName()+"_kitchen_cabinet"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_cabinet")));
 
-        ResourceLocation closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")),
-                Optional.of("_closed_left"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")),
-                Optional.of("_open_left"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")), Optional.of("_closed_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")), Optional.of("_open_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        ResourceLocation closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")),
-                Optional.of("_closed_right"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")),
-                Optional.of("_open_right"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")), Optional.of("_closed_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")), Optional.of("_open_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, CabinetBlock.OPEN, CabinetBlock.HANDLE)
+                        .select(Direction.NORTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(openModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(closedModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, DoorHingeSide.RIGHT, new MultiVariant(WeightedList.of(new Variant(openModelRight))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, CabinetBlock.OPEN, CabinetBlock.HANDLE)
-                .select(Direction.NORTH, false, DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, false,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, false,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, false,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, closedModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, true,DoorHingeSide.LEFT, Variant.variant().with(VariantProperties.MODEL, openModelLeft).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, false, DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, false,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, false,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, false,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, closedModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, true,DoorHingeSide.RIGHT, Variant.variant().with(VariantProperties.MODEL, openModelRight).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, closedModelLeft);
+        this.registerItemWithModel(block, closedModelLeft);
     }
 
 
     protected void fridge(FridgeBlock block) {
         MetalType type = block.getType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/gray_concrete"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/fridge_" + type.getName()));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/gray_concrete")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/fridge_" + type.getName())));
 
-        ResourceLocation topModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_top")), Optional.of("_top"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation bottomModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_bottom")), Optional.of("_bottom"),TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation model = new ModelTemplate(Optional.of(Constants.id("block/fridge")), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures, modelConsumer);
+        Identifier topModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_top")), Optional.of("_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier bottomModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, FridgeBlock.MODEL_TYPE)
-                .select(Direction.NORTH, FRIDGE, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH,FRIDGE, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST,FRIDGE,  Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST,FRIDGE,  Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, FREEZER, Variant.variant().with(VariantProperties.MODEL, topModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH,FREEZER, Variant.variant().with(VariantProperties.MODEL, topModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST,FREEZER,  Variant.variant().with(VariantProperties.MODEL, topModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST,FREEZER,  Variant.variant().with(VariantProperties.MODEL, topModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, FridgeBlock.MODEL_TYPE)
+                        .select(Direction.NORTH, FRIDGE, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, FRIDGE, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, FRIDGE, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, FRIDGE, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, FREEZER, new MultiVariant(WeightedList.of(new Variant(topModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, FREEZER, new MultiVariant(WeightedList.of(new Variant(topModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, FREEZER, new MultiVariant(WeightedList.of(new Variant(topModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, FREEZER, new MultiVariant(WeightedList.of(new Variant(topModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, bottomModel);
     }
 
     protected void microwave(MicrowaveBlock block) {
         MetalType type = block.getType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, Constants.id(type.getName()))
-                .put(TextureSlot.TEXTURE, Constants.id("block/microwave_" + type.getName()));
+                .put(TextureSlot.PARTICLE, new Material(Constants.id(type.getName())))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/microwave_" + type.getName())));
 
         ModelTemplate template = getModel(Constants.id("block/microwave"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
-
+        this.registerItemWithModel(block, model);
     }
 
 
     protected void toaster(ToasterBlock block) {
         MetalType type = block.getType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, Constants.id(type.getName()))
-                .put(TextureSlot.TEXTURE, Constants.id("block/toaster_" + type.getName()));
+                .put(TextureSlot.PARTICLE, new Material(Constants.id(type.getName())))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/toaster_" + type.getName())));
 
         ModelTemplate template = getModel(Constants.id("block/toaster"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
-
+        this.registerItemWithModel(block, model);
     }
 
     protected void cuttingBoard(CuttingBoardBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_cutting_board"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_cutting_board")));
 
         ModelTemplate template = getModel(Constants.id("block/cutting_board"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void jar(JarBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_jar"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_jar")));
 
         ModelTemplate template = getModel(Constants.id("block/jar"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void basin(BasinBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_basin"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_basin")));
 
         ModelTemplate template = getModel(Constants.id("block/basin"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void toilet(ToiletBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_toilet"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_toilet")));
 
         ModelTemplate template = getModel(Constants.id("block/toilet"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void bath(BathBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_bath"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_bath")));
 
-        ResourceLocation modelHead = new ModelTemplate(Optional.of(Constants.id("block/bath_head")), Optional.of("_head"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation modelBottom = new ModelTemplate(Optional.of(Constants.id("block/bath_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation model = new ModelTemplate(Optional.of(Constants.id("block/bath")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block,textures,modelConsumer);
+        Identifier modelHead = new ModelTemplate(Optional.of(Constants.id("block/bath_head")), Optional.of("_head"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier modelBottom = new ModelTemplate(Optional.of(Constants.id("block/bath_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier model = new ModelTemplate(Optional.of(Constants.id("block/bath")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, BathBlock.PART)
-                .select(Direction.NORTH, HEAD, Variant.variant().with(VariantProperties.MODEL, modelHead).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, HEAD, Variant.variant().with(VariantProperties.MODEL, modelHead).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, HEAD, Variant.variant().with(VariantProperties.MODEL, modelHead).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, HEAD, Variant.variant().with(VariantProperties.MODEL, modelHead).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, BathBlock.PART)
+                        .select(Direction.NORTH, HEAD, new MultiVariant(WeightedList.of(new Variant(modelHead))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, HEAD, new MultiVariant(WeightedList.of(new Variant(modelHead))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, HEAD, new MultiVariant(WeightedList.of(new Variant(modelHead))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, HEAD, new MultiVariant(WeightedList.of(new Variant(modelHead))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, BOTTOM, new MultiVariant(WeightedList.of(new Variant(modelBottom))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, BOTTOM, new MultiVariant(WeightedList.of(new Variant(modelBottom))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, BOTTOM, new MultiVariant(WeightedList.of(new Variant(modelBottom))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, BOTTOM, new MultiVariant(WeightedList.of(new Variant(modelBottom))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void sofa(SofaBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + color.getName() + "_concrete"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_sofa"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_sofa")));
 
-        ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, SofaBlock.TYPE)
-                .select(Direction.NORTH, SofaBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, SofaBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, SofaBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, SofaBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, SofaBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, SofaBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, SofaBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, SofaBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, SofaBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, SofaBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, SofaBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, SofaBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, SofaBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, SofaBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, SofaBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, SofaBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, SofaBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, SofaBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, SofaBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, SofaBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, SofaBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, SofaBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, SofaBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, SofaBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, SofaBlock.TYPE)
+                        .select(Direction.NORTH, SofaBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, SofaBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, SofaBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, SofaBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, SofaBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, SofaBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, SofaBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, SofaBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, SofaBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, SofaBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, SofaBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, SofaBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, SofaBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, SofaBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, SofaBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, SofaBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, SofaBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, SofaBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, SofaBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, SofaBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, SofaBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, SofaBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, SofaBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, SofaBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-
-        registerItemModel(block, singleModel);
-
+        this.registerItemWithModel(block, singleModel);
     }
 
 
     protected void chair(ChairBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_chair"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_chair")));
 
         ModelTemplate template = getModel(Constants.id("block/chair"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void stool(StoolBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + color.getName() + "_wool"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_stool"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_wool")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_stool")));
         ModelTemplate template = getModel(Constants.id("block/stool"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                        .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
 
     protected void table(TableBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_table"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_table")));
 
-        ResourceLocation defaultModel = new ModelTemplate(Optional.of(Constants.id("block/table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation centerModel = new ModelTemplate(Optional.of(Constants.id("block/table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier centerModel = new ModelTemplate(Optional.of(Constants.id("block/table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, TableBlock.TYPE)
+                        .select(Direction.NORTH, TableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, TableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, TableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, TableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, TableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, TableBlock.TYPE)
-                        .select(Direction.NORTH, TableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.NORTH, TableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.SOUTH, TableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.EAST, TableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.WEST, TableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, defaultModel);
+        this.registerItemWithModel(block, defaultModel);
     }
 
 
-    protected void desk(DeskBlock block)  {
-     WoodType type = block.getWoodType();
-     TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_desk"));
+    protected void desk(DeskBlock block) {
+        WoodType type = block.getWoodType();
+        TextureMapping textures = new TextureMapping();
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_desk")));
 
-        ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, DeskBlock.TYPE)
-                .select(Direction.NORTH, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, DeskBlock.TYPE)
+                        .select(Direction.NORTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, singleModel);
-
+        this.registerItemWithModel(block, singleModel);
     }
 
 
     protected void deskCabinet(DeskCabinetBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_desk_drawer"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_desk_drawer")));
 
-        ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_single_closed")), Optional.of("_single_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_left_closed")), Optional.of("_left_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_right_closed")), Optional.of("_right_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_middle_closed")), Optional.of("_middle_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures,modelConsumer);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_single_closed")), Optional.of("_single_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_left_closed")), Optional.of("_left_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_right_closed")), Optional.of("_right_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_middle_closed")), Optional.of("_middle_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, DeskBlock.TYPE)
-                .select(Direction.NORTH, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, DeskBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, DeskBlock.TYPE)
+                        .select(Direction.NORTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, DeskBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, singleModel);
+        this.registerItemWithModel(block, singleModel);
     }
 
     protected void coffeeTable(CoffeeTableBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_coffee_table"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_coffee_table")));
 
-        ResourceLocation defaultModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation centerModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
-        ResourceLocation cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block,textures,modelConsumer);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier centerModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, CoffeeTableBlock.TYPE)
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.MIDDLE_TOP, new MultiVariant(WeightedList.of(new Variant(middleTopModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.MIDDLE_BOTTOM, new MultiVariant(WeightedList.of(new Variant(middleBottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.CENTER, new MultiVariant(WeightedList.of(new Variant(centerModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.CORNER_LEFT, new MultiVariant(WeightedList.of(new Variant(cornerLeftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, CoffeeTableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, CoffeeTableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, CoffeeTableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, CoffeeTableBlock.Type.CORNER_RIGHT, new MultiVariant(WeightedList.of(new Variant(cornerRightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, CoffeeTableBlock.TYPE)
-                .select(Direction.NORTH, CoffeeTableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.DEFAULT, Variant.variant().with(VariantProperties.MODEL, defaultModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.MIDDLE_TOP, Variant.variant().with(VariantProperties.MODEL, middleTopModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.MIDDLE_BOTTOM, Variant.variant().with(VariantProperties.MODEL, middleBottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.CENTER, Variant.variant().with(VariantProperties.MODEL, centerModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.CORNER_LEFT, Variant.variant().with(VariantProperties.MODEL, cornerLeftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.NORTH, CoffeeTableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, CoffeeTableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST, CoffeeTableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST, CoffeeTableBlock.Type.CORNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, cornerRightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, defaultModel);
+        this.registerItemWithModel(block, defaultModel);
     }
 
 
@@ -1213,103 +1184,99 @@ public class CommonModelsProvider {
     protected void bedsideCabinet(BedsideCabinetBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_bedside_cabinet"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_bedside_cabinet")));
 
         ModelTemplate template = getModel(Constants.id("block/bedside_cabinet"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     protected void lamp(LampBlock block) {
         DyeColor color = block.getColor();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + color.getName() + "_wool"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_lamp"));
-        ResourceLocation singleOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_off")), Optional.of("_single_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation singleOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_on")), Optional.of("_single_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation bottomModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation topOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_off")), Optional.of("_top_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation topOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_on")), Optional.of("_top_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation wallOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_off")), Optional.of("_wall_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
-        ResourceLocation wallOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_on")), Optional.of("_wall_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, modelConsumer);
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_wool")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_lamp")));
+        Identifier singleOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_off")), Optional.of("_single_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier singleOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_on")), Optional.of("_single_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier bottomModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier topOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_off")), Optional.of("_top_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier topOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_on")), Optional.of("_top_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier wallOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_off")), Optional.of("_wall_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier wallOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_on")), Optional.of("_wall_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING,LampBlock.POWERED, LampBlock.TYPE)
-                        .select(Direction.NORTH, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, false, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, true, LampBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, false, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, false, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, true, LampBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, true, LampBlock.Type.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottomModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, false, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, true, LampBlock.Type.TOP, Variant.variant().with(VariantProperties.MODEL, topOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, false, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOffModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                        .select(Direction.NORTH, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                        .select(Direction.SOUTH, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                        .select(Direction.EAST, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                        .select(Direction.WEST, true, LampBlock.Type.WALL, Variant.variant().with(VariantProperties.MODEL, wallOnModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, LampBlock.POWERED, LampBlock.TYPE)
+                        .select(Direction.NORTH, false, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, false, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, false, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, LampBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, LampBlock.Type.BOTTOM, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, false, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, LampBlock.Type.TOP, new MultiVariant(WeightedList.of(new Variant(topOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, false, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, false, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, false, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, false, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, true, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, true, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, true, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, true, LampBlock.Type.WALL, new MultiVariant(WeightedList.of(new Variant(wallOnModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, singleOffModel);
-
+        this.registerItemWithModel(block, singleOffModel);
     }
 
     protected void digitalClock(DigitalClockBlock block) {
         DyeColor color = block.getDyeColor();
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+ color.getName() + "_concrete"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + color.getName() + "_digital_clock"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_digital_clock")));
 
         ModelTemplate template = getModel(Constants.id("block/digital_clock"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
 
@@ -1317,106 +1284,102 @@ public class CommonModelsProvider {
         WoodType type = block.getWoodType();
 
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"))
-                .put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_clock"));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
+                .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_clock")));
 
         ModelTemplate template = getModel(Constants.id("block/wooden_clock"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
     }
 
     private void workbench(WorkbenchBlock block) {
         TextureMapping textures = new TextureMapping()
-                .put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/oak_planks"))
-                .put(TextureSlot.DOWN, Constants.id("block/" + block.name() + "_bottom"))
-                .put(TextureSlot.UP, Constants.id("block/" + block.name() + "_top"))
-                .put(TextureSlot.NORTH, Constants.id("block/" + block.name() + "_front"))
-                .put(TextureSlot.SOUTH, Constants.id("block/" + block.name() + "_side"))
-                .put(TextureSlot.EAST, Constants.id("block/" + block.name() + "_side"))
-                .put(TextureSlot.WEST, Constants.id("block/" + block.name() + "_side"));
-        ResourceLocation model = new ModelTemplate(Optional.of(ResourceLocation.withDefaultNamespace("block/cube")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.NORTH, TextureSlot.SOUTH, TextureSlot.EAST, TextureSlot.WEST, TextureSlot.UP, TextureSlot.DOWN).create(block, textures, modelConsumer);
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model)));
+                .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/oak_planks")))
+                .put(TextureSlot.DOWN, new Material(Constants.id("block/" + block.name() + "_bottom")))
+                .put(TextureSlot.UP, new Material(Constants.id("block/" + block.name() + "_top")))
+                .put(TextureSlot.NORTH, new Material(Constants.id("block/" + block.name() + "_front")))
+                .put(TextureSlot.SOUTH, new Material(Constants.id("block/" + block.name() + "_side")))
+                .put(TextureSlot.EAST, new Material(Constants.id("block/" + block.name() + "_side")))
+                .put(TextureSlot.WEST, new Material(Constants.id("block/" + block.name() + "_side")));
+        Identifier model = new ModelTemplate(Optional.of(Identifier.withDefaultNamespace("block/cube")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.NORTH, TextureSlot.SOUTH, TextureSlot.EAST, TextureSlot.WEST, TextureSlot.UP, TextureSlot.DOWN).create(block, textures, this.models::put);
 
-        registerItemModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block, new MultiVariant(WeightedList.of(new Variant(model)))));
 
+        this.registerItemWithModel(block, model);
     }
 
     private void shelf(ShelfBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/" + type.name() + "_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/" + type.name() + "_shelf"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_shelf")));
 
-        ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
-        ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
-        ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
-        ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, ShelfBlock.TYPE)
-                .select(Direction.NORTH, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, ShelfBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, ShelfBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, ShelfBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                .select(Direction.NORTH, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST, ShelfBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, ShelfBlock.TYPE)
+                        .select(Direction.NORTH, ShelfBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, ShelfBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, ShelfBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, ShelfBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, ShelfBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, ShelfBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, ShelfBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, ShelfBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, ShelfBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, ShelfBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, ShelfBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, ShelfBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.NORTH, ShelfBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, ShelfBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST, ShelfBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST, ShelfBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
 
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, singleModel);
+        this.registerItemWithModel(block, singleModel);
     }
 
-        private void bench(ParkBenchBlock block) {
+    private void bench(ParkBenchBlock block) {
         WoodType type = block.getType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-        textures.put(TextureSlot.TEXTURE,Constants.id("block/"+type.name()+"_bench"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_bench")));
 
-            ResourceLocation singleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
-            ResourceLocation leftModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
-            ResourceLocation middleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
-            ResourceLocation rightModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, modelConsumer);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
 
-            PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, ParkBenchBlock.TYPE)
-                    .select(Direction.NORTH, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                    .select(Direction.SOUTH, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                    .select(Direction.EAST, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                    .select(Direction.WEST, ParkBenchBlock.Type.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                    .select(Direction.NORTH, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                    .select(Direction.SOUTH, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                    .select(Direction.EAST, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                    .select(Direction.WEST, ParkBenchBlock.Type.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                    .select(Direction.NORTH, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                    .select(Direction.SOUTH, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                    .select(Direction.EAST, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                    .select(Direction.WEST, ParkBenchBlock.Type.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                    .select(Direction.NORTH, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                    .select(Direction.SOUTH, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                    .select(Direction.EAST, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-                    .select(Direction.WEST, ParkBenchBlock.Type.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, ParkBenchBlock.TYPE)
+                        .select(Direction.NORTH, ParkBenchBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, ParkBenchBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, ParkBenchBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, ParkBenchBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, ParkBenchBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, ParkBenchBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, ParkBenchBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, ParkBenchBlock.Type.LEFT, new MultiVariant(WeightedList.of(new Variant(leftModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, ParkBenchBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, ParkBenchBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, ParkBenchBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, ParkBenchBlock.Type.MIDDLE, new MultiVariant(WeightedList.of(new Variant(middleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.NORTH, ParkBenchBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.SOUTH, ParkBenchBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.EAST, ParkBenchBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
+                        .select(Direction.WEST, ParkBenchBlock.Type.RIGHT, new MultiVariant(WeightedList.of(new Variant(rightModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))));
 
-
-
-            blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, singleModel);
+        this.registerItemWithModel(block, singleModel);
     }
 
 
@@ -1424,99 +1387,66 @@ public class CommonModelsProvider {
         StoneType type = block.getType();
 
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.getName()));
-        textures.put(TextureSlot.TEXTURE, ResourceLocation.withDefaultNamespace("block/"+type.getName()));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.getName())));
+        textures.put(TextureSlot.TEXTURE, new Material(Identifier.withDefaultNamespace("block/" + type.getName())));
 
         ModelTemplate template = getModel(Constants.id("block/stone_path0"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
+        this.registerItemWithModel(block, model);
 
-        PropertyDispatch dispatch = PropertyDispatch.properties(BlockStateProperties.HORIZONTAL_FACING, PathBlock.WATERLOGGED)
-                .select(Direction.NORTH,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,false, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+        this.generators.put(block, MultiVariantGenerator.dispatch(block).with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, PathBlock.WATERLOGGED)
+                .select(Direction.NORTH, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                .select(Direction.SOUTH, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                .select(Direction.EAST, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                .select(Direction.WEST, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
 
-                .select(Direction.NORTH,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,true, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+                .select(Direction.NORTH, true, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                .select(Direction.SOUTH, true, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                .select(Direction.EAST, true, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                .select(Direction.WEST, true, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
     }
 
     private void crate(CrateBlock block) {
         WoodType type = block.getType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_crate"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_crate")));
 
         ModelTemplate template = getModel(Constants.id("block/crate"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
+        Identifier model = template.create(block, textures, this.models::put);
 
-
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        this.registerItemWithModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST,  new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST,  new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
     }
 
     private void glassTecque(TecqueBlock block) {
         WoodType type = block.getWoodType();
         TextureMapping textures = new TextureMapping();
-        textures.put(TextureSlot.PARTICLE, ResourceLocation.withDefaultNamespace("block/"+type.name()+"_planks"));
-        textures.put(TextureSlot.TEXTURE, Constants.id("block/"+type.name()+"_glass_tecque"));
+        textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
+        textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_glass_tecque")));
 
         ModelTemplate template = getModel(Constants.id("block/glass_tecque"));
-        ResourceLocation model = template.create(block, textures, modelConsumer);
-
-
-        PropertyDispatch dispatch = PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                .select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R0))
-                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                .select(Direction.EAST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                .select(Direction.WEST,  Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-
-        blockStateConsumer.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
-        registerItemModel(block, model);
+        Identifier model = template.create(block, textures, this.models::put);
+        this.registerItemWithModel(block, model);
+        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
+                        .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
+                        .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
+                        .select(Direction.EAST,  new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
+                        .select(Direction.WEST,  new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))));
     }
 
 
-    private static ModelTemplate getModel(ResourceLocation model) {
+    private static ModelTemplate getModel(Identifier model) {
         return new ModelTemplate(Optional.of(model), Optional.empty(), TextureSlot.TEXTURE, TextureSlot.PARTICLE);
     }
 
-    protected void registerItemModel(Item item, ResourceLocation parent, ResourceLocation texture) {
-        ResourceLocation itemModel = ModelLocationUtils.getModelLocation(item);
-        modelConsumer.accept(itemModel, () -> {
-            JsonObject json = new JsonObject();
-            json.addProperty("parent", parent.toString());
-
-            JsonObject textures = new JsonObject();
-            textures.addProperty("layer0", texture.toString());
-            json.add("textures", textures);
-
-            return json;
-        });
+    private void registerItemWithModel(Block block, Identifier location) {
+        this.items.put(block.asItem(), this.createClientItem(ItemModelUtils.plainModel(location)));
     }
-
-    protected void registerItemModel(Item item, ResourceLocation parentModel) {
-        ResourceLocation itemModel = ModelLocationUtils.getModelLocation(item);
-        modelConsumer.accept(itemModel, () -> {
-            JsonObject json = new JsonObject();
-            json.addProperty("parent", parentModel.toString());
-            return json;
-        });
-    }
-
-    protected void registerItemModel(Block block, ResourceLocation parentModel) {
-        registerItemModel(block.asItem(), parentModel);
-    }
-
 }

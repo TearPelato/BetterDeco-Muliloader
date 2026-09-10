@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:orange_concrete"
-      }
+      "item": "minecraft:orange_concrete"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:clock"
-      }
+      "item": "minecraft:clock"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:orange_digital_clock"
   }
 }

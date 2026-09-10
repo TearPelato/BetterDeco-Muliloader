@@ -3,25 +3,18 @@
   "materials": [
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:orange_concrete"
-      }
+      "item": "minecraft:orange_concrete"
     },
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:quartz_block"
-      }
+      "item": "minecraft:quartz_block"
     },
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:chest"
-      }
+      "item": "minecraft:chest"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:orange_kitchen_drawer"
   }
 }

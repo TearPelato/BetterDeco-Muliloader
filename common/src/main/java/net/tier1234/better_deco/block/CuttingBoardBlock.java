@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -128,7 +127,7 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
         ItemStack stored = cuttingBoard.getItem(0);
         SingleRecipeInput input = new SingleRecipeInput(stored);
         ItemStack knife = player.getItemInHand(hand);
-        Optional<RecipeHolder<CuttingBoardRecipe>> match = level.recipe()
+        Optional<RecipeHolder<CuttingBoardRecipe>> match = ((ServerLevel)level).recipeAccess()
                 .getRecipeFor(ModRecipes.CUTTING_BOARD_TYPE.get(), input, level);
 
         if (match.isEmpty()) {
@@ -143,7 +142,7 @@ public class CuttingBoardBlock extends FurnitureHorizontalBlock implements Entit
 
 
             if (!player.getAbilities().instabuild) {
-                knife.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+                knife.hurtAndBreak(1, player, hand.asEquipmentSlot());
             }
 
             level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);

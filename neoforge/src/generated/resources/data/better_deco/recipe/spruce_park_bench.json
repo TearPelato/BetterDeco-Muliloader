@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 3,
-      "item": {
-        "item": "minecraft:spruce_planks"
-      }
+      "item": "minecraft:spruce_planks"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:chain"
-      }
+      "item": "minecraft:iron_chain"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:spruce_park_bench"
   }
 }

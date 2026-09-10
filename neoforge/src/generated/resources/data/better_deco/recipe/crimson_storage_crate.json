@@ -3,19 +3,14 @@
   "materials": [
     {
       "count": 4,
-      "item": {
-        "item": "minecraft:crimson_planks"
-      }
+      "item": "minecraft:crimson_planks"
     },
     {
       "count": 2,
-      "item": {
-        "item": "minecraft:chest"
-      }
+      "item": "minecraft:chest"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:crimson_storage_crate"
   }
 }

@@ -5,8 +5,7 @@
       "y": 90
     },
     "facing=north": {
-      "model": "better_deco:block/crimson_storage_crate",
-      "y": 0
+      "model": "better_deco:block/crimson_storage_crate"
     },
     "facing=south": {
       "model": "better_deco:block/crimson_storage_crate",

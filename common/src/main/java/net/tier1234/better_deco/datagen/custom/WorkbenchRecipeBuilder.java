@@ -4,16 +4,17 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
+import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import org.jetbrains.annotations.Nullable;
@@ -23,16 +24,16 @@ import java.util.Map;
 
 public class WorkbenchRecipeBuilder implements RecipeBuilder {
     private final NonNullList<CountedIngredient> materials = NonNullList.create();
-    private final ItemStack result;
+    private final ItemStackTemplate result;
     private boolean showNotification = false;
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
-    private WorkbenchRecipeBuilder(ItemStack result) {
+    private WorkbenchRecipeBuilder(ItemStackTemplate result) {
         this.result = result;
     }
 
     public static WorkbenchRecipeBuilder crafting(ItemLike result, int count) {
-        return new WorkbenchRecipeBuilder(new ItemStack(result, count));
+        return new WorkbenchRecipeBuilder(new ItemStackTemplate(result.asItem(), count));
     }
 
     public static WorkbenchRecipeBuilder crafting(ItemLike result) {
@@ -41,11 +42,6 @@ public class WorkbenchRecipeBuilder implements RecipeBuilder {
 
     public WorkbenchRecipeBuilder requires(ItemLike item, int count) {
         this.materials.add(new CountedIngredient(Ingredient.of(item), count));
-        return this;
-    }
-
-    public WorkbenchRecipeBuilder requires(TagKey<Item> tag, int count) {
-        this.materials.add(new CountedIngredient(Ingredient.of(tag), count));
         return this;
     }
 
@@ -71,19 +67,19 @@ public class WorkbenchRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public Item getResult() {
-        return this.result.getItem();
+    public ResourceKey<Recipe<?>> defaultId() {
+        return RecipeBuilder.getDefaultRecipeId(this.result);
     }
 
     @Override
-    public void save(RecipeOutput output, ResourceLocation id) {
+    public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
         if (this.criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + id);
+            throw new IllegalStateException("No way of obtaining recipe " + resourceKey);
         }
 
-        Advancement.Builder advancementBuilder = output.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
-                .rewards(AdvancementRewards.Builder.recipe(id))
+        Advancement.Builder advancementBuilder = recipeOutput.advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
+                .rewards(AdvancementRewards.Builder.recipe(resourceKey))
                 .requirements(AdvancementRequirements.Strategy.OR);
 
         this.criteria.forEach(advancementBuilder::addCriterion);
@@ -94,6 +90,6 @@ public class WorkbenchRecipeBuilder implements RecipeBuilder {
                 this.showNotification
         );
 
-        output.accept(id, recipe, advancementBuilder.build(id.withPrefix("recipes/")));
+        recipeOutput.accept(resourceKey, recipe, advancementBuilder.build(Constants.id("recipes/")));
     }
 }

@@ -6,9 +6,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -93,7 +95,7 @@ public class WorkbenchMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player player, ItemStack stack) {
-                stack.onCraftedBy(player.level(), player, stack.getCount());
+                stack.onCraftedBy(player, stack.getCount());
                 WorkbenchMenu.this.onCraft();
                 super.onTake(player, stack);
                 level.playSound(null, pos, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -109,18 +111,28 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public List<RecipeHolder<WorkbenchRecipe>> getRecipes() {
-        RecipeManager recipeManager = level.getRecipeManager();
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return List.of();
+        }
+
+        RecipeManager recipeManager = serverLevel.recipeAccess();
 
         List<RecipeHolder<WorkbenchRecipe>> all = recipeManager
-                .getAllRecipesFor(ModRecipes.WORKBENCH_TYPE.get())
+                .getRecipes()
                 .stream()
+                .filter(holder-> holder.value().getType() == ModRecipes.WORKBENCH_TYPE.get())
+                .map(holder-> (RecipeHolder<WorkbenchRecipe>) holder)
                 .collect(Collectors.toList());
 
         Map<Item, Integer> priority = new HashMap<>();
         int counter = 0;
 
+        var itemLookup = level.registryAccess()
+                .lookupOrThrow(Registries.ITEM);
+
         for (TagKey<Item> tag : RECIPE_ORDER) {
-            Optional<HolderSet.Named<Item>> tagHolders = BuiltInRegistries.ITEM.getTag(tag);
+            Optional<HolderSet.Named<Item>> tagHolders = itemLookup.get(tag);
+
             if (tagHolders.isPresent()) {
                 for (Holder<Item> holder : tagHolders.get()) {
                     priority.putIfAbsent(holder.value(), counter++);
@@ -130,8 +142,14 @@ public class WorkbenchMenu extends AbstractContainerMenu {
 
         return this.recipes = all.stream()
                 .sorted(Comparator.comparingInt(holder -> {
-                    Item resultItem = holder.value().getResultItem(level.registryAccess()).getItem();
-                    return priority.getOrDefault(resultItem, Integer.MAX_VALUE);
+                    Item resultItem = holder.value()
+                            .getResultItem(level.registryAccess())
+                            .getItem();
+
+                    return priority.getOrDefault(
+                            resultItem,
+                            Integer.MAX_VALUE
+                    );
                 }))
                 .collect(Collectors.toList());
     }
@@ -242,7 +260,7 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         for(CountedIngredient ingredient : recipe.value().getMaterials()) {
             int required = ingredient.count();
             int totalCount = 0;
-            for (ItemStack stack: player.getInventory().items) {
+            for (ItemStack stack: player.getInventory().getNonEquipmentItems()) {
                 if(!stack.isEmpty()&& ingredient.ingredient().test(stack)){
                     totalCount += stack.getCount();
                 }
@@ -258,8 +276,8 @@ public class WorkbenchMenu extends AbstractContainerMenu {
 
      public boolean hasMaterials(CountedIngredient material, Map<Integer, Integer> counted) {
         int remaining = material.count();
-        for(ItemStack stack: material.ingredient().getItems()){
-            int itemId = Item.getId(stack.getItem());
+         for (Holder<Item> holder : material.ingredient().items().toList()) {
+             int itemId = Item.getId(holder.value());
             int count = this.counts.getOrDefault(itemId, 0);
             count -= counted.getOrDefault(itemId, 0);
             if(count > 0){
@@ -299,7 +317,7 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     private void consumeIngredients(CountedIngredient ingredient) {
         int remaining = ingredient.count();
 
-        for (ItemStack stack : player.getInventory().items) {
+        for (ItemStack stack : player.getInventory().getNonEquipmentItems()) {
             if (remaining <= 0) {
                 break;
             }

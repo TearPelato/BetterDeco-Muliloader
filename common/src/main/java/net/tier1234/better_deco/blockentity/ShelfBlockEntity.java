@@ -2,13 +2,13 @@ package net.tier1234.better_deco.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -79,34 +79,22 @@ public class ShelfBlockEntity extends BasicLootBlockEntity {
     @Override
     public void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
-        handler.clearContent();
-        ListTag items = input.getList("Items", Tag.TAG_COMPOUND);
+        NonNullList<ItemStack> items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(input, items);
         for (int i = 0; i < items.size(); i++) {
-            CompoundTag itemTag = items.getCompound(i);
-            int slot = itemTag.getInt("Slot");
-            if (slot >= 0 && slot < handler.getContainerSize()) {
-                ItemStack.parse(input, itemTag.getCompound("Item"))
-                        .ifPresent(stack -> handler.setItem(slot, stack));
-            }
+            handler.setItem(i, items.get(i));
         }
     }
 
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
-        ListTag items = new ListTag();
-        for (int i = 0; i < handler.getContainerSize(); i++) {
-            ItemStack stack = handler.getItem(i);
-            if (!stack.isEmpty()) {
-                CompoundTag itemTag = new CompoundTag();
-                itemTag.putInt("Slot", i);
-                itemTag.put("Item", stack.(registries));
-                items.add(itemTag);
-            }
+        NonNullList<ItemStack> items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+        for (int i = 0; i < getContainerSize(); i++) {
+            items.set(i, handler.getItem(i));
         }
-        tag.put("Items", items);
+        ContainerHelper.saveAllItems(output, items);
     }
-
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);

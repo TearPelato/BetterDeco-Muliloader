@@ -3,7 +3,6 @@ package net.tier1234.better_deco.blockentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -17,13 +16,13 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
 import net.tier1234.better_deco.recipe.MicrowaveRecipe;
-import net.tier1234.better_deco.recipe.input.MicrowaveRecipeInput;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.screen.custom.MicrowaveMenu;
@@ -91,7 +90,7 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
 
     public void craftItem() {
         Optional<RecipeHolder<MicrowaveRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().output.create();
 
         ItemStack copy = itemHandler.getItem(INPUT_SLOT).copy();
         copy.shrink(1);
@@ -119,13 +118,13 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
             return false;
         }
 
-        ItemStack output = recipe.get().value().output();
+        ItemStack output = recipe.get().value().output.create();
         return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
     }
 
     public Optional<RecipeHolder<MicrowaveRecipe>> getCurrentRecipe() {
         return ((ServerLevel)this.level).recipeAccess()
-                .getRecipeFor(ModRecipes.MICROWAVE_TYPE.get(), new MicrowaveRecipeInput(itemHandler.getItem(INPUT_SLOT)), level);
+                .getRecipeFor(ModRecipes.MICROWAVE_TYPE.get(), new SingleRecipeInput(itemHandler.getItem(INPUT_SLOT)), level);
     }
 
     public boolean canInsertItemIntoOutputSlot(ItemStack output) {

@@ -3,13 +3,10 @@
   "materials": [
     {
       "count": 1,
-      "item": {
-        "item": "minecraft:cherry_planks"
-      }
+      "item": "minecraft:cherry_planks"
     }
   ],
   "result": {
-    "count": 1,
     "id": "better_deco:cherry_cutting_board"
   }
 }

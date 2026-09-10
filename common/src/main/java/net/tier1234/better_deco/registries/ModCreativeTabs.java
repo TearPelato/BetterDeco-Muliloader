@@ -20,7 +20,7 @@ public class ModCreativeTabs {
             Constants.id("better_deco"), builder -> {
                 builder.title(Component.translatable("creativetab.better_deco.better_deco"));
                 builder.icon(() -> new ItemStack(ModBlocks.OAK_CHAIR.get()));
-                Services.PLATFORM.displayItemsAcceptor(builder, consumer -> {
+                Services.PLATFORM.displayItemsAcceptor(builder, (parameters, consumer) -> {
                     var provider = parameters.holders();
                     List<BundledTabs> filters = ModBundledTabs.getFilters();
                     filters.forEach(tab -> tab.populate(provider));

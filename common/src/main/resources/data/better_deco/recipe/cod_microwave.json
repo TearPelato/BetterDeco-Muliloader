@@ -1,8 +1,6 @@
 {
   "type": "better_deco:microwave",
-  "ingredient": {
-    "item": "minecraft:cod"
-  },
+  "ingredient": "minecraft:cod",
   "result": {
     "id": "minecraft:cooked_cod"
   }

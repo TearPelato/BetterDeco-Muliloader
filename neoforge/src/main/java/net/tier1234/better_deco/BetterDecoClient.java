@@ -5,7 +5,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,19 +13,18 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.registries.RegisterEvent;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.block.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
-import net.tier1234.better_deco.compat.everycomp.CommonEveryCompatModule;
+import net.tier1234.better_deco.compat.jei.category.SyncedRecipes;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 import net.tier1234.better_deco.registries.ModKeybinds;
+import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.registries.ModSounds;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -61,10 +59,6 @@ public class BetterDecoClient {
         });
     }
 
-    @SubscribeEvent
-    private static void register(RegisterEvent event){
-        event.register(BuiltInRegistries.CREATIVE_MODE_TAB.key(), helper-> CommonEveryCompatModule.EveryCompatCreativeTabRegister.register());
-    }
 
     @SubscribeEvent
     public static void registerKeybinding(RegisterKeyMappingsEvent event){
@@ -86,6 +80,37 @@ public class BetterDecoClient {
                     player.playSound(ModSounds.FART.get(), 0.5f, 1.0f);
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRecipesSynced(RecipesReceivedEvent event)
+    {
+        if(ModList.get().isLoaded("jei"))
+        {
+            SyncedRecipes.setMap(event.getRecipeMap());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event)
+    {
+        SyncedRecipes.reset();
+    }
+
+    @SubscribeEvent
+    public static void onDatapackSync(OnDatapackSyncEvent event)
+    {
+        if(ModList.get().isLoaded("jei"))
+        {
+            event.sendRecipes(
+                    ModRecipes.OVEN_TYPE.get(),
+                    ModRecipes.MICROWAVE_TYPE.get(),
+                    ModRecipes.CUTTING_BOARD_TYPE.get(),
+                    ModRecipes.FREEZER_TYPE.get(),
+                    ModRecipes.TOASTER_TYPE.get(),
+                    ModRecipes.WORKBENCH_TYPE.get()
+            );
         }
     }
 }

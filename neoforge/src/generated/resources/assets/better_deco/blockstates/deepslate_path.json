@@ -9,12 +9,10 @@
       "y": 90
     },
     "facing=north,waterlogged=false": {
-      "model": "better_deco:block/deepslate_path",
-      "y": 0
+      "model": "better_deco:block/deepslate_path"
     },
     "facing=north,waterlogged=true": {
-      "model": "better_deco:block/deepslate_path",
-      "y": 0
+      "model": "better_deco:block/deepslate_path"
     },
     "facing=south,waterlogged=false": {
       "model": "better_deco:block/deepslate_path",

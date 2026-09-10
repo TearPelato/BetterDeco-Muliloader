@@ -18,7 +18,7 @@ public class ModBundledTabs {
     public static final BundledTabs GENERALS = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.general"))
-                    .icon(new ItemStack(ModBlocks.OAK_CHAIR.get()))
+                    .icon(()-> new ItemStack(ModBlocks.OAK_CHAIR.get()))
                     .displayItems(((provider, output) -> {
                         output.accept(ModBlocks.WORKBENCH.get());
                         output.accept(ModTags.Items.GENERAL);
@@ -27,7 +27,7 @@ public class ModBundledTabs {
 
     public static final BundledTabs ITEMS = register(BundledTabs.builder()
             .title(Component.translatable("bundled_tabs.item"))
-            .icon(new ItemStack(ModItems.KITCHEN_KNIFE.get()))
+            .icon(()-> new ItemStack(ModItems.KITCHEN_KNIFE.get()))
             .displayItems((provider, output) -> {
                 output.accept(ModItems.KITCHEN_KNIFE.get());
                 output.accept(ModItems.SLICED_BREAD.get());
@@ -38,7 +38,7 @@ public class ModBundledTabs {
     public static final BundledTabs KITCHEN = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.kitchen"))
-                    .icon(new ItemStack(ModBlocks.OAK_KITCHEN_COUNTER.get()))
+                    .icon(()-> new ItemStack(ModBlocks.OAK_KITCHEN_COUNTER.get()))
                     .displayItems((provider, output) -> {
                         output.accept(ModTags.Items.KITCHEN);
                     })
@@ -48,7 +48,7 @@ public class ModBundledTabs {
     public static final BundledTabs BEDROOM = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.bedroom_furniture.title"))
-                    .icon(new ItemStack(ModBlocks.OAK_BEDSIDE.get()))
+                    .icon(()-> new ItemStack(ModBlocks.OAK_BEDSIDE.get()))
                     .displayItems((provider, output) -> {
                         output.accept(ModTags.Items.BEDROOM);
                     })
@@ -57,7 +57,7 @@ public class ModBundledTabs {
 
     public static final BundledTabs OFFICE = register(
             BundledTabs.builder()
-                    .icon(new ItemStack(ModBlocks.OAK_DESK.get()))
+                    .icon(()-> new ItemStack(ModBlocks.OAK_DESK.get()))
                     .title(Component.translatable("bundled_tab.office.title"))
                     .displayItems((provider, output) -> {
                         output.accept(ModTags.Items.OFFICE);
@@ -68,7 +68,7 @@ public class ModBundledTabs {
     public static final BundledTabs BATHROOM = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.bathroom_furniture.title"))
-                    .icon(new ItemStack(ModBlocks.OAK_BASIN.get()))
+                    .icon(()-> new ItemStack(ModBlocks.OAK_BASIN.get()))
                     .displayItems((provider, output) -> {
                         output.accept(ModTags.Items.BATHROOM);
                     })
@@ -77,7 +77,7 @@ public class ModBundledTabs {
     public static final BundledTabs EXTERNAL_DECORATIONS = register(
             BundledTabs.builder()
                     .title(Component.translatable("bundled_tab.external_deco"))
-                    .icon(new ItemStack(ModBlocks.OAK_PARK_BENCH.get()))
+                    .icon(()-> new ItemStack(ModBlocks.OAK_PARK_BENCH.get()))
                     .displayItems((provider, output) -> {
                         output.accept(ModTags.Items.OUTDOOR);
 

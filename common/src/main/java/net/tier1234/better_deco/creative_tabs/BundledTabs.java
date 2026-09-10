@@ -2,14 +2,12 @@ package net.tier1234.better_deco.creative_tabs;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.tier1234.better_deco.Constants;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -24,16 +22,16 @@ import java.util.function.Supplier;
  */
 public class BundledTabs {
     private final Component tooltip;
-    private final ItemStack icon;
+    private final Supplier<ItemStack> iconSupplier;
     private final List<ItemStack> displayItems;
     private final @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic;
     private boolean populated;
     private @Nullable BundledTabSelector.Tab tab;
     private boolean selected;
 
-    private BundledTabs(Component tooltip, ItemStack icon, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic) {
+    private BundledTabs(Component tooltip, Supplier<ItemStack> iconSupplier, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic) {
         this.tooltip = tooltip;
-        this.icon = icon;
+        this.iconSupplier = iconSupplier;
         this.displayItems = staticItems;
         this.populationLogic = populationLogic;
     }
@@ -47,7 +45,7 @@ public class BundledTabs {
     }
 
     public ItemStack getIcon() {
-        return this.icon;
+        return this.iconSupplier.get();
     }
 
     public List<ItemStack> getDisplayItems() {
@@ -110,7 +108,7 @@ public class BundledTabs {
 
     public static class Builder {
         private Component title;
-        private ItemStack icon;
+        private Supplier<ItemStack> iconSupplier = () -> ItemStack.EMPTY;
         private BiConsumer<HolderLookup.Provider, Output> populationLogic;
 
         public Builder title(Component title) {
@@ -118,13 +116,13 @@ public class BundledTabs {
             return this;
         }
 
-        public Builder icon(ItemStack icon) {
-            this.icon = icon;
+        public Builder icon(Supplier<ItemStack> icon) {
+            this.iconSupplier = icon;
             return this;
         }
 
-        public Builder icon(Supplier<ItemStack> icon) {
-            this.icon = icon.get();
+        public Builder icon(ItemLike item) {
+            this.iconSupplier = () -> new ItemStack(item);
             return this;
         }
 
@@ -135,8 +133,7 @@ public class BundledTabs {
 
         public BundledTabs build() {
             if (this.title == null) this.title = Component.empty();
-            if (this.icon == null) this.icon = ItemStack.EMPTY;
-            return new BundledTabs(this.title, this.icon, new ArrayList<>(), this.populationLogic);
+            return new BundledTabs(this.title, this.iconSupplier, new ArrayList<>(), this.populationLogic);
         }
     }
 

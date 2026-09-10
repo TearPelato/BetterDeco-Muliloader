@@ -1,8 +1,6 @@
 package net.tier1234.better_deco.util;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.level.block.Block;
-import net.tier1234.better_deco.compat.everycomp.CommonEveryCompatModule;
 import net.tier1234.better_deco.registries.ModBlocks;
 
 import java.util.ArrayList;
@@ -146,24 +144,7 @@ public class CutoutRenderLayerBlocks {
 
         ));
 
-        if (FabricLoader.getInstance().isModLoaded("everycomp")) {
-            blocks.addAll(getEveryCompatCutoutBlocks());
-        }
-
         return blocks.toArray(new Block[0]);
     };
 
-    private static List<Block> getEveryCompatCutoutBlocks() {
-        CommonEveryCompatModule module = CommonEveryCompatModule.getModuleInstance();
-        if (module == null) return List.of();
-
-        List<Block> result = new ArrayList<>();
-        result.addAll(module.coffeeTable.blocks.values());
-        result.addAll(module.kitchenOven.blocks.values());
-        result.addAll(module.jar.blocks.values());
-        result.addAll(module.kitchenSink.blocks.values());
-        result.addAll(module.basin.blocks.values());
-        result.addAll(module.tecque.blocks.values());
-        return result;
-    }
 }

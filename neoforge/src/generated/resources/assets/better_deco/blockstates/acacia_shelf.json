@@ -17,20 +17,16 @@
       "y": 90
     },
     "facing=north,type=left": {
-      "model": "better_deco:block/acacia_shelf_left",
-      "y": 0
+      "model": "better_deco:block/acacia_shelf_left"
     },
     "facing=north,type=middle": {
-      "model": "better_deco:block/acacia_shelf_middle",
-      "y": 0
+      "model": "better_deco:block/acacia_shelf_middle"
     },
     "facing=north,type=right": {
-      "model": "better_deco:block/acacia_shelf_right",
-      "y": 0
+      "model": "better_deco:block/acacia_shelf_right"
     },
     "facing=north,type=single": {
-      "model": "better_deco:block/acacia_shelf_single",
-      "y": 0
+      "model": "better_deco:block/acacia_shelf_single"
     },
     "facing=south,type=left": {
       "model": "better_deco:block/acacia_shelf_left",

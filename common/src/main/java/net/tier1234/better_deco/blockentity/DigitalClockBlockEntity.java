@@ -87,4 +87,25 @@ public class DigitalClockBlockEntity extends BlockEntity {
             default: return ChatFormatting.WHITE;
         }
     }
+
+    public static int getFromColorAsInt(DyeColor color) {
+        return switch (color) {
+            case ORANGE -> 0xFFFFA500;
+            case MAGENTA -> 0xFFFF00FF;
+            case LIGHT_BLUE -> 0xFF55FFFF;
+            case YELLOW -> 0xFFFFFF55;
+            case LIME -> 0xFF55FF55;
+            case PINK -> 0xFFFF55FF;
+            case GRAY -> 0xFF555555;
+            case LIGHT_GRAY -> 0xFFAAAAAA;
+            case CYAN -> 0xFF00AAAA;
+            case PURPLE -> 0xFFAA00AA;
+            case BLUE -> 0xFF0000AA;
+            case BROWN -> 0xFFAA5500;
+            case GREEN -> 0xFF00AA00;
+            case RED -> 0xFFAA0000;
+            case BLACK -> 0xFF000000;
+            default -> 0xFFFFFFFF;
+        };
+    }
 }

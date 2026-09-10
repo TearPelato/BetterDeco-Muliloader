@@ -1,8 +1,6 @@
 {
   "type": "better_deco:microwave",
-  "ingredient": {
-    "item": "minecraft:potato"
-  },
+  "ingredient":"minecraft:potato",
   "result": {
     "id": "minecraft:baked_potato"
   }

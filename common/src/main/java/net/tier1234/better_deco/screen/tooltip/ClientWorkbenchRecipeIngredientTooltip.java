@@ -1,17 +1,22 @@
 package net.tier1234.better_deco.screen.tooltip;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.util.Util;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.screen.custom.WorkbenchMenu;
 import net.tier1234.better_deco.screen.custom.WorkbenchScreen;
 
+import java.util.List;
 import java.util.Map;
-//TODO rework
+
 public class ClientWorkbenchRecipeIngredientTooltip implements ClientTooltipComponent {
     private final WorkbenchMenu menu;
     private final CountedIngredient material;
@@ -30,33 +35,27 @@ public class ClientWorkbenchRecipeIngredientTooltip implements ClientTooltipComp
 
     @Override
     public int getWidth(Font font) {
-        // 18 pixels for the icon plus the width of the item's name.
-        return 18 + font.width(getStack().getDisplayName());
+        return 18 + font.width(getStack(material).getDisplayName());
     }
 
     @Override
-    public void renderImage(Font font, int start, int top, GuiGraphics graphics) {
-        ItemStack stack = getStack().copy();
+    public void extractImage(Font font, int start, int top, int width, int height, GuiGraphicsExtractor graphics) {
+        ItemStack stack = getStack(material).copy();
         stack.setCount(this.material.count());
-        // Render the ingredient icon.
-        graphics.renderFakeItem(stack, start, top);
-        graphics.renderItemDecorations(font, stack, start, top);
-        // Draw the item name in gray next to the icon.
-        MutableComponent name = stack.getHoverName().copy().withStyle(ChatFormatting.GRAY);
-        graphics.drawString(font, name, start + 18 + 5, top + 4, 0xFFFFFFFF);
 
-        // Draw the check or cross overlay.
-        PoseStack pose = graphics.pose();
-        pose.pushPose();
-        pose.translate(0, 0, 200);
+        graphics.fakeItem(stack, start, top);
+        graphics.itemDecorations(font, stack, start, top);
+        MutableComponent name = stack.getHoverName().copy().withStyle(ChatFormatting.GRAY);
+        graphics.text(font, name, start + 18 + 5, top + 4, 0xFFFFFFFF);
+
+        graphics.nextStratum();
         boolean hasEnough = this.menu.hasMaterials(this.material, this.counted);
-        graphics.blit(WorkbenchScreen.TEXTURE, start, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256);
-        pose.popPose();
+        graphics.blit(RenderPipelines.GUI_TEXTURED, WorkbenchScreen.TEXTURE, start, top, hasEnough ? 246 : 240, 40, 6, 5, 256, 256);
     }
 
-    private ItemStack getStack() {
-        ItemStack[] items = this.material.ingredient().getItems();
-        int index = (int) ((Util.getMillis() / 1000) % items.length);
-        return items[index];
+    private ItemStack getStack(CountedIngredient material) {
+        List<Holder<Item>> items = material.ingredient().items().toList();
+        int index = (int) ((Util.getMillis() / 1000) % items.size());
+        return new ItemStack(items.get(index).value());
     }
 }

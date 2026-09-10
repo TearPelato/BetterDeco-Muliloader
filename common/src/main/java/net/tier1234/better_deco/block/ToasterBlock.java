@@ -4,15 +4,14 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -71,7 +70,7 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    public VoxelShape getOcclusionShape(BlockState state) {
         return SHAPES.get(state);
     }
 
@@ -91,22 +90,22 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction dir, BlockState neighbor, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
         return state;
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity be = level.getBlockEntity(pos);
         if (!(be instanceof ToasterBlockEntity toaster)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
 
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return toaster.hasEmptySlot()
-                    ? ItemInteractionResult.SUCCESS
-                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                    ? InteractionResult.SUCCESS
+                    : InteractionResult.PASS;
         }
 
         boolean inserted = toaster.insertItem(stack);
@@ -114,10 +113,10 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
-            return ItemInteractionResult.sidedSuccess(false);
+            return InteractionResult.SUCCESS;
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -127,7 +126,7 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
             return InteractionResult.PASS;
         }
 
-        if (level.isClientSide) {
+        if (level.isClientSide()) {
             return toaster.isEmpty() ? InteractionResult.PASS : InteractionResult.SUCCESS;
         }
 
@@ -142,21 +141,6 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
         return InteractionResult.PASS;
     }
 
-    @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock())) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof ToasterBlockEntity toaster) {
-                for (int i = 0; i < ToasterBlockEntity.SLOTS; i++) {
-                    ItemStack stack = toaster.getItem(i);
-                    if (!stack.isEmpty()) {
-                        Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
-                    }
-                }
-            }
-        }
-        super.onRemove(state, level, pos, newState, isMoving);
-    }
 
     @Nullable
     @Override
@@ -167,7 +151,7 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return level.isClientSide ? null : createTickerHelper(blockEntityType, ModBlockEntities.TOASTER.get(), ToasterBlockEntity::tick);
+        return level.isClientSide() ? null : createTickerHelper(blockEntityType, ModBlockEntities.TOASTER.get(), ToasterBlockEntity::tick);
     }
 
     @Nullable
