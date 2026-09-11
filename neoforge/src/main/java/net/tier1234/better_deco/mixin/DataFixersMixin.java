@@ -16,9 +16,9 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.UnaryOperator;
 
-//@Mixin(DataFixers.class)
+@Mixin(DataFixers.class)
 public abstract class DataFixersMixin {
-   /* @Shadow
+    @Shadow
     @Final
     private static BiFunction<Integer, Schema, Schema> SAME_NAMESPACED;
 
@@ -30,8 +30,8 @@ public abstract class DataFixersMixin {
     @Inject(method = "addFixers", at = @At("TAIL"))
     private static void addFixers(DataFixerBuilder builder, CallbackInfo ci) {
         var schema = builder.addSchema(3955, SAME_NAMESPACED);
-        builder.addFixer(BlockRenameFix.create(schema, "BetterDeco Renamed/Removed Blocks", createRenamer(ModDataFixer.CHANGED_BLOCK)));
+        builder.addFixer(BlockRenameFix.create(schema, "BetterDeco Renamed/Removed Blocks", createRenamer(ModDataFixer.CHANGED_BLOCK.get())));
 
     }
-*/
+
 }
