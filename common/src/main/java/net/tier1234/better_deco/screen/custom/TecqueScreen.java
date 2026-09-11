@@ -10,8 +10,7 @@ import net.tier1234.better_deco.Constants;
 
 
 public class TecqueScreen extends AbstractContainerScreen<TecqueMenu> {
-    private static final Identifier GUI_TEXTURE =
-            Identifier.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/pedestal/pedestal_gui_new.png");
+    private static final Identifier GUI_TEXTURE = Constants.id("textures/gui/tecque/tecque_gui.png");
 
     public TecqueScreen(TecqueMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);

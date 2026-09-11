@@ -6,11 +6,8 @@ import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -20,6 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
+import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -56,7 +54,10 @@ public class WorkbenchBlock extends FurnitureHorizontalBlock implements EntityBl
         if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof WorkbenchBlockEntity workbench) {
+                Constants.LOG.info("[BD-DEBUG] Opening workbench menu via Framework, pos={}", pos);
                 FrameworkAPI.openMenuWithData(serverPlayer, workbench, workbench.createCustomData());
+            } else {
+                Constants.LOG.info("[BD-DEBUG] blockEntity is NOT a WorkbenchBlockEntity: {}", blockEntity);
             }
         }
         return InteractionResult.SUCCESS;

@@ -2,8 +2,6 @@ package net.tier1234.better_deco.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -26,8 +24,15 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
         if (isEmpty() || getFluid() == fluid) {
             if (current + BUCKET_VOLUME <= max) {
                 setFluidAndAmount(fluid, current + BUCKET_VOLUME);
+                setChanged();
                 return true;
             }
+        }
+
+        BathBlockEntity other = getOtherPart();
+        if (other != null) {
+            other.setFluidAndAmount(fluid, current);
+            other.setChanged();
         }
         return false;
     }
@@ -35,6 +40,12 @@ public class BathBlockEntity extends FluidContainerBlockEntity {
     public void removeFluid(int amount) {
         int remaining = getStoredAmount() - amount;
         setFluidAndAmount(getFluid(), Math.max(remaining, 0));
+        setChanged();
+        BathBlockEntity other = getOtherPart();
+        if (other != null) {
+            other.setFluidAndAmount(getFluid(), remaining);
+            other.setChanged();
+        }
     }
 
     private @Nullable BathBlockEntity getOtherPart() {

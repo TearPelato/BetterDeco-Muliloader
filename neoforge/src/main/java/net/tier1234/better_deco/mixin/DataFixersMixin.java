@@ -4,6 +4,7 @@ import com.mojang.datafixers.DataFixerBuilder;
 import com.mojang.datafixers.schemas.Schema;
 import net.minecraft.util.datafix.DataFixers;
 import net.minecraft.util.datafix.fixes.BlockRenameFix;
+import net.minecraft.util.filefix.FileFixerUpper;
 import net.tier1234.better_deco.datafix.ModDataFixer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,11 +17,10 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.UnaryOperator;
 
-//@Mixin(DataFixers.class)
+@Mixin(DataFixers.class)
 public abstract class DataFixersMixin {
-   /* @Shadow
-    @Final
-    private static BiFunction<Integer, Schema, Schema> SAME_NAMESPACED;
+
+    @Shadow @Final private static BiFunction<Integer, Schema, Schema> SAME_NAMESPACED;
 
     @Shadow
     private static UnaryOperator<String> createRenamer(Map<String, String> renameMap) {
@@ -28,10 +28,8 @@ public abstract class DataFixersMixin {
     }
 
     @Inject(method = "addFixers", at = @At("TAIL"))
-    private static void addFixers(DataFixerBuilder builder, CallbackInfo ci) {
-        var schema = builder.addSchema(3955, SAME_NAMESPACED);
-        builder.addFixer(BlockRenameFix.create(schema, "BetterDeco Renamed/Removed Blocks", createRenamer(ModDataFixer.CHANGED_BLOCK)));
-
+    private static void addFixers(DataFixerBuilder fixerUpper, FileFixerUpper.Builder fileFixerUpper, CallbackInfo ci) {
+        var schema = fixerUpper.addSchema(3955, SAME_NAMESPACED);
+        fixerUpper.addFixer(BlockRenameFix.create(schema, "BetterDeco ranamed and removed blocks", createRenamer(ModDataFixer.CHANGED_BLOCK.get())));
     }
-*/
 }

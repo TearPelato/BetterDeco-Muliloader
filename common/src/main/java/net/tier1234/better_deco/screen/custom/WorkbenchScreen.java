@@ -4,7 +4,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -12,6 +11,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPosition
 import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -59,7 +59,6 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     private static final int OUTPUT_SLOT_Y = 79;
     private static final int SLOT_SIZE = 16;
 
-
     private List<RecipeHolder<WorkbenchRecipe>> allRecipes = new ArrayList<>();
     private List<RecipeHolder<WorkbenchRecipe>> visibleRecipes = new ArrayList<>();
 
@@ -73,7 +72,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     private boolean filterCraftable = false;
 
     public WorkbenchScreen(WorkbenchMenu menu, Inventory inventory, Component title) {
-        super(menu, inventory, title);
+        super(menu, inventory, title, 176, 204);
+        this.titleLabelY = 6;
         this.inventoryLabelY = 110;
         updateRecipes();
     }
@@ -82,10 +82,11 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     protected void init() {
         super.init();
 
+        // Search box inside the top bar of the texture (under the title)
         int x = this.leftPos + 8;
-        int y = this.topPos + 21;
+        int y = this.topPos + 17;
 
-        this.searchBox = new EditBox(this.font, x, y, 120, 12, Component.translatable("text.better_deco.recipe.search"));
+        this.searchBox = new EditBox(this.font, x, y, 118, 12, Component.translatable("text.better_deco.recipe.search"));
         this.searchBox.setMaxLength(64);
         this.searchBox.setBordered(false);
         this.searchBox.setVisible(true);
@@ -95,15 +96,15 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         applySearchFilter();
     }
 
-
-
     @Override
     public void resize(int width, int height) {
-        String string = this.searchBox.getValue();
-        this.init(width, height);
-        this.searchBox.setValue(string);
-        if (!this.searchBox.getValue().isEmpty()) {
-            this.applySearchFilter();
+        String string = this.searchBox != null ? this.searchBox.getValue() : "";
+        super.resize(width, height); // correct way: clears widgets then calls init()
+        if (this.searchBox != null) {
+            this.searchBox.setValue(string);
+            if (!string.isEmpty()) {
+                this.applySearchFilter();
+            }
         }
     }
 
@@ -154,7 +155,6 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         super.extractRenderState(graphics, mouseX, mouseY, a);
-        this.extractLabels(graphics, mouseX, mouseY);
 
         if (hoveredRecipeIndex != -1 && isMouseWithinBounds(mouseX, mouseY, leftPos + GRID_X_OFFSET, topPos + GRID_Y_OFFSET, WINDOW_WIDTH, WINDOW_HEIGHT)) {
             renderRecipeTooltip(graphics, mouseX, mouseY, hoveredRecipeIndex);
@@ -199,20 +199,21 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
-        graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
-        renderRecipes(graphics, mouseX, mouseY);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
+        renderRecipes(graphics, mouseX, mouseY); // real mouse coords needed for hover detection
         renderScrollbar(graphics);
         renderToggleButton(graphics);
         this.searchBox.extractRenderState(graphics, mouseX, mouseY, a);
     }
 
-
-
     private void renderToggleButton(GuiGraphicsExtractor graphics) {
         int tbX = getToggleButtonX();
         int tbY = getToggleButtonY();
         Identifier texture = filterCraftable ? BUTTON_ENABLED : BUTTON_DISABLED;
-        graphics.blit(texture, tbX, tbY, 0, 0, TOGGLE_BUTTON_WIDTH, TOGGLE_BUTTON_HEIGHT, TOGGLE_BUTTON_WIDTH, TOGGLE_BUTTON_HEIGHT);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, texture, tbX, tbY, 0, 0, TOGGLE_BUTTON_WIDTH, TOGGLE_BUTTON_HEIGHT, TOGGLE_BUTTON_WIDTH, TOGGLE_BUTTON_HEIGHT);
     }
 
     private void renderRecipes(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
@@ -240,7 +241,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
             int textureU = 176 + (!canCraft ? BUTTON_SIZE : 0);
             int textureV = 0;
-            graphics.blit(TEXTURE, x, y, textureU, textureV, BUTTON_SIZE, BUTTON_SIZE, 256, 256);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, textureU, textureV, BUTTON_SIZE, BUTTON_SIZE, 256, 256);
             graphics.fakeItem(recipe.value().getResultItem(this.menu.getLevel().registryAccess()), x + 2, y + 2);
 
             if (mouseInGrid && mouseX >= x && mouseX < x + BUTTON_SIZE && mouseY >= y && mouseY < y + BUTTON_SIZE) {
@@ -257,7 +258,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         int trackHeight = SCROLLBAR_AREA - SCROLLBAR_HEIGHT;
         int currentHandlePos = maxScroll > 0 ? (int) ((scroll / (double) maxScroll) * trackHeight) : 0;
         int textureX = maxScroll > 0 ? SCROLLBAR_TEXTURE_ENABLED_X : SCROLLBAR_TEXTURE_DISABLED_X;
-        graphics.blit(TEXTURE, scrollbarX, scrollbarY + currentHandlePos, textureX, SCROLLBAR_TEXTURE_Y, 12, SCROLLBAR_HEIGHT, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, scrollbarX, scrollbarY + currentHandlePos, textureX, SCROLLBAR_TEXTURE_Y, 12, SCROLLBAR_HEIGHT, 256, 256);
     }
 
     private int getMaxScroll() {
@@ -268,7 +269,6 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     private boolean isMouseWithinBounds(double mouseX, double mouseY, int x, int y, int width, int height) {
         return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
     }
-
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
@@ -296,14 +296,13 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             int trackHeight = SCROLLBAR_AREA - SCROLLBAR_HEIGHT;
             int currentHandlePos = maxScroll > 0 ? (int) ((scroll / (double) maxScroll) * trackHeight) : 0;
             if (isMouseWithinBounds(event.x(), event.y(), scrollbarX, scrollbarY + currentHandlePos, 12, SCROLLBAR_HEIGHT)) {
-                scrollbarDragOffset = (int) event.x() - (scrollbarY + currentHandlePos);
-                clickedY = (int) event.x();
+                scrollbarDragOffset = (int) event.y() - (scrollbarY + currentHandlePos);
+                clickedY = (int) event.y();
                 return true;
             }
         }
         return super.mouseClicked(event, doubleClick);
     }
-
 
     @Override
     public boolean keyPressed(KeyEvent event) {
@@ -324,7 +323,6 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         }
         return super.keyPressed(event);
     }
-
 
     @Override
     public boolean charTyped(CharacterEvent event) {
@@ -359,7 +357,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         if (clickedY != -1) {
             int scrollbarY = topPos + GRID_Y_OFFSET - Y_OFFSET_CORRECTION;
             int trackHeight = SCROLLBAR_AREA - SCROLLBAR_HEIGHT;
-            int newHandlePos = (int) dy - scrollbarY - scrollbarDragOffset;
+            // event.y() is absolute mouse Y (dy is only the delta)
+            int newHandlePos = (int) event.y() - scrollbarY - scrollbarDragOffset;
             newHandlePos = Mth.clamp(newHandlePos, 0, trackHeight);
             scroll = (newHandlePos / (double) trackHeight) * getMaxScroll();
             return true;
@@ -375,7 +374,6 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         }
         return super.mouseReleased(event);
     }
-
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
@@ -399,8 +397,6 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         }
         return super.mouseScrolled(mouseX, mouseY, deltaX, deltaY);
     }
-
-
 
     public void updateRecipeButtons() {
         updateRecipes();

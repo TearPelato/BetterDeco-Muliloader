@@ -4,9 +4,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.tier1234.better_deco.Constants;
-import net.tier1234.better_deco.network.message.CraftRecipePayload;
-import net.tier1234.better_deco.network.message.SelectRecipePayload;
-import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
+import net.tier1234.better_deco.network.message.*;
 
 public class NeoForgeNetworkHandler {
 

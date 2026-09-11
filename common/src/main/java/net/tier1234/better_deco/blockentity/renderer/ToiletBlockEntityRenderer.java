@@ -1,8 +1,6 @@
 package net.tier1234.better_deco.blockentity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -14,11 +12,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.tearpelato.deco_lib.api.fluid.renderer.FluidContainerRenderer;
 import net.tearpelato.deco_lib.api.fluid.renderer.FluidRenderState;
 import net.tearpelato.deco_lib.api.fluid.renderer.core.FluidSprites;
+import net.tier1234.better_deco.block.BasinBlock;
 import net.tier1234.better_deco.blockentity.ToiletBlockEntity;
 import org.jspecify.annotations.Nullable;
 
@@ -35,17 +33,13 @@ public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBloc
     public void extractRenderState(ToiletBlockEntity blockEntity, FluidRenderState state, float partialTicks, Vec3 cameraPosition, ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
         if (blockEntity.getLevel() == null) return;
-
         BlockState blockState = blockEntity.getBlockState();
-        if (!blockState.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) return;
 
         state.facing = blockState.getValue(BlockStateProperties.HORIZONTAL_FACING);
         state.fluid = blockEntity.getFluid();
         state.level = blockEntity.getLevel();
         state.world = (BlockAndTintGetter) blockEntity.getLevel();
-        state.pos = blockEntity.getBlockPos();
         state.be = blockEntity;
-
 
         if (state.fluid != Fluids.EMPTY && state.fluid != null) {
             FluidState fluidState = state.fluid.defaultFluidState();
@@ -53,28 +47,17 @@ public class ToiletBlockEntityRenderer implements BlockEntityRenderer<ToiletBloc
         } else {
             state.fluidSprites = null;
         }
+        FluidRenderState.extract(state, blockEntity.getLevel(), blockEntity.getBlockPos());
+        if(blockState.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            Direction direction = blockState.getValue(BasinBlock.DIRECTION);
+            state.box = FluidContainerRenderer.createRotatedBox(direction,5,5,5, 13,8,11);
+        }
 
     }
 
     @Override
     public void submit(FluidRenderState fluidRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
-        if (fluidRenderState.fluid == Fluids.EMPTY || fluidRenderState.fluidSprites == null || fluidRenderState.world == null) {
-            return;
-        }
-
-        poseStack.pushPose();
-        Direction dir = fluidRenderState.facing;
-
-        poseStack.translate(0.5, 0, 0.5);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-90F * dir.get2DDataValue()));
-        poseStack.translate(-0.5, 0, -0.5);
-
-        AABB box = FluidContainerRenderer.createRotatedBox(dir, 5,5,5, 13,8,11);
-
-        FluidContainerRenderer.drawContainer(fluidRenderState, fluidRenderState.world, fluidRenderState.pos, fluidRenderState.be, box, poseStack,
-                Minecraft.getInstance().renderBuffers().bufferSource());
-
-        poseStack.popPose();
+        FluidContainerRenderer.submit(fluidRenderState, poseStack, submitNodeCollector);
     }
 
 }
