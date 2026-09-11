@@ -17,7 +17,7 @@ public interface IPlatformHelper {
     boolean isDevelopmentEnvironment();
 
 /**
- * @author: MrCrayfish
+ * Author: MrCrayfish
  * */
     void displayItemsAcceptor(CreativeModeTab.Builder builder, BiConsumer<CreativeModeTab.ItemDisplayParameters, Consumer<ItemStack>> consumer);
 
