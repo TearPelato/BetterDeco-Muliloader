@@ -12,6 +12,7 @@ public class FabricNetworkHandler {
 
     public static void registerPayloads() {
         PayloadTypeRegistry.clientboundPlay().register(SyncCraftableRecipesPayload.TYPE, SyncCraftableRecipesPayload.STREAM_CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(SyncWorkbenchRecipesPayload.TYPE, SyncWorkbenchRecipesPayload.STREAM_CODEC);
 
         PayloadTypeRegistry.serverboundPlay().register(CraftRecipePayload.TYPE, CraftRecipePayload.STREAM_CODEC);
         PayloadTypeRegistry.serverboundPlay().register(SelectRecipePayload.TYPE, SelectRecipePayload.STREAM_CODEC);
