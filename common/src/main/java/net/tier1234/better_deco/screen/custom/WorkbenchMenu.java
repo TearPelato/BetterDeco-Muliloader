@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -53,7 +54,6 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     private final Player player;
     private final Level level;
 
-    // Client-side only: the result ItemStacks we received from the server
     private List<ItemStack> clientResults = new ArrayList<>();
 
     private static final List<TagKey<Item>> RECIPE_ORDER = List.of(
@@ -119,7 +119,7 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public List<RecipeHolder<WorkbenchRecipe>> getRecipes() {
-            return this.recipes;
+        return this.recipes;
     }
 
     private List<RecipeHolder<WorkbenchRecipe>> setupRecipes(Level level)
@@ -161,34 +161,56 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public void setClientRecipes(List<ItemStack> results) {
-        this.clientResults = results;
-        this.recipes = new ArrayList<>();
-        for (int i = 0; i < results.size(); i++) {
-            this.recipes.add(null);
-        }
-        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(results.size(), false));
+        this.clientResults = results != null ? new ArrayList<>(results) : new ArrayList<>();
+        this.recipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), null));
+        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), false));
     }
 
-
     private void updateOutputSlot() {
-        if (!this.level.isClientSide()) {
-            int selectedRecipeIndex = this.selectedRecipes.get();
-            if (selectedRecipeIndex >= 0 && selectedRecipeIndex < this.recipes.size()) {
-                RecipeHolder<WorkbenchRecipe> recipe = this.recipes.get(selectedRecipeIndex);
-                if (this.canCraft(recipe)) {
-                    ItemStack result = this.resultContainer.getItem(0);
-                    ItemStack output = recipe.value().getResultItem(this.level.registryAccess());
-                    if (!ItemStack.matches(result, output)) {
-                        this.outputSlot.set(output.copy());
-                    }
-                } else {
-                    this.outputSlot.set(ItemStack.EMPTY);
+        if (this.level.isClientSide()) return;
+
+        int selectedRecipeIndex = this.selectedRecipes.get();
+        if (selectedRecipeIndex >= 0 && selectedRecipeIndex < this.recipes.size()) {
+            RecipeHolder<WorkbenchRecipe> recipe = this.recipes.get(selectedRecipeIndex);
+            if (recipe != null && this.canCraft(recipe)) {
+                ItemStack output = recipe.value().getResultItem(this.level.registryAccess()).copy();
+                ItemStack current = this.outputSlot.getItem();
+                if (!ItemStack.matches(current, output)) {
+                    this.outputSlot.set(output);
                 }
             } else {
+                if (!this.outputSlot.getItem().isEmpty()) {
+                    this.outputSlot.set(ItemStack.EMPTY);
+                }
+            }
+        } else {
+            if (!this.outputSlot.getItem().isEmpty()) {
                 this.outputSlot.set(ItemStack.EMPTY);
             }
-            super.broadcastChanges();
         }
+    }
+    public List<ItemStack> getClientResults() {
+        return clientResults;
+    }
+
+    public ItemStack getResultStack(int originalIndex) {
+        if (originalIndex < 0 || originalIndex >= recipes.size()) {
+            return ItemStack.EMPTY;
+        }
+
+        RecipeHolder<WorkbenchRecipe> holder = recipes.get(originalIndex);
+        if (holder != null) {
+            return holder.value().getResultItem(level.registryAccess()).copy();
+        }
+
+        if (originalIndex < clientResults.size()) {
+            return clientResults.get(originalIndex).copy();
+        }
+        return ItemStack.EMPTY;
+    }
+
+    public boolean hasRecipe(int originalIndex) {
+        return originalIndex >= 0 && originalIndex < recipes.size() && recipes.get(originalIndex) != null;
     }
 
     private void addPlayerInventorySlots(Inventory inventory) {
@@ -239,6 +261,13 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     public void broadcastChanges() {
         this.updateOutputSlot();
         super.broadcastChanges();
+    }
+
+    @Override
+    public void slotsChanged(Container container) {
+        this.updateCraftableRecipes();
+        this.updateOutputSlot();
+        super.slotsChanged(container);
     }
 
     public void selectRecipe(int recipeIndex) {

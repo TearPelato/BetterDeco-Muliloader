@@ -18,6 +18,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.mixin.GuiGraphicsInvoker;
@@ -30,7 +31,6 @@ import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeTooltip;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     public static final Identifier TEXTURE = Constants.id("textures/gui/workbench/workbench_interface.png");
@@ -61,6 +61,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     private List<RecipeHolder<WorkbenchRecipe>> allRecipes = new ArrayList<>();
     private List<RecipeHolder<WorkbenchRecipe>> visibleRecipes = new ArrayList<>();
+    private List<Integer> visibleIndices = new ArrayList<>();
 
     private EditBox searchBox;
     private double scroll = 0;
@@ -124,23 +125,25 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             lastQuery = query;
         }
 
-        Stream<RecipeHolder<WorkbenchRecipe>> stream = this.allRecipes.stream();
+        visibleIndices.clear();
+        List<RecipeHolder<WorkbenchRecipe>> all = menu.getAvailableRecipes();
 
-        if (filterCraftable) {
-            stream = stream.filter(menu::canCraft);
+        for (int i = 0; i < all.size(); i++) {
+            if (filterCraftable) {
+                boolean craftable = menu.isCraftable(i) || menu.canCraft(all.get(i));
+                if (!craftable) continue;
+            }
+
+            if (!query.isEmpty()) {
+                ItemStack result = menu.getResultStack(i);
+                if (result.isEmpty() || !result.getHoverName().getString()
+                        .toLowerCase(Locale.ROOT).contains(query)) {
+                    continue;
+                }
+            }
+
+            visibleIndices.add(i);
         }
-
-        if (!query.isEmpty()) {
-            String q = query;
-            stream = stream.filter(holder -> holder.value()
-                    .getResultItem(null)
-                    .getHoverName()
-                    .getString()
-                    .toLowerCase(Locale.ROOT)
-                    .contains(q));
-        }
-
-        this.visibleRecipes = stream.toList();
     }
 
     private int getToggleButtonX() {
@@ -149,6 +152,21 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     private int getToggleButtonY() {
         return topPos + 18;
+    }
+
+    private ItemStack getResultStack(int index) {
+        if (index >= 0 && index < visibleRecipes.size()) {
+            RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(index);
+            if (holder != null) {
+                return holder.value().getResultItem(this.menu.getLevel().registryAccess());
+            }
+        }
+
+        List<ItemStack> results = menu.getClientResults();
+        if (index >= 0 && index < results.size()) {
+            return results.get(index);
+        }
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -169,8 +187,18 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         }
     }
 
-    private void renderRecipeTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY, int recipeIndex) {
-        RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(recipeIndex);
+    private void renderRecipeTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY, int visibleIndex) {
+        if (visibleIndex < 0 || visibleIndex >= visibleIndices.size()) return;
+
+        int originalIndex = visibleIndices.get(visibleIndex);
+        RecipeHolder<WorkbenchRecipe> holder = menu.getAvailableRecipes().get(originalIndex);
+
+        if (holder == null) {
+            ItemStack stack = menu.getResultStack(originalIndex);
+            graphics.setTooltipForNextFrame(this.font, stack.getHoverName(), mouseX, mouseY);
+            return;
+        }
+
         WorkbenchRecipe recipe = holder.value();
 
         List<ClientTooltipComponent> components = new ArrayList<>();
@@ -221,30 +249,30 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         int clipY = topPos + GRID_Y_OFFSET;
         graphics.enableScissor(clipX, clipY, clipX + WINDOW_WIDTH, clipY + WINDOW_HEIGHT);
 
-        int totalRecipes = visibleRecipes.size();
+        int total = visibleIndices.size();
         int startRow = (int) (scroll / BUTTON_SIZE);
         int startIndex = startRow * RECIPES_PER_ROW;
         int rowsToDraw = (int) Math.ceil(WINDOW_HEIGHT / (double) BUTTON_SIZE) + 1;
-        int endIndex = Math.min(totalRecipes, startIndex + rowsToDraw * RECIPES_PER_ROW);
+        int endIndex = Math.min(total, startIndex + rowsToDraw * RECIPES_PER_ROW);
 
         boolean mouseInGrid = isMouseWithinBounds(mouseX, mouseY, clipX, clipY, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        for (int i = startIndex; i < endIndex; i++) {
-            int row = i / RECIPES_PER_ROW;
-            int col = i % RECIPES_PER_ROW;
+        for (int vis = startIndex; vis < endIndex; vis++) {
+            int originalIndex = visibleIndices.get(vis);
+            int row = vis / RECIPES_PER_ROW;
+            int col = vis % RECIPES_PER_ROW;
             int x = leftPos + GRID_X_OFFSET + col * BUTTON_SIZE;
             int y = topPos + GRID_Y_OFFSET + row * BUTTON_SIZE - (int) scroll - Y_OFFSET_CORRECTION;
 
-            RecipeHolder<WorkbenchRecipe> recipe = visibleRecipes.get(i);
-            boolean canCraft = menu.canCraft(recipe);
+            boolean canCraft = menu.isCraftable(originalIndex) || menu.canCraft(menu.getAvailableRecipes().get(originalIndex));
+            ItemStack result = menu.getResultStack(originalIndex);
 
             int textureU = 176 + (!canCraft ? BUTTON_SIZE : 0);
-            int textureV = 0;
-            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, textureU, textureV, BUTTON_SIZE, BUTTON_SIZE, 256, 256);
-            graphics.fakeItem(recipe.value().getResultItem(this.menu.getLevel().registryAccess()), x + 2, y + 2);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, textureU, 0, BUTTON_SIZE, BUTTON_SIZE, 256, 256);
+            graphics.fakeItem(result, x + 2, y + 2);
 
             if (mouseInGrid && mouseX >= x && mouseX < x + BUTTON_SIZE && mouseY >= y && mouseY < y + BUTTON_SIZE) {
-                hoveredRecipeIndex = i;
+                hoveredRecipeIndex = vis;
             }
         }
         graphics.disableScissor();
@@ -261,7 +289,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     }
 
     private int getMaxScroll() {
-        int totalRows = (int) Math.ceil(visibleRecipes.size() / (double) RECIPES_PER_ROW);
+        int totalRows = (int) Math.ceil(visibleIndices.size() / (double) RECIPES_PER_ROW);
         return Math.max(0, totalRows * BUTTON_SIZE - WINDOW_HEIGHT);
     }
 
@@ -334,21 +362,17 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     }
 
     private void sendSelectRecipe(int visibleIndex, int amountDelta) {
-        if (visibleIndex < 0 || visibleIndex >= visibleRecipes.size()) return;
+        if (visibleIndex < 0 || visibleIndex >= visibleIndices.size()) return;
 
-        RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(visibleIndex);
-        int serverIndex = menu.getAvailableRecipes().indexOf(holder);
-        if (serverIndex < 0) return;
-
+        int serverIndex = visibleIndices.get(visibleIndex);
         menu.selectRecipe(serverIndex);
         ModPackets.sendToServer(new SelectRecipePayload(menu.containerId, serverIndex));
     }
 
     private boolean isSelectedRecipe(int visibleIndex) {
         int selected = menu.getSelectedRecipe();
-        if (selected == -1 || visibleIndex < 0 || visibleIndex >= visibleRecipes.size()) return false;
-        RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(visibleIndex);
-        return menu.getAvailableRecipes().get(selected) == holder;
+        if (selected == -1 || visibleIndex < 0 || visibleIndex >= visibleIndices.size()) return false;
+        return visibleIndices.get(visibleIndex) == selected;
     }
 
     @Override
