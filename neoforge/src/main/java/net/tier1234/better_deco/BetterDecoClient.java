@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -63,7 +64,9 @@ public class BetterDecoClient {
 
     @SubscribeEvent
     private static void register(RegisterEvent event){
-        event.register(BuiltInRegistries.CREATIVE_MODE_TAB.key(), helper-> CommonEveryCompatModule.EveryCompatCreativeTabRegister.register());
+        if(ModList.get().isLoaded("everycomp")) {
+            event.register(BuiltInRegistries.CREATIVE_MODE_TAB.key(), helper-> CommonEveryCompatModule.EveryCompatCreativeTabRegister.register());
+        }
     }
 
     @SubscribeEvent
