@@ -27,6 +27,10 @@
 
 
   "block.better_deco.stone_path": "Stone Path",
+  "block.better_deco.andesite_path": "Andesite Path",
+  "block.better_deco.diorite_path": "Diorite Path",
+  "block.better_deco.granite_path": "Granite Path",
+  "block.better_deco.deepslate_path": "Deepslate Path",
 
   "bundled_tab.general": "General Furnitures",
   "bundled_tab.kitchen": "Kitchen Furnitures",
