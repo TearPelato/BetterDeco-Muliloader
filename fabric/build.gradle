@@ -21,16 +21,8 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation "com.mrcrayfish:framework-fabric:${framework_version}+${minecraft_version}"
     implementation("net.tearpelato:deco_lib-fabric-26.2:${deco_lib_version}")
-   /* modImplementation "curse.maven:menulogue-682371:5705587"
-    modImplementation "curse.maven:configured-457570:7276575"
-    modImplementation "curse.maven:catalogue-459701:6926812"*/
+    include("net.tearpelato:deco_lib-fabric-26.2:${deco_lib_version}")
 
-   /* modImplementation "curse.maven:every-compat-628539:8680543"
-    modImplementation "curse.maven:selene-499980:8821084"
-    modImplementation "curse.maven:terrablender-fabric-565956:6054948"
-    modImplementation "curse.maven:natures-spirit-1044992:6962791"
-    modImplementation "curse.maven:refurbished-furniture-897116:7473562"
-*/
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
