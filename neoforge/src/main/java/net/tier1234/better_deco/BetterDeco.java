@@ -5,12 +5,13 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.network.NeoForgeNetworkHandler;
+import net.tier1234.better_deco.platform.NeoForgeNetworkHelper;
 import net.tier1234.better_deco.registries.ModKeybinds;
 
 @Mod(Constants.MOD_ID)
 public class BetterDeco {
     public BetterDeco(IEventBus eventBus) {
-        ModPackets.init(PacketDistributor::sendToAllPlayers);
+        ModPackets.init(new NeoForgeNetworkHelper());
         eventBus.addListener(NeoForgeNetworkHandler::registerPayloads);
         ModKeybinds.init();
 

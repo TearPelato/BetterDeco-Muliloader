@@ -54,10 +54,7 @@ public class WorkbenchBlock extends FurnitureHorizontalBlock implements EntityBl
         if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof WorkbenchBlockEntity workbench) {
-                Constants.LOG.info("[BD-DEBUG] Opening workbench menu via Framework, pos={}", pos);
                 FrameworkAPI.openMenuWithData(serverPlayer, workbench, workbench.createCustomData());
-            } else {
-                Constants.LOG.info("[BD-DEBUG] blockEntity is NOT a WorkbenchBlockEntity: {}", blockEntity);
             }
         }
         return InteractionResult.SUCCESS;

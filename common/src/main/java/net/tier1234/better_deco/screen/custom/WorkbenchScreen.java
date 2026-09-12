@@ -82,9 +82,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     protected void init() {
         super.init();
 
-        // Search box inside the top bar of the texture (under the title)
         int x = this.leftPos + 8;
-        int y = this.topPos + 17;
+        int y = this.topPos + 21;
 
         this.searchBox = new EditBox(this.font, x, y, 118, 12, Component.translatable("text.better_deco.recipe.search"));
         this.searchBox.setMaxLength(64);

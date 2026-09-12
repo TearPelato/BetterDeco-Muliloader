@@ -9,6 +9,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.*;
@@ -95,6 +96,11 @@ public class WorkbenchRecipe implements Recipe<SingleRecipeInput> {
 
     public ItemStackTemplate getResult() {
         return result;
+    }
+
+    public int getResultId()
+    {
+        return Item.getId(this.result.item().value());
     }
 
     public NonNullList<CountedIngredient> getMaterials() {

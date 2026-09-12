@@ -1,15 +1,17 @@
 package net.tier1234.better_deco.screen.custom;
 
+import com.mrcrayfish.framework.api.Environment;
 import com.mrcrayfish.framework.api.menu.IMenuData;
+import com.mrcrayfish.framework.api.util.TaskRunner;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -22,16 +24,16 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
+import net.tier1234.better_deco.network.message.SyncWorkbenchRecipesPayload;
+import net.tier1234.better_deco.platform.Services;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.registries.ModMenuTypes;
-import net.tier1234.better_deco.registries.ModRecipes;
+import net.tier1234.better_deco.util.ClientRecipes;
 import net.tier1234.better_deco.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,9 +49,12 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     public List<RecipeHolder<WorkbenchRecipe>> recipes;
     private final ResultContainer resultContainer = new ResultContainer();
     private Map<Integer, Integer> counts = new Int2IntOpenHashMap();
-    private List<Boolean> canCraftRecipes;
+    private List<Boolean> canCraftRecipes = new ArrayList<>();
     private final Player player;
     private final Level level;
+
+    // Client-side only: the result ItemStacks we received from the server
+    private List<ItemStack> clientResults = new ArrayList<>();
 
     private static final List<TagKey<Item>> RECIPE_ORDER = List.of(
             ModTags.Items.GENERAL,
@@ -62,34 +67,26 @@ public class WorkbenchMenu extends AbstractContainerMenu {
 
     public WorkbenchMenu(int id, Inventory inventory, CustomData data) {
         this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
-        Constants.LOG.info("[BD-DEBUG] WorkbenchMenu(CustomData) constructor called, side={}", inventory.player.level().isClientSide());
         this.selectedRecipes.set(data.selectedRecipe);
     }
 
     public WorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos, SimpleContainer outputContainer) {
         super(ModMenuTypes.FURNI_WORKBENCH.get(), id);
-        Constants.LOG.info("[BD-DEBUG] WorkbenchMenu(Level,BlockPos) constructor called, side={}, pos={}", level.isClientSide(), pos);
         this.access = ContainerLevelAccess.create(level, pos);
         this.workbench = level.getBlockEntity(pos) instanceof WorkbenchBlockEntity entity ? entity : null;
         this.player = inventory.player;
         this.level = level;
+
         this.selectedRecipes = workbench != null
                 ? workbench.selectedRecipeDataSlot()
                 : new DataSlot() {
             private int value;
-
-            @Override
-            public int get() {
-                return value;
-            }
-
-            @Override
-            public void set(int value) {
-                this.value = value;
-            }
+            @Override public int get() { return value; }
+            @Override public void set(int value) { this.value = value; }
         };
-        this.recipes = this.getRecipes();
-        this.outputSlot = addSlot(new Slot(outputContainer, 0, 149, 79){
+
+        this.recipes = this.setupRecipes(this.level);
+        this.outputSlot = addSlot(new Slot(outputContainer, 0, 149, 79) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
@@ -103,9 +100,18 @@ public class WorkbenchMenu extends AbstractContainerMenu {
                 level.playSound(null, pos, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         });
+
         this.addDataSlot(this.selectedRecipes);
         this.addPlayerInventorySlots(inventory);
-        this.updateCraftableRecipes();
+
+        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+            List<ItemStack> results = this.recipes.stream()
+                    .map(h -> h.value().getResultItem(level.registryAccess()).copy())
+                    .toList();
+
+            ModPackets.sendToClient(serverPlayer, new SyncWorkbenchRecipesPayload(this.containerId, results, recipes));
+            this.updateCraftableRecipes();
+        }
     }
 
     public Level getLevel() {
@@ -113,31 +119,17 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public List<RecipeHolder<WorkbenchRecipe>> getRecipes() {
-        if (this.recipes != null) {
             return this.recipes;
-        }
+    }
 
-        if (this.level.isClientSide()) {
-            this.recipes = new ArrayList<>();
-            return this.recipes;
-        }
-
-        RecipeManager recipeManager = ((ServerLevel) this.level).recipeAccess();
-
-        List<RecipeHolder<WorkbenchRecipe>> all = recipeManager.getRecipes()
-                .stream()
-                .filter(holder -> holder.value().getType() == ModRecipes.WORKBENCH_TYPE.get())
-                .map(holder -> (RecipeHolder<WorkbenchRecipe>) holder)
-                .collect(Collectors.toList());
+    private List<RecipeHolder<WorkbenchRecipe>> setupRecipes(Level level)
+    {
+        List<RecipeHolder<WorkbenchRecipe>> recipes = new ArrayList<>(this.getWorkbenchRecipeHolders(level));
 
         Map<Item, Integer> priority = new HashMap<>();
         int counter = 0;
-
-        var itemLookup = this.level.registryAccess()
-                .lookupOrThrow(Registries.ITEM);
-
         for (TagKey<Item> tag : RECIPE_ORDER) {
-            Optional<HolderSet.Named<Item>> tagHolders = itemLookup.get(tag);
+            Optional<HolderSet.Named<Item>> tagHolders = BuiltInRegistries.ITEM.get(tag);
             if (tagHolders.isPresent()) {
                 for (Holder<Item> holder : tagHolders.get()) {
                     priority.putIfAbsent(holder.value(), counter++);
@@ -145,14 +137,38 @@ public class WorkbenchMenu extends AbstractContainerMenu {
             }
         }
 
-        this.recipes = all.stream()
-                .sorted(Comparator.comparingInt(holder -> {
-                    Item resultItem = holder.value().getResultItem(this.level.registryAccess()).getItem();
-                    return priority.getOrDefault(resultItem, Integer.MAX_VALUE);
-                }))
-                .collect(Collectors.toList());
+        recipes.sort(Comparator.comparingInt(holder -> {
+            Item resultItem = holder.value().getResultItem(level.registryAccess()).getItem();
+            return priority.getOrDefault(resultItem, Integer.MAX_VALUE);
+        }));
+
         return recipes;
     }
+
+    private Collection<RecipeHolder<WorkbenchRecipe>> getWorkbenchRecipeHolders(Level level)
+    {
+        if(level instanceof ServerLevel serverLevel)
+        {
+            return Services.RECIPE.getWorkbenchRecipes(serverLevel);
+        }
+        else if(level instanceof ClientLevel)
+        {
+            return TaskRunner.callIf(Environment.CLIENT, () -> ClientRecipes::get)
+                    .map(ClientRecipes::workbenchRecipes)
+                    .orElse(Collections.emptyList());
+        }
+        return Collections.emptyList();
+    }
+
+    public void setClientRecipes(List<ItemStack> results) {
+        this.clientResults = results;
+        this.recipes = new ArrayList<>();
+        for (int i = 0; i < results.size(); i++) {
+            this.recipes.add(null);
+        }
+        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(results.size(), false));
+    }
+
 
     private void updateOutputSlot() {
         if (!this.level.isClientSide()) {
@@ -182,13 +198,14 @@ public class WorkbenchMenu extends AbstractContainerMenu {
                 this.addSlot(new Slot(inventory, col + row * 9 + 9, 8 + col * 18, invTop + row * 18));
             }
         }
-
         for (int col = 0; col < 9; ++col) {
             this.addSlot(new Slot(inventory, col, 8 + col * 18, invTop + 58));
         }
     }
 
     public void updateCraftableRecipes() {
+        if (this.level.isClientSide()) return;
+
         this.canCraftRecipes = recipes.stream()
                 .map(this::canCraft)
                 .collect(Collectors.toList());
@@ -207,11 +224,15 @@ public class WorkbenchMenu extends AbstractContainerMenu {
                 new SyncCraftableRecipesPayload(containerId, craftableArray));
     }
 
-
     public void setCraftableRecipes(boolean[] canCraft) {
-        for (int i = 0; i < canCraft.length && i < this.canCraftRecipes.size(); i++) {
-            this.canCraftRecipes.set(i, canCraft[i]);
+        this.canCraftRecipes = new ArrayList<>(canCraft.length);
+        for (boolean b : canCraft) {
+            this.canCraftRecipes.add(b);
         }
+    }
+
+    public boolean isCraftable(int index) {
+        return index >= 0 && index < canCraftRecipes.size() && canCraftRecipes.get(index);
     }
 
     @Override
@@ -239,7 +260,8 @@ public class WorkbenchMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return access.evaluate((level, blockPos) -> level.getBlockEntity(blockPos) instanceof WorkbenchBlockEntity, true);
+        return access.evaluate((level, blockPos) ->
+                level.getBlockEntity(blockPos) instanceof WorkbenchBlockEntity, true);
     }
 
     public List<RecipeHolder<WorkbenchRecipe>> getAvailableRecipes() {
@@ -247,6 +269,7 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public boolean canCraft(RecipeHolder<WorkbenchRecipe> recipe) {
+        if (recipe == null) return false;
         for (CountedIngredient ingredient : recipe.value().getMaterials()) {
             int required = ingredient.count();
             int totalCount = 0;
@@ -255,12 +278,10 @@ public class WorkbenchMenu extends AbstractContainerMenu {
                     totalCount += stack.getCount();
                 }
             }
-
             if (totalCount < required) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -289,14 +310,12 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         if (recipe != null && this.canCraft(recipe)) {
             this.craft(recipe);
             this.updateOutputSlot();
+            this.updateCraftableRecipes(); // re-sync craftable after consuming items
         }
     }
 
     public void craft(RecipeHolder<WorkbenchRecipe> recipe) {
-        if (recipe == null || !this.canCraft(recipe)) {
-            return;
-        }
-
+        if (recipe == null || !this.canCraft(recipe)) return;
         for (CountedIngredient ingredient : recipe.value().getMaterials()) {
             this.consumeIngredients(ingredient);
         }
@@ -304,11 +323,8 @@ public class WorkbenchMenu extends AbstractContainerMenu {
 
     private void consumeIngredients(CountedIngredient ingredient) {
         int remaining = ingredient.count();
-
         for (ItemStack stack : player.getInventory().getNonEquipmentItems()) {
-            if (remaining <= 0) {
-                break;
-            }
+            if (remaining <= 0) break;
             if (!stack.isEmpty() && ingredient.ingredient().test(stack)) {
                 int take = Math.min(stack.getCount(), remaining);
                 stack.shrink(take);
@@ -320,11 +336,10 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     @Nullable
     private RecipeHolder<WorkbenchRecipe> selectedRecipe() {
         int index = this.selectedRecipes.get();
-        return index != -1 ? this.recipes.get(index) : null;
+        return index != -1 && index < this.recipes.size() ? this.recipes.get(index) : null;
     }
 
     public record CustomData(int selectedRecipe) implements IMenuData<CustomData> {
-
         public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.VAR_INT,
                 CustomData::selectedRecipe,

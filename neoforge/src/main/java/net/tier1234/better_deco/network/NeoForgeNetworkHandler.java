@@ -17,6 +17,13 @@ public class NeoForgeNetworkHandler {
                 (payload, context) -> context.enqueueWork(
                         () -> ClientPayloadHandler.handleSyncCraftableRecipes(payload)));
 
+        registrar.playToClient(
+                SyncWorkbenchRecipesPayload.TYPE,
+                SyncWorkbenchRecipesPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(
+                        () -> ClientPayloadHandler.handleSyncWorkbenchRecipes(payload)));
+
+
         registrar.playToServer(
                 CraftRecipePayload.TYPE,
                 CraftRecipePayload.STREAM_CODEC,

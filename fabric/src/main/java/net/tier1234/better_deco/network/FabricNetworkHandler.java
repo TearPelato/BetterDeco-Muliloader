@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.tier1234.better_deco.network.message.CraftRecipePayload;
 import net.tier1234.better_deco.network.message.SelectRecipePayload;
 import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
+import net.tier1234.better_deco.network.message.SyncWorkbenchRecipesPayload;
 
 public class FabricNetworkHandler {
 
@@ -21,6 +22,11 @@ public class FabricNetworkHandler {
                 SyncCraftableRecipesPayload.TYPE,
                 (payload, context) -> context.client().execute(
                         () -> ClientPayloadHandler.handleSyncCraftableRecipes(payload)));
+
+        ClientPlayNetworking.registerGlobalReceiver(
+                SyncWorkbenchRecipesPayload.TYPE,
+                (payload, context) -> context.client().execute(
+                        () -> ClientPayloadHandler.handleSyncWorkbenchRecipes(payload)));
 
     }
 
