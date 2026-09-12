@@ -54,8 +54,8 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
     implementation "com.mrcrayfish:framework-neoforge:${framework_version}+${minecraft_version}"
-    implementation("net.tearpelato:deco_lib-neoforge-26.1.2:${deco_lib_version}")
-    jarJar("net.tearpelato:deco_lib-neoforge-26.1.2:${deco_lib_version}")
+    implementation("net.tearpelato:deco_lib-neoforge-26.2:${deco_lib_version}")
+    jarJar("net.tearpelato:deco_lib-neoforge-26.2:${deco_lib_version}")
 
    /* implementation "curse.maven:catalogue-459701:6926815"
     implementation "curse.maven:configured-457570:7276577"*/

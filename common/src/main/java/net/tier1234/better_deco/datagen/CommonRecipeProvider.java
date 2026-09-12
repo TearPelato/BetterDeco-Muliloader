@@ -60,7 +60,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
         WorkbenchRecipeBuilder.crafting(ModBlocks.FRIDGE_LIGHT.get(), 1)
                 .requires(Items.CHEST,1)
-                .requires(Items.WHITE_CONCRETE, 5)
+                .requires(Items.CONCRETE.white(), 5)
                 .requires(Items.IRON_INGOT, 3)
                 .requires(Items.REDSTONE, 2)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
@@ -69,7 +69,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
         WorkbenchRecipeBuilder.crafting(ModBlocks.FRIDGE_DARK.get(), 1)
                 .requires(Items.CHEST,1)
-                .requires(Items.GRAY_CONCRETE, 5)
+                .requires(Items.CONCRETE.gray(), 5)
                 .requires(Items.IRON_INGOT, 3)
                 .requires(Items.REDSTONE, 2)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
@@ -78,7 +78,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
         WorkbenchRecipeBuilder.crafting(ModBlocks.LIGHT_MICROWAVE.get(), 1)
-                .requires(Items.WHITE_CONCRETE,3)
+                .requires(Items.CONCRETE.white(), 3)
                 .requires(Items.IRON_INGOT, 3)
                 .requires(Items.REDSTONE, 2)
                 .requires(Items.GLASS_PANE, 1)
@@ -87,7 +87,7 @@ public class CommonRecipeProvider extends RecipeProvider {
 
 
         WorkbenchRecipeBuilder.crafting(ModBlocks.DARK_MICROWAVE.get(), 1)
-                .requires(Items.GRAY_CONCRETE,3)
+                .requires(Items.CONCRETE.gray(),3)
                 .requires(Items.IRON_INGOT, 3)
                 .requires(Items.REDSTONE, 2)
                 .requires(Items.GLASS_PANE, 1)
@@ -160,73 +160,73 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.kitchenSink(Blocks.WARPED_PLANKS, ModBlocks.WARPED_SINK.get());
         this.kitchenSink(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_SINK.get());
 
-        this.kitchenCounter(Blocks.WHITE_CONCRETE, ModBlocks.WHITE_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.LIGHT_GRAY_CONCRETE, ModBlocks.LIGHT_GRAY_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.GRAY_CONCRETE, ModBlocks.GRAY_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.BLACK_CONCRETE, ModBlocks.BLACK_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.BROWN_CONCRETE, ModBlocks.BROWN_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.RED_CONCRETE, ModBlocks.RED_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.YELLOW_CONCRETE, ModBlocks.YELLOW_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.ORANGE_CONCRETE, ModBlocks.ORANGE_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.LIME_CONCRETE, ModBlocks.LIME_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.GREEN_CONCRETE, ModBlocks.GREEN_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.CYAN_CONCRETE, ModBlocks.CYAN_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.LIGHT_BLUE_CONCRETE, ModBlocks.LIGHT_BLUE_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.BLUE_CONCRETE, ModBlocks.BLUE_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.PURPLE_CONCRETE, ModBlocks.PURPLE_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.MAGENTA_CONCRETE, ModBlocks.MAGENTA_KITCHEN_COUNTER.get());
-        this.kitchenCounter(Blocks.PINK_CONCRETE, ModBlocks.PINK_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.white(), ModBlocks.WHITE_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.lightGray(), ModBlocks.LIGHT_GRAY_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.gray(), ModBlocks.GRAY_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.black(), ModBlocks.BLACK_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.brown(), ModBlocks.BROWN_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.red(), ModBlocks.RED_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.yellow(), ModBlocks.YELLOW_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.orange(), ModBlocks.ORANGE_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.lime(), ModBlocks.LIME_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.green(), ModBlocks.GREEN_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.cyan(), ModBlocks.CYAN_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.lightBlue(), ModBlocks.LIGHT_BLUE_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.blue(), ModBlocks.BLUE_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.purple(), ModBlocks.PURPLE_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.magenta(), ModBlocks.MAGENTA_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.CONCRETE.pink(), ModBlocks.PINK_KITCHEN_COUNTER.get());
 
-        this.kitchenDrawer(Blocks.WHITE_CONCRETE, ModBlocks.WHITE_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.LIGHT_GRAY_CONCRETE, ModBlocks.LIGHT_GRAY_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.GRAY_CONCRETE, ModBlocks.GRAY_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.BLACK_CONCRETE, ModBlocks.BLACK_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.BROWN_CONCRETE, ModBlocks.BROWN_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.RED_CONCRETE, ModBlocks.RED_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.YELLOW_CONCRETE, ModBlocks.YELLOW_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.ORANGE_CONCRETE, ModBlocks.ORANGE_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.LIME_CONCRETE, ModBlocks.LIME_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.GREEN_CONCRETE, ModBlocks.GREEN_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.CYAN_CONCRETE, ModBlocks.CYAN_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.LIGHT_BLUE_CONCRETE, ModBlocks.LIGHT_BLUE_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.BLUE_CONCRETE, ModBlocks.BLUE_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.PURPLE_CONCRETE, ModBlocks.PURPLE_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.MAGENTA_CONCRETE, ModBlocks.MAGENTA_KITCHEN_DRAWER.get());
-        this.kitchenDrawer(Blocks.PINK_CONCRETE, ModBlocks.PINK_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.white(), ModBlocks.WHITE_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.lightGray(), ModBlocks.LIGHT_GRAY_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.gray(), ModBlocks.GRAY_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.black(), ModBlocks.BLACK_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.brown(), ModBlocks.BROWN_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.red(), ModBlocks.RED_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.yellow(), ModBlocks.YELLOW_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.orange(), ModBlocks.ORANGE_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.lime(), ModBlocks.LIME_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.green(), ModBlocks.GREEN_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.cyan(), ModBlocks.CYAN_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.lightBlue(), ModBlocks.LIGHT_BLUE_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.blue(), ModBlocks.BLUE_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.purple(), ModBlocks.PURPLE_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.magenta(), ModBlocks.MAGENTA_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.CONCRETE.pink(), ModBlocks.PINK_KITCHEN_DRAWER.get());
 
-        this.kitchenOven(Blocks.WHITE_CONCRETE, ModBlocks.WHITE_OVEN.get());
-        this.kitchenOven(Blocks.LIGHT_GRAY_CONCRETE, ModBlocks.LIGHT_GRAY_OVEN.get());
-        this.kitchenOven(Blocks.GRAY_CONCRETE, ModBlocks.GRAY_OVEN.get());
-        this.kitchenOven(Blocks.BLACK_CONCRETE, ModBlocks.BLACK_OVEN.get());
-        this.kitchenOven(Blocks.BROWN_CONCRETE, ModBlocks.BROWN_OVEN.get());
-        this.kitchenOven(Blocks.RED_CONCRETE, ModBlocks.RED_OVEN.get());
-        this.kitchenOven(Blocks.YELLOW_CONCRETE, ModBlocks.YELLOW_OVEN.get());
-        this.kitchenOven(Blocks.ORANGE_CONCRETE, ModBlocks.ORANGE_OVEN.get());
-        this.kitchenOven(Blocks.LIME_CONCRETE, ModBlocks.LIME_OVEN.get());
-        this.kitchenOven(Blocks.GREEN_CONCRETE, ModBlocks.GREEN_OVEN.get());
-        this.kitchenOven(Blocks.CYAN_CONCRETE, ModBlocks.CYAN_OVEN.get());
-        this.kitchenOven(Blocks.LIGHT_BLUE_CONCRETE, ModBlocks.LIGHT_BLUE_OVEN.get());
-        this.kitchenOven(Blocks.BLUE_CONCRETE, ModBlocks.BLUE_OVEN.get());
-        this.kitchenOven(Blocks.PURPLE_CONCRETE, ModBlocks.PURPLE_OVEN.get());
-        this.kitchenOven(Blocks.MAGENTA_CONCRETE, ModBlocks.MAGENTA_OVEN.get());
-        this.kitchenOven(Blocks.PINK_CONCRETE, ModBlocks.PINK_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.white(), ModBlocks.WHITE_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.lightGray(), ModBlocks.LIGHT_GRAY_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.gray(), ModBlocks.GRAY_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.black(), ModBlocks.BLACK_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.brown(), ModBlocks.BROWN_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.red(), ModBlocks.RED_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.yellow(), ModBlocks.YELLOW_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.orange(), ModBlocks.ORANGE_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.lime(), ModBlocks.LIME_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.green(), ModBlocks.GREEN_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.cyan(), ModBlocks.CYAN_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.lightBlue(), ModBlocks.LIGHT_BLUE_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.blue(), ModBlocks.BLUE_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.purple(), ModBlocks.PURPLE_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.magenta(), ModBlocks.MAGENTA_OVEN.get());
+        this.kitchenOven(Blocks.CONCRETE.pink(), ModBlocks.PINK_OVEN.get());
 
-        this.kitchenSink(Blocks.WHITE_CONCRETE, ModBlocks.WHITE_SINK.get());
-        this.kitchenSink(Blocks.LIGHT_GRAY_CONCRETE, ModBlocks.LIGHT_GRAY_SINK.get());
-        this.kitchenSink(Blocks.GRAY_CONCRETE, ModBlocks.GRAY_SINK.get());
-        this.kitchenSink(Blocks.BLACK_CONCRETE, ModBlocks.BLACK_SINK.get());
-        this.kitchenSink(Blocks.BROWN_CONCRETE, ModBlocks.BROWN_SINK.get());
-        this.kitchenSink(Blocks.RED_CONCRETE, ModBlocks.RED_SINK.get());
-        this.kitchenSink(Blocks.YELLOW_CONCRETE, ModBlocks.YELLOW_SINK.get());
-        this.kitchenSink(Blocks.ORANGE_CONCRETE, ModBlocks.ORANGE_SINK.get());
-        this.kitchenSink(Blocks.LIME_CONCRETE, ModBlocks.LIME_SINK.get());
-        this.kitchenSink(Blocks.GREEN_CONCRETE, ModBlocks.GREEN_SINK.get());
-        this.kitchenSink(Blocks.CYAN_CONCRETE, ModBlocks.CYAN_SINK.get());
-        this.kitchenSink(Blocks.LIGHT_BLUE_CONCRETE, ModBlocks.LIGHT_BLUE_SINK.get());
-        this.kitchenSink(Blocks.BLUE_CONCRETE, ModBlocks.BLUE_SINK.get());
-        this.kitchenSink(Blocks.PURPLE_CONCRETE, ModBlocks.PURPLE_SINK.get());
-        this.kitchenSink(Blocks.MAGENTA_CONCRETE, ModBlocks.MAGENTA_SINK.get());
-        this.kitchenSink(Blocks.PINK_CONCRETE, ModBlocks.PINK_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.white(), ModBlocks.WHITE_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.lightGray(), ModBlocks.LIGHT_GRAY_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.gray(), ModBlocks.GRAY_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.black(), ModBlocks.BLACK_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.brown(), ModBlocks.BROWN_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.red(), ModBlocks.RED_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.yellow(), ModBlocks.YELLOW_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.orange(), ModBlocks.ORANGE_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.lime(), ModBlocks.LIME_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.green(), ModBlocks.GREEN_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.cyan(), ModBlocks.CYAN_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.lightBlue(), ModBlocks.LIGHT_BLUE_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.blue(), ModBlocks.BLUE_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.purple(), ModBlocks.PURPLE_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.magenta(), ModBlocks.MAGENTA_SINK.get());
+        this.kitchenSink(Blocks.CONCRETE.pink(), ModBlocks.PINK_SINK.get());
 
 
 
@@ -321,73 +321,73 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.deskCabinet(Blocks.WARPED_PLANKS, ModBlocks.WARPED_DESK_CABINET.get());
         this.deskCabinet(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_DESK_CABINET.get());
 
-        this.lamp(Blocks.WHITE_WOOL, ModBlocks.WHITE_LAMP.get());
-        this.lamp(Blocks.LIGHT_GRAY_WOOL, ModBlocks.LIGHT_GRAY_LAMP.get());
-        this.lamp(Blocks.GRAY_WOOL, ModBlocks.GRAY_LAMP.get());
-        this.lamp(Blocks.BLACK_WOOL, ModBlocks.BLACK_LAMP.get());
-        this.lamp(Blocks.BROWN_WOOL, ModBlocks.BROWN_LAMP.get());
-        this.lamp(Blocks.RED_WOOL, ModBlocks.RED_LAMP.get());
-        this.lamp(Blocks.YELLOW_WOOL, ModBlocks.YELLOW_LAMP.get());
-        this.lamp(Blocks.ORANGE_WOOL, ModBlocks.ORANGE_LAMP.get());
-        this.lamp(Blocks.LIME_WOOL, ModBlocks.LIME_LAMP.get());
-        this.lamp(Blocks.GREEN_WOOL, ModBlocks.GREEN_LAMP.get());
-        this.lamp(Blocks.CYAN_WOOL, ModBlocks.CYAN_LAMP.get());
-        this.lamp(Blocks.LIGHT_BLUE_WOOL, ModBlocks.LIGHT_BLUE_LAMP.get());
-        this.lamp(Blocks.BLUE_WOOL, ModBlocks.BLUE_LAMP.get());
-        this.lamp(Blocks.PURPLE_WOOL, ModBlocks.PURPLE_LAMP.get());
-        this.lamp(Blocks.MAGENTA_WOOL, ModBlocks.MAGENTA_LAMP.get());
-        this.lamp(Blocks.PINK_WOOL, ModBlocks.PINK_LAMP.get());
+        this.lamp(Blocks.WOOL.white(), ModBlocks.WHITE_LAMP.get());
+        this.lamp(Blocks.WOOL.lightGray(), ModBlocks.LIGHT_GRAY_LAMP.get());
+        this.lamp(Blocks.WOOL.gray(), ModBlocks.GRAY_LAMP.get());
+        this.lamp(Blocks.WOOL.black(), ModBlocks.BLACK_LAMP.get());
+        this.lamp(Blocks.WOOL.brown(), ModBlocks.BROWN_LAMP.get());
+        this.lamp(Blocks.WOOL.red(), ModBlocks.RED_LAMP.get());
+        this.lamp(Blocks.WOOL.yellow(), ModBlocks.YELLOW_LAMP.get());
+        this.lamp(Blocks.WOOL.orange(), ModBlocks.ORANGE_LAMP.get());
+        this.lamp(Blocks.WOOL.lime(), ModBlocks.LIME_LAMP.get());
+        this.lamp(Blocks.WOOL.green(), ModBlocks.GREEN_LAMP.get());
+        this.lamp(Blocks.WOOL.cyan(), ModBlocks.CYAN_LAMP.get());
+        this.lamp(Blocks.WOOL.lightBlue(), ModBlocks.LIGHT_BLUE_LAMP.get());
+        this.lamp(Blocks.WOOL.blue(), ModBlocks.BLUE_LAMP.get());
+        this.lamp(Blocks.WOOL.purple(), ModBlocks.PURPLE_LAMP.get());
+        this.lamp(Blocks.WOOL.magenta(), ModBlocks.MAGENTA_LAMP.get());
+        this.lamp(Blocks.WOOL.pink(), ModBlocks.PINK_LAMP.get());
 
-        this.sofa(Blocks.WHITE_WOOL, ModBlocks.WHITE_SOFA.get());
-        this.sofa(Blocks.LIGHT_GRAY_WOOL, ModBlocks.LIGHT_GREY_SOFA.get());
-        this.sofa(Blocks.GRAY_WOOL, ModBlocks.GREY_SOFA.get());
-        this.sofa(Blocks.BLACK_WOOL, ModBlocks.BLACK_SOFA.get());
-        this.sofa(Blocks.BROWN_WOOL, ModBlocks.BROWN_SOFA.get());
-        this.sofa(Blocks.RED_WOOL, ModBlocks.RED_SOFA.get());
-        this.sofa(Blocks.YELLOW_WOOL, ModBlocks.YELLOW_SOFA.get());
-        this.sofa(Blocks.ORANGE_WOOL, ModBlocks.ORANGE_SOFA.get());
-        this.sofa(Blocks.LIME_WOOL, ModBlocks.LIME_SOFA.get());
-        this.sofa(Blocks.GREEN_WOOL, ModBlocks.GREEN_SOFA.get());
-        this.sofa(Blocks.CYAN_WOOL, ModBlocks.CYAN_SOFA.get());
-        this.sofa(Blocks.LIGHT_BLUE_WOOL, ModBlocks.LIGHT_BLUE_SOFA.get());
-        this.sofa(Blocks.BLUE_WOOL, ModBlocks.BLUE_SOFA.get());
-        this.sofa(Blocks.PURPLE_WOOL, ModBlocks.PURPLE_SOFA.get());
-        this.sofa(Blocks.MAGENTA_WOOL, ModBlocks.MAGENTA_SOFA.get());
-        this.sofa(Blocks.PINK_WOOL, ModBlocks.PINK_SOFA.get());
+        this.sofa(Blocks.WOOL.white(), ModBlocks.WHITE_SOFA.get());
+        this.sofa(Blocks.WOOL.lightGray(), ModBlocks.LIGHT_GREY_SOFA.get());
+        this.sofa(Blocks.WOOL.gray(), ModBlocks.GREY_SOFA.get());
+        this.sofa(Blocks.WOOL.black(), ModBlocks.BLACK_SOFA.get());
+        this.sofa(Blocks.WOOL.brown(), ModBlocks.BROWN_SOFA.get());
+        this.sofa(Blocks.WOOL.red(), ModBlocks.RED_SOFA.get());
+        this.sofa(Blocks.WOOL.yellow(), ModBlocks.YELLOW_SOFA.get());
+        this.sofa(Blocks.WOOL.orange(), ModBlocks.ORANGE_SOFA.get());
+        this.sofa(Blocks.WOOL.lime(), ModBlocks.LIME_SOFA.get());
+        this.sofa(Blocks.WOOL.green(), ModBlocks.GREEN_SOFA.get());
+        this.sofa(Blocks.WOOL.cyan(), ModBlocks.CYAN_SOFA.get());
+        this.sofa(Blocks.WOOL.lightBlue(), ModBlocks.LIGHT_BLUE_SOFA.get());
+        this.sofa(Blocks.WOOL.blue(), ModBlocks.BLUE_SOFA.get());
+        this.sofa(Blocks.WOOL.purple(), ModBlocks.PURPLE_SOFA.get());
+        this.sofa(Blocks.WOOL.magenta(), ModBlocks.MAGENTA_SOFA.get());
+        this.sofa(Blocks.WOOL.pink(), ModBlocks.PINK_SOFA.get());
 
-        this.stool(Blocks.WHITE_WOOL, ModBlocks.WHITE_STOOL.get());
-        this.stool(Blocks.LIGHT_GRAY_WOOL, ModBlocks.LIGHT_GREY_STOOL.get());
-        this.stool(Blocks.GRAY_WOOL, ModBlocks.GREY_STOOL.get());
-        this.stool(Blocks.BLACK_WOOL, ModBlocks.BLACK_STOOL.get());
-        this.stool(Blocks.BROWN_WOOL, ModBlocks.BROWN_STOOL.get());
-        this.stool(Blocks.RED_WOOL, ModBlocks.RED_STOOL.get());
-        this.stool(Blocks.YELLOW_WOOL, ModBlocks.YELLOW_STOOL.get());
-        this.stool(Blocks.ORANGE_WOOL, ModBlocks.ORANGE_STOOL.get());
-        this.stool(Blocks.LIME_WOOL, ModBlocks.LIME_STOOL.get());
-        this.stool(Blocks.GREEN_WOOL, ModBlocks.GREEN_STOOL.get());
-        this.stool(Blocks.CYAN_WOOL, ModBlocks.CYAN_STOOL.get());
-        this.stool(Blocks.LIGHT_BLUE_WOOL, ModBlocks.LIGHT_BLUE_STOOL.get());
-        this.stool(Blocks.BLUE_WOOL, ModBlocks.BLUE_STOOL.get());
-        this.stool(Blocks.PURPLE_WOOL, ModBlocks.PURPLE_STOOL.get());
-        this.stool(Blocks.MAGENTA_WOOL, ModBlocks.MAGENTA_STOOL.get());
-        this.stool(Blocks.PINK_WOOL, ModBlocks.PINK_STOOL.get());
+        this.stool(Blocks.WOOL.white(), ModBlocks.WHITE_STOOL.get());
+        this.stool(Blocks.WOOL.lightGray(), ModBlocks.LIGHT_GREY_STOOL.get());
+        this.stool(Blocks.WOOL.gray(), ModBlocks.GREY_STOOL.get());
+        this.stool(Blocks.WOOL.black(), ModBlocks.BLACK_STOOL.get());
+        this.stool(Blocks.WOOL.brown(), ModBlocks.BROWN_STOOL.get());
+        this.stool(Blocks.WOOL.red(), ModBlocks.RED_STOOL.get());
+        this.stool(Blocks.WOOL.yellow(), ModBlocks.YELLOW_STOOL.get());
+        this.stool(Blocks.WOOL.orange(), ModBlocks.ORANGE_STOOL.get());
+        this.stool(Blocks.WOOL.lime(), ModBlocks.LIME_STOOL.get());
+        this.stool(Blocks.WOOL.green(), ModBlocks.GREEN_STOOL.get());
+        this.stool(Blocks.WOOL.cyan(), ModBlocks.CYAN_STOOL.get());
+        this.stool(Blocks.WOOL.lightBlue(), ModBlocks.LIGHT_BLUE_STOOL.get());
+        this.stool(Blocks.WOOL.blue(), ModBlocks.BLUE_STOOL.get());
+        this.stool(Blocks.WOOL.purple(), ModBlocks.PURPLE_STOOL.get());
+        this.stool(Blocks.WOOL.magenta(), ModBlocks.MAGENTA_STOOL.get());
+        this.stool(Blocks.WOOL.pink(), ModBlocks.PINK_STOOL.get());
 
-        this.digitalClock(Blocks.WHITE_CONCRETE, ModBlocks.WHITE_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.LIGHT_GRAY_CONCRETE, ModBlocks.LIGHT_GRAY_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.GRAY_CONCRETE, ModBlocks.GRAY_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.BLACK_CONCRETE, ModBlocks.BLACK_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.BROWN_CONCRETE, ModBlocks.BROWN_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.RED_CONCRETE, ModBlocks.RED_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.YELLOW_CONCRETE, ModBlocks.YELLOW_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.ORANGE_CONCRETE, ModBlocks.ORANGE_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.LIME_CONCRETE, ModBlocks.LIME_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.GREEN_CONCRETE, ModBlocks.GREEN_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.CYAN_CONCRETE, ModBlocks.CYAN_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.LIGHT_BLUE_CONCRETE, ModBlocks.LIGHT_BLUE_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.BLUE_CONCRETE, ModBlocks.BLUE_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.PURPLE_CONCRETE, ModBlocks.PURPLE_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.MAGENTA_CONCRETE, ModBlocks.MAGENTA_DIGITAL_CLOCK.get());
-        this.digitalClock(Blocks.PINK_CONCRETE, ModBlocks.PINK_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.white(), ModBlocks.WHITE_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.lightGray(), ModBlocks.LIGHT_GRAY_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.gray(), ModBlocks.GRAY_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.black(), ModBlocks.BLACK_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.brown(), ModBlocks.BROWN_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.red(), ModBlocks.RED_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.yellow(), ModBlocks.YELLOW_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.orange(), ModBlocks.ORANGE_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.lime(), ModBlocks.LIME_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.green(), ModBlocks.GREEN_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.cyan(), ModBlocks.CYAN_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.lightBlue(), ModBlocks.LIGHT_BLUE_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.blue(), ModBlocks.BLUE_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.purple(), ModBlocks.PURPLE_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.magenta(), ModBlocks.MAGENTA_DIGITAL_CLOCK.get());
+        this.digitalClock(Blocks.CONCRETE.pink(), ModBlocks.PINK_DIGITAL_CLOCK.get());
 
         this.woodenClock(Blocks.OAK_PLANKS, ModBlocks.OAK_CLOCK.get());
         this.woodenClock(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_CLOCK.get());

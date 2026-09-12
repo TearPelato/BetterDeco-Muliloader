@@ -4,10 +4,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.font.TextRenderable;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Style;
@@ -18,6 +20,12 @@ import net.tier1234.better_deco.block.DigitalClockBlock;
 import net.tier1234.better_deco.blockentity.DigitalClockBlockEntity;
 import net.tier1234.better_deco.blockentity.renderer.render_state.DigitalClockRenderState;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Matrix4f;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DigitalClockBlockEntityRenderer implements BlockEntityRenderer<DigitalClockBlockEntity, DigitalClockRenderState> {
 
@@ -68,16 +76,36 @@ public class DigitalClockBlockEntityRenderer implements BlockEntityRenderer<Digi
         float baseScale = 0.010416667F * 1.5F;
         poseStack.scale(baseScale, -baseScale, baseScale);
 
-        this.font.drawInBatch(
-                state.timeText,
-                0, 0,
-                state.colorInt,
-                false,
-                poseStack.last().pose(),
-                Minecraft.getInstance().renderBuffers().bufferSource(),
-                Font.DisplayMode.NORMAL,
-                0,
-                state.lightCoords);
+        Font.PreparedText preparedText = this.font.prepareText(
+                state.timeText, 0, 0, state.colorInt, false, false, 0
+        );
+
+        List<TextRenderable> renderables = new ArrayList<>();
+        preparedText.visit(new Font.GlyphVisitor() {
+            @Override
+            public void acceptRenderable(TextRenderable renderable) {
+                renderables.add(renderable);
+            }
+        });
+
+        Map<RenderType, List<TextRenderable>> byRenderType = new LinkedHashMap<>();
+        for (TextRenderable r : renderables) {
+            byRenderType.computeIfAbsent(r.renderType(Font.DisplayMode.NORMAL), k -> new ArrayList<>()).add(r);
+        }
+
+        PoseStack.Pose capturedPose = poseStack.last();
+
+        for (Map.Entry<RenderType, List<TextRenderable>> entry : byRenderType.entrySet()) {
+            List<TextRenderable> group = entry.getValue();
+            submitNodeCollector.submitCustomGeometry(poseStack, entry.getKey(),
+                    (pose, buffer) -> {
+                        Matrix4f matrix = pose.pose();
+                        for (TextRenderable renderable : group) {
+                            renderable.render(matrix, buffer, state.lightCoords, false);
+                        }
+                    }
+            );
+        }
 
         poseStack.popPose();
     }

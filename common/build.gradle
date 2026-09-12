@@ -17,7 +17,7 @@ dependencies {
     compileOnly "com.mrcrayfish:framework-common:${framework_version}+${minecraft_version}"
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
-    compileOnly("net.tearpelato:deco_lib-common-26.1.2:${deco_lib_version}")
+    compileOnly("net.tearpelato:deco_lib-common-26.2:${deco_lib_version}")
    // jarJar("net.tearpelato:deco_lib-common-26.1.2:${deco_lib_version}")
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"

@@ -1,6 +1,10 @@
 package net.tier1234.better_deco;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,5 +19,11 @@ public class Constants {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 
+    public static ResourceKey<Block> getBlockResKey(Block block) {
+        return BuiltInRegistries.BLOCK.getResourceKey(block).get();
+    }
+    public static ResourceKey<Item> getItemResKey(Item item) {
+        return BuiltInRegistries.ITEM.getResourceKey(item).get();
+    }
 
 }

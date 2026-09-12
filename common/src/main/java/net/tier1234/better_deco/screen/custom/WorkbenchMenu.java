@@ -53,7 +53,6 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     private final Player player;
     private final Level level;
 
-    // Client-side only: the result ItemStacks we received from the server
     private List<ItemStack> clientResults = new ArrayList<>();
 
     private static final List<TagKey<Item>> RECIPE_ORDER = List.of(

@@ -20,7 +20,7 @@ public class ClientPayloadHandler {
                     && menu.containerId == payload.containerId()) {
                 menu.setCraftableRecipes(payload.craftable());
 
-                if (mc.screen instanceof WorkbenchScreen screen) {
+                if (mc.gui.screen() instanceof WorkbenchScreen screen) {
                     screen.updateRecipeButtons();
                 }
             }
@@ -39,7 +39,7 @@ public class ClientPayloadHandler {
 
                 menu.setClientRecipes(payload.results());
 
-                if (mc.screen instanceof WorkbenchScreen screen) {
+                if (mc.gui.screen() instanceof WorkbenchScreen screen) {
                     screen.updateRecipeButtons();
                 }
             }
