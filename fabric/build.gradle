@@ -24,6 +24,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "com.mrcrayfish:framework-fabric:${minecraft_version}-${framework_version}"
     modImplementation("net.tearpelato:deco_lib-fabric-1.21.1:${deco_lib_version}")
+    include("net.tearpelato:deco_lib-fabric-1.21.1:${deco_lib_version}")
+
     modImplementation "curse.maven:menulogue-682371:5705587"
     modImplementation "curse.maven:configured-457570:7276575"
     modImplementation "curse.maven:catalogue-459701:6926812"
