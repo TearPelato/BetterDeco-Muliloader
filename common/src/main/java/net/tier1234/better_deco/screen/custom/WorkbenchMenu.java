@@ -160,14 +160,12 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     }
 
     public void setClientRecipes(List<ItemStack> results) {
-        this.clientResults = results;
-        this.recipes = new ArrayList<>();
-        for (int i = 0; i < results.size(); i++) {
-            this.recipes.add(null);
+        this.clientResults = results != null ? results : List.of();
+        if (this.recipes == null || this.recipes.isEmpty() || this.recipes.size() != this.clientResults.size()) {
+            this.recipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), null));
         }
-        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(results.size(), false));
+        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), false));
     }
-
 
     private void updateOutputSlot() {
         if (!this.level.isClientSide()) {
@@ -188,6 +186,10 @@ public class WorkbenchMenu extends AbstractContainerMenu {
             }
             super.broadcastChanges();
         }
+    }
+
+    public List<ItemStack> getClientResults() {
+        return clientResults;
     }
 
     private void addPlayerInventorySlots(Inventory inventory) {

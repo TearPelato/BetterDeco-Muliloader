@@ -18,6 +18,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.mixin.GuiGraphicsInvoker;
@@ -132,12 +133,15 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
         if (!query.isEmpty()) {
             String q = query;
-            stream = stream.filter(holder -> holder.value()
-                    .getResultItem(null)
-                    .getHoverName()
-                    .getString()
-                    .toLowerCase(Locale.ROOT)
-                    .contains(q));
+            stream = stream.filter(holder -> {
+                if (holder == null) return false;
+                return holder.value()
+                        .getResultItem(null)
+                        .getHoverName()
+                        .getString()
+                        .toLowerCase(Locale.ROOT)
+                        .contains(q);
+            });
         }
 
         this.visibleRecipes = stream.toList();
@@ -149,6 +153,21 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     private int getToggleButtonY() {
         return topPos + 18;
+    }
+
+    private ItemStack getResultStack(int index) {
+        if (index >= 0 && index < visibleRecipes.size()) {
+            RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(index);
+            if (holder != null) {
+                return holder.value().getResultItem(this.menu.getLevel().registryAccess());
+            }
+        }
+
+        List<ItemStack> results = menu.getClientResults();
+        if (index >= 0 && index < results.size()) {
+            return results.get(index);
+        }
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -170,7 +189,13 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     }
 
     private void renderRecipeTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY, int recipeIndex) {
+        if (recipeIndex < 0 || recipeIndex >= visibleRecipes.size()) return;
         RecipeHolder<WorkbenchRecipe> holder = visibleRecipes.get(recipeIndex);
+        if (holder == null) {
+            ItemStack stack = getResultStack(recipeIndex);
+            graphics.setTooltipForNextFrame(this.font, stack.getHoverName(), mouseX, mouseY);
+            return;
+        }
         WorkbenchRecipe recipe = holder.value();
 
         List<ClientTooltipComponent> components = new ArrayList<>();
@@ -235,13 +260,13 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             int x = leftPos + GRID_X_OFFSET + col * BUTTON_SIZE;
             int y = topPos + GRID_Y_OFFSET + row * BUTTON_SIZE - (int) scroll - Y_OFFSET_CORRECTION;
 
-            RecipeHolder<WorkbenchRecipe> recipe = visibleRecipes.get(i);
-            boolean canCraft = menu.canCraft(recipe);
+            boolean canCraft = menu.isCraftable(i);
+            ItemStack result = getResultStack(i);
 
             int textureU = 176 + (!canCraft ? BUTTON_SIZE : 0);
             int textureV = 0;
             graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, textureU, textureV, BUTTON_SIZE, BUTTON_SIZE, 256, 256);
-            graphics.fakeItem(recipe.value().getResultItem(this.menu.getLevel().registryAccess()), x + 2, y + 2);
+            graphics.fakeItem(result, x + 2, y + 2);
 
             if (mouseInGrid && mouseX >= x && mouseX < x + BUTTON_SIZE && mouseY >= y && mouseY < y + BUTTON_SIZE) {
                 hoveredRecipeIndex = i;
