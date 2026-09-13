@@ -29,7 +29,7 @@ import java.util.function.Consumer;
  */
 public class BundledTabSelector {
     private static final ResourceLocation SELECTOR_BAR =
-            Constants.id("textures/gui/tab_selector/tab_interface.png");
+            Constants.id("textures/gui/tab_selector/interface.png");
     private static final int VISIBLE_CATEGORIES = 5;
 
     private static BundledTabSelector instance;
@@ -130,7 +130,7 @@ public class BundledTabSelector {
             graphics.pose().translate(0.0, 0.0, 0.0);
 
             if (this.isValidTab(tab)) {
-                graphics.blit(SELECTOR_BAR, this.guiLeft - 34, this.guiTop + 2, 2, 0, 32, 120);
+                graphics.blit(SELECTOR_BAR, this.guiLeft - 31, this.guiTop + 2, 5, 0, 27, 121);
 
             }
 
@@ -163,11 +163,11 @@ public class BundledTabSelector {
             widgets.accept(tab);
         });
 
-        this.scrollUpButton = new ScrollButton(this.guiLeft - 30, this.guiTop + 6, 37, button -> {
+        this.scrollUpButton = new ScrollButton(this.guiLeft - 27, this.guiTop + 6, 34, button -> {
             if (this.scroll > 0) this.scroll--;
             this.updateWidgets();
         });
-        this.scrollDownButton = new ScrollButton(this.guiLeft - 30, this.guiTop + 108, 61, button -> {
+        this.scrollDownButton = new ScrollButton(this.guiLeft - 27, this.guiTop + 107, 54, button -> {
             if (this.scroll < this.getMaxScroll()) this.scroll++;
             this.updateWidgets();
         });
@@ -268,7 +268,7 @@ public class BundledTabSelector {
 
         private void renderSelected(GuiGraphics graphics) {
             if (this.bundle.isSelected()) {
-                graphics.blit(SELECTOR_BAR, this.getX() - 7, this.getY() - 1, 37, 24, 30, 19);
+                graphics.blit(SELECTOR_BAR, this.getX() - 8, this.getY() - 1, 38, 24, 30, 19);
             }
         }
 
@@ -289,16 +289,16 @@ public class BundledTabSelector {
         private final int uOffset;
 
         private ScrollButton(int x, int y, int uOffset, OnPress onPress) {
-            super(x, y, 24, 11, Component.empty(), onPress, DEFAULT_NARRATION);
+            super(x, y, 18, 11, Component.empty(), onPress, DEFAULT_NARRATION);
             this.uOffset = uOffset;
         }
 
         @Override
         public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            int textureY = this.isHovered ? 0 : 12;
+            int textureY = this.isHovered ? 12 : 0;
             graphics.pose().pushPose();
             graphics.pose().translate(0.0, 0.0, 20.0);
-            graphics.blit(SELECTOR_BAR, this.getX(), this.getY(), this.uOffset, textureY, 24, 11);
+            graphics.blit(SELECTOR_BAR, this.getX(), this.getY(), this.uOffset, textureY, 18, 11);
             graphics.pose().popPose();
         }
     }

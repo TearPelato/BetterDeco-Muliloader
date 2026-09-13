@@ -196,7 +196,7 @@ public class CommonEveryCompatModule extends SimpleModule {
                         ModBlocks.OAK_CLOCK::get,
                         () -> VanillaWoodTypes.OAK,
                         w -> new WoodenClockBlock(w.toVanillaOrOak(),Utils.copyPropertySafe(w.planks)))
-                .copyParentDrop()
+                .dropSelf()
                 .defaultRecipe()
                 .addNonAnimatedTextureM(modRes("block/oak_clock"), modRes("block/oak_clock_m"))
                 .addTile(ModBlockEntities.WOODEN_CLOCK::get)
