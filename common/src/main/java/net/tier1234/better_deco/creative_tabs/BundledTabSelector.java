@@ -28,8 +28,7 @@ import java.util.function.Consumer;
  * @author BlackGear
  */
 public class BundledTabSelector {
-    private static final ResourceLocation SELECTOR_BAR =
-            Constants.id("textures/gui/tab_selector/interface.png");
+    private static final ResourceLocation SELECTOR_BAR = Constants.id("textures/gui/tab_selector/interface.png");
     private static final int VISIBLE_CATEGORIES = 5;
 
     private static BundledTabSelector instance;
@@ -48,7 +47,6 @@ public class BundledTabSelector {
 
     private List<BundledTabs> bundles = new ArrayList<>();
     private CreativeModeTab lastTab;
-    private int itemCount;
 
     private BundledTabSelector() {
 
@@ -126,8 +124,6 @@ public class BundledTabSelector {
     private void renderBackground(AbstractContainerScreen<?> screen, GuiGraphics graphics, int mouseX, int mouseY) {
         if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
             CreativeModeTab tab = CreativeModeInventoryScreenAccessor.getSelectedTab();
-            graphics.pose().pushPose();
-            graphics.pose().translate(0.0, 0.0, 0.0);
 
             if (this.isValidTab(tab)) {
                 graphics.blit(SELECTOR_BAR, this.guiLeft - 31, this.guiTop + 2, 5, 0, 27, 121);
@@ -135,7 +131,7 @@ public class BundledTabSelector {
             }
 
             if (this.lastTab != tab) {
-                if (this.hasSelectedBundle() && creativeScreen.getMenu().items.size() == this.itemCount) {
+                if (this.isValidTab(tab) && !this.isValidTab(this.lastTab)) {
                     this.bundles.forEach(BundledTabs::deselect);
                 }
 
@@ -183,36 +179,30 @@ public class BundledTabSelector {
     }
 
     private void updateItems(CreativeModeInventoryScreen screen) {
-        Set<ItemStack> seenItems = new HashSet<>();
-        LinkedHashSet<ItemStack> displayItems = new LinkedHashSet<>();
+        LinkedHashSet<ItemStack> display = new LinkedHashSet<>();
 
-        boolean hasSelected = this.bundles.stream().anyMatch(BundledTabs::isSelected);
-
-        ModCreativeTabs.BETTER_DECO.get().getDisplayItems().forEach(stack -> {
-            if (!hasSelected) {
-                if (!seenItems.contains(stack)) {
-                    displayItems.add(stack.copy());
-                    seenItems.add(stack);
-                }
-            } else {
-                this.bundles.stream()
-                        .filter(BundledTabs::isSelected)
-                        .forEach(bundle -> {
-                            if (!seenItems.contains(stack) && bundle.contains(stack)) {
-                                displayItems.add(stack.copy());
-                                seenItems.add(stack);
+        if (!this.hasSelectedBundle()) {
+            ModCreativeTabs.BETTER_DECO.get().getDisplayItems().forEach(stack -> display.add(stack.copy()));
+        } else {
+            this.bundles.stream()
+                    .filter(BundledTabs::isSelected)
+                    .forEach(bundle -> {
+                        for (ItemStack stack : bundle.getDisplayItems()) {
+                            if (!stack.isEmpty()) {
+                                display.add(stack.copy());
                             }
-                        });
-            }
-        });
+                        }
+                    });
+        }
 
         NonNullList<ItemStack> items = screen.getMenu().items;
         items.clear();
-        items.addAll(displayItems);
+        items.addAll(display);
         screen.getMenu().scrollTo(0);
     }
 
     private void updateWidgets() {
+        if (this.scrollUpButton == null || this.scrollDownButton == null) return;
         this.bundles.forEach(bundle -> bundle.setVisible(false));
 
         for (int i = this.scroll; i < this.scroll + VISIBLE_CATEGORIES && i < this.bundles.size(); i++) {

@@ -2,14 +2,12 @@ package net.tier1234.better_deco.creative_tabs;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.tier1234.better_deco.Constants;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -26,16 +24,16 @@ public class BundledTabs {
     private final Component tooltip;
     private final ItemStack icon;
     private final List<ItemStack> displayItems;
-    private final @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic;
+    private final @Nullable BiConsumer<HolderLookup.Provider, Output> provider;
     private boolean populated;
     private @Nullable BundledTabSelector.Tab tab;
     private boolean selected;
 
-    private BundledTabs(Component tooltip, ItemStack icon, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic) {
+    private BundledTabs(Component tooltip, ItemStack icon, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> provider) {
         this.tooltip = tooltip;
         this.icon = icon;
         this.displayItems = staticItems;
-        this.populationLogic = populationLogic;
+        this.provider = provider;
     }
 
     public static Builder builder() {
@@ -52,10 +50,6 @@ public class BundledTabs {
 
     public List<ItemStack> getDisplayItems() {
         return Collections.unmodifiableList(this.displayItems);
-    }
-
-    public boolean contains(ItemStack stack) {
-        return this.displayItems.stream().anyMatch(st-> ItemStack.isSameItemSameComponents(st,stack));
     }
 
     public void select() {
@@ -82,9 +76,10 @@ public class BundledTabs {
         if (this.tab != null) this.tab.setY(y);
     }
 
+
     public void populate(HolderLookup.Provider provider) {
-        if (this.populated || this.populationLogic == null) return;
-        this.populationLogic.accept(provider, new Output() {
+        if (this.populated || this.provider == null) return;
+        this.provider.accept(provider, new Output() {
             @Override
             public void accept(ItemLike item) {
                 displayItems.add(new ItemStack(item));
@@ -111,7 +106,7 @@ public class BundledTabs {
     public static class Builder {
         private Component title;
         private ItemStack icon;
-        private BiConsumer<HolderLookup.Provider, Output> populationLogic;
+        private BiConsumer<HolderLookup.Provider, Output> provider;
 
         public Builder title(Component title) {
             this.title = title;
@@ -128,15 +123,15 @@ public class BundledTabs {
             return this;
         }
 
-        public Builder displayItems(BiConsumer<HolderLookup.Provider, Output> logic) {
-            this.populationLogic = logic;
+        public Builder displayItems(BiConsumer<HolderLookup.Provider, Output> provider) {
+            this.provider = provider;
             return this;
         }
 
         public BundledTabs build() {
             if (this.title == null) this.title = Component.empty();
             if (this.icon == null) this.icon = ItemStack.EMPTY;
-            return new BundledTabs(this.title, this.icon, new ArrayList<>(), this.populationLogic);
+            return new BundledTabs(this.title, this.icon, new ArrayList<>(), this.provider);
         }
     }
 
