@@ -79,7 +79,4 @@ public class WorkbenchBlockEntity extends BlockEntity implements MenuProvider {
     }
 
 
-    public WorkbenchMenu.CustomData createCustomData() {
-        return new WorkbenchMenu.CustomData(this.selectedRecipe.get());
-    }
 }

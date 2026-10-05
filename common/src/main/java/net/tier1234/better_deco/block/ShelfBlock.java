@@ -2,7 +2,6 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -136,7 +135,7 @@ public class ShelfBlock extends FurnitureHorizontalBlock implements EntityBlock 
             if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
-                    FrameworkAPI.openMenuWithData(serverPlayer, shelfBlockEntity, shelfBlockEntity.createCustomData());
+                    player.openMenu(shelfBlockEntity);
                 }
             }
             return InteractionResult.sidedSuccess(level.isClientSide);

@@ -21,7 +21,7 @@ import net.tier1234.better_deco.registries.ModBlockEntities;
 
 public class KitchenDrawerBlockEntity extends BasicLootBlockEntity
 {
-    protected KitchenDrawerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
+    public KitchenDrawerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
     {
         super(type, pos, state);
     }

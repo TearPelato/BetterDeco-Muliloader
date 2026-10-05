@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.tearpelato.deco_lib.api.fluid.block_entity.FluidContainerBlockEntity;
-import net.tier1234.better_deco.Config;
+import net.tier1234.better_deco.ModConfigs;
 import net.tier1234.better_deco.block.BathBlock;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
@@ -16,7 +16,7 @@ import org.lwjgl.system.NonnullDefault;
 public class BathBlockEntity extends FluidContainerBlockEntity {
 
     public BathBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BATH.get(), pos, state, Config.SERVER.bathTube.capacity.get() * BUCKET_VOLUME);
+        super(ModBlockEntities.BATH.get(), pos, state, ModConfigs.capacityBath.get() * BUCKET_VOLUME);
     }
 
     public boolean addFluid(Fluid fluid) {

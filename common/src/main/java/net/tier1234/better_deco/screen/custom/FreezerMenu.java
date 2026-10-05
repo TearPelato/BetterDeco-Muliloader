@@ -1,10 +1,9 @@
 package net.tier1234.better_deco.screen.custom;
 
 
-import com.mrcrayfish.framework.api.menu.IMenuData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +11,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.BlockHitResult;
 import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModMenuTypes;
@@ -23,8 +23,8 @@ public class FreezerMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-    public FreezerMenu(int containerId, Inventory inv, FreezerMenu.FreezerData data) {
-       this(containerId, inv, inv.player.level().getBlockEntity(data.pos()), new SimpleContainerData(4));
+    public FreezerMenu(int containerId, Inventory inv, FriendlyByteBuf buf) {
+       this(containerId, inv, inv.player.level().getBlockEntity(buf.readBlockPos()), new SimpleContainerData(4));
     }
 
 
@@ -44,6 +44,13 @@ public class FreezerMenu extends AbstractContainerMenu {
         addDataSlots(data);
     }
 
+    private static FreezerBlockEntity findClientBlockEntity(Inventory inv) {
+        if (Minecraft.getInstance().hitResult instanceof BlockHitResult hit
+                && inv.player.level().getBlockEntity(hit.getBlockPos()) instanceof FreezerBlockEntity be) {
+            return be;
+        }
+        return null;
+    }
 
     public boolean isCrafting() {
         return data.get(0) > 0;
@@ -133,24 +140,4 @@ public class FreezerMenu extends AbstractContainerMenu {
         }
     }
 
-        public record FreezerData(BlockPos pos) implements IMenuData<FreezerMenu.FreezerData> {
-
-            public static final StreamCodec<RegistryFriendlyByteBuf, FreezerMenu.FreezerData> CODEC =
-                    StreamCodec.composite(
-                            BlockPos.STREAM_CODEC,
-                            FreezerMenu.FreezerData::pos,
-                            FreezerMenu.FreezerData::new
-                    );
-
-
-            public FreezerMenu.FreezerData self() {
-                return this;
-            }
-
-            @Override
-            public StreamCodec<RegistryFriendlyByteBuf, FreezerMenu.FreezerData> codec() {
-                return CODEC;
-            }
-        }
-
-    }
+}

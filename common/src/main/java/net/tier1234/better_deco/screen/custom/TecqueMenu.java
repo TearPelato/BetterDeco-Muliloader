@@ -1,10 +1,6 @@
 package net.tier1234.better_deco.screen.custom;
 
-import com.mrcrayfish.framework.api.menu.IMenuData;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -14,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tier1234.better_deco.blockentity.TecqueBlockEntity;
-import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 
 public class TecqueMenu extends AbstractContainerMenu {
@@ -22,8 +17,8 @@ public class TecqueMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerLevelAccess access;
 
-    public TecqueMenu(int containerId, Inventory inv, TecqueData data) {
-        this(containerId, inv, inv.player.level().getBlockEntity(data.pos()));
+    public TecqueMenu(int containerId, Inventory inv) {
+        this(containerId, inv, inv.player.level().getBlockEntity(BlockPos.ZERO));
     }
 
     public TecqueMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
@@ -37,13 +32,7 @@ public class TecqueMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.blockEntity.inventory, 0, 80, 21));
     }
 
-    // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
-    // must assign a slot number to each of the slots used by the GUI.
-    // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
-    // Each time we add a Slot to the container, it automatically increases the slotIndex, which means
-    //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
-    //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
-    //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
+
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -52,8 +41,7 @@ public class TecqueMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 1;
 
 
     @Override
@@ -109,23 +97,4 @@ public class TecqueMenu extends AbstractContainerMenu {
         }
     }
 
-    public record TecqueData(BlockPos pos) implements IMenuData<TecqueData> {
-
-        public static final StreamCodec<RegistryFriendlyByteBuf, TecqueData> CODEC =
-                StreamCodec.composite(
-                        BlockPos.STREAM_CODEC,
-                        TecqueData::pos,
-                        TecqueData::new
-                );
-
-
-        public TecqueData self() {
-            return this;
-        }
-
-        @Override
-        public StreamCodec<RegistryFriendlyByteBuf, TecqueData> codec() {
-            return CODEC;
-        }
-    }
 }

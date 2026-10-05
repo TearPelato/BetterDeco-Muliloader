@@ -11,7 +11,6 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.tier1234.better_deco.block.ShelfBlock;
 import net.tier1234.better_deco.blockentity.ShelfBlockEntity;
-import net.tier1234.better_deco.registries.ModInventory;
 
 public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockEntity> {
     private static final float U1 = 1f / 16f;

@@ -1,16 +1,15 @@
 package net.tier1234.better_deco.registries;
 
-import com.mrcrayfish.framework.api.registry.RegistryContainer;
-import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.tearpelato.craftcorelib.api.registry.ObjectRegistries;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.blockentity.*;
 
-@RegistryContainer
+
 public class ModBlockEntities {
-    public static final RegistryEntry<BlockEntityType<KitchenDrawerBlockEntity>> CUSTOM_KITCHEN_DRAWER_BE =
-            RegistryEntry.blockEntity(Constants.id("kitchen_drawer"), KitchenDrawerBlockEntity::new, () -> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<KitchenDrawerBlockEntity>> CUSTOM_KITCHEN_DRAWER_BE =
+            ObjectRegistries.registerBlockEntity(Constants.id("kitchen_drawer"), KitchenDrawerBlockEntity::new, () -> new Block[]{
 
                     ModBlocks.OAK_KITCHEN_DRAWER.get(),
                     ModBlocks.SPRUCE_KITCHEN_DRAWER.get(),
@@ -47,8 +46,8 @@ public class ModBlockEntities {
 
 
 
-    public static final RegistryEntry<BlockEntityType<CabinetBlockEntity>> CUSTOM_CABINET_BE =
-            RegistryEntry.blockEntity(Constants.id("cabinet"), CabinetBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<CabinetBlockEntity>> CUSTOM_CABINET_BE =
+            ObjectRegistries.registerBlockEntity(Constants.id("cabinet"), CabinetBlockEntity::new, ()-> new Block[]
                                             {
                                                     ModBlocks.OAK_CABINET.get(),
                                                     ModBlocks.SPRUCE_CABINET.get(),
@@ -85,8 +84,8 @@ public class ModBlockEntities {
             );
 
 
-    public static final RegistryEntry<BlockEntityType<BedsideCabinetBlockEntity>> BEDSIDE_CABINET =
-            RegistryEntry.blockEntity(Constants.id("bedside_cabinet"), BedsideCabinetBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<BedsideCabinetBlockEntity>> BEDSIDE_CABINET =
+            ObjectRegistries.registerBlockEntity(Constants.id("bedside_cabinet"), BedsideCabinetBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.OAK_BEDSIDE.get(),
                             ModBlocks.SPRUCE_BEDSIDE.get(),
@@ -105,8 +104,8 @@ public class ModBlockEntities {
 
 
 
-    public static final RegistryEntry<BlockEntityType<KitchenSinkBlockEntity>> KITCHEN_SINK =
-            RegistryEntry.blockEntity(Constants.id("kitchen_sink"), KitchenSinkBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<KitchenSinkBlockEntity>> KITCHEN_SINK =
+            ObjectRegistries.registerBlockEntity(Constants.id("kitchen_sink"), KitchenSinkBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.OAK_SINK.get(),
                             ModBlocks.SPRUCE_SINK.get(),
@@ -139,8 +138,8 @@ public class ModBlockEntities {
 
             );
 
-    public static final RegistryEntry<BlockEntityType<TecqueBlockEntity>> GLASS_TECQUE =
-            RegistryEntry.blockEntity(Constants.id("glass_tecque"), TecqueBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<TecqueBlockEntity>> GLASS_TECQUE =
+            ObjectRegistries.registerBlockEntity(Constants.id("glass_tecque"), TecqueBlockEntity::new, ()-> new Block[]
                             {
                                     ModBlocks.SPRUCE_GLASS_TECQUE.get(),
                                     ModBlocks.ACACIA_GLASS_TECQUE.get(),
@@ -158,8 +157,8 @@ public class ModBlockEntities {
             );
 
 
-    public static final RegistryEntry<BlockEntityType<CrateBlockEntity>> STORAGE_CRATE =
-            RegistryEntry.blockEntity(Constants.id("crate"), CrateBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<CrateBlockEntity>> STORAGE_CRATE =
+            ObjectRegistries.registerBlockEntity(Constants.id("crate"), CrateBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.OAK_CRATE.get(),
                             ModBlocks.SPRUCE_CRATE.get(),
@@ -177,8 +176,8 @@ public class ModBlockEntities {
             );
 
 
-    public static final RegistryEntry<BlockEntityType<ShelfBlockEntity>> SHELF_BE =
-            RegistryEntry.blockEntity(Constants.id("shelf"), ShelfBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<ShelfBlockEntity>> SHELF_BE =
+            ObjectRegistries.registerBlockEntity(Constants.id("shelf"), ShelfBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.ACACIA_SHELF.get(),
                             ModBlocks.OAK_SHELF.get(),
@@ -194,8 +193,8 @@ public class ModBlockEntities {
                     }
             );
 
-    public static final RegistryEntry<BlockEntityType<DigitalClockBlockEntity>> DIGITAL_CLOCK =
-            RegistryEntry.blockEntity(Constants.id("digital_clock"), DigitalClockBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<DigitalClockBlockEntity>> DIGITAL_CLOCK =
+            ObjectRegistries.registerBlockEntity(Constants.id("digital_clock"), DigitalClockBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.RED_DIGITAL_CLOCK.get(),
                             ModBlocks.ORANGE_DIGITAL_CLOCK.get(),
@@ -218,8 +217,8 @@ public class ModBlockEntities {
             );
 
 
-    public static final RegistryEntry<BlockEntityType<OvenBlockEntity>> OVEN =
-            RegistryEntry.blockEntity(Constants.id("oven"), OvenBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<OvenBlockEntity>> OVEN =
+            ObjectRegistries.registerBlockEntity(Constants.id("oven"), OvenBlockEntity::new, ()-> new Block[]
                     {       ModBlocks.OAK_OVEN.get(),
                             ModBlocks.SPRUCE_OVEN.get(),
                             ModBlocks.BIRCH_OVEN.get(),
@@ -254,8 +253,8 @@ public class ModBlockEntities {
 
             );
 
-    public static final RegistryEntry<BlockEntityType<MicrowaveBlockEntity>> MICROWAVE =
-            RegistryEntry.blockEntity(Constants.id("microwave"),MicrowaveBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<MicrowaveBlockEntity>> MICROWAVE =
+            ObjectRegistries.registerBlockEntity(Constants.id("microwave"),MicrowaveBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.LIGHT_MICROWAVE.get(),
                             ModBlocks.DARK_MICROWAVE.get()}
@@ -263,8 +262,8 @@ public class ModBlockEntities {
 
             );
 
-    public static final RegistryEntry<BlockEntityType<DeskCabinetBlockEntity>> DESK_CABINET =
-            RegistryEntry.blockEntity(Constants.id("desk_cabinet"),DeskCabinetBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<DeskCabinetBlockEntity>> DESK_CABINET =
+            ObjectRegistries.registerBlockEntity(Constants.id("desk_cabinet"),DeskCabinetBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.OAK_DESK_CABINET.get(),
                             ModBlocks.SPRUCE_DESK_CABINET.get(),
@@ -280,8 +279,8 @@ public class ModBlockEntities {
 
             );
 
-    public static final RegistryEntry<BlockEntityType<FridgeBlockEntity>> FRIDGE =
-            RegistryEntry.blockEntity(Constants.id("fridge"), FridgeBlockEntity::new, ()-> new Block[]
+    public static final ObjectRegistries<BlockEntityType<FridgeBlockEntity>> FRIDGE =
+            ObjectRegistries.registerBlockEntity(Constants.id("fridge"), FridgeBlockEntity::new, ()-> new Block[]
                     {
                             ModBlocks.FRIDGE_LIGHT.get(),
                             ModBlocks.FRIDGE_DARK.get()}
@@ -289,19 +288,19 @@ public class ModBlockEntities {
 
 
 
-    public static final RegistryEntry<BlockEntityType<FreezerBlockEntity>> FREEZER =
-            RegistryEntry.blockEntity(Constants.id("freezer"), FreezerBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<FreezerBlockEntity>> FREEZER =
+            ObjectRegistries.registerBlockEntity(Constants.id("freezer"), FreezerBlockEntity::new, ()-> new Block[]{
                     ModBlocks.FRIDGE_LIGHT.get(),
                     ModBlocks.FRIDGE_DARK.get()}
             );
 
-    public static final RegistryEntry<BlockEntityType<WorkbenchBlockEntity>> FURNI_WORKBENCH =
-            RegistryEntry.blockEntity(Constants.id("workbench"), WorkbenchBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<WorkbenchBlockEntity>> FURNI_WORKBENCH =
+            ObjectRegistries.registerBlockEntity(Constants.id("workbench"), WorkbenchBlockEntity::new, ()-> new Block[]{
                    ModBlocks.WORKBENCH.get()
                     });
 
-    public static final RegistryEntry<BlockEntityType<CuttingBoardBlockEntity>> CUTTING_BOARD =
-            RegistryEntry.blockEntity(Constants.id("cutting_board"), CuttingBoardBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<CuttingBoardBlockEntity>> CUTTING_BOARD =
+            ObjectRegistries.registerBlockEntity(Constants.id("cutting_board"), CuttingBoardBlockEntity::new, ()-> new Block[]{
                     ModBlocks.OAK_CUTTING_BOARD.get(),
                     ModBlocks.SPRUCE_CUTTING_BOARD.get(),
                     ModBlocks.BIRCH_CUTTING_BOARD.get(),
@@ -315,8 +314,8 @@ public class ModBlockEntities {
                     ModBlocks.WARPED_CUTTING_BOARD.get()
             });
 
-    public static final RegistryEntry<BlockEntityType<JarBlockEntity>> JAR =
-            RegistryEntry.blockEntity(Constants.id("jar"), JarBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<JarBlockEntity>> JAR =
+            ObjectRegistries.registerBlockEntity(Constants.id("jar"), JarBlockEntity::new, ()-> new Block[]{
                     ModBlocks.OAK_JAR.get(),
                     ModBlocks.SPRUCE_JAR.get(),
                     ModBlocks.BIRCH_JAR.get(),
@@ -330,8 +329,8 @@ public class ModBlockEntities {
                     ModBlocks.WARPED_JAR.get()
             });
 
-    public static final RegistryEntry<BlockEntityType<BasinBlockEntity>> BASIN =
-            RegistryEntry.blockEntity(Constants.id("basin"), BasinBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<BasinBlockEntity>> BASIN =
+            ObjectRegistries.registerBlockEntity(Constants.id("basin"), BasinBlockEntity::new, ()-> new Block[]{
                     ModBlocks.OAK_BASIN.get(),
                     ModBlocks.SPRUCE_BASIN.get(),
                     ModBlocks.BIRCH_BASIN.get(),
@@ -346,8 +345,8 @@ public class ModBlockEntities {
 
             });
 
-    public static final RegistryEntry<BlockEntityType<ToiletBlockEntity>> TOILET =
-            RegistryEntry.blockEntity(Constants.id("toilet"), ToiletBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<ToiletBlockEntity>> TOILET =
+            ObjectRegistries.registerBlockEntity(Constants.id("toilet"), ToiletBlockEntity::new, ()-> new Block[]{
                     ModBlocks.OAK_TOILET.get(),
                     ModBlocks.SPRUCE_TOILET.get(),
                     ModBlocks.BIRCH_TOILET.get(),
@@ -362,8 +361,8 @@ public class ModBlockEntities {
 
             });
 
-    public static final RegistryEntry<BlockEntityType<BathBlockEntity>> BATH =
-            RegistryEntry.blockEntity(Constants.id("bath"), BathBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<BathBlockEntity>> BATH =
+            ObjectRegistries.registerBlockEntity(Constants.id("bath"), BathBlockEntity::new, ()-> new Block[]{
                     ModBlocks.OAK_BATH.get(),
                     ModBlocks.SPRUCE_BATH.get(),
                     ModBlocks.BIRCH_BATH.get(),
@@ -379,8 +378,8 @@ public class ModBlockEntities {
             });
 
 
-    public static final RegistryEntry<BlockEntityType<WoodenClockBlockEntity>> WOODEN_CLOCK =
-            RegistryEntry.blockEntity(Constants.id("wooden_clock"), WoodenClockBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<WoodenClockBlockEntity>> WOODEN_CLOCK =
+            ObjectRegistries.registerBlockEntity(Constants.id("wooden_clock"), WoodenClockBlockEntity::new, ()-> new Block[]{
                     ModBlocks.OAK_CLOCK.get(),
                     ModBlocks.SPRUCE_CLOCK.get(),
                     ModBlocks.BIRCH_CLOCK.get(),
@@ -395,11 +394,13 @@ public class ModBlockEntities {
 
             });
 
-    public static final RegistryEntry<BlockEntityType<ToasterBlockEntity>> TOASTER =
-            RegistryEntry.blockEntity(Constants.id("toaster"), ToasterBlockEntity::new, ()-> new Block[]{
+    public static final ObjectRegistries<BlockEntityType<ToasterBlockEntity>> TOASTER =
+            ObjectRegistries.registerBlockEntity(Constants.id("toaster"), ToasterBlockEntity::new, ()-> new Block[]{
                     ModBlocks.TOASTER_LIGHT.get(),
                     ModBlocks.TOASTER_DARK.get()
 
 
             });
+
+    public static void init(){}
 }

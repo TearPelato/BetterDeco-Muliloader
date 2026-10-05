@@ -22,9 +22,9 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tearpelato.deco_lib.api.block_entity.BasicLootBlockEntity;
+import net.tier1234.better_deco.recipe.FreezerRecipe;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
-import net.tier1234.better_deco.recipe.FreezerRecipe;
 import net.tier1234.better_deco.screen.custom.FreezerMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -245,9 +245,6 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public FreezerMenu.FreezerData createCustomData() {
-        return new FreezerMenu.FreezerData(this.getBlockPos());
-    }
 
     public enum FreezerFuelValues {
         ICE(300, Items.ICE),

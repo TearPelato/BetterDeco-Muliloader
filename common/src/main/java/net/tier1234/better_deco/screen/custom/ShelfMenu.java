@@ -1,10 +1,6 @@
 package net.tier1234.better_deco.screen.custom;
 
-import com.mrcrayfish.framework.api.menu.IMenuData;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -13,10 +9,10 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.tier1234.better_deco.blockentity.OvenBlockEntity;
-import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.blockentity.ShelfBlockEntity;
 import net.tier1234.better_deco.registries.ModMenuTypes;
+
+import java.util.Objects;
 
 public class ShelfMenu extends AbstractContainerMenu {
     public final ShelfBlockEntity blockEntity;
@@ -24,8 +20,8 @@ public class ShelfMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
 
 
-    public ShelfMenu(int containerId, Inventory inv, ShelfMenu.CustomData data) {
-        this(containerId, inv, inv.player.level().getBlockEntity(data.pos()));
+    public ShelfMenu(int containerId, Inventory inv) {
+        this(containerId, inv, Objects.requireNonNull(inv.player.level().getBlockEntity(BlockPos.ZERO)));
     }
 
     public ShelfMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
@@ -107,18 +103,4 @@ public class ShelfMenu extends AbstractContainerMenu {
         }
     }
 
-    public record CustomData(BlockPos pos) implements IMenuData {
-
-        public static final StreamCodec<RegistryFriendlyByteBuf, ShelfMenu.CustomData> CODEC =
-                StreamCodec.composite(
-                        BlockPos.STREAM_CODEC,
-                        ShelfMenu.CustomData::pos,
-                        ShelfMenu.CustomData::new
-                );
-
-        @Override
-        public StreamCodec codec() {
-            return CODEC;
-        }
-    }
 }

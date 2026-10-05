@@ -4,14 +4,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.tearpelato.deco_lib.api.fluid.block_entity.FluidContainerBlockEntity;
-import net.tier1234.better_deco.Config;
+import net.tier1234.better_deco.ModConfigs;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.lwjgl.system.NonnullDefault;
 
 @NonnullDefault
 public class ToiletBlockEntity extends FluidContainerBlockEntity {
     public ToiletBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.TOILET.get(), pos, blockState, Config.SERVER.toilet.capacity.get() * BUCKET_VOLUME);
+        super(ModBlockEntities.TOILET.get(), pos, blockState, ModConfigs.capacityToilet.get() * BUCKET_VOLUME);
     }
 
     public boolean addFluid(Fluid fluid) {

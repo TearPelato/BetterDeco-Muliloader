@@ -22,9 +22,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tier1234.better_deco.recipe.OvenRecipe;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
-import net.tier1234.better_deco.recipe.OvenRecipe;
 import net.tier1234.better_deco.screen.custom.OvenMenu;
 import org.jetbrains.annotations.Nullable;
 
@@ -213,7 +213,5 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public OvenMenu.CustomData getData() {
-        return new OvenMenu.CustomData(this.getBlockPos(), this.progress[0], this.progress[1], this.progress[2]);
-    }
+
 }

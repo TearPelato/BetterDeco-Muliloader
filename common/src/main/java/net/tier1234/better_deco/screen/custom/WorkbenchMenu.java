@@ -1,14 +1,10 @@
 package net.tier1234.better_deco.screen.custom;
 
-import com.mrcrayfish.framework.api.menu.IMenuData;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.SoundType;
 import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.network.message.SyncCraftableRecipesPayload;
@@ -58,9 +53,9 @@ public class WorkbenchMenu extends AbstractContainerMenu {
             ModTags.Items.OUTDOOR
     );
 
-    public WorkbenchMenu(int id, Inventory inventory, CustomData data) {
+    public WorkbenchMenu(int id, Inventory inventory) {
         this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
-        this.selectedRecipes.set(data.selectedRecipe);
+        this.selectedRecipes.set(0);
     }
 
     public WorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos, SimpleContainer outputContainer) {
@@ -317,18 +312,4 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         return index != -1 ? this.recipes.get(index) : null;
     }
 
-
-    public record CustomData(int selectedRecipe) implements IMenuData<CustomData> {
-
-         public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> STREAM_CODEC = StreamCodec.composite(
-                 ByteBufCodecs.VAR_INT,
-                 CustomData::selectedRecipe,
-                 CustomData::new
-
-         );
-        @Override
-        public StreamCodec<RegistryFriendlyByteBuf, CustomData> codec() {
-            return STREAM_CODEC;
-        }
-    }
 }

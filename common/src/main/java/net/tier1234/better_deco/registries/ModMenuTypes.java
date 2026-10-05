@@ -1,33 +1,31 @@
 package net.tier1234.better_deco.registries;
 
-import com.mrcrayfish.framework.api.registry.RegistryContainer;
-import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.world.inventory.MenuType;
+import net.tearpelato.craftcorelib.api.registry.ObjectRegistries;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.screen.custom.*;
 
-@RegistryContainer
 public class ModMenuTypes {
 
 
-    public static final RegistryEntry<MenuType<TecqueMenu>> TECQUE_MENU =
-            RegistryEntry.menuTypeWithData(Constants.id("tecque_menu"),
-                    TecqueMenu.TecqueData.CODEC, TecqueMenu::new);
+    public static final ObjectRegistries<MenuType<TecqueMenu>> TECQUE_MENU =
+            ObjectRegistries.registerMenu(Constants.id("tecque_menu"), TecqueMenu::new);
 
-    public static final RegistryEntry<MenuType<ShelfMenu>> SHELF_MENU =
-            RegistryEntry.menuTypeWithData(Constants.id("shelf_menu"), ShelfMenu.CustomData.CODEC, ShelfMenu::new);
+    public static final ObjectRegistries<MenuType<ShelfMenu>> SHELF_MENU =
+            ObjectRegistries.registerMenu(Constants.id("shelf_menu"), ShelfMenu::new);
 
-    public static final RegistryEntry<MenuType<OvenMenu>> OVEN_MENU =
-            RegistryEntry.menuTypeWithData(Constants.id("oven_menu"), OvenMenu.CustomData.CODEC, OvenMenu::new);
+    public static final ObjectRegistries<MenuType<OvenMenu>> OVEN_MENU =
+            ObjectRegistries.registerMenu(Constants.id("oven_menu"), OvenMenu::new);
 
-    public static final RegistryEntry<MenuType<MicrowaveMenu>> MICROWAVE_MENU =
-            RegistryEntry.menuTypeWithData(Constants.id("microwave_menu"), MicrowaveMenu.CustomData.CODEC, MicrowaveMenu::new);
+    public static final ObjectRegistries<MenuType<MicrowaveMenu>> MICROWAVE_MENU =
+            ObjectRegistries.registerMenu(Constants.id("microwave_menu"), MicrowaveMenu::new);
 
-    public static final RegistryEntry<MenuType<FreezerMenu>> FREEZER_MENU =
-            RegistryEntry.menuTypeWithData(Constants.id("freezer_menu"), FreezerMenu.FreezerData.CODEC, FreezerMenu::new);
+    public static final ObjectRegistries<MenuType<FreezerMenu>> FREEZER_MENU =
+            ObjectRegistries.registerMenuData(Constants.id("freezer_menu"), FreezerMenu::new);
 
-    public static final RegistryEntry<MenuType<WorkbenchMenu>> FURNI_WORKBENCH =
-            RegistryEntry.menuTypeWithData(Constants.id("workbench"), WorkbenchMenu.CustomData.STREAM_CODEC, WorkbenchMenu::new);
+    public static final ObjectRegistries<MenuType<WorkbenchMenu>> FURNI_WORKBENCH =
+            ObjectRegistries.registerMenu(Constants.id("workbench"), WorkbenchMenu::new);
 
+    public static void init() {}
     
 }

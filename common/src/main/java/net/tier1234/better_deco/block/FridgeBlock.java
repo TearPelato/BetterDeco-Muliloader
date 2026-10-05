@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,6 +37,7 @@ import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.type.MetalType;
 import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 import net.tier1234.better_deco.blockentity.FridgeBlockEntity;
+import net.tier1234.better_deco.platform.Services;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
@@ -107,8 +107,8 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
                 return InteractionResult.CONSUME;
             }
         } else if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {
-            if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity) {
-                FrameworkAPI.openMenuWithData((ServerPlayer) player, freezerBlockEntity, freezerBlockEntity.createCustomData());
+            if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity && player instanceof ServerPlayer serverPlayer) {
+                Services.REGISTRIES.openMenuWithPos(serverPlayer, freezerBlockEntity, pos);
             }
         }
 

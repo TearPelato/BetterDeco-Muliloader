@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -141,7 +140,7 @@ public class TecqueBlock extends FurnitureHorizontalEntityBlock {
             if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof TecqueBlockEntity tecqueBlockEntity) {
-                    FrameworkAPI.openMenuWithData(serverPlayer, tecqueBlockEntity, tecqueBlockEntity.createCustomData());
+                    player.openMenu(tecqueBlockEntity);
                 }
             }
             return InteractionResult.sidedSuccess(level.isClientSide);

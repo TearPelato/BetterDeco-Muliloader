@@ -205,7 +205,4 @@ public class MicrowaveBlockEntity extends BasicLootBlockEntity {
         return itemHandler.getItem(0);
     }
 
-    public MicrowaveMenu.CustomData getData() {
-        return new MicrowaveMenu.CustomData(this.getBlockPos(), this.progress);
-    }
 }
