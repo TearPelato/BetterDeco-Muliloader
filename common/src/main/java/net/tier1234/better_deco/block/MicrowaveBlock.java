@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.type.MetalType;
@@ -108,8 +110,8 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
                                               Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof MicrowaveBlockEntity microwaveBlockEntity) {
-                pPlayer.openMenu(microwaveBlockEntity);
+            if (entity instanceof MicrowaveBlockEntity microwaveBlockEntity && pPlayer instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer, microwaveBlockEntity,pPos);
             }
         }
         return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());

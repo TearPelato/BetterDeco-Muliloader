@@ -32,12 +32,12 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.type.MetalType;
 import net.tier1234.better_deco.blockentity.FreezerBlockEntity;
 import net.tier1234.better_deco.blockentity.FridgeBlockEntity;
-import net.tier1234.better_deco.platform.Services;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
@@ -108,7 +108,7 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
             }
         } else if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {
             if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity && player instanceof ServerPlayer serverPlayer) {
-                Services.REGISTRIES.openMenuWithPos(serverPlayer, freezerBlockEntity, pos);
+                CraftCoreLIBConstants.openMenuData(serverPlayer, freezerBlockEntity, pos);
             }
         }
 

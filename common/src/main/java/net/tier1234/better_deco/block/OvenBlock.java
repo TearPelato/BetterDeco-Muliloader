@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.blockentity.OvenBlockEntity;
@@ -115,8 +117,8 @@ public class OvenBlock extends FurnitureHorizontalBlock implements EntityBlock
                                               Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof OvenBlockEntity ovenBlockEntity) {
-                player.openMenu(ovenBlockEntity);
+            if (entity instanceof OvenBlockEntity ovenBlockEntity && player instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer, ovenBlockEntity,pos);
             }
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide());

@@ -45,7 +45,7 @@ public class ModConfigs {
 
 
     public static void init() {
-        ConfigManager.register(Constants.MOD_ID, FLUID, SINK,BASIN,BATH,TOILET);
+        ConfigManager.register(Constants.MOD_ID, FLUID);
     }
 
 }

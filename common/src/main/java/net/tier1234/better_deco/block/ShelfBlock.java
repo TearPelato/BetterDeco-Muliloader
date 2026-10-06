@@ -28,6 +28,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.blockentity.ShelfBlockEntity;
@@ -135,7 +136,7 @@ public class ShelfBlock extends FurnitureHorizontalBlock implements EntityBlock 
             if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
-                    player.openMenu(shelfBlockEntity);
+                    CraftCoreLIBConstants.openMenuData(serverPlayer, shelfBlockEntity,pos);
                 }
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
