@@ -34,9 +34,9 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies."${mod_id}"]]
-modId = "framework"
+modId = "craftcorelib"
 type =  "required"
-versionRange = "[0.13.11,)"
+versionRange = "[1.0.10,)"
 ordering = "NONE"
 side = "BOTH"
 

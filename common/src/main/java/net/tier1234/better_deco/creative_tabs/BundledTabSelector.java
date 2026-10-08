@@ -1,27 +1,28 @@
 package net.tier1234.better_deco.creative_tabs;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mrcrayfish.framework.api.event.ClientConnectionEvents;
-import com.mrcrayfish.framework.api.event.ScreenEvents;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.tearpelato.craftcorelib.api.event.screen.ScreenRenderEvent;
+import net.tearpelato.craftcorelib.mixin.ScreenAccessor;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.mixin.access.CreativeModeInventoryScreenAccessor;
 import net.tier1234.better_deco.platform.Services;
 import net.tier1234.better_deco.registries.ModBundledTabs;
 import net.tier1234.better_deco.registries.ModCreativeTabs;
 
-import java.util.*;
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  * BundledTabs from VanillaBackport, used with BlackGear's permission.
@@ -52,48 +53,31 @@ public class BundledTabSelector {
 
         this.bundles = ModBundledTabs.getFilters();
 
-        ScreenEvents.MODIFY_WIDGETS.register((screen, widgets, add, remove) -> {
-            if(screen instanceof CreativeModeInventoryScreen creativeScreen) {
+        ScreenRenderEvent.INIT.register(screen -> {
+            if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
                 this.guiLeft = Services.CLIENT.getGuiLeft(creativeScreen);
                 this.guiTop = Services.CLIENT.getGuiTop(creativeScreen);
                 this.bundles.forEach(BundledTabs::deselect);
-                this.injectWidgets(creativeScreen, add);
+                this.injectWidgets(creativeScreen);
+            }
+        });
+
+        ScreenRenderEvent.ON_RENDER_BACKGROUND.register((screen, graphics, mouseX, mouseY) -> {
+            if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
+                this.renderBackground(creativeScreen, graphics);
             }
         });
 
 
-        ScreenEvents.CLOSED.register(screen -> {
+        ScreenRenderEvent.SCROLL.register(this::onScroll);
+
+        ScreenRenderEvent.ON_CLOSE.register(screen -> {
             if (screen instanceof CreativeModeInventoryScreen) {
-                this.bundles.forEach(bundledTabs -> {
-                    this.scrollUpButton = null;
-                    this.scrollDownButton = null;
-                    bundledTabs.setVisible(false);
-
-                });
+                this.scrollUpButton = null;
+                this.scrollDownButton = null;
+                this.lastTab = null;
+                this.bundles.forEach(bundle -> bundle.setVisible(false));
             }
-        });
-
-        ScreenEvents.AFTER_DRAW.register((screen,graphics,mouseX,mouseY,partialTicks)->{
-            if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
-                CreativeModeTab tab = CreativeModeInventoryScreenAccessor.getSelectedTab();
-                if (this.lastTab != tab) {
-                    this.onSwitchCreativeTab(tab,creativeScreen);
-                    this.lastTab = tab;
-                }
-
-            }
-        });
-
-        ScreenEvents.AFTER_DRAW_CONTAINER_BACKGROUND.register((screen,graphics,mouseX,mouseY)->{
-            if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
-                this.renderBackground(screen,graphics,mouseX,mouseY);
-            }
-        });
-
-        ClientConnectionEvents.LOGGING_OUT.register(player -> {
-            this.bundles.forEach(category -> {
-                category.setVisible(false);
-            });
         });
 
 
@@ -121,7 +105,7 @@ public class BundledTabSelector {
     }
 
 
-    private void renderBackground(AbstractContainerScreen<?> screen, GuiGraphics graphics, int mouseX, int mouseY) {
+    private void renderBackground(Screen screen, GuiGraphics graphics) {
         if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
             CreativeModeTab tab = CreativeModeInventoryScreenAccessor.getSelectedTab();
 
@@ -143,7 +127,9 @@ public class BundledTabSelector {
         }
     }
 
-    private void injectWidgets(CreativeModeInventoryScreen screen, Consumer<AbstractWidget> widgets) {
+    private void injectWidgets(CreativeModeInventoryScreen screen) {
+       ScreenAccessor widgets = (ScreenAccessor) screen;
+
         this.bundles.forEach(bundle -> {
             Tab tab = new Tab(this.guiLeft - 26, this.guiTop + 7, bundle, button -> {
                 if (bundle.isSelected()) {
@@ -156,7 +142,7 @@ public class BundledTabSelector {
             });
 
             tab.visible = false;
-            widgets.accept(tab);
+            widgets.callAddRenderableWidget(tab);
         });
 
         this.scrollUpButton = new ScrollButton(this.guiLeft - 27, this.guiTop + 6, 34, button -> {
@@ -168,8 +154,8 @@ public class BundledTabSelector {
             this.updateWidgets();
         });
 
-        widgets.accept(this.scrollUpButton);
-        widgets.accept(this.scrollDownButton);
+        widgets.callAddRenderableWidget(this.scrollUpButton);
+        widgets.callAddRenderableWidget(this.scrollDownButton);
 
         this.onSwitchCreativeTab(CreativeModeInventoryScreenAccessor.getSelectedTab(), screen);
     }

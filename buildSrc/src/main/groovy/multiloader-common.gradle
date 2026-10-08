@@ -52,19 +52,6 @@ repositories {
         url = 'https://maven.liukrast.net/'
     }
 
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "MrCrayfish GitHub"
-                url = uri("https://maven.pkg.github.com/MrCrayfish/Maven")
-                credentials {
-                    username = getGprUser()
-                    password = getGprKey()
-                }
-            }
-        }
-        filter { includeGroup("com.mrcrayfish") }
-    }
     maven {
         url "https://registry.somethingcatchy.net/repository/maven-releases/"
     }
@@ -122,7 +109,7 @@ processResources {
                        'neoforge_loader_version_range': neoforge_loader_version_range,
                        'credits'                      : credits,
                        'java_version'                 : java_version,
-                       'framework_version'            : framework_version,
+                       'craftcorelib_version'        : craftcorelib_version,
                        'deco_lib_version'             : deco_lib_version
 
 
