@@ -1,7 +1,7 @@
 package net.tier1234.better_deco.screen.custom;
 
 
-import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -20,8 +20,8 @@ public class OvenMenu extends AbstractContainerMenu {
     private final ContainerData data;
     private final ContainerLevelAccess access;
 
-    public OvenMenu(int pContainerId, Inventory inv) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(BlockPos.ZERO), new SimpleContainerData(5));
+    public OvenMenu(int pContainerId, Inventory inv, FriendlyByteBuf data) {
+        this(pContainerId, inv, inv.player.level().getBlockEntity(data.readBlockPos()), new SimpleContainerData(5));
     }
 
     public OvenMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {

@@ -9,16 +9,16 @@ public class ModMenuTypes {
 
 
     public static final ObjectRegistries<MenuType<TecqueMenu>> TECQUE_MENU =
-            ObjectRegistries.registerMenu(Constants.id("tecque_menu"), TecqueMenu::new);
+            ObjectRegistries.registerMenuData(Constants.id("tecque_menu"), TecqueMenu::new);
 
     public static final ObjectRegistries<MenuType<ShelfMenu>> SHELF_MENU =
-            ObjectRegistries.registerMenu(Constants.id("shelf_menu"), ShelfMenu::new);
+            ObjectRegistries.registerMenuData(Constants.id("shelf_menu"), ShelfMenu::new);
 
     public static final ObjectRegistries<MenuType<OvenMenu>> OVEN_MENU =
-            ObjectRegistries.registerMenu(Constants.id("oven_menu"), OvenMenu::new);
+            ObjectRegistries.registerMenuData(Constants.id("oven_menu"), OvenMenu::new);
 
     public static final ObjectRegistries<MenuType<MicrowaveMenu>> MICROWAVE_MENU =
-            ObjectRegistries.registerMenu(Constants.id("microwave_menu"), MicrowaveMenu::new);
+            ObjectRegistries.registerMenuData(Constants.id("microwave_menu"), MicrowaveMenu::new);
 
     public static final ObjectRegistries<MenuType<FreezerMenu>> FREEZER_MENU =
             ObjectRegistries.registerMenuData(Constants.id("freezer_menu"), FreezerMenu::new);

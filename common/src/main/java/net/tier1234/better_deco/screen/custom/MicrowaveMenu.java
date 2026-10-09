@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.screen.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -16,9 +17,9 @@ public class MicrowaveMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-    public MicrowaveMenu(int pContainerId, Inventory inv) {
+    public MicrowaveMenu(int pContainerId, Inventory inv, FriendlyByteBuf  data) {
         this(pContainerId, inv,
-                inv.player.level().getBlockEntity(BlockPos.ZERO),
+                inv.player.level().getBlockEntity(data.readBlockPos()),
                 new SimpleContainerData(3));
     }
 

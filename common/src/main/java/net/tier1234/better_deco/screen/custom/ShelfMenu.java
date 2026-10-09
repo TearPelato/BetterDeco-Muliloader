@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.screen.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,8 +21,8 @@ public class ShelfMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
 
 
-    public ShelfMenu(int containerId, Inventory inv) {
-        this(containerId, inv, Objects.requireNonNull(inv.player.level().getBlockEntity(BlockPos.ZERO)));
+    public ShelfMenu(int containerId, Inventory inv, FriendlyByteBuf data) {
+        this(containerId, inv, Objects.requireNonNull(inv.player.level().getBlockEntity(data.readBlockPos())));
     }
 
     public ShelfMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
