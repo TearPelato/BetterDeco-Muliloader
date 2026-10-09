@@ -4,7 +4,6 @@ import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.platform.services.IClientHelper;
 import net.tier1234.better_deco.platform.services.INetworkHelper;
 import net.tier1234.better_deco.platform.services.IPlatformHelper;
-import net.tier1234.better_deco.platform.services.IRegistriesHelper;
 
 import java.util.ServiceLoader;
 
@@ -13,7 +12,6 @@ public class Services {
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
     public static final IClientHelper CLIENT = load(IClientHelper.class);
     public static final INetworkHelper NETWORK = load(INetworkHelper.class);
-    public static final IRegistriesHelper REGISTRIES = load(IRegistriesHelper.class);
 
     public static <T> T load(Class<T> clazz) {
         final T loadedService = ServiceLoader.load(clazz).findFirst().orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
