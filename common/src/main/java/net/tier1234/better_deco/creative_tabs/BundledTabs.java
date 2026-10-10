@@ -87,7 +87,9 @@ public class BundledTabs {
 
             @Override
             public void accept(ItemStack stack) {
-                displayItems.add(stack);
+                if (stack != null && !stack.isEmpty()) {
+                    displayItems.add(stack.copyWithCount(1));
+                }
             }
 
             @Override

@@ -62,7 +62,7 @@ public class BundledTabSelector {
             }
         });
 
-        ScreenRenderEvent.ON_RENDER_BACKGROUND.register((screen, graphics, mouseX, mouseY) -> {
+        ScreenRenderEvent.AFTER_RENDER_BACKGROUND.register((screen, graphics, mouseX, mouseY) -> {
             if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
                 this.renderBackground(creativeScreen, graphics);
             }
@@ -122,8 +122,6 @@ public class BundledTabSelector {
                 this.onSwitchCreativeTab(tab, creativeScreen);
                 this.lastTab = tab;
             }
-
-            graphics.pose().popPose();
         }
     }
 

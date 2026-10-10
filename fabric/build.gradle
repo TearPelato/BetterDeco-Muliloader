@@ -29,13 +29,13 @@ dependencies {
     modImplementation "curse.maven:menulogue-682371:5705587"
     modImplementation "curse.maven:configured-457570:7276575"
     modImplementation "curse.maven:catalogue-459701:6926812"
-    modImplementation "curse.maven:framework-549225:7530359"
+   // modImplementation "curse.maven:framework-549225:7530359"
 
     modImplementation "curse.maven:every-compat-628539:8680543"
     modImplementation "curse.maven:selene-499980:8821084"
     modImplementation "curse.maven:terrablender-fabric-565956:6054948"
     modImplementation "curse.maven:natures-spirit-1044992:6962791"
-    modImplementation "curse.maven:refurbished-furniture-897116:7473562"
+    //modImplementation "curse.maven:refurbished-furniture-897116:7473562"
 
     modCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     modCompileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
@@ -43,6 +43,7 @@ dependencies {
     modCompileOnly ("net.mehvahdjukaar:everycomp-fabric:${everycomp_version}:fabric") { transitive = false }
     modCompileOnly ("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") { transitive = false }
     modImplementation("net.mehvahdjukaar:codecui-fabric:${codecui_version}")
+
 }
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
