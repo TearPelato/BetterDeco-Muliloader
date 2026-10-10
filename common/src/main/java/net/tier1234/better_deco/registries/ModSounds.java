@@ -1,13 +1,12 @@
 package net.tier1234.better_deco.registries;
 
-import com.mrcrayfish.framework.api.registry.RegistryContainer;
-import com.mrcrayfish.framework.api.registry.RegistryEntry;
 import net.minecraft.sounds.SoundEvent;
+import net.tearpelato.craftcorelib.api.registry.ObjectRegistries;
 import net.tier1234.better_deco.Constants;
 
-@RegistryContainer
 public class ModSounds {
 
-    public static final RegistryEntry<SoundEvent> FART = RegistryEntry.soundEvent(Constants.id("fart"),
-            id-> ()-> SoundEvent.createVariableRangeEvent(id));
+    public static final ObjectRegistries<SoundEvent> FART = ObjectRegistries.registerSound(Constants.id("fart"),
+            ()-> SoundEvent.createVariableRangeEvent(Constants.id("")));
+    public static void init() {}
 }

@@ -3,7 +3,6 @@ package net.tier1234.better_deco.block;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,9 +19,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.type.MetalType;
@@ -31,7 +30,6 @@ import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
@@ -96,10 +94,8 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
                                           Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof MicrowaveBlockEntity microwaveBlockEntity) {
-                FrameworkAPI.openMenuWithData((ServerPlayer) pPlayer, microwaveBlockEntity, microwaveBlockEntity.getData());
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
+            if (entity instanceof MicrowaveBlockEntity microwaveBlockEntity && pPlayer instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer, microwaveBlockEntity,pPos);
             }
         }
         return InteractionResult.SUCCESS;

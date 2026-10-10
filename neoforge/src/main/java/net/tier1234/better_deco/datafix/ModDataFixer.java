@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ModDataFixer {
 
-    public static final Lazy<Map<String, String>> CHANGED_BLOCK = Lazy.of(()-> ImmutableMap.<String,String>builder()
+    public static final Lazy<Map<String, String>> CHANGED_BLOCK = Lazy.of(()->ImmutableMap.<String,String>builder()
             .put("better_deco:oak_cabinet", "better_deco:oak_kitchen_cabinet")
             .put("better_deco:spruce_cabinet", "better_deco:spruce_kitchen_cabinet")
             .put("better_deco:birch_cabinet", "better_deco:birch_kitchen_cabinet")

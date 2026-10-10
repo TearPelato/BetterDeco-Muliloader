@@ -1,8 +1,10 @@
 package net.tier1234.better_deco;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.Minecraft;
@@ -10,8 +12,8 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -47,9 +49,9 @@ public class BetterDecoClient implements ClientModInitializer {
         ModPackets.init(payload -> ClientPlayNetworking.send(payload));
         FabricNetworkHandler.registerClient();
 
-        KeyMappingHelper.registerKeyMapping(ModKeybinds.KEY_MAPPING_G);
+        KeyBindingHelper.registerKeyBinding(ModKeybinds.KEY_MAPPING_G);
         ClientTickEvents.END_CLIENT_TICK.register(BetterDecoClient::onClientTick);
-
+        ClientLifecycleEvents.CLIENT_STARTED.register(client-> registerCutout());
 
 
     }
@@ -69,5 +71,9 @@ public class BetterDecoClient implements ClientModInitializer {
                 }
             }
         }
+    }
+
+    public static void registerCutout() {
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), CutoutRenderLayerBlocks.getBlocks());
     }
 }

@@ -2,7 +2,6 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -54,7 +53,7 @@ public class WorkbenchBlock extends FurnitureHorizontalBlock implements EntityBl
         if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof WorkbenchBlockEntity workbench) {
-                FrameworkAPI.openMenuWithData(serverPlayer, workbench, workbench.createCustomData());
+                player.openMenu(workbench);
             }
         }
         return InteractionResult.SUCCESS;

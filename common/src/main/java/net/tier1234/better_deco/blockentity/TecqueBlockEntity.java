@@ -141,7 +141,5 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
         return saveWithoutMetadata(pRegistries);
     }
 
-    public TecqueMenu.TecqueData createCustomData() {
-        return new TecqueMenu.TecqueData(this.getBlockPos());
-    }
+
 }

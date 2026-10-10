@@ -2,7 +2,6 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,6 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.FurnitureHorizontalBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.blockentity.OvenBlockEntity;
@@ -106,10 +106,8 @@ public class OvenBlock extends FurnitureHorizontalBlock implements EntityBlock
                                               Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide()) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof OvenBlockEntity ovenBlockEntity) {
-                FrameworkAPI.openMenuWithData((ServerPlayer) player,ovenBlockEntity, ovenBlockEntity.getData());
-            } else {
-                throw new IllegalStateException("Oven container provider is missing!");
+            if (entity instanceof OvenBlockEntity ovenBlockEntity && player instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer, ovenBlockEntity,pos);
             }
         }
         return InteractionResult.SUCCESS;
