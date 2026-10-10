@@ -2,6 +2,7 @@ package net.tier1234.better_deco;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -48,10 +49,9 @@ public class BetterDecoClient implements ClientModInitializer {
         ModPackets.init(payload -> ClientPlayNetworking.send(payload));
         FabricNetworkHandler.registerClient();
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), CutoutRenderLayerBlocks.getBlocks());
         KeyBindingHelper.registerKeyBinding(ModKeybinds.KEY_MAPPING_G);
         ClientTickEvents.END_CLIENT_TICK.register(BetterDecoClient::onClientTick);
-
+        ClientLifecycleEvents.CLIENT_STARTED.register(client-> registerCutout());
 
 
     }
@@ -71,5 +71,9 @@ public class BetterDecoClient implements ClientModInitializer {
                 }
             }
         }
+    }
+
+    public static void registerCutout() {
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), CutoutRenderLayerBlocks.getBlocks());
     }
 }

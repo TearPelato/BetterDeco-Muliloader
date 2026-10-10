@@ -151,19 +151,21 @@ public class CutoutRenderLayerBlocks {
         }
 
         return blocks.toArray(new Block[0]);
-    };
+    }
 
     private static List<Block> getEveryCompatCutoutBlocks() {
         CommonEveryCompatModule module = CommonEveryCompatModule.getModuleInstance();
-        if (module == null) return List.of();
+        if (module == null) {
+            return List.of();
+        }
 
-        List<Block> result = new ArrayList<>();
-        result.addAll(module.coffeeTable.blocks.values());
-        result.addAll(module.kitchenOven.blocks.values());
-        result.addAll(module.jar.blocks.values());
-        result.addAll(module.kitchenSink.blocks.values());
-        result.addAll(module.basin.blocks.values());
-        result.addAll(module.tecque.blocks.values());
-        return result;
+        List<Block> blocks = new ArrayList<>();
+        blocks.addAll(module.coffeeTable.blocks.values());
+        blocks.addAll(module.kitchenOven.blocks.values());
+        blocks.addAll(module.jar.blocks.values());
+        blocks.addAll(module.kitchenSink.blocks.values());
+        blocks.addAll(module.basin.blocks.values());
+        blocks.addAll(module.tecque.blocks.values());
+        return blocks;
     }
 }
