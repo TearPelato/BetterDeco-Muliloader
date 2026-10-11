@@ -1,6 +1,7 @@
 package net.tier1234.better_deco.screen.custom;
 
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -8,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tier1234.better_deco.blockentity.OvenBlockEntity;
 import net.tier1234.better_deco.registries.ModMenuTypes;
@@ -24,6 +24,7 @@ public class OvenMenu extends AbstractContainerMenu {
         this(pContainerId, inv, inv.player.level().getBlockEntity(data.readBlockPos()), new SimpleContainerData(5));
     }
 
+
     public OvenMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.OVEN_MENU.get(), pContainerId);
         this.blockEntity = ((OvenBlockEntity) entity);
@@ -35,16 +36,16 @@ public class OvenMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         // Input
-        this.addSlot(new Slot(blockEntity.itemHandler, 0, 60, 17));
-        this.addSlot(new Slot(blockEntity.itemHandler, 1, 78, 17));
-        this.addSlot(new Slot(blockEntity.itemHandler, 2, 96, 17));
+        this.addSlot(new Slot(blockEntity.itemHandler, 0, 60, 8));
+        this.addSlot(new Slot(blockEntity.itemHandler, 1, 78, 8));
+        this.addSlot(new Slot(blockEntity.itemHandler, 2, 96, 8));
 
         // Output
-        this.addSlot(new Slot(blockEntity.itemHandler, 3, 60, 53));
-        this.addSlot(new Slot(blockEntity.itemHandler, 4, 78, 53));
-        this.addSlot(new Slot(blockEntity.itemHandler, 5, 96, 53));
+        this.addSlot(new Slot(blockEntity.itemHandler, 3, 60, 44));
+        this.addSlot(new Slot(blockEntity.itemHandler, 4, 78, 44));
+        this.addSlot(new Slot(blockEntity.itemHandler, 5, 96, 44));
 
-        this.addSlot(new OvenFuelSlot(this, this.blockEntity.itemHandler, 6, 42,35));
+        this.addSlot(new OvenFuelSlot(this, this.blockEntity.itemHandler, 6, 42,26));
 
         addDataSlots(data);
     }
@@ -138,7 +139,8 @@ public class OvenMenu extends AbstractContainerMenu {
         }
     }
     public boolean isFuelItem(ItemStack stack) {
-        return AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack.getItem(), 0) > 0;
+        assert Minecraft.getInstance().level != null;
+        return Minecraft.getInstance().level.fuelValues().isFuel(stack);
     }
 
 }

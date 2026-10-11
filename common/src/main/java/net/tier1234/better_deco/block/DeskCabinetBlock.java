@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -22,7 +21,6 @@ import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.blockentity.DeskCabinetBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +28,9 @@ public class DeskCabinetBlock extends DeskBlock implements EntityBlock {
 
     private WoodType woodType;
 
-    public DeskCabinetBlock(Properties properties, WoodType type)
+    public DeskCabinetBlock(WoodType type, Properties properties)
     {
-        super(properties,type);
+        super(type, properties);
         this.woodType = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
     }

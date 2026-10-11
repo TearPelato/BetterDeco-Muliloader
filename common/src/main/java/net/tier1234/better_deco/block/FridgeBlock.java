@@ -100,8 +100,8 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (state.getValue(MODEL_TYPE) == FridgeModelType.FRIDGE) {
-            if (blockEntity instanceof FridgeBlockEntity fridgeBlockEntity) {
-                player.openMenu(fridgeBlockEntity);
+            if (blockEntity instanceof FridgeBlockEntity fridgeBlockEntity && player instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer,fridgeBlockEntity, pos);
                 return InteractionResult.CONSUME;
             }
         } else if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {

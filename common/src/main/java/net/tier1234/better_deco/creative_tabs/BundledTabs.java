@@ -22,16 +22,17 @@ import java.util.function.Supplier;
  */
 public class BundledTabs {
     private final Component tooltip;
-    private final ItemStack icon;
+    private final Supplier<ItemStack> iconSupplier;
+    private @Nullable ItemStack icon;
     private final List<ItemStack> displayItems;
     private final @Nullable BiConsumer<HolderLookup.Provider, Output> provider;
     private boolean populated;
     private @Nullable BundledTabSelector.Tab tab;
     private boolean selected;
 
-    private BundledTabs(Component tooltip, ItemStack icon, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> provider) {
+    private BundledTabs(Component tooltip, Supplier<ItemStack> iconSupplier, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> provider) {
         this.tooltip = tooltip;
-        this.icon = icon;
+        this.iconSupplier = iconSupplier;
         this.displayItems = staticItems;
         this.provider = provider;
     }
@@ -45,11 +46,18 @@ public class BundledTabs {
     }
 
     public ItemStack getIcon() {
+        if (this.icon == null) {
+            this.icon = this.iconSupplier.get();
+        }
         return this.icon;
     }
 
     public List<ItemStack> getDisplayItems() {
         return Collections.unmodifiableList(this.displayItems);
+    }
+
+    public boolean isEmpty() {
+        return this.displayItems.isEmpty();
     }
 
     public void select() {
@@ -107,7 +115,7 @@ public class BundledTabs {
 
     public static class Builder {
         private Component title;
-        private ItemStack icon;
+        private Supplier<ItemStack> icon = () -> ItemStack.EMPTY;
         private BiConsumer<HolderLookup.Provider, Output> provider;
 
         public Builder title(Component title) {
@@ -116,12 +124,12 @@ public class BundledTabs {
         }
 
         public Builder icon(ItemStack icon) {
-            this.icon = icon;
+            this.icon = ()-> icon;
             return this;
         }
 
         public Builder icon(Supplier<ItemStack> icon) {
-            this.icon = icon.get();
+            this.icon = icon;
             return this;
         }
 
@@ -132,7 +140,6 @@ public class BundledTabs {
 
         public BundledTabs build() {
             if (this.title == null) this.title = Component.empty();
-            if (this.icon == null) this.icon = ItemStack.EMPTY;
             return new BundledTabs(this.title, this.icon, new ArrayList<>(), this.provider);
         }
     }

@@ -24,7 +24,7 @@ public class ModMenuTypes {
             ObjectRegistries.registerMenuData(Constants.id("freezer_menu"), FreezerMenu::new);
 
     public static final ObjectRegistries<MenuType<WorkbenchMenu>> FURNI_WORKBENCH =
-            ObjectRegistries.registerMenu(Constants.id("workbench"), WorkbenchMenu::new);
+            ObjectRegistries.registerMenuData(Constants.id("workbench"), WorkbenchMenu::new);
 
     public static void init() {}
     

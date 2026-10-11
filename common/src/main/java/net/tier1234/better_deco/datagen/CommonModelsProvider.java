@@ -1,12 +1,13 @@
 package net.tier1234.better_deco.datagen;
 
 import com.mojang.math.Quadrant;
-import com.mrcrayfish.framework.api.datagen.FrameworkGenerator;
 import net.minecraft.client.data.models.MultiVariant;
-import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.data.models.model.ModelTemplate;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.renderer.block.dispatch.Variant;
 import net.minecraft.client.renderer.block.dispatch.VariantMutator;
 import net.minecraft.client.renderer.item.ClientItem;
@@ -15,19 +16,17 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.tearpelato.craftcorelib.api.datagen.CoreGenerator;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.block.*;
 import net.tier1234.better_deco.block.type.MetalType;
 import net.tier1234.better_deco.block.type.StoneType;
 import net.tier1234.better_deco.registries.ModBlocks;
-import net.tier1234.better_deco.registries.ModItems;
 
-import java.util.Map;
 import java.util.Optional;
 
 import static net.tier1234.better_deco.block.BathBlock.BathPart.BOTTOM;
@@ -35,10 +34,10 @@ import static net.tier1234.better_deco.block.BathBlock.BathPart.HEAD;
 import static net.tier1234.better_deco.block.FridgeBlock.FridgeModelType.FREEZER;
 import static net.tier1234.better_deco.block.FridgeBlock.FridgeModelType.FRIDGE;
 
-public class CommonModelsProvider extends FrameworkGenerator {
+public class CommonModelsProvider extends CoreGenerator {
 
-    public CommonModelsProvider(Map<Block, BlockModelDefinitionGenerator> generators, Map<Item, ClientItem> items, Map<Identifier, ModelInstance> models) {
-        super(generators, items, models);
+    public CommonModelsProvider(Context context) {
+        super(context);
     }
 
     @Override
@@ -513,13 +512,13 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")))
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_counter")));
 
-        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenCounterBlock.TYPE)
                         .select(Direction.NORTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -551,13 +550,13 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_counter")));
 
-        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner")), Optional.of("_left_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightCornerModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner")), Optional.of("_right_corner"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_left_corner_inverted")), Optional.of("_left_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightInvModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_counter_right_corner_inverted")), Optional.of("_right_corner_inverted"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenCounterBlock.TYPE)
                         .select(Direction.NORTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, KitchenCounterBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -589,10 +588,10 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_drawer")));
 
-        Identifier closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")), Optional.of("_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")), Optional.of("_open"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")), Optional.of("_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")), Optional.of("_open"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenDrawerBlock.OPEN)
                         .select(Direction.NORTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -612,10 +611,10 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_drawer")));
 
-        Identifier closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")), Optional.of("_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")), Optional.of("_open"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier closedModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_closed")), Optional.of("_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier openModel = new ModelTemplate(Optional.of(Constants.id("block/kitchen_drawer_open")), Optional.of("_open"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, KitchenDrawerBlock.OPEN)
                         .select(Direction.NORTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, false, new MultiVariant(WeightedList.of(new Variant(closedModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -635,9 +634,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_sink")));
         ModelTemplate template = getModel(Constants.id("block/kitchen_sink"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -653,9 +652,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_sink")));
         ModelTemplate template = getModel(Constants.id("block/kitchen_sink"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -672,9 +671,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_oven")));
         ModelTemplate template = getModel(Constants.id("block/oven"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -690,9 +689,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_oven")));
         ModelTemplate template = getModel(Constants.id("block/oven"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -709,13 +708,13 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_kitchen_cabinet")));
 
-        Identifier closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")), Optional.of("_closed_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")), Optional.of("_open_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")), Optional.of("_closed_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")), Optional.of("_open_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        Identifier closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")), Optional.of("_closed_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")), Optional.of("_open_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")), Optional.of("_closed_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")), Optional.of("_open_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, CabinetBlock.OPEN, CabinetBlock.HANDLE)
                         .select(Direction.NORTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -743,13 +742,13 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_kitchen_cabinet")));
 
-        Identifier closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")), Optional.of("_closed_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")), Optional.of("_open_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier closedModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_left")), Optional.of("_closed_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier openModelLeft = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_left")), Optional.of("_open_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        Identifier closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")), Optional.of("_closed_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")), Optional.of("_open_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier closedModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_closed_right")), Optional.of("_closed_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier openModelRight = new ModelTemplate(Optional.of(Constants.id("block/cabinet_open_right")), Optional.of("_open_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, CabinetBlock.OPEN, CabinetBlock.HANDLE)
                         .select(Direction.NORTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, false, DoorHingeSide.LEFT, new MultiVariant(WeightedList.of(new Variant(closedModelLeft))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -778,10 +777,10 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/gray_concrete")))
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/fridge_" + type.getName())));
 
-        Identifier topModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_top")), Optional.of("_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier bottomModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier topModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_top")), Optional.of("_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier bottomModel = new ModelTemplate(Optional.of(Constants.id("block/fridge_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, FridgeBlock.MODEL_TYPE)
                         .select(Direction.NORTH, FRIDGE, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, FRIDGE, new MultiVariant(WeightedList.of(new Variant(bottomModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -802,9 +801,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/microwave_" + type.getName())));
 
         ModelTemplate template = getModel(Constants.id("block/microwave"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -822,9 +821,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/toaster_" + type.getName())));
 
         ModelTemplate template = getModel(Constants.id("block/toaster"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R270)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
@@ -841,9 +840,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_cutting_board")));
 
         ModelTemplate template = getModel(Constants.id("block/cutting_board"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -860,9 +859,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_jar")));
 
         ModelTemplate template = getModel(Constants.id("block/jar"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -879,9 +878,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_basin")));
 
         ModelTemplate template = getModel(Constants.id("block/basin"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -898,9 +897,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_toilet")));
 
         ModelTemplate template = getModel(Constants.id("block/toilet"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -916,11 +915,11 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_bath")));
 
-        Identifier modelHead = new ModelTemplate(Optional.of(Constants.id("block/bath_head")), Optional.of("_head"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier modelBottom = new ModelTemplate(Optional.of(Constants.id("block/bath_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier model = new ModelTemplate(Optional.of(Constants.id("block/bath")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier modelHead = new ModelTemplate(Optional.of(Constants.id("block/bath_head")), Optional.of("_head"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier modelBottom = new ModelTemplate(Optional.of(Constants.id("block/bath_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier model = new ModelTemplate(Optional.of(Constants.id("block/bath")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, BathBlock.PART)
                         .select(Direction.NORTH, HEAD, new MultiVariant(WeightedList.of(new Variant(modelHead))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, HEAD, new MultiVariant(WeightedList.of(new Variant(modelHead))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -940,14 +939,14 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_concrete")))
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_sofa")));
 
-        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/sofa_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, SofaBlock.TYPE)
                         .select(Direction.NORTH, SofaBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, SofaBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -985,9 +984,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_chair")));
 
         ModelTemplate template = getModel(Constants.id("block/chair"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1003,9 +1002,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_wool")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_stool")));
         ModelTemplate template = getModel(Constants.id("block/stool"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1022,17 +1021,17 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_table")));
 
-        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier centerModel = new ModelTemplate(Optional.of(Constants.id("block/table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier centerModel = new ModelTemplate(Optional.of(Constants.id("block/table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, TableBlock.TYPE)
                         .select(Direction.NORTH, TableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, TableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1081,12 +1080,12 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_desk")));
 
-        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_single")), Optional.of("_single"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, DeskBlock.TYPE)
                         .select(Direction.NORTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1115,12 +1114,12 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_desk_drawer")));
 
-        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_single_closed")), Optional.of("_single_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_left_closed")), Optional.of("_left_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_right_closed")), Optional.of("_right_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_middle_closed")), Optional.of("_middle_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_single_closed")), Optional.of("_single_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_left_closed")), Optional.of("_left_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_right_closed")), Optional.of("_right_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/desk_cabinet_middle_closed")), Optional.of("_middle_closed"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, DeskBlock.TYPE)
                         .select(Direction.NORTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, DeskBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1148,17 +1147,17 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_coffee_table")));
 
-        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier centerModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier defaultModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_default")), Optional.of("_default"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_left")), Optional.of("_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_right")), Optional.of("_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleTopModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_top")), Optional.of("_middle_top"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleBottomModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_middle_bottom")), Optional.of("_middle_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier centerModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_center")), Optional.of("_center"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier cornerLeftModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_left")), Optional.of("_corner_left"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier cornerRightModel = new ModelTemplate(Optional.of(Constants.id("block/coffee_table_corner_right")), Optional.of("_corner_right"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, CoffeeTableBlock.TYPE)
                         .select(Direction.NORTH, CoffeeTableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, CoffeeTableBlock.Type.DEFAULT, new MultiVariant(WeightedList.of(new Variant(defaultModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1209,9 +1208,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_bedside_cabinet")));
 
         ModelTemplate template = getModel(Constants.id("block/bedside_cabinet"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1226,16 +1225,16 @@ public class CommonModelsProvider extends FrameworkGenerator {
         TextureMapping textures = new TextureMapping();
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + color.getName() + "_wool")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_lamp")));
-        Identifier singleOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_off")), Optional.of("_single_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier singleOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_on")), Optional.of("_single_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier bottomModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier topOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_off")), Optional.of("_top_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier topOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_on")), Optional.of("_top_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier wallOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_off")), Optional.of("_wall_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
-        Identifier wallOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_on")), Optional.of("_wall_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.models::put);
+        Identifier singleOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_off")), Optional.of("_single_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier singleOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_single_on")), Optional.of("_single_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier bottomModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_bottom")), Optional.of("_bottom"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_middle")), Optional.of("_middle"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier topOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_off")), Optional.of("_top_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier topOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_top_on")), Optional.of("_top_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier wallOffModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_off")), Optional.of("_wall_off"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
+        Identifier wallOnModel = new ModelTemplate(Optional.of(Constants.id("block/lamp_wall_on")), Optional.of("_wall_on"), TextureSlot.TEXTURE, TextureSlot.PARTICLE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, LampBlock.POWERED, LampBlock.TYPE)
                         .select(Direction.NORTH, false, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, false, LampBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleOffModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1288,9 +1287,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + color.getName() + "_digital_clock")));
 
         ModelTemplate template = getModel(Constants.id("block/digital_clock"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1309,9 +1308,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_clock")));
 
         ModelTemplate template = getModel(Constants.id("block/wooden_clock"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1330,9 +1329,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
                 .put(TextureSlot.SOUTH, new Material(Constants.id("block/" + block.name() + "_side")))
                 .put(TextureSlot.EAST, new Material(Constants.id("block/" + block.name() + "_side")))
                 .put(TextureSlot.WEST, new Material(Constants.id("block/" + block.name() + "_side")));
-        Identifier model = new ModelTemplate(Optional.of(Identifier.withDefaultNamespace("block/cube")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.NORTH, TextureSlot.SOUTH, TextureSlot.EAST, TextureSlot.WEST, TextureSlot.UP, TextureSlot.DOWN).create(block, textures, this.models::put);
+        Identifier model = new ModelTemplate(Optional.of(Identifier.withDefaultNamespace("block/cube")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.NORTH, TextureSlot.SOUTH, TextureSlot.EAST, TextureSlot.WEST, TextureSlot.UP, TextureSlot.DOWN).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block, new MultiVariant(WeightedList.of(new Variant(model)))));
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block, new MultiVariant(WeightedList.of(new Variant(model)))));
 
         this.registerItemWithModel(block, model);
     }
@@ -1343,12 +1342,12 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_shelf")));
 
-        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/shelf_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, ShelfBlock.TYPE)
                         .select(Direction.NORTH, ShelfBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, ShelfBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1376,12 +1375,12 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.PARTICLE, new Material(Identifier.withDefaultNamespace("block/" + type.name() + "_planks")));
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_bench")));
 
-        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
-        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
-        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
-        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.models::put);
+        Identifier singleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_single")), Optional.of("_single"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
+        Identifier leftModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_left")), Optional.of("_left"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
+        Identifier middleModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_middle")), Optional.of("_middle"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
+        Identifier rightModel = new ModelTemplate(Optional.of(Constants.id("block/park_bench_right")), Optional.of("_right"), TextureSlot.PARTICLE, TextureSlot.TEXTURE).create(block, textures, this.context.models()::put);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, ParkBenchBlock.TYPE)
                         .select(Direction.NORTH, ParkBenchBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                         .select(Direction.SOUTH, ParkBenchBlock.Type.SINGLE, new MultiVariant(WeightedList.of(new Variant(singleModel))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
@@ -1412,10 +1411,10 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.TEXTURE, new Material(Identifier.withDefaultNamespace("block/" + type.getName())));
 
         ModelTemplate template = getModel(Constants.id("block/stone_path0"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
         this.registerItemWithModel(block, model);
 
-        this.generators.put(block, MultiVariantGenerator.dispatch(block).with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, PathBlock.WATERLOGGED)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block).with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING, PathBlock.WATERLOGGED)
                 .select(Direction.NORTH, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                 .select(Direction.SOUTH, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
                 .select(Direction.EAST, false, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R90)))
@@ -1434,10 +1433,10 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_crate")));
 
         ModelTemplate template = getModel(Constants.id("block/crate"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
 
         this.registerItemWithModel(block, model);
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1452,9 +1451,9 @@ public class CommonModelsProvider extends FrameworkGenerator {
         textures.put(TextureSlot.TEXTURE, new Material(Constants.id("block/" + type.name() + "_glass_tecque")));
 
         ModelTemplate template = getModel(Constants.id("block/glass_tecque"));
-        Identifier model = template.create(block, textures, this.models::put);
+        Identifier model = template.create(block, textures, this.context.models()::put);
         this.registerItemWithModel(block, model);
-        this.generators.put(block, MultiVariantGenerator.dispatch(block)
+        this.context.blocks().put(block, MultiVariantGenerator.dispatch(block)
                 .with(PropertyDispatch.initial(BlockStateProperties.HORIZONTAL_FACING)
                         .select(Direction.NORTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R0)))
                         .select(Direction.SOUTH, new MultiVariant(WeightedList.of(new Variant(model))).with(VariantMutator.Y_ROT.withValue(Quadrant.R180)))
@@ -1468,6 +1467,6 @@ public class CommonModelsProvider extends FrameworkGenerator {
     }
 
     private void registerItemWithModel(Block block, Identifier location) {
-        this.items.put(block.asItem(), this.createClientItem(ItemModelUtils.plainModel(location)));
+        this.context.items().put(block.asItem(), new ClientItem(ItemModelUtils.plainModel(location), ClientItem.Properties.DEFAULT));
     }
 }

@@ -1,13 +1,14 @@
 package net.tier1234.better_deco.blockentity;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -16,12 +17,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.tier1234.better_deco.recipe.OvenRecipe;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
@@ -95,7 +98,7 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         if (fuel.isEmpty()) return;
 
 
-        int burnTime = AbstractFurnaceBlockEntity.getFuel().getOrDefault(fuel.getItem(), 0);
+        int burnTime = Minecraft.getInstance().level.fuelValues().burnDuration(fuel);
         if (burnTime <= 0) return;
 
         fuelDuration = burnTime;
@@ -107,6 +110,11 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
 
     }
 
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        drops();
+        super.preRemoveSideEffects(pos, state);
+    }
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getContainerSize());
@@ -158,12 +166,12 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         Optional<RecipeHolder<OvenRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return false;
 
-        ItemStack output = recipe.get().value().output;
+        ItemStack output = recipe.get().value().output.create();
         return canInsert(output, outputSlot);
     }
 
     private Optional<RecipeHolder<OvenRecipe>> getRecipeFor(ItemStack input) {
-        return level.getRecipeManager().getRecipeFor(ModRecipes.OVEN_TYPE.get(), new SingleRecipeInput(input), level);
+        return ((ServerLevel)level).recipeAccess().getRecipeFor(ModRecipes.OVEN_TYPE.get(), new SingleRecipeInput(input), level);
     }
 
     private void craftItem(int inputSlot, int outputSlot) {
@@ -171,7 +179,7 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         Optional<RecipeHolder<OvenRecipe>> recipe = getRecipeFor(inputStack);
         if(recipe.isEmpty()) return;
 
-        ItemStack output = recipe.get().value().output;
+        ItemStack output = recipe.get().value().output.create();
         ItemStack copy = itemHandler.getItem(inputSlot).copy();
         copy.shrink(1);
         itemHandler.setItem(inputSlot, copy.isEmpty() ? ItemStack.EMPTY : copy);
@@ -187,31 +195,38 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.put("inventory", itemHandler.createTag(registries));
-        for(int i=0;i<3;i++) tag.putInt("progress" + i, progress[i]);
-        tag.putInt("fuelTime", fuelTime);
-        tag.putInt("fuelDuration", fuelDuration);
-        super.saveAdditional(tag, registries);
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.store("inventory", ItemContainerContents.CODEC, ItemContainerContents.fromItems(itemHandler.getItems()));
+        for (int i = 0; i < 3; i++) {
+            output.putInt("progress" + i, progress[i]);
+        }
+        output.putInt("fuelTime", fuelTime);
+        output.putInt("fuelDuration", fuelDuration);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        itemHandler.fromTag(tag.getList("inventory", Tag.TAG_COMPOUND), registries);
-        for(int i=0;i<3;i++) progress[i] = tag.getInt("progress" + i);
-        fuelTime     = tag.getInt("fuelTime");
-        fuelDuration = tag.getInt("fuelDuration");
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        input.read("inventory", ItemContainerContents.CODEC).ifPresent(contents -> contents.copyInto(itemHandler.getItems()));
+        for (int i = 0; i < 3; i++) {
+            progress[i] = input.getIntOr("progress" + i, 0);
+        }
+        fuelTime = input.getIntOr("fuelTime", 0);
+        fuelDuration = input.getIntOr("fuelDuration", 0);
     }
 
+
+
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) { return saveWithoutMetadata(registries); }
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
+    }
 
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
-
 
 }
