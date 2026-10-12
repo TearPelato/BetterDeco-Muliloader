@@ -1,9 +1,7 @@
 package net.tier1234.better_deco.platform.services;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

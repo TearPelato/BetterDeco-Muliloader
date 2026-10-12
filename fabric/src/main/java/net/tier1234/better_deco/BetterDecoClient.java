@@ -11,7 +11,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -27,7 +26,6 @@ import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.registries.ModKeybinds;
 import net.tier1234.better_deco.registries.ModSounds;
-import net.tier1234.better_deco.util.CutoutRenderLayerBlocks;
 import org.apache.commons.lang3.function.TriFunction;
 
 public class BetterDecoClient implements ClientModInitializer {
@@ -51,7 +49,6 @@ public class BetterDecoClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(BetterDecoClient::onClientTick);
 
 
-
     }
 
 
@@ -70,4 +67,5 @@ public class BetterDecoClient implements ClientModInitializer {
             }
         }
     }
+
 }

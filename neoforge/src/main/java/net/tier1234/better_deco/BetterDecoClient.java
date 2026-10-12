@@ -13,18 +13,19 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.event.OnDatapackSyncEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.block.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
-import net.tier1234.better_deco.compat.jei.category.SyncedRecipes;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
+import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.registries.ModKeybinds;
-import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.registries.ModSounds;
 import org.apache.commons.lang3.function.TriFunction;
 
@@ -35,6 +36,7 @@ public class BetterDecoClient {
     @SubscribeEvent
     private static void onClientSetupEvent(FMLClientSetupEvent event) {
         event.enqueueWork(ClientBootstrap::init);
+        ModPackets.init(payload -> ClientPacketDistributor.sendToServer(payload));
     }
 
 
@@ -80,37 +82,6 @@ public class BetterDecoClient {
                     player.playSound(ModSounds.FART.get(), 0.5f, 1.0f);
                 }
             }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onRecipesSynced(RecipesReceivedEvent event)
-    {
-        if(ModList.get().isLoaded("jei"))
-        {
-            SyncedRecipes.setMap(event.getRecipeMap());
-        }
-    }
-
-    @SubscribeEvent
-    public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event)
-    {
-        SyncedRecipes.reset();
-    }
-
-    @SubscribeEvent
-    public static void onDatapackSync(OnDatapackSyncEvent event)
-    {
-        if(ModList.get().isLoaded("jei"))
-        {
-            event.sendRecipes(
-                    ModRecipes.OVEN_TYPE.get(),
-                    ModRecipes.MICROWAVE_TYPE.get(),
-                    ModRecipes.CUTTING_BOARD_TYPE.get(),
-                    ModRecipes.FREEZER_TYPE.get(),
-                    ModRecipes.TOASTER_TYPE.get(),
-                    ModRecipes.WORKBENCH_TYPE.get()
-            );
         }
     }
 }

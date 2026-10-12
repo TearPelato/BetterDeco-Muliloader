@@ -1,24 +1,16 @@
 package net.tier1234.better_deco.screen.custom;
 
 
-import com.mrcrayfish.framework.api.menu.IMenuData;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.tier1234.better_deco.block.OvenBlock;
 import net.tier1234.better_deco.blockentity.OvenBlockEntity;
-import net.tier1234.better_deco.blockentity.WorkbenchBlockEntity;
-import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModMenuTypes;
 import net.tier1234.better_deco.screen.slot.OvenFuelSlot;
 
@@ -28,8 +20,8 @@ public class OvenMenu extends AbstractContainerMenu {
     private final ContainerData data;
     private final ContainerLevelAccess access;
 
-    public OvenMenu(int pContainerId, Inventory inv, CustomData data) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(data.pos()), new SimpleContainerData(5));
+    public OvenMenu(int pContainerId, Inventory inv, FriendlyByteBuf data) {
+        this(pContainerId, inv, inv.player.level().getBlockEntity(data.readBlockPos()), new SimpleContainerData(5));
     }
 
 
@@ -151,24 +143,4 @@ public class OvenMenu extends AbstractContainerMenu {
         return Minecraft.getInstance().level.fuelValues().isFuel(stack);
     }
 
-    public record CustomData(BlockPos pos, int progress1, int progress2, int progress3) implements IMenuData<CustomData> {
-
-        public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> CODEC =
-                StreamCodec.composite(
-                        BlockPos.STREAM_CODEC,
-                        CustomData::pos,
-                        ByteBufCodecs.VAR_INT,
-                        CustomData::progress1,
-                        ByteBufCodecs.VAR_INT,
-                        CustomData::progress2,
-                        ByteBufCodecs.VAR_INT,
-                        CustomData::progress3,
-                        CustomData::new
-                );
-
-        @Override
-        public StreamCodec codec() {
-            return CODEC;
-        }
-    }
 }

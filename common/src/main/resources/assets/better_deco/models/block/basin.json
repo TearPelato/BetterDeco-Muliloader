@@ -4,7 +4,6 @@
 	"render_type": "minecraft:cutout",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "block/quartz_block_side"
 	},
 	"elements": [
 		{
@@ -12,12 +11,12 @@
 			"to": [11, 10, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [5, 0, 7]},
 			"faces": {
-				"north": {"uv": [4, 5, 10, 16], "texture": "#1"},
-				"east": {"uv": [10, 5, 16, 16], "texture": "#1"},
-				"south": {"uv": [8, 5, 14, 16], "texture": "#1"},
-				"west": {"uv": [0, 5, 6, 16], "texture": "#1"},
+				"north": {"uv": [1.25, 5.5, 2.75, 8], "texture": "#texture"},
+				"east": {"uv": [0.5, 5.5, 2, 8], "texture": "#texture"},
+				"south": {"uv": [2, 5.5, 3.5, 8], "texture": "#texture"},
+				"west": {"uv": [1.75, 5.5, 3.25, 8], "texture": "#texture"},
 				"up": {"uv": [0, 0, 1.5, 1.5], "texture": "#missing"},
-				"down": {"uv": [4, 10, 10, 16], "texture": "#1"}
+				"down": {"uv": [1.25, 5.5, 2.75, 7], "texture": "#texture"}
 			}
 		},
 		{
@@ -30,7 +29,7 @@
 				"south": {"uv": [7.5, 0, 11.5, 1.5], "texture": "#texture"},
 				"west": {"uv": [7.5, 1.5, 11.5, 3], "texture": "#texture"},
 				"up": {"uv": [4, 4, 0, 0], "rotation": 180, "texture": "#texture"},
-				"down": {"uv": [4, 4, 0, 8], "texture": "#1"}
+				"down": {"uv": [4, 4, 0, 8], "texture": "#texture"}
 			}
 		},
 		{
@@ -51,8 +50,8 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [1, 16, 2]},
 			"faces": {
 				"north": {"uv": [7.5, 3, 11, 4.5], "rotation": 180, "texture": "#texture"},
-				"east": {"uv": [3.5, 8, 6, 9.5], "rotation": 180, "texture": "#texture"},
-				"south": {"uv": [0, 8, 3.5, 9.5], "rotation": 180, "texture": "#texture"},
+				"east": {"uv": [8, 4.5, 10.5, 6], "rotation": 180, "texture": "#texture"},
+				"south": {"uv": [7.5, 3, 11, 4.5], "rotation": 180, "texture": "#texture"},
 				"west": {"uv": [8, 4.5, 10.5, 6], "rotation": 180, "texture": "#texture"},
 				"up": {"uv": [7.5, 2.5, 4, 0], "texture": "#texture"},
 				"down": {"uv": [7.5, 2.5, 4, 5], "texture": "#missing"}

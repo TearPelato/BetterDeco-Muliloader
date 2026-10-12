@@ -247,9 +247,6 @@ public class FreezerBlockEntity extends BasicLootBlockEntity implements MenuProv
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public FreezerMenu.FreezerData createCustomData() {
-        return new FreezerMenu.FreezerData(this.getBlockPos());
-    }
 
     public enum FreezerFuelValues {
         ICE(300, Items.ICE),

@@ -144,7 +144,8 @@ public class CutoutRenderLayerBlocks {
 
         ));
 
+
         return blocks.toArray(new Block[0]);
-    };
+    }
 
 }

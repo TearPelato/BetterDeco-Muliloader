@@ -30,7 +30,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
     private final WoodType woodType;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public DeskBlock(Properties properties, WoodType type)
+    public DeskBlock(WoodType type, Properties properties)
     {
         super(properties);
         this.woodType = type;

@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import net.tier1234.better_deco.block.ShelfBlock;
 import net.tier1234.better_deco.blockentity.ShelfBlockEntity;
 import net.tier1234.better_deco.blockentity.renderer.render_state.ShelfRenderState;
-import org.jspecify.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockEntity, ShelfRenderState> {
     private static final float U1 = 1f / 16f;
@@ -78,4 +78,3 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
         }
     }
 }
-

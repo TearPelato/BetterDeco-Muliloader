@@ -23,17 +23,18 @@ import java.util.function.Supplier;
 public class BundledTabs {
     private final Component tooltip;
     private final Supplier<ItemStack> iconSupplier;
+    private @Nullable ItemStack icon;
     private final List<ItemStack> displayItems;
-    private final @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic;
+    private final @Nullable BiConsumer<HolderLookup.Provider, Output> provider;
     private boolean populated;
     private @Nullable BundledTabSelector.Tab tab;
     private boolean selected;
 
-    private BundledTabs(Component tooltip, Supplier<ItemStack> iconSupplier, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> populationLogic) {
+    private BundledTabs(Component tooltip, Supplier<ItemStack> iconSupplier, List<ItemStack> staticItems, @Nullable BiConsumer<HolderLookup.Provider, Output> provider) {
         this.tooltip = tooltip;
         this.iconSupplier = iconSupplier;
         this.displayItems = staticItems;
-        this.populationLogic = populationLogic;
+        this.provider = provider;
     }
 
     public static Builder builder() {
@@ -45,15 +46,18 @@ public class BundledTabs {
     }
 
     public ItemStack getIcon() {
-        return this.iconSupplier.get();
+        if (this.icon == null) {
+            this.icon = this.iconSupplier.get();
+        }
+        return this.icon;
     }
 
     public List<ItemStack> getDisplayItems() {
         return Collections.unmodifiableList(this.displayItems);
     }
 
-    public boolean contains(ItemStack stack) {
-        return this.displayItems.stream().anyMatch(st-> ItemStack.isSameItemSameComponents(st,stack));
+    public boolean isEmpty() {
+        return this.displayItems.isEmpty();
     }
 
     public void select() {
@@ -80,9 +84,10 @@ public class BundledTabs {
         if (this.tab != null) this.tab.setY(y);
     }
 
+
     public void populate(HolderLookup.Provider provider) {
-        if (this.populated || this.populationLogic == null) return;
-        this.populationLogic.accept(provider, new Output() {
+        if (this.populated || this.provider == null) return;
+        this.provider.accept(provider, new Output() {
             @Override
             public void accept(ItemLike item) {
                 displayItems.add(new ItemStack(item));
@@ -90,7 +95,9 @@ public class BundledTabs {
 
             @Override
             public void accept(ItemStack stack) {
-                displayItems.add(stack);
+                if (stack != null && !stack.isEmpty()) {
+                    displayItems.add(stack.copyWithCount(1));
+                }
             }
 
             @Override
@@ -108,32 +115,32 @@ public class BundledTabs {
 
     public static class Builder {
         private Component title;
-        private Supplier<ItemStack> iconSupplier = () -> ItemStack.EMPTY;
-        private BiConsumer<HolderLookup.Provider, Output> populationLogic;
+        private Supplier<ItemStack> icon = () -> ItemStack.EMPTY;
+        private BiConsumer<HolderLookup.Provider, Output> provider;
 
         public Builder title(Component title) {
             this.title = title;
             return this;
         }
 
+        public Builder icon(ItemStack icon) {
+            this.icon = ()-> icon;
+            return this;
+        }
+
         public Builder icon(Supplier<ItemStack> icon) {
-            this.iconSupplier = icon;
+            this.icon = icon;
             return this;
         }
 
-        public Builder icon(ItemLike item) {
-            this.iconSupplier = () -> new ItemStack(item);
-            return this;
-        }
-
-        public Builder displayItems(BiConsumer<HolderLookup.Provider, Output> logic) {
-            this.populationLogic = logic;
+        public Builder displayItems(BiConsumer<HolderLookup.Provider, Output> provider) {
+            this.provider = provider;
             return this;
         }
 
         public BundledTabs build() {
             if (this.title == null) this.title = Component.empty();
-            return new BundledTabs(this.title, this.iconSupplier, new ArrayList<>(), this.populationLogic);
+            return new BundledTabs(this.title, this.icon, new ArrayList<>(), this.provider);
         }
     }
 

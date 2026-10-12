@@ -1,12 +1,7 @@
 package net.tier1234.better_deco.screen.custom;
 
-
-import com.mrcrayfish.framework.api.menu.IMenuData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -22,9 +17,9 @@ public class MicrowaveMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-    public MicrowaveMenu(int pContainerId, Inventory inv, MicrowaveMenu.CustomData data) {
+    public MicrowaveMenu(int pContainerId, Inventory inv, FriendlyByteBuf  data) {
         this(pContainerId, inv,
-                inv.player.level().getBlockEntity(data.pos()),
+                inv.player.level().getBlockEntity(data.readBlockPos()),
                 new SimpleContainerData(3));
     }
 
@@ -139,22 +134,7 @@ public class MicrowaveMenu extends AbstractContainerMenu {
         }
     }
 
-    public record CustomData(BlockPos pos, int progress1) implements IMenuData<MicrowaveMenu.CustomData> {
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, MicrowaveMenu.CustomData> CODEC =
-                StreamCodec.composite(
-                        BlockPos.STREAM_CODEC,
-                        MicrowaveMenu.CustomData::pos,
-                        ByteBufCodecs.VAR_INT,
-                        MicrowaveMenu.CustomData::progress1,
-                        MicrowaveMenu.CustomData::new
-                );
-
-        @Override
-        public StreamCodec codec() {
-            return CODEC;
-        }
-    }
 
 
 }

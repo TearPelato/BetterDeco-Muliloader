@@ -10,6 +10,7 @@ neoForge {
     if (at.exists()) {
         accessTransformers.add(at.absolutePath)
     }
+
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
@@ -53,12 +54,9 @@ repositories {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"
-    implementation "com.mrcrayfish:framework-neoforge:${framework_version}+${minecraft_version}"
-    implementation("net.tearpelato:deco_lib-neoforge-26.2:${deco_lib_version}")
-    jarJar("net.tearpelato:deco_lib-neoforge-26.2:${deco_lib_version}")
-
-   /* implementation "curse.maven:catalogue-459701:6926815"
-    implementation "curse.maven:configured-457570:7276577"*/
+    implementation("net.tearpelato:deco_lib-neoforge-26.1.2:${deco_lib_version}")
+    jarJar("net.tearpelato:deco_lib-neoforge-26.1.2:${deco_lib_version}")
+    implementation("net.tearpelato:craftcorelib-neoforge-26.1.2:${craftcorelib_version}")
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"

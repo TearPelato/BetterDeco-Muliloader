@@ -8,4 +8,6 @@ import java.util.Collection;
 
 public interface IRecipeHelper {
     Collection<RecipeHolder<WorkbenchRecipe>> getWorkbenchRecipes(ServerLevel level);
+
+    Collection<RecipeHolder<WorkbenchRecipe>> getClientWorkbenchRecipes();
 }

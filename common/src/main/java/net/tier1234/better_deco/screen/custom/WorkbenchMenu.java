@@ -1,22 +1,18 @@
 package net.tier1234.better_deco.screen.custom;
 
-import com.mrcrayfish.framework.api.Environment;
-import com.mrcrayfish.framework.api.menu.IMenuData;
-import com.mrcrayfish.framework.api.util.TaskRunner;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.profiling.jfr.Environment;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -65,9 +61,9 @@ public class WorkbenchMenu extends AbstractContainerMenu {
             ModTags.Items.OUTDOOR
     );
 
-    public WorkbenchMenu(int id, Inventory inventory, CustomData data) {
+    public WorkbenchMenu(int id, Inventory inventory, FriendlyByteBuf data) {
         this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
-        this.selectedRecipes.set(data.selectedRecipe);
+        this.selectedRecipes.set(0);
     }
 
     public WorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos, SimpleContainer outputContainer) {
@@ -151,15 +147,12 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         {
             return Services.RECIPE.getWorkbenchRecipes(serverLevel);
         }
-        else if(level instanceof ClientLevel)
+        if(level.isClientSide())
         {
-            return TaskRunner.callIf(Environment.CLIENT, () -> ClientRecipes::get)
-                    .map(ClientRecipes::workbenchRecipes)
-                    .orElse(Collections.emptyList());
+            return Services.RECIPE.getClientWorkbenchRecipes();
         }
         return Collections.emptyList();
     }
-
     public void setClientRecipes(List<ItemStack> results) {
         this.clientResults = results != null ? new ArrayList<>(results) : new ArrayList<>();
         this.recipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), null));
@@ -368,16 +361,4 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         return index != -1 && index < this.recipes.size() ? this.recipes.get(index) : null;
     }
 
-    public record CustomData(int selectedRecipe) implements IMenuData<CustomData> {
-        public static final StreamCodec<RegistryFriendlyByteBuf, CustomData> STREAM_CODEC = StreamCodec.composite(
-                ByteBufCodecs.VAR_INT,
-                CustomData::selectedRecipe,
-                CustomData::new
-        );
-
-        @Override
-        public StreamCodec<RegistryFriendlyByteBuf, CustomData> codec() {
-            return STREAM_CODEC;
-        }
-    }
 }

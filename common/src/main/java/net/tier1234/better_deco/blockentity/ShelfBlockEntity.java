@@ -126,7 +126,5 @@ public class ShelfBlockEntity extends BasicLootBlockEntity {
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory) {
         return new ShelfMenu(containerId, playerInventory, this);
     }
-    public ShelfMenu.CustomData createCustomData() {
-        return new ShelfMenu.CustomData(this.getBlockPos());
-    }
+
 }

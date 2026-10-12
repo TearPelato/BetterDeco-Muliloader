@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.mrcrayfish.framework.api.FrameworkAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tearpelato.craftcorelib.CraftCoreLIBConstants;
 import net.tearpelato.deco_lib.api.block.furniture.block_entity.FurnitureHorizontalEntityBlock;
 import net.tearpelato.deco_lib.api.shape.VoxelShapeHelper;
 import net.tier1234.better_deco.block.type.MetalType;
@@ -100,13 +100,13 @@ public class FridgeBlock extends FurnitureHorizontalEntityBlock {
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (state.getValue(MODEL_TYPE) == FridgeModelType.FRIDGE) {
-            if (blockEntity instanceof FridgeBlockEntity fridgeBlockEntity) {
-                player.openMenu(fridgeBlockEntity);
+            if (blockEntity instanceof FridgeBlockEntity fridgeBlockEntity && player instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer,fridgeBlockEntity, pos);
                 return InteractionResult.CONSUME;
             }
         } else if (state.getValue(MODEL_TYPE) == FridgeModelType.FREEZER ) {
-            if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity) {
-                FrameworkAPI.openMenuWithData((ServerPlayer) player, freezerBlockEntity, freezerBlockEntity.createCustomData());
+            if (blockEntity instanceof FreezerBlockEntity freezerBlockEntity && player instanceof ServerPlayer serverPlayer) {
+                CraftCoreLIBConstants.openMenuData(serverPlayer, freezerBlockEntity, pos);
             }
         }
 

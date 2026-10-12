@@ -6,11 +6,11 @@ import net.tier1234.better_deco.platform.services.IClientHelper;
 public class NeoForgeClientHelper implements IClientHelper {
     @Override
     public int getGuiLeft(AbstractContainerScreen<?> screen) {
-        return screen.getGuiLeft();
+        return screen.getLeftPos();
     }
 
     @Override
     public int getGuiTop(AbstractContainerScreen<?> screen) {
-        return screen.getGuiTop();
+        return screen.getTopPos();
     }
 }
