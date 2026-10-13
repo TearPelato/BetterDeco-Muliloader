@@ -66,7 +66,7 @@ public class ShelfBlockEntityRenderer implements BlockEntityRenderer<ShelfBlockE
 
             poseStack.pushPose();
             poseStack.translate(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
+            poseStack.rotate(Axis.YP.rotationDegrees(-dir.toYRot() + 180f));
             poseStack.translate(
                     U1 * xOffset * xMult[index],
                     U1 * yOffset,

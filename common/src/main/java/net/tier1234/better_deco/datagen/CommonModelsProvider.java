@@ -55,6 +55,7 @@ public class CommonModelsProvider extends CoreGenerator {
         woodenKitchenCounter(ModBlocks.CRIMSON_KITCHEN_COUNTER.get());
         woodenKitchenCounter(ModBlocks.WARPED_KITCHEN_COUNTER.get());
         woodenKitchenCounter(ModBlocks.PALE_OAK_KITCHEN_COUNTER.get());
+        woodenKitchenCounter(ModBlocks.POPLAR_KITCHEN_COUNTER.get());
 
 
         //Kitchen Drawers
@@ -70,6 +71,7 @@ public class CommonModelsProvider extends CoreGenerator {
         woodenKitchenDrawer(ModBlocks.CRIMSON_KITCHEN_DRAWER.get());
         woodenKitchenDrawer(ModBlocks.WARPED_KITCHEN_DRAWER.get());
         woodenKitchenDrawer(ModBlocks.PALE_OAK_KITCHEN_DRAWER.get());
+        woodenKitchenDrawer(ModBlocks.POPLAR_KITCHEN_DRAWER.get());
 
 
         //Sinks
@@ -85,6 +87,7 @@ public class CommonModelsProvider extends CoreGenerator {
         woodenKitchenSink(ModBlocks.CRIMSON_SINK.get());
         woodenKitchenSink(ModBlocks.WARPED_SINK.get());
         woodenKitchenSink(ModBlocks.PALE_OAK_SINK.get());
+        woodenKitchenSink(ModBlocks.POPLAR_SINK.get());
 
         woodenOven(ModBlocks.OAK_OVEN.get());
         woodenOven(ModBlocks.SPRUCE_OVEN.get());
@@ -98,6 +101,7 @@ public class CommonModelsProvider extends CoreGenerator {
         woodenOven(ModBlocks.CRIMSON_OVEN.get());
         woodenOven(ModBlocks.WARPED_OVEN.get());
         woodenOven(ModBlocks.PALE_OAK_OVEN.get());
+        woodenOven(ModBlocks.POPLAR_OVEN.get());
 
         woodenKitchenCabinet(ModBlocks.OAK_CABINET.get());
         woodenKitchenCabinet(ModBlocks.SPRUCE_CABINET.get());
@@ -111,6 +115,7 @@ public class CommonModelsProvider extends CoreGenerator {
         woodenKitchenCabinet(ModBlocks.CRIMSON_CABINET.get());
         woodenKitchenCabinet(ModBlocks.WARPED_CABINET.get());
         woodenKitchenCabinet(ModBlocks.PALE_OAK_CABINET.get());
+        woodenKitchenCabinet(ModBlocks.POPLAR_CABINET.get());
 
         microwave(ModBlocks.LIGHT_MICROWAVE.get());
         microwave(ModBlocks.DARK_MICROWAVE.get());
@@ -131,6 +136,7 @@ public class CommonModelsProvider extends CoreGenerator {
         cuttingBoard(ModBlocks.CRIMSON_CUTTING_BOARD.get());
         cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get());
         cuttingBoard(ModBlocks.PALE_OAK_CUTTING_BOARD.get());
+        cuttingBoard(ModBlocks.POPLAR_CUTTING_BOARD.get());
 
         jar(ModBlocks.OAK_JAR.get());
         jar(ModBlocks.SPRUCE_JAR.get());
@@ -144,6 +150,7 @@ public class CommonModelsProvider extends CoreGenerator {
         jar(ModBlocks.CRIMSON_JAR.get());
         jar(ModBlocks.WARPED_JAR.get());
         jar(ModBlocks.PALE_OAK_JAR.get());
+        jar(ModBlocks.POPLAR_JAR.get());
 
         coloredKitchenCounter(ModBlocks.WHITE_KITCHEN_COUNTER.get());
         coloredKitchenDrawer(ModBlocks.WHITE_KITCHEN_DRAWER.get());
@@ -255,6 +262,7 @@ public class CommonModelsProvider extends CoreGenerator {
         basin(ModBlocks.CRIMSON_BASIN.get());
         basin(ModBlocks.WARPED_BASIN.get());
         basin(ModBlocks.PALE_OAK_BASIN.get());
+        basin(ModBlocks.POPLAR_BASIN.get());
 
         toilet(ModBlocks.OAK_TOILET.get());
         toilet(ModBlocks.SPRUCE_TOILET.get());
@@ -268,6 +276,7 @@ public class CommonModelsProvider extends CoreGenerator {
         toilet(ModBlocks.CRIMSON_TOILET.get());
         toilet(ModBlocks.WARPED_TOILET.get());
         toilet(ModBlocks.PALE_OAK_TOILET.get());
+        toilet(ModBlocks.POPLAR_TOILET.get());
 
         bath(ModBlocks.OAK_BATH.get());
         bath(ModBlocks.SPRUCE_BATH.get());
@@ -281,6 +290,7 @@ public class CommonModelsProvider extends CoreGenerator {
         bath(ModBlocks.CRIMSON_BATH.get());
         bath(ModBlocks.WARPED_BATH.get());
         bath(ModBlocks.PALE_OAK_BATH.get());
+        bath(ModBlocks.POPLAR_BATH.get());
 
         sofa(ModBlocks.WHITE_SOFA.get());
         sofa(ModBlocks.LIGHT_GREY_SOFA.get());
@@ -311,6 +321,7 @@ public class CommonModelsProvider extends CoreGenerator {
         chair(ModBlocks.CRIMSON_CHAIR.get());
         chair(ModBlocks.WARPED_CHAIR.get());
         chair(ModBlocks.PALE_OAK_CHAIR.get());
+        chair(ModBlocks.POPLAR_CHAIR.get());
 
         stool(ModBlocks.WHITE_STOOL.get());
         stool(ModBlocks.LIGHT_GREY_STOOL.get());
@@ -341,6 +352,7 @@ public class CommonModelsProvider extends CoreGenerator {
         table(ModBlocks.CRIMSON_TABLE.get());
         table(ModBlocks.WARPED_TABLE.get());
         table(ModBlocks.PALE_OAK_TABLE.get());
+        table(ModBlocks.POPLAR_TABLE.get());
 
 
         desk(ModBlocks.OAK_DESK.get());
@@ -355,6 +367,7 @@ public class CommonModelsProvider extends CoreGenerator {
         desk(ModBlocks.CRIMSON_DESK.get());
         desk(ModBlocks.WARPED_DESK.get());
         desk(ModBlocks.PALE_OAK_DESK.get());
+        desk(ModBlocks.POPLAR_DESK.get());
 
         deskCabinet(ModBlocks.OAK_DESK_CABINET.get());
         deskCabinet(ModBlocks.SPRUCE_DESK_CABINET.get());
@@ -368,6 +381,7 @@ public class CommonModelsProvider extends CoreGenerator {
         deskCabinet(ModBlocks.CRIMSON_DESK_CABINET.get());
         deskCabinet(ModBlocks.WARPED_DESK_CABINET.get());
         deskCabinet(ModBlocks.PALE_OAK_DESK_CABINET.get());
+        deskCabinet(ModBlocks.POPLAR_DESK_CABINET.get());
 
 
 
@@ -383,6 +397,7 @@ public class CommonModelsProvider extends CoreGenerator {
         coffeeTable(ModBlocks.CRIMSON_COFFEE_TABLE.get());
         coffeeTable(ModBlocks.WARPED_COFFEE_TABLE.get());
         coffeeTable(ModBlocks.PALE_OAK_COFFEE_TABLE.get());
+        coffeeTable(ModBlocks.POPLAR_COFFEE_TABLE.get());
 
 
         bedsideCabinet(ModBlocks.OAK_BEDSIDE.get());
@@ -397,6 +412,7 @@ public class CommonModelsProvider extends CoreGenerator {
         bedsideCabinet(ModBlocks.CRIMSON_BEDSIDE.get());
         bedsideCabinet(ModBlocks.WARPED_BEDSIDE.get());
         bedsideCabinet(ModBlocks.PALE_OAK_BEDSIDE.get());
+        bedsideCabinet(ModBlocks.POPLAR_BEDSIDE.get());
 
         lamp(ModBlocks.WHITE_LAMP.get());
         lamp(ModBlocks.LIGHT_GRAY_LAMP.get());
@@ -444,6 +460,7 @@ public class CommonModelsProvider extends CoreGenerator {
         woodenClock(ModBlocks.CRIMSON_CLOCK.get());
         woodenClock(ModBlocks.WARPED_CLOCK.get());
         woodenClock(ModBlocks.PALE_OAK_CLOCK.get());
+        woodenClock(ModBlocks.POPLAR_CLOCK.get());
 
         shelf(ModBlocks.OAK_SHELF.get());
         shelf(ModBlocks.SPRUCE_SHELF.get());
@@ -457,6 +474,7 @@ public class CommonModelsProvider extends CoreGenerator {
         shelf(ModBlocks.CRIMSON_SHELF.get());
         shelf(ModBlocks.WARPED_SHELF.get());
         shelf(ModBlocks.PALE_OAK_SHELF.get());
+        shelf(ModBlocks.POPLAR_SHELF.get());
 
         bench(ModBlocks.OAK_PARK_BENCH.get());
         bench(ModBlocks.SPRUCE_PARK_BENCH.get());
@@ -470,6 +488,7 @@ public class CommonModelsProvider extends CoreGenerator {
         bench(ModBlocks.CRIMSON_PARK_BENCH.get());
         bench(ModBlocks.WARPED_PARK_BENCH.get());
         bench(ModBlocks.PALE_OAK_PARK_BENCH.get());
+        bench(ModBlocks.POPLAR_PARK_BENCH.get());
 
         stonePath(ModBlocks.STONE_PATH.get());
         stonePath(ModBlocks.ANDESITE_PATH.get());
@@ -489,6 +508,7 @@ public class CommonModelsProvider extends CoreGenerator {
         crate(ModBlocks.CRIMSON_CRATE.get());
         crate(ModBlocks.WARPED_CRATE.get());
         crate(ModBlocks.PALE_OAK_CRATE.get());
+        crate(ModBlocks.POPLAR_CRATE.get());
 
         glassTecque(ModBlocks.OAK_GLASS_TECQUE.get());
         glassTecque(ModBlocks.SPRUCE_GLASS_TECQUE.get());
@@ -502,6 +522,7 @@ public class CommonModelsProvider extends CoreGenerator {
         glassTecque(ModBlocks.CRIMSON_GLASS_TECQUE.get());
         glassTecque(ModBlocks.WARPED_GLASS_TECQUE.get());
         glassTecque(ModBlocks.PALE_OAK_GLASS_TECQUE.get());
+        glassTecque(ModBlocks.POPLAR_GLASS_TECQUE.get());
 
     }
 

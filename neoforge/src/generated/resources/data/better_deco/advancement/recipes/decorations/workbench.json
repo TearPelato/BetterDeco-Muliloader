@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:workbench"
+        "recipes": "better_deco:workbench"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

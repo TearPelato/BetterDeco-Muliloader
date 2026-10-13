@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:kitchen_knife"
+        "recipes": "better_deco:kitchen_knife"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

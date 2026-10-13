@@ -1,13 +1,14 @@
 package net.tier1234.better_deco.datagen;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -23,13 +24,28 @@ import net.tier1234.better_deco.recipe.CuttingBoardRecipe;
 import net.tier1234.better_deco.registries.ModBlocks;
 import net.tier1234.better_deco.registries.ModItems;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class CommonRecipeProvider extends RecipeProvider {
 
-    protected CommonRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+    public CommonRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
     }
+
+    public static MultiRegistryBootstrap create() {
+        return new MultiRegistryBootstrap() {
+            @Override
+            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
+
+            @Override
+            public void run(BootstrapGetter registries) {
+                new CommonRecipeProvider(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
+    }
+
 
     @Override
     public void buildRecipes() {
@@ -107,6 +123,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.kitchenCounter(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_KITCHEN_COUNTER.get());
         this.kitchenCounter(Blocks.WARPED_PLANKS, ModBlocks.WARPED_KITCHEN_COUNTER.get());
         this.kitchenCounter(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_KITCHEN_COUNTER.get());
+        this.kitchenCounter(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_KITCHEN_COUNTER.get());
 
         this.kitchenDrawer(Blocks.OAK_PLANKS, ModBlocks.OAK_KITCHEN_DRAWER.get());
         this.kitchenDrawer(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_KITCHEN_DRAWER.get());
@@ -120,6 +137,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.kitchenDrawer(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_KITCHEN_DRAWER.get());
         this.kitchenDrawer(Blocks.WARPED_PLANKS, ModBlocks.WARPED_KITCHEN_DRAWER.get());
         this.kitchenDrawer(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_KITCHEN_DRAWER.get());
+        this.kitchenDrawer(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_KITCHEN_DRAWER.get());
 
         this.kitchenCabinet(Blocks.OAK_PLANKS, ModBlocks.OAK_CABINET.get());
         this.kitchenCabinet(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_CABINET.get());
@@ -133,6 +151,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.kitchenCabinet(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CABINET.get());
         this.kitchenCabinet(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CABINET.get());
         this.kitchenCabinet(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_CABINET.get());
+        this.kitchenCabinet(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_CABINET.get());
 
         this.kitchenOven(Blocks.OAK_PLANKS, ModBlocks.OAK_OVEN.get());
         this.kitchenOven(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_OVEN.get());
@@ -146,6 +165,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.kitchenOven(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_OVEN.get());
         this.kitchenOven(Blocks.WARPED_PLANKS, ModBlocks.WARPED_OVEN.get());
         this.kitchenOven(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_OVEN.get());
+        this.kitchenOven(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_OVEN.get());
 
         this.kitchenSink(Blocks.OAK_PLANKS, ModBlocks.OAK_SINK.get());
         this.kitchenSink(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_SINK.get());
@@ -159,6 +179,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.kitchenSink(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_SINK.get());
         this.kitchenSink(Blocks.WARPED_PLANKS, ModBlocks.WARPED_SINK.get());
         this.kitchenSink(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_SINK.get());
+        this.kitchenSink(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_SINK.get());
 
         this.kitchenCounter(Blocks.CONCRETE.white(), ModBlocks.WHITE_KITCHEN_COUNTER.get());
         this.kitchenCounter(Blocks.CONCRETE.lightGray(), ModBlocks.LIGHT_GRAY_KITCHEN_COUNTER.get());
@@ -242,6 +263,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.cuttingBoard(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CUTTING_BOARD.get());
         this.cuttingBoard(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CUTTING_BOARD.get());
         this.cuttingBoard(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_CUTTING_BOARD.get());
+        this.cuttingBoard(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_CUTTING_BOARD.get());
 
         this.jar(Blocks.OAK_PLANKS, ModBlocks.OAK_JAR.get());
         this.jar(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_JAR.get());
@@ -255,6 +277,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.jar(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_JAR.get());
         this.jar(Blocks.WARPED_PLANKS, ModBlocks.WARPED_JAR.get());
         this.jar(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_JAR.get());
+        this.jar(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_JAR.get());
 
         this.table(Blocks.OAK_PLANKS, ModBlocks.OAK_TABLE.get());
         this.table(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_TABLE.get());
@@ -268,6 +291,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.table(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_TABLE.get());
         this.table(Blocks.WARPED_PLANKS, ModBlocks.WARPED_TABLE.get());
         this.table(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_TABLE.get());
+        this.table(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_TABLE.get());
 
         this.chair(Blocks.OAK_PLANKS, ModBlocks.OAK_CHAIR.get());
         this.chair(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_CHAIR.get());
@@ -280,7 +304,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.chair(Blocks.BAMBOO_PLANKS, ModBlocks.BAMBOO_CHAIR.get());
         this.chair(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CHAIR.get());
         this.chair(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CHAIR.get());
-        this.chair(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_CHAIR.get());
+        this.chair(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_CHAIR.get());
 
         this.coffeeTable(Blocks.OAK_PLANKS, ModBlocks.OAK_COFFEE_TABLE.get());
         this.coffeeTable(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_COFFEE_TABLE.get());
@@ -294,6 +318,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.coffeeTable(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_COFFEE_TABLE.get());
         this.coffeeTable(Blocks.WARPED_PLANKS, ModBlocks.WARPED_COFFEE_TABLE.get());
         this.coffeeTable(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_COFFEE_TABLE.get());
+        this.coffeeTable(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_COFFEE_TABLE.get());
 
         this.desk(Blocks.OAK_PLANKS, ModBlocks.OAK_DESK.get());
         this.desk(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_DESK.get());
@@ -307,6 +332,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.desk(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_DESK.get());
         this.desk(Blocks.WARPED_PLANKS, ModBlocks.WARPED_DESK.get());
         this.desk(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_DESK.get());
+        this.desk(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_DESK.get());
 
         this.deskCabinet(Blocks.OAK_PLANKS, ModBlocks.OAK_DESK_CABINET.get());
         this.deskCabinet(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_DESK_CABINET.get());
@@ -320,6 +346,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.deskCabinet(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_DESK_CABINET.get());
         this.deskCabinet(Blocks.WARPED_PLANKS, ModBlocks.WARPED_DESK_CABINET.get());
         this.deskCabinet(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_DESK_CABINET.get());
+        this.deskCabinet(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_DESK_CABINET.get());
 
         this.lamp(Blocks.WOOL.white(), ModBlocks.WHITE_LAMP.get());
         this.lamp(Blocks.WOOL.lightGray(), ModBlocks.LIGHT_GRAY_LAMP.get());
@@ -401,6 +428,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.woodenClock(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CLOCK.get());
         this.woodenClock(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CLOCK.get());
         this.woodenClock(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_CLOCK.get());
+        this.woodenClock(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_CLOCK.get());
 
         this.bedside(Blocks.OAK_PLANKS, ModBlocks.OAK_BEDSIDE.get());
         this.bedside(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_BEDSIDE.get());
@@ -414,6 +442,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.bedside(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BEDSIDE.get());
         this.bedside(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BEDSIDE.get());
         this.bedside(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_BEDSIDE.get());
+        this.bedside(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_BEDSIDE.get());
 
         this.toilet(Blocks.OAK_PLANKS, ModBlocks.OAK_TOILET.get());
         this.toilet(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_TOILET.get());
@@ -427,6 +456,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.toilet(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_TOILET.get());
         this.toilet(Blocks.WARPED_PLANKS, ModBlocks.WARPED_TOILET.get());
         this.toilet(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_TOILET.get());
+        this.toilet(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_TOILET.get());
 
         this.basin(Blocks.OAK_PLANKS, ModBlocks.OAK_BASIN.get());
         this.basin(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_BASIN.get());
@@ -440,6 +470,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.basin(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BASIN.get());
         this.basin(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BASIN.get());
         this.basin(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_BASIN.get());
+        this.basin(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_BASIN.get());
 
         this.bath(Blocks.OAK_PLANKS, ModBlocks.OAK_BATH.get());
         this.bath(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_BATH.get());
@@ -453,6 +484,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.bath(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_BATH.get());
         this.bath(Blocks.WARPED_PLANKS, ModBlocks.WARPED_BATH.get());
         this.bath(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_BATH.get());
+        this.bath(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_BATH.get());
 
         this.shelf(Blocks.OAK_PLANKS, ModBlocks.OAK_SHELF.get());
         this.shelf(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_SHELF.get());
@@ -466,6 +498,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.shelf(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_SHELF.get());
         this.shelf(Blocks.WARPED_PLANKS, ModBlocks.WARPED_SHELF.get());
         this.shelf(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_SHELF.get());
+        this.shelf(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_SHELF.get());
 
         this.bench(Blocks.OAK_PLANKS, ModBlocks.OAK_PARK_BENCH.get());
         this.bench(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_PARK_BENCH.get());
@@ -479,6 +512,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.bench(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_PARK_BENCH.get());
         this.bench(Blocks.WARPED_PLANKS, ModBlocks.WARPED_PARK_BENCH.get());
         this.bench(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_PARK_BENCH.get());
+        this.bench(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_PARK_BENCH.get());
 
         this.stonePath(Blocks.COBBLESTONE, ModBlocks.STONE_PATH.get());
         this.stonePath(Blocks.ANDESITE, ModBlocks.ANDESITE_PATH.get());
@@ -499,6 +533,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.crate(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_CRATE.get());
         this.crate(Blocks.WARPED_PLANKS, ModBlocks.WARPED_CRATE.get());
         this.crate(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_CRATE.get());
+        this.crate(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_CRATE.get());
 
         this.glassTecque(Blocks.OAK_PLANKS, ModBlocks.OAK_GLASS_TECQUE.get());
         this.glassTecque(Blocks.SPRUCE_PLANKS, ModBlocks.SPRUCE_GLASS_TECQUE.get());
@@ -512,6 +547,7 @@ public class CommonRecipeProvider extends RecipeProvider {
         this.glassTecque(Blocks.CRIMSON_PLANKS, ModBlocks.CRIMSON_GLASS_TECQUE.get());
         this.glassTecque(Blocks.WARPED_PLANKS, ModBlocks.WARPED_GLASS_TECQUE.get());
         this.glassTecque(Blocks.PALE_OAK_PLANKS, ModBlocks.PALE_OAK_GLASS_TECQUE.get());
+        this.glassTecque(Blocks.POPLAR_PLANKS, ModBlocks.POPLAR_GLASS_TECQUE.get());
 
         this.cuttingBoardRecipe(Items.BREAD, ModItems.SLICED_BREAD.get(), 2);
         this.toasterRecipe(ModItems.SLICED_BREAD.get(), ModItems.COOKED_SLICED_BREAD.get(),200);
@@ -757,26 +793,6 @@ public class CommonRecipeProvider extends RecipeProvider {
         ToasterRecipeBuilder.toasting(Ingredient.of(input), result, 1, cookTime)
                 .unlockedBy("has_" + baseName, has(input))
                 .save(output, key);
-    }
-
-    public static final class Runner extends RecipeProvider.Runner
-    {
-        public Runner(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture)
-        {
-            super(output, completableFuture);
-        }
-
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput output)
-        {
-            return new CommonRecipeProvider(provider, output);
-        }
-
-        @Override
-        public String getName()
-        {
-            return "BetterDeco Recipes";
-        }
     }
 
 }

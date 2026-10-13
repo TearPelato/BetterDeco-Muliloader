@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -119,7 +120,7 @@ public class BasinBlock extends FurnitureHorizontalBlock implements SimpleWaterl
             ItemStack newStack = filledBucket.getDefaultInstance();
             stack.shrink(1);
             if (stack.isEmpty()) player.setItemInHand(hand, newStack);
-            else if (!player.getInventory().add(newStack)) player.drop(newStack, false);
+            else if (!player.getInventory().add(newStack)) player.drop(newStack, false, Prediction.PREDICTED);
         }
         return InteractionResult.SUCCESS;
     }

@@ -3,6 +3,7 @@ package net.tier1234.better_deco.blockentity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CookingFuel;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
@@ -25,6 +27,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ResolvableInt;
+import net.minecraft.world.phys.Vec3;
 import net.tier1234.better_deco.recipe.OvenRecipe;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import net.tier1234.better_deco.registries.ModRecipes;
@@ -93,21 +101,32 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         return fuelTime > 0;
     }
 
+    private int getBurnTime(ItemStack stack) {
+        CookingFuel fuel = stack.get(DataComponents.COOKING_FUEL);
+        if (fuel == null || !(this.level instanceof ServerLevel serverLevel)) return 0;
+
+        LootParams params = new LootParams.Builder(serverLevel)
+                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition))
+                .withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
+                .create(LootContextParamSets.CONTAINER_PROCESS);
+        LootContext context = new LootContext.Builder(params).create(Optional.empty());
+
+        return fuel.burnTime().get(context, 200);
+    }
+
     private void consumeFuelItem() {
         ItemStack fuel = itemHandler.getItem(FUEL_SLOT);
         if (fuel.isEmpty()) return;
 
-
-        int burnTime = Minecraft.getInstance().level.fuelValues().burnDuration(fuel);
+        int burnTime = getBurnTime(fuel);
         if (burnTime <= 0) return;
 
         fuelDuration = burnTime;
         fuelTime     = burnTime;
 
-        ItemStack copy = itemHandler.getItem(FUEL_SLOT).copy();
+        ItemStack copy = fuel.copy();
         copy.shrink(1);
         itemHandler.setItem(FUEL_SLOT, copy.isEmpty() ? ItemStack.EMPTY : copy);
-
     }
 
     @Override

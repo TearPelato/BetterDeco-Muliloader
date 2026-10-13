@@ -1,8 +1,6 @@
 package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -33,13 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
-    public static final MapCodec<MicrowaveBlock> CODEC = RecordCodecBuilder.mapCodec(builder->{
-        return builder.group(MetalType.CODEC.fieldOf("metal_type").forGetter(block-> {
-            return block.type;
-        }), propertiesCodec()).apply(builder, MicrowaveBlock::new);
-    });
     public final MetalType type;
-
 
     public MicrowaveBlock(MetalType type,Properties properties) {
         super(properties);
@@ -50,11 +41,6 @@ public class MicrowaveBlock extends FurnitureHorizontalEntityBlock {
 
     public MetalType getType() {
         return type;
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

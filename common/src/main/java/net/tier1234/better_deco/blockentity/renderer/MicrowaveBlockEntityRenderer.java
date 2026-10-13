@@ -72,18 +72,18 @@ public class MicrowaveBlockEntityRenderer implements BlockEntityRenderer<Microwa
         poseStack.pushPose();
 
         poseStack.translate(0.5D, 0.0D, 0.5D);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-state.facing.toYRot()));
+        poseStack.rotate(Axis.YP.rotationDegrees(-state.facing.toYRot()));
         poseStack.translate(-0.5D, 0.0D, -0.5D);
 
         poseStack.translate(0.375D, 0.15D, 0.43D);
 
         if (state.rotation != 0.0F) {
             poseStack.translate(0.125D, 0.0D, 0.07D);
-            poseStack.mulPose(Axis.YP.rotationDegrees(state.rotation));
+            poseStack.rotate(Axis.YP.rotationDegrees(state.rotation));
             poseStack.translate(-0.125D, 0.0D, -0.07D);
         }
 
-        poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+        poseStack.rotate(Axis.XP.rotationDegrees(90.0F));
         poseStack.scale(0.5F, 0.5F, 0.5F);
 
         state.item.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);

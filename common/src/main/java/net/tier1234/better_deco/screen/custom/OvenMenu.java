@@ -1,7 +1,7 @@
 package net.tier1234.better_deco.screen.custom;
 
-
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -139,8 +139,7 @@ public class OvenMenu extends AbstractContainerMenu {
         }
     }
     public boolean isFuelItem(ItemStack stack) {
-        assert Minecraft.getInstance().level != null;
-        return Minecraft.getInstance().level.fuelValues().isFuel(stack);
+        return stack.has(DataComponents.COOKING_FUEL);
     }
 
 }

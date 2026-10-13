@@ -68,7 +68,7 @@ public class DigitalClockBlockEntityRenderer implements BlockEntityRenderer<Digi
 
         poseStack.translate(0.5, 0.5, 0.5);
         Direction facing = state.facing != null ? state.facing : Direction.NORTH;
-        poseStack.mulPose(Axis.YP.rotationDegrees(-90F * facing.get2DDataValue() + 180F));
+        poseStack.rotate(Axis.YP.rotationDegrees(-90F * facing.get2DDataValue() + 180F));
 
         poseStack.translate(0.0675, 0.005, -0.032);
         poseStack.translate(-4.2 * 0.0625, -5.0 * 0.0625, 1.55 * 0.0625);

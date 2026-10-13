@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -70,7 +71,7 @@ public class TecqueBlockEntity extends BlockEntity implements MenuProvider {
             if (!stack.isEmpty()) {
                 inventory.setItem(i, ItemStack.EMPTY);
                 if (!player.getInventory().add(stack)) {
-                    player.drop(stack, false);
+                    player.drop(stack, false, Prediction.PREDICTED);
                 }
                 setChanged();
                 if (level != null) {

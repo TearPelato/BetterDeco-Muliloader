@@ -1,0 +1,12 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 4,
+      "item": "minecraft:poplar_planks"
+    }
+  ],
+  "result": {
+    "id": "better_deco:poplar_table"
+  }
+}

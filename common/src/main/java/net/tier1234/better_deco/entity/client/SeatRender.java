@@ -11,9 +11,8 @@ public class SeatRender extends EntityRenderer<SeatEntity, EntityRenderState> {
         super(context);
     }
 
-
     @Override
-    public boolean shouldRender(SeatEntity livingEntity, Frustum camera, double camX, double camY, double camZ) {
+    public boolean shouldRender(SeatEntity entity, Frustum culler, double camX, double camY, double camZ, float partialTicks) {
         return true;
     }
 

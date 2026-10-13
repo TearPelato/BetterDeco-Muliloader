@@ -61,10 +61,10 @@ public class CuttingBoardBlockEntityRenderer implements BlockEntityRenderer<Cutt
 
         poseStack.pushPose();
         poseStack.translate(0.5D, 0.08D, 0.5D);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-state.direction.toYRot()));
+        poseStack.rotate(Axis.YP.rotationDegrees(-state.direction.toYRot()));
 
         if (state.flat) {
-            poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+            poseStack.rotate(Axis.XP.rotationDegrees(90.0F));
             poseStack.scale(0.6F, 0.6F, 0.6F);
         } else {
             poseStack.scale(0.4F, 0.4F, 0.4F);

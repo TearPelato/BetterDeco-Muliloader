@@ -23,6 +23,7 @@ public class ModBlockEntities {
                     ModBlocks.CRIMSON_KITCHEN_DRAWER.get(),
                     ModBlocks.WARPED_KITCHEN_DRAWER.get(),
                     ModBlocks.PALE_OAK_KITCHEN_DRAWER.get(),
+                    ModBlocks.POPLAR_KITCHEN_DRAWER.get(),
 
 
                     ModBlocks.WHITE_KITCHEN_DRAWER.get(),
@@ -62,6 +63,7 @@ public class ModBlockEntities {
                                                     ModBlocks.CRIMSON_CABINET.get(),
                                                     ModBlocks.WARPED_CABINET.get(),
                                                     ModBlocks.PALE_OAK_CABINET.get(),
+                                                    ModBlocks.POPLAR_CABINET.get(),
 
 
                                                     ModBlocks.RED_CABINET.get(),
@@ -100,7 +102,8 @@ public class ModBlockEntities {
                             ModBlocks.BAMBOO_BEDSIDE.get(),
                             ModBlocks.CRIMSON_BEDSIDE.get(),
                             ModBlocks.WARPED_BEDSIDE.get(),
-                            ModBlocks.PALE_OAK_BEDSIDE.get()
+                            ModBlocks.PALE_OAK_BEDSIDE.get(),
+                            ModBlocks.POPLAR_BEDSIDE.get()
                     }
 
             );
@@ -123,6 +126,7 @@ public class ModBlockEntities {
                             ModBlocks.CRIMSON_SINK.get(),
                             ModBlocks.WARPED_SINK.get(),
                             ModBlocks.PALE_OAK_SINK.get(),
+                            ModBlocks.POPLAR_SINK.get(),
 
                             ModBlocks.RED_SINK.get(),
                             ModBlocks.ORANGE_SINK.get(),
@@ -157,7 +161,8 @@ public class ModBlockEntities {
                                     ModBlocks.BAMBOO_GLASS_TECQUE.get(),
                                     ModBlocks.CRIMSON_GLASS_TECQUE.get(),
                                     ModBlocks.WARPED_GLASS_TECQUE.get(),
-                                    ModBlocks.PALE_OAK_GLASS_TECQUE.get()
+                                    ModBlocks.PALE_OAK_GLASS_TECQUE.get(),
+                                    ModBlocks.POPLAR_GLASS_TECQUE.get()
                             }
 
 
@@ -178,7 +183,8 @@ public class ModBlockEntities {
                             ModBlocks.BAMBOO_CRATE.get(),
                             ModBlocks.CRIMSON_CRATE.get(),
                             ModBlocks.WARPED_CRATE.get(),
-                            ModBlocks.PALE_OAK_CRATE.get()}
+                            ModBlocks.PALE_OAK_CRATE.get(),
+                            ModBlocks.POPLAR_CRATE.get()}
 
 
             );
@@ -198,7 +204,8 @@ public class ModBlockEntities {
                             ModBlocks.CRIMSON_SHELF.get(),
                             ModBlocks.BAMBOO_SHELF.get(),
                             ModBlocks.WARPED_SHELF.get(),
-                            ModBlocks.PALE_OAK_SHELF.get()
+                            ModBlocks.PALE_OAK_SHELF.get(),
+                            ModBlocks.POPLAR_SHELF.get()
                     }
             );
 
@@ -240,6 +247,7 @@ public class ModBlockEntities {
                             ModBlocks.CRIMSON_OVEN.get(),
                             ModBlocks.WARPED_OVEN.get(),
                             ModBlocks.PALE_OAK_OVEN.get(),
+                            ModBlocks.POPLAR_OVEN.get(),
 
                             ModBlocks.WHITE_OVEN.get(),
                             ModBlocks.LIGHT_GRAY_OVEN.get(),
@@ -286,7 +294,8 @@ public class ModBlockEntities {
                             ModBlocks.BAMBOO_DESK_CABINET.get(),
                             ModBlocks.CRIMSON_DESK_CABINET.get(),
                             ModBlocks.WARPED_DESK_CABINET.get(),
-                            ModBlocks.PALE_OAK_DESK_CABINET.get()
+                            ModBlocks.PALE_OAK_DESK_CABINET.get(),
+                            ModBlocks.POPLAR_DESK_CABINET.get()
                     }
 
             );
@@ -324,7 +333,8 @@ public class ModBlockEntities {
                     ModBlocks.BAMBOO_CUTTING_BOARD.get(),
                     ModBlocks.CRIMSON_CUTTING_BOARD.get(),
                     ModBlocks.WARPED_CUTTING_BOARD.get(),
-                    ModBlocks.PALE_OAK_CUTTING_BOARD.get()
+                    ModBlocks.PALE_OAK_CUTTING_BOARD.get(),
+                    ModBlocks.POPLAR_CUTTING_BOARD.get()
             });
 
     public static final ObjectRegistries<BlockEntityType<JarBlockEntity>> JAR =
@@ -341,6 +351,7 @@ public class ModBlockEntities {
                     ModBlocks.CRIMSON_JAR.get(),
                     ModBlocks.WARPED_JAR.get(),
                     ModBlocks.PALE_OAK_JAR.get(),
+                    ModBlocks.POPLAR_JAR.get()
             });
 
     public static final ObjectRegistries<BlockEntityType<BasinBlockEntity>> BASIN =
@@ -357,6 +368,7 @@ public class ModBlockEntities {
                     ModBlocks.CRIMSON_BASIN.get(),
                     ModBlocks.WARPED_BASIN.get(),
                     ModBlocks.PALE_OAK_BASIN.get(),
+                    ModBlocks.POPLAR_BASIN.get()
 
             });
 
@@ -373,7 +385,8 @@ public class ModBlockEntities {
                     ModBlocks.BAMBOO_TOILET.get(),
                     ModBlocks.CRIMSON_TOILET.get(),
                     ModBlocks.WARPED_TOILET.get(),
-                    ModBlocks.PALE_OAK_TOILET.get()
+                    ModBlocks.PALE_OAK_TOILET.get(),
+                    ModBlocks.POPLAR_TOILET.get()
 
             });
 
@@ -390,7 +403,8 @@ public class ModBlockEntities {
                     ModBlocks.BAMBOO_BATH.get(),
                     ModBlocks.CRIMSON_BATH.get(),
                     ModBlocks.WARPED_BATH.get(),
-                    ModBlocks.PALE_OAK_BATH.get()
+                    ModBlocks.PALE_OAK_BATH.get(),
+                    ModBlocks.POPLAR_BATH.get()
 
             });
 
@@ -408,7 +422,8 @@ public class ModBlockEntities {
                     ModBlocks.BAMBOO_CLOCK.get(),
                     ModBlocks.CRIMSON_CLOCK.get(),
                     ModBlocks.WARPED_CLOCK.get(),
-                    ModBlocks.PALE_OAK_CLOCK.get()
+                    ModBlocks.PALE_OAK_CLOCK.get(),
+                    ModBlocks.POPLAR_CLOCK.get()
 
             });
 

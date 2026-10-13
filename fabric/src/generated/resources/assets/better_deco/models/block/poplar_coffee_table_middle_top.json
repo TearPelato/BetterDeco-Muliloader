@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/coffee_table_middle_top",
+  "textures": {
+    "particle": "minecraft:block/poplar_planks",
+    "texture": "better_deco:block/poplar_coffee_table"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/kitchen_counter_left_corner_inverted",
+  "textures": {
+    "particle": "minecraft:block/poplar_planks",
+    "texture": "better_deco:block/poplar_kitchen_counter"
+  }
+}

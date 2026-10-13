@@ -48,6 +48,8 @@ public class ModBlocks {
             properties -> new BathBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD)));
     public static final ObjectRegistries<BathBlock> PALE_OAK_BATH = register("pale_oak_bath",
             properties -> new BathBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD)));
+    public static final ObjectRegistries<BathBlock> POPLAR_BATH = register("poplar_bath",
+            properties -> new BathBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD)));
 
 
 
@@ -76,16 +78,8 @@ public class ModBlocks {
             properties -> new ToiletBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD)));
     public static final ObjectRegistries<ToiletBlock> PALE_OAK_TOILET = register("pale_oak_toilet",
             properties -> new ToiletBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD)));
-
-
-
-
-
-
-
-
-
-
+    public static final ObjectRegistries<ToiletBlock> POPLAR_TOILET = register("poplar_toilet",
+            properties -> new ToiletBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD)));
 
 
 
@@ -114,6 +108,8 @@ public class ModBlocks {
             properties -> new BasinBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD)));
     public static final ObjectRegistries<BasinBlock> PALE_OAK_BASIN = register("pale_oak_basin",
             properties -> new BasinBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD)));
+    public static final ObjectRegistries<BasinBlock> POPLAR_BASIN = register("poplar_basin",
+            properties -> new BasinBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD)));
 
 
 
@@ -141,6 +137,8 @@ public class ModBlocks {
             properties -> new JarBlock(WoodType.WARPED, properties.strength(1.0F)));
     public static final ObjectRegistries<JarBlock> PALE_OAK_JAR = register("pale_oak_jar",
             properties -> new JarBlock(WoodType.PALE_OAK, properties.strength(1.0F)));
+    public static final ObjectRegistries<JarBlock> POPLAR_JAR = register("poplar_jar",
+            properties -> new JarBlock(WoodType.POPLAR, properties.strength(1.0F)));
 
 
 
@@ -171,6 +169,8 @@ public class ModBlocks {
             properties -> new CuttingBoardBlock(WoodType.WARPED, properties.strength(2.5f)));
     public static final ObjectRegistries<CuttingBoardBlock> PALE_OAK_CUTTING_BOARD = register("pale_oak_cutting_board",
             properties -> new CuttingBoardBlock(WoodType.PALE_OAK, properties.strength(2.5f)));
+    public static final ObjectRegistries<CuttingBoardBlock> POPLAR_CUTTING_BOARD = register("poplar_cutting_board",
+            properties -> new CuttingBoardBlock(WoodType.POPLAR, properties.strength(2.5f)));
 
 
 
@@ -201,6 +201,8 @@ public class ModBlocks {
             properties -> new DeskBlock(WoodType.WARPED, properties));
     public static final ObjectRegistries<DeskBlock> PALE_OAK_DESK = register("pale_oak_desk",
             properties -> new DeskBlock(WoodType.PALE_OAK, properties));
+    public static final ObjectRegistries<DeskBlock> POPLAR_DESK = register("poplar_desk",
+            properties -> new DeskBlock(WoodType.POPLAR, properties));
 
 
     public static final ObjectRegistries<DeskCabinetBlock> OAK_DESK_CABINET = register("oak_desk_cabinet",
@@ -227,6 +229,8 @@ public class ModBlocks {
             properties -> new DeskCabinetBlock(WoodType.WARPED, properties));
     public static final ObjectRegistries<DeskCabinetBlock> PALE_OAK_DESK_CABINET = register("pale_oak_desk_cabinet",
             properties -> new DeskCabinetBlock(WoodType.PALE_OAK, properties));
+    public static final ObjectRegistries<DeskCabinetBlock> POPLAR_DESK_CABINET = register("poplar_desk_cabinet",
+            properties -> new DeskCabinetBlock(WoodType.POPLAR, properties));
 
     //Path
     public static final ObjectRegistries<PathBlock> STONE_PATH = register("stone_path",
@@ -268,6 +272,8 @@ public class ModBlocks {
             properties -> new ParkBenchBlock(WoodType.WARPED, properties.strength(2.5f)));
     public static final ObjectRegistries<ParkBenchBlock> PALE_OAK_PARK_BENCH = register("pale_oak_park_bench",
             properties -> new ParkBenchBlock(WoodType.PALE_OAK, properties.strength(2.5f)));
+    public static final ObjectRegistries<ParkBenchBlock> POPLAR_PARK_BENCH = register("poplar_park_bench",
+            properties -> new ParkBenchBlock(WoodType.POPLAR, properties.strength(2.5f)));
 
 
 
@@ -314,7 +320,8 @@ public class ModBlocks {
             properties -> new OvenBlock(WoodType.WARPED, properties));
     public static final ObjectRegistries<OvenBlock> PALE_OAK_OVEN = register("pale_oak_oven",
             properties -> new OvenBlock(WoodType.PALE_OAK, properties));
-
+    public static final ObjectRegistries<OvenBlock> POPLAR_OVEN = register("poplar_oven",
+            properties -> new OvenBlock(WoodType.POPLAR, properties));
 
     //SHELFS
     public static final ObjectRegistries<ShelfBlock> OAK_SHELF = register("oak_shelf",
@@ -341,6 +348,8 @@ public class ModBlocks {
             properties -> new ShelfBlock(WoodType.WARPED, properties.sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
     public static final ObjectRegistries<ShelfBlock> PALE_OAK_SHELF = register("pale_oak_shelf",
             properties -> new ShelfBlock(WoodType.PALE_OAK, properties.sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
+    public static final ObjectRegistries<ShelfBlock> POPLAR_SHELF = register("poplar_shelf",
+            properties -> new ShelfBlock(WoodType.POPLAR, properties.sound(SoundType.WOOD).strength(2.0f).sound(SoundType.WOOD)));
 
     //Furnitures
     //Chairs
@@ -368,6 +377,9 @@ public class ModBlocks {
             properties -> new ChairBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<ChairBlock> PALE_OAK_CHAIR = register("pale_oak_chair",
             properties -> new ChairBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<ChairBlock> POPLAR_CHAIR = register("poplar_chair",
+            properties -> new ChairBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+
 
     //Counters
     public static final ObjectRegistries<KitchenCounterBlock> OAK_KITCHEN_COUNTER = register("oak_kitchen_counter",
@@ -394,6 +406,8 @@ public class ModBlocks {
             properties -> new KitchenCounterBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<KitchenCounterBlock> PALE_OAK_KITCHEN_COUNTER = register("pale_oak_kitchen_counter",
             properties -> new KitchenCounterBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<KitchenCounterBlock> POPLAR_KITCHEN_COUNTER = register("poplar_kitchen_counter",
+            properties -> new KitchenCounterBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Drawers
     public static final ObjectRegistries<KitchenDrawerBlock> OAK_KITCHEN_DRAWER = register("oak_kitchen_drawer",
@@ -420,6 +434,8 @@ public class ModBlocks {
             properties -> new KitchenDrawerBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<KitchenDrawerBlock> PALE_OAK_KITCHEN_DRAWER = register("pale_oak_kitchen_drawer",
             properties -> new KitchenDrawerBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<KitchenDrawerBlock> POPLAR_KITCHEN_DRAWER = register("poplar_kitchen_drawer",
+            properties -> new KitchenDrawerBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Sofas
     public static final ObjectRegistries<SofaBlock> RED_SOFA = register("red_sofa",
@@ -480,6 +496,8 @@ public class ModBlocks {
             properties -> new CabinetBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<CabinetBlock> PALE_OAK_CABINET = register("pale_oak_kitchen_cabinet",
             properties -> new CabinetBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<CabinetBlock> POPLAR_CABINET = register("poplar_kitchen_cabinet",
+            properties -> new CabinetBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
 
     //Bedside Cabinets
@@ -507,6 +525,8 @@ public class ModBlocks {
             properties -> new BedsideCabinetBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<BedsideCabinetBlock> PALE_OAK_BEDSIDE = register("pale_oak_bedside",
             properties -> new BedsideCabinetBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<BedsideCabinetBlock> POPLAR_BEDSIDE = register("poplar_bedside",
+            properties -> new BedsideCabinetBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Crates
     public static final ObjectRegistries<CrateBlock> OAK_CRATE = register("oak_storage_crate",
@@ -533,6 +553,8 @@ public class ModBlocks {
             properties -> new CrateBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<CrateBlock> PALE_OAK_CRATE = register("pale_oak_storage_crate",
             properties -> new CrateBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<CrateBlock> POPLAR_CRATE = register("poplar_storage_crate",
+            properties -> new CrateBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Sinks
     public static final ObjectRegistries<KitchenSinkBlock> OAK_SINK = register("oak_sink",
@@ -559,6 +581,8 @@ public class ModBlocks {
             properties -> new KitchenSinkBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<KitchenSinkBlock> PALE_OAK_SINK = register("pale_oak_sink",
             properties -> new KitchenSinkBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<KitchenSinkBlock> POPLAR_SINK = register("poplar_sink",
+            properties -> new KitchenSinkBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
     //Colored Variants
     public static final ObjectRegistries<KitchenCounterBlock> RED_KITCHEN_COUNTER = register("red_kitchen_counter",
@@ -787,6 +811,8 @@ public class ModBlocks {
             properties -> new CoffeeTableBlock(WoodType.WARPED, properties.strength(2f).sound(SoundType.WOOD)));
     public static final ObjectRegistries<CoffeeTableBlock> PALE_OAK_COFFEE_TABLE = register("pale_oak_coffee_table",
             properties -> new CoffeeTableBlock(WoodType.PALE_OAK, properties.strength(2f).sound(SoundType.WOOD)));
+    public static final ObjectRegistries<CoffeeTableBlock> POPLAR_COFFEE_TABLE = register("poplar_coffee_table",
+            properties -> new CoffeeTableBlock(WoodType.POPLAR, properties.strength(2f).sound(SoundType.WOOD)));
 
     //Tables
     public static final ObjectRegistries<TableBlock> OAK_TABLE = register("oak_table",
@@ -813,6 +839,8 @@ public class ModBlocks {
             properties -> new TableBlock(WoodType.WARPED, properties.strength(2f).sound(SoundType.WOOD)));
     public static final ObjectRegistries<TableBlock> PALE_OAK_TABLE = register("pale_oak_table",
             properties -> new TableBlock(WoodType.PALE_OAK, properties.strength(2f).sound(SoundType.WOOD)));
+    public static final ObjectRegistries<TableBlock> POPLAR_TABLE = register("poplar_table",
+            properties -> new TableBlock(WoodType.POPLAR, properties.strength(2f).sound(SoundType.WOOD)));
 
     public static final ObjectRegistries<LampBlock> WHITE_LAMP = register("white_lamp",
             properties -> new LampBlock(DyeColor.WHITE,  properties.strength(0.2f).lightLevel(LampBlock::getLight).sound(SoundType.WOOD)));
@@ -908,6 +936,8 @@ public class ModBlocks {
             properties -> new WoodenClockBlock(WoodType.WARPED, properties.strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
     public static final ObjectRegistries<WoodenClockBlock> PALE_OAK_CLOCK = register("pale_oak_clock",
             properties -> new WoodenClockBlock(WoodType.PALE_OAK, properties.strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
+    public static final ObjectRegistries<WoodenClockBlock> POPLAR_CLOCK = register("poplar_clock",
+            properties -> new WoodenClockBlock(WoodType.POPLAR, properties.strength(2.0f).sound(SoundType.WOOD).sound(SoundType.WOOD)));
 
 
 
@@ -941,6 +971,8 @@ public class ModBlocks {
             properties -> new TecqueBlock(WoodType.WARPED, properties.strength(3f).noOcclusion()));
     public static final ObjectRegistries<TecqueBlock> PALE_OAK_GLASS_TECQUE = register("pale_oak_glass_tecque",
             properties -> new TecqueBlock(WoodType.PALE_OAK, properties.strength(3f).noOcclusion()));
+    public static final ObjectRegistries<TecqueBlock> POPLAR_GLASS_TECQUE = register("poplar_glass_tecque",
+            properties -> new TecqueBlock(WoodType.POPLAR, properties.strength(3f).noOcclusion()));
 
 
     private static <T extends Block> ObjectRegistries<T> register(String name, Function<BlockBehaviour.Properties, T> function) {

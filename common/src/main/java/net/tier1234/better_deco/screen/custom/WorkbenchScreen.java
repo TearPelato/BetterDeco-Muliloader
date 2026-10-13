@@ -1,5 +1,6 @@
 package net.tier1234.better_deco.screen.custom;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -28,7 +29,6 @@ import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeIngredientTooltip;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeTooltip;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.*;
 
@@ -220,8 +220,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             }
         }
 
-        ((GuiGraphicsInvoker) graphics)
-                .invokeRenderTooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
+        ((GuiGraphicsInvoker) graphics).invokeRenderTooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null,false);
     }
 
     @Override
@@ -299,7 +298,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
-        if (event.button() == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+        if (event.button() == InputConstants.MOUSE_BUTTON_LEFT) {
             int tbX = getToggleButtonX();
             int tbY = getToggleButtonY();
             if (isMouseWithinBounds(event.x(), event.y(), tbX, tbY, TOGGLE_BUTTON_WIDTH, TOGGLE_BUTTON_HEIGHT)) {
@@ -334,7 +333,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     @Override
     public boolean keyPressed(KeyEvent event) {
         if (this.searchBox != null && this.searchBox.isFocused()) {
-            if (event.key() == GLFW.GLFW_KEY_ESCAPE) {
+            if (event.key() == InputConstants.KEY_ESCAPE) {
                 this.searchBox.setFocused(false);
                 return true;
             }
@@ -391,7 +390,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     @Override
     public boolean mouseReleased(MouseButtonEvent event) {
-        if (event.button() == GLFW.GLFW_MOUSE_BUTTON_LEFT && clickedY != -1) {
+        if (event.button() == InputConstants.MOUSE_BUTTON_LEFT && clickedY != -1) {
             clickedY = -1;
             return true;
         }

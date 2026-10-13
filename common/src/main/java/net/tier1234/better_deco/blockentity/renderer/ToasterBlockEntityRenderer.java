@@ -87,7 +87,7 @@ public class ToasterBlockEntityRenderer implements BlockEntityRenderer<ToasterBl
             double[] rotated = rotateForFacing(SLOT_LOCAL_X, SLOT_LOCAL_Z[slot], state.facing);
 
             poseStack.translate(0.5D + rotated[0], ITEM_Y, 0.5D + rotated[1]);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-state.facing.toYRot()));
+            poseStack.rotate(Axis.YP.rotationDegrees(-state.facing.toYRot()));
             poseStack.scale(ITEM_SCALE, ITEM_SCALE, ITEM_SCALE);
 
             item.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);

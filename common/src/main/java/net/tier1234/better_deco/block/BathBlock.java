@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Prediction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -168,7 +169,7 @@ public class BathBlock extends FurnitureHorizontalBlock implements SimpleWaterlo
             ItemStack newStack = filledBucket.getDefaultInstance();
             stack.shrink(1);
             if (stack.isEmpty()) player.setItemInHand(hand, newStack);
-            else if (!player.getInventory().add(newStack)) player.drop(newStack, false);
+            else if (!player.getInventory().add(newStack)) player.drop(newStack, false, Prediction.PREDICTED);
         }
         return InteractionResult.SUCCESS;
     }

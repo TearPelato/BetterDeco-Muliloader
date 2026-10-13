@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:slicing/sliced_bread_from_bread"
+        "recipes": "better_deco:slicing/sliced_bread_from_bread"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

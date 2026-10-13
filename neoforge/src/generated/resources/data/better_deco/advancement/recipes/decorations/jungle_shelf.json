@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:jungle_shelf"
+        "recipes": "better_deco:jungle_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

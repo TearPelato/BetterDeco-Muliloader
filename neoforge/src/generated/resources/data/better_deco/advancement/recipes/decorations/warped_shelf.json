@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:warped_shelf"
+        "recipes": "better_deco:warped_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

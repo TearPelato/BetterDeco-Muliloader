@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -90,10 +89,10 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
             poseStack.translate(0.0D, i * state.offsets.get(i), 0.0D);
 
             if (Boolean.TRUE.equals(state.flat.get(i))) {
-                poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
-                poseStack.mulPose(Axis.ZP.rotationDegrees(state.direction.toYRot()));
+                poseStack.rotate(Axis.XP.rotationDegrees(90.0F));
+                poseStack.rotate(Axis.ZP.rotationDegrees(state.direction.toYRot()));
             } else {
-                poseStack.mulPose(Axis.YP.rotationDegrees(-state.direction.toYRot()));
+                poseStack.rotate(Axis.YP.rotationDegrees(-state.direction.toYRot()));
             }
 
             state.items.get(i).submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
@@ -103,8 +102,5 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
 
         poseStack.popPose();
     }
-    private void setupItemRotation(PoseStack poseStack, Direction facing) {
-        poseStack.mulPose(Axis.YP.rotationDegrees(facing.toYRot()));
-        poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
-    }
+
 }

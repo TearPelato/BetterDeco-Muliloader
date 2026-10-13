@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:oak_shelf"
+        "recipes": "better_deco:oak_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

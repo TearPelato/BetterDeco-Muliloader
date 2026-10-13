@@ -6,6 +6,7 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.RecipeUnlockedTrigger;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -13,7 +14,6 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
-import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import org.jetbrains.annotations.Nullable;
@@ -76,12 +76,12 @@ public class WorkbenchRecipeBuilder implements RecipeBuilder {
             throw new IllegalStateException("No way of obtaining recipe " + resourceKey);
         }
 
-        Advancement.Builder advancementBuilder = recipeOutput.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
+        Advancement.Builder advancement = recipeOutput.advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeOutput.lookup(Registries.RECIPE).getOrThrow(resourceKey)))
                 .rewards(AdvancementRewards.Builder.recipe(resourceKey))
                 .requirements(AdvancementRequirements.Strategy.OR);
 
-        this.criteria.forEach(advancementBuilder::addCriterion);
+        this.criteria.forEach(advancement::addCriterion);
 
         WorkbenchRecipe recipe = new WorkbenchRecipe(
                 this.materials,
@@ -89,6 +89,6 @@ public class WorkbenchRecipeBuilder implements RecipeBuilder {
                 this.showNotification
         );
 
-        recipeOutput.accept(resourceKey, recipe, advancementBuilder.build(Constants.id("recipes/")));
+        recipeOutput.accept(resourceKey, recipe, advancement.build(resourceKey.identifier().withPrefix("recipes/workbench/")));
     }
 }

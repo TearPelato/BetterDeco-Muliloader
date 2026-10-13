@@ -1,0 +1,7 @@
+{
+  "parent": "better_deco:block/table_left",
+  "textures": {
+    "particle": "minecraft:block/poplar_planks",
+    "texture": "better_deco:block/poplar_table"
+  }
+}

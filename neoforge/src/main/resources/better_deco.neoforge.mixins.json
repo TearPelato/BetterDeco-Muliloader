@@ -4,7 +4,7 @@
   "package": "net.tier1234.better_deco.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "DataFixersMixin"
+
   ],
   "client": [
   ],

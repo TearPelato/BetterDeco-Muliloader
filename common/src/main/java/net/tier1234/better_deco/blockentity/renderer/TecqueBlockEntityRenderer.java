@@ -46,7 +46,7 @@ public class TecqueBlockEntityRenderer implements BlockEntityRenderer<TecqueBloc
 
         poseStack.translate(0.5f, 0.32f, 0.5f);
         poseStack.scale(0.5f, 0.5f, 0.5f);
-        poseStack.mulPose(Axis.YP.rotationDegrees(renderState.rotation));
+        poseStack.rotate(Axis.YP.rotationDegrees(renderState.rotation));
 
         renderState.itemStackRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 

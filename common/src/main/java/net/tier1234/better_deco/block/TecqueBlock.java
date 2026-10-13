@@ -2,8 +2,6 @@ package net.tier1234.better_deco.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -37,12 +34,6 @@ import java.util.List;
 
 public class TecqueBlock extends FurnitureHorizontalEntityBlock {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
-
-    public static final MapCodec<TecqueBlock> CODEC = RecordCodecBuilder.mapCodec(builder->{
-        return builder.group(WoodType.CODEC.fieldOf("wood_Type").forGetter(block-> {
-            return block.woodType;
-        }), propertiesCodec()).apply(builder, TecqueBlock::new);
-    });
 
     private final WoodType woodType;
 
@@ -75,10 +66,6 @@ public class TecqueBlock extends FurnitureHorizontalEntityBlock {
         return SHAPES.get(state);
     }
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
 
     /* BLOCK ENTITY */
 

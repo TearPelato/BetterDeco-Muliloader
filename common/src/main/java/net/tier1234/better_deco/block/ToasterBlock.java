@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Prediction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -135,7 +136,7 @@ public class ToasterBlock extends FurnitureHorizontalBlock implements EntityBloc
         ItemStack removed = toaster.removeLastItem();
         if (!removed.isEmpty()) {
             if (!player.getInventory().add(removed)) {
-                player.drop(removed, false);
+                player.drop(removed, false, Prediction.PREDICTED);
             }
             return InteractionResult.CONSUME;
         }

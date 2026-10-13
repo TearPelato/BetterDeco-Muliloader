@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:crimson_shelf"
+        "recipes": "better_deco:crimson_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

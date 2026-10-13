@@ -14,6 +14,6 @@ import java.util.List;
 @Mixin(GuiGraphicsExtractor.class)
 public interface GuiGraphicsInvoker {
 
-    @Invoker("tooltip")
-    void invokeRenderTooltip(Font font, List<ClientTooltipComponent> components, int mouseX, int mouseY, ClientTooltipPositioner positioner, @Nullable Identifier style);
+    @Invoker("setTooltipForNextFrameInternal")
+    void invokeRenderTooltip(Font font, List<ClientTooltipComponent> components, int mouseX, int mouseY, ClientTooltipPositioner positioner, @Nullable Identifier style, boolean replaceExisting);
 }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "better_deco:spruce_shelf"
+        "recipes": "better_deco:spruce_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

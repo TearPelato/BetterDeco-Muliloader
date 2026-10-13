@@ -5,6 +5,7 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.RecipeUnlockedTrigger;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -65,14 +66,14 @@ public class ToasterRecipeBuilder implements RecipeBuilder {
         ensureValid(resourceKey);
 
         Advancement.Builder advancement = recipeOutput.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeOutput.lookup(Registries.RECIPE).getOrThrow(resourceKey)))
                 .rewards(AdvancementRewards.Builder.recipe(resourceKey))
                 .requirements(AdvancementRequirements.Strategy.OR);
 
         criteria.forEach(advancement::addCriterion);
 
         ToasterRecipe recipe = new ToasterRecipe(ingredient, new ItemStackTemplate(result, count), cookTime);
-        recipeOutput.accept(resourceKey, recipe, advancement.build(Constants.id("recipes/toasting/")));
+        recipeOutput.accept(resourceKey, recipe, advancement.build(resourceKey.identifier().withPrefix("recipes/toaster/")));
     }
 
     public Item getResult() {
