@@ -1,0 +1,16 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": "minecraft:cherry_planks"
+    },
+    {
+      "count": 3,
+      "item": "minecraft:quartz_block"
+    }
+  ],
+  "result": {
+    "id": "better_deco:cherry_kitchen_counter"
+  }
+}

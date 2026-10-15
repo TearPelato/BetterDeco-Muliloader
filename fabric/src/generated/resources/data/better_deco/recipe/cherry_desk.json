@@ -1,0 +1,12 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 3,
+      "item": "minecraft:cherry_planks"
+    }
+  ],
+  "result": {
+    "id": "better_deco:cherry_desk"
+  }
+}

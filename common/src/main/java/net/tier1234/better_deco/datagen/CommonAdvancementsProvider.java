@@ -20,10 +20,10 @@ public class CommonAdvancementsProvider extends AdvancementSubProvider {
     private final HolderGetter<Item> items;
     private final HolderGetter<Block> blocks;
 
-    public CommonAdvancementsProvider(BootstrapContext<Advancement> output) {
-        super(output);
-        this.items = output.lookup(Registries.ITEM);
-        this.blocks = output.lookup(Registries.BLOCK);
+    public CommonAdvancementsProvider(BootstrapContext<Advancement> context) {
+        super(context);
+        this.items = context.lookup(Registries.ITEM);
+        this.blocks = context.lookup(Registries.BLOCK);
     }
 
     public static AdvancementSubProvider create(BootstrapContext<Advancement> context) {

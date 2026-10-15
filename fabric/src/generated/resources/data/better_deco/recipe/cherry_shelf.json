@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:cherry_planks",
+    "B": "minecraft:stick"
+  },
+  "pattern": [
+    "###",
+    "B B"
+  ],
+  "result": {
+    "id": "better_deco:cherry_shelf"
+  }
+}

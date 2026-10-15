@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:warped_planks",
+    "B": "minecraft:stick"
+  },
+  "pattern": [
+    "###",
+    "B B"
+  ],
+  "result": {
+    "id": "better_deco:warped_shelf"
+  }
+}

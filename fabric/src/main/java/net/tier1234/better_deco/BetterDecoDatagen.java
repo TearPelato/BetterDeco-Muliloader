@@ -13,9 +13,13 @@ public class BetterDecoDatagen implements DataGeneratorEntrypoint {
 
         pack.addProvider(CommonBlockTagProvider::new);
         pack.addProvider((FabricDataGenerator.Pack.Factory<CraftCoreModelGenerator>) output ->
-                new CraftCoreModelGenerator(output,Constants.MOD_ID).add(CommonModelsProvider::new).add(CommonItemModelsGenerator::new));
-        buildReloadableRegistry(CommonDataPackProvider.RELOADABLE);
+                new CraftCoreModelGenerator(output, Constants.MOD_ID)
+                        .add(CommonModelsProvider::new)
+                        .add(CommonItemModelsGenerator::new));
         pack.addProvider(CommonItemTagProvider::new);
+        pack.addProvider(FabricRecipesProvider::new);
+        pack.addProvider(FabricRecipesProvider::new);
+
     }
 
 }

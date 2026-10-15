@@ -1,0 +1,12 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": "minecraft:warped_planks"
+    }
+  ],
+  "result": {
+    "id": "better_deco:warped_cutting_board"
+  }
+}

@@ -13,6 +13,7 @@
   "block.better_deco.crimson_cutting_board": "Crimson Cutting Board",
   "block.better_deco.warped_cutting_board": "Warped Cutting Board",
   "block.better_deco.pale_oak_cutting_board": "Pale Oak Cutting Board",
+  "block.better_deco.poplar_cutting_board": "Poplar Cutting Board",
 
   "block.better_deco.oak_jar": "Oak Jar",
   "block.better_deco.spruce_jar": "Spruce Jar",
@@ -26,6 +27,7 @@
   "block.better_deco.crimson_jar": "Crimson Jar",
   "block.better_deco.warped_jar": "Warped Jar",
   "block.better_deco.pale_oak_jar": "Pale Oak Jar",
+  "block.better_deco.poplar_jar": "Poplar Jar",
 
 
   "block.better_deco.stone_path": "Stone Path",
@@ -56,6 +58,7 @@
   "block.better_deco.crimson_basin": "Crimson Basin",
   "block.better_deco.warped_basin": "Warped Basin",
   "block.better_deco.pale_oak_basin": "Pale Oak Basin",
+  "block.better_deco.poplar_basin": "Poplar Basin",
 
   "block.better_deco.oak_toilet": "Oak Toilet",
   "block.better_deco.spruce_toilet": "Spruce Toilet",
@@ -69,6 +72,7 @@
   "block.better_deco.crimson_toilet": "Crimson Toilet",
   "block.better_deco.warped_toilet": "Warped Toilet",
   "block.better_deco.pale_oak_toilet": "Pale Oak Toilet",
+  "block.better_deco.poplar_toilet": "Poplar Toilet",
 
   "block.better_deco.oak_bath": "Oak Bath",
   "block.better_deco.spruce_bath": "Spruce Bath",
@@ -82,6 +86,7 @@
   "block.better_deco.crimson_bath": "Crimson Bath",
   "block.better_deco.warped_bath": "Warped Bath",
   "block.better_deco.pale_oak_bath": "Pale Oak Bath",
+  "block.better_deco.poplar_bath": "Poplar Bath",
 
   "block.better_deco.red_stool": "Red Stool",
   "block.better_deco.orange_stool": "Orange Stool",
@@ -231,6 +236,7 @@
   "block.better_deco.crimson_clock": "Crimson Clock",
   "block.better_deco.warped_clock": "Warped Clock",
   "block.better_deco.pale_oak_clock": "Pale Oak Clock",
+  "block.better_deco.poplar_clock": "Poplar Clock",
 
   "block.better_deco.oak_oven": "Oak Oven",
   "block.better_deco.spruce_oven": "Spruce Oven",
@@ -244,6 +250,7 @@
   "block.better_deco.crimson_oven": "Crimson Oven",
   "block.better_deco.warped_oven": "Warped Oven",
   "block.better_deco.pale_oak_oven": "Pale Oak Oven",
+  "block.better_deco.poplar_oven": "Poplar Oven",
 
   "gui.better_deco.oven": "Oven",
   "gui.better_deco.microwave": "Microwave",
@@ -278,6 +285,7 @@
   "block.better_deco.crimson_coffee_table": "Crimson Coffee Table",
   "block.better_deco.warped_coffee_table": "Warped Coffee Table",
   "block.better_deco.pale_oak_coffee_table": "Pale Oak Coffee Table",
+  "block.better_deco.poplar_coffee_table": "Poplar Coffee Table",
 
   "block.better_deco.oak_table": "Oak Table",
   "block.better_deco.spruce_table": "Spruce Table",
@@ -291,6 +299,7 @@
   "block.better_deco.crimson_table": "Crimson Table",
   "block.better_deco.warped_table": "Warped Table",
   "block.better_deco.pale_oak_table": "Pale Oak Table",
+  "block.better_deco.poplar_table": "Poplar Table",
 
   "block.better_deco.birch_chair": "Birch Chair",
   "block.better_deco.spruce_chair": "Spruce Chair",
@@ -304,6 +313,7 @@
   "block.better_deco.cherry_chair": "Cherry Chair",
   "block.better_deco.bamboo_chair": "Bamboo Chair",
   "block.better_deco.pale_oak_chair": "Pale Oak Chair",
+  "block.better_deco.poplar_chair": "Poplar Chair",
 
   "block.better_deco.oak_kitchen_counter": "Oak Kitchen Counter",
   "block.better_deco.spruce_kitchen_counter": "Spruce Kitchen Counter",
@@ -317,6 +327,7 @@
   "block.better_deco.crimson_kitchen_counter": "Crimson Kitchen Counter",
   "block.better_deco.warped_kitchen_counter": "Warped Kitchen Counter",
   "block.better_deco.pale_oak_kitchen_counter": "Pale Oak Kitchen Counter",
+  "block.better_deco.poplar_kitchen_counter": "Poplar Kitchen Counter",
 
   "block.better_deco.oak_kitchen_drawer": "Oak Kitchen Drawer",
   "block.better_deco.spruce_kitchen_drawer": "Spruce Kitchen Drawer",
@@ -330,6 +341,7 @@
   "block.better_deco.crimson_kitchen_drawer": "Crimson Kitchen Drawer",
   "block.better_deco.warped_kitchen_drawer": "Warped Kitchen Drawer",
   "block.better_deco.pale_oak_kitchen_drawer": "Pale Oak Kitchen Drawer",
+  "block.better_deco.poplar_kitchen_drawer": "Poplar Kitchen Drawer",
 
   "block.better_deco.red_sofa": "Red Sofa",
   "block.better_deco.orange_sofa": "Orange Sofa",
@@ -360,6 +372,7 @@
   "block.better_deco.crimson_kitchen_cabinet": "Crimson Kitchen Cabinet",
   "block.better_deco.warped_kitchen_cabinet": "Warped Kitchen Cabinet",
   "block.better_deco.pale_oak_kitchen_cabinet": "Pale Oak Kitchen Cabinet",
+  "block.better_deco.poplar_kitchen_cabinet": "Poplar Kitchen Cabinet",
 
   "block.better_deco.oak_bedside": "Oak Bedside Cabinet",
   "block.better_deco.spruce_bedside": "Spruce Bedside Cabinet",
@@ -373,6 +386,7 @@
   "block.better_deco.crimson_bedside": "Crimson Bedside Cabinet",
   "block.better_deco.warped_bedside": "Warped Bedside Cabinet",
   "block.better_deco.pale_oak_bedside": "Pale Oak Bedside Cabinet",
+  "block.better_deco.poplar_bedside": "Poplar Bedside Cabinet",
 
   "block.better_deco.oak_storage_crate": "Oak Crate",
   "block.better_deco.spruce_storage_crate": "Spruce Crate",
@@ -386,6 +400,7 @@
   "block.better_deco.crimson_storage_crate": "Crimson Crate",
   "block.better_deco.warped_storage_crate": "Warped Crate",
   "block.better_deco.pale_oak_storage_crate": "Pale Oak Crate",
+  "block.better_deco.poplar_storage_crate": "Poplar Crate",
 
   "block.better_deco.oak_sink": "Oak Sink",
   "block.better_deco.spruce_sink": "Spruce Sink",
@@ -399,6 +414,7 @@
   "block.better_deco.crimson_sink": "Crimson Sink",
   "block.better_deco.warped_sink": "Warped Sink",
   "block.better_deco.pale_oak_sink": "Pale Oak Sink",
+  "block.better_deco.poplar_sink": "Poplar Sink",
 
   "block.better_deco.acacia_glass_tecque": "Acacia Glass Tecque",
   "block.better_deco.spruce_glass_tecque": "Spruce Glass Tecque",
@@ -412,6 +428,7 @@
   "block.better_deco.crimson_glass_tecque": "Crimson Glass Tecque",
   "block.better_deco.warped_glass_tecque": "Warped Glass Tecque",
   "block.better_deco.pale_oak_glass_tecque": "Pale Oak Glass Tecque",
+  "block.better_deco.poplar_glass_tecque": "Poplar Glass Tecque",
 
   "block.better_deco.oak_shelf": "Oak Shelf",
   "block.better_deco.spruce_shelf": "Spruce Shelf",
@@ -425,6 +442,7 @@
   "block.better_deco.crimson_shelf": "Crimson Shelf",
   "block.better_deco.warped_shelf": "Warped Shelf",
   "block.better_deco.pale_oak_shelf": "Pale Oak Shelf",
+  "block.better_deco.poplar_shelf": "Poplar Shelf",
 
 
 
@@ -440,6 +458,7 @@
   "block.better_deco.crimson_park_bench": "Crimson Park Bench",
   "block.better_deco.warped_park_bench": "Warped Park Bench",
   "block.better_deco.pale_oak_park_bench": "Pale Oak Park Bench",
+  "block.better_deco.poplar_park_bench": "Poplar Park Bench",
 
   "block.better_deco.oak_desk": "Oak Desk",
   "block.better_deco.spruce_desk": "Spruce Desk",
@@ -453,6 +472,7 @@
   "block.better_deco.crimson_desk": "Crimson Desk",
   "block.better_deco.warped_desk": "Warped Desk",
   "block.better_deco.pale_oak_desk": "Pale Oak Desk",
+  "block.better_deco.poplar_desk": "Poplar Desk",
 
   "block.better_deco.oak_desk_cabinet": "Oak Desk Cabinet",
   "block.better_deco.spruce_desk_cabinet": "Spruce Desk Cabinet",
@@ -466,6 +486,8 @@
   "block.better_deco.crimson_desk_cabinet": "Crimson Desk Cabinet",
   "block.better_deco.warped_desk_cabinet": "Warped Desk Cabinet",
   "block.better_deco.pale_oak_desk_cabinet": "Pale Oak Desk Cabinet",
+  "block.better_deco.poplar_desk_cabinet": "Poplar Desk Cabinet",
+
   "block.better_deco.workbench":"Deco Workbench",
 
   "item.better_deco.kitchen_knife": "Kitchen Knife",

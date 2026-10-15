@@ -1,0 +1,16 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 4,
+      "item": "minecraft:red_wool"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:stick"
+    }
+  ],
+  "result": {
+    "id": "better_deco:red_sofa"
+  }
+}

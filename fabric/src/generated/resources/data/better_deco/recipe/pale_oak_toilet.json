@@ -1,0 +1,24 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": "minecraft:pale_oak_planks"
+    },
+    {
+      "count": 3,
+      "item": "minecraft:quartz_block"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:bucket"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "id": "better_deco:pale_oak_toilet"
+  }
+}

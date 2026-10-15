@@ -1,0 +1,12 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": "minecraft:granite"
+    }
+  ],
+  "result": {
+    "id": "better_deco:granite_path"
+  }
+}

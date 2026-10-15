@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": "minecraft:string",
+    "B": "minecraft:iron_ingot",
+    "C": "minecraft:stick"
+  },
+  "pattern": [
+    "   ",
+    " AB",
+    " CA"
+  ],
+  "result": {
+    "id": "better_deco:kitchen_knife"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": "minecraft:birch_planks"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:quartz_block"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:chest"
+    }
+  ],
+  "result": {
+    "id": "better_deco:birch_kitchen_cabinet"
+  }
+}

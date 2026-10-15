@@ -1,0 +1,20 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 2,
+      "item": "minecraft:purple_concrete"
+    },
+    {
+      "count": 3,
+      "item": "minecraft:quartz_block"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:smoker"
+    }
+  ],
+  "result": {
+    "id": "better_deco:purple_oven"
+  }
+}

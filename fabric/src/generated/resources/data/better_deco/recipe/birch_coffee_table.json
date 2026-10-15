@@ -1,0 +1,16 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 3,
+      "item": "minecraft:birch_planks"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:glass"
+    }
+  ],
+  "result": {
+    "id": "better_deco:birch_coffee_table"
+  }
+}

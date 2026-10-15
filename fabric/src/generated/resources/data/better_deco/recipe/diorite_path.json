@@ -1,0 +1,12 @@
+{
+  "type": "better_deco:workbench",
+  "materials": [
+    {
+      "count": 1,
+      "item": "minecraft:diorite"
+    }
+  ],
+  "result": {
+    "id": "better_deco:diorite_path"
+  }
+}

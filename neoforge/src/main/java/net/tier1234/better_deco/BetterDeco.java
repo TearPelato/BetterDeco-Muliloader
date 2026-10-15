@@ -12,7 +12,6 @@ import net.tier1234.better_deco.registries.*;
 @Mod(Constants.MOD_ID)
 public class BetterDeco {
     public BetterDeco(IEventBus eventBus) {
-      //  ModPackets.init(payload -> PacketDistributor.sendToAllPlayers(payload));
         eventBus.addListener(NeoForgeNetworkHandler::registerPayloads);
         ModKeybinds.init();
         ModBlocks.init();
