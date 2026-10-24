@@ -25,7 +25,6 @@ public class BetterDeco implements ModInitializer {
         
         FabricNetworkHandler.registerPayloads();
         FabricNetworkHandler.registerServer();
-        ModKeybinds.init();
 
     }
 

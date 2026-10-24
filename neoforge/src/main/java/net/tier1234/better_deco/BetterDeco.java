@@ -14,7 +14,6 @@ public class BetterDeco {
     public BetterDeco(IEventBus eventBus) {
       //  ModPackets.init(payload -> PacketDistributor.sendToAllPlayers(payload));
         eventBus.addListener(NeoForgeNetworkHandler::registerPayloads);
-        ModKeybinds.init();
         ModBlocks.init();
         ModItems.init();
         ModCreativeTabs.init();
