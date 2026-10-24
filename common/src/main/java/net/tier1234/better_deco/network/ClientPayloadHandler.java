@@ -16,7 +16,7 @@ public class ClientPayloadHandler {
                     && mc.player.containerMenu instanceof WorkbenchMenu menu
                     && menu.containerId == payload.containerId()) {
                 menu.setCraftableRecipes(payload.craftable());
-                if (mc.screen instanceof WorkbenchScreen screen) {
+                if (mc.gui.screen() instanceof WorkbenchScreen screen) {
                     screen.updateRecipeButtons();
                 }
             } else {
@@ -35,7 +35,7 @@ public class ClientPayloadHandler {
             if (mc.player.containerMenu instanceof WorkbenchMenu menu
                     && menu.containerId == payload.containerId()) {
                 menu.setClientRecipes(payload.results(), payload.recipes());
-                if (mc.screen instanceof WorkbenchScreen screen) {
+                if (mc.gui.screen() instanceof WorkbenchScreen screen) {
                     screen.updateRecipeButtons();
                 }
             } else {
