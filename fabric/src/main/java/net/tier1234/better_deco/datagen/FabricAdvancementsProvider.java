@@ -10,6 +10,7 @@ import net.minecraft.advancements.triggers.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.registries.ModBlocks;
@@ -20,29 +21,27 @@ import java.util.function.Consumer;
 
 public class FabricAdvancementsProvider extends FabricAdvancementProvider {
 
-    protected FabricAdvancementsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public FabricAdvancementsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
-
     }
 
     @Override
-    public void generateAdvancement(HolderLookup.Provider registryLookup, Consumer<AdvancementHolder> outuput) {
-            var items = registryLookup.lookupOrThrow(Registries.ITEM);
-            var block = registryLookup.lookupOrThrow(Registries.BLOCK);
-
+    public void generateAdvancement(HolderLookup.Provider registryLookup, Consumer<AdvancementHolder> consumer) {
+       var items = registryLookup.lookupOrThrow(Registries.ITEM);
+       var blocks = registryLookup.lookupOrThrow(Registries.BLOCK);
 
         AdvancementHolder root = Advancement.Builder.recipeAdvancement().rootDisplay(
                         ModBlocks.WORKBENCH.get().asItem(),
                         Component.translatable("advancement.better_deco.craft_workbench.title"),
                         Component.translatable("advancement.better_deco.craft_workbench.description"),
-                        Constants.id(""),
+                        Identifier.withDefaultNamespace("block/dark_oak_planks"),
                         AdvancementType.TASK,
                         true,
                         true,
                         false
                 )
                 .addCriterion("craftWorkbench", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items, ModBlocks.WORKBENCH.get()).build()))
-                .save(outuput, Constants.id("better_deco/craft_workbench"));
+                .save(consumer, Constants.id("craft_workbench"));
 
         AdvancementHolder craft_furniture = Advancement.Builder.advancement()
                 .parent(root)
@@ -62,7 +61,7 @@ public class FabricAdvancementsProvider extends FabricAdvancementProvider {
                                         .map(entry -> entry.get().asItem())
                                         .toArray(Item[]::new)
                         ).build()))
-                .save(outuput,Constants.id("better_deco/craft_furniture"));
+                .save(consumer, Constants.id("craft_furniture"));
 
         AdvancementHolder craft_electronic_furnitures = Advancement.Builder.advancement()
                 .parent(root)
@@ -72,9 +71,10 @@ public class FabricAdvancementsProvider extends FabricAdvancementProvider {
                         AdvancementType.TASK,
                         true,
                         true,
-                        false)
+                        false
+                )
                 .addCriterion("craft_electronic_furnitures", InventoryChangeTrigger.TriggerInstance.hasItems(
                         ItemPredicate.Builder.item().of(items, ModTags.Items.ELECTRONIC_FURNITURES).build()))
-                .save(outuput,Constants.id("better_deco/craft_electronic_furnitures"));
+                .save(consumer, Constants.id("craft_electronic_furnitures"));
     }
 }

@@ -28,7 +28,7 @@ public class DataGenerators {
     @SubscribeEvent
     public static void registerDatapack(GatherDataRegistryEntriesEvent event) {
             event.recipe(CommonRecipeProvider::new)
-                 .advancement(NeoForgeAdvancementGenerator::new)
+                 .advancement(CommonAdvancementsProvider::new)
                  .lootTable(new LootTableProvider.SubProviderEntry(NeoForgeBlockLootTableProvider::new, LootContextParamSets.BLOCK));
     }
 }
