@@ -49,7 +49,8 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     private List<Boolean> canCraftRecipes = new ArrayList<>();
     private final Player player;
     private final Level level;
-
+    private static SyncWorkbenchRecipesPayload recipesPayload;
+    private static SyncCraftableRecipesPayload craftingPayload;
     private List<ItemStack> clientResults = new ArrayList<>();
 
     private static final List<TagKey<Item>> RECIPE_ORDER = List.of(
@@ -64,6 +65,14 @@ public class WorkbenchMenu extends AbstractContainerMenu {
     public WorkbenchMenu(int id, Inventory inventory, FriendlyByteBuf data) {
         this(id, inventory, inventory.player.level(), BlockPos.ZERO, new SimpleContainer(1));
         this.selectedRecipes.set(0);
+        if (recipesPayload != null && recipesPayload.containerId() == id) {
+            this.setClientRecipes(recipesPayload.results(), recipesPayload.recipes());
+        }
+        if (craftingPayload != null && craftingPayload.containerId() == id) {
+            this.setCraftableRecipes(craftingPayload.craftable());
+        }
+        recipesPayload = null;
+        craftingPayload = null;
     }
 
     public WorkbenchMenu(int id, Inventory inventory, Level level, BlockPos pos, SimpleContainer outputContainer) {
@@ -114,6 +123,14 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         return level;
     }
 
+    public static void setRecipesPayload(SyncWorkbenchRecipesPayload p) {
+        recipesPayload = p;
+    }
+
+    public static void setCraftingPayload(SyncCraftableRecipesPayload p) {
+        craftingPayload = p;
+    }
+
     public List<RecipeHolder<WorkbenchRecipe>> getRecipes() {
         return this.recipes;
     }
@@ -153,10 +170,11 @@ public class WorkbenchMenu extends AbstractContainerMenu {
         }
         return Collections.emptyList();
     }
-    public void setClientRecipes(List<ItemStack> results) {
+
+    public void setClientRecipes(List<ItemStack> results, List<RecipeHolder<WorkbenchRecipe>> holders) {
         this.clientResults = results != null ? new ArrayList<>(results) : new ArrayList<>();
-        this.recipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), null));
-        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(this.clientResults.size(), false));
+        this.recipes = new ArrayList<>(holders);
+        this.canCraftRecipes = new ArrayList<>(Collections.nCopies(holders.size(), false));
     }
 
     private void updateOutputSlot() {

@@ -203,7 +203,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
         List<ClientTooltipComponent> components = new ArrayList<>();
         components.add(new ClientTextTooltip(
-                recipe.getResultItem(null).getHoverName().getVisualOrderText()
+                menu.getResultStack(originalIndex).getHoverName().getVisualOrderText()
         ));
 
         if (!Minecraft.getInstance().hasShiftDown()) {
@@ -221,7 +221,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         }
 
         ((GuiGraphicsInvoker) graphics)
-                .invokeRenderTooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
+                .invokeTooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null, true);
     }
 
     @Override
@@ -230,7 +230,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         int y = (height - imageHeight) / 2;
 
         graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
-        renderRecipes(graphics, mouseX, mouseY); // real mouse coords needed for hover detection
+        renderRecipes(graphics, mouseX, mouseY);
         renderScrollbar(graphics);
         renderToggleButton(graphics);
         this.searchBox.extractRenderState(graphics, mouseX, mouseY, a);

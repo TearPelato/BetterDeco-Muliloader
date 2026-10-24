@@ -11,6 +11,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.registries.ModBlocks;
@@ -35,7 +36,7 @@ public class CommonAdvancementsProvider extends AdvancementProvider {
                     ModBlocks.WORKBENCH.get(),
                     Component.translatable("advancement.better_deco.craft_workbench.title"),
                     Component.translatable("advancement.better_deco.craft_workbench.description"),
-                    Constants.id(""),
+                    Identifier.withDefaultNamespace("block/dark_oak_planks"),
                     AdvancementType.TASK,
                     true,
                     true,

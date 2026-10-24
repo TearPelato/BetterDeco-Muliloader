@@ -2,6 +2,7 @@ package net.tier1234.better_deco.platform;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.platform.services.IRecipeHelper;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.registries.ModRecipes;
@@ -19,9 +20,9 @@ public class FabricRecipeHelper implements IRecipeHelper {
 
     @Override
     public Collection<RecipeHolder<WorkbenchRecipe>> getClientWorkbenchRecipes() {
-        return ClientRecipes.get()
-                .map(ClientRecipes::workbenchRecipes)
-                .orElse(Collections.emptyList());
+        var list = ClientRecipes.get().map(ClientRecipes::workbenchRecipes).orElse(Collections.emptyList());
+        Constants.LOG.info("fabric client recipes={}", list.size());
+        return list;
     }
 
 }
