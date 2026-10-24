@@ -66,7 +66,7 @@ public class BundledTabSelector {
             }
         });
 
-        ScreenRenderEvent.AFTER_RENDER_BACKGROUND.register(((screen, graphics, x, y) -> {
+        ScreenRenderEvent.AFTER_RENDER_BACKGROUND.register(((screen, graphics, x, y, partialTicks) -> {
             if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
                 CreativeModeTab tab = CreativeModeInventoryScreenAccessor.getSelectedTab();
                 if (this.lastTab != tab) {
@@ -77,7 +77,7 @@ public class BundledTabSelector {
             }
         }));
 
-        ScreenRenderEvent.BEFORE_RENDER_BACKGROUND.register((screen, graphics, mouseX, mouseY) -> {
+        ScreenRenderEvent.BEFORE_RENDER_BACKGROUND.register((screen, graphics, mouseX, mouseY,partialTicks) -> {
             if (screen instanceof CreativeModeInventoryScreen creativeScreen) {
                 this.renderBackground(creativeScreen, graphics);
             }

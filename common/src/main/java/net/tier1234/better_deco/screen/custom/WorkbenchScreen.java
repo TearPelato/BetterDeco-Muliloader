@@ -1,6 +1,5 @@
 package net.tier1234.better_deco.screen.custom;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -29,6 +28,7 @@ import net.tier1234.better_deco.recipe.CountedIngredient;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeIngredientTooltip;
 import net.tier1234.better_deco.screen.tooltip.ClientWorkbenchRecipeTooltip;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.*;
 
@@ -203,7 +203,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
         List<ClientTooltipComponent> components = new ArrayList<>();
         components.add(new ClientTextTooltip(
-                recipe.getResultItem(null).getHoverName().getVisualOrderText()
+                menu.getResultStack(originalIndex).getHoverName().getVisualOrderText()
         ));
 
         if (!Minecraft.getInstance().hasShiftDown()) {
@@ -220,7 +220,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
             }
         }
 
-        ((GuiGraphicsInvoker) graphics).invokeRenderTooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null,false);
+        ((GuiGraphicsInvoker) graphics)
+                .invokeTooltip(this.font, components, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null, true);
     }
 
     @Override
@@ -229,7 +230,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
         int y = (height - imageHeight) / 2;
 
         graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
-        renderRecipes(graphics, mouseX, mouseY); // real mouse coords needed for hover detection
+        renderRecipes(graphics, mouseX, mouseY);
         renderScrollbar(graphics);
         renderToggleButton(graphics);
         this.searchBox.extractRenderState(graphics, mouseX, mouseY, a);
@@ -298,7 +299,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
-        if (event.button() == InputConstants.MOUSE_BUTTON_LEFT) {
+        if (event.button() == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
             int tbX = getToggleButtonX();
             int tbY = getToggleButtonY();
             if (isMouseWithinBounds(event.x(), event.y(), tbX, tbY, TOGGLE_BUTTON_WIDTH, TOGGLE_BUTTON_HEIGHT)) {
@@ -333,7 +334,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
     @Override
     public boolean keyPressed(KeyEvent event) {
         if (this.searchBox != null && this.searchBox.isFocused()) {
-            if (event.key() == InputConstants.KEY_ESCAPE) {
+            if (event.key() == GLFW.GLFW_KEY_ESCAPE) {
                 this.searchBox.setFocused(false);
                 return true;
             }
@@ -390,7 +391,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchMenu> {
 
     @Override
     public boolean mouseReleased(MouseButtonEvent event) {
-        if (event.button() == InputConstants.MOUSE_BUTTON_LEFT && clickedY != -1) {
+        if (event.button() == GLFW.GLFW_MOUSE_BUTTON_LEFT && clickedY != -1) {
             clickedY = -1;
             return true;
         }

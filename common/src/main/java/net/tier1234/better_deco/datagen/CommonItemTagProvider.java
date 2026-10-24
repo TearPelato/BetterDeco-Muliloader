@@ -14,9 +14,8 @@ import net.tier1234.better_deco.util.ModTags;
 import java.util.concurrent.CompletableFuture;
 
 public class CommonItemTagProvider extends TagsProvider<Item> {
-
     public CommonItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, Registries.ITEM,lookupProvider);
+        super(output, Registries.ITEM, lookupProvider);
     }
 
     @Override
@@ -342,8 +341,8 @@ public class CommonItemTagProvider extends TagsProvider<Item> {
         .add(Constants.getItemResKey(ModBlocks.BIRCH_BEDSIDE.get().asItem()))
         .add(Constants.getItemResKey(ModBlocks.JUNGLE_BEDSIDE.get().asItem()))
         .add(Constants.getItemResKey(ModBlocks.ACACIA_BEDSIDE.get().asItem()))
-        .add(Constants.getItemResKey(ModBlocks.MANGROVE_BEDSIDE.get().asItem()))
         .add(Constants.getItemResKey(ModBlocks.DARK_OAK_BEDSIDE.get().asItem()))
+        .add(Constants.getItemResKey(ModBlocks.MANGROVE_BEDSIDE.get().asItem()))
         .add(Constants.getItemResKey(ModBlocks.CHERRY_BEDSIDE.get().asItem()))
         .add(Constants.getItemResKey(ModBlocks.PALE_OAK_BEDSIDE.get().asItem()))
         .add(Constants.getItemResKey(ModBlocks.POPLAR_BEDSIDE.get().asItem()))
