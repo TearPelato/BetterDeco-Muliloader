@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-11T18:27:45.0626057	Craft Core Models (better_deco)
+// 26.1.2	2026-10-24T12:12:24.3838187	Craft Core Models (better_deco)
 1c0bc68f3ec636300989e2abe4fc7d4be14e6dab assets/better_deco/blockstates/acacia_basin.json
 d009da4e48daceadda70ad4364008c6f2c93b7e8 assets/better_deco/blockstates/acacia_bath.json
 057c6ae7983e1d761f174cfe239dc67f19427d11 assets/better_deco/blockstates/acacia_bedside.json
@@ -1234,7 +1234,7 @@ f4479576072546e563d0c58f0e20d691123e30b4 assets/better_deco/models/block/cyan_so
 cfea7fd1f6b664126184167df56163a3875c414a assets/better_deco/models/block/dark_oak_bath.json
 6a0bb65beb1868eef30bd7b38430a13f6db6d62b assets/better_deco/models/block/dark_oak_bath_bottom.json
 71d95cc0be225e6b68d1e8c2039efedf204be541 assets/better_deco/models/block/dark_oak_bath_head.json
-1db0548c94107b54584fd1f90f623560ca4ec89d assets/better_deco/models/block/dark_oak_bedside.json
+dcc10950cacadbced23fbb2482838fb403285903 assets/better_deco/models/block/dark_oak_bedside.json
 8458314168c2d36436f4cda737a13686a0b33810 assets/better_deco/models/block/dark_oak_chair.json
 c677e8b9eb40aef997e995148413d347582e973b assets/better_deco/models/block/dark_oak_clock.json
 3af24b3e54f57b45202349ad4affc41a6e5c33b8 assets/better_deco/models/block/dark_oak_coffee_table_center.json
@@ -1533,7 +1533,7 @@ a8a2434d56817ed043b9af183ee592a3fa8225fe assets/better_deco/models/block/mangrov
 639bd91cce7c5469b96de840f76adea383484b4e assets/better_deco/models/block/mangrove_bath.json
 4079dbdc7178580c0837a6ef6430553d5e117248 assets/better_deco/models/block/mangrove_bath_bottom.json
 c2a896f9bc8541e4dea86b8c40109ac263a8980b assets/better_deco/models/block/mangrove_bath_head.json
-dcc10950cacadbced23fbb2482838fb403285903 assets/better_deco/models/block/mangrove_bedside.json
+1db0548c94107b54584fd1f90f623560ca4ec89d assets/better_deco/models/block/mangrove_bedside.json
 cc1d18372c8c6fd0ac0d53310a48aa331be27ec2 assets/better_deco/models/block/mangrove_chair.json
 ab0edac515952e664b9fbe272bec717df5feaafb assets/better_deco/models/block/mangrove_clock.json
 8c1bfcd551ff34425f15b7c11a7c8b44cd9169a3 assets/better_deco/models/block/mangrove_coffee_table_center.json

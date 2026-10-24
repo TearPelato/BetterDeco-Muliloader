@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.tier1234.better_deco.Constants;
 import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ClientRecipes {
     private List<RecipeHolder<WorkbenchRecipe>> workbenchRecipes = List.of();
 
     public void accept(List<RecipeHolder<WorkbenchRecipe>> recipes) {
+        Constants.LOG.info("ClientRecipes.accept size={}", recipes.size());
         this.workbenchRecipes = ImmutableList.copyOf(recipes);
     }
 
