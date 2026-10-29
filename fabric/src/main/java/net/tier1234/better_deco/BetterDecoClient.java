@@ -1,10 +1,14 @@
 package net.tier1234.better_deco;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.recipe.v1.sync.SynchronizedRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
@@ -13,20 +17,30 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeMap;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.tearpelato.deco_lib.core.registries.helper.ScreenRegister;
 import net.tier1234.better_deco.block.ToiletBlock;
 import net.tier1234.better_deco.client.ClientBootstrap;
+import net.tier1234.better_deco.compat.jei.category.SyncedRecipes;
 import net.tier1234.better_deco.entity.custom.SeatEntity;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.network.ModPackets;
 import net.tier1234.better_deco.registries.ModKeybinds;
+import net.tier1234.better_deco.registries.ModRecipes;
 import net.tier1234.better_deco.registries.ModSounds;
 import org.apache.commons.lang3.function.TriFunction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BetterDecoClient implements ClientModInitializer {
 
@@ -47,7 +61,6 @@ public class BetterDecoClient implements ClientModInitializer {
 
         KeyMappingHelper.registerKeyMapping(ModKeybinds.KEY_MAPPING_G);
         ClientTickEvents.END_CLIENT_TICK.register(BetterDecoClient::onClientTick);
-
 
     }
 

@@ -31,7 +31,6 @@ import net.tier1234.better_deco.blockentity.OvenBlockEntity;
 import net.tier1234.better_deco.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
-
 public class OvenBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;

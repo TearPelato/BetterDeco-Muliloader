@@ -21,7 +21,6 @@ public class FabricRecipeHelper implements IRecipeHelper {
     @Override
     public Collection<RecipeHolder<WorkbenchRecipe>> getClientWorkbenchRecipes() {
         var list = ClientRecipes.get().map(ClientRecipes::workbenchRecipes).orElse(Collections.emptyList());
-        Constants.LOG.info("fabric client recipes={}", list.size());
         return list;
     }
 

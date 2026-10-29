@@ -1,6 +1,5 @@
 package net.tier1234.better_deco.compat.jei;
 
-
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;

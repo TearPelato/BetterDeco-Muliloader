@@ -1,6 +1,5 @@
 package net.tier1234.better_deco.blockentity;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -31,7 +30,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.providers.number.ints.ResolvableInt;
 import net.minecraft.world.phys.Vec3;
 import net.tier1234.better_deco.recipe.OvenRecipe;
 import net.tier1234.better_deco.registries.ModBlockEntities;
@@ -108,6 +106,8 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
         LootParams params = new LootParams.Builder(serverLevel)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition))
                 .withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
+                .withParameter(LootContextParams.BLOCK_ENTITY, this)
+                .withParameter(LootContextParams.CONTAINER, this.itemHandler)
                 .create(LootContextParamSets.CONTAINER_PROCESS);
         LootContext context = new LootContext.Builder(params).create(Optional.empty());
 

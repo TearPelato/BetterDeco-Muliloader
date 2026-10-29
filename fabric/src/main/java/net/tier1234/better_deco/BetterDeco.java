@@ -1,10 +1,17 @@
 package net.tier1234.better_deco;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tearpelato.craftcorelib.api.registry.ObjectRegistries;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
+import net.tier1234.better_deco.network.ModPackets;
+import net.tier1234.better_deco.network.message.SyncWorkbenchRecipesPayload;
+import net.tier1234.better_deco.recipe.WorkbenchRecipe;
 import net.tier1234.better_deco.registries.*;
+
+import java.util.List;
 
 public class BetterDeco implements ModInitializer {
 
@@ -25,7 +32,18 @@ public class BetterDeco implements ModInitializer {
         
         FabricNetworkHandler.registerPayloads();
         FabricNetworkHandler.registerServer();
-        ModKeybinds.init();
+
+        ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register((player,joined)-> {
+            List<RecipeHolder<WorkbenchRecipe>> recipes = List.copyOf(player.level().getServer().getRecipeManager().recipes
+                    .byType(ModRecipes.WORKBENCH_TYPE.get()));
+
+            List<ItemStack> results = recipes.stream()
+                    .map(holder -> holder.value().getResultItem(player.level().registryAccess()))
+                    .toList();
+
+            ModPackets.sendToClient(player, new SyncWorkbenchRecipesPayload(recipes.size(),results,recipes));
+
+        });
 
     }
 

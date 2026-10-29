@@ -57,6 +57,8 @@ dependencies {
     implementation("net.tearpelato:deco_lib-neoforge-26.3:${deco_lib_version}")
     jarJar("net.tearpelato:deco_lib-neoforge-26.3:${deco_lib_version}")
     implementation("net.tearpelato:craftcorelib-neoforge-26.3:${craftcorelib_version}")
+    //Dev Experimental version impl of CraftCoreLIB
+    //implementation fileTree(dir: rootProject.file("libs"), include: "craftcorelib-neoforge-*.jar")
 
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
