@@ -1,7 +1,6 @@
 package net.tier1234.better_deco;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.tearpelato.craftcorelib.api.registry.ObjectRegistries;
 import net.tier1234.better_deco.network.FabricNetworkHandler;
 import net.tier1234.better_deco.registries.*;
@@ -25,7 +24,6 @@ public class BetterDeco implements ModInitializer {
         
         FabricNetworkHandler.registerPayloads();
         FabricNetworkHandler.registerServer();
-        ModKeybinds.init();
 
     }
 

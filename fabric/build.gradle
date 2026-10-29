@@ -12,6 +12,9 @@ repositories {
             }
         }
     }
+    maven {
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
 }
 
 dependencies {
@@ -25,7 +28,7 @@ dependencies {
     implementation("net.tearpelato:craftcorelib-fabric-26.2:${craftcorelib_version}")
 
 
-
+    implementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.6"
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
