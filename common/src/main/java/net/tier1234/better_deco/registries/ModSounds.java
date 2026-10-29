@@ -7,6 +7,6 @@ import net.tier1234.better_deco.Constants;
 public class ModSounds {
 
     public static final ObjectRegistries<SoundEvent> FART = ObjectRegistries.registerSound(Constants.id("fart"),
-            ()-> SoundEvent.createVariableRangeEvent(Constants.id("")));
+          id->  ()-> SoundEvent.createVariableRangeEvent(id));
     public static void init() {}
 }
