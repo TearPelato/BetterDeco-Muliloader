@@ -40,6 +40,20 @@ versionRange = "[1.0.10,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies."${mod_id}"]]
+modId = "jei"
+type = "optional"
+versionRange = "${jei_version}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "everycomp"
+type = "optional"
+versionRange = "${everycomp_version}"
+ordering = "NONE"
+side = "BOTH"
+
 [modproperties."${mod_id}"]
 catalogueImageIcon = "icon.png"
 catalogueBackground = "background.png"

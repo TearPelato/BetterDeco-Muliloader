@@ -462,9 +462,9 @@ public class ModBlocks {
     public static final ObjectRegistries<BedsideCabinetBlock> ACACIA_BEDSIDE = register("acacia_bedside",
             ()-> new BedsideCabinetBlock(WoodType.ACACIA,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<BedsideCabinetBlock> MANGROVE_BEDSIDE = register("mangrove_bedside",
-            ()-> new BedsideCabinetBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final ObjectRegistries<BedsideCabinetBlock> DARK_OAK_BEDSIDE = register("dark_oak_bedside",
             ()-> new BedsideCabinetBlock(WoodType.MANGROVE,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final ObjectRegistries<BedsideCabinetBlock> DARK_OAK_BEDSIDE = register("dark_oak_bedside",
+            ()-> new BedsideCabinetBlock(WoodType.DARK_OAK,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<BedsideCabinetBlock> CHERRY_BEDSIDE = register("cherry_bedside",
             ()-> new BedsideCabinetBlock(WoodType.CHERRY,BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final ObjectRegistries<BedsideCabinetBlock> BAMBOO_BEDSIDE = register("bamboo_bedside",
