@@ -1,4 +1,4 @@
-<img width="480" height="118" alt="778a2e276ef79f205035d2fb325123889f3608e9" src="https://github.com/user-attachments/assets/9e4122b5-2168-4c65-bc4b-bdeae25878b0" />
+<img width="480" height="118" alt="778a2e276ef79f205035d2fb325123889f3608e9" src="https://github.com/user-attachments/assets/75daef34-7bad-4fa3-8148-a8e2cb2d9fa3" />
 
 # Welcome to BetterDeco Project
 BetterDeco is a decorative mod that adds over 200+ for indoor and outdoor to improve your world.
@@ -38,7 +38,6 @@ Check out all the project on [CurseForge](https://www.curseforge.com/members/tie
 <img width="850" height="447" alt="fcb43b19b56617abeac222443e23cc21ba40469e_0" src="https://github.com/user-attachments/assets/a75dd927-cbfe-463e-b265-f37181cc9529" />
 <img width="850" height="449" alt="038df77807760c717e93c3e2074b616ebff7dcfa_0" src="https://github.com/user-attachments/assets/280ca3d0-e01d-4594-9095-8b23204ae04b" />
 <img width="850" height="450" alt="d799755885ea48432da366982d72e20f8beaa495_0" src="https://github.com/user-attachments/assets/89fe9321-3326-4ecc-91b4-0e38075049f9" />
-<img width="480" height="118" alt="778a2e276ef79f205035d2fb325123889f3608e9" src="https://github.com/user-attachments/assets/75daef34-7bad-4fa3-8148-a8e2cb2d9fa3" />
 <img width="850" height="447" alt="482ecfbbd0e50e9c8fdb0794bd17a8073cbd08c7_0" src="https://github.com/user-attachments/assets/48e1a4ad-709a-415b-99c1-9bc90c0ab9d0" />
 
 
